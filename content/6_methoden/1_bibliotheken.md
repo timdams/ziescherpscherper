@@ -74,7 +74,7 @@ int leeftijd = VraagInt("Geef leeftijd");
 ```
 
 Het voorgaande voorbeeld toont ook ineens aan waarom methoden helpen om je code leesbaarder en onderhoudbaarder te maken. Je ``Main`` blijft gevrijwaard van veel repeterende lijnen code en heeft aanroepen naar methoden met een duidelijke naam die ieder een specifiek ding doen. Dit maakt het debuggen ook eenvoudiger: je ziet in één oogopslag wat een methode doet.
-:::
+
 
 <!-- \newpage -->
 

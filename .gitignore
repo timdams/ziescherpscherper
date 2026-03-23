@@ -1,3 +1,5 @@
 # Quarto
 /.quarto/
 *_cache/
+**/*.quarto_ipynb
+/build/

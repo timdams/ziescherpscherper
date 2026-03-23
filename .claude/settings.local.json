@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(# Copy the assets directory\ncp -r \"c:/Users/p008465/Koofr/PROGPROJECTS/cursus/csharpbook_oefeningen/assets\" \"C:/temp/ziescherpste/oefeningen/assets\"\necho \"Assets directory copied\")"
+      "Bash(# Copy the assets directory\ncp -r \"c:/Users/p008465/Koofr/PROGPROJECTS/cursus/csharpbook_oefeningen/assets\" \"C:/temp/ziescherpste/oefeningen/assets\"\necho \"Assets directory copied\")",
+      "Bash(grep -l '\\\\.\\\\./assets' \"c:/Users/damst/Koofr/PROGPROJECTS/cursus/ziescherpste/content/\"*.md)"
     ]
   }
 }

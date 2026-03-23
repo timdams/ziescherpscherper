@@ -1,6 +1,6 @@
 # Kennisclips
 
-![](../assets/infoclip.png)
+![](assets/infoclip.png)
 
 Op volgende pagina vind je alle kennisclips en andere opnames samen die doorheen dit boek verspreid staan bij de relevante hoofdstukken.
 

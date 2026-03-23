@@ -4,7 +4,7 @@ De gepubliceerde versie is identiek aan deze cursus.
 
 Kijk op [ziescherp.be](https://timdams.com/ziescherp/) waar u deze cursus op verschillende manieren kunt aanschaffen (ebook, pdf of papier, enz.)
 
-![](../assets/boek3.png)
+![](assets/boek3.png)
 
 
 

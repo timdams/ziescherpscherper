@@ -34,7 +34,7 @@ Voor we verder gaan wil ik je wel even waarschuwen. Dit boek gaat uit van geen e
 Alles dat in dit boek gemaakt wordt zal uitgevoerd "in de console".  Die oeroude DOS-schermen - ook wel een *shell* genoemd - die je nu nog vaak in films ziet wanneer hackers proberen in een erg beveiligd systeem in te breken. Deze aanpak helpt je te focussen op de essentie van het probleem, zonder afgeleid te worden door visuele elementen.  
 
 
-![De "console". Qua zwarte inkt-verspilling zal deze afbeelding de hoofdprijs winnen!](../assets/0_intro/introconsole.png)<!--{width=50%}-->
+![De "console". Qua zwarte inkt-verspilling zal deze afbeelding de hoofdprijs winnen!](assets/0_intro/introconsole.png)<!--{width=50%}-->
 
 
 ## Over de bronnen
@@ -67,7 +67,7 @@ De trainers van Multimedi BV. die dit handboek ook gebruiken wil ik expliciet be
 
 Als laatste, in deze 2024 editie, een shoutout naar de leerkrachten van het middelbaar die sinds de laatste onderwijshervorming C# en OOP aan hun leerlingen mogen onderwijzen! 
 
-![](../assets/me.png)
+![](assets/me.png)
 
 Veel lees-en programmeerplezier,
 

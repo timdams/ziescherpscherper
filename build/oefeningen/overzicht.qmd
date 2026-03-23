@@ -1,7 +1,0 @@
----
-title: "Oefeningen overzicht"
----
-
-# Oefeningen
-
-Hier komt een overzicht van alle oefeningen per hoofdstuk.

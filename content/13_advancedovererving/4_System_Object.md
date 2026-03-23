@@ -195,7 +195,7 @@ Je hebt dus geen garantie dat in alle projecten de  ``==`` werkt zoals je zou ve
 
 >![](../assets/care.png)*"Ik ben nog niet helemaal mee..."*
 >
->Niet getreurd, je bent niet de enige: het is allemaal een hoop nieuwe kennis om te verwerken. En ik vermoed dat je nu niet bepaald overweldigd bent van de nieuwe kennis. Mogelijk heb je nu zoiets van? *"Ok..wow?! Wat krijg ik nu juist extra wetende dat al mijn klassen overerven van een oer-klasse? 4 methoden en wat beloofde compatibiliteit met andere .NET bibliotheken? Call me ...unimpressed"*.Begrijpelijke reactie. 
+>Niet getreurd, je bent niet de enige: het is allemaal een hoop nieuwe kennis om te verwerken. En ik vermoed dat je nu niet bepaald overweldigd bent van de nieuwe kennis. Mogelijk heb je nu zoiets van? *"Ok..wow?! Wat krijg ik nu juist extra wetende dat al mijn klassen overerven van een oer-klasse? 4 methoden en wat beloofde compatibiliteit met andere .NET bibliotheken? Call me ...unimpressed"*. Begrijpelijke reactie. 
 >
 >Hou vol, we zijn een hoop puzzelstukjes aan het opnemen die finaal zullen samenkomen om een gigantisch knappe OOPuzzel te maken (see what I did there?) In die puzzel zal polymorfisme onze sterspeler worden. Het zal ons toelaten erg krachtige code te schrijven. 
 >
