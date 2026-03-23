@@ -1,0 +1,189 @@
+project:
+  type: website
+  output-dir: ../build/oefeningen
+  render:
+    - "*.qmd"
+    - "**/*.md"
+    - "!overzicht.qmd"
+    - "!README.md"
+
+website:
+  title: "Zie Scherp – Oefeningen"
+  sidebar:
+    style: docked
+    contents:
+      - section: "H1 tot en met H5"
+        contents:
+          - text: "Oefeningen H1"
+            href: 1_intro/A_Practica.md
+          - text: "Oefeningen H2"
+            href: 2_csharpbasics/A_practica.md
+          - text: "Oefeningen H3"
+            href: 3_tekst/a_practica.md
+          - text: "Oefeningen H4"
+            href: 4_data/A_Practica.md
+          - text: "Oefeningen H5"
+            href: 5_beslissingen/a_practica.md
+          - section: "Gecombineerde oefeningen"
+            contents:
+              - text: "Opgave 1"
+                href: EindeTests/Mod1/Opgave.md
+              - text: "Opgave 2"
+                href: EindeTests/Mod1/Opgave_1920.md
+              - text: "Opgave 3"
+                href: EindeTests/Mod1/Opgave_1819.md
+              - text: "Opgave 4"
+                href: EindeTests/Mod1/Opgave_1920sim.md
+              - text: "Opgave 5"
+                href: EindeTests/Mod1/Opgave_2021.md
+
+      - section: "H6 tot en met H8"
+        contents:
+          - section: "Oefeningen H6"
+            contents:
+              - text: "Week 1"
+                href: 6_herhalingen/A_practicasamen.md
+              - text: "Week 2"
+                href: 6_herhalingen/A_practicasamen2.md
+          - section: "Oefeningen H7"
+            contents:
+              - text: "Week 1"
+                href: 7_methoden/b_practicasamen.md
+              - text: "Week 2"
+                href: 7_methoden/b_practicasamenb.md
+          - section: "Oefeningen H8"
+            contents:
+              - text: "Week 1"
+                href: 8_arrays/A_practicasamen.md
+              - text: "Week 2"
+                href: 8_arrays/A_practicasamenb.md
+          - section: "Voorbeeld vaardigheidsproeven"
+            contents:
+              - text: "Opgave 1 (2022)"
+                href: EindeTests/Mod2/Opgave_2122.md
+              - text: "Opgave 2 (2019)"
+                href: EindeTests/Mod2/Opgave_1819.md
+              - text: "Opgave 3 (2019)"
+                href: EindeTests/Mod2/Opgave_1819_2ezit.md
+              - text: "Opgave 4 (2020)"
+                href: EindeTests/Mod2/Opgave_1920.md
+              - text: "Opgave 5 (2020)"
+                href: EindeTests/Mod2/Opgave_1920b.md
+              - text: "Opgave 6 (2021)"
+                href: EindeTests/Mod2/Opgave_2021.md
+              - text: "Opgave 7 (2022)"
+                href: EindeTests/Mod2/Opgave_2122b.md
+              - text: "Opgave 8 (2022)"
+                href: EindeTests/Mod2/Opgave_2122c.md
+              - text: "Opgave 9 (2023)"
+                href: EindeTests/Mod2/Opgave_2223.md
+              - text: "Opgave 10 (2024)"
+                href: EindeTests/Mod2/Opgave_2324.md
+              - text: "Opgave 11 (2024)"
+                href: EindeTests/Mod2/Opgave_2324b.md
+              - text: "Opgave 12 (2025)"
+                href: EindeTests/Mod2/Opgave_2425.md
+              - text: "Opgave 13 (2026)"
+                href: EindeTests/Mod2/Opgave_2526.md
+          - section: "Gecombineerde opgaven"
+            contents:
+              - text: "Console Matrix"
+                href: EindeTests/A_DEEL1_AllInOne/1_ConsoleMatrix.md
+              - text: "Unicode filmpjes maken met loops"
+                href: EindeTests/A_DEEL1_AllInOne/3_AsciiMovieWithLoops.md
+              - text: "Unicode filmpjes maken met methoden"
+                href: EindeTests/A_DEEL1_AllInOne/2_AsciiMoviesWithMethods.md
+              - text: "Music Maestro"
+                href: EindeTests/Mod2/Opgave.md
+              - text: "Fun with methods: een verhaalgenerator"
+                href: EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md
+              - text: "Tekst-gebaseerd Maze game"
+                href: EindeTests/A_DEEL1_AllInOne/4_MazeGame.md
+              - text: "Conway game of life"
+                href: EindeTests/A_DEEL1_AllInOne/5_conway.md
+              - text: "How to make your console app look cool"
+                href: EindeTests/A_DEEL1_AllInOne/coolconsole.md
+
+      - section: "H9 tot en met H12"
+        contents:
+          - section: "Oefeningen H9"
+            contents:
+              - text: "Week 1 \"Intermezzo\""
+                href: 9_klassen/intermezzoh9.md
+              - text: "Week 2"
+                href: 9_klassen/A_practica.md
+              - text: "Week 3"
+                href: 9_klassen/B_practica.md
+          - text: "Oefeningen H10"
+            href: 10_meminoop/A_poke1.md
+          - text: "Oefeningen H11"
+            href: 11_advancedklassen/A_practica3.md
+          - text: "Oefeningen H12"
+            href: 12_arraysvanklassen/A_practicaMem.md
+          - section: "Gecombineerde oefeningen"
+            contents:
+              - text: "Opgave 1"
+                href: EindeTests/Mod3/Opgave.md
+              - text: "Opgave 2"
+                href: EindeTests/Mod3/Opgave2.md
+              - text: "Opgave 3"
+                href: EindeTests/Mod3/Opgave_1819.md
+              - text: "Opgave 4"
+                href: EindeTests/Mod3/Opgave_1920.md
+              - text: "Opgave 5"
+                href: EindeTests/Mod3/Opgave_2021.md
+
+      - section: "H13 tot en met H18"
+        contents:
+          - text: "Oefeningen H13"
+            href: 13_overerving/A_PracticaSimpel.md
+          - text: "Oefeningen H14"
+            href: 14_advancedovererving/A_Practica.md
+          - text: "Oefeningen H15"
+            href: 15_compositie/A_PracticaComp.md
+          - text: "Oefeningen H16"
+            href: 16_polymorfisme/A_Practica.md
+          - text: "Oefeningen H17"
+            href: 17_interfaces/A_practica.md
+          - text: "Oefeningen H18"
+            href: 18_bestandsverwerken/A_practica.md
+          - section: "Voorbeeld vaardigheidsproeven"
+            contents:
+              - text: "Opgave 1 (2019)"
+                href: EindeTests/Mod4/Opgave.md
+              - text: "Opgave 2 (2019)"
+                href: EindeTests/Mod4/Opgave_1819_2ezit.md
+              - text: "Opgave 3 (2020)"
+                href: EindeTests/Mod4/Opgave_1920.md
+              - text: "Opgave 4 (2021)"
+                href: EindeTests/Mod4/Opgave_2021.md
+              - text: "Opgave 5 (2021)"
+                href: EindeTests/Mod4/Opgave_2021b.md
+              - text: "Opgave 6 (2022)"
+                href: EindeTests/Mod4/Opgave_2122.md
+              - text: "Opgave 7 (2022)"
+                href: EindeTests/Mod4/Opgave_2122b.md
+              - text: "Opgave 8 (2023)"
+                href: EindeTests/Mod4/Opgave_2223.md
+              - text: "Opgave 9 (2024)"
+                href: EindeTests/Mod4/Opgave_2324.md
+              - text: "Opgave 10 (2025)"
+                href: EindeTests/Mod4/Opgave_2425.md
+          - section: "Gecombineerde oefeningen"
+            contents:
+              - text: "OO Textbased Game"
+                href: EindeTests/A_DEEL2_AllInOne/2_OOTextGame.md
+              - text: "Map Maker"
+                href: EindeTests/A_DEEL2_AllInOne/1_MapMapker.md
+              - text: "Mapmaker & WPF"
+                href: EindeTests/A_DEEL2_AllInOne/1_MapMapkerWPF.md
+              - text: "Magic The Gathering API"
+                href: EindeTests/A_DEEL2_AllInOne/mtgapi.md
+              - text: "C# Game remakes"
+                href: EindeTests/A_DEEL2_AllInOne/remakes.md
+
+format:
+  html:
+    theme: sandstone
+    lang: nl
+    toc: true

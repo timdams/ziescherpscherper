@@ -1,0 +1,218 @@
+{
+  "10_meminoop/A_poke1.md": {
+    "A_poke1.html": "e0dc69ac"
+  },
+  "11_advancedklassen/A_practica3.md": {
+    "A_practica3.html": "021b9aa8"
+  },
+  "12_arraysvanklassen/A_practicaMem.md": {
+    "A_practicaMem.html": "23437f79"
+  },
+  "13_overerving/A_PracticaSimpel.md": {
+    "A_PracticaSimpel.html": "e5b8fefe"
+  },
+  "14_advancedovererving/A_Practica.md": {
+    "A_Practica.html": "61724f33"
+  },
+  "15_compositie/A_PracticaComp.md": {
+    "A_PracticaComp.html": "950aba61"
+  },
+  "16_polymorfisme/A_Practica.md": {
+    "A_Practica.html": "7f3d08f9"
+  },
+  "17_interfaces/A_practica.md": {
+    "A_practica.html": "b6bc03b4"
+  },
+  "18_bestandsverwerken/A_practica.md": {
+    "A_practica.html": "0d1ed16d"
+  },
+  "1_intro/A_Practica.md": {
+    "A_Practica.html": "17834088"
+  },
+  "2_csharpbasics/A_practica.md": {
+    "A_practica.html": "d91510d0"
+  },
+  "3_tekst/a_practica.md": {
+    "a_practica.html": "b1c9543f"
+  },
+  "4_data/A_Practica.md": {
+    "A_Practica.html": "ab2fcf0c"
+  },
+  "5_beslissingen/a_practica.md": {
+    "a_practica.html": "d1483974"
+  },
+  "6_herhalingen/A_practicasamen.md": {
+    "A_practicasamen.html": "36d33214"
+  },
+  "6_herhalingen/A_practicasamen2.md": {
+    "A_practicasamen2.html": "98ca0693"
+  },
+  "7_methoden/b_practicasamen.md": {
+    "b_practicasamen.html": "aa3872ae"
+  },
+  "7_methoden/b_practicasamenb.md": {
+    "b_practicasamenb.html": "05189058"
+  },
+  "8_arrays/A_practicasamen.md": {
+    "A_practicasamen.html": "9ca2afd2"
+  },
+  "8_arrays/A_practicasamenb.md": {
+    "A_practicasamenb.html": "d8c2552b"
+  },
+  "9_klassen/A_practica.md": {
+    "A_practica.html": "6fda4c27"
+  },
+  "9_klassen/B_practica.md": {
+    "B_practica.html": "56d5d4a1"
+  },
+  "9_klassen/intermezzoh9.md": {
+    "intermezzoh9.html": "62ef67e7"
+  },
+  "EindeTests/A_DEEL1_AllInOne/1_ConsoleMatrix.md": {
+    "1_ConsoleMatrix.html": "42a2773d"
+  },
+  "EindeTests/A_DEEL1_AllInOne/2_AsciiMoviesWithMethods.md": {
+    "2_AsciiMoviesWithMethods.html": "84841050"
+  },
+  "EindeTests/A_DEEL1_AllInOne/3_AsciiMovieWithLoops.md": {
+    "3_AsciiMovieWithLoops.html": "5d91df7b"
+  },
+  "EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md": {
+    "3_verhaalgenerator.html": "2edc7fc6"
+  },
+  "EindeTests/A_DEEL1_AllInOne/4_MazeGame.md": {
+    "4_MazeGame.html": "90fec6b0"
+  },
+  "EindeTests/A_DEEL1_AllInOne/5_conway.md": {
+    "5_conway.html": "738703ab"
+  },
+  "EindeTests/A_DEEL1_AllInOne/coolconsole.md": {
+    "coolconsole.html": "9a8c524f"
+  },
+  "EindeTests/A_DEEL2_AllInOne/1_MapMapker.md": {
+    "1_MapMapker.html": "1234d182"
+  },
+  "EindeTests/A_DEEL2_AllInOne/1_MapMapkerWPF.md": {
+    "1_MapMapkerWPF.html": "c79cf6c9"
+  },
+  "EindeTests/A_DEEL2_AllInOne/2_OOTextGame.md": {
+    "2_OOTextGame.html": "278b20aa"
+  },
+  "EindeTests/A_DEEL2_AllInOne/mtgapi.md": {
+    "mtgapi.html": "703069c5"
+  },
+  "EindeTests/A_DEEL2_AllInOne/remakes.md": {
+    "remakes.html": "95b75208"
+  },
+  "EindeTests/Mod1/Opgave.md": {
+    "Opgave.html": "c076dcb9"
+  },
+  "EindeTests/Mod1/Opgave_1819.md": {
+    "Opgave_1819.html": "4e9cfe49"
+  },
+  "EindeTests/Mod1/Opgave_1920.md": {
+    "Opgave_1920.html": "bad50400"
+  },
+  "EindeTests/Mod1/Opgave_1920sim.md": {
+    "Opgave_1920sim.html": "ab06579b"
+  },
+  "EindeTests/Mod1/Opgave_2021.md": {
+    "Opgave_2021.html": "9e7fc17d"
+  },
+  "EindeTests/Mod2/Opgave.md": {
+    "Opgave.html": "fa0fe2a3"
+  },
+  "EindeTests/Mod2/Opgave_1819.md": {
+    "Opgave_1819.html": "7fbf4dac"
+  },
+  "EindeTests/Mod2/Opgave_1819_2ezit.md": {
+    "Opgave_1819_2ezit.html": "223fadec"
+  },
+  "EindeTests/Mod2/Opgave_1920.md": {
+    "Opgave_1920.html": "03674496"
+  },
+  "EindeTests/Mod2/Opgave_1920b.md": {
+    "Opgave_1920b.html": "c0513a71"
+  },
+  "EindeTests/Mod2/Opgave_2021.md": {
+    "Opgave_2021.html": "9387ac47"
+  },
+  "EindeTests/Mod2/Opgave_2122.md": {
+    "Opgave_2122.html": "36557cf5"
+  },
+  "EindeTests/Mod2/Opgave_2122b.md": {
+    "Opgave_2122b.html": "b0f14c75"
+  },
+  "EindeTests/Mod2/Opgave_2122c.md": {
+    "Opgave_2122c.html": "f01597a9"
+  },
+  "EindeTests/Mod2/Opgave_2223.md": {
+    "Opgave_2223.html": "16d176b2"
+  },
+  "EindeTests/Mod2/Opgave_2324.md": {
+    "Opgave_2324.html": "f39b1ce8"
+  },
+  "EindeTests/Mod2/Opgave_2324b.md": {
+    "Opgave_2324b.html": "795f97b7"
+  },
+  "EindeTests/Mod2/Opgave_2425.md": {
+    "Opgave_2425.html": "f4c3265d"
+  },
+  "EindeTests/Mod2/Opgave_2526.md": {
+    "Opgave_2526.html": "f315a542"
+  },
+  "EindeTests/Mod3/Opgave.md": {
+    "Opgave.html": "14d617a3"
+  },
+  "EindeTests/Mod3/Opgave2.md": {
+    "Opgave2.html": "cdfc0341"
+  },
+  "EindeTests/Mod3/Opgave_1819.md": {
+    "Opgave_1819.html": "67dcf9d3"
+  },
+  "EindeTests/Mod3/Opgave_1920.md": {
+    "Opgave_1920.html": "a8d9345d"
+  },
+  "EindeTests/Mod3/Opgave_2021.md": {
+    "Opgave_2021.html": "9491dcc3"
+  },
+  "EindeTests/Mod4/Opgave.md": {
+    "Opgave.html": "568d0a15"
+  },
+  "EindeTests/Mod4/Opgave_1819_2ezit.md": {
+    "Opgave_1819_2ezit.html": "208bdd9d"
+  },
+  "EindeTests/Mod4/Opgave_1920.md": {
+    "Opgave_1920.html": "9582cff1"
+  },
+  "EindeTests/Mod4/Opgave_2021.md": {
+    "Opgave_2021.html": "be25749e"
+  },
+  "EindeTests/Mod4/Opgave_2021b.md": {
+    "Opgave_2021b.html": "f7263165"
+  },
+  "EindeTests/Mod4/Opgave_2122.md": {
+    "Opgave_2122.html": "f8cfd0fd"
+  },
+  "EindeTests/Mod4/Opgave_2122b.md": {
+    "Opgave_2122b.html": "4950cf2c"
+  },
+  "EindeTests/Mod4/Opgave_2223.md": {
+    "Opgave_2223.html": "2369435b"
+  },
+  "EindeTests/Mod4/Opgave_2324.md": {
+    "Opgave_2324.html": "7633c578"
+  },
+  "EindeTests/Mod4/Opgave_2425.md": {
+    "Opgave_2425.html": "fcc08514"
+  },
+  "corona/opl_h12corona.md": {
+    "opl_h12corona.html": "826b9e85"
+  },
+  "corona/opl_h13corona.md": {
+    "opl_h13corona.html": "e2652800"
+  },
+  "corona/opl_h14corona.md": {
+    "opl_h14corona.html": "1cc82de0"
+  }
+}

@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: ../build/slides
+  render:
+    - "*.qmd"
+    - "!overzicht.qmd"
+
+website:
+  title: "Zie Scherp – Slides"
+
+format:
+  revealjs:
+    lang: nl
+    slide-number: true
+    transition: slide

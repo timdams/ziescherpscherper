@@ -1,0 +1,3 @@
+# Introductie
+
+Welkom bij de cursus C#. In dit hoofdstuk maken we kennis met de programmeertaal C# en het .NET ecosysteem.

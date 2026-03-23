@@ -1,0 +1,5 @@
+# Voorwoord {.unnumbered}
+
+Welkom bij **Zie Scherp**, een cursus C# binnen de opleidingen van de AP Hogeschool.
+
+Dit handboek behandelt de basisprincipes van programmeren in C#.

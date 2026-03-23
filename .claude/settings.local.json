@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(# Copy the assets directory\ncp -r \"c:/Users/p008465/Koofr/PROGPROJECTS/cursus/csharpbook_oefeningen/assets\" \"C:/temp/ziescherpste/oefeningen/assets\"\necho \"Assets directory copied\")"
+    ]
+  }
+}

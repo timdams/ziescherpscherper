@@ -1,0 +1,208 @@
+project:
+  type: book
+  output-dir: build
+
+lang: nl
+
+book:
+  title: "Zie Scherp Scherper"
+  author: "Tim Dams"
+  navbar:
+    background: dark
+    left:
+      - text: "Slides"
+        href: slides/overzicht.qmd
+      - text: "Oefeningen"
+        href: oefeningen/overzicht.qmd
+  chapters:
+    - index.qmd
+    - content/README.md
+    - part: "H1: De eerste stappen"
+      chapters:
+        - content/0_intro/0_intrototcs.md
+        - content/0_intro/1_werkenmetvs.md
+        - content/0_intro/1_killai.md
+        - content/0_intro/2_firstprogram.md
+        - content/0_intro/3_console.md
+        - content/0_intro/4_fouten.md
+        - content/0_intro/5_kleuren.md
+        - content/0_intro/kennisclips.md
+    - part: "H2: De basisconcepten van C#"
+      chapters:
+        - content/1_csharpbasics/0_csharpessentials.md
+        - content/1_csharpbasics/1_datatypes.md
+        - content/1_csharpbasics/1b_variabelen.md
+        - content/1_csharpbasics/2_expressies.md
+        - content/1_csharpbasics/3_constanten.md
+        - content/1_csharpbasics/solsprojects.md
+        - content/1_csharpbasics/kennisclips.md
+    - part: "H3: Tekst gebruiken in code"
+      chapters:
+        - content/2_tekst/5_chars_strings.md
+        - content/2_tekst/escapechars.md
+        - content/2_tekst/6_stringInterpolation.md
+        - content/2_tekst/7_unicode.md
+        - content/2_tekst/8_environment.md
+        - content/2_tekst/kennisclips.md
+    - part: "H4: Werken met data"
+      chapters:
+        - content/3_data/4_converteren_casting.md
+        - content/3_data/4b_inputconverten.md
+        - content/3_data/4c_math.md
+        - content/3_data/4d_afronden.md
+        - content/3_data/random.md
+        - content/3_data/5_debuggen.md
+        - content/3_data/ai.md
+        - content/3_data/kennisclips.md
+    - part: "H5: Beslissingen"
+      chapters:
+        - content/4_beslissingen/0_beslissingen_intro.md
+        - content/4_beslissingen/1_logic_and_relationsoperator.md
+        - content/4_beslissingen/0_if.md
+        - content/4_beslissingen/3_scope.md
+        - content/4_beslissingen/2_switch.md
+        - content/4_beslissingen/enum.md
+        - content/4_beslissingen/kennisclips.md
+    - part: "H6: Herhalingen"
+      chapters:
+        - content/5_herhalingen/0_loops_intro.md
+        - content/5_herhalingen/1_while_dowhile.md
+        - content/5_herhalingen/2_for.md
+        - content/5_herhalingen/3_nesting.md
+        - content/5_herhalingen/kennisclips.md
+    - part: "H7: Methoden"
+      chapters:
+        - content/6_methoden/0_intromethods.md
+        - content/6_methoden/1_bibliotheken.md
+        - content/6_methoden/3_advancedmethod.md
+        - content/6_methoden/kennisclips.md
+    - part: "H8: Arrays"
+      chapters:
+        - content/7_arrays/1_ArraysBasics.md
+        - content/7_arrays/arraysgeheugen.md
+        - content/7_arrays/systemarray.md
+        - content/7_arrays/algoarrays.md
+        - content/7_arrays/stringarray.md
+        - content/7_arrays/3_arrays_en_methoden.md
+        - content/7_arrays/4_ndimensionalArrays.md
+        - content/7_arrays/5_jaggedArrays.md
+        - content/7_arrays/kennisclips.md
+    - part: "H9: Object Oriented Programming"
+      chapters:
+        - content/8_klassen/0_oop_intro.md
+        - content/8_klassen/0b_oopincs.md
+        - content/8_klassen/0c_simpleobjects.md
+        - content/8_klassen/2_properties.md
+        - content/8_klassen/autoprop.md
+        - content/8_klassen/datetime.md
+        - content/8_klassen/kennisclips.md
+    - part: "H10: Geheugenmanagement en uitzonderingen"
+      chapters:
+        - content/9_meminoop/6_memorymanagement.md
+        - content/9_meminoop/6b_objectenenmethoden.md
+        - content/9_meminoop/nullreference.md
+        - content/9_meminoop/namespaces.md
+        - content/20_exceptions/0_exceptionhandling.md
+        - content/20_exceptions/waarplaatsen.md
+        - content/9_meminoop/kennisclips.md
+    - part: "H11: Gevorderde klasseconcepten"
+      chapters:
+        - content/10_advancedklassen/1_constructors.md
+        - content/10_advancedklassen/2_overloadedconstructor.md
+        - content/10_advancedklassen/2_objectinitsyntax.md
+        - content/10_advancedklassen/5_static.md
+        - content/10_advancedklassen/kennisclips.md
+    - part: "H12: Arrays en klassen"
+      chapters:
+        - content/11_arraysvanklassen/7_arraysvanobj.md
+        - content/11_arraysvanklassen/4_list.md
+        - content/11_arraysvanklassen/3_foreach.md
+        - content/11_arraysvanklassen/dict.md
+        - content/11_arraysvanklassen/kennisclips.md
+    - part: "H13: Overerving"
+      chapters:
+        - content/12_overerving/0_overerving_intro.MD
+        - content/12_overerving/3_constructors_inheritance.md
+        - content/12_overerving/1_virtual_override.md
+        - content/12_overerving/2_base.md
+        - content/12_overerving/kennisclips.md
+    - part: "H14: Gevorderde overervingsconcepten"
+      chapters:
+        - content/13_advancedovererving/4_System_Object.md
+        - content/13_advancedovererving/5_abstract.md
+        - content/20_exceptions/1_eigenuitzondering.md
+        - content/13_advancedovererving/kennisclips.md
+    - part: "H15: Compositie en aggregatie"
+      chapters:
+        - content/14_compositie/0_compositie_intro.MD
+        - content/14_compositie/this.md
+        - content/14_compositie/kennisclips.md
+    - part: "H16: Polymorfisme"
+      chapters:
+        - content/15_polymorfisme/11_polymo_intro.MD
+        - content/15_polymorfisme/polypraktijd.md
+        - content/18_IsAs/1_IsAs.md
+        - content/18_IsAs/6_equals.md
+        - content/15_polymorfisme/kennisclips.md
+    - part: "H17: Interfaces"
+      chapters:
+        - content/16_interfaces/1_Interface_intro.MD
+        - content/16_interfaces/presidentinterfaces.md
+        - content/16_interfaces/2_InterfacesInPraktijk.md
+        - content/18_IsAs/2_Polymorfisme_Interfaces.md
+        - content/16_interfaces/kennisclips.md
+    - part: "H18: Bestandsverwerking"
+      chapters:
+        - content/21_bestanden/bestandenintro.md
+        - content/21_bestanden/schrijvenenlezen.md
+        - content/21_bestanden/fileinfo.md
+        - content/21_bestanden/serialize.md
+        - content/21_bestanden/kennisclips.md
+    - part: "Conclusie"
+      chapters:
+        - content/BookOnlyOOP/conclusie.md
+        - content/ennu.md
+    - part: "Kennisclips"
+      chapters:
+        - content/allvideos1.md
+        - content/allvideos2.md
+    - part: "Appendix"
+      chapters:
+        - content/B_appendix/prostuff.md
+        - content/B_appendix/mac.md
+        - content/B_appendix/regions.md
+        - content/B_appendix/stringformat.md
+        - content/B_appendix/2_outenref.md
+        - content/B_appendix/8_operatoroverloading.md
+        - content/B_appendix/6_exprbody.md
+        - content/B_appendix/field_keyword.md
+        - content/B_appendix/generics.md
+        - content/B_appendix/struct.md
+        - content/B_appendix/installer.md
+    - part: "Coding guidelines"
+      chapters:
+        - content/B_appendix/boete.md
+        - content/B_appendix/boetes/compileertniet.md
+        - content/B_appendix/boetes/klassenfile.md
+        - content/B_appendix/boetes/redundant.md
+        - content/B_appendix/boetes/bladspiegel.md
+        - content/B_appendix/boetes/naamgeving.md
+        - content/B_appendix/boetes/goto.md
+        - content/B_appendix/boetes/linq.md
+        - content/B_appendix/boetes/method.md
+        - content/B_appendix/boetes/toplevel.md
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: [sandstone, brand, custom.scss]
+    toc: true
+    number-sections: false
+  typst:
+    mainfont: "Arial"
+    papersize: a4
+    section-numbering: "1.1"
+    margin:
+      x: 2.5cm
+      y: 3cm
