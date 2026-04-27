@@ -29,6 +29,9 @@ jobs:
       - name: Render oefeningen
         run: quarto render oefeningen/
 
+      - name: Render coronafiles
+        run: quarto render coronafiles/
+
       - name: Restore cached slide PDFs
         uses: actions/cache@v4
         with:

@@ -1,0 +1,69 @@
+project:
+  type: website
+  output-dir: ../build/coronafiles
+  render:
+    - "*.qmd"
+    - "**/*.md"
+    - "!overzicht.qmd"
+
+website:
+  title: "Zie Scherp – Corona Files"
+  sidebar:
+    style: docked
+    contents:
+      - section: "Introductie"
+        contents:
+          - text: "Overzicht"
+            href: index.md
+      - section: "Trainings opdracht"
+        contents:
+          - text: "Briefing"
+            href: trainings-opdracht/briefing.md
+          - text: "Opdracht"
+            href: trainings-opdracht/opdracht.md
+      - section: "Missie 1 – Overerving"
+        contents:
+          - text: "Briefing"
+            href: missie-1/briefing.md
+          - text: "Opdracht"
+            href: missie-1/opdracht.md
+      - section: "Missie 2 – Adv. overerving"
+        contents:
+          - text: "Briefing"
+            href: missie-2/briefing.md
+          - text: "Opdracht"
+            href: missie-2/opdracht.md
+      - section: "Missie 3 – Compositie"
+        contents:
+          - text: "Briefing"
+            href: missie-3/briefing.md
+          - text: "Opdracht"
+            href: missie-3/opdracht.md
+      - section: "Missie 4 – Polymorfisme"
+        contents:
+          - text: "Briefing"
+            href: missie-4/briefing.md
+          - text: "Opdracht"
+            href: missie-4/opdracht.md
+      - section: "Missie 5 – Interfaces"
+        contents:
+          - text: "Briefing"
+            href: missie-5/briefing.md
+          - text: "Opdracht"
+            href: missie-5/opdracht.md
+      - section: "Oplossingen"
+        contents:
+          - text: "Trainings opdracht"
+            href: oplossingen/trainings-opdracht.md
+          - text: "Missie 1"
+            href: oplossingen/missie-1.md
+          - text: "Missie 2"
+            href: oplossingen/missie-2.md
+          - text: "Missie 3"
+            href: oplossingen/missie-3.md
+
+format:
+  html:
+    theme: sandstone
+    lang: nl
+    toc: true

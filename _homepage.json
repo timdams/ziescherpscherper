@@ -1,0 +1,39 @@
+{
+  "name": "ziescherpste",
+  "tech": "Onbekend",
+  "techDetail": "Onbekend",
+  "branch": "main",
+  "lastCommit": "2026-03-23",
+  "lastCommitMsg": "build pipeline prepping",
+  "lastCommitHash": "177e7cd",
+  "hasGit": true,
+  "remote": "https://github.com/timdams/ziescherpscherper",
+  "tag": null,
+  "recentCommits": [
+    {
+      "hash": "177e7cd",
+      "msg": "build pipeline prepping"
+    },
+    {
+      "hash": "205ba9c",
+      "msg": "build flow"
+    },
+    {
+      "hash": "1d8ef45",
+      "msg": "scherp seg"
+    },
+    {
+      "hash": "e199bd9",
+      "msg": "let's go"
+    }
+  ],
+  "workspace": null,
+  "noteFiles": [],
+  "path": "cursus\\ziescherpste",
+  "desc": "",
+  "category": "Toetsing",
+  "status": "cursus",
+  "tags": [],
+  "aiSummary": null,
+  "customNotes": null
+}

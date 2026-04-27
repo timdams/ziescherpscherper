@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(quarto render:*)",
+      "Bash(quarto pandoc:*)",
+      "WebSearch",
+      "WebFetch(domain:typst.app)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:quarto.org)",
+      "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/cyberboswachters/slides/**)",
+      "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/.github/workflows/**)",
+      "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/**)"
+    ]
+  }
+}

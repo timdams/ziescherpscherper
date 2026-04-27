@@ -14,6 +14,8 @@ book:
         href: slides/overzicht.qmd
       - text: "Oefeningen"
         href: oefeningen/overzicht.qmd
+      - text: "Corona Files"
+        href: coronafiles/overzicht.qmd
   chapters:
     - index.qmd
     - content/README.md
@@ -198,6 +200,7 @@ format:
   html:
     theme: [sandstone, brand, custom.scss]
     toc: true
+    lightbox: true
     number-sections: false
   typst:
     mainfont: "Arial"
