@@ -38,6 +38,7 @@ ziescherpste/
 ├── coronafiles/             # missie-website OOP
 ├── odysseyfiles/            # variant van corona — status onduidelijk
 ├── build/                   # output (gitignored, behalve gecommitte PDF)
+├── future/                  # werkmap voor toekomstige ideeën (niet gepubliceerd)
 └── .github/workflows/publish.yml
 ```
 

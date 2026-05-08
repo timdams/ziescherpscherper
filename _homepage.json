@@ -3,13 +3,17 @@
   "tech": "Onbekend",
   "techDetail": "Onbekend",
   "branch": "main",
-  "lastCommit": "2026-03-23",
-  "lastCommitMsg": "build pipeline prepping",
-  "lastCommitHash": "177e7cd",
+  "lastCommit": "2026-04-27",
+  "lastCommitMsg": "blijven gaan",
+  "lastCommitHash": "54d382b",
   "hasGit": true,
   "remote": "https://github.com/timdams/ziescherpscherper",
   "tag": null,
   "recentCommits": [
+    {
+      "hash": "54d382b",
+      "msg": "blijven gaan"
+    },
     {
       "hash": "177e7cd",
       "msg": "build pipeline prepping"

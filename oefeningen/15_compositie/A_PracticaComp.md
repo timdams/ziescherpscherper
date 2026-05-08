@@ -54,12 +54,32 @@ Controleer je klasse Land door enkele ministers en een president te maken en dez
     
 ## Verkiezingen
 
-Maak klasse ``VerkiezingsUitslag``. Deze klasse heeft een default constructor die volgende twee properties random waarden zal geven:
+Maak klasse ``VerkiezingsUitslag``. Deze klasse heeft volgende twee full properties:
 
-* Een full property met private set ``VerkozenPresident`` van het type ``President``.
-* Een full property met private set ``VerkozenMinisters`` van het type ``List<Minister>``.
+* ``VerkozenPresident`` van het type ``President``.
+* ``VerkozenMinisters`` van het type ``List<Minister>``.
 
-Maak in je hoofdprogramma een ``VerkiezingsUitslag``-object aan en gebruik deze om de ``MaakRegering``methode van je Land van de nodige informatie te voorzien.
+De default constructor van ``VerkiezingsUitslag`` zorgt ervoor dat deze properties automatisch gevuld worden met willekeurige waarden:
+
+* ``VerkozenPresident`` wordt een nieuw ``President``-object met een willekeurige naam.
+* ``VerkozenMinisters`` wordt een ``List<Minister>`` met **5 ministers**, elk met een willekeurige naam.
+
+> **Tip 1 – willekeurige naam**: schrijf in de klasse een ``private string NaamGen()``-methode die een string opbouwt met een willekeurige lengte (bv. tussen 5 en 10 tekens) waarbij elk teken een willekeurige kleine letter is (gebruik bv. ``(char)rng.Next('a', 'z')``).
+>
+> **Tip 2 – ééns Random**: declareer ``Random`` als ``static`` veld op klasseniveau (``static Random rng = new Random();``). Anders krijg je bij snel achter elkaar aanmaken van objecten dezelfde "willekeurige" namen.
+
+### Gebruik in Main
+
+Door deze klasse wordt het opzetten van een regering in ``Main`` heel kort. Je hoeft niet langer manueel ministers en een president aan te maken:
+
+```csharp
+VerkiezingsUitslag uitslag2022 = new VerkiezingsUitslag();
+
+Land mijnLand = new Land();
+mijnLand.MaakRegering(uitslag2022.VerkozenPresident, uitslag2022.VerkozenMinisters);
+```
+
+
 
 
 

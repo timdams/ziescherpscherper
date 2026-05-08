@@ -193,6 +193,10 @@ book:
         - content/B_appendix/boetes/linq.md
         - content/B_appendix/boetes/method.md
         - content/B_appendix/boetes/toplevel.md
+  appendices:
+    - slides/overzicht.qmd
+    - oefeningen/overzicht.qmd
+    - coronafiles/overzicht.qmd
 
 bibliography: references.bib
 
