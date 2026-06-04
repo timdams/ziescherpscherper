@@ -7,7 +7,6 @@ Vanaf dit hoofdstuk wordt verwacht dat je steeds  **string interpolatie** gebrui
 <!--# Hoofdstuk 3-->
 
 
-# Mad Libs (*Essential*)
 
 # Mad Libs (*Essential*)
 
@@ -45,8 +44,24 @@ Hier komt het!
 Op een dag ging Jos naar de AP Hogeschool. Hij zag daar een groene bal en vond dat zo grappig dat hij begon te springen.
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+Console.WriteLine("Geen een naam:");
+string naam = Console.ReadLine();
+Console.WriteLine("Geen een zelfstandig naamwoord:");
+string zelfstNw = Console.ReadLine();
+Console.WriteLine("Geen een adjectief:");
+string adjectief = Console.ReadLine();
+Console.WriteLine("Geen een werkwoord:");
+string werkwoord = Console.ReadLine();
 
-# Dertien in een dozijn (*Essential*)
+Console.WriteLine("\nHier komt het!\n");
+Console.WriteLine($"Op een dag ging {naam} naar de AP Hogeschool. Hij zag daar een {adjectief} {zelfstNw} en vond dat zo grappig dat hij begon te {werkwoord}.");
+```
+
+::::
+
+
 
 # Dertien in een dozijn (*Essential*)
 
@@ -76,8 +91,21 @@ In deze oefening moet je gebruik maken van je kennis van het vorige hoofdstuk, w
 * Datatypes en wat de impact ervan is op onder andere de deling (twee integers delen geeft...een integer!).
 :::
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
-# Escape conversatie (*Essential*)
+```java
+const int doosGrootte= 8;
+int aantalEieren = 124;
+int over= 124 % doosGrootte;
+int dozen =  aantalEieren/doosGrootte;
+Console.WriteLine($"{aantalEieren} passen in {dozen} dozen van doosgrootte: {doosGrootte}. Daarbij zal je nog {over} eieren over hebben.");
+```
+
+
+
+::::
+
+
 
 # Escape conversatie (*Essential*)
 
@@ -103,7 +131,17 @@ Alice: "Ook goed, bedankt dat je het vraagt."
 Gebruik  ``\t`` om de tekst van Bob te doen inspringen. Merk op dat de tabgrootte verschillend kan zijn (wat geen probleem is) dan wat je hier als voorbeeld ziet.
 
 
-# Systeem informatie (*Essential*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+string personage1 = "Alice";
+string personage2 = "Bob";
+
+string dialoog = $"{personage1}: \"Hoe gaat het met je?\"\n\t{personage2}: \"Goed, dank je! Hoe gaat het met jou?\"\n{personage1}: \"Ook goed, bedankt dat je het vraagt.\"";
+
+Console.WriteLine(dialoog);
+```
+
+::::
 
 # Systeem informatie (*Essential*)
 
@@ -132,7 +170,64 @@ Systeeminformatie voor admin op damsPowahPC:
 Gebruik string formatering (m.b.v. met ``F2``) om de output tot 2 cijfers na de komma op het scherm te tonen.
 
 
-# Unicode Art
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+int processorCount = Environment.ProcessorCount;
+long memoryInBytes = Environment.WorkingSet;
+string machineName = Environment.MachineName;
+string userName = Environment.UserName;
+bool is64BitOperatingSystem = Environment.Is64BitOperatingSystem;
+
+
+double memoryInMB = memoryInBytes / (1024 * 1024);
+double memoryInGB = memoryInBytes / (1024.0 * 1024 * 1024);
+
+
+Console.WriteLine($"Systeeminformatie voor {userName} op {machineName}:");
+Console.WriteLine($"---------------------------------------------");
+Console.WriteLine($"\tAantal processors: {processorCount}");
+Console.WriteLine($"\t64-bit besturingssysteem: {is64BitOperatingSystem}");
+Console.WriteLine($"\tHuidige geheugengebruik: {memoryInMB:F2} MB ({memoryInGB:F2} GB)");
+Console.WriteLine($"---------------------------------------------");
+```
+::::
+
+
+## Systeem informatie Deel 2 (PRO-uitbreiding)
+
+Ook informatie over de harde schijven kan je verkrijgen (in bits). 
+Dit vereist wel dat je bovenaan je programma volgende lijn bijschrijft: ``using System.IO``. 
+
+![](../assets/1_csharpbasics/names.png)
+
+Vervolgens kan je in je programma schrijven:
+
+```csharp
+long cdriveinbytes = DriveInfo.GetDrives()[0].AvailableFreeSpace;  
+long totalsize = DriveInfo.GetDrives()[0].TotalSize;  
+```
+
+De lijn met ``using`` is om aan te geven dat we iets uit de ``System.IO`` bibliotheek nodig hebben, namelijk ``DriveInfo``.
+Schrijven we dat niet dan moeten we in onze code DriveInfo aanroepen met z'n volledige path: ``System.IO.DriveInfo....``
+
+De 0 tussen rechte haakjes is de index van welke schijf je informatie wenst. 0 is de eerste harde schijf, 1 de tweede, enzovoort. 
+
+Vraag aan de gebruiker het nummer van de harde schijf waar meer informatie over moet getoond worden. 
+
+:::{.callout-warning}
+Opgelet: sta toe dat de gebruiker 1 voor de eerste harde schijf mag gebruiken, 2 voor de tweede, enzovoort. Je zal dus in code nog manueel 1 moeten aftrekken van de invoer van de gebruiken.
+Bv:
+
+```csharp
+int invoer=int.Parse(Console.ReadLine()) - 1; 
+long totalsize = DriveInfo.GetDrives()[invoer].TotalSize;  
+```
+:::
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+PRO-oefening, dus geen oplossing voorzien.
+::::
+
 
 # Unicode Art
 
@@ -140,7 +235,26 @@ Genereer je naam in Unicode Art met een van de [vele online generators](https://
 
 
 
-# Boardingpass (*Final Essentials*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+
+```java
+            string myname = @"▄▄▄█████▓ ██▓ ███▄ ▄███▓   ▓█████▄  ▄▄▄       ███▄ ▄███▓  ██████ 
+▓  ██▒ ▓▒▓██▒▓██▒▀█▀ ██▒   ▒██▀ ██▌▒████▄    ▓██▒▀█▀ ██▒▒██    ▒ 
+▒ ▓██░ ▒░▒██▒▓██    ▓██░   ░██   █▌▒██  ▀█▄  ▓██    ▓██░░ ▓██▄   
+░ ▓██▓ ░ ░██░▒██    ▒██    ░▓█▄   ▌░██▄▄▄▄██ ▒██    ▒██   ▒   ██▒
+  ▒██▒ ░ ░██░▒██▒   ░██▒   ░▒████▓  ▓█   ▓██▒▒██▒   ░██▒▒██████▒▒
+  ▒ ░░   ░▓  ░ ▒░   ░  ░    ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒░   ░  ░▒ ▒▓▒ ▒ ░
+    ░     ▒ ░░  ░      ░    ░ ▒  ▒   ▒   ▒▒ ░░  ░      ░░ ░▒  ░ ░
+  ░       ▒ ░░      ░       ░ ░  ░   ░   ▒   ░      ░   ░  ░  ░  
+          ░         ░         ░          ░  ░       ░         ░  
+                            ░                                    ";
+            Console.WriteLine(myname);
+```
+
+
+
+::::
 
 # Boardingpass (*Final Essentials*)
 
@@ -189,42 +303,12 @@ Vergeet niet `Console.Clear()` te gebruiken om het scherm leeg te maken.
 :::
 
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+::::
 
 
-## Systeem informatie Deel 2 (PRO)
-
-Ook informatie over de harde schijven kan je verkrijgen (in bits). 
-Dit vereist wel dat je bovenaan je programma volgende lijn bijschrijft: ``using System.IO``. 
-
-![](../assets/1_csharpbasics/names.png)
-
-Vervolgens kan je in je programma schrijven:
-
-```csharp
-long cdriveinbytes = DriveInfo.GetDrives()[0].AvailableFreeSpace;  
-long totalsize = DriveInfo.GetDrives()[0].TotalSize;  
-```
-
-De lijn met ``using`` is om aan te geven dat we iets uit de ``System.IO`` bibliotheek nodig hebben, namelijk ``DriveInfo``.
-Schrijven we dat niet dan moeten we in onze code DriveInfo aanroepen met z'n volledige path: ``System.IO.DriveInfo....``
-
-De 0 tussen rechte haakjes is de index van welke schijf je informatie wenst. 0 is de eerste harde schijf, 1 de tweede, enzovoort. 
-
-Vraag aan de gebruiker het nummer van de harde schijf waar meer informatie over moet getoond worden. 
-
-:::{.callout-warning}
-Opgelet: sta toe dat de gebruiker 1 voor de eerste harde schijf mag gebruiken, 2 voor de tweede, enzovoort. Je zal dus in code nog manueel 1 moeten aftrekken van de invoer van de gebruiken.
-Bv:
-
-```csharp
-int invoer=int.Parse(Console.ReadLine()) - 1; 
-long totalsize = DriveInfo.GetDrives()[invoer].TotalSize;  
-```
-:::
-
-
-
-## Shell-starter (PRO)
+# Shell-starter (PRO-oefening)
 
 Je kan de output van een ``Process.Start()`` programma naar je console scherm sturen. Dit vereist wat meer code. Volgend voorbeeld zal de output van het commando ``ipconfig /all`` op het scherm tonen:
 
@@ -277,127 +361,9 @@ Of de naam van een bestand dat je wilt openen, maar dan met het hele path:
 c:\Temp\mydocument.docx
 ```
 
-
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-![](../assets/infoclip.png)
-
-* [Bespreking oefeningen Systeem informatie en Weerstandberekenaar](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7e2513f7-7002-4687-a214-a97000751f5e)
-
-
-# Code oplossingen
-
-## Mad Libs 
-
-```java
-Console.WriteLine("Geen een naam:");
-string naam = Console.ReadLine();
-Console.WriteLine("Geen een zelfstandig naamwoord:");
-string zelfstNw = Console.ReadLine();
-Console.WriteLine("Geen een adjectief:");
-string adjectief = Console.ReadLine();
-Console.WriteLine("Geen een werkwoord:");
-string werkwoord = Console.ReadLine();
-
-Console.WriteLine("\nHier komt het!\n");
-Console.WriteLine($"Op een dag ging {naam} naar de AP Hogeschool. Hij zag daar een {adjectief} {zelfstNw} en vond dat zo grappig dat hij begon te {werkwoord}.");
-```
-
-## Dertien in een dozijn
-
-```java
-const int doosGrootte= 8;
-int aantalEieren = 124;
-int over= 124 % doosGrootte;
-int dozen =  aantalEieren/doosGrootte;
-Console.WriteLine($"{aantalEieren} passen in {dozen} dozen van doosgrootte: {doosGrootte}. Daarbij zal je nog {over} eieren over hebben.");
-```
-
-
-## Escape conversatie
-
-```java
-string personage1 = "Alice";
-string personage2 = "Bob";
-
-string dialoog = $"{personage1}: \"Hoe gaat het met je?\"\n\t{personage2}: \"Goed, dank je! Hoe gaat het met jou?\"\n{personage1}: \"Ook goed, bedankt dat je het vraagt.\"";
-
-Console.WriteLine(dialoog);
-```
-
-## Systeem informatie (deel 1)
-
-```java
-int processorCount = Environment.ProcessorCount;
-long memoryInBytes = Environment.WorkingSet;
-string machineName = Environment.MachineName;
-string userName = Environment.UserName;
-bool is64BitOperatingSystem = Environment.Is64BitOperatingSystem;
-
-
-double memoryInMB = memoryInBytes / (1024 * 1024);
-double memoryInGB = memoryInBytes / (1024.0 * 1024 * 1024);
-
-
-Console.WriteLine($"Systeeminformatie voor {userName} op {machineName}:");
-Console.WriteLine($"---------------------------------------------");
-Console.WriteLine($"\tAantal processors: {processorCount}");
-Console.WriteLine($"\t64-bit besturingssysteem: {is64BitOperatingSystem}");
-Console.WriteLine($"\tHuidige geheugengebruik: {memoryInMB:F2} MB ({memoryInGB:F2} GB)");
-Console.WriteLine($"---------------------------------------------");
-```
-
-## Unicode Art
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Eerlijk. Dit zijn geen typische programmeeropdrachten. Het is gewoon leuk om al eens een wat visueel interessantere output te hebben.
-:::
-
-```java
-            string myname = @"▄▄▄█████▓ ██▓ ███▄ ▄███▓   ▓█████▄  ▄▄▄       ███▄ ▄███▓  ██████ 
-▓  ██▒ ▓▒▓██▒▓██▒▀█▀ ██▒   ▒██▀ ██▌▒████▄    ▓██▒▀█▀ ██▒▒██    ▒ 
-▒ ▓██░ ▒░▒██▒▓██    ▓██░   ░██   █▌▒██  ▀█▄  ▓██    ▓██░░ ▓██▄   
-░ ▓██▓ ░ ░██░▒██    ▒██    ░▓█▄   ▌░██▄▄▄▄██ ▒██    ▒██   ▒   ██▒
-  ▒██▒ ░ ░██░▒██▒   ░██▒   ░▒████▓  ▓█   ▓██▒▒██▒   ░██▒▒██████▒▒
-  ▒ ░░   ░▓  ░ ▒░   ░  ░    ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒░   ░  ░▒ ▒▓▒ ▒ ░
-    ░     ▒ ░░  ░      ░    ░ ▒  ▒   ▒   ▒▒ ░░  ░      ░░ ░▒  ░ ░
-  ░       ▒ ░░      ░       ░ ░  ░   ░   ▒   ░      ░   ░  ░  ░  
-          ░         ░         ░          ░  ░       ░         ░  
-                            ░                                    ";
-            Console.WriteLine(myname);
-```
-
-## Unicode Art en Colors
-
-```java
-Console.Write("▄▄▄█████▓ ██▓ ███▄ ▄███▓   ");
-Console.ForegroundColor = ConsoleColor.Red; 
-Console.Write("▓█████▄"); 
-Console.ResetColor(); 
-Console.Write("  ▄▄▄       ███▄ ▄███▓  ██████ \n");
-Console.Write("▓  ██▒ ▓▒▓██▒▓██▒▀█▀ ██▒   "); 
-Console.ForegroundColor = ConsoleColor.Red; 
-Console.Write("▒██▀ ██▌"); Console.ResetColor(); 
-Console.Write("▒████▄    ▓██▒▀█▀ ██▒▒██    ▒ \n");
-Console.Write("▒ ▓██░ ▒░▒██▒▓██    ▓██░   "); 
-Console.ForegroundColor = ConsoleColor.Red; 
-Console.Write("░██   █▌"); Console.ResetColor(); 
-Console.Write("▒██  ▀█▄  ▓██    ▓██░░ ▓██▄   \n");
-Console.Write("░ ▓██▓ ░ ░██░▒██    ▒██    "); 
-Console.ForegroundColor = ConsoleColor.Red; 
-Console.Write("░▓█▄   ▌"); Console.ResetColor(); 
-Console.Write("░██▄▄▄▄██ ▒██    ▒██   ▒   ██▒\n");
-Console.Write("  ▒██▒ ░ ░██░▒██▒   ░██▒   "); 
-Console.ForegroundColor = ConsoleColor.Red; Console.Write("░▒████▓ "); 
-Console.ResetColor(); Console.Write(" ▓█   ▓██▒▒██▒   ░██▒▒██████▒▒\n");
-string blood = @"  ▒ ░░   ░▓  ░ ▒░   ░  ░    ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒░   ░  ░▒ ▒▓▒ ▒ ░
-░     ▒ ░░  ░      ░    ░ ▒  ▒   ▒   ▒▒ ░░  ░      ░░ ░▒  ░ ░
-░       ▒ ░░      ░       ░ ░  ░   ░   ▒   ░      ░   ░  ░  ░  
-░         ░         ░          ░  ░       ░         ░  
-                ░ ";
-Console.WriteLine(blood);
-```
-
 ::::
+
+
+

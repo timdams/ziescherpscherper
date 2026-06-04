@@ -12,9 +12,10 @@ Bekijk zeker de Wiskunde-quizprogramma-opdracht!
 
 <!--# Oefeningen week 2-->
 
-# Boekhouder (*Essential*)
+
 
 # Boekhouder (*Essential*)
+
 Maak een 'boekhoud-programma': de gebruiker kan continu positieve en negatieve getallen invoeren. Telkens hij op enter duwt wordt de huidige invoer aan de balans bijgevoegd. Het programma stopt met getallen vragen wanneer de gebruiker 'q' invoert. Finaal worden dan de volgende zaken op het scherm getoond:
 
 * De balans van alle ingevoerde getallen: dit is gewoon de som van de getallen. Als de gebruiker dus de getallen 4, -10 en 8 invoerde dan zal de balans op +2 staan  (4 -10 + 8).
@@ -24,229 +25,9 @@ Maak een 'boekhoud-programma': de gebruiker kan continu positieve en negatieve g
 
 Deze 4 getallen worden ook steeds geüpdatet en getoond wanneer de gebruiker een nieuw getal invoert en op enter duwt.
  
-
-# Hoger Lager (*Essential*)
-
-# Hoger Lager (*Essential*)
-
-Simulatie van het "hoger-lager" spel. Het programma kiest een random-getal van 1 tot en met 100 (telkens inbegrepen). Vervolgens wordt de gebruiker gevraagd om een gok te doen en toont het programma of de gok juist was, te laag was ("hoger") of te hoog ("lager"). Het programma blijft gokken van de gebruiker accepteren tot de gok juist is of de gebruiker besluit te stoppen (door een negatief getal in te voeren). Het aantal beurten wordt op het einde van het spel getoond en de mogelijkheid om opnieuw te spelen.
-
-## Limiet
-Pas het Hoger Lager programma aan zodat er een maximum aantal pogingen is toegestaan.
-
-
-# Wiskundequiz (*Essential*)
-
-# Wiskundequiz (*Essential*)
-Maak een applicatie die je kan gebruiken om je tafels van vermenigvuldigen te oefenen. De applicatie vraagt steeds een willekeurige vermenigvuldiging (enkel getallen tussen 1 tot en met 10) en de gebruiker moet de oplossing invoeren.
-Indien correct gaat de gebruiker verder. Bij fout stopt het programma en wordt getoond hoeveel keer je juist hebt ingevoerd.
-
-
-# Wiskundequiz met levels (*Essential*)
-
-# Wiskundequiz met levels (*Essential*)
-
-Bouw levels in de voorgaande wiskundequiz. Per 5 juiste antwoorden, stijg je 1 level. Het level bepaalt het bereik van getallen die gegenereerd worden bij de oefening. Bijvoorbeeld level 1 enkel getallen van 1 tot en met 5, level 2 tot en met 10, level 3 tot en met 20 etc.
-
-PRO: Kan je ervoor zorgen dat het bereik van de getalgeneratie met een formule afhankelijk is van het level? Zodat je de grenzen per level niet moet hardcoden?
-
-
-# Wiskunde-quizprogramma
-
-# Wiskunde-quizprogramma
-
-Integreer voorgaande quiz met een menu dat je bijvoorbeeld in codemenu hebt gemaakt. Het menu wordt aan de start getoond en geeft de gebruiker de optie om te kiezen wat hij wenst te doen:
-* Gewoon spelen
-* Starten op een bepaald level (de gebruiker moet vervolgens het level invoeren)
-* Studeren: de oplossing wordt steeds getoond. De gebruiker hoeft niets in te voeren, elke 5 seconden verschijnt de volgende opgave met oplossing. Gebruik  ``System.Threading.Thread.Sleep(5000)`` om je programma 5 seconden (5000 ms) te pauzeren.
-
-
-# Tekenen
-
-# Tekenen
-
-Twee getallen van 2 tot en met 20 worden ingelezen (invoercontrole!). Er moet een open rechthoek afgedrukt worden bestaande uit `*`en waarbij de ingelezen getallen respectievelijk de breedte en de hoogte van de rechthoek voorstellen. Als bijvoorbeeld 10 en 4 werden ingelezen, wordt de volgende rechthoek getoond:
-
-
-```text
-* * * * * * * * * *
-*                 *
-*                 *
-* * * * * * * * * *
-```
-
-
-# Steen schaar papier (*Essential*)
-
-# Steen schaar papier (*Essential*)
-Maak een applicatie waarbij de gebruiker steen-schaar-papier met de computer kan spelen. De gebruiker kiest telkens steen, schaar of papier en drukt op enter. Vervolgens kiest de computer willekeurig steen, schaar of papier (gebruik de Random.Next() methode, waarbij je deze van  1 tot en met 3 laat varieren). 
-Vervolgens krijgt de winnaar 1 punt:
-* Steen wint van schaar, verliest van papier.
-* Papier wint van steen, verliest van schaar.
-* Schaar wint van papier, verliest van steen.
-* Indien beide hetzelfde hebben wint niemand een punt.
-
-Op het scherm wordt telkens getoond wie de huidige ronde heeft gewonnen en hoeveel de tussenscore is. De eerste (pc of gebruiker) die 10 punten haalt wint.
-
-Teken een flowchart van je applicatie.
-
-:::{.callout-tip}
-Los dit op met ``enum`` : je code zal een pak leesbaarder worden
-:::
-
-
-# Codemenu (*Essential*)
-
-# Codemenu (*Essential*)
-
-Maak een applicatie die bij het opstarten een keuze menu toont. Het menu toont 5 verschillende oefeningen naar keuze. Telkens de gebruiker in het menu een oefening kiest (door a, b, c, d of e in te voeren) wordt de code van die oefening getoond. Vervolgens kan de gebruiker op enter duwen zodat terug het menu verschijnt, zodat de gebruiker een nieuwe oefening kan kiezen
-
-Extra: maak je menu visueel interessanter (m.b.v. kaders en kleuren)
-
-
-
-
-
-# Become Neo
-
-# Become Neo
-
-![Neo Tim](../assets/neotim.png)
-
-Volgende code genereert een beeld zoals dat ook in de cultfilm The Matrix (1999) plaatsvindt. 
-```csharp
-Random rangen = new Random();
-Console.ForegroundColor = ConsoleColor.Green;
-while (true)
-{
-    //Genereer nieuw random teken:
-    char teken = Convert.ToChar(rangen.Next(62, 400));
-    //Zet teken op scherm
-    Console.Write(teken);
-    
-    //10 ms pauze tussen ieder frame (pas gerust aan)
-    System.Threading.Thread.Sleep(10); 
-    
-    //Af en toe donker kleurtje
-    if(rangen.Next(0, 3) == 0)
-    {
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
-    }
-    else
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-    }
-}
-```
-
-Vul de code aan zodat de karakters random kleuren krijgen. Kan je het nog cooler maken?
-
-
-# BeerSong
-
-# BeerSong
-Schrijf een BeerSong-generator zoals onderstaande output. Merk op dat de laatste 5 zinnen anders zijn:
-
-```
-99 bottles of beer on the wall, 99 bottles of beer.
-Take one down and pass it around, 98 bottles of beer on the wall.
-
-98 bottles of beer on the wall, 98 bottles of beer.
-Take one down and pass it around, 97 bottles of beer on the wall.
-
-97 bottles of beer on the wall, 97 bottles of beer.
-Take one down and pass it around, 96 bottles of beer on the wall.
-
-96 bottles of beer on the wall, 96 bottles of beer.
-Take one down and pass it around, 95 bottles of beer on the wall.
-
-95 bottles of beer on the wall, 95 bottles of beer.
-Take one down and pass it around, 94 bottles of beer on the wall.
-
-...
-
-4 bottles of beer on the wall, 4 bottles of beer.
-Take one down and pass it around, 3 bottles of beer on the wall.
-
-3 bottles of beer on the wall, 3 bottles of beer.
-Take one down and pass it around, 2 bottles of beer on the wall.
-
-2 bottles of beer on the wall, 2 bottles of beer.
-Take one down and pass it around, 1 bottle of beer on the wall.
-
-1 bottle of beer on the wall, 1 bottle of beer.
-Take it down and pass it around, no more bottles of beer on the wall.
-
-No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
-```
-
-
-
-
-
-# De slag om Helm's Deep (*Final Essentials*)
-
-# De slag om Helm's Deep (*Final Essentials*)
-
-Tijdens de slag om Helm's Deep houden Legolas en Gimli een wedstrijd bij wie de meeste vijanden kan verslaan.
-Schrijf een programma dat deze heroïsche strijd bijhoudt. Zorg voor een gebruiksvriendelijke interface met kleuren.
-
-Het programma vraagt telkens in een oneindige loop:
-1. Wie heeft er een kill gemaakt? (Voer 'Legolas' of 'Gimli' in).
-   * Typ 'EINDE' om de strijd te stoppen en de balans op te maken.
-2. Wat voor vijand was het? (Keuze uit: 'Orc', 'Uruk-hai' of 'Troll'). (Enkel als 'EINDE' niet werd ingetypt).
-
-**Puntenverdeling:**
-* Een **Orc** is 1 punt waard.
-* Een **Uruk-hai** is 3 punten waard.
-* Een **Troll** is 5 punten waard.
-
-**Speciale Regels (The Extended Edition):**
-1. **Kill Streak**: Houd bij wie de *vorige* kill maakte. Als dezelfde persoon **3 keer na elkaar** een kill maakt, krijgt deze een bonus van **10 punten** (bovenop de punten van de vijand). Toon hierbij een speciale melding (bv. "Legolas is on fire!").
-2. **Kleuren**:
-   * Gebruik **groene tekst** als Legolas scoort.
-   * Gebruik **rode tekst** als Gimli scoort.
-   * Gebruik gewone grijze tekst voor de vragen.
-
-**Einde van de strijd:**
-Wanneer 'EINDE' wordt ingegeven stopt de loop en toont het programma een uitgebreid rapport:
-1. De totaalscore van Legolas en Gimli.
-2. Wie de winnaar is.
-3. Hoeveel vijanden ze **gezamenlijk** hebben verslagen.
-4. Hoeveel procent van de totale punten door Legolas werd verdiend (Druk af met 2 cijfers na de komma).
-
-:::{.callout-tip}
-*   Je zal een variabele moeten bijhouden die onthoudt wie de *vorige* kill maakte om de streak te kunnen controleren.
-*   Vergeet niet `Console.ResetColor()` te gebruiken na het tonen van een gekleurde boodschap.
-:::
-
-
-
-
+ 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Oplossing practica deel 3
-
-## Oplossing grootste getal
-Toe te voegen lijnen aangeduid met ``//NEW``.
-```java
-int x= 0;
-int y= 0;
-int grootste= int.MinValue; //NEW
-do
-{
-    y = y + x;
-    Console.WriteLine("Voer gehele waarden in (32767=stop)");
-    string instring= Console.ReadLine();
-    x = Convert.ToInt32(instring);
-    if (x > grootste && x != 32767) //NEW
-        grootste = x; //NEW
-} while (x != 32767);
-Console.WriteLine($"Som is {y}");
-Console.WriteLine($"Grootste getal is {grootste}");//NEW
-```
-## Oplossing Boekhouder
-
+ 
 [Uitleg via filmpje](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=72f4f97f-5baa-4f9f-8985-b0c000f4f1ce)
 
 ```java
@@ -288,9 +69,18 @@ Console.WriteLine($"Gemiddel : {somTotaal / teller}");
 ```
 
 
-## Hoger Lager
+::::
 
+
+# Hoger Lager (*Essential*)
+
+
+Simulatie van het "hoger-lager" spel. Het programma kiest een random-getal van 1 tot en met 100 (telkens inbegrepen). Vervolgens wordt de gebruiker gevraagd om een gok te doen en toont het programma of de gok juist was, te laag was ("hoger") of te hoog ("lager"). Het programma blijft gokken van de gebruiker accepteren tot de gok juist is of de gebruiker besluit te stoppen (door een negatief getal in te voeren). Het aantal beurten wordt op het einde van het spel getoond en de mogelijkheid om opnieuw te spelen.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
+
 bool guessed = false;
 Random rng = new Random();
 int teRadenGetal = rng.Next(1, 101);
@@ -320,8 +110,15 @@ do
 } while (!guessed);
 ```
 
-### Hoger Lager met limiet
 
+::::
+
+
+
+Pas nu het Hoger Lager programma aan zodat er een maximum aantal pogingen is toegestaan.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 bool guessed = false;
 Random rng = new Random();
@@ -362,10 +159,16 @@ if(tries== MAXTRIES && !guessed) //NIEUWE CODE
     Console.WriteLine($"Het getal dat we zochten was {teRadenGetal}");
 }
 ```
+::::
 
 
-## WiskundeQuiz
 
+# Wiskundequiz (*Essential*)
+Maak een applicatie die je kan gebruiken om je tafels van vermenigvuldigen te oefenen. De applicatie vraagt steeds een willekeurige vermenigvuldiging (enkel getallen tussen 1 tot en met 10) en de gebruiker moet de oplossing invoeren.
+Indien correct gaat de gebruiker verder. Bij fout stopt het programma en wordt getoond hoeveel keer je juist hebt ingevoerd.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 Random rng = new Random();
 int aantalJuist = 0;
@@ -389,9 +192,17 @@ do
     }
 } while (aanHetWinnen);
 ```
+::::
 
-## WiskundeQuiz met level
 
+# Wiskundequiz met levels (*Essential*)
+
+Bouw levels in de voorgaande wiskundequiz. Per 5 juiste antwoorden, stijg je 1 level. Het level bepaalt het bereik van getallen die gegenereerd worden bij de oefening. Bijvoorbeeld level 1 enkel getallen van 1 tot en met 5, level 2 tot en met 10, level 3 tot en met 20 etc.
+
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 Random rng = new Random();
 int aantalJuist = 0;
@@ -422,9 +233,20 @@ do
 
 } while (aanHetWinnen);
 ```
+::::
 
-## Wiskunde-QuizProgramma
+PRO: Kan je ervoor zorgen dat het bereik van de getalgeneratie met een formule afhankelijk is van het level? Zodat je de grenzen per level niet moet hardcoden?
 
+# Wiskunde-quizprogramma
+
+Integreer voorgaande quiz met een menu dat je bijvoorbeeld in codemenu hebt gemaakt. Het menu wordt aan de start getoond en geeft de gebruiker de optie om te kiezen wat hij wenst te doen:
+
+* Gewoon spelen
+* Starten op een bepaald level (de gebruiker moet vervolgens het level invoeren)
+* Studeren: de oplossing wordt steeds getoond. De gebruiker hoeft niets in te voeren, elke 5 seconden verschijnt de volgende opgave met oplossing. Gebruik  ``System.Threading.Thread.Sleep(5000)`` om je programma 5 seconden (5000 ms) te pauzeren.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 Console.WriteLine("Welkom op mijn quizprogramma. Wat wil je doen?");
 Console.WriteLine("1.Gewoon spelen");
@@ -481,10 +303,73 @@ do
 
 } while (aanHetWinnen);
 ```
+::::
 
 
-## Steen Schaar Papier
+# Tekenen
 
+Twee getallen van 2 tot en met 20 worden ingelezen (invoercontrole!). Er moet een open rechthoek afgedrukt worden bestaande uit `*`en waarbij de ingelezen getallen respectievelijk de breedte en de hoogte van de rechthoek voorstellen. Als bijvoorbeeld 10 en 4 werden ingelezen, wordt de volgende rechthoek getoond:
+
+
+```text
+* * * * * * * * * *
+*                 *
+*                 *
+* * * * * * * * * *
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
+```java
+int breedte = 0, hoogte = 0;
+
+while (breedte < 2 || breedte > 20)
+{
+    Console.Write("Breedte (2-20)? ");
+    breedte = int.Parse(Console.ReadLine());
+}
+
+while (hoogte < 2 || hoogte > 20)
+{
+    Console.Write("Hoogte (2-20)? ");
+    hoogte = int.Parse(Console.ReadLine());
+}
+
+for (int rij = 1; rij <= hoogte; rij++)
+{
+    for (int col = 1; col <= breedte; col++)
+    {
+        if (rij == 1 || rij == hoogte || col == 1 || col == breedte)
+            Console.Write("* ");
+        else
+            Console.Write("  ");
+    }
+    Console.WriteLine();
+}
+```
+::::
+
+
+# Steen schaar papier (*Essential*)
+
+Maak een applicatie waarbij de gebruiker steen-schaar-papier met de computer kan spelen. De gebruiker kiest telkens steen, schaar of papier en drukt op enter. Vervolgens kiest de computer willekeurig steen, schaar of papier (gebruik de Random.Next() methode, waarbij je deze van  1 tot en met 3 laat varieren). 
+Vervolgens krijgt de winnaar 1 punt:
+
+* Steen wint van schaar, verliest van papier.
+* Papier wint van steen, verliest van schaar.
+* Schaar wint van papier, verliest van steen.
+* Indien beide hetzelfde hebben wint niemand een punt.
+
+Op het scherm wordt telkens getoond wie de huidige ronde heeft gewonnen en hoeveel de tussenscore is. De eerste (pc of gebruiker) die 10 punten haalt wint.
+
+Teken een flowchart van je applicatie.
+
+:::{.callout-tip}
+Los dit op met ``enum`` : je code zal een pak leesbaarder worden
+:::
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 enum SSPKeuzes { Steen, Schaar, Papier };
 static void Main(string[] args)
@@ -551,9 +436,17 @@ static void Main(string[] args)
     }
 }
 ```
+::::
 
-## CodeMenu
 
+# Codemenu (*Essential*)
+
+Maak een applicatie die bij het opstarten een keuze menu toont. Het menu toont 5 verschillende oefeningen naar keuze. Telkens de gebruiker in het menu een oefening kiest (door a, b, c, d of e in te voeren) wordt de code van die oefening getoond. Vervolgens kan de gebruiker op enter duwen zodat terug het menu verschijnt, zodat de gebruiker een nieuwe oefening kan kiezen
+
+Extra: maak je menu visueel interessanter (m.b.v. kaders en kleuren)
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 string gebruikersKeuze = "";
 
@@ -589,12 +482,124 @@ do
     Console.WriteLine("Druk enter om voort te gaan.");
     Console.ReadLine();
 } while (gebruikersKeuze != "q");
+```
+::::
 
+
+# Become Neo
+
+![Neo Tim](../assets/neotim.png)
+
+Volgende code genereert een beeld zoals dat ook in de cultfilm The Matrix (1999) plaatsvindt. 
+```csharp
+Random rangen = new Random();
+Console.ForegroundColor = ConsoleColor.Green;
+while (true)
+{
+    //Genereer nieuw random teken:
+    char teken = Convert.ToChar(rangen.Next(62, 400));
+    //Zet teken op scherm
+    Console.Write(teken);
+    
+    //10 ms pauze tussen ieder frame (pas gerust aan)
+    System.Threading.Thread.Sleep(10); 
+    
+    //Af en toe donker kleurtje
+    if(rangen.Next(0, 3) == 0)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+    }
+}
 ```
 
+Vul de code aan zodat de karakters random kleuren krijgen. Kan je het nog cooler maken?
 
-## Oplossing BeerSong
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
+```java
+Random rangen = new Random();
 
+while (true)
+{
+    char teken = Convert.ToChar(rangen.Next(62, 400));
+
+    int kleurKeuze = rangen.Next(0, 7);
+    if (kleurKeuze == 0)
+        Console.ForegroundColor = ConsoleColor.Green;
+    else if (kleurKeuze == 1)
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+    else if (kleurKeuze == 2)
+        Console.ForegroundColor = ConsoleColor.Cyan;
+    else if (kleurKeuze == 3)
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+    else if (kleurKeuze == 4)
+        Console.ForegroundColor = ConsoleColor.White;
+    else if (kleurKeuze == 5)
+        Console.ForegroundColor = ConsoleColor.Yellow;
+    else
+        Console.ForegroundColor = ConsoleColor.Magenta;
+
+    // Af en toe witte flash
+    if (rangen.Next(0, 20) == 0)
+        Console.ForegroundColor = ConsoleColor.White;
+
+    // Af en toe spatie voor gaten
+    if (rangen.Next(0, 8) == 0)
+        Console.Write(" ");
+    else
+        Console.Write(teken);
+
+    System.Threading.Thread.Sleep(rangen.Next(1, 30));
+}
+```
+::::
+
+
+
+# BeerSong
+
+Schrijf een BeerSong-generator zoals onderstaande output. Merk op dat de laatste 5 zinnen anders zijn:
+
+```
+99 bottles of beer on the wall, 99 bottles of beer.
+Take one down and pass it around, 98 bottles of beer on the wall.
+
+98 bottles of beer on the wall, 98 bottles of beer.
+Take one down and pass it around, 97 bottles of beer on the wall.
+
+97 bottles of beer on the wall, 97 bottles of beer.
+Take one down and pass it around, 96 bottles of beer on the wall.
+
+96 bottles of beer on the wall, 96 bottles of beer.
+Take one down and pass it around, 95 bottles of beer on the wall.
+
+95 bottles of beer on the wall, 95 bottles of beer.
+Take one down and pass it around, 94 bottles of beer on the wall.
+
+...
+
+4 bottles of beer on the wall, 4 bottles of beer.
+Take one down and pass it around, 3 bottles of beer on the wall.
+
+3 bottles of beer on the wall, 3 bottles of beer.
+Take one down and pass it around, 2 bottles of beer on the wall.
+
+2 bottles of beer on the wall, 2 bottles of beer.
+Take one down and pass it around, 1 bottle of beer on the wall.
+
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+
+No more bottles of beer on the wall, no more bottles of beer.
+Go to the store and buy some more, 99 bottles of beer on the wall.
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
 ```java
 for (int i= 99; i > 2; i--)
 {
@@ -610,5 +615,162 @@ Console.WriteLine("2 bottles of beer on the wall, 2 bottles of beer.\n" +
                     "No more bottles of beer on the wall, no more bottles of beer.\n" +
                     "Go to the store and buy some more, 99 bottles of beer on the wall.");
 ```
-
 ::::
+
+
+
+# De slag om Helm's Deep (*Final Essentials*)
+
+Tijdens de slag om Helm's Deep houden Legolas en Gimli een wedstrijd bij wie de meeste vijanden kan verslaan.
+Schrijf een programma dat deze heroïsche strijd bijhoudt. Zorg voor een gebruiksvriendelijke interface met kleuren.
+
+Het programma vraagt telkens in een oneindige loop:
+
+1. Wie heeft er een kill gemaakt? (Voer 'Legolas' of 'Gimli' in).
+   * Typ 'EINDE' om de strijd te stoppen en de balans op te maken.
+2. Wat voor vijand was het? (Keuze uit: 'Orc', 'Uruk-hai' of 'Troll'). (Enkel als 'EINDE' niet werd ingetypt).
+
+**Puntenverdeling:**
+* Een **Orc** is 1 punt waard.
+* Een **Uruk-hai** is 3 punten waard.
+* Een **Troll** is 5 punten waard.
+
+**Speciale Regels (The Extended Edition):**
+1. **Kill Streak**: Houd bij wie de *vorige* kill maakte. Als dezelfde persoon **3 keer na elkaar** een kill maakt, krijgt deze een bonus van **10 punten** (bovenop de punten van de vijand). Toon hierbij een speciale melding (bv. "Legolas is on fire!").
+2. **Kleuren**:
+   * Gebruik **groene tekst** als Legolas scoort.
+   * Gebruik **rode tekst** als Gimli scoort.
+   * Gebruik gewone grijze tekst voor de vragen.
+
+**Einde van de strijd:**
+Wanneer 'EINDE' wordt ingegeven stopt de loop en toont het programma een uitgebreid rapport:
+1. De totaalscore van Legolas en Gimli.
+2. Wie de winnaar is.
+3. Hoeveel vijanden ze **gezamenlijk** hebben verslagen.
+4. Hoeveel procent van de totale punten door Legolas werd verdiend (Druk af met 2 cijfers na de komma).
+
+:::{.callout-tip}
+*   Je zal een variabele moeten bijhouden die onthoudt wie de *vorige* kill maakte om de streak te kunnen controleren.
+*   Vergeet niet `Console.ResetColor()` te gebruiken na het tonen van een gekleurde boodschap.
+:::
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
+```java
+int puntLegolas = 0, puntGimli = 0;
+int killsLegolas = 0, killsGimli = 0;
+string vorigeKiller = "";
+int streakTeller = 0;
+
+Console.WriteLine("=== SLAG OM HELM'S DEEP ===\n");
+
+Console.Write("Wie maakte de kill? (Legolas/Gimli/EINDE): ");
+string killer = Console.ReadLine();
+
+while (killer != "EINDE")
+{
+    if (killer != "Legolas" && killer != "Gimli")
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("Onbekende held! Voer 'Legolas', 'Gimli' of 'EINDE' in.");
+        Console.ResetColor();
+    }
+    else
+    {
+        Console.Write("Wat voor vijand? (Orc/Uruk-hai/Troll): ");
+        string vijand = Console.ReadLine();
+
+        int punten = 0;
+        if (vijand == "Orc")
+            punten = 1;
+        else if (vijand == "Uruk-hai")
+            punten = 3;
+        else if (vijand == "Troll")
+            punten = 5;
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Onbekende vijand! Geen punten toegekend.");
+            Console.ResetColor();
+        }
+
+        if (punten > 0)
+        {
+            // Streak bijhouden
+            if (killer == vorigeKiller)
+                streakTeller++;
+            else
+                streakTeller = 1;
+
+            int bonus = 0;
+            if (streakTeller == 3)
+            {
+                bonus = 10;
+                streakTeller = 0;
+            }
+
+            if (killer == "Legolas")
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                puntLegolas += punten + bonus;
+                killsLegolas++;
+                Console.WriteLine($"Legolas versloeg een {vijand}! +{punten} punt(en)");
+                if (bonus > 0)
+                    Console.WriteLine("Legolas is on fire! +10 bonuspunten!");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                puntGimli += punten + bonus;
+                killsGimli++;
+                Console.WriteLine($"Gimli versloeg een {vijand}! +{punten} punt(en)");
+                if (bonus > 0)
+                    Console.WriteLine("Gimli is on fire! +10 bonuspunten!");
+            }
+            Console.ResetColor();
+
+            vorigeKiller = killer;
+        }
+    }
+
+    Console.Write("\nWie maakte de kill? (Legolas/Gimli/EINDE): ");
+    killer = Console.ReadLine();
+}
+
+// Eindrapport
+int totaalPunten = puntLegolas + puntGimli;
+int totaalKills = killsLegolas + killsGimli;
+
+Console.WriteLine("\n=== EINDRAPPORT ===");
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine($"Legolas: {puntLegolas} punten ({killsLegolas} kills)");
+Console.ResetColor();
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine($"Gimli:   {puntGimli} punten ({killsGimli} kills)");
+Console.ResetColor();
+
+Console.WriteLine($"\nTotaal verslagen vijanden: {totaalKills}");
+
+if (totaalPunten > 0)
+    Console.WriteLine($"Legolas verdiende {Math.Round((double)puntLegolas / totaalPunten * 100, 2)}% van de totale punten.");
+
+if (puntLegolas > puntGimli)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("Legolas wint de wedstrijd!");
+}
+else if (puntGimli > puntLegolas)
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("Gimli wint de wedstrijd!");
+}
+else
+    Console.WriteLine("Het is een gelijkspel!");
+
+Console.ResetColor();
+```
+::::
+
+
+
+

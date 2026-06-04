@@ -18,7 +18,7 @@ Maak telkens een volledig nieuwe solution aan per oefening (enkel de oefening "S
 <!--# Hoofdstuk 1-->
 
 
-# Wie ben ik (*Essential*)
+
 
 # Wie ben ik (*Essential*)
 
@@ -36,10 +36,16 @@ Boom
 38
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+ 
+```java
+Console.WriteLine("Vincent Van Camp");
+Console.WriteLine("Boom");
+Console.WriteLine("38");
+```
+::::
 
 
-
-# Visitekaart (*Essential*) 
 
 # Visitekaart (*Essential*) 
 
@@ -72,8 +78,29 @@ Adres: Parel van de Kempen
 Hobby: fietsen
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
-# Fake GPT (*Essential*) 
+```java
+Console.WriteLine("Wat is je voornaam?");
+string voornaam = Console.ReadLine();
+Console.WriteLine("Wat is je achternaam?");
+string achternaam = Console.ReadLine();
+Console.WriteLine("Waar woon je?");
+string adres = Console.ReadLine();
+Console.WriteLine("Wat is je hobby?");
+string hobby = Console.ReadLine();
+
+Console.WriteLine("Goed. Hier volgt je visitekaartje");
+
+Console.Write("Naam: ");
+Console.WriteLine(voornaam + " " + achternaam);
+Console.Write("Adres: ");
+Console.WriteLine(adres);
+Console.Write("Hobby: ");
+Console.WriteLine(hobby);
+```
+:::: 
+
 
 # Fake GPT (*Essential*) 
 
@@ -86,11 +113,16 @@ Wat is je vraag?
 Dat is een interessante vraag! Ik zal er eens over nadenken en later op terugkomen.
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
+```java
+Console.WriteLine("Wat is je vraag?");
+Console.ReadLine();  //het resultaat bewaren in een variabele heeft geen nut. We doen er toch niets mee.
+Console.WriteLine("Dat is een interessante vraag! Ik zal er eens over nadenken en later op terugkomen.");
+```
 
+:::: 
 
-
-# Stad kleuren (*Essential*) 
 
 # Stad kleuren (*Essential*) 
 
@@ -100,11 +132,21 @@ Voorbeeld van de output (gebruik je eigen gegevens uiteraard):
 
 ![](../assets/0_intro/stadkleur.png)
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+```java
+Console.WriteLine("Vincent Van Camp");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.BackgroundColor = ConsoleColor.White;
+Console.WriteLine("Boom");
+Console.ResetColor();
+Console.WriteLine("38");
+```
 
 
-# Rommel zin (*Essential*) (Dodona beschikbaar)
+:::: 
 
-# Rommel zin (*Essential*) (Dodona beschikbaar)
+# Rommel zin (*Essential*) 
 
 Schrijf een applicatie met behulp van ``ReadLine()`` en ``WriteLine()``-methoden waarbij de computer aan de gebruiker om zijn of haar favoriete kleur, eten, auto en boek vraagt. Het programma gaat echter de gebruiker plagen en de ingelezen informatie op de verkeerde manier aan de gebruiker tonen. Het programma zal de antwoorden namelijk door elkaar halen waardoor de computer vervolgens toont: 
 
@@ -129,8 +171,25 @@ Geef je favoriete boek:
 Je favoriete kleur is lasagne. Je eet graag mazda. Je lievelingsfilm is Het oneindige verhaal en je favoriete boek is rood.
 ```
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Ieder antwoord van de gebruiker moet je bewaren in een aparte``string`` variabele met een unieke naam. 
+::::
 
-# Woordenslinger (*Essential*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+```java
+Console.WriteLine("Geef je favoriete kleur:");
+string favKleur = Console.ReadLine();
+Console.WriteLine("Geef je favoriete eten:");
+string favEten = Console.ReadLine();
+Console.WriteLine("Geef je favoriete auto:");
+string favBoek = Console.ReadLine();
+Console.WriteLine("Geef je favoriete boek:");
+string favAuto = Console.ReadLine();
+
+Console.WriteLine("Je favoriete kleur is "+ favEten +". Je eet graag "+ favAuto +". Je lievelingsfilm is"+ favBoek +" en je favoriete boek is "+ favKleur +".");
+```
+:::: 
 
 # Woordenslinger (*Essential*)
 
@@ -145,9 +204,31 @@ De output moet er als volgt uitzien:
 
 ![](../assets/0_intro/slinger.png)
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 
-# Tekening
+```java
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.Write("blauw");
+Console.ForegroundColor = ConsoleColor.Green;
+Console.Write("groen");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine("rood");
+
+
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.Write("geel");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.Write("rood");
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.Write("blauw");
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("groen");
+
+Console.ResetColor();
+```
+
+:::: 
 
 # Tekening
 
@@ -159,12 +240,34 @@ Volgende tekening toont een schematische weergave:
 
 ![](../assets/1_csharpbasics/kleur.jpg)
 
-:::{.callout-tip}
+:::{.callout-tip collapse="true"}
 Je kan een gekleurd vakje 'tekenen' door de ``BackGroundColor`` van de console in te stellen en dan een **spatie** naar het scherm te sturen.
 :::
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Deze tekening bestaat uit allemaal spaties, waarbij we een combinatie van ``Write`` en ``WriteLine`` gebruiken, in samenwerking met kleurveranderingen om die spaties op het scherm te zetten.
+::::
 
-# Muziek (*Extra'tjes*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+```java
+Console.BackgroundColor = ConsoleColor.Red;
+Console.WriteLine("       ");
+Console.Write("  ");
+Console.BackgroundColor = ConsoleColor.Green;
+Console.Write("   ");
+Console.BackgroundColor = ConsoleColor.Red;
+Console.WriteLine("  ");
+Console.Write("  ");
+Console.BackgroundColor = ConsoleColor.Green;
+Console.Write("   ");
+Console.BackgroundColor = ConsoleColor.Red;
+Console.WriteLine("  ");
+Console.WriteLine("       ");
+
+Console.ResetColor();
+```
+:::: 
 
 # Muziek (*Extra'tjes*)
 
@@ -193,8 +296,17 @@ Je geeft aan ``Beep`` 2 getallen mee (*argumenten*):
 Open 1 van de eerder gemaakte oefeningen en zorg ervoor dat bij het opstarten ervan er een kort, door jezelf gecomponeerd, introliedje wordt afgespeeld.
 
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+Console.Beep(396, 1000); //hopelijk is jouw liedje boeiender
+Console.Beep(440, 1000);
+Console.Beep(495, 1000);
 
-# Regenboog Ticket (*Final Essentials*)
+Console.WriteLine("Wat is je vraag?");
+Console.ReadLine(); 
+Console.WriteLine("Dat is een interessante vraag! Ik zal er eens over nadenken en later op terugkomen.");
+```
+:::: 
 
 # Regenboog Ticket (*Final Essentials*)
 
@@ -204,161 +316,57 @@ Een *Final Essentials* oefening is een opgave waarin zoveel mogelijk leerstof va
 
 
 Maak een nieuwe applicatie "RegenboogTicket".
-Deze applicatie vraagt de gebruiker om 3 zaken:
+Deze applicatie vraagt de gebruiker om 3 zaken (telkens als tekst):
+
 1. De titel van een film.
 2. De prijs van een ticket.
 3. De naam van de bezoeker.
 
 Vervolgens toon je een 'ticket' op het scherm.
-* De boven- en onderkant van het ticket zijn lijnen (bijvoorbeeld ``--------------------``) met een **Witte** achtergrond en **Zwarte** voorgrondkleur.
+
+* De boven- en onderkant van het ticket zijn lijnen (bijvoorbeeld ``--------------------``) met een **witte** achtergrond en **zwarte** voorgrondkleur.
 * De filmtitel toon je in tussenliggende regel in het **Rood**.
 * De prijs toon je in een volgende regel in het **Groen**.
 * De naam van de bezoeker toon je in de laatste regel in het **Blauw**.
 
 Zorg ervoor dat je na het tonen van het ticket de kleuren terugzet naar de standaardwaarden van de console (`Console.ResetColor()`), anders blijft alles gekleurd!
 
-Voorbeeld interactie:
-(tekst die start met `>` is input van de gebruiker`. Je hoeft dit teken niet te tonen.)
+![](../assets/1_csharpbasics/finaloef.png)
 
-```text
-Geef de filmtitel:
->Titanic
-Geef de prijs:
->12 euro
-Geef je naam:
->Leonardo
-
--------------------- (wit met zwarte tekst)
-Titanic              (rood)
-12 euro              (groen)
-Leonardo             (blauw)
--------------------- (wit met zwarte tekst)
-```
 
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-
-## Wie ben ik
- 
 ```java
-Console.WriteLine("Vincent Van Camp");
-Console.WriteLine("Boom");
-Console.WriteLine("38");
-```
+Console.Write("Geef de filmtitel: ");
+string titel = Console.ReadLine();
 
-## Visitekaart
+Console.Write("Geef de prijs: ");
+string prijs = Console.ReadLine();
 
+Console.Write("Geef je naam: ");
+string naam = Console.ReadLine();
 
-```java
-Console.WriteLine("Wat is je voornaam?");
-string voornaam = Console.ReadLine();
-Console.WriteLine("Wat is je achternaam?");
-string achternaam = Console.ReadLine();
-Console.WriteLine("Waar woon je?");
-string adres = Console.ReadLine();
-Console.WriteLine("Wat is je hobby?");
-string hobby = Console.ReadLine();
+string lijn = "--------------------";
 
-Console.WriteLine("Goed. Hier volgt je visitekaartje");
-
-Console.Write("Naam: ");
-Console.WriteLine(voornaam + " " + achternaam);
-Console.Write("Adres: ");
-Console.WriteLine(adres);
-Console.Write("Hobby: ");
-Console.WriteLine(hobby);
-```
-
-
-## Fake GPT
-
-
-```java
-Console.WriteLine("Wat is je vraag?");
-Console.ReadLine();  //het resultaat bewaren in een variabele heeft geen nut. We doen er toch niets mee.
-Console.WriteLine("Dat is een interessante vraag! Ik zal er eens over nadenken en later op terugkomen.");
-```
-
-## Stad kleuren 
-
-```java
-Console.WriteLine("Vincent Van Camp");
-Console.ForegroundColor = ConsoleColor.Red;
 Console.BackgroundColor = ConsoleColor.White;
-Console.WriteLine("Boom");
-Console.ResetColor();
-Console.WriteLine("38");
-```
+Console.ForegroundColor = ConsoleColor.Black;
+Console.WriteLine(lijn);
 
-##  Rommelzin
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Ieder antwoord van de gebruiker moet je bewaren in een aparte``string`` variabele met een unieke naam. 
-:::
-
-```java
-Console.WriteLine("Geef je favoriete kleur:");
-string favKleur = Console.ReadLine();
-Console.WriteLine("Geef je favoriete eten:");
-string favEten = Console.ReadLine();
-Console.WriteLine("Geef je favoriete auto:");
-string favBoek = Console.ReadLine();
-Console.WriteLine("Geef je favoriete boek:");
-string favAuto = Console.ReadLine();
-
-
-Console.WriteLine("Je favoriete kleur is "+ favEten +". Je eet graag "+ favAuto +". Je lievelingsfilm is"+ favBoek +" en je favoriete boek is "+ favKleur +".");
-```
-
-
-
-## Woordenslinger
-
-
-
-```java
-Console.ForegroundColor = ConsoleColor.Blue;
-Console.Write("blauw");
-Console.ForegroundColor = ConsoleColor.Green;
-Console.Write("groen");
+Console.BackgroundColor = ConsoleColor.Black;
 Console.ForegroundColor = ConsoleColor.Red;
-Console.WriteLine("rood");
+Console.WriteLine(titel);
 
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.Write("geel");
-Console.ForegroundColor = ConsoleColor.Red;
-Console.Write("rood");
-Console.ForegroundColor = ConsoleColor.Blue;
-Console.Write("blauw");
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("groen");
+Console.WriteLine(prijs);
+
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.WriteLine(naam);
+
+Console.BackgroundColor = ConsoleColor.White;
+Console.ForegroundColor = ConsoleColor.Black;
+Console.WriteLine(lijn);
 
 Console.ResetColor();
 ```
-
-## Tekening
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Deze tekening bestaat uit allemaal spaties, waarbij we een combinatie van ``Write`` en ``WriteLine`` gebruiken, in samenwerking met kleurveranderingen om die spaties op het scherm te zetten.
-:::
-
-```java
-Console.BackgroundColor = ConsoleColor.Red;
-Console.WriteLine("       ");
-Console.Write("  ");
-Console.BackgroundColor = ConsoleColor.Green;
-Console.Write("   ");
-Console.BackgroundColor = ConsoleColor.Red;
-Console.WriteLine("  ");
-Console.Write("  ");
-Console.BackgroundColor = ConsoleColor.Green;
-Console.Write("   ");
-Console.BackgroundColor = ConsoleColor.Red;
-Console.WriteLine("  ");
-Console.WriteLine("       ");
-
-Console.ResetColor();
-```
-::::
+:::: 

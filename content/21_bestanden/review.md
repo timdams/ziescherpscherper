@@ -19,7 +19,6 @@
 - De `using`-uitleg in [schrijvenenlezen.md](schrijvenenlezen.md) komt te laat. Studenten zien eerst een onveilige `StreamWriter writer = new StreamWriter(...)` en daarna pas dat ze het anders moeten doen. Beter: meteen vanaf het allereerste voorbeeld `using` gebruiken en de motivatie meteen geven.
 - `File.Create(desktopPath)` in [bestandenintro.md](bestandenintro.md) regel 185 retourneert een `FileStream` die niet wordt gesloten. Dat is een *nest van Disposables*. Op een lockfile-gevoelig systeem geeft dit problemen bij de volgende `File.WriteAllText`. Verdient minstens een callout.
 - In [serialize.md](serialize.md) regel 102: ``Met behulp van de ``static`` klasse **``JsonSerializer``** ...`` — de naam is `JsonSerializer`, dat is een normale `static class`-API, prima — maar de notatie "static klasse" is wel verwarrend voor wie net het verschil tussen klasse en static-leden geleerd heeft. Een mini-recap helpt.
-- "µ" i.p.v. "z'n" in [serialize.md](serialize.md) regel 107 ("zµn JSON-voorstelling") — typo.
 - `BinaryReader`-volgorde-issue (regel 219-221 in [schrijvenenlezen.md](schrijvenenlezen.md)) is goed uitgelegd, maar je voorbeeld omwisselt eigenlijk *bool* en *int*, terwijl er over "lijn 4 en 5" wordt gesproken. Rechtgetrokken nummering helpt.
 
 ## Onduidelijkheden
@@ -46,7 +45,7 @@
 1. Trek alle code-typo's uit ([bestandenintro.md](bestandenintro.md), [schrijvenenlezen.md](schrijvenenlezen.md), [fileinfo.md](fileinfo.md)). Studenten kopiëren letterlijk.
 2. Verplaats de `using`-uitleg in [schrijvenenlezen.md](schrijvenenlezen.md) naar *het allereerste* `StreamWriter`-voorbeeld. Toon daarna pas de "blote" variant ter contrast.
 3. Voeg in [schrijvenenlezen.md](schrijvenenlezen.md) een korte sectie "`File.ReadAllText` versus `StreamReader`: wanneer welk?" toe.
-4. Voeg in [serialize.md](serialize.md) een callout toe over `JsonSerializerOptions { WriteIndented = true }` plus één voorbeeld van een lijst/genest object. En de typo "zµn" repareren.
+4. Voeg in [serialize.md](serialize.md) een callout toe over `JsonSerializerOptions { WriteIndented = true }` plus één voorbeeld van een lijst/genest object.
 5. Voeg achter [serialize.md](serialize.md) een afsluitende callout "Async IO bestaat ook" met één regel `await File.ReadAllTextAsync(...)`. Geen volledige uitleg — alleen vooruitwijzing.
 6. [kennisclips.md](kennisclips.md) is leeg ("Helaas, nog geen kennisclips"). Op zich oké, maar overweeg om dan minstens een externe video / Microsoft Learn-link te plaatsen zodat de student niet *helemaal* zonder visueel materiaal zit.
 

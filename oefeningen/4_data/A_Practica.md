@@ -16,9 +16,8 @@ Gebruikersinvoer in de voorbeelden zullen met een liggend streepje voorafgegaan 
 
 
 
-# Supercomputer (Dodona beschikbaar)
 
-# Supercomputer (Dodona beschikbaar)
+# Supercomputer
 
 
 Vraag aan de gebruiker 3 kommagetallen. Bereken het gemiddelde van deze 3 getallen en toon dit als een kommagetal op het scherm
@@ -36,13 +35,26 @@ Geef getal 3:
 Het gemiddelde hiervan is: 28,566666666666666
 ```
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Herinner je je nog waarom we ronde haakjes rond de som moesten plaatsen?!
+::::
 
-# Vierkant (*Essential*) (Dodona beschikbaar)
+::::{.callout-caution collapse="true" title="Oplossing"}
 
-# Vierkant (*Essential*) (Dodona beschikbaar)
+```java
+double getal1 = double.Parse(Console.ReadLine());
+double getal2 = double.Parse(Console.ReadLine());
+double getal3 = double.Parse(Console.ReadLine());
+Console.WriteLine($"Gemiddelde is {(getal1+getal2+getal3)/3}");
+```
+::::
+
+
+# Vierkant (*Essential*) 
 Schrijf een programma om de omtrek en de oppervlakte van een vierkant te bepalen. De zijde wordt ingelezen.
 
 Voorbeeld:
+
 ```text
 Geef de zijde:
 >4,6
@@ -50,11 +62,27 @@ Omtrek is 18.4
 Oppervlakte is 21,16
 ```
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Lijn 2 en 3 kan ook gecombineerd worden in 1 lijn: ``double zijde = double.Parse(Console.ReadLine());``, hierdoor heb je de tijdelijke variabele ``zijdeInvoer`` niet meer invoer
+::::
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 
-# Balk (Dodona beschikbaar)
+```java
+Console.WriteLine("Geef de zijde:");
+string zijdeInvoer = Console.ReadLine();
+double zijde =double.Parse(zijdeInvoer);
+double omtrek = zijde * 4; 
+double oppervlakte= Math.Pow(zijde, 2);
 
-# Balk (Dodona beschikbaar)
+Console.WriteLine($"Omtrek is {omtrek}");
+Console.WriteLine($"Oppervlakte is {oppervlakte}");
+```
+::::
+
+
+# Balk 
 
 Bereken de oppervlakte en de inhoud van een balk . De gegevens (hoogte, breedte, lengte) worden ingelezen als gehele getallen. Zorg ervoor dat de uitvoer er als volgt uitziet:
 
@@ -71,10 +99,29 @@ Inhoud is 60
 
 
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+Console.WriteLine("Geef lengte");
+int lengte = int.Parse(Console.ReadLine());
+Console.WriteLine("Geef breedte ");
+int breedte = int.Parse(Console.ReadLine());
+Console.WriteLine("Geef hoogte ");
+int hoogte = int.Parse(Console.ReadLine());
 
-# BMI berekenaar (*Essential*) (Dodona beschikbaar)
+int opp = 2*lengte*breedte + 2*lengte*hoogte + 2* breedte*hoogte;
 
-# BMI berekenaar (*Essential*) (Dodona beschikbaar)
+Console.WriteLine($"lengte: {lengte}");
+Console.WriteLine($"breedte: {breedte}");
+Console.WriteLine($"hoogte: {hoogte}");
+Console.WriteLine($"oppervlakte: {opp}");
+Console.WriteLine($"inhoud: {lengte*breedte*hoogte}");
+```
+
+::::
+
+
+
+# BMI berekenaar (*Essential*) 
 Maak een programma dat aan de gebruiker z'n lengte (in cm) en gewicht (in kg) vraagt en vervolgens de berekende BMI (Body Mass Index) toont. Zoek zelf op hoe je het BMI berekent.
 
 Gebruik ``Math.Round`` om de uitkomst tot maximum 2 cijfers na de komma te tonen.
@@ -92,9 +139,29 @@ Wat is uw gewicht in kg?
 
 Een persoon met een lengte van [lengteInMeter] m en een gewicht van [gewicht] kg heeft een BMI van [bmi].
 ```
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Bij deze oefeningen moet je goed opletten dat je:
+
+a. Geen informatie verliest in de deling wanneer je vergeet te werken met doubles i.p.v. integers.
+b. Goed bekijkt welke grootheden je nodig hebt. De formule van BMI vereist de lengte in meter, maar de gebruiker wordt deze in in centimeter.
+::::
 
 
-# Op-de-poef (*Essential*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+```java
+Console.WriteLine("Wat is uw lengte in cm?");
+double lengteInMeter = Convert.ToDouble(Console.ReadLine())/100;
+
+Console.WriteLine("Wat is uw gewicht in kg?");
+double gewicht = Convert.ToDouble(Console.ReadLine());
+
+double bmi = gewicht / Math.Pow(lengteInMeter, 2);
+Console.WriteLine($"Een persoon met een lengte van {lengteInMeter} m en een gewicht van {gewicht} kg heeft een BMI van {Math.Round(bmi,2)}");
+   
+```
+::::
+
 
 # Op-de-poef (*Essential*)
 Een vaste klant in je café bestelt altijd "op-de-poef". Dat wil zeggen dat hij niet onmiddellijk betaalt en dat z'n rekeningen worden neergeschreven. Ooit zal de klant dan gevraagd worden de hele som te betalen.
@@ -129,8 +196,52 @@ Voor deze oefening heb je ``Math.Ceiling()`` nodig. Deze methode zal een getal a
 :::
 
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Dit is de eerste keer dat je een **lopende som** moest maken: je hebt een variabele (``poef``) die zal groeien met behulp van ``+=``. Merk op dat ``poef += bedrag;`` ook mag schrijven als ``poef = poef + bedrag;`` , zo zie je nog duidelijker de lopende som: we nemen de inhoud van de variabele ``poef``, tellen er ``bedrag`` bij op, en dat nieuwe resultaat bewaren we opnieuw in ``poef`` ( we overschrijven dan ook de vorige waarde die er in stak).
+::::
 
-# Feestkassa (*Essential*)
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+
+
+```java
+int poef = 0;
+int bedrag = 0;
+
+
+Console.WriteLine("Voer bedrag in:");
+bedrag = int.Parse(Console.ReadLine());
+poef += bedrag;
+Console.WriteLine($"De poef staat op {poef} euro");
+Console.WriteLine("Voer bedrag in:");
+bedrag = int.Parse(Console.ReadLine());
+poef += bedrag;
+Console.WriteLine($"De poef staat op {poef} euro");
+Console.WriteLine("Voer bedrag in:");
+bedrag = int.Parse(Console.ReadLine());
+poef += bedrag;
+Console.WriteLine($"De poef staat op {poef} euro");
+Console.WriteLine("Voer bedrag in:");
+bedrag = int.Parse(Console.ReadLine());
+poef += bedrag;
+Console.WriteLine($"De poef staat op {poef} euro");
+Console.WriteLine("Voer bedrag in:");
+bedrag = int.Parse(Console.ReadLine());
+poef += bedrag;
+Console.WriteLine($"De poef staat op {poef} euro");
+
+Console.WriteLine("*****************");
+double weken = Math.Ceiling(poef / 10.0);
+string zin = $"Het totaal van de poef is {poef} en zal {weken} weken duren om volledig afbetaald te worden.";
+Console.WriteLine(zin);
+```
+
+
+
+::::
+
+
 
 # Feestkassa (*Essential*)
 De plaatselijke voetbalclub organiseert een mosselfestijn. Naast mosselen met frietjes (20 EUR) bieden ze voor de kinderen de mogelijkheid om een koninginnenhapje (10 EUR) te kiezen. Verder is er een ijsje als nagerecht voorzien (3 EUR). Om het gemakkelijk te maken kosten alle dranken 2 EUR.
@@ -158,8 +269,36 @@ Tussenprijs= 60 euro + 50 euro + 6 euro + 10 euro
 Het totaal te betalen bedrag is 126 EURO.
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+const double PRIJS_FRIET = 20;
+const double PRIJS_KONINGINNE = 10;
+const double PRIJS_IJS = 3;
+const double PRIJS_DRANK = 2;
 
-# Het Orakeltje van Delphi (*Essential*)
+Console.WriteLine("Frietjes?");
+int aantalFriet = int.Parse(Console.ReadLine());
+double totalFriet = aantalFriet * PRIJS_FRIET;
+Console.WriteLine($"Tussenprijs= {totalFriet} euro");
+
+Console.WriteLine("Koninginnenhapje?");
+int aantalKoninginne = int.Parse(Console.ReadLine());
+double totalKoninginne = aantalKoninginne * PRIJS_KONINGINNE;
+Console.WriteLine($"Tussenprijs= {totalFriet} euro + {totalKoninginne} euro");
+
+Console.WriteLine("Ijsjes?");
+int aantalIjs = int.Parse(Console.ReadLine());
+double totalIjs = aantalIjs * PRIJS_IJS;
+Console.WriteLine($"Tussenprijs= {totalFriet} euro + {totalKoninginne} euro + {totalIjs} euro");
+
+Console.WriteLine("Dranken?");
+int aantalDrank = int.Parse(Console.ReadLine());
+double totalDrank = aantalDrank * PRIJS_DRANK;
+Console.WriteLine($"Tussenprijs= {totalFriet} euro + {totalKoninginne} euro + {totalIjs} euro + {totalDrank} euro");
+
+double totaal = totalFriet + totalKoninginne + totalIjs + totalDrank;
+Console.WriteLine($"\nHet totaal te betalen bedrag is {totaal} EURO.");
+::::
+
 
 # Het Orakeltje van Delphi (*Essential*)
 Gebruik een random generator om een orakel (een duur woord voor waarzegger) te maken, namelijk de kleine broer of zus van het [Orakel van Delphi](https://nl.wikipedia.org/wiki/Orakel_van_Delphi). Het programma zal aan de gebruiker vertellen hoe lang deze nog zal leven. Bijvoorbeeld: "Je zal nog 15 jaar leven.".
@@ -171,10 +310,17 @@ Het orakel zal enkel realistische getallen geven. M.a.w., getallen van 5 tot en 
 We gaan geregeld een oefening in een later hoofdstuk verder uitbreiden. Het orakeltje van Delphi is er zo eentje. **Bewaar je oefeningen dus goed!**
 :::
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
-# Geometric fun (Dodona beschikbaar)
+```java
+Random delphi= new Random();
+Console.WriteLine($"Je zal nog {delphi.Next(5,126)} jaar leven");
+```
 
-# Geometric fun (Dodona beschikbaar)
+::::
+
+
+# Geometric fun 
 
 Vraag aan de gebruiker een hoek in graden. Zet deze om naar radialen , gebruik ``Math.PI`` voor Pi. Gebruik vervolgens de verschillende geometrische functies in de ``Math.`` bibliotheek om de sinus (``.Sin``), cosinus (``.Cos``) en tangens (``.Tan``) van de hoek aan de gebruiker te tonen 
 
@@ -197,12 +343,22 @@ Cosinus van deze hoek is: [cosinus]
 Tangens van deze hoek is: [tangens]
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+Console.WriteLine("Geef de hoek in graden:");
+double hoekInGraden = double.Parse(Console.ReadLine());
+double hoekInRadialen = hoekInGraden * ( Math.PI/180);
 
-# Schaak-ELO 
+Console.WriteLine($"Sinus van {hoekInGraden} graden is {Math.Sin(hoekInRadialen)}");
+Console.WriteLine($"Cosinus van {hoekInGraden} graden is {Math.Cos(hoekInRadialen)}");
+Console.WriteLine($"Tangens van {hoekInGraden} graden is {Math.Tan(hoekInRadialen)}");
+```
 
-# Schaak-ELO 
+::::
 
-> Sinds 2022 en de sappige verhalen rond Magnus en Niemann is schaken erg populair aan het worden bij "de massa". Tijd om hier dus een oefening rond te maken.
+# Schaak-ELO  (PRO)
+
+
 
 *"Een Elo-rating is een getalsmatige aanduiding van de sterkte van een speler. Het wordt het meest gebruikt in schaken, dammen en go, maar kan in principe gebruikt worden bij elke sport waarbij spelers 1 tegen 1 spelen."* (bron Wikipedia). We gaan een applicatie schrijven (zie verderop voor de effectieve werking van de applicatie) die: 
 
@@ -236,14 +392,40 @@ Vervolgens toont de applicatie de nieuwe Elo-ratings voor de 3 scenario's:
 Breidt de applicatie uit en vraag de waarde K ook aan de gebruiker en gebruik deze in je berekeningen.
 
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+Dit is een iets pittigere oefening waarbij je je goed moet concentreren op het gebruik van haakjes om de volgorde van berekeningen te controleren. 
+::::
 
-# De Festivalganger (*Final Essentials*)
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+
+Input van de gebruiker wordt niet getoond maar zal je zelf hopelijk wel kunnen:
+
+```java
+const int K = 10;
+double ra = 1000; //vraag dit aan de gebruiker
+double rb = 1100; //vraag dit aan de gebruiker
+
+double ea= 1 /(1+Math.Pow(10,(rb-ra)/400.0));
+double eb = 1 / (1 + Math.Pow(10, (ra - rb) / 400.0));
+
+double ranew = ra + K * (1 - ea);
+double rbnew = rb + K * (0 - eb);
+Console.WriteLine("Indien a wint:");
+Console.WriteLine(Math.Round(ranew,0));
+Console.WriteLine(Math.Round(rbnew,0));
+//idem voor de 2 andere scenarios)
+```
+
+::::
+
 
 # De Festivalganger (*Final Essentials*)
 
 Je hebt tickets bemachtigd voor een fantastisch driedaags festival! Maar festivals zijn duur, dus je besluit een app te schrijven om je budget te beheren.
 
 Het programma werkt als volgt:
+
 1.  Vraag de gebruiker zijn/haar **naam** en het **totaal budget**.
 2.  Voor elke dag (Dag 1, Dag 2 en Dag 3):
     *   Vraag hoeveel **drankjes** (à € 4.50) de gebruiker heeft gedronken.  
@@ -295,210 +477,60 @@ Budget over: 74,5 euro
 Jos, je hebt nog 74,5 euro over na 3 dagen feesten!
 ```
 
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-![](../assets/infoclip.png)
-
-* [Bespreking oplossingen hoofdstuk 3](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=0c5972b4-e091-40dc-84dc-a97600d27428)
-
-## Supercomputer
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Herinner je je nog waarom we ronde haakjes rond de som moesten plaatsen?!
-:::
-
 ```java
-double getal1 = double.Parse(Console.ReadLine());
-double getal2 = double.Parse(Console.ReadLine());
-double getal3 = double.Parse(Console.ReadLine());
-Console.WriteLine($"Gemiddelde is {(getal1+getal2+getal3)/3}");
+const double PRIJS_DRANK = 4.50;
+const double PRIJS_SNACK = 9.00;
+
+Random rng = new Random();
+
+Console.WriteLine("Welkom op het festival! Wat is je naam?");
+string naam = Console.ReadLine();
+Console.WriteLine("Hoeveel budget heb je mee?");
+double budget = double.Parse(Console.ReadLine());
+
+// DAG 1
+Console.WriteLine("\n--- DAG 1 ---");
+Console.WriteLine("Aantal drankjes?");
+int drankjes1 = int.Parse(Console.ReadLine());
+Console.WriteLine("Aantal snacks?");
+int snacks1 = int.Parse(Console.ReadLine());
+double onvoorzien1 = rng.Next(5, 21);
+Console.WriteLine($"Oeps! Onvoorziene kost van {onvoorzien1} euro.");
+double totaalDag1 = drankjes1 * PRIJS_DRANK + snacks1 * PRIJS_SNACK + onvoorzien1;
+budget = Math.Round(budget - totaalDag1, 2);
+Console.WriteLine($"Totaal dag 1: {totaalDag1} euro");
+Console.WriteLine($"Budget over: {budget} euro");
+
+// DAG 2
+Console.WriteLine("\n--- DAG 2 ---");
+Console.WriteLine("Aantal drankjes?");
+int drankjes2 = int.Parse(Console.ReadLine());
+Console.WriteLine("Aantal snacks?");
+int snacks2 = int.Parse(Console.ReadLine());
+double onvoorzien2 = rng.Next(5, 21);
+Console.WriteLine($"Oeps! Onvoorziene kost van {onvoorzien2} euro.");
+double totaalDag2 = drankjes2 * PRIJS_DRANK + snacks2 * PRIJS_SNACK + onvoorzien2;
+budget = Math.Round(budget - totaalDag2, 2);
+Console.WriteLine($"Totaal dag 2: {totaalDag2} euro");
+Console.WriteLine($"Budget over: {budget} euro");
+
+// DAG 3
+Console.WriteLine("\n--- DAG 3 ---");
+Console.WriteLine("Aantal drankjes?");
+int drankjes3 = int.Parse(Console.ReadLine());
+Console.WriteLine("Aantal snacks?");
+int snacks3 = int.Parse(Console.ReadLine());
+double onvoorzien3 = rng.Next(5, 21);
+Console.WriteLine($"Oeps! Onvoorziene kost van {onvoorzien3} euro.");
+double totaalDag3 = drankjes3 * PRIJS_DRANK + snacks3 * PRIJS_SNACK + onvoorzien3;
+budget = Math.Round(budget - totaalDag3, 2);
+Console.WriteLine($"Totaal dag 3: {totaalDag3} euro");
+Console.WriteLine($"Budget over: {budget} euro");
+
+Console.WriteLine($"\n{naam}, je hebt nog {budget} euro over na 3 dagen feesten!");
 ```
-
-## Vierkant
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Lijn 2 en 3 kan ook gecombineerd worden in 1 lijn: ``double zijde = double.Parse(Console.ReadLine());``, hierdoor heb je de tijdelijke variabele ``zijdeInvoer`` niet meer invoer
-:::
-
-```java
-Console.WriteLine("Geef de zijde:");
-string zijdeInvoer = Console.ReadLine();
-double zijde =double.Parse(zijdeInvoer);
-double omtrek = zijde * 4; 
-double oppervlakte= Math.Pow(zijde, 2);
-
-Console.WriteLine($"Omtrek is {omtrek}");
-Console.WriteLine($"Oppervlakte is {oppervlakte}");
-```
-
-
-## Balk
-
-```java
-Console.WriteLine("Geef lengte");
-int lengte = int.Parse(Console.ReadLine());
-Console.WriteLine("Geef breedte ");
-int breedte = int.Parse(Console.ReadLine());
-Console.WriteLine("Geef hoogte ");
-int hoogte = int.Parse(Console.ReadLine());
-
-int opp = 2*lengte*breedte + 2*lengte*hoogte + 2* breedte*hoogte;
-
-Console.WriteLine($"lengte: {lengte}");
-Console.WriteLine($"breedte: {breedte}");
-Console.WriteLine($"hoogte: {hoogte}");
-Console.WriteLine($"oppervlakte: {opp}");
-Console.WriteLine($"inhoud: {lengte*breedte*hoogte}");
-```
-
-## Geometric fun
-
-```java
-Console.WriteLine("Geef de hoek in graden:");
-double hoekInGraden = double.Parse(Console.ReadLine());
-double hoekInRadialen = hoekInGraden * ( Math.PI/180);
-
-Console.WriteLine($"Sinus van {hoekInGraden} graden is {Math.Sin(hoekInRadialen)}");
-Console.WriteLine($"Cosinus van {hoekInGraden} graden is {Math.Cos(hoekInRadialen)}");
-Console.WriteLine($"Tangens van {hoekInGraden} graden is {Math.Tan(hoekInRadialen)}");
-```
-
-## BMI Berekenaar 
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Bij deze oefeningen moet je goed opletten dat je:
-
-a. Geen informatie verliest in de deling wanneer je vergeet te werken met doubles i.p.v. integers.
-b. Goed bekijkt welke grootheden je nodig hebt. De formule van BMI vereist de lengte in meter, maar de gebruiker wordt deze in in centimeter.
-:::
-
-```java
-Console.WriteLine("Wat is uw lengte in cm?");
-double lengteInMeter = Convert.ToDouble(Console.ReadLine())/100;
-
-Console.WriteLine("Wat is uw gewicht in kg?");
-double gewicht = Convert.ToDouble(Console.ReadLine());
-
-double bmi = gewicht / Math.Pow(lengteInMeter, 2);
-Console.WriteLine($"Een persoon met een lengte van {lengteInMeter} m en een gewicht van {gewicht} kg heeft een BMI van {Math.Round(bmi,2)}");
-   
-```
-
-## Op-de-poef
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Dit is de eerste keer dat je een **lopende som** moest maken: je hebt een variabele (``poef``) die zal groeien met behulp van ``+=``. Merk op dat ``poef += bedrag;`` ook mag schrijven als ``poef = poef + bedrag;`` , zo zie je nog duidelijker de lopende som: we nemen de inhoud van de variabele ``poef``, tellen er ``bedrag`` bij op, en dat nieuwe resultaat bewaren we opnieuw in ``poef`` ( we overschrijven dan ook de vorige waarde die er in stak).
-:::
-
-```java
-int poef = 0;
-int bedrag = 0;
-
-
-Console.WriteLine("Voer bedrag in:");
-bedrag = int.Parse(Console.ReadLine());
-poef += bedrag;
-Console.WriteLine($"De poef staat op {poef} euro");
-Console.WriteLine("Voer bedrag in:");
-bedrag = int.Parse(Console.ReadLine());
-poef += bedrag;
-Console.WriteLine($"De poef staat op {poef} euro");
-Console.WriteLine("Voer bedrag in:");
-bedrag = int.Parse(Console.ReadLine());
-poef += bedrag;
-Console.WriteLine($"De poef staat op {poef} euro");
-Console.WriteLine("Voer bedrag in:");
-bedrag = int.Parse(Console.ReadLine());
-poef += bedrag;
-Console.WriteLine($"De poef staat op {poef} euro");
-Console.WriteLine("Voer bedrag in:");
-bedrag = int.Parse(Console.ReadLine());
-poef += bedrag;
-Console.WriteLine($"De poef staat op {poef} euro");
-
-Console.WriteLine("*****************");
-double weken = Math.Ceiling(poef / 10.0);
-string zin = $"Het totaal van de poef is {poef} en zal {weken} weken duren om volledig afbetaald te worden.";
-Console.WriteLine(zin);
-```
-
-
-## Feestkassa
-
-```java
-const int PRIJSFRIET = 20;
-const int PRIJSKONINGIN = 10;
-const int PRIJSDESSERT = 3;
-const int PRIJSDRANK = 2;
-
-int aantal = 0;
-int totaalPrijs = 0;
-int tussenPrijs = 0;
-string tussenPrijsZin = "Tussenprijs=";
-
-Console.WriteLine("Frietjes?");
-aantal = int.Parse(Console.ReadLine());
-tussenPrijs = aantal * PRIJSFRIET;
-totaalPrijs = tussenPrijs;
-tussenPrijsZin += $" + {tussenPrijs} euro";
-Console.WriteLine(tussenPrijsZin);
-
-Console.WriteLine("Koningingenhapjes?");
-aantal = int.Parse(Console.ReadLine());
-tussenPrijs = aantal * PRIJSKONINGIN;
-totaalPrijs += tussenPrijs;
-tussenPrijsZin += $" + {tussenPrijs} euro";
-Console.WriteLine(tussenPrijsZin);
-
-Console.WriteLine("Ijsjes?");
-aantal = int.Parse(Console.ReadLine());
-tussenPrijs = aantal * PRIJSDESSERT;
-totaalPrijs += tussenPrijs;
-tussenPrijsZin += $" + {tussenPrijs} euro";
-Console.WriteLine(tussenPrijsZin);
-
-Console.WriteLine("Dranken?");
-aantal = int.Parse(Console.ReadLine());
-tussenPrijs = aantal * PRIJSDRANK;
-totaalPrijs += tussenPrijs;
-tussenPrijsZin += $" + {tussenPrijs} euro";
-Console.WriteLine(tussenPrijsZin);
-
-Console.WriteLine($"Het totaal te betaken bedrag is {totaalPrijs}");
-```
-
-
-## Het orakeltje van Delphi
-
-```java
-Random delphi= new Random();
-Console.WriteLine($"Je zal nog {delphi.Next(5,126)} jaar leven");
-```
-
-## Schaak-ELO
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Dit is een iets pittigere oefening waarbij je je goed moet concentreren op het gebruik van haakjes om de volgorde van berekeningen te controleren. 
-:::
-
-Input van de gebruiker wordt niet getoond maar zal je zelf hopelijk wel kunnen:
-
-```java
-const int K = 10;
-double ra = 1000; //vraag dit aan de gebruiker
-double rb = 1100; //vraag dit aan de gebruiker
-
-double ea= 1 /(1+Math.Pow(10,(rb-ra)/400.0));
-double eb = 1 / (1 + Math.Pow(10, (ra - rb) / 400.0));
-
-double ranew = ra + K * (1 - ea);
-double rbnew = rb + K * (0 - eb);
-Console.WriteLine("Indien a wint:");
-Console.WriteLine(Math.Round(ranew,0));
-Console.WriteLine(Math.Round(rbnew,0));
-//idem voor de 2 andere scenarios)
-```
-
 ::::
+
+

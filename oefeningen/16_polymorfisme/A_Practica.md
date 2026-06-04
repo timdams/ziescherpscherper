@@ -566,3 +566,189 @@ class Program
 
 ```
 ::::
+
+
+
+### Gazenbord
+
+
+
+```
+# Ganzenbord van Dams Van Camp
+
+```csharp
+public class Dobbelsteen
+{
+    private static readonly Random rng = new Random();
+
+    public static int Rol()
+    {
+        return rng.Next(1, 4);
+    }
+}
+
+public class Speelvakje
+{
+
+    private static readonly Random rng = new Random();
+
+    public int BeweegVakjes { get; private set; }
+
+    public Speelvakje()
+    {
+        int kans = rng.Next(0, 100);
+
+        if (kans < 30)
+        {
+            if (rng.Next(0, 2) == 0)
+                BeweegVakjes = 1;
+            else BeweegVakjes = 2;
+        }
+        else if (kans < 50)
+        {
+            if (rng.Next(0, 2) == 0)
+                BeweegVakjes = -1;
+            else BeweegVakjes = -2;
+        }
+        else
+        {
+            BeweegVakjes = 0;
+        }
+    }
+
+    public virtual void ToonVakje()
+    {
+        if (BeweegVakjes >= 0)
+            Console.Write($"+{BeweegVakjes}");
+        else
+            Console.Write($"{BeweegVakjes}"); 
+    }
+}
+
+public class KleurVakje : Speelvakje
+{
+    public override void ToonVakje()
+    {
+        
+
+        if (BeweegVakjes < 0)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        else
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+
+        base.ToonVakje();
+
+        Console.ResetColor();
+    }
+}
+
+public class Ganzenbord
+{
+    private List<Speelvakje> SpeelVakjes;
+    private int pionIndex;
+
+    public int HuidigeScore { get; set; }
+
+    public Ganzenbord() : this(false) { }
+
+    public Ganzenbord(bool kleur)
+    {
+        SpeelVakjes = new List<Speelvakje>();
+        for (int i = 0; i < 10; i++)
+        {
+            if (kleur)
+                SpeelVakjes.Add(new KleurVakje());
+            else
+                SpeelVakjes.Add(new Speelvakje());
+        }
+        pionIndex = 0;
+        HuidigeScore = 0;
+    }
+
+    public bool BeweegPion(int worp)
+    {
+        pionIndex += worp;
+
+
+        if (pionIndex > 9)
+        {
+            HuidigeScore += 10;
+            return true;
+        }
+
+
+        pionIndex += SpeelVakjes[pionIndex].BeweegVakjes;
+
+
+        if (pionIndex < 0)
+        {
+            HuidigeScore -= 10;
+            pionIndex = 0;
+            return false;
+        }
+
+
+        if (pionIndex > 9)
+        {
+            HuidigeScore += 10;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void TekenBord()
+    {
+        int regel = Console.CursorTop;
+
+        
+        for (int i = 0; i < SpeelVakjes.Count; i++)
+        {
+            SpeelVakjes[i].ToonVakje();
+        }
+
+
+        int cursorLeft = pionIndex * 2 + 1;
+        Console.SetCursorPosition(cursorLeft, regel);
+        Console.Write('T');
+
+
+        Console.SetCursorPosition(0, regel + 1);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Wil je de kleurenversie spelen? (j/n): ");
+        string keuze = Console.ReadLine();
+        bool kleur = keuze != null && keuze.Trim().ToLower().StartsWith("j");
+
+        Ganzenbord bord = new Ganzenbord(kleur);
+        bool gewonnen = false;
+
+        while (!gewonnen)
+        {
+            bord.TekenBord();
+
+            int worp = Dobbelsteen.Rol();
+            Console.WriteLine($"Je rolde {worp}");
+
+            gewonnen = bord.BeweegPion(worp);
+
+            Console.WriteLine("Druk op enter om verder te gaan...");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        Console.WriteLine($"Spel afgelopen! Je eindscore is: {bord.HuidigeScore}");
+    }
+}
+```

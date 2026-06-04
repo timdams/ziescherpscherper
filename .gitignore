@@ -1,5 +1,11 @@
 # Quarto
-/.quarto/
+.quarto/
 *_cache/
+*_files/
 **/*.quarto_ipynb
 /build/
+site_libs/
+
+# Single-file render output: Quarto rendert .html (+ _files/) naast de bron.
+# Niets HTML hoort in de repo — alle echte output gaat naar build/.
+*.html

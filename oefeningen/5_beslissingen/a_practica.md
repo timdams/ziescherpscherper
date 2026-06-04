@@ -10,8 +10,6 @@ Oefeningen worden sinds vorig hoofdstuk al eens wat langer. Het is belangrijk da
 
 # BMI met if (*Essential*)
 
-# BMI met if (*Essential*)
-
 Pas je BMI-programma uit het vorige hoofdstuk aan zodat je programma feedback geeft aan de gebruiker naargelang het berekende BMI.
 
 De kleur tussen haakjes geeft aan in welke kleur je deze tekst zet:
@@ -24,333 +22,9 @@ De kleur tussen haakjes geeft aan in welke kleur je deze tekst zet:
 
 
 
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
 
-# Schoenverkoper
-
-# Schoenverkoper
-a) Maak een oefening die aan de gebruiker vraagt hoeveel paar schoenen hij wenst te kopen. Ieder paar schoenen kost steeds 20 euro. Indien de gebruiker 10 paar of meer koopt kosten de eerste 9 paar nog steeds 20 euro, de overige kosten echter maar 10 euro. Toon aan de gebruiker de totale prijs.
-
-Voorbeeld:  
-* 8 schoenen kost 8x20 = 160 euro
-* 12 schoenen kost 9x20 + 3x10 = 210 euro
-
-b) Voeg nu toe dat het programma eerst aan de kassier vraagt tot hoeveel schoenen de korting niet geldt. 
-
-Voorbeeld:
-* De kassierster voert 6 in. Dan kosten 8 schoenen: 6x20 + 2x10 = 140 euro.
-
-:::{.callout-tip}
-Je hebt niet noodzakelijk een if voor deze oefening nodig.  Indien je deze oefening zonder if kunt oplossen, dan krijg je als extra opgave bij:
-
-c) Zorg ervoor dat de kassier enkel een getal van 3 tot en met 10 kan invoeren bij de vraag tot hoeveel schoenen de korting niet geldt. Indien de kassier een getal buiten deze range invoert wordt de gewone korting toegekend, namelijk vanaf 10 of meer schoenen.
-:::
-
-
-# Ohm-berekenaar
-
-# Ohm-berekenaar
-Vraag aan de gebruiker wat hij wenst te berekenen: spanning, weerstand of stroomsterkte. Vraag vervolgens de 2 andere waarden (als dus de gebruiker "Spanning" kiest vraag je aan de gebruiker de stroomsterkte en de weerstand) en bereken m.b.v. de wet van Ohm de gewenste waarde tot 2 cijfers na de komma.
-
-Voorbeeld output:
-
-```text
-Wat wil je berekenen? spanning, weerstand of stroomsterkte?
-stroomsterkte
-Geef me dan de spanning:
->34,4
-Geef me dan de weerstandswaarde:
->3,4
-De stroomsterkte bedraagt dan 10,12 Ampere
-```
-
-
-# BankRekening controle 
-
-# BankRekening controle 
-Schrijf een programma om het vroegere nationale bankrekeningnummer te controleren of het al dan niet een geldig nummer is (dus niet het IBAN nummer). 
-
-Het bankrekeningnummer wordt ingelezen als 3 gehele getallen van 3, 7 en 2 die de gebruiker apart invoert en die je in 3 aparte variabelen bewaard.
-
-:::{.callout-tip}
-Een bankrekeningnummer is geldig als de rest van de deling van het getal, dat bestaat uit de eerste 10 cijfers, door 97, gelijk is aan het getal bestaande uit de laatste 2 cijfers.
-
-* Dit is een voorbeeld van een geldige rekening: 000 1459325 57 , want 000 1459325 gedeeld door 97 geeft als rest 57.
-* Dit een ongeldige: 000 1359325 77, want 1359325 gedeeld door 97 geeft als rest 64 en niet 77
-:::
-
-
-
-
-# Orakeltje van Delphi, part deux (*Essential*)
-
-# Orakeltje van Delphi, part deux (*Essential*)
-We gaan het Orakeltje verbeteren. Voor het orakel je vertelt hoe lang je te leven hebt zal het eerste vragen of je een vrouw (``v``) of een man (``m``) bent. Dan vraagt ze je leeftijd.
-Mannen leven maximum tot hun 120 jaar. Vrouwen echter tot 150 jaar. Laat het orakel een duur voorspellen die kan. Als een vrouw van 50 de vraag stelt dan zal het orakel dus een getal van 5 tot en met 100 (``150-50``) genereren. Een man van 35 zal van 5 tot en met 85 (``120-35``) jaren langer kunnen leven. 
-
-
-# Casino (*Essential*)
-
-# Casino (*Essential*)
-Genereer  een random getal van 1 t.e.m. 6 maar toon dit niet aan de gebruiker. Vraag aan de gebruiker welk getal hij denkt dat de computer heeft "geworpen". Indien de gebruiker juist raadt verschijnt er "proficiat" op het scherm. Anders: "You lose. Ik wierp [getal]".
-
-Voorbeeld:
-
-```text
-Welk getal heb ik geworpen?
->3
-You lose. Ik wierp 1.
-```
-
-
-# Casino 3
-
-# Casino 3
-Vul de voorgaande oefening aan, maar laat de gebruiker 3x na mekaar raden. Enkel als hij juist raadt mag hij nog eens raden. Als hij ook de derde juist raadt wint hij. In alle andere gevallen niet.
-
-
-Voorbeeld output:
-
-```text
-Welk getal heb ik geworpen?
-4
-Welk getal heb ik nu geworpen?
-1
-You lose!
-```
-
-en
-
-```text
-Welk getal heb ik geworpen?
-4
-Welk getal heb ik nu geworpen?
-1
-Welk getal heb ik nu geworpen?
-5
-Proficat!
-```
-
-
-
-# Schaakstuk 
-
-# Schaakstuk 
-
-Definieer de verschillende schaakstukken in een enum-type (Pion, Loper, Koning, etc.). Maak 2 variabelen aan van dit nieuwe datatype en vraag aan de gebruiker welke waarde elke moet krijgen (bv variabele 1 een pion , variabele 2 een koningin).
-
-Toon aan de gebruiker hoe elke variabele kan bewegen (Pion: "Rechtdoor, 1 of 2 vakjes", Loper: "Schuin", etc.), gebruik hiervoor een ```switch``` (die je 3x zal nodig hebben)
-
-Indien beide variabelen hetzelfde stuk zijn dan toont de applicatie de tekst "Beide zijn hetzelfde." gevolgd door hoe ze kunnen bewegen.
-
-Voorbeeld werking:
-
-```text
-Welk stuk is stuk1?
->Toren
-Welk stuk is stuk2?
->Koningin
-
-Stuk1 kan enkel horizontaal of verticaal bewegen.
-Stuk2 kan in alle richtingen bewegen
-```
-
-Ander voorbeeld:
-
-```text
-Welk stuk is stuk1?
->Loper_
-Welk stuk is stuk2?
->Loper
-
-Beide zijn het zelfde en kunnen enkel schuin bewegen.
-```
-
-
-# Quiz 
-
-# Quiz 
-Maak een quiz. Maak gebruik van het ``switch``-statement om de input van de gebruiker (a, b, c of d) te verwerken en bij iedere vraag aan te geven of dit juist of fout is. Voorzie 3 multiple choice vragen. Houd bij hoe vaak de speler juist antwoordde en geef op het einde de eindscore (Juist is +2, fout is -1).
-
-Zoek op hoe je de kleur van de letters en de achtergrond in een console-applicatie kunt aanpassen en pas dit toe op je quiz om deze er iets boeiender uit te laten zien. Toon iedere vraag op een nieuw scherm.
-
-
-# Schrikkeljaar (*Essential*)
-
-# Schrikkeljaar (*Essential*)
-De gebruiker voert een jaartal in en jouw programma toont of het wel of geen schrikkeljaar is. Een schrikkeljaar is deelbaar door 4, behalve als het ook deelbaar is door 100, tenzij het wél deelbaar is door 400.
-Bijvoorbeeld: 
-* 1997: geen schrikkeljaar
-* 1996: wél schrikkeljaar
-* 1900: geen schrikkeljaar
-* 2000: wél schrikkeljaar
-
-Kan je dit oplossen met 1 if-statement (met gecombineerde logische expressie?)
-
-
-
-
-# Kleurcode weerstand naar ohm
-
-# Kleurcode weerstand naar ohm
-Vraag aan de gebruiker om de ringkleuren van de eerste 3 ringen in te voeren als tekst (bv ``groen``). Toon vervolgens de waarde van deze weerstand ([kleuren van de ringen kan je in deze tabel vinden](https://www.digikey.nl/-/media/Images/Marketing/Resources/Calculator/resistor-color-chart.png?la=nl-NL&ts=4db603f5-4e9b-4759-84b7-21a04d18b1a8))
-Als dus de gebruiker na elkaar invoert:
-
-```text
-rood
-paars
-rood
-```
-
-Dan zal het programma tonen:
-
-``Deze weerstand heeft een waarde van  2700 Ohm``
-
-Waarom? Ring 1 is rood en heeft waarde 2. Ring 2 is paars en heeft waarde 7. Samen dus 27. Ring 3 heeft waarde rood, wat wil zeggen dat de vermenigvuldigingsfactor 100 is.
-
-Los deze oefening op met meerdere  ``switch``statements.
-
-
-
-
-# GuntherD Stemwijzer (*Essential*)
-
-# GuntherD Stemwijzer (*Essential*)
-Kan jij volgende ludieke stemwijzer van GuntherD in een eenvoudig programma gieten dat door een reeks j/n vragen aan de gebruiker uiteindelijk zijn "stemprofiel" toont?
-
-![Bron Stubru](../assets/2_beslissingen/stemwijzer.png)
-
-
-
-# Enum seizoenen (*Essential*)
-
-# Enum seizoenen (*Essential*)
-Maak een ``enum`` die de seizoenen van het jaar bevat. Vraag aan de gebruiker om een maandnummer in te voeren. Gebruik vervolgens een switch om te bepalen in welk seizoen deze maand (grotendeels) ligt. Wijs deze enum toe aan een variabele in de switch.
-Vervolgens gebruik je een if om, gebaseerd op deze enum-variabele, te tonen of het om een koud seizoen (winter en herfst) of een warm seizoen (zomer en lente) gaat.
-
-
-# Enum verkeerslicht (*Essential*)
-
-# Enum verkeerslicht (*Essential*)
- 
- 
-Je gaat een programma schrijven dat het gedrag van een verkeerslicht simuleert met behulp van een enum. De gebruiker moet het verkeerslicht (een ``enum`` variabele) een status geven (groen, oranje of rood), en op basis daarvan moet het programma een bericht weergeven over wat een bestuurder moet doen.
-
-Gebruik een ``switch``-statement om het gedrag van de bestuurder te bepalen op basis van de invoer.
-
-* Als het licht groen is: Toon het bericht "Je mag doorrijden."
-* Als het licht oranje is: Toon het bericht "Maak je klaar om te stoppen."
-* Als het licht rood is: Toon het bericht "Stop! Wacht tot het licht groen wordt."
-
-
-Voorbeeld werking:
-
-```text
-Voer de status van het verkeerslicht in (Groen, Oranje, Rood):
->Groen
-Je mag doorrijden.
-```
-
-*(bron oefening: gemaakt samen met ChatGpt)*
-
-
-# Enum bij BMI
-
-# Enum bij BMI
-
-Maak een enum die de verschillende soorten gewichten voorstelt (Obees, Zwaarlijvig, NormaalGewicht, etc.) Pas de bestaande "BMI met if" oefening aan zodat je deze enum gebruikt om je code leesbaarder te maken. 
-
-
-
-# Schaak-Elo met if en Random 
-
-# Schaak-Elo met if en Random 
-
-In plaats van de 3 mogelijke scenarios (win,loss, draw) vraag je nu aan de gebruiker wie van beide spelers heeft gewonnen ("A", "B" of "D" van Draw/gelijk) en toont enkel de nieuwe ratings gebaseerd op de ingevoerde uitslag.
-
-Pas je applicatie ook aan als volgt: indien de gebruiker een negatieve rating voor een van de beide spelers opgeeft dan gebeuren er 2 zaken:
-
-1. Er verschijnt een foutboodschap ("Negatieve rating mag niet. Ik genereer een random rating.")
-2. Je genereert een random rating tussen 500 en 3000, toont dit getal aan de gebruiker, en gebruikt dit vervolgens verder in de applicatie.
-
-
-#  Fifa ranking berekenen (PRO)
-
-#  Fifa ranking berekenen (PRO)
-
-FIFA berekent de score per nationaal voetbal team met een eigen formule [bron](https://digitalhub.fifa.com/m/f99da4f73212220/original/edbm045h0udbwkqew35a-pdf.pdf) waarvan de belangrijkste informatie hier samengevat wordt:
-
-![](../assets/2_beslissingen/fifa.png)
-
-Schrijf een applicatie die de nieuwe **P** berekent nadat de gebruiker alle nodige informatie heeft ingevoert. Bij de invoer van I krijgt de gebruiker een keuze menu te zien dat de verschillende zinnetjes toont zonder de I-waarde. De gebruiker kiest uit het menu de juiste importance (bijvoorbeeld door a, b, c, etc. in te voeren) en jouw programma zet dit dan om naar een getal. De gebruiker moet voor W invoeren: gewonnen, verloren, gelijk. Jouw programma zal dit omzetten naar het juiste getal (1, 0.5 of 0).
-
-
-# Oscars: The Academy kiest (*Final Essential*)
-
-# Oscars: The Academy kiest (*Final Essential*)
-
-Tijd om al je kennis samen te brengen voor het grootste filmevenement van het jaar! Schrijf een programma dat bepaalt of een film in aanmerking komt voor een Oscar-nominatie. Deze oefening bundelt ``enum``, ``switch``, ``if``, ``Random`` en user input.
-
-**De regels:**
-
-1.  Maak een ``enum`` **Genre** met minstens 4 genres (bv. Drama, ScienceFiction, Horror, Comedy).
-2.  Vraag de gebruiker om een genre te kiezen (toon de opties).
-3.  Vraag de gebruiker om de **stars-rating** van de regisseur (1 t.e.m. 5).
-4.  Genereer een willekeurige **publieksscore** op 100.
-
-**De berekening:**
-
-De **totaalscore** van de film wordt als volgt berekend:
-*   Start met de willekeurige **publieksscore**.
-*   Doe hier de **stars-rating** maal 10 bij.
-*   Gebruik een ``switch`` om punten aan te passen op basis van het genre:
-    *   **Drama**: +20 punten (De Academy is dol op tranentrekkers).
-    *   **Comedy**: -10 punten (Grappige films winnen zelden).
-    *   **ScienceFiction**: +5 punten.
-    *   **Horror**: -20 punten.
-*   **Speciale regel** (gebruik een ``if``): Als de regisseur 5 sterren heeft, krijgt, *bovenop de andere punten*, de film nog eens +20 punten extra "prestige-bonus".
-
-**De uitslag:**
-
-*   Totaalscore >= 150: **"BEST PICTURE WINNAAR!"**
-*   Totaalscore tussen 120 en 150: **"Genomineerd voor Best Picture"**
-*   Totaalscore < 120: **"Helaas, volgende keer beter"**
-
-**Voorbeeld output:**
-
-```text
-Selecteer genre (Drama, ScienceFiction, Horror, Comedy):
-> Horror
-Geef rating regisseur (1-5):
-> 5
-Publieksscore (random): 84
-
-Berekening:
-Start: 84
-Regisseur bonus: 5 * 10 = +50
-Genre (Horror): -20
-Prestige bonus (5 sterren): +20
-Totaal: 134
-
-Resultaat: Genomineerd voor Best Picture
-```
-
-
-
-::::{.callout-caution collapse="true" title="Oplossing"}
-
-![](../assets/infoclip.png)
-
-
-
-# Code
-
-
-## BMI met if
-
-:::{.callout-important}
-**Les(sen) uit deze oefening:** Het was al even geleden, maar het werd ook nog eens tijd om te oefenen hoe je de kleur van je tekst kunt veranderen. 
-
-**Belangrijk**: merk op dat we enkel steeds de *bovengrens* testen in de ``if``. Dit verkleint de kans op fouten. Zie je bijvoorbeeld de bug in deze code?
+**Merk op dat we enkel steeds de *bovengrens* testen in de ``if``.** Dit verkleint de kans op fouten. Zie je bijvoorbeeld de bug in deze code?
 
 ```java
 if(bmi < 18.5)
@@ -369,7 +43,11 @@ Inderdaad: ``bmi > 18.5`` moest ``bmi >= 18.5`` want bovenstaande code zou dan n
 
 Op het einde eindigen we niét met else ``if(bmi>=40)`` maar met een ``else``, daar we al weten dat bmi groter of gelijk is aan 40 als hij niet in de vorige ``if`` ging.
 
-:::
+::::
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
 
 Voeg volgende code toe aan het bestaande BMI programma:
 ```java
@@ -400,11 +78,20 @@ else
 }
 ```
 
+::::
 
 
+# Schoenverkoper
 
-## Schoenverkoper
+Fase 1: Maak een oefening die aan de gebruiker vraagt hoeveel paar schoenen hij wenst te kopen. Ieder paar schoenen kost steeds 20 euro. Indien de gebruiker 10 paar of meer koopt kosten de eerste 9 paar nog steeds 20 euro, de overige kosten echter maar 10 euro. Toon aan de gebruiker de totale prijs.
 
+Voorbeeld:  
+
+* 8 schoenen kost 8x20 = 160 euro
+* 12 schoenen kost 9x20 + 3x10 = 210 euro
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ### a
 
 ```java
@@ -424,7 +111,18 @@ else
 Console.WriteLine($"Prijs is {prijs}");
 ```
 
-### b
+
+::::
+
+Fase 2:  Voeg nu toe dat het programma eerst aan de kassier vraagt tot hoeveel schoenen de korting niet geldt. 
+
+Voorbeeld:
+
+* De kassierster voert 6 in. Dan kosten 8 schoenen: 6x20 + 2x10 = 140 euro.
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
 ```java
 Console.WriteLine("Hoeveel schoenen koopt de klant?");
 int aantal = Convert.ToInt32(Console.ReadLine());
@@ -445,8 +143,64 @@ Console.WriteLine($"Prijs is {prijs}");
 
 
 
-## Ohm-berekenaar
+::::
 
+:::{.callout-tip}
+Je hebt niet noodzakelijk een if voor deze oefening nodig.  Indien je deze oefening zonder if kunt oplossen, dan krijg je als extra opgave bij:
+
+:::
+
+
+Fase 3: Zorg ervoor dat de kassier enkel een getal van 3 tot en met 10 kan invoeren bij de vraag tot hoeveel schoenen de korting niet geldt. Indien de kassier een getal buiten deze range invoert wordt de gewone korting toegekend, namelijk vanaf 10 of meer schoenen.
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+```java
+Console.WriteLine("Hoeveel schoenen koopt de klant?");
+int aantal = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Boven hoeveel schoenen wordt de korting gegeven? (3-10)");
+int kortingBoven = Convert.ToInt32(Console.ReadLine());
+
+if (kortingBoven < 3 || kortingBoven > 10)
+{
+    kortingBoven = 9;
+}
+
+int prijs = 0;
+if (aantal <= kortingBoven)
+{
+    prijs = aantal * 20;
+}
+else
+{
+    prijs = kortingBoven * 20;
+    prijs += (aantal - kortingBoven) * 10;
+}
+
+Console.WriteLine($"Prijs is {prijs}");
+```
+
+::::
+
+
+# Ohm-berekenaar
+Vraag aan de gebruiker wat hij wenst te berekenen: spanning, weerstand of stroomsterkte. Vraag vervolgens de 2 andere waarden (als dus de gebruiker "Spanning" kiest vraag je aan de gebruiker de stroomsterkte en de weerstand) en bereken m.b.v. de wet van Ohm de gewenste waarde tot 2 cijfers na de komma.
+
+Voorbeeld output:
+
+```text
+Wat wil je berekenen? spanning, weerstand of stroomsterkte?
+stroomsterkte
+Geef me dan de spanning:
+>34,4
+Geef me dan de weerstandswaarde:
+>3,4
+De stroomsterkte bedraagt dan 10,12 Ampere
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 double spanning, stroom, weerstand;
@@ -483,30 +237,17 @@ else
 }
 ```
 
-## Bankrekening controle
 
-```java
-//voorbeeldrekenignummer 000 1459325 57
-Console.WriteLine("Geef eerste 3 cijfers");
-long deel1= long.Parse(Console.ReadLine());
-Console.WriteLine("Geef de volgende 7 cijfers");
-long deel2= long.Parse(Console.ReadLine());
-Console.WriteLine("Geef de laatse 2 cijfers");
-int checksum= int.Parse(Console.ReadLine());
-
-int controle=(int)((deel1*Math.Pow(10,7) + deel2)%97);
-if(controle == checksum)
-{
-    Console.WriteLine("Geldige rekening");
-}
-else
-{
-    Console.WriteLine("Niet geldige rekening");
-}
-```
+::::
 
 
-## Orakeltje van Delphi, part deux
+
+
+# Orakeltje van Delphi, part deux (*Essential*)
+We gaan het Orakeltje verbeteren. Voor het orakel je vertelt hoe lang je te leven hebt zal het eerste vragen of je een vrouw (``v``) of een man (``m``) bent. Dan vraagt ze je leeftijd.
+Mannen leven maximum tot hun 120 jaar. Vrouwen echter tot 150 jaar. Laat het orakel een duur voorspellen die kan. Als een vrouw van 50 de vraag stelt dan zal het orakel dus een getal van 5 tot en met 100 (``150-50``) genereren. Een man van 35 zal van 5 tot en met 85 (``120-35``) jaren langer kunnen leven. 
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 Random delphi= new Random();
@@ -530,8 +271,22 @@ else
 Console.WriteLine($"Je zal nog {delphi.Next(5,max)} jaar leven");
 ```
 
-## Casino
 
+::::
+
+
+# Casino (*Essential*)
+Genereer  een random getal van 1 t.e.m. 6 maar toon dit niet aan de gebruiker. Vraag aan de gebruiker welk getal hij denkt dat de computer heeft "geworpen". Indien de gebruiker juist raadt verschijnt er "proficiat" op het scherm. Anders: "You lose. Ik wierp [getal]".
+
+Voorbeeld:
+
+```text
+Welk getal heb ik geworpen?
+>3
+You lose. Ik wierp 1.
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
  Random rng = new Random();
  int geworpen = rng.Next(1, 7);
@@ -549,8 +304,36 @@ Console.WriteLine($"Je zal nog {delphi.Next(5,max)} jaar leven");
 ```
 
 
-## Casino 3
+::::
 
+
+# Casino 3
+Vul de voorgaande oefening aan, maar laat de gebruiker 3x na mekaar raden. Enkel als hij juist raadt mag hij nog eens raden. Als hij ook de derde juist raadt wint hij. In alle andere gevallen niet.
+
+
+Voorbeeld output:
+
+```text
+Welk getal heb ik geworpen?
+4
+Welk getal heb ik nu geworpen?
+1
+You lose!
+```
+
+en
+
+```text
+Welk getal heb ik geworpen?
+4
+Welk getal heb ik nu geworpen?
+1
+Welk getal heb ik nu geworpen?
+5
+Proficat!
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 Random rng = new Random();
 int geworpen = rng.Next(1, 7);
@@ -588,7 +371,41 @@ else
 }
 ```
 
-## Schaakstuk
+::::
+
+
+# Schaakstuk 
+
+Definieer de verschillende schaakstukken in een enum-type (Pion, Loper, Koning, etc.). Maak 2 variabelen aan van dit nieuwe datatype en vraag aan de gebruiker welke waarde elke moet krijgen (bv variabele 1 een pion , variabele 2 een koningin).
+
+Toon aan de gebruiker hoe elke variabele kan bewegen (Pion: "Rechtdoor, 1 of 2 vakjes", Loper: "Schuin", etc.), gebruik hiervoor een ```switch``` (die je 3x zal nodig hebben)
+
+Indien beide variabelen hetzelfde stuk zijn dan toont de applicatie de tekst "Beide zijn hetzelfde." gevolgd door hoe ze kunnen bewegen.
+
+Voorbeeld werking:
+
+```text
+Welk stuk is stuk1?
+>Toren
+Welk stuk is stuk2?
+>Koningin
+
+Stuk1 kan enkel horizontaal of verticaal bewegen.
+Stuk2 kan in alle richtingen bewegen
+```
+
+Ander voorbeeld:
+
+```text
+Welk stuk is stuk1?
+>Loper_
+Welk stuk is stuk2?
+>Loper
+
+Beide zijn het zelfde en kunnen enkel schuin bewegen.
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 Enum-definitie:
 
@@ -715,7 +532,16 @@ public static void Main()
 }
 ```
 
-## Quiz
+::::
+
+
+# Quiz 
+Maak een quiz. Maak gebruik van het ``switch``-statement om de input van de gebruiker (a, b, c of d) te verwerken en bij iedere vraag aan te geven of dit juist of fout is. Voorzie 3 multiple choice vragen. Houd bij hoe vaak de speler juist antwoordde en geef op het einde de eindscore (Juist is +2, fout is -1).
+
+Zoek op hoe je de kleur van de letters en de achtergrond in een console-applicatie kunt aanpassen en pas dit toe op je quiz om deze er iets boeiender uit te laten zien. Toon iedere vraag op een nieuw scherm.
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 int juist = 0;
@@ -788,8 +614,22 @@ int eindscore = juist * 2 - fout;
 Console.WriteLine($"Je eindscore bedraagt:{eindscore}");
 ```
 
-## Schrikkeljaar
 
+::::
+
+
+
+# Schrikkeljaar (*Essential*)
+De gebruiker voert een jaartal in en jouw programma toont of het wel of geen schrikkeljaar is. Een schrikkeljaar is deelbaar door 4, behalve als het ook deelbaar is door 100, tenzij het wél deelbaar is door 400.
+Bijvoorbeeld: 
+* 1997: geen schrikkeljaar
+* 1996: wél schrikkeljaar
+* 1900: geen schrikkeljaar
+* 2000: wél schrikkeljaar
+
+Kan je dit oplossen met 1 if-statement (met gecombineerde logische expressie?)
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 Console.WriteLine("Geef jaartal?");
 int jaartal = int.Parse(Console.ReadLine());
@@ -800,10 +640,31 @@ if(jaartal%4 ==0 && (jaartal%100 !=0 || jaartal%400==0))
 else
     Console.WriteLine("Dat is geen schrikkeljaar");
 ```
+::::
 
 
-## Kleurcode weerstand naar Ohm
 
+# Kleurcode weerstand naar ohm
+
+Vraag aan de gebruiker om de ringkleuren van de eerste 3 ringen in te voeren als tekst (bv ``groen``). Toon vervolgens de waarde van deze weerstand ([kleuren van de ringen kan je in deze tabel vinden](https://www.digikey.nl/-/media/Images/Marketing/Resources/Calculator/resistor-color-chart.png?la=nl-NL&ts=4db603f5-4e9b-4759-84b7-21a04d18b1a8))
+Als dus de gebruiker na elkaar invoert:
+
+```text
+rood
+paars
+rood
+```
+
+Dan zal het programma tonen:
+
+``Deze weerstand heeft een waarde van  2700 Ohm``
+
+Waarom? Ring 1 is rood en heeft waarde 2. Ring 2 is paars en heeft waarde 7. Samen dus 27. Ring 3 heeft waarde rood, wat wil zeggen dat de vermenigvuldigingsfactor 100 is.
+
+Los deze oefening op met meerdere  ``switch``statements.
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 Console.WriteLine("Geef de 3 ringkleuren na elkaar, telkens met een enter:");
@@ -853,7 +714,16 @@ switch (ring3)
 Console.WriteLine($"Deze weerstand heeft een waarde van {resultaat} Ohm");
 ```
 
-## GuntherD Stemwijzer
+::::
+
+
+
+# GuntherD Stemwijzer (*Essential*)
+Kan jij volgende ludieke stemwijzer van GuntherD in een eenvoudig programma gieten dat door een reeks j/n vragen aan de gebruiker uiteindelijk zijn "stemprofiel" toont?
+
+![Bron Stubru](../assets/2_beslissingen/stemwijzer.png)
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 enum Partijen { Groen, VlaamsBelang, Spa, CDenV, Blanco, PVDA, NVA, OpenVld, Onbekend };
@@ -940,7 +810,16 @@ static void Main(string[] args)
 }
 ```
 
-## Enum seizoenen
+
+::::
+
+
+
+# Enum seizoenen (*Essential*)
+Maak een ``enum`` die de seizoenen van het jaar bevat. Vraag aan de gebruiker om een maandnummer in te voeren. Gebruik vervolgens een switch om te bepalen in welk seizoen deze maand (grotendeels) ligt. Wijs deze enum toe aan een variabele in de switch.
+Vervolgens gebruik je een if om, gebaseerd op deze enum-variabele, te tonen of het om een koud seizoen (winter en herfst) of een warm seizoen (zomer en lente) gaat.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 enum Seizoenen { Winter, Lente, Zomer, Herfst, Onbekend}     
@@ -988,12 +867,32 @@ else //Seizoen.Onbekend
 ```
 
 
+::::
 
 
+# Enum verkeerslicht (*Essential*)
+ 
+ 
+Je gaat een programma schrijven dat het gedrag van een verkeerslicht simuleert met behulp van een enum. De gebruiker moet het verkeerslicht (een ``enum`` variabele) een status geven (groen, oranje of rood), en op basis daarvan moet het programma een bericht weergeven over wat een bestuurder moet doen.
+
+Gebruik een ``switch``-statement om het gedrag van de bestuurder te bepalen op basis van de invoer.
+
+* Als het licht groen is: Toon het bericht "Je mag doorrijden."
+* Als het licht oranje is: Toon het bericht "Maak je klaar om te stoppen."
+* Als het licht rood is: Toon het bericht "Stop! Wacht tot het licht groen wordt."
 
 
-## Enum verkeerslichten
+Voorbeeld werking:
 
+```text
+Voer de status van het verkeerslicht in (Groen, Oranje, Rood):
+>Groen
+Je mag doorrijden.
+```
+
+*(bron oefening: gemaakt samen met ChatGpt)*
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 Console.WriteLine("Voer de status van het verkeerslicht in (Groen, Oranje, Rood):");
 Verkeerslicht licht=  Enum.Parse<Verkeerslicht>(Console.ReadLine());
@@ -1011,10 +910,75 @@ switch (licht)
         break;
 }
 ```
+::::
 
-## Schaak-elo met if
 
-Merci Mats Heirman!
+# Enum bij BMI
+
+Maak een enum die de verschillende soorten gewichten voorstelt (Obees, Zwaarlijvig, NormaalGewicht, etc.) Pas de bestaande "BMI met if" oefening aan zodat je deze enum gebruikt om je code leesbaarder te maken. 
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+enum GewichtsCategorie { Ondergewicht, NormaalGewicht, Overgewicht, Zwaarlijvigheid, ErnstigeZwaarlijvigheid }
+
+Console.WriteLine("Wat is uw lengte in cm?");
+double lengteInMeter = Convert.ToDouble(Console.ReadLine()) / 100;
+Console.WriteLine("Wat is uw gewicht in kg?");
+double gewicht = Convert.ToDouble(Console.ReadLine());
+
+double bmi = gewicht / Math.Pow(lengteInMeter, 2);
+Console.WriteLine($"Een persoon met een lengte van {lengteInMeter} m en een gewicht van {gewicht} kg heeft een BMI van {Math.Round(bmi, 2)}");
+
+GewichtsCategorie categorie;
+if (bmi < 18.5)
+    categorie = GewichtsCategorie.Ondergewicht;
+else if (bmi < 25)
+    categorie = GewichtsCategorie.NormaalGewicht;
+else if (bmi < 30)
+    categorie = GewichtsCategorie.Overgewicht;
+else if (bmi < 40)
+    categorie = GewichtsCategorie.Zwaarlijvigheid;
+else
+    categorie = GewichtsCategorie.ErnstigeZwaarlijvigheid;
+
+switch (categorie)
+{
+    case GewichtsCategorie.Ondergewicht:
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Ondergewicht");
+        break;
+    case GewichtsCategorie.NormaalGewicht:
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Normaal gewicht");
+        break;
+    case GewichtsCategorie.Overgewicht:
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine("Overgewicht");
+        break;
+    case GewichtsCategorie.Zwaarlijvigheid:
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Zwaarlijvigheid");
+        break;
+    case GewichtsCategorie.ErnstigeZwaarlijvigheid:
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("Ernstige zwaarlijvigheid");
+        break;
+}
+
+Console.ResetColor();
+::::
+
+
+
+# Schaak-Elo met if en Random 
+
+In plaats van de 3 mogelijke scenarios (win,loss, draw) vraag je nu aan de gebruiker wie van beide spelers heeft gewonnen ("A", "B" of "D" van Draw/gelijk) en toont enkel de nieuwe ratings gebaseerd op de ingevoerde uitslag.
+
+Pas je applicatie ook aan als volgt: indien de gebruiker een negatieve rating voor een van de beide spelers opgeeft dan gebeuren er 2 zaken:
+
+1. Er verschijnt een foutboodschap ("Negatieve rating mag niet. Ik genereer een random rating.")
+2. Je genereert een random rating tussen 500 en 3000, toont dit getal aan de gebruiker, en gebruikt dit vervolgens verder in de applicatie.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
 const int K = 10;
@@ -1075,4 +1039,223 @@ double rbnew = rb + K * (puntB - eb);
 Console.WriteLine($"Nieuwe rating van A:{Math.Round(ranew, 0)}");
 Console.WriteLine($"Nieuwe rating van B:{Math.Round(rbnew, 0)}");
 ```
+
 ::::
+
+
+#  Fifa ranking berekenen (PRO)
+
+FIFA berekent de score per nationaal voetbal team met een eigen formule . [Volgende document vat deze samen.](https://digitalhub.fifa.com/m/f99da4f73212220/original/edbm045h0udbwkqew35a-pdf.pdf).
+
+Schrijf een applicatie die de nieuwe **P** berekent nadat de gebruiker alle nodige informatie heeft ingevoert. Bij de invoer van I krijgt de gebruiker een keuze menu te zien dat de verschillende zinnetjes toont zonder de I-waarde. De gebruiker kiest uit het menu de juiste importance (bijvoorbeeld door a, b, c, etc. in te voeren) en jouw programma zet dit dan om naar een getal. De gebruiker moet voor W invoeren: gewonnen, verloren, gelijk. Jouw programma zal dit omzetten naar het juiste getal (1, 0.5 of 0).
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+enum MatchImportance
+{
+    FriendlyOutsideWindow,
+    FriendlyInsideWindow,
+    NationsLeagueGroup,
+    NationsLeaguePlayoffFinal,
+    ConfederationQualifier,
+    ConfederationUntilQF,
+    ConfederationFromQF,
+    WorldCupUntilQF,
+    WorldCupFromQF
+}
+
+enum MatchResult { Gewonnen, Gelijk, Verloren }
+
+// --- INPUT ---
+
+Console.WriteLine("Geef de huidige punten van jouw team (Pbefore):");
+double pbefore = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine("Geef de huidige punten van de tegenstander:");
+double pbeforeOpponent = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine("\nKies de importance van de match:");
+Console.WriteLine("a) Friendly buiten International Match Calendar");
+Console.WriteLine("b) Friendly tijdens International Match Calendar");
+Console.WriteLine("c) Groepsfase Nations League");
+Console.WriteLine("d) Play-off/finale Nations League");
+Console.WriteLine("e) Kwalificatie voor Confederatie- of WK-eindronde");
+Console.WriteLine("f) Confederatie eindronde t.e.m. kwartfinale");
+Console.WriteLine("g) Confederatie eindronde vanaf kwartfinale");
+Console.WriteLine("h) WK eindronde t.e.m. kwartfinale");
+Console.WriteLine("i) WK eindronde vanaf kwartfinale");
+
+char importanceKeuze = Console.ReadLine()[0];
+
+MatchImportance importance;
+switch (importanceKeuze)
+{
+    case 'a': importance = MatchImportance.FriendlyOutsideWindow; break;
+    case 'b': importance = MatchImportance.FriendlyInsideWindow; break;
+    case 'c': importance = MatchImportance.NationsLeagueGroup; break;
+    case 'd': importance = MatchImportance.NationsLeaguePlayoffFinal; break;
+    case 'e': importance = MatchImportance.ConfederationQualifier; break;
+    case 'f': importance = MatchImportance.ConfederationUntilQF; break;
+    case 'g': importance = MatchImportance.ConfederationFromQF; break;
+    case 'h': importance = MatchImportance.WorldCupUntilQF; break;
+    default:  importance = MatchImportance.WorldCupFromQF; break;
+}
+
+int I;
+switch (importance)
+{
+    case MatchImportance.FriendlyOutsideWindow:    I = 5;  break;
+    case MatchImportance.FriendlyInsideWindow:     I = 10; break;
+    case MatchImportance.NationsLeagueGroup:       I = 15; break;
+    case MatchImportance.NationsLeaguePlayoffFinal: I = 25; break;
+    case MatchImportance.ConfederationQualifier:   I = 25; break;
+    case MatchImportance.ConfederationUntilQF:     I = 35; break;
+    case MatchImportance.ConfederationFromQF:      I = 40; break;
+    case MatchImportance.WorldCupUntilQF:          I = 50; break;
+    default:                                       I = 60; break;
+}
+
+Console.WriteLine("\nResultaat? (gewonnen / gelijk / verloren):");
+string resultaatInput = Console.ReadLine().ToLower();
+
+MatchResult resultaat;
+if (resultaatInput == "gewonnen")
+    resultaat = MatchResult.Gewonnen;
+else if (resultaatInput == "gelijk")
+    resultaat = MatchResult.Gelijk;
+else
+    resultaat = MatchResult.Verloren;
+
+double W;
+switch (resultaat)
+{
+    case MatchResult.Gewonnen: W = 1.0;  break;
+    case MatchResult.Gelijk:   W = 0.5;  break;
+    default:                   W = 0.0;  break;
+}
+
+// --- BEREKENING ---
+
+double dr = pbefore - pbeforeOpponent;
+double We = 1.0 / (Math.Pow(10, -dr / 600) + 1);
+double P = pbefore + I * (W - We);
+
+// --- OUTPUT ---
+
+Console.WriteLine($"\n--- RESULTAAT ---");
+Console.WriteLine($"Pbefore:        {pbefore}");
+Console.WriteLine($"I (importance): {I}");
+Console.WriteLine($"W (resultaat):  {W}");
+Console.WriteLine($"We (verwacht):  {Math.Round(We, 4)}");
+Console.WriteLine($"Nieuwe score P: {Math.Round(P, 2)}");
+::::
+
+
+
+# Oscars: The Academy kiest (*Final Essential*)
+
+Tijd om al je kennis samen te brengen voor het grootste filmevenement van het jaar! Schrijf een programma dat bepaalt of een film in aanmerking komt voor een Oscar-nominatie. Deze oefening bundelt ``enum``, ``switch``, ``if``, ``Random`` en user input.
+
+**De regels:**
+
+1.  Maak een ``enum`` **Genre** met minstens 4 genres (bv. Drama, ScienceFiction, Horror, Comedy).
+2.  Vraag de gebruiker om een genre te kiezen (toon de opties).
+3.  Vraag de gebruiker om de **stars-rating** van de regisseur (1 t.e.m. 5).
+4.  Genereer een willekeurige **publieksscore** op 100.
+
+**De berekening:**
+
+De **totaalscore** van de film wordt als volgt berekend:
+
+*   Start met de willekeurige **publieksscore**.
+*   Doe hier de **stars-rating** maal 10 bij.
+*   Gebruik een ``switch`` om punten aan te passen op basis van het genre:
+    *   **Drama**: +20 punten (De Academy is dol op tranentrekkers).
+    *   **Comedy**: -10 punten (Grappige films winnen zelden).
+    *   **ScienceFiction**: +5 punten.
+    *   **Horror**: -20 punten.
+*   **Speciale regel** (gebruik een ``if``): Als de regisseur 5 sterren heeft, krijgt, *bovenop de andere punten*, de film nog eens +20 punten extra "prestige-bonus".
+
+**De uitslag:**
+
+*   Totaalscore >= 150: **"BEST PICTURE WINNAAR!"**
+*   Totaalscore tussen 120 en 150: **"Genomineerd voor Best Picture"**
+*   Totaalscore < 120: **"Helaas, volgende keer beter"**
+
+**Voorbeeld output:**
+
+```text
+Selecteer genre (Drama, ScienceFiction, Horror, Comedy):
+> Horror
+Geef rating regisseur (1-5):
+> 5
+Publieksscore (random): 84
+
+Berekening:
+Start: 84
+Regisseur bonus: 5 * 10 = +50
+Genre (Horror): -20
+Prestige bonus (5 sterren): +20
+Totaal: 134
+
+Resultaat: Genomineerd voor Best Picture
+```
+
+
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+enum Genre { Drama, ScienceFiction, Horror, Comedy }
+
+Console.WriteLine("Selecteer genre (0=Drama, 1=ScienceFiction, 2=Horror, 3=Comedy):");
+int genreKeuze = int.Parse(Console.ReadLine());
+Genre genre = (Genre)genreKeuze;
+
+Console.WriteLine("Geef rating regisseur (1-5):");
+int stars = int.Parse(Console.ReadLine());
+
+Random rng = new Random();
+int publieksscore = rng.Next(0, 101);
+
+int totaal = publieksscore;
+int regisseurBonus = stars * 10;
+totaal += regisseurBonus;
+
+int genreBonus = 0;
+switch (genre)
+{
+    case Genre.Drama:          genreBonus = +20; break;
+    case Genre.Comedy:         genreBonus = -10; break;
+    case Genre.ScienceFiction: genreBonus =  +5; break;
+    case Genre.Horror:         genreBonus = -20; break;
+}
+totaal += genreBonus;
+
+int prestigeBonus = 0;
+if (stars == 5)
+{
+    prestigeBonus = 20;
+    totaal += prestigeBonus;
+}
+
+Console.WriteLine($"\nPublieksscore (random): {publieksscore}");
+Console.WriteLine("\nBerekening:");
+Console.WriteLine($"Start: {publieksscore}");
+Console.WriteLine($"Regisseur bonus: {stars} * 10 = +{regisseurBonus}");
+Console.WriteLine($"Genre ({genre}): {genreBonus}");
+if (stars == 5)
+    Console.WriteLine($"Prestige bonus (5 sterren): +{prestigeBonus}");
+Console.WriteLine($"Totaal: {totaal}");
+
+string resultaat;
+if (totaal >= 150)
+    resultaat = "BEST PICTURE WINNAAR!";
+else if (totaal >= 120)
+    resultaat = "Genomineerd voor Best Picture";
+else
+    resultaat = "Helaas, volgende keer beter";
+
+Console.WriteLine($"\nResultaat: {resultaat}");
+
+::::
+
+
