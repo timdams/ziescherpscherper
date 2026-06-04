@@ -8,8 +8,6 @@ Het is wel zo dat iedere week voort werkt op hetgeen je de missie ervoor hebt ge
 
 # Het dierenrijk
 
-# Het dierenrijk
-
 ![Vereenvoudigde voorstelling van (een deel van het) dierenrijk](../assets/7_overerving/animals.png)
 
 Maak bovenstaande klassenhierarchie na. Animal is de parentklasse , mammal en reptile zijn childklassen van Animal en zo voort.
@@ -22,9 +20,77 @@ Maak nu van iedere klasse een object en roep de ToonInfo methode van ieder objec
 
 Plaats deze dieren nu in een ``List<Animal>`` en kijk wat er gebeurt als je deze met een foreach aanroept om alle ToonInfo-methoden van ieder dier te gebruiken.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+var alleBeestjes = new List<Animal>();
+alleBeestjes.Add(new Animal() {NaamBeest="Dodo", IsUitgestorven=true });
+alleBeestjes.Add(new Cow() {NaamBeest="Milkakoe", KleurVlekken="Paars" } );
+alleBeestjes.Add(new Snake() { NaamBeest = "Cobra", HeeftRattelstaart = false });
+alleBeestjes.Add(new Snake() { NaamBeest = "Ratelslang", HeeftRattelstaart = true });
 
+foreach (var beest in alleBeestjes)
+{
+    beest.ToonInfo();
+}
+```
 
-# Magische dranken (*Essential*, GPT)
+```java
+public class Animal
+{
+    public string NaamBeest { get; set; }
+    public bool IsUitgestorven { get; set; }
+    public virtual void ToonInfo()
+    {
+        Console.WriteLine($"****{NaamBeest}****");
+        if (IsUitgestorven)
+            Console.WriteLine("Dit dier is uitgestorven");
+        else Console.WriteLine("Dit dier is niet uitgestorven");
+    }
+}
+
+public class Mammal : Animal 
+{
+    public string Biotoop { get; set; }
+    public override void ToonInfo()
+    {
+        base.ToonInfo();
+        Console.WriteLine($"En heeft als biotoop:{Biotoop}");
+    }
+}
+
+public class Rabbit : Mammal {
+    public int LengteOren { get; set; }
+    public override void ToonInfo()
+    {
+        base.ToonInfo();
+        Console.WriteLine($"De lengte van dit konijn z'n oren is {LengteOren}");
+    }
+}
+public class Cow : Mammal {
+    public string   KleurVlekken { get; set; }
+    public override void ToonInfo()
+    {
+        base.ToonInfo();
+        Console.WriteLine($"Deze koe heeft {KleurVlekken} vlekken");
+    }
+}
+public class Dog : Mammal { }
+public class Reptile : Animal { }
+public class Snake : Reptile 
+{
+    public bool HeeftRattelstaart { get; set; }
+    public override void ToonInfo()
+    {
+        base.ToonInfo();
+        if(HeeftRattelstaart)
+            Console.WriteLine("Deze slang heeft een ratelstaart");
+        else Console.WriteLine("Deze slang heeft geen ratelstraat");
+    }
+}
+public class Iguana : Reptile { }
+```
+::::
+
 
 # Magische dranken (*Essential*, GPT)
 
@@ -36,13 +102,69 @@ Ontwerp een systeem waarin verschillende dranken een *magische kracht*”* hebbe
   * Een property voor de naam van de drank.
   * Een constructor die de naam instelt.
   * Een virtuele methode ``BerekenKracht()`` die een standaard krachtwaarde (50) teruggeeft.
+
 * Maak een sub‑klasse ``Elixer`` die erft van ``Drank`` en een extra property ``IsZeldzaam`` bevat.
   * Overschrijf de methode ``BerekenKracht()`` zodat eerst de basiskracht (verkregen via ``base.BerekenKracht()``) wordt berekend en vervolgens een bonus wordt opgeteld: +20 als ``IsZeldzaam`` ``true`` is, anders +10.
 
 Implementeer een hoofdprogramma waarin je meerdere drankobjecten (bijv. een gewoon drankje en een zeldzaam elixer) aanmaakt en hun berekende kracht op de console toont.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+class Drank
+{
+    public string Naam { get; set; }
 
-# Ziekenhuis (*Essential*)
+    public Drank(string naam)
+    {
+        Naam = naam;
+    }
+
+    public virtual int BerekenKracht()
+    {
+        return 50;
+    }
+}
+
+
+class Elixer : Drank
+{
+    public bool IsZeldzaam { get; set; }
+
+    public Elixer(string naam, bool isZeldzaam) : base(naam)
+    {
+        IsZeldzaam = isZeldzaam;
+    }
+
+    public override int BerekenKracht()
+    {
+        int basisKracht = base.BerekenKracht();
+        int bonus 10;
+        if(IsZeldzaam)
+        {
+            bonus = 20;
+        }
+        return basisKracht + bonus;
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Drank gewoonDrank = new Drank("Gewone Cola");
+        Elixer zeldzaamElixer = new Elixer("Mystiek Elixer", true);
+        Elixer standaardElixer = new Elixer("Standaard Elixer", false);
+
+        Console.WriteLine($"{gewoonDrank.Naam} heeft kracht: {gewoonDrank.BerekenKracht()}");
+        Console.WriteLine($"{zeldzaamElixer.Naam} heeft kracht: {zeldzaamElixer.BerekenKracht()}");
+        Console.WriteLine($"{standaardElixer.Naam} heeft kracht: {standaardElixer.BerekenKracht()}");
+    }
+}
+```
+::::
+
 
 # Ziekenhuis (*Essential*)
 
@@ -64,11 +186,74 @@ Maak een specialisatieklasse ``VerzekerdePatient``. Deze klasse heeft alles dat 
 
 Toon de werking aan van deze klasse.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+**Deel 1**
 
+```java
+public class Patient
+{
+    public string Naam { get; set; }
+    public int UrenInZiekenhuis { get; set; }
 
+    private const int basisKost= 50;
+    private const int kostPerUur = 20;
+    public virtual double BerekenKost()
+    {
+        int kost = basisKost + (UrenInZiekenhuis * kostPerUur);
+        return kost;
+    }
 
+    public void ToonInfo()
+    {
+        Console.WriteLine($"{Naam} (Kost:{BerekenKost()})");
+    }
+}
+```
 
-# HiddenBookmark
+**Deel 2**
+
+```java
+public class VerzekerdePatient : Patient
+{
+    private const double korting = 0.1;
+    public override double BerekenKost()
+    {
+        double totaalBasisKost = base.BerekenKost();
+        return totaalBasisKost - (totaalBasisKost * korting);
+    }
+}
+```
+
+Aantonen werking:
+
+Eenvoudig:
+
+```java
+Patient JosFromUSA = new Patient() 
+    { Naam = "American Jos", UrenInZiekenhuis = 10 };
+VerzekerdePatient JosFromBelgium = new VerzekerdePatient() 
+    { Naam = "Belgische Jos", UrenInZiekenhuis = 10 };
+JosFromUSA.ToonInfo();
+JosFromBelgium.ToonInfo();
+```
+
+Complexer:
+
+```java
+List<Patient> allePatienten = new List<Patient>()
+{
+    new Patient() { Naam = "American Jos", UrenInZiekenhuis = 10 },
+    new VerzekerdePatient() { Naam = "Belgische Jos", UrenInZiekenhuis = 10 },
+
+};
+
+foreach (var patient in allePatienten)
+{
+    patient.ToonInfo();
+}
+```
+::::
+
 
 # HiddenBookmark
 
@@ -78,11 +263,22 @@ De ``HiddenBookmark`` is een ``Bookmark`` klasse die de ``ToonSite`` methode ove
 
 Test wat er gebeurt als je al je bookmarks vervangt door ``HiddenBookmarks``.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+Zorg ervoor dat je ``ToonSite`` in de parentklasse ``Bookmark`` op ``virtual`` instelt.
 
+```java
+public class HiddenBookMark: BookMark
+{
+    public override void ToonSite()
+    {
+        Console.WriteLine("**********INCOGNITO MODE************");
+        base.ToonSite();
+        Console.WriteLine("**********INCOGNITO MODE************");
+    }
+}
+```
+::::
 
-
-
-# Ballspel met overerving 
 
 # Ballspel met overerving 
 
@@ -242,6 +438,10 @@ Kan je dit uitbreiden met?
 * Score gebaseerd op tijd die gebruiker nodig had om bal te raken (benodigdheden: teller die optelt na iedere ``Sleep``)
 * PRO: collision detection tussen de ballen
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+::::
+
 
 # Drone Delivery System (*Final Essentials*, GPT)
 
@@ -251,6 +451,7 @@ Kan je dit uitbreiden met?
 
 ## Stap 1: De basis
 Maak een klasse `Drone` met:
+
 * Eigenschap `Model` (string)
 * Eigenschap `Battery` (int, start op 100)
 * Een `virtual` methode `Fly()`:
@@ -262,12 +463,14 @@ Maak een klasse `Drone` met:
 Maak twee subclasses:
 
 **1. DeliveryDrone**
+
 * Heeft extra eigenschap `PayloadWeight` (int).
 * Override de `Fly()` methode:
     * Batterij vermindert met 5 + (`PayloadWeight` / 10).
     * Schrijft naar console: "[Model] levert zwaar pakketje (Zwaarte: [PayloadWeight]). Batterij: [Battery]%"
 
 **2. RacingDrone**
+
 * Heeft extra eigenschap `TopSpeed` (int).
 * Override de `Fly()` methode:
     * Batterij vermindert met 10 (want hij vliegt snel).
@@ -275,225 +478,13 @@ Maak twee subclasses:
 
 ## Stap 3: De Vloot (Polymorfisme)
 Maak in je `Main` programma een `List<Drone>` aan.
+
 * Voeg enkele gewone Drones, DeliveryDrones (met verschillende gewichten) en RacingDrones toe.
 * Schrijf een `while`-lus die blijft draaien zolang er nog minstens één drone batterij > 0 heeft.
 * Roep in de lus voor elke drone de `Fly()` methode aan.
 * Zorg dat drones met een batterij van 0 of minder niet meer vliegen.
 * **Tip**: Je kan dit simuleren met een `System.Threading.Thread.Sleep(500)` tussen de loops om het 'real-time' te laten lijken.
 
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Dierenrijk
-
-```java
-var alleBeestjes = new List<Animal>();
-alleBeestjes.Add(new Animal() {NaamBeest="Dodo", IsUitgestorven=true });
-alleBeestjes.Add(new Cow() {NaamBeest="Milkakoe", KleurVlekken="Paars" } );
-alleBeestjes.Add(new Snake() { NaamBeest = "Cobra", HeeftRattelstaart = false });
-alleBeestjes.Add(new Snake() { NaamBeest = "Ratelslang", HeeftRattelstaart = true });
-
-foreach (var beest in alleBeestjes)
-{
-    beest.ToonInfo();
-}
-```
-
-```java
-public class Animal
-{
-    public string NaamBeest { get; set; }
-    public bool IsUitgestorven { get; set; }
-    public virtual void ToonInfo()
-    {
-        Console.WriteLine($"****{NaamBeest}****");
-        if (IsUitgestorven)
-            Console.WriteLine("Dit dier is uitgestorven");
-        else Console.WriteLine("Dit dier is niet uitgestorven");
-    }
-}
-
-public class Mammal : Animal 
-{
-    public string Biotoop { get; set; }
-    public override void ToonInfo()
-    {
-        base.ToonInfo();
-        Console.WriteLine($"En heeft als biotoop:{Biotoop}");
-    }
-}
-
-public class Rabbit : Mammal {
-    public int LengteOren { get; set; }
-    public override void ToonInfo()
-    {
-        base.ToonInfo();
-        Console.WriteLine($"De lengte van dit konijn z'n oren is {LengteOren}");
-    }
-}
-public class Cow : Mammal {
-    public string   KleurVlekken { get; set; }
-    public override void ToonInfo()
-    {
-        base.ToonInfo();
-        Console.WriteLine($"Deze koe heeft {KleurVlekken} vlekken");
-    }
-}
-public class Dog : Mammal { }
-public class Reptile : Animal { }
-public class Snake : Reptile 
-{
-    public bool HeeftRattelstaart { get; set; }
-    public override void ToonInfo()
-    {
-        base.ToonInfo();
-        if(HeeftRattelstaart)
-            Console.WriteLine("Deze slang heeft een ratelstaart");
-        else Console.WriteLine("Deze slang heeft geen ratelstraat");
-    }
-}
-public class Iguana : Reptile { }
-```
-# Magische dranken (*Essential*, GPT)
-
-```java
-class Drank
-{
-    public string Naam { get; set; }
-
-    public Drank(string naam)
-    {
-        Naam = naam;
-    }
-
-    public virtual int BerekenKracht()
-    {
-        return 50;
-    }
-}
-
-
-class Elixer : Drank
-{
-    public bool IsZeldzaam { get; set; }
-
-    public Elixer(string naam, bool isZeldzaam) : base(naam)
-    {
-        IsZeldzaam = isZeldzaam;
-    }
-
-    public override int BerekenKracht()
-    {
-        int basisKracht = base.BerekenKracht();
-        int bonus 10;
-        if(IsZeldzaam)
-        {
-            bonus = 20;
-        }
-        return basisKracht + bonus;
-    }
-}
-
-
-class Program
-{
-    static void Main(string[] args)
-    {
-
-        Drank gewoonDrank = new Drank("Gewone Cola");
-        Elixer zeldzaamElixer = new Elixer("Mystiek Elixer", true);
-        Elixer standaardElixer = new Elixer("Standaard Elixer", false);
-
-        Console.WriteLine($"{gewoonDrank.Naam} heeft kracht: {gewoonDrank.BerekenKracht()}");
-        Console.WriteLine($"{zeldzaamElixer.Naam} heeft kracht: {zeldzaamElixer.BerekenKracht()}");
-        Console.WriteLine($"{standaardElixer.Naam} heeft kracht: {standaardElixer.BerekenKracht()}");
-    }
-}
-```
-
-# HiddenBookmark
-
-Zorg ervoor dat je ``ToonSite`` in de parentklasse ``Bookmark`` op ``virtual`` instelt.
-
-```java
-public class HiddenBookMark: BookMark
-{
-    public override void ToonSite()
-    {
-        Console.WriteLine("**********INCOGNITO MODE************");
-        base.ToonSite();
-        Console.WriteLine("**********INCOGNITO MODE************");
-    }
-}
-```
-
-# Ziekenhuis
-
-## Deel 1
-
-```java
-public class Patient
-{
-    public string Naam { get; set; }
-    public int UrenInZiekenhuis { get; set; }
-
-    private const int basisKost= 50;
-    private const int kostPerUur = 20;
-    public virtual double BerekenKost()
-    {
-        int kost = basisKost + (UrenInZiekenhuis * kostPerUur);
-        return kost;
-    }
-
-    public void ToonInfo()
-    {
-        Console.WriteLine($"{Naam} (Kost:{BerekenKost()})");
-    }
-}
-```
-
-## Deel 2
-
-```java
-public class VerzekerdePatient : Patient
-{
-    private const double korting = 0.1;
-    public override double BerekenKost()
-    {
-        double totaalBasisKost = base.BerekenKost();
-        return totaalBasisKost - (totaalBasisKost * korting);
-    }
-}
-```
-
-Aantonen werking:
-
-Eenvoudig:
-
-```java
-Patient JosFromUSA = new Patient() 
-    { Naam = "American Jos", UrenInZiekenhuis = 10 };
-VerzekerdePatient JosFromBelgium = new VerzekerdePatient() 
-    { Naam = "Belgische Jos", UrenInZiekenhuis = 10 };
-JosFromUSA.ToonInfo();
-JosFromBelgium.ToonInfo();
-```
-
-Complexer:
-
-```java
-List<Patient> allePatienten = new List<Patient>()
-{
-    new Patient() { Naam = "American Jos", UrenInZiekenhuis = 10 },
-    new VerzekerdePatient() { Naam = "Belgische Jos", UrenInZiekenhuis = 10 },
-
-};
-
-foreach (var patient in allePatienten)
-{
-    patient.ToonInfo();
-}
-```
-
 
 ::::

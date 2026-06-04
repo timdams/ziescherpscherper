@@ -57,8 +57,6 @@ Vervolgens copy paste je de githu-burl als daar om gevraagd wordt  (voor de eers
 
 # RapportModule (*Essential*)
 
-# RapportModule (*Essential*)
-
 :::{.callout-tip}
 [Maak je oplossing in een kopie van volgende solution met bijhorende unittests](https://github.com/timdams/ZIESCHERPER_TESTS_H1_RapportModule).
 :::
@@ -74,9 +72,11 @@ Dit geldt voor alle volgende oefeningen waarbij je een link krijgt naar een solu
 Ontwerp een klasse die een graad berekent op basis van een behaald percentage.
 
 **Specificaties:**
+
 *   **Klassenaam:** `Rapport`
 *   **Properties:**
     *   `Percentage` (type: `int`): Het behaalde punt.
+
 *   **Methoden:**
     *   `PrintGraad()` (type: `void`): Toont de graad in de console.
 
@@ -106,9 +106,27 @@ mijnVriendPunten.PrintGraad(); // Verwachte output: "Grootste onderscheiding"
 
 Controleer je oplossing ook via **Test => Run All Tests**.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public class Rapport
+{
+    public int Percentage {get;set;}
+    public void PrintGraad()
+    {
+        if(Percentage < 50)
+            Console.WriteLine("Niet geslaagd");
+        else if(Percentage <= 68)
+            Console.WriteLine("Voldoende");
+        else if(Percentage <= 75)
+            Console.WriteLine("Onderscheiding");
+        else if(Percentage <= 85)
+            Console.WriteLine("Grote onderscheiding");
+        else Console.WriteLine("Grootste onderscheiding");
+    }
+}
+```
+::::
 
-
-# Nummers (*Essential*)
 
 # Nummers (*Essential*)
 
@@ -120,10 +138,12 @@ Controleer je oplossing ook via **Test => Run All Tests**.
 Maak een rekenmachine-klasse die bewerkingen uitvoert op twee getallen.
 
 **Specificaties:**
+
 *   **Klassenaam:** `NummerBerekenaar`
 *   **Properties:**
     *   `Getal1` (type: `int`): Het eerste getal.
     *   `Getal2` (type: `int`): Het tweede getal.
+
 *   **Methoden:**
     *   `Som()`: returntype `int`
     *   `Verschil()`: returntype `int`
@@ -131,6 +151,7 @@ Maak een rekenmachine-klasse die bewerkingen uitvoert op twee getallen.
     *   `Quotient()`: returntype `double`
 
 **Werking:**
+
 *   `Som`, `Verschil`, `Product`: Voeren de standaard wiskundige bewerking uit (`+`, `-`, `*`) en geven het resultaat terug.
 *   `Quotient`: Deelt `Getal1` door `Getal2`.
     *   *Let op:* Delen door nul mag niet.
@@ -147,9 +168,30 @@ Console.WriteLine($"Som = {paar1.Som()}");      // Output: 46
 Console.WriteLine($"Verschil = {paar1.Verschil()}"); // Output: -22
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public class Nummers
+{
+    public int Getal1 { get; set; }
+    public int Getal2 { get; set; }
 
+    public int Som() { return Getal1 + Getal2; }
+    public int Verschil() { return Getal1 - Getal2; }
+    public int Product() { return Getal1 * Getal2; }
 
-# Studentklasse (*Essential*)
+    public double Quotient()
+    {
+        if(Getal2==0)
+        {
+            Console.WriteLine("Kan niet delen door 0");
+            return 0;
+        }
+        return Getal1 / (double)Getal2;
+    }
+}
+```
+::::
+
 
 # Studentklasse (*Essential*)
 
@@ -161,6 +203,7 @@ Console.WriteLine($"Verschil = {paar1.Verschil()}"); // Output: -22
 Sla gegevens van een student op en bereken het gemiddelde.
 
 **Specificaties:**
+
 *   **Klassenaam:** `Student`
 *   **Enum:** `Klassen` (definieer deze *buiten* de klasse, mogelijke waarden: `TI1`, `TI2`, `TI3`)
 *   **Properties:**
@@ -170,6 +213,7 @@ Sla gegevens van een student op en bereken het gemiddelde.
     *   `PuntenCommunicatie` (`int`)
     *   `PuntenProgrammingPrinciples` (`int`)
     *   `PuntenWebTech` (`int`)
+
 *   **Methoden:**
     *   `BerekenGemiddelde()`: Geeft het gemiddelde van de 3 puntenvakken terug als `double`.
     *   `GeefOverzicht()`: Toont een rapport in de console (zie voorbeeld).
@@ -201,8 +245,41 @@ Web Technology:           13
 Gemiddelde:               13.3333333333
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public enum Klassen { TI1,TI2,TI3 }
 
-# PizzaTime
+public class Student
+{
+    public string Naam { get; set; }
+    public int Leeftijd { get; set; }
+    public Klassen Klas { get; set; }
+
+    public int PuntenCommunicatie { get; set; }
+    public int PuntenProgrammingPrinciples { get; set; }
+    public int PuntenWebTech { get; set; }
+
+    public double BerekenTotaalCijfer()
+    {
+        return (PuntenCommunicatie + PuntenProgrammingPrinciples + PuntenWebTech) / 3.0;
+    }
+
+    public void GeefOverzicht()
+    {
+        Console.WriteLine($"{Naam}, {Leeftijd} jaar");
+        Console.WriteLine($"Klas: {Klas}");
+        Console.WriteLine();
+        Console.WriteLine("Cijferrapport");
+        Console.WriteLine("*************");
+        Console.WriteLine($"Communicatie:\t\t{PuntenCommunicatie}");
+        Console.WriteLine($"Programming Principles:\t{PuntenProgrammingPrinciples}");
+        Console.WriteLine($"Web Technology:\t\t{PuntenWebTech}");
+        Console.WriteLine($"Gemiddelde:\t\t{BerekenTotaalCijfer()}");
+    }
+}
+```
+::::
+
 
 # PizzaTime
 
@@ -214,6 +291,7 @@ Gemiddelde:               13.3333333333
 Maak een klasse `Pizza` die waarden controleert voordat ze worden opgeslagen.
 
 **Specificaties:**
+
 *   **Klassenaam:** `Pizza`
 *   **Properties** (Full Properties met validatie):
     *   `Toppings` (`string`): Beschrijving van de toppings.
@@ -229,8 +307,57 @@ Bij het toewijzen van een nieuwe waarde (`value`), controleer het volgende. Indi
 **Voorbeeldgebruik:**
 Maak in je Main enkele pizza's aan en probeer foute waarden in te stellen om te testen of ze inderdaad geweigerd worden.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public class Pizza
+{
+    private string toppings;
 
-# Figuren
+    public string Toppings
+    {
+        get 
+        {			
+            return toppings; 
+        }
+        set 
+        {
+            if (value != "")
+            {
+                toppings = value;
+            }		
+        }
+    }
+    private int diameter;
+
+    public int Diameter
+    {
+        get { return diameter; }
+        set 
+        {
+            if (value > 0)
+            {
+                diameter = value;
+            }
+        }
+    }
+
+    private double price;
+
+    public double Price
+    {
+        get { return price; }
+        set 
+        {
+            if (value >0)
+            {
+                price = value;
+            }			 
+        }
+    }
+}
+```
+::::
+
 
 # Figuren
 
@@ -257,8 +384,35 @@ Werken met overerving of losse klassen (hier losse klassen) en validatie.
 **Opdracht:**
 Maak van elke figuur een instantie in je `Main` en roep `ToonOppervlakte` aan.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public class Rechthoek
+{
+    private int lengte = 1;
+    public int Lengte
+    {
+        get { return lengte; }
+        set { if (value >= 1) lengte = value; }
+    }
 
-# MiniRPG (*Final Essentials*)
+    private int breedte = 1;
+
+    public int Breedte
+    {
+        get { return  breedte; }
+        set { if (value >= 1) breedte = value; }
+        }
+
+    public void ToonOppervlakte()
+    {
+        Console.WriteLine($"{Lengte*Breedte}");
+    }
+}
+```
+
+Driehoek is quasi hetzelfde, met uiteraard een andere berekening van de oppervlakte.
+::::
+
 
 # MiniRPG (*Final Essentials*)
 
@@ -345,377 +499,11 @@ Console.WriteLine(conan.ToonStats());
 
 **Extra Uitdaging (Optioneel):**
 Maak de `ValAan` methode slimmer gebaseerd op `HeldType`.
+
 *   `Krijger`: Doet `10 + (Level * 2)` schade (fysiek sterk).
 *   `Magiër`: Doet `5 + (Level * 3)` schade (begint zwak, wordt heel sterk).
 *   `Boogschutter`: Doet `8 + (Level * 2)` schade.
 
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-
-# Oefeningen
-
-## RapportModule
-
-```java
-public class Rapport
-{
-    public int Percentage {get;set;}
-    public void PrintGraad()
-    {
-        if(Percentage < 50)
-            Console.WriteLine("Niet geslaagd");
-        else if(Percentage <= 68)
-            Console.WriteLine("Voldoende");
-        else if(Percentage <= 75)
-            Console.WriteLine("Onderscheiding");
-        else if(Percentage <= 85)
-            Console.WriteLine("Grote onderscheiding");
-        else Console.WriteLine("Grootste onderscheiding");
-    }
-}
-```
-
-
-## Nummers
-
-```java
-public class Nummers
-{
-    public int Getal1 { get; set; }
-    public int Getal2 { get; set; }
-
-    public int Som() { return Getal1 + Getal2; }
-    public int Verschil() { return Getal1 - Getal2; }
-    public int Product() { return Getal1 * Getal2; }
-
-    public double Quotient()
-    {
-        if(Getal2==0)
-        {
-            Console.WriteLine("Kan niet delen door 0");
-            return 0;
-        }
-        return Getal1 / (double)Getal2;
-    }
-}
-```
-
-## Studentklasse
-
-```java
-public enum Klassen { TI1,TI2,TI3 }
-
-public class Student
-{
-    public string Naam { get; set; }
-    public int Leeftijd { get; set; }
-    public Klassen Klas { get; set; }
-
-    public int PuntenCommunicatie { get; set; }
-    public int PuntenProgrammingPrinciples { get; set; }
-    public int PuntenWebTech { get; set; }
-
-    public double BerekenTotaalCijfer()
-    {
-        return (PuntenCommunicatie + PuntenProgrammingPrinciples + PuntenWebTech) / 3.0;
-    }
-
-    public void GeefOverzicht()
-    {
-        Console.WriteLine($"{Naam}, {Leeftijd} jaar");
-        Console.WriteLine($"Klas: {Klas}");
-        Console.WriteLine();
-        Console.WriteLine("Cijferrapport");
-        Console.WriteLine("*************");
-        Console.WriteLine($"Communicatie:\t\t{PuntenCommunicatie}");
-        Console.WriteLine($"Programming Principles:\t{PuntenProgrammingPrinciples}");
-        Console.WriteLine($"Web Technology:\t\t{PuntenWebTech}");
-        Console.WriteLine($"Gemiddelde:\t\t{BerekenTotaalCijfer()}");
-    }
-}
-```
-
-## PizzaTime
-
-```java
-public class Pizza
-{
-    private string toppings;
-
-    public string Toppings
-    {
-        get 
-        {			
-            return toppings; 
-        }
-        set 
-        {
-            if (value != "")
-            {
-                toppings = value;
-            }		
-        }
-    }
-    private int diameter;
-
-    public int Diameter
-    {
-        get { return diameter; }
-        set 
-        {
-            if (value > 0)
-            {
-                diameter = value;
-            }
-        }
-    }
-
-    private double price;
-
-    public double Price
-    {
-        get { return price; }
-        set 
-        {
-            if (value >0)
-            {
-                price = value;
-            }			 
-        }
-    }
-}
-```
-
-
-## Figuren
-
-```java
-public class Rechthoek
-{
-    private int lengte = 1;
-    public int Lengte
-    {
-        get { return lengte; }
-        set { if (value >= 1) lengte = value; }
-    }
-
-    private int breedte = 1;
-
-    public int Breedte
-    {
-        get { return  breedte; }
-        set { if (value >= 1) breedte = value; }
-        }
-
-    public void ToonOppervlakte()
-    {
-        Console.WriteLine($"{Lengte*Breedte}");
-    }
-}
-```
-
-Driehoek is quasi hetzelfde, met uiteraard een andere berekening van de oppervlakte.
-
-
-# Week 2
-
-
-
-
-## Verjaardag
-
-```java
-Console.WriteLine("Geef je verjaardag (formaat: d/m . Bv 18/3)");
-DateTime verj = DateTime.Parse(Console.ReadLine());
-
-
-if (verj < DateTime.Today)
-    verj = verj.AddYears(1);
-
-
-string dagLokaal = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetDayName(verj.DayOfWeek);
-TimeSpan dagenOver = verj - DateTime.Today;
-
-Console.WriteLine($"Je ben jarig over {dagenOver.Days} dagen en dat is op een {dagLokaal}.");
-```
-
-
-## Bibliotheek
-
-```java
-public class BibBoek
-{
-    private const int AANTALUITLEENDAGEN = 14;
-    public string Ontlener { get; set; } = "onbekend";
-    private DateTime uitgeleend = DateTime.Now;
-    public DateTime Uitgeleend
-    {
-        set
-        {
-            uitgeleend = value;
-        }
-        private get 
-        {
-            return uitgeleend;
-        }
-    }
-    public DateTime InleverDatum
-    {
-        get
-        {
-            return Uitgeleend.AddDays(AANTALUITLEENDAGEN);
-        }
-    }
-
-    public void VerlengTermijn(int aantalDagen)
-    {
-        Uitgeleend = Uitgeleend.AddDays(aantalDagen);
-    }
-}
-```
-
-
-
-## BankManager
-
-
-```java
-public enum RekeningStaat { Geblokkeerd, Geldig }
-public class Rekening
-{
-
-    public RekeningStaat Staat { get; private set; } = RekeningStaat.Geldig;
-
-    public string RekeningNummer { get; set; }
-    public string NaamKlant { get; set; }
-
-    private int balans;
-    public int Balans
-    {
-        get {return balans;}
-    }
-    //methoden
-    public int HaalGeldAf(int bedrag)
-    {
-        if (Staat == RekeningStaat.Geldig)
-        {
-            if (bedrag > balans)
-            {
-                int over = balans;
-                balans = 0;
-                Console.WriteLine("Rekening leeg nu");
-                VeranderStaat();
-                return over;
-            }
-            else
-            {
-                balans -= bedrag;
-                return bedrag;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Gaat niet. Rekening geblokkeerd.");
-            return 0;
-        }
-    }
-    public void StortGeld(int bedrag)
-    {
-        if (Staat == RekeningStaat.Geldig)
-            balans += bedrag;
-        else
-            Console.WriteLine("Gaat niet. Rekening geblokkeerd.");
-    }
-    public void ToonInfo()
-    {
-        Console.Write($"Naam:\t\t{NaamKlant}\nRekeningnummer: {RekeningNummer}\nStaat:\t\t{Staat}\nBalans:\t\t");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"${balans}\n");
-        Console.ResetColor();
-    }
-    public void VeranderStaat()
-    {
-        if (Staat == RekeningStaat.Geldig)
-            Staat = RekeningStaat.Geblokkeerd;
-        else
-            Staat = RekeningStaat.Geldig;
-    }
-
-}
-
-```
-
-```java
-Rekening tim = new Rekening();
-tim.StortGeld(1000);
-Rekening student = new Rekening();
-do
-{
-    Console.WriteLine("Hoeveel geld wil je naar de student overschrijven ?");
-    int bedrag = int.Parse(Console.ReadLine());
-
-    student.StortGeld(tim.HaalGeldAf(bedrag));
-
-    tim.ToonInfo();
-    student.ToonInfo();
-} while (true);
-```
-
-## Persoon
-
-```java
-public class Persoon
-{
-    public string Voornaam { get; set; }
-    public string Achternaam { get; set; }
-    private DateTime geboorteDatum;
-
-    public DateTime GeboorteDatum
-    {
-        get { return geboorteDatum; }
-        set
-        {
-
-            {
-                if (value > new DateTime(1990, 1, 1) && value < DateTime.Today)
-                    geboorteDatum = value;
-                else
-                    geboorteDatum = DateTime.Today;
-            }
-        }
-    }
-
-    public int BerekenLeeftijd()
-    {
-       
-        int leeftijd = DateTime.Now.Year - geboorteDatum.Year;
-
-        if (DateTime.Now.Month < geboorteDatum.Month || (DateTime.Now.Month == geboorteDatum.Month && DateTime.Now.Day < geboorteDatum.Day))
-            leeftijd--;
-
-        return leeftijd;
-    }
-}
-```
-
-## Dobbelstenen
-
-```java
-public class Dobbelstenen
-{
-    public void WerpEnTel6()
-    {
-        Random r = new Random();
-        int aantalZes = 0;
-        for (int i = 0; i < 1000; i++)
-        {
-            if (r.Next(1, 7) == 6 && r.Next(1, 7) == 6)
-                aantalZes++;
-        }
-        Console.WriteLine($"{aantalZes} keren 6 gegooid. Dat is {aantalZes/10.0}%");
-    }
-}
-```
 ::::

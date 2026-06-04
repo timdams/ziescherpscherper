@@ -19,8 +19,6 @@ Sommige oefeningen zijn van de vorm "Maak een methode die...". Het is steeds de 
 
 
 # Opwarmers (*Essential*)
-
-# Opwarmers (*Essential*)
 Een extra grote hoop oefeningen om je methoden te oefenen ([originele bron](https://codeforwin.org/2016/03/functions-programming-exercises-and-solutions-in-c.html)). De oefeningen zijn ongeveer gerangschikt naar moeilijkheid.
 
 
@@ -36,9 +34,14 @@ Iedere oefening verwacht dat je steeds een methode schrijft en de werking ervan 
 * (PRO) Methode ``IsArmstrong`` die bepaalt of een getal een Armstrong getal is.
 * (PRO)Methode ``ToonArmstrongNummers`` die alle Armstrong nummers tot n toont.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
 
+![](../assets/movie.png)
 
-# Basic
+De oplossingen van dit deel worden in volgende kennisclip besproken: [hier](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7d5b4399-8c6c-4207-8e4d-a9af00b4ac58)
+
+::::
+
 
 # Basic
 Maak een methode die jezelf voorstelt op het scherm in de vorm van "Ik ben Tim Dams, ik ben 18 jaar oud en woon in de Lambrisseringsstraat 666".
@@ -52,8 +55,15 @@ MyIntro();
 Deze methode toont enkel zaken op het scherm en heeft dus als returntype ``void``.
 :::
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static void MyIntro()
+{
+    Console.WriteLine("Ik ben Tim Dams, ik ben 18 jaar oud en woon in de Lambrisseringsstraat 666");
+}
+```
+::::
 
-# Basic 2
 
 # Basic 2
 
@@ -63,16 +73,33 @@ Zorg er voor dat je nu je naam, leeftijd en adres via parameters kan meegeven en
 MyIntro("Jos", 34, "Trammezantlei 21");
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static void MyIntro(string name, int age, string address)
+{
+    Console.WriteLine($"Ik ben {name}, ik ben {age} jaar oud en woon in de {address}");
+}
+```
+::::
 
-# Grootste methode
 
 # Grootste methode
 Schrijf een methode die 3 ints aanvaardt en vervolgens de grootste van de 3 parameters als resultaat terug geeft.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static int Grootste(int getal1, int getal2, int getal3)
+{
+    if (getal1 >= getal2 && getal1 >= getal3)
+        return getal1;
+    if (getal2 >= getal1 && getal2 >= getal3)
+        return getal2;
 
+    return getal3;
+}
+```
+::::
 
-
-# Rekenmachine (*Essential*)
 
 # Rekenmachine (*Essential*)
 
@@ -80,16 +107,23 @@ Maak minimaal de methoden genaamd ``TelOp``, ``TrekAf``, ``Vermenigvuldig`` en `
 
 Maak een eenvoudig programma waarin je die methoden test.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static double TelOp(double a, double b) { return a + b; }
+static double TrekAf(double a, double b) { return a - b; }
+static double Vermenigvuldig(double a, double b) { return a * b; }
+static double Deel(double a, double b) { return a / b; }
+```
+::::
 
-# ChatGPT generator (*Essential*)
 
-# ChatGPT generator (*Essential*)
+# A.I. assisted oefeningen generator (*Essential*)
 
 **Dit is geen oefening, maar wel een manier om voor je zelf extra oefeningen te maken.**
 
 Gebruik volgende prompt om één of meerdere goede Methoden-oefeningen te genereren. Vervang "XXXX" door een onderwerp of genre waar je interesse in hebt (bijvoorbeeld  "counterstrike", "F1 racing", etc.).
 
-"
+```text
 Je bent een lector van een hogeschool die studenten helpt met programmeren. Je bent heel goed in interessante opgaves in C# te ontwikkelen die studenten motiveert om te blijven programmeren.
 
 Verzin een C# oefening voor mij die me doet oefenen op methoden. Methoden geven maximum 1 element terug. Gebruik dus geen tuples of sets van returntypes bij methoden.
@@ -104,28 +138,51 @@ Toon wel voorbeelduitvoer.
 Leg ook expliciet uit welke methoden ik moet schrijven en hoe ze werken
 Stel ook 3 mogelijke uitbreidingen voor.
 "
+```
 
 :::{.callout-warning}
-**OPGELET**: zoals je weet bestaat de kans dat ChatGpt toch oefeningen maakt die je nog niet kan, ondanks de prompt. Het kan bijvoorbeeld gebeuren dat de oefening toch vereist dat je al weet wat arrays zijn. In dat geval kan je zelf de oefening voor je zelf vereenvoudigen, of vragen aan ChatGPT om het stuk dat je niet begrijpt er uit te halen (of uit te leggen wat hij juist bedoelt). 
+**OPGELET**: zoals je weet bestaat de kans dat de A.I. toch oefeningen maakt die je nog niet kan, ondanks de prompt. Het kan bijvoorbeeld gebeuren dat de oefening toch vereist dat je al weet wat arrays zijn. In dat geval kan je zelf de oefening voor je zelf vereenvoudigen, of vragen aan ChatGPT om het stuk dat je niet begrijpt er uit te halen (of uit te leggen wat hij juist bedoelt). 
 :::
 
 
 
-
-# Pro Rekenmachine
-
 # Pro Rekenmachine
 Kan je een eenvoudige zakrekenmachine maken (inclusief geheugen)? Voeg extra methoden naar keuze toe (denk aan macht, sinus, cosinus, modulo, etc.).
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+PRO-oefeningen hebben niet altijd een oplossing...Deze dus ook niet. Sorry.
+::::
 
-# Paswoord generator methode
 
 # Paswoord generator methode
 Maak een paswoord generator die paswoorden van bepaalde lengte genereert en bestaat uit willekeurige letters, hoofdletters en cijfers. Plaats deze code in een methode die 1 parameter aanvaardt namelijk de lengte van het paswoord dat gemaakt moet worden. De methode geeft het gegenereerde paswoord terug als resultaat. (tip gebruik een random number generator(s) om getallen te genereren die je ook kan casten naar chars dankzij de Unicode waarde van chars).
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static string PaswoordGenerator(int lengte)
+{
+    string resultaat = "";
+    Random r = new Random();
+    for (int i = 0; i < lengte; i++)
+    {
+        switch(r.Next(0, 3))
+        {
+            case 0: //cijfer
+                resultaat += r.Next(0, 10);
+                break;
+            case 1: //kleine letters
+                resultaat += (char)r.Next('a', 'z'+1);
+                break;
+            case 2: //hoofdletters
+                resultaat += (char)r.Next('A', 'Z'+1);
+                break;
+        }
+    }
+    return resultaat;
+}
+```
+::::
 
-
-# Netflix – Essentials Oefening (Methoden)
 
 # Netflix – Essentials Oefening (Methoden)
 
@@ -136,7 +193,8 @@ Maak een programma dat de onderstaande methoden bevat en **test ze allemaal in d
 
 ## Te implementeren methoden
 
-### 1. `ToonWelkomstBericht`
+**`ToonWelkomstBericht`**
+
 - **Doel**: Toont een welkomstboodschap op het scherm.
 - **Parameters**: naam van de gebruiker (`string`)
 - **Werking**: Print  
@@ -144,7 +202,8 @@ Maak een programma dat de onderstaande methoden bevat en **test ze allemaal in d
 - **Return type**: `void`
 
 
-### 2. `BerekenKijktijd`
+**`BerekenKijktijd`**
+
 - **Doel**: Berekent hoe lang je bezig gaat zijn met kijken.
 - **Parameters**:
   - aantal afleveringen (`int`)
@@ -153,7 +212,8 @@ Maak een programma dat de onderstaande methoden bevat en **test ze allemaal in d
 - **Return type**: `int` (totaal aantal minuten)
 
 
-### 3. `MagKijken`
+**`MagKijken`**
+
 - **Doel**: Controleert of een gebruiker oud genoeg is voor een serie.
 - **Parameters**:
   - leeftijd gebruiker (`int`)
@@ -162,7 +222,8 @@ Maak een programma dat de onderstaande methoden bevat en **test ze allemaal in d
   Geeft `true` terug als de gebruiker oud genoeg is, anders `false`.
 - **Return type**: `bool`
 
-### 4. `GenereerTitel`
+**`GenereerTitel`**
+
 - **Doel**: Maakt een standaard titelstring voor de interface.
 - **Parameters**:
   - naam van de serie (`string`)
@@ -240,87 +301,95 @@ Minimumleeftijd van de serie:
 Helaas, je bent te jong voor deze serie.
 ```
 
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
-
-# Oplossingen practica deel 0 - Opwarmers
-
-
-![](../assets/movie.png)
-
-De oplossingen van dit deel worden in volgende kennisclip besproken: [hier](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7d5b4399-8c6c-4207-8e4d-a9af00b4ac58)
-
-
-# Oplossingen practica deel 1 - De basics
-
-## Intro methode
-
-Basic:
-
 ```java
-static void MyIntro()
+using System;
+
+namespace NetflixEssentials
 {
-    Console.WriteLine("Ik ben Tim Dams, ik ben 18 jaar oud en woon in de Lambrisseringsstraat 666");
-}
-```
-
-Basic 2:
-
-```java
-static void MyIntro(string name, int age, string address)
-{
-    Console.WriteLine($"Ik ben {name}, ik ben {age} jaar oud en woon in de {address}");
-}
-```
-
-## Grootste methode
-
-```java
-static int Grootste(int getal1, int getal2, int getal3)
-{
-    if (getal1 >= getal2 && getal1 >= getal3)
-        return getal1;
-    if (getal2 >= getal1 && getal2 >= getal3)
-        return getal2;
-
-    return getal3;
-}
-```
-
-## Rekenmachine
-
-```java
-static double TelOp(double a, double b) { return a + b; }
-static double TrekAf(double a, double b) { return a - b; }
-static double Vermenigvuldig(double a, double b) { return a * b; }
-static double Deel(double a, double b) { return a / b; }
-```
-
-## Paswoord generator methode
-
-```java
-static string PaswoordGenerator(int lengte)
-{
-    string resultaat = "";
-    Random r = new Random();
-    for (int i = 0; i < lengte; i++)
+    class Program
     {
-        switch(r.Next(0, 3))
+        static void Main(string[] args)
         {
-            case 0: //cijfer
-                resultaat += r.Next(0, 10);
-                break;
-            case 1: //kleine letters
-                resultaat += (char)r.Next('a', 'z'+1);
-                break;
-            case 2: //hoofdletters
-                resultaat += (char)r.Next('A', 'Z'+1);
-                break;
+            // 1. Naam vragen + welkomstbericht
+            Console.WriteLine("Voer je naam in:");
+            string naam = Console.ReadLine();
+            ToonWelkomstBericht(naam);
+
+            // 2. Leeftijd vragen
+            Console.WriteLine("Voer je leeftijd in:");
+            int leeftijd = int.Parse(Console.ReadLine());
+
+            // 3. Serie-info vragen
+            Console.WriteLine("Naam van de serie:");
+            string serieNaam = Console.ReadLine();
+
+            Console.WriteLine("Minimumleeftijd van de serie:");
+            int minimumLeeftijd = int.Parse(Console.ReadLine());
+
+            // 4. Mag de gebruiker kijken?
+            if (MagKijken(leeftijd, minimumLeeftijd) == false)
+            {
+                Console.WriteLine("Helaas, je bent te jong voor deze serie.");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Veel kijkplezier!");
+            }
+
+            // 5. Aantal afleveringen + minuten
+            Console.WriteLine("Hoeveel afleveringen wil je kijken?");
+            int aantalAfleveringen = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Hoeveel minuten duurt één aflevering?");
+            int minutenPerAflevering = int.Parse(Console.ReadLine());
+
+            // 6. Totale kijktijd berekenen en tonen
+            int totaleKijktijd = BerekenKijktijd(aantalAfleveringen, minutenPerAflevering);
+            Console.WriteLine($"Totale kijktijd: {totaleKijktijd} minuten");
+
+            // 7. Seizoen en aflevering vragen
+            Console.WriteLine("Seizoen:");
+            int seizoen = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Aflevering:");
+            int aflevering = int.Parse(Console.ReadLine());
+
+            // 8. Titel genereren en tonen
+            string titel = GenereerTitel(serieNaam, seizoen, aflevering);
+            Console.WriteLine($"Je start met: {titel}");
+        }
+
+        static void ToonWelkomstBericht(string naam)
+        {
+            Console.WriteLine($"Welkom terug, {naam}! Tijd om te bingen.");
+        }
+
+        static int BerekenKijktijd(int aantalAfleveringen, int minutenPerAflevering)
+        {
+            int totaal = aantalAfleveringen * minutenPerAflevering;
+            return totaal;
+        }
+
+        static bool MagKijken(int leeftijdGebruiker, int minimumLeeftijdSerie)
+        {
+            if (leeftijdGebruiker >= minimumLeeftijdSerie)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static string GenereerTitel(string serieNaam, int seizoen, int aflevering)
+        {
+            string titel = $"{serieNaam} - S{seizoen}E{aflevering}";
+            return titel;
         }
     }
-    return resultaat;
 }
 ```
-
 ::::

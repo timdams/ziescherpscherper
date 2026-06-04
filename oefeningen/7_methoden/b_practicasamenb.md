@@ -4,8 +4,6 @@
 
 # Film Default (*Essential*)
 
-# Film Default (*Essential*)
-
 Maak een methode FilmRuntime() die 3 parameters accepteert:
 
 1. Een string die de naam van de film bevat
@@ -23,18 +21,21 @@ The Matrix (120 minuten, Actie)
 
 Toon aan in je main dat de methode werkt met zowel 1, 2 als 3 parameters. Toon ook aan dat je met *named arguments* de methode kan aanroepen.
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+static void FilmRuntime(string naam, int duur= 90, Genre filmgenre= Genre.Onbekend )
+{
+    Console.WriteLine($"{naam} ({duur}, {filmgenre})");
+}
+```
+::::
 
-
-
-# Opwarmers met geavanceerde methoden (*Essential*)
 
 # Opwarmers met geavanceerde methoden (*Essential*)
 
 Zorg ervoor dat de opwarmers vooraan deze reeks oefeningen steeds minstens 1 optionele parameter hebben. Roep deze methoden aan via named parameters.
 
 
-
-# Roulette (*Essential*)
 
 # Roulette (*Essential*)
 
@@ -66,7 +67,7 @@ Maak een applicatie die aan de gebruiker een startkapitaal vraagt. Vervolgens ge
 * 1000 keer
 * 10000 keer
   
-Toon telkens ook hoeveel verlies (of winst) dit is ten opzichte van het startkapitaal. Bij winst wordt dit verschil in groene letters getoond, bij verlies in rode letters. 
+Toon telkens ook hoeveel verlies (of winst) dit is ten opzichte van het startkapitaal. Bij winst wordt dit verschil in groene letters getoond, bij verlies in rode letters. 
 
 ## Voorbeeld uitvoer
 
@@ -87,10 +88,41 @@ Je bent met doubles aan het werken...Is het je opgevallen dat je soms heel vreem
 
 :::
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```csharp
+static void Main(string[] args)
+{
+    int aantalKeer = 10;
+    Console.WriteLine("Wat is je startkapitaal?");
+    double startKap = double.Parse(Console.ReadLine());
+    for (int i = 0; i < 4; i++)
+    {
+        double nieuwKap = Roulette(startKap, aantalKeer);
+        Console.WriteLine($"Als je {aantalKeer} keer roulette speelt zou je eindkapitaal {nieuwKap:0.0} zijn, dat is een verschil van {nieuwKap-startKap:0.0}.");
 
 
+        aantalKeer *= 10;
+    }
+}
 
-# Oude oefeningen leesbaarder maken
+static double Roulette(double startKapitaal, int aantalSim = 10)
+{
+    Random rng = new Random();
+    double eindKapitaal = startKapitaal;
+    for (int i = 0; i < aantalSim; i++)
+    {
+        if (rng.Next(0, 60) == rng.Next(0, 60))
+        {
+            eindKapitaal++;
+        }
+        else
+            eindKapitaal -= 0.1;
+    }
+    return eindKapitaal;
+}
+```
+::::
+
 
 # Oude oefeningen leesbaarder maken
 
@@ -101,19 +133,16 @@ Kan je code uit vorige hoofdstukken herbruiken door deze in handige methoden te 
 
 # Verhaalgenerator
 
-# Verhaalgenerator
-
 Bekijk het all-one-project ["De verhaal generator"](../EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md): kan jij dit project afwerken zoals onderaan de opgave wordt voorgesteld?
 
 
-# Hoe ver geraak je?
 
 # Hoe ver geraak je?
 
+Dit zijn leuke oefeningen waarin je tientalle methoden moet schrijven. Ze worden steeds moeilijker. Vergeet niet de taal op C# te zetten:
 [Challenges](https://edabit.com/challenges)
 
 
-# Havenbeheer (*Final Essentials*)
 
 # Havenbeheer (*Final Essentials*)
 
@@ -190,57 +219,127 @@ Diepgang in meters?
 ALARM: Het schip ligt te diep (max 14m) en mag niet binnenkomen!
 ```
 
-
-
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
+using System;
 
-# Deel 2 Geavanceerde methode concepten
-
-## Film Default
-
-```java
-static void FilmRuntime(string naam, int duur= 90, Genre filmgenre= Genre.Onbekend )
+namespace HavenAntwerpen
 {
-    Console.WriteLine($"{naam} ({duur}, {filmgenre})");
-}
-```
-
-## Roulette
-
-```csharp
-static void Main(string[] args)
-{
-    int aantalKeer = 10;
-    Console.WriteLine("Wat is je startkapitaal?");
-    double startKap = double.Parse(Console.ReadLine());
-    for (int i = 0; i < 4; i++)
+    class Program
     {
-        double nieuwKap = Roulette(startKap, aantalKeer);
-        Console.WriteLine($"Als je {aantalKeer} keer roulette speelt zou je eindkapitaal {nieuwKap:0.0} zijn, dat is een verschil van {nieuwKap-startKap:0.0}.");
-
-
-        aantalKeer *= 10;
-    }
-}
-
-static double Roulette(double startKapitaal, int aantalSim = 10)
-{
-    Random rng = new Random();
-    double eindKapitaal = startKapitaal;
-    for (int i = 0; i < aantalSim; i++)
-    {
-        if (rng.Next(0, 60) == rng.Next(0, 60))
+        static void Main(string[] args)
         {
-            eindKapitaal++;
+            Console.WriteLine("Welkom bij Havenbeheer Antwerpen.");
+
+            Console.WriteLine("Naam van het schip?");
+            string scheepsNaam = Console.ReadLine();
+
+            Console.WriteLine("Diepgang in meters?");
+            double diepgang = double.Parse(Console.ReadLine());
+
+            // Voor dit testscenario gebruiken we een kade diepte van 14m
+            // i.p.v. de default van 12.5m -> aanroep met named argument.
+            double maxDiepte = 14.0;
+            bool magBinnen = ControleerDiepgang(diepgang, kadeDiepte: maxDiepte);
+
+            // Ter info: zonder named argument zou dit zijn:
+            //   bool magBinnen = ControleerDiepgang(diepgang);   // gebruikt default 12.5
+
+            if (magBinnen == false)
+            {
+                Console.WriteLine($"ALARM: Het schip ligt te diep (max {maxDiepte}m) en mag niet binnenkomen!");
+                return;
+            }
+
+            Console.WriteLine("Het schip mag de haven binnen.");
+            Console.WriteLine();
+
+            Console.WriteLine("Type lading (1=Containers, 2=Bulk)?");
+            int typeLading = int.Parse(Console.ReadLine());
+
+            double totaalGewicht;
+
+            if (typeLading == 1)
+            {
+                Console.WriteLine("Aantal containers?");
+                int aantalContainers = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Gemiddeld gewicht per container (ton)?");
+                double gewichtPerContainer = double.Parse(Console.ReadLine());
+
+                // Roept de overload (int, double) aan
+                totaalGewicht = BerekenLadingGewicht(aantalContainers, gewichtPerContainer);
+            }
+            else
+            {
+                Console.WriteLine("Volume (m³)?");
+                double volume = double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Dichtheid (ton/m³)?");
+                double dichtheid = double.Parse(Console.ReadLine());
+
+                // Roept de overload (double, double) aan
+                totaalGewicht = BerekenLadingGewicht(volume, dichtheid);
+            }
+
+            Console.WriteLine("Bevat het schip gevaarlijke goederen (j/n)?");
+            string antwoord = Console.ReadLine();
+            bool isGevaarlijk = false;
+            if (antwoord == "j")
+            {
+                isGevaarlijk = true;
+            }
+
+            int totaleKost = BerekenTotaleKost(totaalGewicht, isGevaarlijk);
+
+            string ladingType = "Normale lading";
+            if (isGevaarlijk == true)
+            {
+                ladingType = "Gevaarlijke lading";
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"--- RAPPORT : {scheepsNaam} ---");
+            Console.WriteLine($"Totaal gewicht: {totaalGewicht} ton");
+            Console.WriteLine($"Type: {ladingType}");
+            Console.WriteLine($"Totale kostprijs: € {totaleKost}");
         }
-        else
-            eindKapitaal -= 0.1;
+
+        static bool ControleerDiepgang(double diepgang, double kadeDiepte = 12.5)
+        {
+            if (diepgang <= kadeDiepte)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Overload 1: containers
+        static double BerekenLadingGewicht(int aantalContainers, double gewichtPerContainer)
+        {
+            double totaal = aantalContainers * gewichtPerContainer;
+            return totaal;
+        }
+
+        // Overload 2: vloeistof/bulk
+        static double BerekenLadingGewicht(double volume, double dichtheid)
+        {
+            double totaal = volume * dichtheid;
+            return totaal;
+        }
+
+        static int BerekenTotaleKost(double totaalGewicht, bool isGevaarlijk = false)
+        {
+            double prijs = totaalGewicht * 15;
+            if (isGevaarlijk == true)
+            {
+                prijs = prijs * 1.30;
+            }
+            int afgerond = (int)Math.Round(prijs);
+            return afgerond;
+        }
     }
-    return eindKapitaal;
 }
-```
-
-
 ::::

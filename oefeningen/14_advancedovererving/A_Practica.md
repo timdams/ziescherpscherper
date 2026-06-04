@@ -7,8 +7,6 @@ Nu je overerving in de vingers krijgt, is het tijd om de ingebouwde "Class desig
 
 
 # Extra ToString aan bestaande projecten
-
-# Extra ToString aan bestaande projecten
 Voeg ToString toe aan bestaande van volgende projecten. Ik raad aan dat je dit even test in een nieuwe applicatie waarin je de bestaande klasse even toevoegt en niet de hele main overneemt.
 
 **Pokémon extra**
@@ -36,9 +34,50 @@ Reddit (www.reddit.com)  ---HIDDEN---
 
 Zorg ervoor dat er géén dubbele code in HiddenBookmark staat (tip: ``base()``).
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+**Pokémon Extra**
 
+:::{.callout-tip}
+**Les(sen) uit deze oefening:** ``ToString`` is een persoonlijke favoriet die je veel zult nodig hebben. We gebruiken string concatenering (``+``) bij het Pokemon-voorbeeld  om de volledig ``string`` leesbaar op het scherm te krijgen. 
+:::
 
-# Boek (*Essential*)
+Voeg dit toe aan ``Pokemon`` klasse:
+```csharp
+public override string ToString()
+{
+    string toResturn =  $"{Naam}(Level:{Level})\n" +
+        $"Base stats:\n" +
+        $"\tHP_Base= {HP_Base}\n" +
+        $"\tAttack_Base= {Attack_Base}\n";
+        //Enz
+    return toReturn;
+}
+```
+
+**Bookmark Extra**
+
+Voeg dit toe aan ``Bookmark``:
+
+```csharp
+public override string ToString()
+{
+    return $"{Naam} ({URL})";
+}
+```
+:::{.callout-tip}
+**Les(sen) uit deze oefening:** Let op de ``base.ToString()`` code die evoor zorgt dat de versie van het parent-object (``Bookmark``) ook nog steeds wordt toegevoegd.
+:::
+
+En dit aan ``HiddenBookmark``:
+
+```csharp
+public override string ToString()
+{
+    return $"{base.ToString()} ---HIDDEN---";
+}
+```
+::::
+
 
 # Boek (*Essential*)
 
@@ -72,155 +111,8 @@ PRO:  Bekijk gerust de appendix indien je wilt weten hoe je de ``+`` operator ku
 
 Maak boeken aan van de 3 klassen, toon dat de prijs niet altijd zomaar ingesteld kan worden.
 
-
-# Money, money, money (*Essential*)
-
-# Money, money, money (*Essential*)
-
-Maak enkele klassen die een bank kan gebruiken (of hergebruik je ``BankManager`` code) : 
-
-1. Abstracte klasse ``Rekening``: deze bevat een methode ``VoegGeldToe``  en ``HaalGeldAf``. Het saldo van de rekening wordt in een private variabele bijgehouden (en via de voorgaande methoden aangepast) die enkel via een read-only property kan uitgelezen worden. Voorts is er een abstracte methode ``BerekenRente`` de rente als double teruggeeft.
-2. Een klasse ``BankRekening`` die een Rekening is. De rente van een BankRekening is 5% wanneer het saldo hoger is dan 100 euro, zoniet is deze 0%. 
-3. Een klasse ``SpaarRekening`` die een Rekening is. De rente van een SpaarRekening bedraagt steeds 2%.
-4. Een klasse ``ProRekening`` die een SpaarRekening is. De ProRekening hanteert de Rente-berekening van een SpaarRekening (``base.BerekenRente``) maar zal per 1000 euro saldo nog eens 10 euro verhogen. 
-
-Schrijf deze klassen en toon de werking ervan in je main.
-
-
-
-
-
-# Geometric figures (*Essential*)
-
-# Geometric figures (*Essential*)
-
-Maak een abstracte klasse ``GeometricFigure``. Iedere figuur heeft een hoogte, breedte en oppervlakte. Maak autoproperties voor van ``Hoogte`` en ``Breedte``. De ``Oppervlakte`` is een read-only property want deze wordt berekend gebaseerd op de hoogte en breedte. Deze berekening gebeurt in de methode ``BerekenOppervlakte``: deze roep je met andere woorden aan in de getter van ``Oppervlakte`` en dat resultaat geeft de getter terug 
-
-:::{.callout-warning}
-Let er dus op dat ``Oppervlakte`` enkel een getter heeft. Een setter schrijven zou vreemde bugs geven: wat als de gebruiker de Oppervlakte van de figuur zo aanpast, maar wel andere hoogte en breedte heeft ingesteld? Je zou dan een foute oppervlakte krijgen daar die niet berekend wordt.
-:::
-
-Voorzie een abstracte methode ``BerekenOppervlakte`` die een double teruggeeft.
-
-Maak 3 klassen:
-
-* Rechthoek: erft over van GeometricFigure. Oppervlakte is gedefinieerd als ``breedte * hoogte``.
-* Vierkant: erft over van Rechthoek. Voorzie een constructor die lengte en breedte als parameter aanvaard: deze moeten gelijk zijn, indien niet zet je deze tijdens de constructie gelijk. Voorzie een 2e constructor die één parameter aanvaardt dat dan geldt als zowel de lengte als breedte. Deze klasse gebruikt de methode BerekenOppervlakte van de Rechthoek-klasse.
-* Driehoek: erft over van GeometricFigure. Oppervlakte is gedefinieerd als ``breedte*hoogte/2.0``.
-
-Maak een applicatie waarin je de werking van deze klassen aantoont
-
-
-
-# Dierentuin
-
-# Dierentuin
-Maak een console-applicatie waarin je een zelfverzonnen abstract klasse Dier in een List<Dier> kunt plaatsen. Ieder dier heeft een gewicht en een methode ``Zegt`` (die abstract is) die het geluid van het dier in kwestie op het scherm zal tonen. Maak enkele childklassen die overerven van Dier en uiteraard de ``Zegt`` methode overriden.
-
-Plaats enkele dieren in de nieuw aangemaakt lijst.
-Vervolgens verschijnt er een menu Wanneer de gebruiker 'q' kiest stopt het programma.Het keuze menu heeft volgende opties:
-
-1. Dier verwijderen , gevolgd door de gebruiker die invoert het hoeveelste dier weg moet uit de List.
-2. Diergewicht gemiddelde: het gemiddelde van alle dieren hun gewicht wordt getoond
-3. Dier praten: alle dieren hun Zegt() methode wordt aangeroepen en via WriteLine getoond
-4. Opnieuw beginnen: de List wordt leeggemaakt en het programma zal terug van voor af aan beginnen. Waarbij de lijst terug gevuld wordt met enkele start dieren.
-
-Probeer zo modulair mogelijk te werken.
-
-
-
-# Meme Lord Simulator (*Final Essentials*, GPT)
-
-*Het internet is wild en jij bent de curator. Bouw een systeem om de virale waarde van verschillende soorten memes te berekenen en te beheren.*
-
-## Deel 1: De Abstracte Template
-Maak een abstracte klasse `Meme` met:
-* `Author` (string): de maker van de meme.
-* `ImageDescription` (string): beschrijving van de afbeelding.
-* `BaseLikes` (int): het aantal likes dat het standaard krijgt.
-* Een abstracte methode `BerekenMemeWaarde()` die een `double` teruggeeft.
-* Een virtuele property `IsCringe` (bool).
-    * *Default implementatie*: Geeft `true` terug als `BaseLikes` < 100.
-* Override `ToString()`:
-    * Toont: "[Author] post: [ImageDescription] - Waarde: [Waarde] - Status: [Dank/Cringe]"
-
-## Deel 2: De Formats
-Maak subclasses die overerven van `Meme`:
-
-**1. DankMeme** (Hoge kwaliteit, niche humor)
-* Heeft extra property `IronyLevel` (int 1-10).
-* `BerekenMemeWaarde()`: `BaseLikes` * `IronyLevel`.
-* Override `IsCringe`: Is nooit cringe, tenzij `IronyLevel` < 3.
-
-**2. NormieMeme** (Minion quotes, 9gag reposts)
-* `BerekenMemeWaarde()`: `BaseLikes` * 0.5 (Normie memes zijn minder waardevol op de zwarte markt).
-* Override `IsCringe`: Is altijd true.
-
-**3. DeepFriedMeme** (Onleesbaar, luid, en distorted)
-* Heeft extra property `NoiseFactor` (int 1-100).
-* `BerekenMemeWaarde()`: `BaseLikes` + (`NoiseFactor` * 10).
-* Override `ToString()`: Zet de volledige output van de base-ToString in HOOFDLETTERS en plak er " 🔥💀🅱️ " achter.
-
-## Deel 3: The Feed (Static)
-Voeg aan de **klasse Meme** een statische methode toe:
-* `public static void GenerateFeed(List<Meme> allMemes)`
-* Deze methode simuleert een scroll-sessie:
-    1. Filtert alle Cringe memes eruit (toon even "Cringe removed: [Meme]" op het scherm).
-    2. Toont van de overblijvende memes de `ToString()`.
-    3. Toont de gemiddelde waarde van de getoonde feed.
-
-## Main
-Maak een lijst met memes van alle types. Zorg dat er wat cringe tussen zit (bv. een NormieMeme of een slechte DankMeme). Roep `Meme.GenerateFeed` aan.
-
-
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Pokémon Extra
-
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** ``ToString`` is een persoonlijke favoriet die je veel zult nodig hebben. We gebruiken string concatenering (``+``) bij het Pokemon-voorbeeld  om de volledig ``string`` leesbaar op het scherm te krijgen. 
-:::
-
-Voeg dit toe aan ``Pokemon`` klasse:
-```csharp
-public override string ToString()
-{
-    string toResturn =  $"{Naam}(Level:{Level})\n" +
-        $"Base stats:\n" +
-        $"\tHP_Base= {HP_Base}\n" +
-        $"\tAttack_Base= {Attack_Base}\n";
-        //Enz
-    return toReturn;
-}
-```
-
-# Bookmark Extra
-
-Voeg dit toe aan ``Bookmark``:
-
-```csharp
-public override string ToString()
-{
-    return $"{Naam} ({URL})";
-}
-```
-:::{.callout-tip}
-**Les(sen) uit deze oefening:** Let op de ``base.ToString()`` code die evoor zorgt dat de versie van het parent-object (``Bookmark``) ook nog steeds wordt toegevoegd.
-:::
-
-En dit aan ``HiddenBookmark``:
-
-```csharp
-public override string ToString()
-{
-    return $"{base.ToString()} ---HIDDEN---";
-}
-```
-
-# Book
-
-## Deel 1
+**Deel 1**
 
 :::{.callout-tip}
 **Les(sen) uit deze oefening:** De ``TelOp``methode is het hart van deze oefening. We maken deze ``static`` omdat we niet willen dat een bestaand boek zichzelf bij een ander boek  moet *optellen* en vinden het logischer dat een soort *god-methode* van de boeken dit voor ons doet. Let op de ``get`` code van beide child-klassen: we laten de werking van ``Boek`` hier in ere door gewoon ``base.Price`` aan te roepen. Enkel in de ``set`` bouwen we extra controle *rond* de originele ``set`` code van de parentklasse. 
@@ -282,7 +174,7 @@ public class TextBook : Book
 }
 ```
 
-## Deel 2
+**Deel 2**
 
 Voeg dit toe aan de klasse ``Book``
 
@@ -292,10 +184,21 @@ public override string ToString()
     return $"{Title} - {Author}({ISBN}) {Price}";
 }
 ```
+::::
 
 
-## Money, Money, Money
+# Money, money, money (*Essential*)
 
+Maak enkele klassen die een bank kan gebruiken (of hergebruik je ``BankManager`` code) : 
+
+1. Abstracte klasse ``Rekening``: deze bevat een methode ``VoegGeldToe``  en ``HaalGeldAf``. Het saldo van de rekening wordt in een private variabele bijgehouden (en via de voorgaande methoden aangepast) die enkel via een read-only property kan uitgelezen worden. Voorts is er een abstracte methode ``BerekenRente`` de rente als double teruggeeft.
+2. Een klasse ``BankRekening`` die een Rekening is. De rente van een BankRekening is 5% wanneer het saldo hoger is dan 100 euro, zoniet is deze 0%. 
+3. Een klasse ``SpaarRekening`` die een Rekening is. De rente van een SpaarRekening bedraagt steeds 2%.
+4. Een klasse ``ProRekening`` die een SpaarRekening is. De ProRekening hanteert de Rente-berekening van een SpaarRekening (``base.BerekenRente``) maar zal per 1000 euro saldo nog eens 10 euro verhogen. 
+
+Schrijf deze klassen en toon de werking ervan in je main.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```csharp
 public abstract class Rekening
 {
@@ -351,11 +254,28 @@ public class ProRekening : SpaarRekening
     }
 }
 ```
-
-# Geometric Figures
-
+::::
 
 
+# Geometric figures (*Essential*)
+
+Maak een abstracte klasse ``GeometricFigure``. Iedere figuur heeft een hoogte, breedte en oppervlakte. Maak autoproperties voor van ``Hoogte`` en ``Breedte``. De ``Oppervlakte`` is een read-only property want deze wordt berekend gebaseerd op de hoogte en breedte. Deze berekening gebeurt in de methode ``BerekenOppervlakte``: deze roep je met andere woorden aan in de getter van ``Oppervlakte`` en dat resultaat geeft de getter terug 
+
+:::{.callout-warning}
+Let er dus op dat ``Oppervlakte`` enkel een getter heeft. Een setter schrijven zou vreemde bugs geven: wat als de gebruiker de Oppervlakte van de figuur zo aanpast, maar wel andere hoogte en breedte heeft ingesteld? Je zou dan een foute oppervlakte krijgen daar die niet berekend wordt.
+:::
+
+Voorzie een abstracte methode ``BerekenOppervlakte`` die een double teruggeeft.
+
+Maak 3 klassen:
+
+* Rechthoek: erft over van GeometricFigure. Oppervlakte is gedefinieerd als ``breedte * hoogte``.
+* Vierkant: erft over van Rechthoek. Voorzie een constructor die lengte en breedte als parameter aanvaard: deze moeten gelijk zijn, indien niet zet je deze tijdens de constructie gelijk. Voorzie een 2e constructor die één parameter aanvaardt dat dan geldt als zowel de lengte als breedte. Deze klasse gebruikt de methode BerekenOppervlakte van de Rechthoek-klasse.
+* Driehoek: erft over van GeometricFigure. Oppervlakte is gedefinieerd als ``breedte*hoogte/2.0``.
+
+Maak een applicatie waarin je de werking van deze klassen aantoont
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```csharp
 public abstract class GeometricFigure
 {
@@ -405,9 +325,23 @@ public class Driehoek: GeometricFigure
     }
 }
 ```
+::::
+
 
 # Dierentuin
+Maak een console-applicatie waarin je een zelfverzonnen abstract klasse Dier in een List<Dier> kunt plaatsen. Ieder dier heeft een gewicht en een methode ``Zegt`` (die abstract is) die het geluid van het dier in kwestie op het scherm zal tonen. Maak enkele childklassen die overerven van Dier en uiteraard de ``Zegt`` methode overriden.
 
+Plaats enkele dieren in de nieuw aangemaakt lijst.
+Vervolgens verschijnt er een menu Wanneer de gebruiker 'q' kiest stopt het programma.Het keuze menu heeft volgende opties:
+
+1. Dier verwijderen , gevolgd door de gebruiker die invoert het hoeveelste dier weg moet uit de List.
+2. Diergewicht gemiddelde: het gemiddelde van alle dieren hun gewicht wordt getoond
+3. Dier praten: alle dieren hun Zegt() methode wordt aangeroepen en via WriteLine getoond
+4. Opnieuw beginnen: de List wordt leeggemaakt en het programma zal terug van voor af aan beginnen. Waarbij de lijst terug gevuld wordt met enkele start dieren.
+
+Probeer zo modulair mogelijk te werken.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```csharp
 Console.WriteLine("H13 Dierentuin");
 List<Dier> Dieren = new List<Dier>();
@@ -491,4 +425,58 @@ public class Vis : Dier
     }
 }
 ```
+::::
+
+
+# Meme Lord Simulator (*Final Essentials*, GPT)
+
+*Het internet is wild en jij bent de curator. Bouw een systeem om de virale waarde van verschillende soorten memes te berekenen en te beheren.*
+
+## Deel 1: De Abstracte Template
+Maak een abstracte klasse `Meme` met:
+
+* `Author` (string): de maker van de meme.
+* `ImageDescription` (string): beschrijving van de afbeelding.
+* `BaseLikes` (int): het aantal likes dat het standaard krijgt.
+* Een abstracte methode `BerekenMemeWaarde()` die een `double` teruggeeft.
+* Een virtuele property `IsCringe` (bool).
+    * *Default implementatie*: Geeft `true` terug als `BaseLikes` < 100.
+
+* Override `ToString()`:
+    * Toont: "[Author] post: [ImageDescription] - Waarde: [Waarde] - Status: [Dank/Cringe]"
+
+## Deel 2: De Formats
+Maak subclasses die overerven van `Meme`:
+
+**1. DankMeme** (Hoge kwaliteit, niche humor)
+
+* Heeft extra property `IronyLevel` (int 1-10).
+* `BerekenMemeWaarde()`: `BaseLikes` * `IronyLevel`.
+* Override `IsCringe`: Is nooit cringe, tenzij `IronyLevel` < 3.
+
+**2. NormieMeme** (Minion quotes, 9gag reposts)
+
+* `BerekenMemeWaarde()`: `BaseLikes` * 0.5 (Normie memes zijn minder waardevol op de zwarte markt).
+* Override `IsCringe`: Is altijd true.
+
+**3. DeepFriedMeme** (Onleesbaar, luid, en distorted)
+
+* Heeft extra property `NoiseFactor` (int 1-100).
+* `BerekenMemeWaarde()`: `BaseLikes` + (`NoiseFactor` * 10).
+* Override `ToString()`: Zet de volledige output van de base-ToString in HOOFDLETTERS en plak er " 🔥💀🅱️ " achter.
+
+## Deel 3: The Feed (Static)
+Voeg aan de **klasse Meme** een statische methode toe:
+
+* `public static void GenerateFeed(List<Meme> allMemes)`
+* Deze methode simuleert een scroll-sessie:
+    1. Filtert alle Cringe memes eruit (toon even "Cringe removed: [Meme]" op het scherm).
+    2. Toont van de overblijvende memes de `ToString()`.
+    3. Toont de gemiddelde waarde van de getoonde feed.
+
+## Main
+Maak een lijst met memes van alle types. Zorg dat er wat cringe tussen zit (bv. een NormieMeme of een slechte DankMeme). Roep `Meme.GenerateFeed` aan.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
 ::::

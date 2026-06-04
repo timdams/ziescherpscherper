@@ -8,8 +8,6 @@ Er zijn geen aparte Exception handling oefeningen. De bedoeling is dat je zelf s
 
 # Meetlat
 
-# Meetlat
-
 :::{.callout-tip}
 [Maak je oplossing in een kopie van volgende solution met bijhorende unittests](https://github.com/timdams/ZIESCHERPER_TESTS_H2_Meetlat).
 :::
@@ -18,6 +16,7 @@ Er zijn geen aparte Exception handling oefeningen. De bedoeling is dat je zelf s
 Zet een lengte om naar verschillende eenheden met behulp van properties.
 
 **Specificaties:**
+
 *   **Klassenaam:** `Meetlat`
 *   **Property (Input):**
     *   `BeginLengte` (type: `double`): Write-only property om de lengte in **meter** in te stellen.
@@ -41,8 +40,39 @@ mijnLat.BeginLengte = 2; // We stellen in op 2 meter
 Console.WriteLine($"{mijnLat.LengteInM} meter is {mijnLat.LengteInVoet} voet.");
 ```
 
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+public class Meetlat
+{
+    private double lengte;
+    public double BeginLengte
+    {
+        set { lengte=value; }
+    }
 
-# Kleur mixer (*Essential*)
+    public double LengteInM
+    {
+        get{ return lengte;}
+    }
+
+    public double LengteInCm
+    {
+        get{ return lengte*100;}
+    }
+
+    public double LengteInKm
+    {
+        get{ return lengte/1000;}
+    }
+
+    public double LengteInVoet
+    {
+        get{ return lengte*3.2808;}
+    }
+}
+```
+::::
+
 
 # Kleur mixer (*Essential*)
 
@@ -54,11 +84,13 @@ Console.WriteLine($"{mijnLat.LengteInM} meter is {mijnLat.LengteInVoet} voet.");
 Meng twee kleuren door het gemiddelde te nemen van hun RGB-waarden.
 
 **Specificaties:**
+
 *   **Klassenaam:** `Kleur`
 *   **Properties:**
     *   `Rood` (`int`)
     *   `Groen` (`int`)
     *   `Blauw` (`int`)
+
 *   **Methode:**
     *   `MengKleur(Kleur andereKleur)` (`void`)
 
@@ -66,6 +98,7 @@ Meng twee kleuren door het gemiddelde te nemen van hun RGB-waarden.
 Wanneer `MengKleur` wordt aangeroepen, veranderen de eigenschappen van de **huidige** kleur (de kleur van het object zelf waarin de methode wordt aangeroepen). De kleur die als parameter wordt meegegeven verandert **niet**.
 
 Gebruik deze formules (gehele deling):
+
 *   Nieuw Rood = `(Huidig Rood + Ander Rood) / 2`
 *   Nieuw Groen = `(Huidig Groen + Ander Groen) / 2`
 *   Nieuw Blauw = `(Huidig Blauw + Ander Blauw) / 2`
@@ -85,6 +118,24 @@ k1.MengKleur(k2);
 Console.WriteLine($"{k1.Rood},{k1.Groen},{k1.Blauw}");
 // Verwachte output: 10,5,35
 ```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+class Kleur
+{
+    public int Rood {get;set;}
+    public int Groen {get;set;}
+    public int Blauw {get;set;}
+
+    public void MengKleur(Kleur voegToeKleur)
+    {
+        Rood = (voegToeKleur.Rood + Rood)/2;
+        Groen = (voegToeKleur.Groen + Groen)/2;
+        Blauw = (voegToeKleur.Blauw + Blauw)/2;
+    }
+}
+```
+::::
 
 
 # Pokémon (*Essential*)
@@ -106,6 +157,7 @@ De full-stats zijn echter de stats die de effectieve ‘krachten’ van een Pok�
 
 
 ![](../assets/infoclip.png)
+
 * [Meer uitleg bij bovenstaande tekening](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=245f5d03-dbe4-49d9-b9e9-ab720084b984)
 
 
@@ -255,170 +307,8 @@ Genereer 2 willekeurige Pokémon met je generator en laat ze vechten met je batt
 ### Meer info
 Voor de volledige info over Pokémon hun stats. [Klik hier.](https://bulbapedia.bulbagarden.net/wiki/Statistic "Stats Pokémon")
 
-
-
-
-# Bankmanager 2 (*Essential*)
-
-# Bankmanager 2 (*Essential*)
-
-Breid de bankmanager oefening uit het vorige hoofdstuk uit.
-
-**Nieuwe Methoden (in `Program.cs`):**
-
-1.  `SimuleerOverdracht(Rekening r1, Rekening r2)` (`void`)
-    *   **Loop:** Herhaal 5 keer:
-        *   Kies een **willekeurig bedrag** tussen 1 en 100 euro.
-        *   Stort dit bedrag van de ene rekening naar de andere.
-        *   Wissel per iteratie om wie verzender en wie ontvanger is (r1 -> r2, dan r2 -> r1, etc).
-
-2.  `CreeerTienerRekening(string klantNaam)` (`Rekening`)
-    *   Maak een nieuw `Rekening` object aan.
-    *   Stel de naam in op `klantNaam`.
-    *   Zorg dat de balans start op **50**.
-    *   Retourneer dit nieuwe object.
-
-
-# Project: SpaceCommand (*Final Essential*)
-
-**Doel**
-Deze opdracht combineert alle concepten van dit hoofdstuk (Properties, Methoden, Statics, Referenties vs Copies) in één grote simulatie. Indien je de Pokémon-opdracht helemaal hebt gemaakt, dan heeft het niet zoveel nut om ook deze te maken. 
-
-**Scenario:**
-Je bent de software-architect van de Aardse Vloot. Je moet een systeem ontwerpen om ruimteschepen te beheren, upgrades te geven en gevechtssimulaties uit te voeren tegen de buitenaardse dreiging.
-
-## Deel 1: Het Ruimteschip
-
-Ontwerp de klasse `RuimteSchip`.
-
-**1. Eigenschappen (Properties):**
-*   **Identificatie:**
-    *   `Naam` (`string`): De naam van het schip (bv. "USS Enterprise").
-    *   `Kapitein` (`string`, *private set*): De naam van de bevelhebber. Deze kan enkel ingesteld worden via een methode `WisselKapitein(string nieuweKapitein)`.
-*   **Basisstatistieken (Base Stats):**
-    *   Deze worden bij de bouw van het schip vastgelegd (in de main stel je ze in, daarna blijven ze conceptueel vast, hoewel we nog geen constructors gebruiken).
-    *   `RompSterkte` (`int`): 0-100.
-    *   `SchildKracht` (`int`): 0-100.
-    *   `VuurKracht` (`int`): 0-100.
-*   **Status:**
-    *   `Ervaring` (`int`): Het level van de bemanning. Start standaard op 0.
-    *   `Schade` (`int`): Hoeveel schade het schip heeft opgelopen. Start op 0.
-
-**2. Berekende Eigenschappen (Read-Only Properties):**
-*   `IsKapot` (`bool`): Geeft `true` als `Schade` groter dan of gelijk is aan `RompSterkte`.
-*   `TotaleKracht` (`double`): Een graadmeter voor de gevechtswaarde.
-    *   *Formule:* `(VuurKracht * Ervaring) + (SchildKracht * 0.5)`.
-
-**3. Methoden:**
-*   `Onderhoud()`: Zet `Schade` terug op 0 en toont: *"Schip [Naam] is volledig hersteld."*.
-*   `TrainBemanning()`: Verhoogt `Ervaring` met 1.
-*   `ToonRapport()`: Toont een volledig overzicht van het schip (Naam, Kapitein, Stats, Kracht, Status) in de console.
-
----
-
-## Deel 2: De Vloot Manager (Program.cs)
-
-**1. De Scheepswerf (Generator)**
-
-Maak in je `Program` klasse een *static* methode `MaakWillekeurigSchip(string naam)`.
-*   Deze methode maakt een nieuw `RuimteSchip` aan.
-*   De stats (`Romp`, `Schild`, `Vuur`) worden willekeurig bepaald (Random 10-100).
-*   De kapitein wordt ingesteld op "Onbekend".
-*   Het schip wordt geretourneerd.
-
-**2. De Simulator (Methods & References)**
-Maak een *static* methode `SimuleerGevecht(RuimteSchip s1, RuimteSchip s2)`.
-*   **Null-check:** Controleer eerst of `s1` of `s2` `null` zijn. Indien ja: toon een foutmelding en stop.
-*   **Logica:**
-    *   Bereken de `TotaleKracht` van beide schepen.
-    *   Het schip met de **laagste** kracht verliest.
-    *   **Gevolgen:**
-        *   Het verliezende schip loopt schade op: `Schade` verhoogt met 20.
-        *   Het winnende schip krijgt ervaring: Roep `TrainBemanning()` aan.
-        *   Toon een spannend verslag in de console.
-
-**3. De Garage (Object wijziging)**
-Maak een methode `PimpMijnSchip(RuimteSchip schip)`.
-*   Deze methode accepteert een schip-object.
-*   In de methode:
-    *   Zet de `VuurKracht` op 100.
-    *   Zet de `SchildKracht` op 100.
-    *   *Let op:* Omdat `RuimteSchip` een *reference type* is, zal deze wijziging zichtbaar zijn buiten de methode! Toon dit aan in je Main.
-
----
-
-## Deel 3: Het Scenario (Main)
-
-Schrijf nu een `Main` programma dat alles samenbrengt:
-1.  Gebruik de `MaakWillekeurigSchip` om twee schepen te genereren: *"De Voyager"* en *"De Millenium Falcon"*.
-2.  Zet voor beide schepen een kapitein ("Janeway" en "Solo").
-3.  Toon de rapporten van beide schepen.
-4.  Laat ze vechten (`SimuleerGevecht`).
-5.  Toon de rapporten opnieuw (zie je de schade en ervaring?).
-6.  Stuur de verliezer naar de garage (`PimpMijnSchip`).
-7.  Laat ze nog eens vechten. (De verliezer zou nu moeten winnen met zijn upgrades).
-
-**Extra Uitdaging:**
-Wat als je een schip "kloneert"?
-`RuimteSchip s3 = s1;`.
-Pas `s3` aan (bv. andere naam). Toon nu `s1` opnieuw. Wat merk je? (Dit demonstreert dat variabelen slechts verwijzingen zijn naar hetzelfde object in het geheugen).
-
-
-
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Meetlat
-
-```java
-public class Meetlat
-{
-    private double lengte;
-    public double BeginLengte
-    {
-        set { lengte=value; }
-    }
-
-    public double LengteInM
-    {
-        get{ return lengte;}
-    }
-
-    public double LengteInCm
-    {
-        get{ return lengte*100;}
-    }
-
-    public double LengteInKm
-    {
-        get{ return lengte/1000;}
-    }
-
-    public double LengteInVoet
-    {
-        get{ return lengte*3.2808;}
-    }
-}
-```
-
-
-# Kleurmixer (*Essential*)
-
-```java
-class Kleur
-{
-    public int Rood {get;set;}
-    public int Groen {get;set;}
-    public int Blauw {get;set;}
-
-    public void MengKleur(Kleur voegToeKleur)
-    {
-        Rood = (voegToeKleur.Rood + Rood)/2;
-        Groen = (voegToeKleur.Groen + Groen)/2;
-        Blauw = (voegToeKleur.Blauw + Blauw)/2;
-    }
-}
-```
-
-# Pokémon deel 1
+**Pokémon deel 1**
 
 ```java
 class Pokemon
@@ -522,7 +412,7 @@ class Pokemon
 }
 ```
 
-# Pokémontester
+**Pokémontester**
 
 ```java
 Pokemon aPoke= new Pokemon();
@@ -545,7 +435,7 @@ Console.WriteLine($"Na {levels} keer het level te verhogen:");
 aPoke.ShowInfo();
 ```
 
-# Pokemon generator
+**Pokemon generator**
 
 ```java
 private static Random ran=new Random();
@@ -565,7 +455,7 @@ Pokemon myNewPokemon= GeneratorPokemon();
 Pokemon myOtherPokemon= GeneratorPokemon();
 ```
 
-# Pokémon-battle
+**Pokémon-battle**
 
 ```java
 public static int Battle(Pokemon poke1, Pokemon poke2)
@@ -585,5 +475,125 @@ public static int Battle(Pokemon poke1, Pokemon poke2)
     return 0;
 }
 ```
+::::
+
+
+# Bankmanager 2 (*Essential*)
+
+Breid de bankmanager oefening uit het vorige hoofdstuk uit.
+
+**Nieuwe Methoden (in `Program.cs`):**
+
+1.  `SimuleerOverdracht(Rekening r1, Rekening r2)` (`void`)
+    *   **Loop:** Herhaal 5 keer:
+        *   Kies een **willekeurig bedrag** tussen 1 en 100 euro.
+        *   Stort dit bedrag van de ene rekening naar de andere.
+        *   Wissel per iteratie om wie verzender en wie ontvanger is (r1 -> r2, dan r2 -> r1, etc).
+
+2.  `CreeerTienerRekening(string klantNaam)` (`Rekening`)
+    *   Maak een nieuw `Rekening` object aan.
+    *   Stel de naam in op `klantNaam`.
+    *   Zorg dat de balans start op **50**.
+    *   Retourneer dit nieuwe object.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+::::
+
+
+# Project: SpaceCommand (*Final Essential*)
+
+**Doel**
+Deze opdracht combineert alle concepten van dit hoofdstuk (Properties, Methoden, Statics, Referenties vs Copies) in één grote simulatie. Indien je de Pokémon-opdracht helemaal hebt gemaakt, dan heeft het niet zoveel nut om ook deze te maken. 
+
+**Scenario:**
+Je bent de software-architect van de Aardse Vloot. Je moet een systeem ontwerpen om ruimteschepen te beheren, upgrades te geven en gevechtssimulaties uit te voeren tegen de buitenaardse dreiging.
+
+## Deel 1: Het Ruimteschip
+
+Ontwerp de klasse `RuimteSchip`.
+
+**1. Eigenschappen (Properties):**
+
+*   **Identificatie:**
+    *   `Naam` (`string`): De naam van het schip (bv. "USS Enterprise").
+    *   `Kapitein` (`string`, *private set*): De naam van de bevelhebber. Deze kan enkel ingesteld worden via een methode `WisselKapitein(string nieuweKapitein)`.
+
+*   **Basisstatistieken (Base Stats):**
+    *   Deze worden bij de bouw van het schip vastgelegd (in de main stel je ze in, daarna blijven ze conceptueel vast, hoewel we nog geen constructors gebruiken).
+    *   `RompSterkte` (`int`): 0-100.
+    *   `SchildKracht` (`int`): 0-100.
+    *   `VuurKracht` (`int`): 0-100.
+
+*   **Status:**
+    *   `Ervaring` (`int`): Het level van de bemanning. Start standaard op 0.
+    *   `Schade` (`int`): Hoeveel schade het schip heeft opgelopen. Start op 0.
+
+**2. Berekende Eigenschappen (Read-Only Properties):**
+
+*   `IsKapot` (`bool`): Geeft `true` als `Schade` groter dan of gelijk is aan `RompSterkte`.
+*   `TotaleKracht` (`double`): Een graadmeter voor de gevechtswaarde.
+    *   *Formule:* `(VuurKracht * Ervaring) + (SchildKracht * 0.5)`.
+
+**3. Methoden:**
+
+*   `Onderhoud()`: Zet `Schade` terug op 0 en toont: *"Schip [Naam] is volledig hersteld."*.
+*   `TrainBemanning()`: Verhoogt `Ervaring` met 1.
+*   `ToonRapport()`: Toont een volledig overzicht van het schip (Naam, Kapitein, Stats, Kracht, Status) in de console.
+
+---
+
+## Deel 2: De Vloot Manager (Program.cs)
+
+**1. De Scheepswerf (Generator)**
+
+Maak in je `Program` klasse een *static* methode `MaakWillekeurigSchip(string naam)`.
+
+*   Deze methode maakt een nieuw `RuimteSchip` aan.
+*   De stats (`Romp`, `Schild`, `Vuur`) worden willekeurig bepaald (Random 10-100).
+*   De kapitein wordt ingesteld op "Onbekend".
+*   Het schip wordt geretourneerd.
+
+**2. De Simulator (Methods & References)**
+Maak een *static* methode `SimuleerGevecht(RuimteSchip s1, RuimteSchip s2)`.
+
+*   **Null-check:** Controleer eerst of `s1` of `s2` `null` zijn. Indien ja: toon een foutmelding en stop.
+*   **Logica:**
+    *   Bereken de `TotaleKracht` van beide schepen.
+    *   Het schip met de **laagste** kracht verliest.
+    *   **Gevolgen:**
+        *   Het verliezende schip loopt schade op: `Schade` verhoogt met 20.
+        *   Het winnende schip krijgt ervaring: Roep `TrainBemanning()` aan.
+        *   Toon een spannend verslag in de console.
+
+**3. De Garage (Object wijziging)**
+Maak een methode `PimpMijnSchip(RuimteSchip schip)`.
+
+*   Deze methode accepteert een schip-object.
+*   In de methode:
+    *   Zet de `VuurKracht` op 100.
+    *   Zet de `SchildKracht` op 100.
+    *   *Let op:* Omdat `RuimteSchip` een *reference type* is, zal deze wijziging zichtbaar zijn buiten de methode! Toon dit aan in je Main.
+
+---
+
+## Deel 3: Het Scenario (Main)
+
+Schrijf nu een `Main` programma dat alles samenbrengt:
+
+1.  Gebruik de `MaakWillekeurigSchip` om twee schepen te genereren: *"De Voyager"* en *"De Millenium Falcon"*.
+2.  Zet voor beide schepen een kapitein ("Janeway" en "Solo").
+3.  Toon de rapporten van beide schepen.
+4.  Laat ze vechten (`SimuleerGevecht`).
+5.  Toon de rapporten opnieuw (zie je de schade en ervaring?).
+6.  Stuur de verliezer naar de garage (`PimpMijnSchip`).
+7.  Laat ze nog eens vechten. (De verliezer zou nu moeten winnen met zijn upgrades).
+
+**Extra Uitdaging:**
+Wat als je een schip "kloneert"?
+`RuimteSchip s3 = s1;`.
+Pas `s3` aan (bv. andere naam). Toon nu `s1` opnieuw. Wat merk je? (Dit demonstreert dat variabelen slechts verwijzingen zijn naar hetzelfde object in het geheugen).
+
+::::{.callout-caution collapse="true" title="Oplossing"}
 
 ::::
