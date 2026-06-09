@@ -8,7 +8,7 @@
 
 ### Main
 
-```csharp
+```java
 List<Gebouw> enclave = new List<Gebouw>();
 enclave.Add(new Hospitaal("Sint Vincentius", 4, 5));
 enclave.Add(new Woonst("Tims shack", 1, 1));
@@ -24,7 +24,7 @@ Console.SetCursorPosition(1, 20);
 
 ### Gebouw
 
-```csharp
+```java
 abstract class Gebouw
 {
     public Gebouw(string naamin, int xin, int yin)

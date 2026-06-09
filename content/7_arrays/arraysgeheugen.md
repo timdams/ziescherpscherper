@@ -22,7 +22,7 @@ Alle datatypes die we tot nog toe zagen - ``string`` is een speciaal geval en ne
 Kijk wat er gebeurt bij volgende code:
 
 
-```csharp
+```java
 int[] getallen = {5,42,2};
 int age = 5
 ```
@@ -37,7 +37,7 @@ In ``getallen`` bewaren enkel een geheugenadres bewaren dat wijst naar de plek w
 
 Het gevolg van voorgaande is dat volgende code niet zal doen wat je vermoedelijk wenst:
 
-```csharp
+```java
 string[] ploegen = {"Beerschot", "Antwerp"};
 string[] nieuwePloegen = {"Anderlecht", "Brugge"};
 nieuwePloegen = ploegen;
@@ -64,14 +64,14 @@ Lijn 3 zal perfect werken. Wat er echter is gebeurd, is dat we de referentie naa
 Als je vervolgens schrijft:
 
 
-```csharp
+```java
 nieuwePloegen[1] = "Beerschot";
 ```
 
 Dan is dat hetzelfde als onderstaande schrijven daar beide variabele naar dezelfde array-inhoud verwijzen. Het effect zal dus hetzelfde zijn.
 
 
-```csharp
+```java
 ploegen[1] = "Beerschot";
 ```
 
@@ -84,7 +84,7 @@ En waar staan de ploegen in de nieuwePloegen array (``"Anderlecht"`` en ``"Brugg
 
 Wil je  arrays kopiëren dan kan dat **niet** als volgt:
 
-```csharp
+```java
 string[] ploegen = {"Beerschot", "Antwerp"};
 string[] nieuwePloegen = {"Anderlecht", "Brugge"};
 nieuwePloegen = ploegen; //FAIL!!!
@@ -92,7 +92,7 @@ nieuwePloegen = ploegen; //FAIL!!!
 
 **Je moet manueel ieder individueel element van de ene naar de andere array kopiëren** als volgt:
 
-```csharp
+```java
 for(int i = 0; i < ploegen.Length; i++)
 {
     nieuwePloegen[i] = ploegen[i];

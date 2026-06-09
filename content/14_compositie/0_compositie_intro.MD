@@ -62,7 +62,7 @@ Het verschil tussen aggregatie en compositie is vooral van filosofische aard. In
 
 Eens kijken naar het voorbeeld van de computer en de harde schijf. We hebben twee klassen:
 
-```csharp
+```java
 internal class PC
 {
 }
@@ -73,7 +73,7 @@ internal class HardeSchijf
 
 Een *PC heeft een HardeSchijf*, dit wil zeggen dat we in de klasse ``PC`` een object (instantievariabele) van het type ``HardeSchijf`` zullen definiëren:
 
-```csharp
+```java
 internal class PC
 {
     private HardeSchijf cHardeSchijf;
@@ -94,7 +94,7 @@ Associatie is net zoals overerving een belangrijk onderdeel van het OOP paradigm
 
 Wanneer we wensen dat iedere nieuwe PC ogenblikkelijk een interne harde schijf heeft dan kunnen we dit doen door ogenblikkelijk de instantievariabele een object te geven: 
 
-```csharp
+```java
 internal class PC
 {
     private HardeSchijf cHardeSchijf = new HardeSchijf();
@@ -106,7 +106,7 @@ internal class PC
 #### Manier 2: Via de constructor(s)
 Willen we echter bij het aanmaken van een nieuwe pc ook iets meer controle over wat voor harde schijf er wordt geïnstalleerd, dan kan dit ook via de constructors. We zouden dan bijvoorbeeld afhankelijk van bepaalde parameters in de (overloaded) constructors de schijf andere eigenschappen kunnen geven:
 
-```csharp
+```java
 internal class PC
 {
     private HardeSchijf cHardeSchijf;
@@ -140,7 +140,7 @@ De vorige 2 voorbeelden waren eigenlijk voorbeelden van *compositie*. Wanneer de
 
 Willen we echter via *aggregatie* de pc's bouwen, dan is het logischer dat we op een *externe* plaats de ``HardeSchijf`` objecten aanmaken. Nadat de PC werd aangemaakt zullen we de de schrijf in de PC plaatsen. We gebruiken hierbij properties om toegang tot de interne (geaggregeerde) variabele te verschaffen:
 
-```csharp
+```java
 internal class PC
 {
     public HardeSchijf CHardeSchijf {get;set;}
@@ -152,7 +152,7 @@ internal class PC
 
 Vervolgens kunnen we nu van buiten het object benaderen en er, als het ware, een nieuwe harde schijf in steken:
 
-```csharp
+```java
 HardeSchijf mijnHardeSchijf = new HardeSchijf() 
 PC mijnPC = new PC();
 mijnPC.CHardeSchijf = mijnHardeSchijf ;
@@ -173,7 +173,7 @@ Kortom, nog steeds niets nieuws onder de zon. Alle manieren die ja al kende om m
 
 Stel je voor dat de klasse ``HardeSchijf`` ook een auto-property ``MaxCapacity`` heeft. De klasse ``PC`` kan dankzij compositie dus nu ook die property gebruiken, zoals volgende voorbeeld toont:
 
-```csharp
+```java
 internal class PC
 {
     private HardeSchijf cHardeSchijf = new HardeSchijf();
@@ -194,7 +194,7 @@ Het moge duidelijk zijn: compositie/aggregatie en referenties horen samen. Maar 
 Wanneer we van voorgaande klasse een object aanmaken als volgt:
 
 
-```csharp
+```java
 PC mijnSuperPC = new PC();
 ```
 
@@ -217,7 +217,7 @@ Een veelvoorkomende fout bij compositie en aggregatie van objecten is dat je een
 
 Het is dus zeker bij compositie en aggregatie een goede gewoonte om zoveel mogelijk te controleren op ``null`` telkens je het object gaat gebruiken:
 
-```csharp
+```java
 public override string ToString()
 {
     string result= "Dit is een Intel i9.";
@@ -238,7 +238,7 @@ En uiteraard kan het ook nooit kwaad om alles in ``try-catch`` blokken te zetten
 
 Wanneer een object meerdere objecten van een specifiek type heeft (denk maar aan een boek met pagina's) dan zullen we een array of een ``List`` als associatie-object gebruiken. Een voorbeeld:
 
-```csharp
+```java
 internal class Pagina
 {
 }
@@ -250,7 +250,7 @@ internal class Boek
 
 Indien je nu een pagina wenst toe te voegen dan moet je ook deze individuele array-elementen nog instantiëren.
 
-```csharp
+```java
 internal class Boek
 {
     public Pagina[] AllePaginas {get;set;} = new Pagina[100];
@@ -263,7 +263,7 @@ internal class Boek
 
 Een voorbeeld waarbij men vervolgens van buiten het object bestaande pagina's kan toevoegen:
 
-```csharp
+```java
 Boek zieScherper = new Boek();
 Pagina mijnDerdePagina = new Pagina();
 zieScherper.InsertPagina(mijnDerdePagina, 2);
@@ -273,7 +273,7 @@ zieScherper.InsertPagina(mijnDerdePagina, 2);
 
 Of een voorbeeld met ``List``:
 
-```csharp
+```java
 internal class Boek
 {
     //SLECHT IDEE!
@@ -283,7 +283,7 @@ internal class Boek
 
 Dit heeft als voordeel dat we de ``Insert`` methode van de ``List``-klasse kunnen gebruiken en niet zelf nog moeten schrijven:
 
-```csharp
+```java
 zieScherper.AllePaginas.Insert(new Pagina(), 5);   
 ```
 
@@ -291,7 +291,7 @@ Dit voorbeeld met ``List`` is vanuit OOP-standpunt **geen goede oplossing**. Het
 
 We willen echter zo goed mogelijk een **blackbox** creëren, conform het abstractie-principe, die van buiten duidelijk en eenvoudig in gebruik is. Het is daarom beter om alsnog aan je ``Boek`` klasse een ``Insert`` methode toe te voegen. Dit geeft als extra verbetering dat we daarmee de ``set`` van onze lijst van pagina's ``private`` kunnen houden:
 
-```csharp
+```java
 internal class Boek
 {
     public List<Pagina> AllePaginas {get; private set;} = new List<Pagina>();
@@ -306,7 +306,7 @@ internal class Boek
 Pagina's voegen we nu als volgt toe:
 
 
-```csharp
+```java
 zieScherper.InsertPagina(new Pagina(), 5); 
 ```
 
@@ -321,7 +321,7 @@ Associatie laat ons toe om 2 (of meer) totaal verschillende soorten zaken met el
 
 Zoals je hopelijk beseft kan dus alles een compositieobject zijn in een ander object. Denk maar aan een ``Dictionary`` van klanten die je gebruikt in een klasse ``Winkel``. Of wat te denken van de klasse ``Mens`` die uit een hele boel organen bestaat. Ieder orgaan is compositie-object in de klasse ``Mens``, zoals 2 ``Nier``-objecten, een ``Hersenen`` instantie, 1 ``Hart`` instantie enz. Iemand die in jouw Mens-simulator een nieuw hart nodig heeft kan dat dan dankzij *manier 3*, via een property ingeplant krijgen:
 
-```csharp
+```java
 Mens patient = new Mens();
 Mens donor = new Mens();
 //Donor heeft een tragisch ongeluk en sterft

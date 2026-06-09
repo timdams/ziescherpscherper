@@ -42,7 +42,7 @@
 ## Concrete suggesties
 
 1. Voeg een sectie *Ternary operator* toe in [0_if.md](0_if.md) na *If/else*:
-   ```csharp
+   ```java
    string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong";
    ```
    Korte sectie, één voorbeeld, klaar.

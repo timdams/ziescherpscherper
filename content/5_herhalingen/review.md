@@ -43,7 +43,7 @@
 ## Concrete suggesties
 
 1. Voeg in [2_for.md](2_for.md) een korte mini-sectie toe over compound assignment vóór regel 42:
-   ```csharp
+   ```java
    i = i + 2; //werkt
    i += 2;    //compacter, identiek
    i++;       //hetzelfde als i = i + 1

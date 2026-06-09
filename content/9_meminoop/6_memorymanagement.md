@@ -67,7 +67,7 @@ Dit zijn alle gekende, 'eenvoudige' datatypes die we totnogtoe gezien hebben:
 
 Wanneer we een value-type willen kopiëren gebruiken we de =-operator die de waarde van de rechtse operand zal uitlezen en zal kopiëren naar de linkse operand:
 
-```csharp
+```java
 int getal = 3;
 int anderGetal = getal;
 ```
@@ -75,7 +75,7 @@ int anderGetal = getal;
 Vanaf nu zal ``anderGetal`` de waarde ``3`` hebben. Als we nu één van beide variabelen aanpassen dan zal dit **geen** effect hebben op de andere variabelen.
 
 We zien hetzelfde effect wanneer we een methode maken die een parameter van het value type aanvaardt: 
-```csharp
+```java
 void VerhoogParameter(int a)
 {
     a++;
@@ -86,7 +86,7 @@ void VerhoogParameter(int a)
 
 
 Bij de aanroep geven we een kopie van de variabele mee:
-```csharp
+```java
 int getal = 5;
 VerhoogParameter(getal);
 Console.WriteLine($"Na methode {getal}");
@@ -127,7 +127,7 @@ We bekijken nu de impact van de = operator bij:
 We zien dit gedrag bij alle reference types, zoals objecten:
 
 
-```csharp
+```java
 Student stud = new Student();
 ```
 
@@ -139,7 +139,7 @@ Wat gebeurt er hier?
 
 Laten we eens inzoomen op voorgaande door de code even in 2 delen op te splitsen:
 
-```csharp
+```java
 Student stud;
 stud = new Student();
 ```
@@ -176,7 +176,7 @@ Ik ga nogal licht over het ``new``-keyword en de constructor. Maar zoals je merk
 
 Zoals we in hoofdstuk 8 hebben gezien, zien we het zelfde gedrag bij arrays:
 
-```csharp
+```java
 int[] nummers = {4,5,10};
 int[] andereNummers = nummers;
 ```
@@ -185,7 +185,7 @@ In dit voorbeeld zal ``andereNummers`` nu dus ook verwijzen naar de array in de 
 
 Als we dus volgende code uitvoeren dan ontdekken we dat beide variabele naar dezelfde array verwijzen:
 
-```csharp
+```java
 andereNummers[0] = 999;
 Console.WriteLine(andereNummers[0]);
 Console.WriteLine(nummers[0]);
@@ -207,7 +207,7 @@ We zullen dus als output krijgen:
 
 Hetzelfde gedrag zien we bij objecten:
 
-```csharp
+```java
 Student a = new Student("Abba");
 Student b = new Student("Queen");
 ```
@@ -222,7 +222,7 @@ Geeft volgende situatie in het geheugen:
 
 Schrijven we dan het volgende:
 
-```csharp
+```java
 b = a;
 Console.WriteLine(a.Naam);
 ```
@@ -250,7 +250,7 @@ De GC zal geregeld het geheugen doorlopen en kijken of er in de heap objecten st
 
 In dit voorbeeld zien we dit in actie:
 
-```csharp
+```java
 Held supermand = new Held();
 Held batmand = new Held();
 batmand = supermand;
@@ -258,7 +258,7 @@ batmand = supermand;
 
 Vanaf de laatste lijn zal er geen referentie meer naar het originele object zijn waar ``batmand`` naar verwees in de heap, daar we deze hebben overschreven met een referentie naar het eerste ``Held`` object in ``supermand``. De GC zal dus dat tweede aangemaakte ``Held`` object verwijderen. Wil je dat niet dan zal je minstens 1 variabele moeten hebben die naar de data verwijst. Volgend voorbeeld toont dit:
 
-```csharp
+```java
 Held supermand = new Held();
 Held batmand = new Held();
 Held bewaarEersteHeld = batmand;

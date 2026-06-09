@@ -59,7 +59,7 @@ Iedere groene klasse heeft:
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Karakter op positie zetten
-```csharp
+```java
 Console.SetCursorPosition(X, Y);
 Console.Write("H");
 ```
@@ -76,7 +76,7 @@ In je `ToString` override kan je `base.ToString()` gebruiken om het resultaat va
 
 Plaats deze code in je `Main` en controleer de output:
 
-```csharp
+```java
 List<Gebouw> enclave = new List<Gebouw>();
 enclave.Add(new Hospitaal("Sint Vincentius", 4, 5));
 enclave.Add(new Woonst("Tims shack", 1, 1));
@@ -112,7 +112,7 @@ Zorg dat elk gebouwtype in een andere kleur op het scherm verschijnt. Een woonst
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Console kleuren
-```csharp
+```java
 Console.ForegroundColor = ConsoleColor.Red;
 Console.Write("H");
 Console.ResetColor();

@@ -6,7 +6,7 @@ Het type ``string`` is niet meer dan een arrays van karakters, ``char[]``. Het i
 
 Om de aparte karakters van een ``string`` te bewerken zet je deze best om naar een *char-array* . Dit kan gebruikmakend van ``.ToCharArray()`` als volgt:
 
-```csharp
+```java
 string origineleZin = "Ik ben Tom";
 char[] karakters = origineleZin.ToCharArray();
 karakters[8] = 'i';
@@ -18,7 +18,7 @@ De array zal nu het volgende bevatten:``Ik ben Tim``. Willen je dit nu terug als
 
 Ook de omgekeerde weg is mogelijk. De werking is iets anders en maakt gebruik van ``new string()``. Let vooral op hoe we de char array doorgeven als argument bij het aanmaken van een nieuwe ``string`` in lijn 3:
 
-```csharp
+```java
 char[] alleKarakters = {'h', 'a', 'l', 'l', 'o'};
 alleKarakters[2] = 'x';
 string woord = new string(alleKarakters);
@@ -34,7 +34,7 @@ Volgende methoden kan je rechtstreeks op string-variabelen oproepen:
 #### Length
 Geeft het totaal aantal karakters in de string wat logisch is, daar het om een array gaat:
 
-```csharp
+```java
 string myName = "Tim";
 Console.WriteLine(myName.Length); //er verschijnt 3 op het scherm
 ```
@@ -45,7 +45,7 @@ Console.WriteLine(myName.Length); //er verschijnt 3 op het scherm
 
 Deze methode geeft een ``int`` terug die de index bevat waar de string die je als parameter meegaf begint. Je kan deze index gebruiken om te ontdekken of een bepaald woord bijvoorbeeld in een grote lap tekst voorkomt zoals volgend voorbeeld toont:
 
-```csharp
+```java
 string boek = "Ik ben Reinhardt";
 int index = boek.IndexOf("ben");
 Console.WriteLine(index); 
@@ -57,7 +57,7 @@ Er zal ``3`` verschijnen op scherm. De substring "ben" start op positie 3. "ik" 
 
 ``Trim()`` verwijdert alle onnodige spaties en andere onzichtbare tekens vooraan en achteraan de string. Deze methode geeft de opgekuiste string terug als resultaat. Dit resultaat moet je dus bewaren als je er nog iets mee wilt doen. In het volgende voorbeeld overschrijven we de originele string met z'n opgekuiste versie:
 
-```csharp
+```java
 string boek = "   Ik ben Reinhardt   ";
 Console.WriteLine(boek);
 boek = boek.Trim();
@@ -78,7 +78,7 @@ Ik ben Reinhardt
 
 ``ToUpper`` zal de meegegeven string naar ALLCAPS omzetten en geeft de nieuwe string als resultaat terug. ``ToLower()``doet het omgekeerde.
 
-```csharp
+```java
 string boek = "Ik ben Reinhardt";
 Console.WriteLine(boek.ToUpper());
 Console.WriteLine(boek.ToLower());
@@ -87,7 +87,7 @@ Console.WriteLine(boek.ToLower());
 Output op het scherm:
 
 
-```csharp
+```java
 IK BEN REINHARDT
 ik ben reinhardt
 ```
@@ -100,7 +100,7 @@ ik ben reinhardt
 
 Volgende voorbeeld toont dit en zal "Mercy" vervangen door "Reinhardt":
 
-```csharp
+```java
 string boek = "Ik ben Mercy";
 boek = boek.Replace("Mercy","Reinhardt");
 Console.WriteLine(boek);
@@ -109,7 +109,7 @@ Console.WriteLine(boek);
 :::{.callout-tip}
 ``Replace`` kan je ook misbruiken om bijvoorbeeld alle woorden uit een stuk tekst te verwijderen door deze te vervangen door een lege ``string`` met de waarde ``""``. Volgende code zal alle ``"e"``'s uit de tekst verwijderen:
 
-```csharp
+```java
 string boek = "Ik ben Mercy";
 boek = boek.Replace("e", "");
 Console.WriteLine(boek);
@@ -125,7 +125,7 @@ Waardoor we ``Ik bn Mrcy`` op het scherm krijgen.
 
 Volgend voorbeeld zal het stukje "ben " uit de ``string`` weghalen:
 
-```csharp
+```java
 string boek = "Ik ben Mercy";
 boek = boek.Remove(3,4);
 Console.WriteLine(boek);
@@ -151,7 +151,7 @@ Volgende twee methoden zijn ``static`` en moet je  via de klasse ``String`` doen
 
  De ``Split`` methode laat toe een string te splitsen op een bepaald teken. Het resultaat is steeds een **array van strings**.
 
-```csharp
+```java
 string data = "12,13,20";
 string[] gesplitst = data.Split(',');
 
@@ -170,7 +170,7 @@ Via ``Join`` kunnen we een array van strings terug samenvoegen. Het resultaat is
 Volgende voorbeeld zal de eerder gesplitste array van het vorige voorbeeld opnieuw samenvoegen maar nu met telkens een ``;`` tussen iedere string:
 
 
-```csharp
+```java
 string joined = String.Join(";", gesplitst);
 ```
 

@@ -23,7 +23,7 @@ Dat "protocol" is in C# een **interface**: een contract dat vastlegt *wat* een k
 
 Definieer een interface `IInstalleerbaar`:
 
-```csharp
+```java
 interface IInstalleerbaar
 {
     string Naam { get; }
@@ -88,7 +88,7 @@ Maak minstens de volgende klassen die `IInstalleerbaar` implementeren:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 // Dit WERKT — ondanks dat deze klassen niets met elkaar gemeen hebben
 List<IInstalleerbaar> upgrades = new List<IInstalleerbaar>();
 upgrades.Add(new SchildGenerator("Schild-1", 2, 3));
@@ -105,7 +105,7 @@ Merk op: `SchildGenerator` is een `Module`, maar `GeavanceerdeScanner` en `Alien
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Interface implementeren
-```csharp
+```java
 class SchildGenerator : Module, IInstalleerbaar
 {
     public int EnergieVerbruik { get { return 30; } }
@@ -127,7 +127,7 @@ Een klasse kan van één klasse erven EN meerdere interfaces implementeren.
 
 Niet alle upgrades kunnen gerepareerd worden na schade. Definieer een tweede interface:
 
-```csharp
+```java
 interface IHerstelbaar
 {
     int Schade { get; }
@@ -144,7 +144,7 @@ De `GeavanceerdeScanner` en `AlienMedKit` implementeren `IHerstelbaar` **niet** 
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 // Niet elke IInstalleerbaar is IHerstelbaar
 foreach (IInstalleerbaar u in upgrades)
 {
@@ -178,7 +178,7 @@ Maak een klasse `UpgradeManager` met:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 UpgradeManager manager = new UpgradeManager();
 manager.Installeer(new SchildGenerator("Schild-1", 2, 3));
 manager.Installeer(new GeavanceerdeScanner(500));
@@ -240,7 +240,7 @@ De reis is geslaagd! Het volgende artefact is bereikt.
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Random events
-```csharp
+```java
 Random r = new Random();
 string[] events = { "straling", "puin", "scan", "medisch", "rust" };
 string huidigEvent = events[r.Next(events.Length)];

@@ -4,7 +4,7 @@
 
 ### Station
 
-```csharp
+```java
 class Station
 {
     protected static Random r = new Random();
@@ -64,7 +64,7 @@ class Station
 
 ### Hoofdstation
 
-```csharp
+```java
 class Hoofdstation : Station
 {
     private FusieReactor fusieReactor;

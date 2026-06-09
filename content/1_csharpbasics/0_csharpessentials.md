@@ -146,7 +146,7 @@ Eén lijn commentaar geef je aan door de lijn te starten met twee voorwaartse sl
 
 ``//`` zal alle tekens die volgen tot aan de volgende witregel in commentaar zetten:
 
-```csharp
+```java
 //De start van het programma
 int getal = 3;
 //Nu gaan we rekenen
@@ -159,7 +159,7 @@ Console.WriteLine(result); //We tonen resultaat op scherm: 15
 
 We kunnen een stuk tekst als commentaar aangeven door voor de tekst ``/*`` te plaatsen en ``*/`` achteraan. Een voorbeeld:
 
-```csharp
+```java
 /*
     Een blok commentaar
     Een heel verhaal, dit wordt mooi

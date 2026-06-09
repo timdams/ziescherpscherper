@@ -284,7 +284,7 @@ Bouw extra functionaliteit naar keuze bij de StudentOrganizer, zoals:
 
 
 ## StudentKlasse
-```csharp
+```java
 enum Klassen { EA1, EA2, EA3, EA4}
 
 class Student
@@ -455,7 +455,7 @@ Je zal volgende klassen nodig hebben:
 
 Volgende klasse stelt een bestelling voor:
 
-```csharp
+```java
 class Bestelling
 {
     public List<string> Gerechten { get; set; }
@@ -496,7 +496,7 @@ Het programma stopt.
 
 Volgende objecten heb je nodig:
 
-```csharp
+```java
 Queue<Bestelling> bestellingen = new Queue<Bestelling>();
 Dictionary<string, int> populariteit = new Dictionary<string, int>();
 List<Bestelling> geschiedenis = new List<Bestelling>();
@@ -504,7 +504,7 @@ List<Bestelling> geschiedenis = new List<Bestelling>();
 
 En dit zijn de methoden in je hoofdprogramma:
 
-```csharp   
+```java   
 static void PlaatsBestelling(Queue<Bestelling> bestellingen)
 static void VerwerkBestelling( Queue<Bestelling> bestellingen,List<Bestelling> geschiedenis,Dictionary<string, int> populariteit)
 static void ToonGeschiedenis( List<Bestelling> geschiedenis,Dictionary<string, int> populariteit )
@@ -662,7 +662,7 @@ Probeer met behulp van hulpmethoden in Program.cs om zo veel mogelijk code te he
 Enkele zaken die je nodig hebt:
 
 **BookMark klasse:**
-```csharp
+```java
 class BookMark
 {
 
@@ -691,7 +691,7 @@ class BookMark
 
 Voorbeeld van hoe de bookmark klasse zal werken:
 
-```csharp
+```java
 BookMark u = new BookMark();
 u.Naam = "Google";
 u.URL = "https://www.google.be";

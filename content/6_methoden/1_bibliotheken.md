@@ -33,7 +33,7 @@ De online documentatie van VS is zeer uitgebreid en dankzij **IntelliSense** kri
 
 Type eens het volgende in:
 
-```csharp
+```java
 System.Console.
 ```
 
@@ -51,14 +51,14 @@ Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden a
 
 Vaak moet je code schrijven waarin je een getal aan de gebruiker vraagt:
 
-```csharp
+```java
 Console.WriteLine("Geef leeftijd");
 int leeftijd = int.Parse(Console.ReadLine());
 ```
 
 Als deze constructie op meerdere plekken in een project voorkomt dan is het nuttig om deze twee lijnen naar een methode te verhuizen die er dan zo kan uitzien:
 
-```csharp
+```java
 static int VraagInt(string zin)
 {
     Console.WriteLine(zin);
@@ -69,7 +69,7 @@ static int VraagInt(string zin)
 De code van zonet kan je dan nu herschrijven naar:
 
 
-```csharp
+```java
 int leeftijd = VraagInt("Geef leeftijd");
 ```
 

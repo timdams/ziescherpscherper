@@ -10,7 +10,7 @@ Toon de werking aan in een klein voorbeeld programma.
 :::
 
 
-```csharp
+```java
 public class Rechthoek: IComparable
 {
     //Alle vorige zaken
@@ -72,7 +72,7 @@ Plaats van iedere klasse 2 objecten  in een gemeenschappelijke lijst en zorg erv
 
 
 
-```csharp
+```java
 
 List<object> vervuilers = new List<object>();
 vervuilers.Add(new Plant());
@@ -109,7 +109,7 @@ if(maxindex>-1)
 ```
 
 
-```csharp
+```java
 public class Huis : ICarbonFootPrint
 {
     public int Volume { get; set; }
@@ -272,7 +272,7 @@ Voorgaande beschrijving is een ‘minimale’ beschrijving. Voorzie extra functi
 
 ``Location`` is van het type ``Point`` (compositie). ``Point`` is een zelfgemaakte mini klasse die er als volgt uit (minimaal uitziet): 
 
-```csharp
+```java
 class Point
 {
   public int X{get;set;}

@@ -34,7 +34,7 @@ Voeg toe:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 Station s = new Station();
 s.ToonStation();  // 3x 'k', 1x 'r' en 1x 'M' op willekeurige posities
 s.BouwKwartier();
@@ -69,7 +69,7 @@ Toont alles wat de base-versie toont, plus de extra modules van het hoofdstation
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 Hoofdstation hs = new Hoofdstation();
 // Start met 3 kwartieren (van Station-constructor)
 hs.BouwKwartier();  // 4 kwartieren

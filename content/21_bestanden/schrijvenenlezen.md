@@ -11,7 +11,7 @@ Er is geen vaste manier om dit te doen. Alles hangt af van je specifieke problee
 
 Met behulp van een ``StreamWriter`` kan je data naar een bestand (of een andere *streambron*) wegschrijven. Het gebruik ervan is verrassend eenvoudig.
 
-```csharp
+```java
 StreamWriter writer = new StreamWriter("doeeeeeem.txt",true):
 writer.WriteLine("Game over!");
 ```
@@ -26,7 +26,7 @@ En ja, uiteraard is er dus ook een manier om tekst uit een bestand te lezen. De 
 
 Volgende voorbeeld gebruikt een ``StreamReader`` om ons tekstbestand lijn per lijn op het scherm te tonen:
 
-```csharp
+```java
 StreamReader reader = new StreamReader("doeeeeeem.txt");
 string regel;
 
@@ -62,7 +62,7 @@ using (resource aanmaken dat netjes moet worden opgeruimd)
 
 Volgend voorbeeld, waarin we een StreamWriter gebruiken, toont de werking ervan:
 
-```csharp
+```java
 using (StreamWriter writer = new StreamWriter("doem.txt"))
 {
     writer.WriteLine("Het einde is nabij!");
@@ -79,7 +79,7 @@ Wanneer de accolades van lijn 5 worden bereikt, zal het object dat in lijn1 werd
 
 Dankzij ``StreamReader`` en ``StreamWriter`` hebben we nu reeds een goede greep op werken met bestanden. Laten we eens alles combineren tot een functioneel programma. We maken een dagboek-programma. Telkens het programma opstart zal het de reeds bestaande dagboek-schrijfsels tonen. Vervolgens kan de gebruiker een nieuwe tekst toevoegen. Nadien sluit het programma af. We gebruiken  ``DateTime.Now`` om ieder schrijfsel van een duidelijke tijd en datum te voorzien:
 
-```csharp
+```java
 string dagboekPath = "dagboek.txt";
 if (!File.Exists(dagboekPath))
 {
@@ -123,7 +123,7 @@ De ``BinaryWriter`` is nog relatief eenvoudig. De werking is zeer gelijklopend m
 
 Om een bestand te openen met een ``BinaryWriter`` gebruiken we de ``File``-klasse. We moeten daarbij ook expliciet aangeven hoe het bestand moet aangemaakt worden (indien het niet bestaat):
 
-```csharp
+```java
 FileStream fs = File.Open("bondData.dat", FileMode.Create);
 using (BinaryWriter writer = new BinaryWriter(fs))
 {
@@ -149,7 +149,7 @@ Het andere verschil met de ``TextWriter`` is dat je nu alleen een ``Write``-meth
 
 In volgende voorbeeld schrijven we 3 verschillende zaken weg, een ``string``, een ``int`` en uiteindelijk een ``bool``:
 
-```csharp
+```java
 var fs = File.Open("bondData.dat", FileMode.Create);
 using (BinaryWriter writer = new BinaryWriter(fs))
 {
@@ -167,7 +167,7 @@ Dit genereert een bestand van 10 bytes. Als we dit bestand vervolgens op binair 
 
 Stel nu dat we een complexer voorbeeld hebben waarbij we nog meer typen data willen wegschrijven, zoals een ``double`` en een ``char``:
 
-```csharp
+```java
 var fs = File.Open("bondDataAdvanced.dat", FileMode.Create);
 using (BinaryWriter writer = new BinaryWriter(fs))
 {
@@ -200,7 +200,7 @@ Hierdoor kunnen we specifiek aangeven welk type data we willen inlezen en kan de
 
 Als we dus het ``bondData.dat`` bestand vervolgens willen uitlezen dan moet dit als volgt:
 
-```csharp
+```java
 var fs = File.Open("bondData.dat", FileMode.Open);
 using (BinaryReader reader = new BinaryReader(fs))
 {
@@ -229,7 +229,7 @@ De ``File``-klasse heeft een handige methode ``ReadAllBytes`` waarmee je snel de
 
 De ``ReadAllBytes`` methode zal een array van ``byte`` teruggeven die we vervolgens kunnen overlopen in een loop. Als handigheidje gebruiken een string formatter ``X2`` (zie hoofdstuk 4) om de bytes als hexadecimale waarden af te drukken:
 
-```csharp
+```java
 byte[] inhoud = File.ReadAllBytes("bondData.dat");
 
 foreach (byte b in inhoud)

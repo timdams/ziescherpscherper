@@ -27,7 +27,7 @@ Stel je voor dat we het copyright karakter wensen te gebruiken (de letter c in e
 Kopieer het karakter zelf en plaats het in je code waar je het nodig hebt, bijvoorbeeld:
 
 
-```csharp
+```java
 Console.WriteLine("<plak hier je speciale teken>"); 
 ```
 
@@ -39,14 +39,14 @@ Casting leg ik pas in het volgende hoofdstuk uit, maar het kan geen kwaad om al 
 
 Noteer de hexadecimale code van het karakter dat in de tabel staat. In dit geval is dat dus ``0x00A9``. Om dit teken te tonen schrijf je dan:
 
-```csharp
+```java
 char copyright = (char)0x00A9;
 Console.WriteLine(copyright);
 ```
 
 Dit kan ook korter. Door gebruik te maken van de ``\u``-notatie om hexadecimale waarden voor te stellen:
 
-```csharp
+```java
 Console.WriteLine("\u00A9");
 ```
 
@@ -61,7 +61,7 @@ Stel dat je een toffe titel of tekening bijvoorbeeld via **ASCIIflow.com** maakt
 
 Bijvoorbeeld:
 
-```csharp
+```java
 string myname = @"
 ___________________   
 \__    ___/\______ \  
@@ -76,7 +76,7 @@ Console.WriteLine(myname);
 Zowel de $-notatie (voor string interpolatie) als het @-teken kan je gecombineerd gebruiken bij een string:
 
 
-```csharp
+```java
 Console.WriteLine($@"1/1={1+1}. \tGeen tab");
 ```
 
@@ -96,7 +96,7 @@ Het probleem was dat het euro-teken als een ``?`` op het scherm verscheen. Dit i
 
 Willen we dit teken dus gebruiken dan moeten we nog eerst de juiste *encoding* aanduiden bovenaan:
 
-```csharp
+```java
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.WriteLine($"{12.3456:C}")
 ```

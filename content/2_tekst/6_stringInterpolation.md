@@ -14,7 +14,7 @@ In de volgende sectie gaan we van volgende informatie uit:
 
 Je kan strings en variabelen eenvoudig bij elkaar 'optellen' zoals we in het begin van dit boek hebben gezien. Ze worden dan achter elkaar geplakt (**geconcateneerd**). 
 
-```csharp
+```java
 string zin = "Ik ben " + naam + " en ik ben " + leeftijd+ " jaar.";
 ```
 
@@ -22,7 +22,7 @@ Let er op dat je tussen de aanhalingsteken (binnen de strings) spaties zet indie
 
 Kijk zelf:
 
-```csharp
+```java
 Console.WriteLine("1"+1+1);
 Console.WriteLine(1+1+"1");
 Console.WriteLine("1" + (1 + 1));
@@ -56,7 +56,7 @@ Dankzij *string interpolation* kan dit wel **waarbij we het ``$``-teken gebruike
 Door het $-teken **VOOR** de string te plaatsen geef je aan dat alle delen in de string die *tussen accolades staan* als code mogen beschouwd worden. Een voorbeeld maakt dit duidelijk:
 
 
-```csharp
+```java
 string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
 ```
 
@@ -69,7 +69,7 @@ Het resultaat zal dan worden: ``Ik ben Finkelstein en ik ben 13 jaar.``
 #### Berekeningen doen bij string interpolatie
 
 Je mag eender welke *expressie* tussen de accolades zetten bij string interpolation, denk maar aan:
-```csharp
+```java
 string zin = $"Ik ben {leeftijd+4} jaar.";
 ```
 
@@ -78,7 +78,7 @@ Alle expressies tussen de accolades zullen eerst uitgevoerd worden voor ze tusse
 Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of zelfs andere methoden aanroepen:
 
 
-```csharp
+```java
 string zin = $"Ik ben {leeftijd*leeftijd+(3*2)} jaar.";
 ```
 
@@ -86,7 +86,7 @@ string zin = $"Ik ben {leeftijd*leeftijd+(3*2)} jaar.";
 Uiteraard mag je dit dus ook gebruiken wanneer je eenvoudigere zaken naar het scherm wenst te sturen gebruik makende van ``Console.WriteLine`` en interpolatie:
 
 
-```csharp
+```java
 Console.WriteLine($"3 maal 9 is {3*9}");
 ```
 :::
@@ -99,7 +99,7 @@ Bij string interpolation kan je ook extra informatie meegeven hoe het resultaat 
 
 Wil je een kommagetal tonen met maar 2 cijfers na de komma dan schrijf je:
 
-```csharp
+```java
 double number = 12.345;
 Console.WriteLine($"{number:F2}");
 ```
@@ -126,14 +126,14 @@ Alle overige format specifiers kan je in de documentatie opzoeken[^formatdoc].
 
 Een andere eenvoudige manier om strings te formatteren is door middel van een masker bestaande uit 0'n. Dit ziet er als volgt uit:
 
-```csharp
+```java
 double number = 12.345;
 Console.WriteLine($"{number:0.00}");
 ```
 
 We geven hierbij aan dat de variabele tot 2 cijfers na de komma moet getoond worden. Indien deze maar 1 cijfer na de komma bevat dan deze toch met twee cijfers getoond worden. Volgende voorbeeld toont dit:
 
-```csharp
+```java
 double number = 12.3;
 Console.WriteLine($"{number:0.00}");
 ```
@@ -142,7 +142,7 @@ Er zal ``12,30`` op het scherm verschijnen.
 
 Je kan dit masker ook gebruiken om te verplichten dat getallen bijvoorbeeld steeds met **minimum** 3 cijfers voor de komma getoond worden. Volgende voorbeeld toont dit:
 
-```csharp
+```java
 double number = 12.3;
 double number2 = 99999.3;
 Console.WriteLine($"{number:000.00}");
@@ -168,7 +168,7 @@ In de appendix leg ik uit hoe je vroeger met behulp van ``String.Format()`` stri
 
 We hebben al gezien dat intern een ``char`` als een geheel getal wordt voorgesteld. Stel dat we volgende ``char``-variabelen aanmaken: 
 
-```csharp
+```java
 char letter1 = 'A';
 char letter2 = 'B';
 ```
@@ -176,7 +176,7 @@ char letter2 = 'B';
 Bij string mogen we de +-operator gebruiken om 2 strings aan elkaar te plakken. **Bij char mag dat niet!** Of beter, dit mag maar zal niet het resultaat geven dat je mogelijk verwacht wanneer je voor het eerst hiermee leert werken. Oordeel zelf:
 
 
-```csharp
+```java
 Console.WriteLine(letter1 + letter2);
 ```
 

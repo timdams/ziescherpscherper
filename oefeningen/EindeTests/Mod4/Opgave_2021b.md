@@ -87,7 +87,7 @@ Volgende diagram toont alle klassen en interfaces die je moet maken:
 
 Plekken waar het ruimteschip zal kunnen tanken hebben deze interface. De interface is als volgt gedefinieerd:
 
-```csharp
+```java
 interface IEnergieGever
 {
     long GeefEnergie();
@@ -125,7 +125,7 @@ Een ``TankTussenstation`` is een ``Reisbestemming`` die de ``IEnergieGever``-int
 
 Deze klasse heeft één methode met volgende signatuur:
 
-```csharp
+```java
 public static List<ReisBestemming> GenereerWereld(int aantal)
 ```
 

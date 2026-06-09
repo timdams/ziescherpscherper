@@ -552,6 +552,8 @@ static int BerekenDeterminant(int[,] aMatrix)
 Breid je eerdere visualisatie-methode (ArrayViewer) uit zodat deze ook correct werkt voor 2D-matrices (rijen en kolommen proper uitgelijnd).
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
+
+```charp
 static void VisualiseerArray(int[] array)
 {
     for (int i = 0; i < array.Length - 1; i++)
@@ -589,6 +591,7 @@ static void VisualiseerArray(int[,] matrix)
         Console.WriteLine($"{matrix[i, kolommen - 1].ToString().PadLeft(maxBreedte)}");
     }
 }
+```
 ::::
 
 
@@ -629,6 +632,7 @@ Rugnummer   Positief   Negatief   Verschil
 ```
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
+```java
 static void Main(string[] args)
 {
     int[,] a =
@@ -657,6 +661,7 @@ static void Main(string[] args)
     Console.WriteLine("A x B:");
     VisualiseerArray(c);
 }
+```
 ::::
 
 ---
@@ -850,7 +855,7 @@ FRAUDE ALARM!
 ```
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-````java
+```java
 Console.WriteLine("Geef de correcte examensleutel:");
 string sleutel = Console.ReadLine();
 

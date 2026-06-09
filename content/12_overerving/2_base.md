@@ -3,7 +3,7 @@
 Het **``base``** keyword laat ons toe om bij ``override`` van een methode of property in de child-klasse toch te verplichten om de parent-implementatie toe te passen. Dit kan handig zijn wanneer je in je child-klasse de bestaande implementatie wenst uit te breiden.
 
 Stel dat we volgende 2 klassen hebben:
-```csharp
+```java
 internal class Restaurant
 {
      protected int kosten = 0;
@@ -25,7 +25,7 @@ Het poetsen van een ``Frituur`` is duurder (1000 basis + 500 voor ontsmetting) d
 
 ``base`` lost dit voor ons op. De ``Frituur``-klasse herschrijven we naar:
 
-```csharp
+```java
 internal class Frituur:Restaurant
 {
      public override void PoetsAlles()
@@ -55,7 +55,7 @@ Je kan zelf beslissen waar in je code je ``base`` aanroept. Soms doe je dat aan 
 
 Laten we eens kijken. Beeld je in dat je volgende basisklasse hebt:
 
-```csharp
+```java
 internal class Oermens
 {
       public virtual int VoorzieVoedsel()
@@ -71,7 +71,7 @@ De moderne mens, die overerft van de oermens, is natuurlijk al iets beter in het
 
 Echter, er bestaan ook jagers die nog op de klassieke manier voedsel kunnen verzamelen (maar ze zijn wel gewoon moderne mensen, dus geen klasse apart hier). Uiteraard hebben zij de technieken van de oermens verbeterd en zullen sowieso toch iets meer voedsel nog kunnen verzamelen met de traditionele methoden, namelijk 20 kg bovenop de basishoeveelheid van 15 kg.
 
-```csharp
+```java
 internal class ModerneMens: Oermens
 {
       public bool IsJager {get;  set;}
@@ -92,7 +92,7 @@ internal class ModerneMens: Oermens
 
 Dankzij overerving zijn we nu in staat om Pong uit te breiden met andere soort balletjes. De eerste vraag die je je moet stellen is dan "welke werking in de klasse ``Balletje`` gaan we potentiëel willen aanpassen?". Laten we veronderstellen dat we enkel de ``Update`` mogelijk willen veranderen. We voegen daarom het ``virtual`` keyword aan die methode toe:
 
-```csharp
+```java
 virtual public void Update()
 ```
 
@@ -100,7 +100,7 @@ Voor de rest passen we hier niets aan. Dankzij overerving kunnen we de klasse ``
 
 Stel dat we een nieuw ``Balletje`` willen ontwikkelen, genaamd ``CentreerBalletje``. Dit balletje heeft als eigenschappen dat het terug naar het midden van het scherm *teleporteert* wanneer het de linker- of rechterzijde van het scherm raakt. Dit zal er zo uitzien:
 
-```csharp
+```java
 internal class CentreerBalletje : Balletje
 {
       public override void Update()
@@ -120,7 +120,7 @@ We hoeven nu enkel in het hoofdprogramma alle ``Balletje``-variabelen te vervang
 :::{.callout-tip}
 Dankzij polymorfisme verderop gaan we ontdekken dat zelfs dit eigenlijk mag!
 
-```csharp
+```java
 Balletje bal1 = new CentreerBalletje();
 ```
 

@@ -76,14 +76,14 @@ Volgende voorbeeld (we lopen even al vooruit) zal de tekst "Het einde is nabij" 
 * Lijn 1: Naar de plek waar het programma wordt uitgevoerd.
 * Lijn 2: Naar de temp-folder.
 
-```csharp
+```java
 File.WriteAllText("doem.txt", "Het einde is nabij");
 File.WriteAllText(@"c:\temp\doem.txt", "Het einde is nabij");
 ```
 
 In het tweede geval is belangrijk te controleren of je wel schrijfrechten hebt voor die folder. Heb je die niet dan zal je een **``UnauthorizedAccessException``** krijgen. We gebruiken dus best exception handling wanneer we met bestanden werken.
 
-```csharp
+```java
 try
 {
     File.WriteAllText("doem.txt", "Het einde is nabij");
@@ -101,7 +101,7 @@ Het is niet altijd duidelijk of je applicatie op een Mac of Windows zal uitgevoe
 
 Stel dat we een bestandsnaam willen samenstellen uit verschillende delen, dan gebruiken we hier de erg nuttige **``Combine``-methode** voor:
 
-```csharp
+```java
 string folder = "data";
 string bestand = "dagboek.txt";
 string fullPath = Path.Combine(directory, filename);
@@ -127,7 +127,7 @@ Soms wil je bestanden opslaan in speciale folders zoals op het bureaublad. Hierv
 
 In dit voorbeeld plaatsen we ons onheilspellende bericht op het bureaublad van de huidige gebruiker:
 
-```csharp
+```java
 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 string fullPath = Path.Combine(desktopPath, "doem.txt");
 File.WriteAllText(fullPath, "Het einde is nabij"); 
@@ -139,7 +139,7 @@ Het is een goede gewoonte om steeds te controleren of een bestand of folder al b
 
 Het controleren of een bestand bestaat doe je met de ``File.Exists``-methode:
 
-```csharp
+```java
 if(File.Exists(desktopPath))
 {
     //werk met bestand
@@ -153,7 +153,7 @@ else
 
 Het controleren van het bestaan van een folder doe je met ``Directory.Exists()``:
 
-```csharp
+```java
 if(Directory.Exists(tempPath))
 {
     //werk met folder
@@ -170,7 +170,7 @@ Om de voorbeeldcode in dit hoofdstuk behapbaar te houden, zullen we niet telkens
 Na de controle kan je dan beslissen om het bestand of folder aan te maken. Dat kan met de ``File.Create`` en ``Directory.CreateDirectory``-methoden:
 
 
-```csharp
+```java
 if (!Directory.Exists(tempPath))
 {
     Directory.CreateDirectory(tempPath);
@@ -179,7 +179,7 @@ if (!Directory.Exists(tempPath))
 
 en
 
-```csharp
+```java
 if (!File.Exists(desktopPath))
 {
     File.Create(desktopPath);

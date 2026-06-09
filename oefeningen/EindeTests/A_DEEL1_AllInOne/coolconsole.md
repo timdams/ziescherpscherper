@@ -3,7 +3,7 @@ Volgende toffe voorbeelden komen van deze [website](https://www.michalbialecki.c
 
 ### Updating percentage
 
-```csharp
+```java
 static void Main(string[] args)
 {
     Console.WriteLine("Hello World!");
@@ -28,7 +28,7 @@ static void ShowSimplePercentage()
 
 ### Spinner
 
-```csharp
+```java
 static void ShowSpinner()
 {
     var counter = 0;
@@ -50,7 +50,7 @@ static void ShowSpinner()
 
 ### Desk toy
 
-```csharp
+```java
 static void MultiLineAnimation()
 {
     var counter = 0;
@@ -101,7 +101,7 @@ static void MultiLineAnimation()
 
 ### Treintje
 
-```csharp
+```java
 static void ColorfulAnimation()
 {
     for (int i = 0; i < 5; i++)

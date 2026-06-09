@@ -11,7 +11,7 @@ Ik ga niet al te diep in deze arrays ingaan omdat deze, alhoewel erg nuttig, vaa
 
 Het grote verschil bij het aanmaken van bijvoorbeeld een 2D jagged array is het gebruik van de vierkante haken (en dus niet bijvoorbeeld ``tickets[,]``):
 
-```csharp
+```java
 double[][]tickets=
     {
       new double[] {3.0, 40, 24},

@@ -17,7 +17,7 @@ Wanneer je de waarde van een variabele wilt toekennen aan een variabele van een 
 Volgende code zal bijvoorbeeld een dikke foutboodschap geven:
 
 
-```csharp
+```java
 int leeftijd = 4.3;
 ```
 
@@ -51,13 +51,13 @@ Casting heb je nodig om een variabele van een bepaald type voor een ander type t
 Casting duid je aan door voor de variabele of literal het datatype tussen haakjes te plaatsen naar wat het omgezet moet worden:
 
 
-```csharp
+```java
 int mijngetal = (int)3.5;
 ```
 
 of
 
-```csharp
+```java
 double kommagetal = 13.8;
 int kommaNietWelkom = (int)kommagetal;
 ```
@@ -84,7 +84,7 @@ Casting doe je wanneer je een variabele wilt toekennen aan een andere variabele 
 
 Bekijk eens het volgende voorbeeld:
 
-```csharp
+```java
 double hoofdMeting;
 int secundaireMeting;
 hoofdMeting = 20.4;
@@ -97,7 +97,7 @@ Dit zal niet gaan. Je probeert namelijk een waarde van het type double in een va
 
 En je lost dit op door voor de variabele die tijdelijk dienst moet doen als een ander type, het nieuwe type, tussen ronde haakjes te typen, als volgt:
 
-```csharp
+```java
 double hoofdMeting;
 int secundaireMeting; 
 hoofdMeting = 20.4;
@@ -117,7 +117,7 @@ Merk op dat `hoofdMeting` nooit van datatype is veranderd; enkel de inhoud ervan
 Stel dat ``tempGisteren`` en ``tempVandaag`` van het type ``int`` zijn, maar dat we nu de gemiddelde temperatuur willen weten. De formule voor gemiddelde temperatuur over 2 dagen is:
 
 
-```csharp
+```java
 int tempGemiddeld = (tempGisteren + tempVandaag)/2;
 ```
 
@@ -128,7 +128,7 @@ Het probleem is dat het gemiddelde van 2 getallen niet noodzakelijk een geheel g
 Hoe krijgen we de correctere uitslag te zien? Eens testen wat er gebeurt als we ``tempGemiddeld`` als ``double`` declareren:
 
 
-```csharp
+```java
 double tempGemiddeld = (tempGisteren + tempVandaag) / 2;
 ```
 
@@ -137,7 +137,7 @@ Als we dit testen zal nog steeds de waarde ``22.0`` aan ``tempGemiddeld`` toegew
 We moeten dus ook de rechterkant van de toekenning als ``double`` beschouwen. *We doen dit, zoals eerder vermeld, door middel van **casting***, als volgt:
 
 
-```csharp
+```java
 double tempGemiddeld = ((double)tempGisteren + (double)tempVandaag) / 2;
 ```
 
@@ -146,7 +146,7 @@ Nu zal ``tempGemiddeld`` wel de waarde ``22.5`` bevatten.
 :::{.callout-warning}
 Er zijn ook andere oplossingen die het gewenste resultaat geven, namelijk:
 
-```csharp
+```java
 (tempGisteren + tempVandaag)/2.0;
 ((double)(tempGisteren + tempVandaag))/2;
 ((double)tempGisteren + tempVandaag)/2;
@@ -166,7 +166,7 @@ Let echter op dat niet alle oplossingen bij dit soort oefeningen steeds dezelfde
 
 :::{.callout-important}
 Merk op dat er een subtiel verschil is tussen volgende 2 lijnen code:
-```csharp
+```java
 (double)(tempGisteren + tempVandaag) / 2; //geeft 22.5
 (double)((tempGisteren + tempVandaag) / 2); //geeft 22
 ```
@@ -180,7 +180,7 @@ In het eerste zullen we het resultaat van de som naar ``double`` omzetten. In he
 
 Casting is niet nodig als je aan **widening** doet: een *kleiner* type in een *groter* type steken (met groter/kleiner wordt de geheugengrootte van het datatype bedoeld), als volgt:
 
-```csharp
+```java
 int hoofdMeting;
 double secundaireMeting;
 hoofdMeting = 20;
@@ -194,7 +194,7 @@ Er gaat **geen** inhoud verloren echter. Je hoeft dus niet expliciet de casting-
 Merk op dat je perfect casting hier mag gebruiken, maar daar de conversie impliciet zonder problemen kan plaatsvinden hoeft dit dus niet. Deze code is echter even juist (en soms een veilige gewoonte om te doen, better safe than sorry):
 
 
-```csharp
+```java
 secundaireMeting = (double) hoofdMeting;
 ```
 
@@ -207,7 +207,7 @@ Parsing wordt gebruikt om tekst(``string``) naar een ander datatype om te zetten
 
 Voorbeeld van parsing:
 
-```csharp
+```java
 int numVal = Int32.Parse("-105");
 Console.WriteLine(numVal);
 ```
@@ -219,7 +219,7 @@ Gebruik parsing enkel wanneer je:
 
 De omgekeerde weg: eender welk datatype omzetten naar een ``string``, doe je met de ``ToString``-methode die ieder datatype ingebouwd heeft. Deze methode wordt automatisch aangeroepen wanneer je een variabele van een ander datatype in een string wilt steken, inclusief wanneer je deze in een ``Console.WriteLine()``-statement gebruikt. Toch kan het handig zijn te weten dat je deze methode ook manueel kan aanroepen:
 
-```csharp
+```java
 int getal = 5;
 string getalAlsString = getal.ToString();
 ```
@@ -240,7 +240,7 @@ Al deze methoden zitten binnen de **Convert**-bibliotheek van .NET. Hou er wel r
 
 Het gebruik hiervan is zeer eenvoudig. Enkele voorbeelden:
 
-```csharp
+```java
 int getal = Convert.ToInt32(3.2); //double to int
 double anderGetal = Convert.ToDouble(5); //int to double
 bool isWaar = Convert.ToBoolean(1); //int to bool

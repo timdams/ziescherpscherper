@@ -17,7 +17,7 @@ We gebruiken onder andere volgende 2 methoden[^peek] om met een ``Queue``-lijst 
 
 Voorbeeld:
 
-```csharp
+```java
 Queue<string> wachtrij = new Queue<string>();
 wachtrij.Enqueue("Ik stond hier eerste.");
 wachtrij.Enqueue("Ik tweedes.");
@@ -51,7 +51,7 @@ Ook de klasse ``Stack`` heeft verschillende methoden, waarvan volgende 2 methode
 
 Voorbeeld:
 
-```csharp
+```java
 Stack<string> stapel = new Stack<string>();
 stapel.Push("Ik was eerste hier.");
 stapel.Push("Ik tweede.");
@@ -89,7 +89,7 @@ De ``Dictionary``-klasse emuleert dus letterlijk de werking van een woordenboek,
 #### Gebruik Dictionary
 In het volgende voorbeeld maken we een ``Dictionary`` van klanten aan. Iedere klant heeft een unieke ID (de key is van het type ``int``) alsook een naam (die niet noodzakelijk uniek is en de waarde voorstelt):
 
-```csharp
+```java
 Dictionary<int, string> klanten = new Dictionary<int, string>();
 klanten.Add(123, "Tim Dams");
 klanten.Add(6463, "James Bond");
@@ -105,14 +105,14 @@ Bij de declaratie van ``klanten`` plaatsen we dus tussen de ``< >`` twee datatyp
 We kunnen een specifiek element opvragen aan de hand van de key. Stel dat we de waarde (naam) van de klant met key (``id``) gelijk aan ``123`` willen tonen, dan schrijven we:
 
 
-```csharp
+```java
 Console.WriteLine(klanten[123]);
 ```
 
 
 We kunnen nu met behulp van bijvoorbeeld een ``foreach``-loop alle elementen tonen. Hier kunnen we de key met de ``.Key``-property uitlezen en het achterliggende object of waarde met ``.Value``. ``Value`` en ``Key`` hebben daarbij ieder het type dat we hebben gedefinieerd toen we het ``Dictionary``-object aanmaakten, in het volgende geval is de ``Key`` dus van het type ``int`` en ``Value`` van het type ``string``:
 
-```csharp
+```java
 foreach (var item in klanten)
 {
     Console.WriteLine(item.Key+ "\t:"+item.Value);
@@ -128,7 +128,7 @@ De key werkt dus net als de index bij gewone arrays. Alleen heeft de key nu geen
 
 De key kan zelfs een ``string`` zijn en de waarde een ander type. In het volgende voorbeeld hebben we eerder een klasse Student aangemaakt. We maken nu een student aan en voegen deze toe aan de studentenLijst. Vervolgens willen we het geboortejaar van een bepaalde student tonen op het scherm en vervolgens verwijderen we deze student:
 
-```csharp
+```java
 var studentenLijst = new Dictionary<string, Student>();
 Student stud = new Student() { Naam = "Tim", Geboortejaar = 2001 };
 studentenLijst.Add("AB12", stud);

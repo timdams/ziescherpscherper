@@ -20,7 +20,7 @@ Stel je voor: je moet de gegevens van één student bijhouden. Als we alles in l
   * Drie `int` variabelen voor de scores.
 * Schrijf een methode `CalculateAverage` die deze 4 variabelen aanvaardt en het gemiddelde berekent.
 
-```csharp
+```java
 string name = "Alex";
 int score1 = 14;
 int score2 = 16;
@@ -47,7 +47,7 @@ We gaan deze struct in een **apart bestand** plaatsen, net zoals we dat het hele
 
 Visual Studio heeft nu een nieuwe class voor je gemaakt. Verander het woordje `class` naar `struct` en maak het `public`. Je bestand moet er zo uitzien:
 
-```csharp
+```java
 public struct StudentData
 {
     public string Name;
@@ -58,7 +58,7 @@ public struct StudentData
 * Vervang nu in je `Main` de losse variabelen door één variabele van het type `StudentData`.
 * Ken de waarden toe aan de properties van de struct.
 
-```csharp
+```java
 StudentData myStudent; 
 myStudent.Name = "Alex";
 myStudent.Scores = new int[] { 14, 16, 11 };
@@ -85,7 +85,7 @@ Het grote voordeel is dat we nu de volledige student in één keer kunnen doorge
 * De methode aanvaardt nu **één parameter** van het type `StudentData` in plaats van losse ints.
 * De methode haalt de scores uit de struct (`student.Scores`) om het gemiddelde te berekenen.
 
-```csharp
+```java
 static double CalculateAverage(StudentData data)
 {
    // Implementeer hier de berekening
@@ -127,7 +127,7 @@ We gaan dit oplossen met één **struct**.
   * `Weight` (double): bv 2.5
   * `Value` (int): bv 150 (goudstukken)
 
-```csharp
+```java
 public struct InventoryItem
 {
     public string Name;
@@ -143,7 +143,7 @@ Nu kunnen we een array maken van deze struct. Dit is onze "rugzak".
 * Maak in `Main` een array aan die plaats biedt voor 3 items.
 * Vul de array met 3 items (verzin zelf leuke namen!).
 
-```csharp
+```java
 InventoryItem[] backpack = new InventoryItem[3];
 
 backpack[0].Name = "Rusty Sword";
@@ -164,7 +164,7 @@ We willen nu methoden schrijven die onze rugzak kunnen analyseren.
 * Maak een methode `ShowInventory` die de **volledige array** als parameter krijgt.
 * Gebruik een `foreach` loop om elk item netjes op het scherm te tonen.
 
-```csharp
+```java
 static void ShowInventory(InventoryItem[] items)
 {
     Console.WriteLine("--- Jouw Rugzak ---");
@@ -207,7 +207,7 @@ Ga nu naar deze [introductie in het handboek](https://apwt.gitbook.io/zie-scherp
 
 ## De data architect 1, deel 2
 
-```csharp
+```java
 using System;
 
 namespace StudentApp
@@ -283,7 +283,7 @@ namespace StudentApp
 
 In apart bestand:
 
-```csharp
+```java
 public struct InventoryItem
 {
     public string Name;
@@ -292,7 +292,7 @@ public struct InventoryItem
 }
 ```
 
-```csharp
+```java
 static void Main(string[] args)
 {
     // Deel 2: De Schatkist (Arrays van Structs)

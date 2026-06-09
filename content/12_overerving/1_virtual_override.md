@@ -26,7 +26,7 @@ Enkel indien een element met ``virtual`` werd aangeduid, kan je deze dus met ``o
 
 Stel je voor dat je een applicatie hebt met 2 klassen, ``Vliegtuig`` en ``Raket``. Een raket is een vliegtuig, maar kan veel hoger vliegen dan een vliegtuig. Omdat we weten dat potentiële childklassen op een andere manier zullen willen vliegen, zullen we de methode ``Vlieg`` ``virtual`` zetten:
 
-```csharp
+```java
 internal class Vliegtuig
 {
    public virtual void Vlieg()
@@ -49,7 +49,7 @@ Terzijde: ``static`` methoden kunnen niet ``virtual`` gezet worden.
 
 Stel dat we 2 objecten aanmaken en laten vliegen:
 
-```csharp
+```java
 Vliegtuig topGun = new Vliegtuig();
 Raket spaceX1 = new Raket();
 topGun.Vlieg();
@@ -71,7 +71,7 @@ Momenteel doet het ``virtual`` keyword niets. Het is enkel een signaal aan mede-
 
 Een raket is een vliegtuig, toch vliegt het anders. We willen dus de methode ``Vlieg`` anders uitvoeren voor een raket. Daar hebben we **override** voor nodig. Door override voor een methode in de child-klasse te plaatsen zeggen we "gebruik deze implementatie en niet die van de parent klasse."
 
-```csharp
+```java
 internal class Raket:Vliegtuig
 {
    public override void Vlieg()
@@ -82,7 +82,7 @@ internal class Raket:Vliegtuig
 ```
 
 De uitvoer van volgende code zal nu anders zijn:
-```csharp
+```java
 Vliegtuig topGun = new Vliegtuig();
 Raket spaceX1 = new Raket();
 topGun.Vlieg();

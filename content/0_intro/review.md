@@ -39,7 +39,7 @@
 1. Maak in [0_intrototcs.md](0_intrototcs.md) de versie-sectie generiek: vervang ".NET 6" en "C# 10" door ".NET 8 (LTS)" of "de meest recente LTS-versie" en verwijs voor exacte versies naar een appendix. Zo veroudert de tekst minder snel.
 2. In [1_werkenmetvs.md](1_werkenmetvs.md) staat "Visual Studio 2026" — controleer of dit klopt of een typfout is voor 2022/2024.
 3. Herschrijf in [3_console.md](3_console.md) de eerste `ReadLine`-introductie naar de moderne stijl en noem expliciet de `?`:
-   ```csharp
+   ```java
    Console.WriteLine("Geef je naam:");
    string? naam = Console.ReadLine();  //ReadLine kan null teruggeven
    ```

@@ -6,7 +6,7 @@
 
 ### Enclave
 
-```csharp
+```java
 class Enclave
 {
     protected static Random r = new Random();
@@ -66,7 +66,7 @@ class Enclave
 
 ### StadsEnclave
 
-```csharp
+```java
 class StadsEnclave : Enclave
 {
     private WaterkrachtCentrale waterkrachtcentrale;

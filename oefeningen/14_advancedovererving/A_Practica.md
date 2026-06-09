@@ -13,7 +13,7 @@ Voeg ToString toe aan bestaande van volgende projecten. Ik raad aan dat je dit e
 
 Implementeer de ToString() methode in je ``Pokemon`` klasse zodat deze z'n full stats toont wanneer je schrijft:
 
-```csharp
+```java
 Console.WriteLine(myPokemon);
 ```
 
@@ -42,7 +42,7 @@ Zorg ervoor dat er géén dubbele code in HiddenBookmark staat (tip: ``base()``)
 :::
 
 Voeg dit toe aan ``Pokemon`` klasse:
-```csharp
+```java
 public override string ToString()
 {
     string toResturn =  $"{Naam}(Level:{Level})\n" +
@@ -58,7 +58,7 @@ public override string ToString()
 
 Voeg dit toe aan ``Bookmark``:
 
-```csharp
+```java
 public override string ToString()
 {
     return $"{Naam} ({URL})";
@@ -70,7 +70,7 @@ public override string ToString()
 
 En dit aan ``HiddenBookmark``:
 
-```csharp
+```java
 public override string ToString()
 {
     return $"{base.ToString()} ---HIDDEN---";
@@ -118,7 +118,7 @@ Maak boeken aan van de 3 klassen, toon dat de prijs niet altijd zomaar ingesteld
 **Les(sen) uit deze oefening:** De ``TelOp``methode is het hart van deze oefening. We maken deze ``static`` omdat we niet willen dat een bestaand boek zichzelf bij een ander boek  moet *optellen* en vinden het logischer dat een soort *god-methode* van de boeken dit voor ons doet. Let op de ``get`` code van beide child-klassen: we laten de werking van ``Boek`` hier in ere door gewoon ``base.Price`` aan te roepen. Enkel in de ``set`` bouwen we extra controle *rond* de originele ``set`` code van de parentklasse. 
 :::
 
-```csharp
+```java
 public class Book
 {
     public long ISBN { get; set; }
@@ -178,7 +178,7 @@ public class TextBook : Book
 
 Voeg dit toe aan de klasse ``Book``
 
-```csharp
+```java
 public override string ToString()
 {
     return $"{Title} - {Author}({ISBN}) {Price}";
@@ -199,7 +199,7 @@ Maak enkele klassen die een bank kan gebruiken (of hergebruik je ``BankManager``
 Schrijf deze klassen en toon de werking ervan in je main.
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-```csharp
+```java
 public abstract class Rekening
 {
     private double saldo = 0;
@@ -276,7 +276,7 @@ Maak 3 klassen:
 Maak een applicatie waarin je de werking van deze klassen aantoont
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-```csharp
+```java
 public abstract class GeometricFigure
 {
     public int Hoogte { get; set; }
@@ -342,7 +342,7 @@ Vervolgens verschijnt er een menu Wanneer de gebruiker 'q' kiest stopt het progr
 Probeer zo modulair mogelijk te werken.
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-```csharp
+```java
 Console.WriteLine("H13 Dierentuin");
 List<Dier> Dieren = new List<Dier>();
 
@@ -388,7 +388,7 @@ while (answer != "q")
 }
 ```
 
-```csharp
+```java
 public abstract class Dier
 {
     private int gewicht = 50;

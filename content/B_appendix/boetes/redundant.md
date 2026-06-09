@@ -11,7 +11,7 @@ Enkele typische voorbeelden:
 
 ### Uitgewerkte voorbeeld
 
-```csharp
+```java
 double loop1 = Casino(start, 10);
 Console.WriteLine($"Als je 10 keer roulette speelt zou je eindkapitaal {loop1} zijn, dat is een verschil van {loop1-start}");
 
@@ -27,7 +27,7 @@ Console.WriteLine($"Als je 1000000 keer roulette speelt zou je eindkapitaal {loo
 
 Kan herschreven worden m.b.v. loops en een array:
 
-```csharp
+```java
 
 int[] prijzen ={10, 100, 10000, 1000000};
 

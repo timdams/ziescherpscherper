@@ -2,7 +2,7 @@
 
 Je kan delen van je code in handige inklapbare secties zetten door deze als regions aan te duiden, als volgt:
 
-```csharp
+```java
 #region My Epic code
 Console.WriteLine("I am the greatest!");
 Console.WriteLine("Echt waar!");

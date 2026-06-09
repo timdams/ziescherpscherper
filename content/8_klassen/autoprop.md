@@ -4,7 +4,7 @@ Automatische eigenschappen (**automatic properties**, *auto-implemented properti
 
 Een auto-property herken je aan het feit dat ze een pak korter zijn qua code, omdat er veel meer (onzichtbaar) achter de schermen wordt opgelost:
 
-```csharp
+```java
 public string Voornaam { get; set; }
 ```
 
@@ -12,7 +12,7 @@ Heel vaak wil je heel eenvoudige variabelen aan de buitenwereld van je klasse be
 
 Zo kan je eenvoudig de volgende klasse ``Persoon`` herschrijven met behulp van auto-properties. De originele klasse mét full properties:
 
-```csharp
+```java
 internal class Person
 {
     private string voornaam;
@@ -33,7 +33,7 @@ internal class Person
 
 De herschreven klasse met auto-properties wordt: 
 
-```csharp
+```java
 internal class Person
 {
     public string Voornaam { get; set; }
@@ -69,7 +69,7 @@ Merk op dat je auto-properties dus enkel kan gebruiken indien er geen extra logi
 
 Stel dat je bij de setter van geboorteJaar wil controleren op een negatieve waarde, dan zal je dit zoals voorheen moeten schrijven en kan dit niet met een automatic property:
 
-```csharp
+```java
 set
 {
     if( value > 0)
@@ -86,7 +86,7 @@ set
 Je mag auto-properties beginwaarden geven door de waarde achter de property te schrijven, als volgt:
 
 
-```csharp
+```java
 public int Geboortejaar {get;set;} = 2002;
 ```
 
@@ -98,14 +98,14 @@ Al je objecten zullen nu als geboortejaar 2002 hebben wanneer ze geïnstantieerd
 Je kan auto-properties ook gebruiken om bijvoorbeeld een read-only property met private setter te definiëren. Als volgt:
 
 
-```csharp
+```java
 public string Voornaam { get; private set; }
 ```
 
 Een andere manier die ook kan wanneer we enkel een read-only property nodig hebben, is als volgt:
 
 
-```csharp
+```java
 public string Voornaam { get; } = "Tim";
 ```
 

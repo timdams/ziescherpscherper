@@ -38,7 +38,7 @@ Zo wordt elke mogelijke killcode gegarandeerd getest — geen gokwerk meer.
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 SlimVaccin sv = new SlimVaccin("SlimTest");
 // Opeenvolgende aanroepen van TryKillCode() geven:
 // 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 1, 11, 21, ...
@@ -108,19 +108,19 @@ Het `SlimVaccin` test systematisch alle getallen van 0 tot 99. Aangezien de kill
 
 Een `Dictionary` werkt als een `List`, maar in plaats van een numerieke index heeft elk element een **key** van een type dat je zelf kiest.
 
-```csharp
+```java
 Dictionary<string, VaccinatieCentrum> centraDB = new Dictionary<string, VaccinatieCentrum>();
 ```
 
 Hier is `string` het type van de key (de landnaam) en `VaccinatieCentrum` het type van de waarde.
 
 **Toevoegen:**
-```csharp
+```java
 centraDB.Add("frankrijk", new VaccinatieCentrum());
 ```
 
 **Opvragen:**
-```csharp
+```java
 Vaccin vac = centraDB["frankrijk"].GeefVaccin();
 ```
 
@@ -130,7 +130,7 @@ Bouw een programma met een menu waarin de operator kan:
 
 1. **Een centrum aanmaken** in een land naar keuze. Controleer of er al een centrum in dat land bestaat (zoek op hoe je `ContainsKey` gebruikt op een Dictionary). Waarschuw de operator als het land al een centrum heeft.
 2. **Een overzicht tonen** van alle centra:
-```csharp
+```java
 Console.WriteLine("Centra in volgende landen:");
 foreach (var item in centraDB)
 {

@@ -13,7 +13,7 @@ Polymorfisme laat ons toe dat objecten kunnen behandeld worden als objecten van 
 Dankzij overerving kunnen we "is een"-relaties beschrijven. Soms is het echter handig dat we alle child-objecten als dat van hun parent kunnen beschouwen. Beeld je in dat je een gigantische klasse-hiërarchie hebt gemaakt, maar finaal wil je wel dat alle objecten een bepaalde property aanpassen die ze gemeenschappelijk hebben. Zonder polymorfisme is dat een probleem. 
 
 Stel dat we een een aantal van ``Dier`` afgeleide klassen hebben die allemaal op hun eigen manier een geluid voortbrengen:
-```csharp
+```java
 internal abstract class Dier
 {
    public abstract string MaakGeluid();
@@ -36,7 +36,7 @@ internal class Varken: Dier
 
 **Met de hulp van polymorfisme kunnen we nu elders objecten van Paard en Varken in een variabele van het type ``Dier`` bewaren**, maar toch hun eigen geluid laten reproduceren:
 
-```csharp
+```java
 Dier someAnimal = new Varken();
 Dier anotherAnimal = new Paard();
 Console.WriteLine(someAnimal.MaakGeluid()); //Oinkoink
@@ -63,7 +63,7 @@ Kortom, polymorfisme laat ons toe om referenties (naar objecten van een child-ty
 Dit wil ook zeggen dat dit mag (daar alles overerft van ``System.Object``):
 
 
-```csharp
+```java
 System.Object mijnObject = new Varken();
 ```
 
@@ -77,7 +77,7 @@ Arrays en lijsten laten heel krachtige code toe dankzij polymorfisme. Je kan een
 
 Een voorbeeld:
 
-```csharp
+```java
 List<Dier> zoo = new List<Dier>();
 zoo.Add(new Varken());
 zoo.Add(new Paard());
@@ -104,7 +104,7 @@ Ik had al een klein tipje van de sluier gelicht toen ik overerving introduceerde
 
 Beeld je in dat we naast ``CentreerBalletje`` ook nog de klassen ``InstabielBalletje`` (dat op random momenten z'n vectoren op 0 zet) en ``TeleportBalletje`` (dat elke 10 *ticks* naar een random plek op het scherm *teleporteert*) hebben. De code om deze balletjes te instantiëren en in de lijst te plaatsen wordt verrassend eenvoudig:
 
-```csharp
+```java
 List<Balletje> veelBalletjes =  new List<Balletje>();
 
 veelBalletjes.Add(new Balletje());

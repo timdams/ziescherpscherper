@@ -16,7 +16,7 @@ Eerst gaan we de nodige toestellen maken om dan later een parkoers van toestelle
 
 Deze interface is als volgt: 
 
-```csharp
+```java
 interface IDodelijk
 {
     public bool VeiligheidsActief { get; }

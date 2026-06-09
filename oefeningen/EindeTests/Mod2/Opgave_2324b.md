@@ -143,7 +143,7 @@ Deze heeft leeftijd 88
 
 # Oefening 1
 
-```csharp
+```java
 bool repeat = true;
 while (repeat)
 {
@@ -180,7 +180,7 @@ while (repeat)
 
 # Oefening 2
 
-```csharp
+```java
 static void Main(string[] args)
 {
     int[] pogingen = { 10, 100, 10000, 1000000 };
@@ -222,7 +222,7 @@ static double Casino(double start, int aantalKeer)
 
 # Oefening 3
 
-```csharp
+```java
 static void Main(string[] args)
 {
     string[] namen = new string[50];

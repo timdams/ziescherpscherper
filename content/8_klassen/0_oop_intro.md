@@ -21,7 +21,7 @@ Toen C# werd ontwikkeld in 2001 was één van de hoofddoelen van de programmeert
 
 Wanneer we nieuwe programma's in C# ontwikkelden dan zagen we hier reeds bewijzen van. Zo zagen we steeds het keyword ``class`` bovenaan staan, telkens we een nieuw project aanmaakten:
 
-```csharp
+```java
 namespace WorldDominationTool
 {
     internal class Program
@@ -42,7 +42,7 @@ De klasse ``Program`` zorgt ervoor dat ons programma voldoet aan de C# afspraken
 
 Om de kracht van OOP te demonstreren gaan we een applicatie van lang geleden (deels) herschrijven gebruik makende van de kennis van de vorige 8 hoofdstukken. We gaan de arcadehal klassieker "Pong" deels namaken, waarbij we als doel hebben om een balletje alvast op het scherm te laten botsen. Een rudimentaire oplossing zou de volgende kunnen zijn:
 
-```csharp
+```java
 Console.CursorVisible = false;
 int balX = 20;
 int balY = 20;
@@ -79,7 +79,7 @@ Hopelijk begrijp je deze code. Test ze maar eens in een programma. Zoals je zal 
 
 Dit soort applicatie in C# schrijven met behulp van gestructureerde programmeer-concepten is redelijk eenvoudig. Maar wat als we nu 2 balletjes nodig hebben? Laten we arrays even links laten liggen en het gewoon eens naïef oplossen. Al na enkele lijnen kopiëren merken we dat onze code ongelooflijk rommelachtig gaat worden en we bijna iedere lijn moeten dupliceren:
 
-```csharp
+```java
 Console.CursorVisible = false;
 int balX = 20;
 int balY = 20;
@@ -122,7 +122,7 @@ Net zoals aan de start van dit boek ga ik je ook nu even in het diepe gedeelte v
 
 Om Pong in OOP te maken hebben we eerst een klasse nodig waarin we ons balletje gaan beschrijven, zonder dat we al een balletje hebben. En dat ziet er zo uit:
 
-```csharp
+```java
 internal class Balletje
 {
     //Eigenschappen
@@ -172,7 +172,7 @@ Een klasse is een blauwdruk van een bepaalde soort 'dingen' of objecten. Objecte
 
 Laten we eens een **balletje-object** in het leven roepen. In de main schrijven we daarom dit:
 
-```csharp
+```java
 Console.CursorVisible = false;
 Balletje bal1 = new Balletje();
 bal1.X = 20;
@@ -183,7 +183,7 @@ bal1.VY = 1;
 
 Ok, interessant. Die ``new`` heb je al gezien wanneer je met ``Random`` ging werken en de code erna is ook nog begrijpbaar: we stellen eigenschappen van het nieuwe ``bal1`` object in. En nu komt het! Kijk hoe eenvoudig onze volledig ``main`` nu is geworden:
 
-```csharp
+```java
 static void Main(string[] args)
 {
     Console.CursorVisible = false;
@@ -212,7 +212,7 @@ Run deze code maar eens. Inderdaad, deze code doet exact hetzelfde als hiervoor.
 
 En nu - abracadabra - kijk goed hoe eenvoudig onze code blijft als we 2 balletjes nodig hebben:
 
-```csharp
+```java
 Console.CursorVisible = false;
 Balletje bal1 = new Balletje();
 bal1.X = 20;
@@ -248,7 +248,7 @@ Dit is de volledige code om 2 balletjes te hebben. Hoe mooi is dat?!
 
 Wanneer we 3 of meer balletjes zouden nodig hebben dan zullen we best arrays in de mix moeten gooien. Onze code blijft echter véél eenvoudiger én krachtiger dan wanneer we in het voorgaande enkel de kennis gebruikten die we totnogtoe hadden. Omdat we toch al in het diepe eind zitten, zal ik hier toch al eens tonen hoe we 100 balletjes op het scherm kunnen laten botsen (we gaan ``Random`` gebruiken zodat er wat willekeurigheid in de balletjes zit):
 
-```csharp
+```java
 const int AANTAL_BALLETJES = 100;
 Random r = new Random();
 Balletje[] veelBalletjes = new Balletje[AANTAL_BALLETJES];

@@ -25,7 +25,7 @@ Je hebt waarschijnlijk al eerder exceptions gezien in je eigen programma's. Als 
 
 Je moet zelfs niet veel moeite doen om uitzonderingen te genereren. Denk maar aan volgende voorbeeld waarbij je een exception kan genereren door een 0 in te geven, of iets anders dan een getal.
 
-```csharp
+```java
 Console.WriteLine("Geef een getal aub");
 int noemer = Convert.ToInt32(Console.ReadLine());
 double resultaat = 100/noemer;
@@ -41,7 +41,7 @@ Het mechanisme om exceptions af te handelen in C# bestaat uit 2 delen:
 
 De syntax is als volgt (let er op dat de catch blok onmiddellijk na het try-blok komt):
 
-```csharp
+```java
 try
 {
     //code waar exception mogelijk kan optreden
@@ -59,7 +59,7 @@ catch
 
 In volgend stukje code kunnen uitzonderingen optreden zoals we zonet zagen:
 
-```csharp
+```java
 string input = Console.ReadLine();
 int converted = Convert.ToInt32(input)
 ```
@@ -68,7 +68,7 @@ Een ``FormatException`` zal optreden wanneer de gebruiker tekst of een kommageta
 
 Ik toon nu hoe we dit met exception handling kunnen opvangen[^elegant]:
 
-```csharp
+```java
 try
 {
     string input = Console.ReadLine();
@@ -89,7 +89,7 @@ Indien er nu een uitzondering optreedt dan zal de tekst "Verkeerde invoer" getoo
 
 Je kan ook zelf eender waar in je code een uitzondering **opwerpen**. Je doet dit met het **``throw``** keyword. De werking is quasi dezelfde als het ``return`` keyword. Alleen zal bij een ``throw`` je *terug gaan* tot de eerste plek waar een ``catch`` klaarstaat om de uitzondering op te vangen. Om een uitzondering op te werpen dien je eerst een ``Exception`` object aan te maken en daar de nodige informatie in te plaatsen. In hoofdstuk 14 ga ik hier nog wat dieper op in, maar hier alvast een voorbeeldje:
 
-```csharp
+```java
 //Een error treedt op
 throw new Exception("Wow, dit loopt fout");
 ```
@@ -114,7 +114,7 @@ Afhankelijk van het soort fout kunnen we echter ook andere soort uitzonderingen 
 
 Je kan in het catch blok aangeven welke soort exceptions je wil vangen in dat blok. Als je bijvoorbeeld alle Exceptions wil opvangen schrijf je:
 
-```csharp
+```java
 catch (Exception e)
 {
 }
@@ -126,7 +126,7 @@ We kunnen nu echter ook specifieke exceptions opvangen. De truc is om de meest a
 
 Stel bijvoorbeeld dat we weten dat de `FormatException` kan voorkomen en we willen daar iets mee doen. Volgende code toont hoe dit kan:
 
-```csharp
+```java
 try
 {
     //...
@@ -178,7 +178,7 @@ Alle ``Exception``-objecten bevatten volgende informatie:
 
 We kunnen via deze parameter meer informatie uit de opgeworpen uitzondering uitlezen en bijvoorbeeld aan de gebruiker tonen:
 
-```csharp
+```java
 catch (Exception e)
 {
     Console.WriteLine("Exception opgetreden");

@@ -14,7 +14,7 @@ Je kan in console-applicaties zelf bepalen in welke kleur nieuwe tekst op het sc
 
 Je kan met de volgende expressies de console-kleur veranderen, bijvoorbeeld de achtergrond in blauw en de letters in groen:
 
-```csharp
+```java
 Console.BackgroundColor = ConsoleColor.Blue;
 Console.ForegroundColor = ConsoleColor.Green;
 ```
@@ -32,7 +32,7 @@ Waarom is dit? ``ConsoleColor`` is een zogenaamd ``enum``-type. Enums leggen we 
 
 Een voorbeeld:
 
-```csharp
+```java
 Console.WriteLine("Tekst in de standaard kleur");
 Console.BackgroundColor = ConsoleColor.Yellow;
 Console.ForegroundColor = ConsoleColor.Black;
@@ -58,7 +58,7 @@ Soms wil je terug de originele applicatie-kleuren hebben. Je zou manueel dit kun
 
 De veiligste manier is daarom de kleuren te resetten door de ``Console.ResetColor()`` methode aan te roepen zoals volgend voorbeeld toont:
 
-```csharp
+```java
 Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine("Error!!!! Contacteer de helpdesk");
 Console.ResetColor();

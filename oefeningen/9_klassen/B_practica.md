@@ -215,7 +215,7 @@ Bereken hoelang het duurt tot de volgende verjaardag.
     2.  Hoeveel dagen wachten dit nog is.
 
 **Tip voor dagnaam:**
-```csharp
+```java
 string dagNaam = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetDayName(datum.DayOfWeek);
 ```
 
@@ -357,7 +357,7 @@ Ontwerp een klasse `Boeking` die fungeert als de digitale receptioniste. De klas
 
 **Voorbeeldgebruik (in je Main):**
 
-```csharp
+```java
 // Scenario: Opa Pol wil 5 nachten in een Chalet, maar is zijn portefeuille vergeten.
 Boeking boeking1 = new Boeking();
 boeking1.Hoofdboeker = "Pol";

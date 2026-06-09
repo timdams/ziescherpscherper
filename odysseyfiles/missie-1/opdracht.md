@@ -38,7 +38,7 @@ Zo wordt elke mogelijke signaalcode gegarandeerd gescand — geen gokwerk meer.
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 SlimmeProbe sp = new SlimmeProbe("SlimTest");
 // Opeenvolgende aanroepen van TryFrequentie() geven:
 // 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 1, 11, 21, ...
@@ -108,19 +108,19 @@ De `SlimmeProbe` test systematisch alle getallen van 0 tot 99. Aangezien de sign
 
 Een `Dictionary` werkt als een `List`, maar in plaats van een numerieke index heeft elk element een **key** van een type dat je zelf kiest.
 
-```csharp
+```java
 Dictionary<string, Zendstation> stationsDB = new Dictionary<string, Zendstation>();
 ```
 
 Hier is `string` het type van de key (de locatienaam) en `Zendstation` het type van de waarde.
 
 **Toevoegen:**
-```csharp
+```java
 stationsDB.Add("mars", new Zendstation());
 ```
 
 **Opvragen:**
-```csharp
+```java
 Probe p = stationsDB["mars"].GeefProbe();
 ```
 
@@ -130,7 +130,7 @@ Bouw een programma met een menu waarin de operator kan:
 
 1. **Een station bouwen** op een locatie naar keuze. Controleer of er al een station op die locatie bestaat (zoek op hoe je `ContainsKey` gebruikt op een Dictionary). Waarschuw de operator als die locatie al een station heeft.
 2. **Een overzicht tonen** van alle stations:
-```csharp
+```java
 Console.WriteLine("Stations op volgende locaties:");
 foreach (var item in stationsDB)
 {

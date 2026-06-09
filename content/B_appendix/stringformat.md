@@ -4,7 +4,7 @@ String interpolatie met het $-teken is een nieuwe C# aanwinst. Je zal echter ger
 ``String.Format`` is een ingebouwde methode die string-interpolatie toelaat op een iets minder intuïtieve manier, als volgt:
 
 
-```csharp
+```java
 string result = String.Format("Ik ben {0} en ik ben {1} jaar.", naam, leeftijd);
 ```
 
@@ -14,7 +14,7 @@ Het getal tussen de accolades geeft aan welke parameter op die plek moet komen. 
 Volgende code zal een ander resultaat geven:
 
 
-```csharp
+```java
 string result = String.Format("Ik ben {1} en ben {1} jaar.", naam, leeftijd);
 ```
 
@@ -24,7 +24,7 @@ Namelijk: ``Ik ben 13 en ik ben 13 jaar oud.``
 Je kan deze vorm van formateren ook toepassen in ``Console.WriteLine`` zonder dat je expliciet ``String.Format`` hiervoor moet aanroepen:
 
 
-```csharp
+```java
 Console.WriteLine("Gratis formateren. {0} maal hoera voor .NET!", 3);
 ```
 :::

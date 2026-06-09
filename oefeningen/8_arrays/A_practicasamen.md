@@ -523,6 +523,7 @@ Als er dus staat "lees 20 getallen in", dan moet je die in volgorde bewaren in j
 :::
 
 1.	Er worden 20 getallen ingelezen. De getallen worden in omgekeerde volgorde afgedrukt.
+
 ::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 int[] getallen = new int[20];
@@ -611,7 +612,7 @@ for (int i = 0; i < n; i++)
 ::::
 
 5.	[Pro] Een rij van 100 getallen wordt ingelezen. Druk de inhoud van de rij af in 3 kolommen. De getallen worden gerangschikt rij per rij.  Als je input bijvoorbeeld volgende reeks getallen is: ``4 5 8 7 5 2 6 8 7 1 3 2``, dan wordt dit je output:
-```csharp
+```java
 4 5 8
 2 5 7
 6 7 8

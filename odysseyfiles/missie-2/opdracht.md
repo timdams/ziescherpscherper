@@ -69,7 +69,7 @@ Iedere concrete klasse (bladniveau) heeft:
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Karakter op positie zetten
-```csharp
+```java
 Console.SetCursorPosition(X, Y);
 Console.Write("M");
 ```
@@ -86,7 +86,7 @@ In je `ToString` override kan je `base.ToString()` gebruiken om het resultaat va
 
 Plaats deze code in je `Main` en controleer de output:
 
-```csharp
+```java
 List<Module> station = new List<Module>();
 station.Add(new MedBay("Sick Bay Alpha", 4, 5));
 station.Add(new Kwartier("Crew Deck 1", 1, 1));
@@ -122,7 +122,7 @@ Zorg dat elk moduletype in een andere kleur op het scherm verschijnt. Een kwarti
 
 ::: {.callout-warning collapse="true"}
 ## Hint — Console kleuren
-```csharp
+```java
 Console.ForegroundColor = ConsoleColor.Red;
 Console.Write("M");
 Console.ResetColor();

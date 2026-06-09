@@ -41,7 +41,7 @@
 ## Concrete suggesties
 
 1. Voeg in [escapechars.md](escapechars.md) of [7_unicode.md](7_unicode.md) een aparte subsectie **Raw string literals** toe:
-   ```csharp
+   ```java
    string json = """
        {
            "naam": "Tim",
@@ -54,7 +54,7 @@
 3. Voeg in [6_stringInterpolation.md](6_stringInterpolation.md) een waarschuwing toe over **culture-afhankelijkheid** bij `:C` en `:N` formats. Eventueel met expliciete `CultureInfo.InvariantCulture` voor reproduceerbare oefening-output.
 4. Vervang in [escapechars.md](escapechars.md) de `\a`-sectie door een waarschuwing dat dit op moderne terminals meestal niet meer hoorbaar is.
 5. Voeg een korte tabel **veelgebruikte string-methodes** toe aan het einde van [5_chars_strings.md](5_chars_strings.md):
-   ```csharp
+   ```java
    "Hello".ToUpper()      //"HELLO"
    "  hi ".Trim()         //"hi"
    "abc".Length           //3

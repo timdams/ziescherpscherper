@@ -38,7 +38,7 @@ Maak een `Vaccin` klasse met:
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
 Test je `Vaccin` klasse:
-```csharp
+```java
 Vaccin v = new Vaccin("TestVaccin");
 Console.WriteLine(v.Naam);           // TestVaccin
 Console.WriteLine(v.Oplossing);      // -1
@@ -76,7 +76,7 @@ Maak een `Virus` klasse met:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 Virus v = new Virus();
 Console.WriteLine(v.Naam);           // bv. FKL23
 Console.WriteLine(v.DoomCountdown);  // getal tussen 10 en 20

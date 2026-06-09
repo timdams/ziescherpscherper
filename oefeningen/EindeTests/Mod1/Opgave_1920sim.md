@@ -46,7 +46,7 @@ Voorbeeld:
 ![](../../assets/infoclip.png)
 [Opname met bespreking van de oplossing](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2d0b313d-148c-46a5-b5cb-ac6f00bdd5c3)
 
-```csharp
+```java
 const int MIN_DAG= 1;
 const int MAX_DAG= 5;
 

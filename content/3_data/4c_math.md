@@ -14,14 +14,14 @@ De Math-bibliotheek bevat handige methoden voor een groot aantal typische wiskun
 
 Stel dat je de derde macht van een variabele ``getal`` wenst te berekenen. *Zonder* de Math-bibliotheek zou dat er zo uitzien:
 
-```csharp
+```java
 double result = getal * getal * getal; //SLECHTE MANIER
 ```
 
 Dit valt nog mee, maar wat als je 3 tot de zevende macht moest berekenen? Laten we eens kijken hoe ``Math`` ons kan helpen, dankzij de ``Pow``  methode (**Power**, Engels voor macht):
 
 
-```csharp
+```java
 double result = Math.Pow(getal, 3);
 ```
 
@@ -51,7 +51,7 @@ De meeste methoden zijn zeer makkelijk in gebruik en werken bijna allemaal op ee
 
 Enkele voorbeelden:
 
-```csharp
+```java
 double sineHoekA = Math.Sin(345); //in radialen!
 double derdeMachtVan20 = Math.Pow(20, 3);
 double complexer = 3 + derdeMachtVan20 * Math.Round(sineHoekA);
@@ -73,13 +73,13 @@ Twijfel je over de werking van een methode, gebruik dan de help als volgt:
 Ook het getal Pi (``3.141...``) is beschikbaar in de Math-bibliotheek. Het witte icoontje voor PI bij Intellisense toont aan dat het hier om een *field* gaat: een eenvoudige variabele met een specifieke waarde. In dit geval gaat het zelfs om een ``const`` field, met de waarde van Pi van het type double.
 
 
-```csharp
+```java
 const double PI= 3.141...;
 ```
 
 Je kan deze als volgt gebruiken in berekeningen zoals
 
-```csharp
+```java
 double straal = 5.5;
 double omtrek = Math.PI * 2 * straal;
 ```
@@ -91,7 +91,7 @@ double omtrek = Math.PI * 2 * straal;
 ### Bereik in code weten 
 Het bereik van datatypes ligt weliswaar vast (zie hoofdstuk 2). Maar het is nuttig om weten dat deze ook in de compiler gekend is.  Ieder datatype heeft een aantal ingebouwde zaken die je kan gebruiken om onder andere de maximum en minimum-waarde van een datatype te gebruiken. Volgend voorbeeld toont hoe dit kan:
 
-```csharp
+```java
 Console.Write("Het bereik van het type double is:");
 Console.WriteLine($"{double.MinValue} tot {double.MaxValue}.");
 ```

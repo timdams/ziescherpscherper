@@ -3,7 +3,7 @@
 ### Generieke methoden
 Vaak schrijf je methoden die hetzelfde doen, maar waarvan enkel het type van de parameters en/of het returntype verschilt. Stel dat je een methode hebt die de elementen in een array onder elkaar toont. Je wil dit werkende hebben voor arays van het type ``int``, ``string``, enz. Zonder generics moeten we dan per type een methode moeten schrijven:
 
-```csharp
+```java
 public static void ToonArray(int[] array)
 {
     foreach (var i in array)
@@ -23,7 +23,7 @@ public static void ToonArray(string[] array)
 
 Dankzij generics kunnen we nu het deel dat **generiek** moet zijn aanduiden (in dit geval met ``T``) en onze methode eenmalig definiëren. We gebruiken hierbij de ``< >`` aanduiding die aan de compiler vertelt *"dit stuk is een generiek type"*:
 
-```csharp
+```java
 public static void ToonArray<T>(T[] array)
 {
     foreach (T item in array)
@@ -35,7 +35,7 @@ public static void ToonArray<T>(T[] array)
 
 Vanaf nu kun je eender welk soort array aan deze ene methode geven en de array zal naar het scherm afgedrukt worden:
 
-```csharp
+```java
 int[] getallen= {1,2,4};
 string[] namen = {"tim", "ali", "marie", "fons"};
 ToonArray(getallen);
@@ -56,7 +56,7 @@ De afspraak is om .NET een ``T`` te gebruiken indien het type nog dient bepaald 
 We wensen nu een klasse te maken die de locatie in X,Y,Z coördinaten kan bewaren. We willen echter zowel ``float``, ``double`` als ``int`` gebruiken om deze X,Y,Z coördinaten in bij te houden:
 
 
-```csharp
+```java
 internal class Locatie<T>
 {
     public T X {get;set;}
@@ -66,7 +66,7 @@ internal class Locatie<T>
 ```
 We kunnen deze klasse nu als volgt gebruiken:
 
-```csharp
+```java
 var plaats = new Locatie<int>();
 plaats.X = 34;
 plaats.Y = 22;
@@ -95,7 +95,7 @@ Merk op dat het keyword ``var`` hier handig is: het verkort de ellenlange stukke
 ### Een complexere generieke klasse
 Voorgaand voorbeeld is natuurlijk maar de tip van de ijsberg. We kunnen bijvoorbeeld volgende klasse maken die we kunnen gebruiken met eender welk type om de meetwaarde van een meting in op te slaan. Merk op hoe we op verschillende plaatsen in de klasse het element ``T`` gebruiken als een datatype:
 
-```csharp
+```java
 internal class Meting<T>
 {
     public T Waarde {get;set;}
@@ -107,7 +107,7 @@ internal class Meting<T>
 ```
 Een voorbeeldgebruik van dit nieuwe type kan zijn:
 
-```csharp
+```java
 var m1 = new Meting<int>(44);
 Console.WriteLine(m1.Waarde);
 var m2 = new Meting<string>("slechte meting");
@@ -118,7 +118,7 @@ Console.WriteLine(m2.Waarde);
 ### Meerdere types in generics
 Zoals reeds eerder vermeld is de ``T`` aanduiding enkel maar een afspraak. Je kan echter zoveel ``T``-parameters meegeven als je wenst. Stel dat je bijvoorbeeld een klasse wenst te maken waarbij 2 verschillende types kunnen gebruikt worden. De klassedefinitie zou er dan als volgt uit zien:
 
-```csharp
+```java
 internal class DataBewaarder<Type1, Type2>
 {
     public Type1 Waarde1 {get;set;}
@@ -135,7 +135,7 @@ internal class DataBewaarder<Type1, Type2>
 Een object aanmaken zal nu als volgt gaan:
 
 
-```csharp
+```java
 DataBewaarder<int, string> d1 = new DataBewaarder<int, string>(4, "Ok");
 ```
 
@@ -148,7 +148,7 @@ We willen soms voorkomen dat bepaalde types wel of niet gebruikt kunnen worden i
 
 Stel bijvoorbeeld dat je een klasse schrijft waarbij je de ``CompareTo()`` methode wenst te gebruiken. Dit gaat enkel indien het type in kwestie de ``IComparable`` interface implementeert. We kunnen als **constraint** (*beperking*) dan opgeven dat de volgende klasse enkel kan gebruikt worden door klassen die ook effectief die interface implementeren (en dus de ``CompareTo()``-methoden hebben). We doen dit in de klasse-definitie met het nieuwe ``where`` keyword. We zeggen dus letterlijk: *"waar T overerft van IComparable"*:
 
-```csharp
+```java
 internal class Wijziging<T> where T : IComparable
 {
     public T VorigeWaarde {get;set;}
@@ -168,7 +168,7 @@ internal class Wijziging<T> where T : IComparable
 
 Volgende gebruik van deze klasse zou dan ``True`` op het scherm tonen:
 
-```csharp
+```java
 Wijziging<double> w = new Wijziging<double>(3.4, 3.65);
 Console.WriteLine(w.IsGestegen());
 ```

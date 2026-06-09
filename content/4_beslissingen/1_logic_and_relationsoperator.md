@@ -28,7 +28,7 @@ Daar dit operators zijn kan je deze dus gebruiken in eender welke expressie. Het
 :::{.callout-tip}
 We weten al dat je het resultaat van een expressie altijd in een variabele kunt bewaren. Ook bij het gebruik van relationele operators kan dat dus:
 
-```csharp
+```java
 bool isKleiner = 65 > 67 ;
 Console.WriteLine(isKleiner);
 ```
@@ -59,13 +59,13 @@ De *EN* en *OF* operators verwachten 2 operanden. Maar de *NIET*-operator verwac
 Aangezien onze relationele operators ``bool`` als resultaat geven, kunnen we dus de uitvoer van deze operators gebruiken als operanden voor de logische operators. We gebruiken hierbij haakjes om zeker de volgorde juist te krijgen:
 
 
-```csharp
+```java
 bool result = (4 < 6) && ("ja" == "nee");
 ```
 
 De haakjes zorgen ervoor dat eerste die delen worden berekend. Voorgaande zal dus in een tussenstap (die jij niet ziet) tijdens de uitvoer er als volgt uitzien:
 
-```csharp
+```java
 bool result = true && false;
 ```
 
@@ -76,7 +76,7 @@ Vervolgens wordt dan de logische EN getest en krijgen we finaal ``false`` in ``r
 Je kan de niet-operator voor een expressie zetten om het resultaat van de expressie te inverteren.  Bijvoorbeeld:
 
 
-```csharp
+```java
 bool result = !(0==2) 
 ```
 
@@ -84,7 +84,7 @@ Eerst wordt weer het resultaat tussen de haakjes berekend. Dit geeft ``false`` (
 
 Merk op dat we deze code ook kunnen schrijven als:
 
-```csharp
+```java
 bool result = (0!=2) 
 ```
 

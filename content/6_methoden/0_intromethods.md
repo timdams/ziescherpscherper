@@ -9,7 +9,7 @@ Veel code die we hebben geschreven wordt meerdere keren, al dan niet op verschil
 
 Beeld je eens dat we geen gebruik konden maken van de vele .NET bibliotheken. Stel je voor dat ``Console.WriteLine``  niet bestond? Telkens als we dan iets in C# naar het scherm wilden sturen moesten we de volledige interne code van ``WriteLine`` uitschrijven. Voor de geïnteresseerden, dat zou er (ongeveer) als volgt uitzien:
 
-```csharp
+```java
 fixed (byte* p = bytes)
 {
     if (useFileAPIs)
@@ -44,7 +44,7 @@ Methoden hebben als voordeel dat je herbruikbare stukken code kunt gebruiken en 
 
 De basis-syntax van een methode ziet er als volgt uit (de werking van het keyword ``static`` leg ik uit in hoofdstuk 11):
 
-```csharp
+```java
 static returntype MethodeNaam(optioneel_parameters)
 {
     //code van methode
@@ -57,7 +57,7 @@ De eerste lijn noemen we de **methode-signatuur**. Deze lijn verteld alles dat j
 Vervolgens kan je deze methode elders oproepen als volgt, indien de methode geen parameters vereist:
 
 
-```csharp
+```java
 MethodeNaam();
 ```
 
@@ -72,7 +72,7 @@ Beeld je in dat je een applicatie moet maken waarin je op verschillende plaatsen
 
 Als je later de naam van het programma wilt veranderen naar iets anders (bv. ``Timsoft 11``) dan zal je manueel overal de titel moeten veranderen in je code. Met een methode hebben we dat probleem niet meer. We schrijven daarom een methode ``ToonTitel`` als volgt:
 
-```csharp
+```java
 static void ToonTitel()
 {
     Console.WriteLine("Timsoft XP");
@@ -84,13 +84,13 @@ static void ToonTitel()
 Vanaf nu kan je eender waar in je programma deze methode aanroepen door te schrijven:
 
 
-```csharp
+```java
 ToonTitel();
 ```
 
 Volgend programma'tje toont dit:
 
-```csharp
+```java
 namespace Demo1
 {
     internal class Program
@@ -127,7 +127,7 @@ Zoals je misschien al begint te vermoeden is dus de ``Main`` waar we steeds onze
 
 Wat denk je trouwens dat je dit doet?
 
-```csharp
+```java
 static void Main(string[] args)
 {
     Console.WriteLine("Ik zit vast!");
@@ -163,7 +163,7 @@ Wanneer je een methode maakt die iets teruggeeft (dus een ander returntype dan `
 
 Volgend voorbeeld bestaat uit een methode die de naam van de auteur van je programma teruggeeft:
 
-```csharp
+```java
 static string VerkrijgAuteurNaam()
 {
     return "Tim Dams";
@@ -173,7 +173,7 @@ static string VerkrijgAuteurNaam()
 Een mogelijke manier om deze methode in je programma te gebruiken zou nu kunnen zijn:
 
 
-```csharp
+```java
 string myName = VerkrijgAuteurNaam();
 ```
 
@@ -181,13 +181,13 @@ string myName = VerkrijgAuteurNaam();
 
 Maar ook dit zal werken:
 
-```csharp
+```java
 Console.WriteLine(VerkrijgAuteurNaam());
 ```
 
 Of verderop misschien als volgt:
 
-```csharp
+```java
 Console.WriteLine($"Auteur van dit boek: {VerkrijgAuteurNaam()}");
 ```
 
@@ -196,7 +196,7 @@ Console.WriteLine($"Auteur van dit boek: {VerkrijgAuteurNaam()}");
 :::{.callout-tip}
 Je mag zowel literals als variabelen en zelfs andere methode-aanroepen plaatsen achter het ``return`` keyword. Zolang het maar om een expressie gaat die een resultaat heeft kan dit. Voorgaande methode kunnen we dus ook schrijven als:
 
-```csharp
+```java
 static string VerkrijgAuteurNaam()
 {
     string naam= "Tim Dams";
@@ -212,7 +212,7 @@ static string VerkrijgAuteurNaam()
 
 De faculteit van een getal *n* schrijven we als *n!*. Het is het product van alle positieve getallen van 1 tot en met *n*, waarbij *0!* gelijk is aan 1. Hier een voorbeeld van een methode die de faculteit van 5 berekent, *5!*. We willen dus ``1*2*3*4*5`` berekenen, wat 120 is.  De oproep van de methode gebeurt vanuit de Main-methode:
 
-```csharp
+```java
 internal class Program
 {
     static int FaculteitVan5()
@@ -239,7 +239,7 @@ Indien je methode niets teruggeeft wanneer de methode eindigt (bijvoorbeeld indi
 
 Een voorbeeld:
 
-```csharp
+```java
 static void ToonVersie()
 {
     Console.WriteLine("Dit is versie 8.31 ");
@@ -248,13 +248,13 @@ static void ToonVersie()
 
 Deze methode moet je dus als volgt aanroepen:
 
-```csharp
+```java
 ToonVersie();
 ```
 
 Volgende 2 manieren **werken niet** bij een methode met ``void`` als returntype:
 
-```csharp
+```java
 string result = ToonVersie(); //MAG NIET!!
 Console.WriteLine(ToonVersie()); // MAG NIET!
 ```
@@ -268,7 +268,7 @@ Je mag het ``return`` keyword eender waar in je methode gebruiken. Weet wel dat 
 
 Soms is dit handig zoals in volgende voorbeeld:
 
-```csharp
+```java
 static string WindRichting()
 {
     Random r = new Random();
@@ -313,7 +313,7 @@ Methoden zijn handig vanwege de herbruikbaarheid. Wanneer je een methode hebt ge
 Indien er wel parameters nodig zijn dan geef je die mee als volgt:
 
 
-```csharp
+```java
 MethodeNaam(parameter1, parameter2, …);
 ```
 
@@ -328,7 +328,7 @@ Om zelf een methode te definiëren die 1 of meerdere parameters aanvaardt, dien 
 
 Als volgt:
 
-```csharp
+```java
 static returntype MethodeNaam(type parameter1, type parameter2)
 {
     //code van methode
@@ -340,7 +340,7 @@ Deze formele parameters zijn nu beschikbaar binnen de methode om mee te werken n
 
 Stel bijvoorbeeld dat we onze ``FaculteitVan5`` willen veralgemenen naar een methode die voor alle getallen werkt, dan zou je volgende methode kunnen schrijven:
 
-```csharp
+```java
 static int BerekenFaculteit(int grens)
 {
     int resultaat = 1;
@@ -356,7 +356,7 @@ De naam ``grens`` kies je zelf. Maar we geven hier dus aan dat de methode ``Bere
 
 Aanroepen van de methode gebeurt dan als volgt:
 
-```csharp
+```java
 int getal = 5;
 int resultaat = BerekenFaculteit(getal);
 ```
@@ -364,7 +364,7 @@ int resultaat = BerekenFaculteit(getal);
 Of sneller:
 
 
-```csharp
+```java
 int resultaat = BerekenFaculteit(5);
 ```
 
@@ -389,7 +389,7 @@ Het is echter logisch dat deze niet noodzakelijk gelijk moeten zijn: het enige d
 
 En wat als je de faculteiten wenst te kennen van alle getallen tussen 1 en 10?  Dan zou je schrijven:
 
-```csharp
+```java
 for (int i = 1; i < 11; i++)
 {
     Console.WriteLine($"Faculteit van {i} is {BerekenFaculteit(i)}" );
@@ -427,7 +427,7 @@ De volgorde waarin je je parameters meegeeft bij de aanroep van een methode is b
 
 Stel dat je een methode hebt:
 
-```csharp
+```java
 static void ToonDeling(double teller, double noemer)
 {
     if(noemer != 0)
@@ -439,7 +439,7 @@ static void ToonDeling(double teller, double noemer)
 
 Deze 2 aanroepen zullen dus een andere output geven:
 
-```csharp
+```java
 ToonDeling(3.5 , 2.1 );
 ToonDeling(2.1 , 3.5 );
 ```
@@ -449,7 +449,7 @@ Zeker wanneer je met verschillende types als formele parameters werkt is de volg
 
 Stel dat we volgende methode hebben gemaakt:
 
-```csharp
+```java
 static void ToonInfo(string name, int age)
 {
    Console.WriteLine($"{name} is {age} old");
@@ -459,14 +459,14 @@ static void ToonInfo(string name, int age)
 Deze aanroep is correct:
 
 
-```csharp
+```java
 ToonInfo("Tim", 37);
 ```
 
 Maar deze is **FOUT** en zal niet compileren:
 
 
-```csharp
+```java
 ToonInfo(37, "Tim"); //mag niet!
 ```
 
@@ -486,7 +486,7 @@ Het effect van manier 1 is hopelijk duidelijk: wanneer je in een methode de inho
 
 Dit zien we in dit programma:
 
-```csharp
+```java
 static void JaartjeOuder(int leeftijd)
 {
     leeftijd++;
@@ -515,7 +515,7 @@ In het begin ga je vooral vanuit je ``Main`` methoden aanroepen, maar dat is gee
 
 Volgende (nutteloze) programma'tje toont dit in actie:
 
-```csharp
+```java
 static void SchrijfT()
 {
     Console.Write("T");
@@ -551,7 +551,7 @@ Er verschijnt "Tim" op het scherm.
 
 Wanneer je programma's complexer worden moet je zeker opletten dat je geen oneindige *methode-lussen* creëert. Zie je de fout in volgende code?
 
-```csharp
+```java
 public static void Main()
 {
     SchrijfNaam();
@@ -576,7 +576,7 @@ Het is veel belangrijker dat je eerst goed leert methoden schrijven. Beginnende 
 
 Kortom, zorg dat je nooit dit schrijft!
 
-```csharp
+```java
 static void Main(string[] args)
 {
     TimVindtDitNietLeuk();
@@ -590,7 +590,7 @@ static void Main(string[] args)
 
 Maar wel
 
-```csharp
+```java
 static void TimVindtDitNietLeuk() //Beter!
 {
     Console.WriteLine("Doe dit niet!");
@@ -609,7 +609,7 @@ static void Main(string[] args)
 
 **Recursie** is een geavanceerd programmeerconcept wat niet in dit boek wordt besproken (enkel in hoofdstuk 18 gaan we recursie nog kort ontmoeten), maar laten we het hier kort toelichten. Recursieve methoden zijn methoden die zichzelf aanroepen maar wél op een gegeven moment stoppen wanneer dat moet gebeuren. Volgend voorbeeld is een recursieve methode om de som van alle getallen tussen ``start`` en ``stop`` te berekenen:
 
-```csharp
+```java
 static int BerekenSomRecursief(int start, int stop)
 {
     int som = start;
@@ -624,7 +624,7 @@ static int BerekenSomRecursief(int start, int stop)
 Je herkent recursie aan het feit dat de methode zichzelf aanroept. Maar een controle voorkomt dat die aanroep blijft gebeuren zonder dat er ooit een methode wordt afgesloten. We krijgen 6 terug (1+2+3) als we de methode als volgt aanroepen:
 
 
-```csharp
+```java
 int einde = BerekenSomRecursief(1,3);
 ``` 
 
@@ -644,7 +644,7 @@ Visual Studio zal dan automatisch de parameters verwerken van je methode zodat j
 
 Stel dat we een methode hebben geschreven die de macht van een getal berekent (wat dom is...er bestaat al zoiets als ``Math.Pow``). We zouden dan volgende commentaar toevoegen:
 
-```csharp
+```java
 /// <summary>
 /// Berekent de macht van een getal.
 /// </summary>

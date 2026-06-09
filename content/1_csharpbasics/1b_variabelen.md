@@ -22,12 +22,12 @@ Hiervoor dien je minstens op te geven:
 Een variabele declaratie heeft als syntax:
 
 
-```csharp
+```java
 datatype identifier;
 ```
 Enkele voorbeelden:
 
-```csharp
+```java
 int leeftijd;
 string leverAdres;
 bool isGehuwd;
@@ -35,14 +35,14 @@ bool isGehuwd;
 Indien je weet wat de beginwaarde moet zijn van de variabele dan mag je de variabele ook reeds deze waarde toekennen bij het aanmaken:
 
 
-```csharp
+```java
 int mijnLeeftijd = 37;
 ```
 
 :::{.callout-tip}
 Je mag ook meerdere variabelen van het zelfde datatype in 1 enkele declaratie aanmaken door deze met komma's te scheiden:
 
-```csharp
+```java
 datatype identifier1, identifier2, identifier3;
 ```
 Bijvoorbeeld ``string voornaam, achternaam, adres;``
@@ -62,7 +62,7 @@ Met de **toekennings-operator (``=``)** kan je een waarde toekennen aan een vari
 Je kan natuurlijk ook een waarde uit een variabele uitlezen en toewijzen (kopiëren) aan een andere variabele:
 
 
-```csharp
+```java
 int eenAndereLeeftijd = mijnLeeftijd;
 ```
 
@@ -96,7 +96,7 @@ Bijvoorbeeld ``string myPoke = "pikachu"``.
 :::{.callout-tip}
 Om samen te vatten, even de belangrijkste literal schrijfwijzen op een rijtje:
 
-```csharp
+```java
 int getal = 5;
 double anderGetal = 5.5;
 uint nogAnderGetal = 15u;
@@ -111,7 +111,7 @@ De overige types ``sbyte``, ``short`` en ``ushort`` hebben geen literal aanduidi
 
 Volgende code mag dus:
 
-```csharp 
+```java 
 sbyte start = 127;
 ``` 
 Dit wordt toegestaan, de ``int`` literal 127 zal geconverteerd worden achter de schermen naar een ``sbyte`` en dan toegewezen worden.
@@ -123,7 +123,7 @@ Als je in je code expliciet de waarde ``4`` wilt toekennen aan een variabele dan
 
 Voorbeelden van een literal toekennen:
 
-```csharp
+```java
 int temperatuurGisteren = 20; //20 is de literal
 int temperatuurVandaag = 25; //25 is de literal
 ```
@@ -133,7 +133,7 @@ int temperatuurVandaag = 25; //25 is de literal
 
 Het is belangrijk dat het type van de literal overeenstemt met dat van de variabele waaraan je deze zal toewijzen. Volgende code zal dan ook een compiler-fout genereren. Je probeert een ``string``-literal aan een ``int``-variabele wil toewijzen, en omgekeerd:
 
-```csharp
+```java
 string eenTekst;
 int eenGetal;
 eenTekst = 4;
@@ -149,13 +149,13 @@ Als je bovenstaande probeert te compileren dan krijg je volgende foutboodschappe
 
 
 Je kan ook hexadecimale notatie (starten met ``0x`` of ``0X``) gebruiken wanneer je bijvoorbeeld met ``int`` of ``byte`` werkt:
-```csharp
+```java
 int mijnLeeftijd = 0x0024; //36
 byte mijnByteWaarde = 0x00C9; //201
 ``` 
 
 Ook binaire notatie (starten met ``0b`` of ``0B``) kan:
-```csharp
+```java
 int mijnLeeftijd = 0b001001000; //72
 int andereLeeftijd = 0b0001_0110_0011_0100_0010 //idem, maar met _ als seperator
 ``` 
@@ -182,7 +182,7 @@ De standaard beginwaarde van een variabele hangt natuurlijk van het datatype af:
 
 Wanneer je een reeds gedeclareerde variabele een **nieuwe waarde toekent** dan zal de oude waarde in die variabele onherroepelijk verloren zijn. Probeer dus altijd goed op te letten of je de oude waarde nog nodig hebt of niet. Wil je de oude waarde ook nog bewaren dan zal je een nieuwe, extra variabele moeten aanmaken en daarin de nieuwe waarde moeten bewaren:
 
-```csharp
+```java
 int temperatuurGisteren = 20;
 temperatuurGisteren = 25;
 ```
@@ -191,7 +191,7 @@ In dit voorbeeld zal er voor gezorgd worden dat de oude waarde van temperatuurGi
 
 Volgende code toont hoe je bijvoorbeeld eerst de vorige waarde kunt bewaren en dan overschrijven:
 
-```csharp
+```java
 int temperatuurGisteren = 20;
 //Doe van alles
 //...
@@ -209,7 +209,7 @@ Een veel gemaakte fout is variabelen meer dan één keer declareren. Dit mag nie
 
 Volgende code zal dus een fout geven:
 
-```csharp
+```java
 double kdRating = 2.1;
 //even later...
 double kdRating = 3.4; 
@@ -220,7 +220,7 @@ De foutboodschap vertelt duidelijk wat het probleem is: *A local variable or fun
 Lijn 3 moet dus worden:
  
 
-```csharp
+```java
 kdRating = 3.4; 
 ```
 

@@ -8,7 +8,7 @@ Klassen zijn "gewoon" nieuwe datatypes. Alle regels die we dus al kenden in verb
 
 Stel dat we volgende klasse hebben waarin we temperatuurmetingen willen opslaan, alsook wie de meting heeft gedaan:
 
-```csharp
+```java
 internal class Meting
 {
     public int Temperatuur { get; set; }
@@ -18,7 +18,7 @@ internal class Meting
 
 We voegen vervolgens een methode aan de klasse toe die ons toelaat om deze meting op het scherm te tonen in een bepaalde kleur. 
 
-```csharp
+```java
 public void ToonMetingInKleur (ConsoleColor kleur)
 {
     Console.ForegroundColor = kleur;
@@ -29,7 +29,7 @@ public void ToonMetingInKleur (ConsoleColor kleur)
 
 Het gebruik van deze klasse zou er als volgt kunnen uitzien:
 
-```csharp
+```java
 Meting m1 = new Meting();
 m1.Temperatuur = 26; 
 m1.OpgemetenDoor = "Lieven Scheire";
@@ -48,7 +48,7 @@ m2.ToonMetingInKleur(ConsoleColor.Pink);
 
 Je kan ook methoden schrijven die meegegeven objecten aanpassen daar we deze **by reference** doorsturen. Een voorbeeld waarin een meting als parameter meegeven en toevoegen aan een andere meting, waarna we de originele meting "resetten":
 
-```csharp
+```java
 public void VoegMetingToeEnVerwijder(Meting inMeting)
 {
     Temperatuur += inMeting.Temperatuur;
@@ -59,7 +59,7 @@ public void VoegMetingToeEnVerwijder(Meting inMeting)
 
 We zouden deze methode als volgt kunnen gebruiken (ervan uitgaande dat we 2 objecten ``m1`` en ``m2`` van het type ``Meting`` hebben):
 
-```csharp
+```java
 m1.Temperatuur = 26; 
 m1.OpgemetenDoor = "Lieven Scheire";
 m2.Temperatuur = 5; 
@@ -80,7 +80,7 @@ Dit zal resulteren in volgende output:
 
 Weer hetzelfde verhaal: ook klassen mogen het resultaat van een methoden zijn. Stel dat we een nieuw meting object willen maken dat de dubbele temperatuur bevat van het object waarop de methode wordt aangeroepen:
 
-```csharp
+```java
 public Meting GenereerRandomMeting()
 {
     Meting result = new Meting();
@@ -94,7 +94,7 @@ public Meting GenereerRandomMeting()
 
 Deze methode kan je dan als volgt gebruiken:
 
-```csharp
+```java
 m1.Temperatuur = 26; 
 m1.OpgemetenDoor = "Lieven Scheire";
 Meting m3 = m1.GenereerRandomMeting();
@@ -108,7 +108,7 @@ In voorgaande voorbeeld zagen we reeds dat objecten dus objecten van het eigen t
 
 Baby's zijn kleine mensjes. Het is dan ook logisch dat mensen een methode ``PlantVoort`` hebben (we houden geen rekening met het geslacht). Volgende klasse ``Mens`` is dus perfect mogelijk:
 
-```csharp
+```java
 class Mens
 {
     public Mens PlantVoort()
@@ -120,7 +120,7 @@ class Mens
 
 Vervolgens kunnen we het volgende doen:
 
-```csharp
+```java
 Mens oermoeder = new Mens();
 Mens dochter;
 Mens kleindochter;

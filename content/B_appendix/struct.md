@@ -4,14 +4,14 @@
 
 Soms wil je enkele variabelen die bij elkaar horen, samenvoegen in één geheel. Stel dat je de positie van een speler in een spel wilt bijhouden. Zonder struct zou je twee losse variabelen moeten maken:
 
-```csharp
+```java
 int spelerX = 10;
 int spelerY = 20;
 ```
 
 Handiger is om deze te groeperen. Een `struct` is ideaal voor dit soort kleine verzamelingen van data. Je maakt hiervoor een eigen type aan met de variabelen die je wilt groeperen (we noemen dit *fields*):
 
-```csharp
+```java
 struct Positie
 {
     public int X;
@@ -21,7 +21,7 @@ struct Positie
 
 Je hebt nu je eigen type gemaakt en kunt dit als één variabele gebruiken:
 
-```csharp
+```java
 Positie spelerPositie;
 spelerPositie.X = 10;
 spelerPositie.Y = 20;
@@ -47,7 +47,7 @@ Gebruik structs voor kleine, eenvoudige datastructuren die zich gedragen als een
 
 ### Voorbeeld
 
-```csharp
+```java
 public struct Punt
 {
     public int X { get; }
@@ -63,7 +63,7 @@ public struct Punt
 
 Doordat dit een Value Type is, gebeurt het volgende:
 
-```csharp
+```java
 Punt p1 = new Punt(10, 20);
 Punt p2 = p1; // KOPIE VAN DE DATA!
 // Als p1 verandert, verandert p2 NIET (indien mutable)
@@ -86,7 +86,7 @@ Bij gewone klassen moet je hiervoor veel "boilerplate" code schrijven (`Equals`,
 
 De "positional record" syntax is extreem kort:
 
-```csharp
+```java
 public record Student(string Naam, int Geboortejaar);
 ```
 
@@ -100,7 +100,7 @@ De compiler genereert achter de schermen automatisch:
 
 Omdat records onveranderlijk zijn, kun je geen property wijzigen. Je kunt wel een *kopie* maken met één gewijzigde waarde met het `with` keyword:
 
-```csharp
+```java
 Student s1 = new Student("Tim", 1981);
 Student s2 = s1 with { Naam = "Tom" }; 
 // s2 is een nieuw object, s1 is ongewijzigd.

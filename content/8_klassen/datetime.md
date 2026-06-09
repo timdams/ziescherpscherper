@@ -21,7 +21,7 @@ Nog zo'n handige ingebouwde klasse is de ``DateTime`` klasse[^eigestruct]. Je ra
 Er zijn 2 manieren om ``DateTime`` objecten aan te maken:
 
 
-```csharp
+```java
 DateTime huidigeTijd = DateTime.Now;
 DateTime specialeDag = new DateTime(2017,4,21);
 ```
@@ -37,7 +37,7 @@ DateTime specialeDag = new DateTime(2017,4,21);
 
 Volgend voorbeeld toont hoe we een object kunnen maken dat de huidige datum tijd van het systeem bevat. Vervolgens printen we dit op het scherm:
 
-```csharp
+```java
 DateTime currentTime = DateTime.Now;
 Console.WriteLine(currentTime);
 ```
@@ -53,13 +53,13 @@ De constructor van een klasse laat toe om bij het maken van een nieuw object, be
 
 
 
-```csharp
+```java
 DateTime verjaardag = new DateTime(1981, 3, 18); //jaar, maand, dag
 ```
 
 Ook is er een constructor om startdatum én -tijd mee te geven bij de objectcreatie:
 
-```csharp
+```java
 //Volgorde: jaar, maand, dag, uur, minuten, seconden
 DateTime trouwMoment = new DateTime(2017, 4, 21, 10, 00,34 ); 
 ```
@@ -88,7 +88,7 @@ Het object zal voor ons de "berekening" hiervan doen en vervolgens een **nieuw D
 
 In volgende voorbeeld wil ik ontdekken wanneer de wittebroodsweken van m'n huwelijk eindigen (pakweg 5 weken na de trouwdag).
 
-```csharp
+```java
 DateTime eindeWitteBroodsweken = trouwMoment.AddDays(35);
 Console.WriteLine(eindeWitteBroodsweken);
 ```
@@ -107,7 +107,7 @@ Enkele nuttige properties van ``DateTime`` zijn: ``Date``, ``Day``, ``DayOfWeek`
 
 Een voorbeeld:
 
-```csharp
+```java
 Console.WriteLine($"Einde in maand nr: {eindeWitteBroodsweken.Month}.");
 Console.WriteLine($"Dat is een {eindeWitteBroodsweken.DayOfWeek}.");
 ```
@@ -131,7 +131,7 @@ We behandelen ``static`` uitgebreid verderop in het boek.
 
 Parsen laat toe dat je strings omzet naar een ``DateTime`` object. Dit is handig als je bijvoorbeeld de gebruiker via ``Console.ReadLine()`` tijd en datum wilt laten invoeren in de *Belgische notatie*:
 
-```csharp
+```java
 string datumInvoer = Console.ReadLine(); 
 DateTime datumVerwerkt = DateTime.Parse(datumInvoer, new System.Globalization.CultureInfo("nl-BE"));
 Console.WriteLine(datumVerwerkt);
@@ -148,7 +148,7 @@ Zoals je ziet roepen we ``Parse`` aan op ``DateTime`` en dus niet op een specifi
 
 Deze nuttige methode geeft een ``bool`` terug om aan te geven of de actuele parameter (type ``int``) een schrikkeljaar voorstelt of niet:
 
-```csharp
+```java
 DateTime vandaag = DateTime.Now;
 if(DateTime.IsLeapYear(vandaag.Year))
     Console.WriteLine("Dit jaar is een schrikkeljaar.");
@@ -158,7 +158,7 @@ if(DateTime.IsLeapYear(vandaag.Year))
 
 Je kan DateTime objecten ook van elkaar aftrekken (optellen gaat niet!). Het resultaat van deze bewerking geeft echter niet een DateTime object terug, **maar een ``TimeSpan`` object**. Dit is nieuwe object van het type ``TimeSpan`` (wat dus een andere klasse is) dat aangeeft hoe groot het verschil is tussen de 2 DateTime objecten kunnen we als volgt gebruiken:
 
-```csharp
+```java
 DateTime vandaag = DateTime.Today;
 DateTime geboorteDochter = new DateTime(2009,6,17);
 TimeSpan verschil = vandaag - geboorteDochter;

@@ -4,7 +4,7 @@ Een veelvoorkomende manier van while-loops gebruiken is waarbij je een bepaalde 
 
 Bijvoorbeeld volgende code om alle even getallen van 0 tot 10 te tonen:
 
-```csharp
+```java
 int i = 0;
 while(i<11)
 {
@@ -19,7 +19,7 @@ while(i<11)
 
 De syntax van een ``for``-loop is de volgende:
 
-```csharp
+```java
 for (setup; finish test; update)
 {
     //code die zal uitgevoerd worden zolang de finish test true geeft
@@ -38,7 +38,7 @@ Voor de *setup*-variabele kiest men meestal ``i``, maar dat is niet noodzakelijk
 
 Gebruiken we deze kennis, dan kunnen we de eerder vermelde code om de even getallen van 0 tot en met 10 tonen als volgt:
 
-```csharp
+```java
 for (int i = 0; i < 11; i += 2)
 {
     Console.WriteLine(i);
@@ -75,7 +75,7 @@ Telkens je vervolgens op [tab] duwt verspringt je cursor tussen ``i`` en ``lengt
 
 Het ``continue`` keyword laat toe om in een loop de huidige iteratie te eindigen en weer naar de start van de volgende iteratie te gaan. In het volgende voorbeeld gebruiken we ``continue`` om alle getallen van 1 tot 10 te tonen waarbij we het getal 5 zullen overslaan:
 
-```csharp
+```java
 for (int i = 1; i <= 10; i++)
 {
     if (i == 5)

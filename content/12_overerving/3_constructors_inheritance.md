@@ -10,7 +10,7 @@ Dit is logisch: de child-klasse heeft de "fundering" nodig van z'n parent-klasse
 
 Volgende voorbeeld toont dit in actie:
 
-```csharp
+```java
 internal class Soldaat
 {
    public Soldaat() 
@@ -31,7 +31,7 @@ internal class VeldArts : Soldaat
 Indien je vervolgens een object aanmaakt van het type ``VeldArts``:
 
 
-```csharp
+```java
 VeldArts RexGregor = new VeldArts();
 ```
 
@@ -52,7 +52,7 @@ Er wordt dus verondersteld in dit geval dat er een default constructor in de bas
 
 Indien je klasse ``Soldaat`` een overloaded constructor heeft, dan wisten we al dat deze niet automatisch een default constructor heeft. Volgende code zou dus een probleem geven indien je een ``VeldArts`` wilt aanmaken via ``new VeldArts()``:
 
-```csharp
+```java
 internal class Soldaat
 {
    public Soldaat(bool kanSchieten) 
@@ -72,7 +72,7 @@ internal class VeldArts:Soldaat
 
 Wat je namelijk niet ziet bij child-klassen en hun constructors is dat er eigenlijk een impliciete aanroep naar de constructor van de parent-klasse wordt gedaan. Bij alle constructors staat er eigenlijk ``:base()`` achter, wat je ook zelf kunt schrijven:
 
-```csharp
+```java
 internal class VeldArts:Soldaat
 {
    public VeldArts(): base()
@@ -90,7 +90,7 @@ Door ``base()`` achter de constructor te zetten ze je: *"roep de default constru
 
 We zien hier  hoe we ervoor moeten zorgen dat we terug via ``new VeldArts()`` objecten kunnen aanmaken zonder dat we de constructor(s) van ``Soldaat`` moeten aanpassen:
 
-```csharp
+```java
 internal class Soldaat
 {
    public Soldaat(bool kanSchieten) 
@@ -116,7 +116,7 @@ Uiteraard wil je misschien kunnen meegeven bij het aanmaken van een ``VeldArts``
 
 Je schrijft dan een overloaded constructor in ``VeldArts`` bij:
 
-```csharp
+```java
 internal class Soldaat
 {
    public Soldaat(bool kanSchieten) 
@@ -148,7 +148,7 @@ Uiteraard mag je ook de default constructor aanroepen vanuit de child-constructo
 
 Een hybride aanpak is ook mogelijk. Volgend voorbeeld toont 2 klassen, ``Huis`` en ``Gebouw`` waarbij we de constructor van ``Huis`` zodanig beschrijven dat deze bepaalde parameters "voor zich houdt" en andere als het ware doorsluist naar de aanroep van z'n parent-klasse:
 
-```csharp
+```java
 internal class Gebouw
 {
    public int AantalVerdiepingen { get; private set; }
@@ -169,7 +169,7 @@ internal class Huis: Gebouw
 Vanaf nu kan ik een huis als volgt bouwen:
 
 
-```csharp
+```java
 Huis peperkoekenHuis = new Huis(true, 1);
 ```
 
@@ -181,7 +181,7 @@ Huis peperkoekenHuis = new Huis(true, 1);
 De volgorde waarin alles gebeurt in voorgaande voorbeeld is belangrijk om te begrijpen. Er wordt een hele machine in gang gezet wanneer we volgende korte stukje code schrijven:
 
 
-```csharp
+```java
 Huis eenEigenHuis = new Huis(true,5);
 ```
 

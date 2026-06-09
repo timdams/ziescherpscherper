@@ -9,7 +9,7 @@ Stel dat we een klasse willen maken die ons toelaat om objecten te maken die ver
 
 We maken een nieuwe klasse ``Mens`` en plaatsen in de klasse een methode ``Praat``:
 
-```csharp
+```java
 internal class Mens
 {
     public void Praat()
@@ -26,7 +26,7 @@ We zien twee nieuwe aspecten:
 
 Je kan nu elders objecten aanmaken en ieder object z'n methode ``Praat`` aanroepen:
 
-```csharp
+```java
 Mens joske = new Mens();
 Mens alfons = new Mens();
 joske.Praat();
@@ -49,7 +49,7 @@ Test in de voorgaande klasse eens wat gebeurt wanneer je ``public`` vervangt doo
 
 Volgende twee methoden-signaturen zijn dus identiek:
 
-```csharp
+```java
 private void NiemandMagDitGebruiken()
 {
     //...
@@ -69,7 +69,7 @@ void NiemandMagDitGebruiken()
 
 Test volgende klasse eens, kan je de methode ``VertelGeheim`` vanuit de Main op ``joske`` aanroepen?
 
-```csharp
+```java
 internal class Mens
 {
     public void Praat()
@@ -110,7 +110,7 @@ De code binnenin een klasse kan overal aan binnen de klasse zelf. Stel dat je du
 
 Volgende voorbeeld toont hoe je binnenin een klasse andere zaken van de klasse kunt aanroepen: we roepen in de methode ``Praat`` de methode ``VertelGeheim`` aan. Dit kan want ``private`` geldt enkel voor de buitenwereld van de klasse, maar dus niet voor de code binnen de ``Praat``-methode zelf.
 
-```csharp
+```java
 internal class Mens
 {
     public void Praat()
@@ -128,7 +128,7 @@ internal class Mens
 
 Als we nu elders een object laten praten als volgt:
 
-```csharp
+```java
 Mens rachid = new Mens();
 rachid.Praat();
 ```
@@ -158,7 +158,7 @@ We weten echter dat objecten ook een interne staat hebben die per object individ
 
 Stel je voor dat we onze mensen een geboortejaar willen geven. Ieder object zal zelf in een instantievariabele bijhouden wanneer ze geboren zijn (het vertellen van geheimen zullen we verderop behandelen):
 
-```csharp
+```java
 internal class Mens
 {
     private int geboorteJaar = 1970; //instantievariabele
@@ -202,7 +202,7 @@ Dit zijn geen officiële regels, maar afspraken die veel programmeurs onderling 
 
 Ok, we zullen maar luisteren naar meneer de agent. Stel nu dat we een verjongingsstraal hebben. Hiermee kunnen we het geboortejaar van de mensen steeds met 1 jaar kunnen verhogen. We maken ze met andere woorden telkens een jaartje jonger!
 
-```csharp
+```java
 internal class Mens
 {
     private int geboorteJaar = 1970;
@@ -222,7 +222,7 @@ Zoals al gezegd: **Ieder object zal z'n eigen geboortejaar hebben.**
 
 Die laatste opmerking is een kernconcept van OOP: ieder object heeft z'n eigen interne staat die kan aangepast worden individueel van de andere objecten van hetzelfde type. We zullen dit testen in volgende voorbeeld waarin we 2 objecten maken en enkel 1 ervan verjongen. Kijk wat er gebeurt:
 
-```csharp
+```java
 Mens elvis = new Mens();
 Mens bono = new Mens();
 elvis.StartVerjongingskuur();
@@ -256,7 +256,7 @@ Dit kan nefaste gevolgen hebben voor de klasse.
 
 Daarom gaan we de toegang tot instantievariabelen als het ware controleren door deze enkel via properties en methoden toe te laten. We zouden dan bijvoorbeeld het volgende kunnen doen:
 
-```csharp
+```java
 internal class Mens
 {
     private int geboorteJaar = 1970;
@@ -280,7 +280,7 @@ Mooi he. Zo voorkomen we dus dat de buitenwereld illegale waarden aan een variab
 
 We kunnen nu het probleem oplossen dat al onze mensen verliefd zijn op Anneke. Volgende code toont dit:
 
-```csharp
+```java
 internal class Mens
 {
     private string lief = "niemand";
@@ -307,7 +307,7 @@ internal class Mens
 
 Nu kunnen we dus *"Temptation Island - de OOP editie"* beginnen:
 
-```csharp
+```java
 Mens deelnemer1 = new Mens();
 Mens deelnemer2 = new Mens();
 deelnemer1.Praat();
@@ -361,7 +361,7 @@ Een andere veelgemaakte fout is klassen te schrijven die maar exact één object
 
 Vervolgens kunnen we dan instanties maken: *1 object stelt 1 level in het spel voor*. De speler kan dan van level naar level gaan en de code start dan bijvoorbeeld telkens de ``BeginLevel`` methode:
 
-```csharp
+```java
 Level level1 = new Level();
 level1.BeginLevel();
 ```

@@ -18,7 +18,7 @@ Voeg een filter toe aan de dierentuin applicatie uit [een eerder hoofdstuk](../1
 
 In main
 
-```csharp
+```java
 //dieren staan ergens in List<Dier> diertjes
 //gebruiker gaf bij invoer f in als keuze:
 if(userinput=="f")
@@ -47,7 +47,7 @@ if(userinput=="f")
 
 Voorgaande resulteert in aardig wat quasi identieke code in de switch. Je kan zelf een generieke methode maken (hebben we niet in leerstof gezien) als volgt (in hoofdprogramma):
 
-```csharp
+```java
 static void Zegt<T>(List<Dier>dieren) where T: Dier
 {
     foreach(var dier in dieren)
@@ -61,7 +61,7 @@ static void Zegt<T>(List<Dier>dieren) where T: Dier
 
 In de switch krijg je dan:
 
-```csharp
+```java
 case "Slang":
     Zegt<Slang>(dieren);
     break;
@@ -83,7 +83,7 @@ Implementeer de ``Equals`` methode (via ``override``) in je ``Pokemon`` klasse. 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 In klasse ``Pokemon``:
 
-```csharp
+```java
 public override bool Equals(object obj)
 {
 
@@ -142,7 +142,7 @@ Wanneer je ``Prijs`` ``override`` krijg je standaard in VS de syntax met *pijltj
 
 **Main:**
 
-```csharp
+```java
 Huis myHuis = new Huis();
 myHuis.Kamers.Add(new Salon() { HeeftSchouw = true });
 myHuis.Kamers.Add(new Gang() {Oppervlakte=20 });
@@ -154,7 +154,7 @@ Console.WriteLine(myHuis.BerekenPrijs());
 
 **Klassen**
 
-```csharp
+```java
 public class Huis
 {
     public List<Kamer> Kamers { get; set; } = new List<Kamer>();
@@ -457,7 +457,7 @@ Voeg een overloaded constructor aan ``GanzenBord`` toe die een bool aanvaardt. D
 Bij het opstarten van het spel vraag je aan de gebruiker of hij de kleur of de zwartwit versie van Ganzenbord wil spelen.
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-```csharp
+```java
 public class Dobbelsteen
 {
     private static readonly Random rng = new Random();
@@ -653,7 +653,7 @@ Deze oefening gaat erg ver voorbij de leerstof van dit boek en is enkel bedoeld 
 
 Tot hiertoe hebben we altijd gepraat over enerzijds objecten, en anderzijds methoden. Twee zaken die wel een relatie met elkaar hebben (een klasse kan methoden hebben, een methode kan objecten als parameter of return type hebben). Maar wat als ik je vertel dat je ook methoden als objecten kunt gebruiken. Het concept "delegate" laat ons toe om methoden als parameters doorheen een applicatie door te geven. Hier een droog, maar duidelijk voorbeeld ([bron](https://www.tutorialsteacher.com/csharp/csharp-delegates))
 
-```csharp
+```java
 public delegate void MyDelegate(string msg); //declaring a delegate
 
 class Program
@@ -673,13 +673,13 @@ class Program
 
 Vanaf nu kan je de variabele ``del`` als object gebruiken én aanroepen:
 
-```csharp
+```java
 del("Hello World!");
 ```
 
 Of zelfs doorgeven als parameter
 
-```csharp
+```java
 static void Main(string[] args)
 {
     MyDelegate del = MethodA;

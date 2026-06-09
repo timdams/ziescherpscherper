@@ -45,7 +45,7 @@
 1. Verplaats [solsprojects.md](solsprojects.md) naar H1 (na [1_werkenmetvs.md](../0_intro/1_werkenmetvs.md)) of splits het: korte intro in H1, gevorderde delen (meerdere projecten, .csproj inhoud) in een appendix.
 2. Corrigeer in [1_datatypes.md](1_datatypes.md): "Een `bool` neemt in C# 1 byte in (niet 1 bit). Logisch want een computer adresseert geen losse bits."
 3. Voeg in [1b_variabelen.md](1b_variabelen.md) een aparte subsectie **`var`** toe:
-   ```csharp
+   ```java
    var leeftijd = 25;          //compiler leidt int af
    var naam = "Tim";           //compiler leidt string af
    var lijst = new List<int>(); //handig bij lange types

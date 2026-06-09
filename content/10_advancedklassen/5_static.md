@@ -33,7 +33,7 @@ Zonder het keyword ``static`` heeft ieder object z'n eigen instantievariabelen. 
 
 Gegeven volgende klasse:
 
-```csharp
+```java
 internal class Mens
 {
     private int geboorteJaar;
@@ -51,7 +51,7 @@ internal class Mens
 
 Als we dit doen:
 
-```csharp
+```java
 Mens m1 = new Mens();
 Mens m2 = new Mens();
 m1.Jarig();
@@ -80,7 +80,7 @@ Laten we eens kijken wat er gebeurt indien we een instantievariabele ``static`` 
 
 We maken de variabele ``private int geboorteJaar`` static als volgt: ``private static int geboorteJaar = 1;``. We krijgen dan:
 
-```csharp
+```java
 internal class Mens
 {
     private static int geboorteJaar = 1;
@@ -100,7 +100,7 @@ internal class Mens
 
 Voeren we nu terug volgende code uit:
 
-```csharp
+```java
 Mens m1 = new Mens();
 Mens m2 = new Mens();
 m1.Jarig();
@@ -133,13 +133,13 @@ Ga je dit soort ``static`` variabelen -ook wel static fields genoemd - vaak nodi
 Heb je er al bij stil gestaan waarom je dit kan doen:
 
 
-```csharp
+```java
 Math.Pow(3,2);
 ```
 
 Zonder dat we objecten moeten aanmaken in de trend van:
 
-```csharp
+```java
 Math myMath = new Math(); //dit mag niet!
 myMath.Pow(3,2)
 ```
@@ -150,7 +150,7 @@ De klasse is op de koop toe ook zelf ``static`` gemaakt. Zo kan er zeker geen tw
 
 De klasse zal er dus zo ongeveer uitzien:
 
-```csharp
+```java
 internal static class Math
 {
     public static double Pow(int getal, int macht)
@@ -174,7 +174,7 @@ Zoals je hopelijk al merkt zijn er aardig wat keywords die je nog voor methode e
 
 Stel dat we enkele veelgebruikte methoden willen groeperen en deze gebruiken zonder telkens een object te moeten aanmaken dan doen we dit als volgt:
 
-```csharp
+```java
 internal static class EpicLibrary
 {
     static public void ToonInfo()
@@ -194,7 +194,7 @@ internal static class EpicLibrary
 
 We kunnen deze methoden nu als volgt aanroepen:
 
-```csharp
+```java
 EpicLibrary.ToonInfo();
 int opgeteld = EpicLibrary.TelOp(3,5);
 ```
@@ -206,7 +206,7 @@ Dankzij ``static`` kunnen we dus eigen bibliotheken van methoden én properties 
 Je mag ook hybride klassen maken waarin sommige delen ``static`` zijn en andere niet. De ``DateTime`` klasse uit het eerste hoofdstuk bijvoorbeeld is zo'n klasse. De meeste dingen gebeurden *non-static* toch was er ook bijvoorbeeld de ``static`` property ``Now`` om de huidige tijd terug te krijgen, alsook de ``IsLeapYear`` hulpmethode die we rechtstreeks op de klasse ``DateTime`` moesten aanroepen:
 
 
-```csharp
+```java
 bool gaIkOpPensioenInEenSchrikkeljaar = DateTime.IsLeapYear(2048);
 ```
 
@@ -224,7 +224,7 @@ De ``Debug`` klasse (die in de ``System.Diagnostics`` namespace staat) kan je ge
 
 
 Volgende code toont een voorbeeld (merk lijn 1 op die vereist is):
-```csharp
+```java
 using System.Diagnostics;
 
 namespace debugdemo
@@ -261,7 +261,7 @@ Als je voorgaande code uitvoert in debugger modus, dan zal je enkel de tekst ``H
 
 In het volgende voorbeeld gebruik ik een ``static`` variabele om bij te houden hoeveel objecten (via de constructor met behulp van ``Debug.WriteLine`` ) er van de klasse reeds zijn aangemaakt:
 
-```csharp
+```java
 internal class Fiets
 {
     private static int aantalFietsen = 0;
@@ -283,7 +283,7 @@ internal class Fiets
 Merk op dat we de methode ``VerminderFiets`` enkel via de klasse kunnen aanroepen daar deze ``static`` werd gemaakt. We kunnen echter nog steeds ``Fiets``-objecten aanmaken aangezien de klasse zelf niet ``static`` werd gemaakt.
 
 Laten we de uitvoer van volgende code eens bekijken:
-```csharp
+```java
 Fiets merckx = new Fiets();
 Fiets steels = new Fiets();
 Fiets evenepoel = new Fiets();
@@ -313,7 +313,7 @@ Van zodra je een methode hebt die ``static`` is dan zal deze methode enkel ander
 
 Volgende code zal dus een fout geven:
 
-```csharp
+```java
 internal class Mens
 {
     private int gewicht = 50;
@@ -349,7 +349,7 @@ Beeld je in dat je een pong-variant moet maken waarbij meerdere balletjes over h
 
 We gaan dit oplossen met een static property waarin we de grenzen voor alle balletjes bijhouden. Aan onze klasse ``Balletje`` voegen we dan alvast het volgende toe:
 
-```csharp
+```java
 static public int Breedte { get; set; }
 static public int Hoogte { get; set; }
 
@@ -357,14 +357,14 @@ static public int Hoogte { get; set; }
 
 In ons hoofdprogramma (``Main``) kunnen we nu de grenzen voor alle balletjes tegelijk vastleggen:
 
-```csharp
+```java
 Balletje.Hoogte = Console.WindowHeight;
 Balletje.Breedte = Console.WindowWidth;
 ```
 
 Maar even goed maken we de grenzen voor alle balletjes gebaseerd op zelf gekozen waarden:
 
-```csharp
+```java
 Balletje.Hoogte = 20;
 Balletje.Breedte = 10;
 ```
@@ -376,7 +376,7 @@ We zouden zelfs de grenzen van het veld dynamisch kunnen maken en laten afhangen
 
 De interne werking van de balletjes hoeft dus geen rekening meer te houden met de grenzen van het scherm. We passen de ``Update``-methode aan, rekening houdend met deze nieuwe kennis:
 
-```csharp
+```java
 public void Update()
 {
     if (X + VX >= Balletje.Breedte || X + VX < 0)
@@ -400,7 +400,7 @@ public void Update()
 
 En nu kunnen we vlot balletjes laten rond bewegen op bijvoorbeeld een klein deeltje maar van het scherm:
 
-```csharp
+```java
 static void Main(string[] args)
 {
     Console.CursorVisible = false;
@@ -437,7 +437,7 @@ static void Main(string[] args)
 
 Test maar eens wat er gebeurt als je volgende klasse hebt:
 
-```csharp
+```java
 internal class Dobbelsteen
 {
     public int Werp()
@@ -450,7 +450,7 @@ internal class Dobbelsteen
 
 Wanneer je nu dezelfde dobbelsteen 10 maal snel na elkaar rolt is de kans groot dat je geregeld dezelfde getallen gooit:
 
-```csharp
+```java
 Dobbelsteen testDobbel = new Dobbelsteen();
 for(int i = 0 ; i < 10; i++)
 {
@@ -462,7 +462,7 @@ De reden? Een nieuw aangemaakt ``Random``-object gebruikt de tijd waarop het wor
 
 **We lossen dit op door de generator ``static`` te maken zodat er maar één generator bestaat die alle dobbelstenen en hun methoden delen.** Dit is erg eenvoudig opgelost: je verhuist je generator naar buiten de methode en plaatst er ``static`` voor:
 
-```csharp
+```java
 internal class Dobbelsteen
 {
     static Random gen = new Random();

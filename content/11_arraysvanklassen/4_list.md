@@ -6,7 +6,7 @@ Een ``List<>``-collectie is de meest standaard collectie die je kan beschouwen a
 
 De klasse ``List<>`` is een *generieke* klasse. Tussen de ``< >``tekens plaatsen we het datatype dat de lijst zal moeten gaan bevatten. Bijvoorbeeld:
 
-```csharp
+```java
 List<int> alleGetallen = new List<int>();
 List<bool> binaryList = new List<bool>();
 List<Pokemon> pokeDex = new List<Pokemon>();
@@ -37,7 +37,7 @@ Via de ``Add()``-methode kan je elementen toevoegen aan de lijst. Je dient als p
 
 In volgende voorbeeld maken we een List aan die objecten van het type string mag bevatten en vervolgens plaatsen we er twee elementen in.
 
-```csharp
+```java
 List<string> mijnPersonages = new List<string>();
 mijnPersonages.Add("Reinhardt");
 mijnPersonages.Add("Mercy");
@@ -47,13 +47,13 @@ mijnPersonages.Add("Mercy");
 
 Ook meer complexe datatypes kan je dus toevoegen:
 
-```csharp
+```java
 List<Pokemon> pokedex = new List<Pokemon>();
 pokedex.Add(new Pokemon());
 ```
 
 Via object syntax initializer kan dit zelfs nog sneller:
-```csharp
+```java
 List<Pokemon> pokedex = new List<Pokemon>()
     {
         new Pokemon(),
@@ -65,7 +65,7 @@ List<Pokemon> pokedex = new List<Pokemon>()
 
 Je kan ook een stap verder gaan en ook binnenin deze initializer syntax dezelfde soort initialize syntax gebruiken om de objecten individueel aan te maken:
 
-```csharp
+```java
 List<Pokemon> pokedex = new List<Pokemon>()
     {
         new Pokemon() {Naam = "Pikachu", HP_Base = 5},
@@ -83,7 +83,7 @@ List<Pokemon> pokedex = new List<Pokemon>()
 
 **Het leuke van een ``List`` is dat je deze ook kan gebruiken als een gewone array**, waarbij je met behulp van de indexer elementen individueel kan aanroepen. Stel bijvoorbeeld dat we een lijst hebben met minstens 4 strings in. Volgende code toont hoe we de string op positie 3 kunnen uitlezen en hoe we die op positie 2 overschrijven, net zoals we reeds kenden van arrays:
 
-```csharp
+```java
 Console.WriteLine(mijnPersonages[3]);
 mijnPersonages[2] = "Torbjorn";
 ```
@@ -93,7 +93,7 @@ mijnPersonages[2] = "Torbjorn";
 
 Ook de klassieke werking met loops blijft gelden. **De enige aanpassing is dat ``List<>`` niet met ``Length`` werkt maar met ``Count``**:
 
-```csharp
+```java
 for(int i = 0 ; i < mijnPersonages.Count; i++)
 {
     Console.WriteLine(mijnPersonages[i])
@@ -122,7 +122,7 @@ Let op met het gebruik van ``IndexOf`` en objecten. Deze methode zal controleren
 
 Ikzelf ben fan van List. Het maakt je code vaak leesbaarder dan arrays. Voorts geeft het je de optie om dynamisch groeiende (en krimpende) arrays te hebben, zonder dat je daar veel *boilerplate* code voor moet schrijven. Herinner je onze Pong-code waarin we 100 balletjes op het scherm lieten vliegen?
 
-```csharp
+```java
 const int AANTAL_BALLETJES = 100;
 Random r = new Random();
 Balletje[] veelBalletjes = new Balletje[AANTAL_BALLETJES];
@@ -154,7 +154,7 @@ while (true)
 
 Vooral de code in de ``while`` wordt nu leesbaarder dankzij ``List<Balletje>`` (we gaan ook ineens gebruik maken van onze nieuwe default constructor die de random startwaarde instelde):
 
-```csharp
+```java
 const int AANTAL_BALLETJES = 100;
 List<Balletje> veelBalletjes = List<Balletje>();
 for (int i = 0; i < AANTAL_BALLETJES; i++) //balletjes aanmaken

@@ -172,7 +172,7 @@ Aangemaakt op: 2024-09-30 15:19:48
 
 Program.cs:
 
-```csharp
+```java
 enum MenuKeuze { Toevoegen = 1, Opstelling, Afsluiten, Scouten, Onbekend }
 static void Main(string[] args)
 {
@@ -246,7 +246,7 @@ private static void VoegSpelerToe(VoetbalTeam team)
 
 Andere klassebestanden (ieder apart):
 
-```csharp
+```java
 class Speler
 {
     public Speler(int rugnummer, string naam, int kracht)
@@ -479,7 +479,7 @@ class Wedstrijd
 
 ## Oplossing oefening 2 Bestandsfilter
 
-```csharp
+```java
 Console.WriteLine("Geef het pad van een folder in:");
 string folder = Console.ReadLine();
 if (Directory.Exists(folder))

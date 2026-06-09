@@ -60,7 +60,7 @@ r  M  k
 
 ::: {.callout-warning collapse="true"}
 ## Hint — is en as
-```csharp
+```java
 if (station is Hoofdstation)
 {
     Hoofdstation hs = station as Hoofdstation;
@@ -77,7 +77,7 @@ Controleer altijd **eerst** op `Hoofdstation`, want een `Hoofdstation` is ook ee
 ::: {.callout-warning collapse="true"}
 ## Hint — Null check na as
 Het `as` keyword geeft `null` terug als de cast niet lukt:
-```csharp
+```java
 Hoofdstation hs = station as Hoofdstation;
 if (hs != null)
 {

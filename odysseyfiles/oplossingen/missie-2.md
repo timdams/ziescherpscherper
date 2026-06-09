@@ -6,7 +6,7 @@
 
 ### Main
 
-```csharp
+```java
 List<Module> station = new List<Module>();
 station.Add(new MedBay("Sick Bay Alpha", 4, 5));
 station.Add(new Kwartier("Crew Deck 1", 1, 1));
@@ -22,7 +22,7 @@ Console.SetCursorPosition(1, 20);
 
 ### Module
 
-```csharp
+```java
 abstract class Module
 {
     public Module(string naamin, int xin, int yin)

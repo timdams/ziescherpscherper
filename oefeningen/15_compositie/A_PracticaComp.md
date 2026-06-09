@@ -13,7 +13,7 @@ Kan je volgende 2 UML-diagrammen implementeren in code? Uiteraard kan je dat: ma
 **Les(sen) uit deze oefening:** Een mens wordt geboren met handen, voeten en benen (technisch gezien moesten we 2 compositiet-objecten van type ``Hand`` en``Leg`` maken) daarom maken we de instanties aan in de constructor. Eventueel had je dit ook rechtstreeks in de klasse bij de instantievariabele kunnen doen (``private Head theHead = new Head();``).
 :::
 
-```csharp
+```java
 public class Head {}
 public class Hand {}
 public class Leg{}
@@ -37,7 +37,7 @@ public class Person
 **Les(sen) uit deze oefening:** Associaties zijn niet beperkt tot enkelvoudige objecten, vaak ga je ook arrays of lijsten nodig hebben om deze voor te stellen. 
 :::
 
-```csharp
+```java
 public class Wheel{}
 public class Crankshaft{}
 public class Piston{}
@@ -138,7 +138,7 @@ De default constructor van ``VerkiezingsUitslag`` zorgt ervoor dat deze properti
 
 Door deze klasse wordt het opzetten van een regering in ``Main`` heel kort. Je hoeft niet langer manueel ministers en een president aan te maken:
 
-```csharp
+```java
 VerkiezingsUitslag uitslag2022 = new VerkiezingsUitslag();
 
 Land mijnLand = new Land();
@@ -150,7 +150,7 @@ mijnLand.MaakRegering(uitslag2022.VerkozenPresident, uitslag2022.VerkozenMiniste
 **Les(sen) uit deze oefening:** Dit was al een iets complexere oefening. De kracht van compositie is zichtbaar in de klasse ``Land`` waar we via de ``MaakRegering`` informatie binnenkrijgen om toe te wijzen aan de aggregaatobjecten (``President``, ``EersteMinister`` en ``Ministers``).  Kijk zeker goed hoe we de meegegeven lijst van ministers in ``MaakRegering`` toewijzen (m.b.v. een loop die de eerste minister overslaat)
 :::
 
-```csharp
+```java
 static void Main(string[] args)
 {
     President ikke = new President() { Naam = "Tim" };
@@ -171,7 +171,7 @@ static void Main(string[] args)
 }
 ```
 
-```csharp
+```java
 public class Land
 {
     private President President;
@@ -232,7 +232,7 @@ public class President: Minister
 
 Met de uitbreiding:
 
-```csharp
+```java
 public class VerkiezingsUitslag
 {
     static Random rng = new Random();
@@ -279,7 +279,7 @@ public class VerkiezingsUitslag
 
 Start van Main kan dan korter:
 
-```csharp
+```java
 VerkiezingsUitslag uitslag2022 = new VerkiezingsUitslag();
 
 Land mijnLand = new Land();
@@ -298,7 +298,7 @@ Maak een methode ``TestMoederbord`` in de klasse ``Moederbord``. Wanneer je deze
 
 Iedere module moet via een property langs buiten ingesteld worden. (beeld je in dat je effectief een moederbord ineenknutselt):
 
-```csharp
+```java
 Moederbord Z390E_GAMING = new Moederbord();
 Z390E_GAMING.AGP= new AGPSlot("GeForceRTX2080");
 Z390E_GAMING.CPU= new CPUSlot("IntelCorei9_9900K");
@@ -321,14 +321,14 @@ Je hebt nog 2 vrij ramsloten
 Er zijn geen andere componenten aanwezig
 ```
 
-```csharp
+```java
 Moederbord Z390E_GAMING = new Moederbord(3);
 Z390E_GAMING.CPUSlot = new CPU("IntelCorei9_9900K",4);
 Z390E_GAMING.Ramslots.Add(new RamMemory("Corsair", 8));
 Z390E_GAMING.TestMoederbord();
 ```
 
-```csharp
+```java
 public class Moederbord
 {
     public Moederbord(int aantalRamsloten)
@@ -473,7 +473,7 @@ Methoden:
 
 ## Voorbeeldcode
 
-```csharp
+```java
 // Wereld aanmaken
 World myWorld = new World("Mystica", 10);
 

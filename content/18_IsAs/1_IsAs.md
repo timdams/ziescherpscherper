@@ -11,14 +11,14 @@ Het ``is`` keyword is een operator die je kan gebruiken om te weten te komen of:
 De ``is`` operator heeft twee operanden nodig en geeft een ``bool`` terug als resultaat. De linkse operator moet een variabele zijn, de rechtse een datatype. Bijvoorbeeld:
 
 
-```csharp
+```java
 bool ditIsEenStudent = mijnStudent is Student;
 ```
 
 #### ``is`` voorbeeld 
 Stel dat we volgende drie klassen hebben:
 
-```csharp
+```java
 internal class Voertuig {}
 
 internal class Auto: Voertuig{}
@@ -31,13 +31,13 @@ Een Persoon **is géén** Voertuig.
 
 Stel dat we enkele variabelen hebben als volgt:
 
-```csharp
+```java
 Auto mijnAuto = new Auto();
 Persoon rambo = new Persoon();
 ```
 
 We kunnen nu de objecten met ``is`` bevragen of ze van een bepaalde type zijn:
-```csharp
+```java
 if(mijnAuto is Voertuig)
 {
     Console.WriteLine("mijnAuto is een Voertuig");
@@ -54,7 +54,7 @@ De uitvoer zal worden: ``mijnAuto is een Voertuig``.
 
 Met polymorfisme wordt dit voorbeeld echter interessanter. Wat als we een hoop objecten in een lijst van voertuigen plaatsen en nu enkel met de auto's iets willen doen, dan kan dat:
 
-```csharp
+```java
 List<Voertuig> alleMiddelen = new List<Voertuig>();
 alleMiddelen.Add(new Voertuig());
 alleMiddelen.Add(new Auto());
@@ -72,7 +72,7 @@ foreach (var middel in alleMiddelen)
 ### ``as`` keyword met voorbeeld
 Wanneer we objecten van het ene naar het andere type willen omzetten dan doen we dit vaak met behulp van casting:
 
-```csharp
+```java
 Student fritz = new Student();
 Mens jos = (Mens)fritz;
 ```
@@ -83,7 +83,7 @@ Het ``as`` keyword lost dit op. Het keyword zegt aan de compiler **"probeer dit 
  
 De code van daarnet herschrijven we dan naar:
 
-```csharp
+```java
 Student fritz = new Student();
 Mens jos = fritz as Mens;
 ```
@@ -92,7 +92,7 @@ Indien nu de casting niet lukt (omdat ``Student`` misschien geen childklasse van
 
 We kunnen dan vervolgens schrijven:
 
-```csharp
+```java
 Student fritz = new Student();
 Mens jos = fritz as Mens;
 if(jos != null)

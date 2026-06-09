@@ -34,7 +34,7 @@ Voeg toe:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 Enclave e = new Enclave();
 e.ToonEnclave();  // 3x 'w', 1x 'g' en 1x 'H' op willekeurige posities
 e.BouwWoonst();
@@ -69,7 +69,7 @@ Toont alles wat de base-versie toont, plus de extra gebouwen van de stadsenclave
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 StadsEnclave se = new StadsEnclave();
 // Start met 3 woonsten (van Enclave-constructor)
 se.BouwWoonst();  // 4 woonsten

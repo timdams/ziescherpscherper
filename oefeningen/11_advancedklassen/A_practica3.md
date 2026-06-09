@@ -11,7 +11,7 @@ Pas de bestaande `Meetlat` klasse uit het vorige hoofdstuk aan om met een constr
 4.  Pas de werking van de overige properties aan zodat ze nu deze nieuwe variabele gebruiken in plaats van de property.
 
 **Voorbeeldgebruik:**
-```csharp
+```java
 // Oude manier (werkt NIET meer na aanpassing):
 // Meetlat m = new Meetlat();
 // m.BeginLengte = 5;

@@ -60,7 +60,7 @@ g  H  w
 
 ::: {.callout-warning collapse="true"}
 ## Hint — is en as
-```csharp
+```java
 if (enclave is StadsEnclave)
 {
     StadsEnclave se = enclave as StadsEnclave;
@@ -77,7 +77,7 @@ Controleer altijd **eerst** op `StadsEnclave`, want een `StadsEnclave` is ook ee
 ::: {.callout-warning collapse="true"}
 ## Hint — Null check na as
 Het `as` keyword geeft `null` terug als de cast niet lukt:
-```csharp
+```java
 StadsEnclave se = enclave as StadsEnclave;
 if (se != null)
 {

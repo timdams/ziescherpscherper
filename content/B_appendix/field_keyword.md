@@ -13,7 +13,7 @@ Stel dat je een property hebt waarbij je wilt controleren dat de waarde niet neg
 
 Je moest zowel de private instantievariabele (``leeftijd``) aanmaken als de publieke property.
 
-```csharp
+```java
 private int leeftijd;
 public int Leeftijd
 {
@@ -30,7 +30,7 @@ public int Leeftijd
 
 Je hebt geen private instantievariabele meer nodig in je code. Via `field` spreekt de property rechtstreeks de, door de compiler gegenereerde, achterliggende variabele aan.
 
-```csharp
+```java
 public int Leeftijd
 {
     get;

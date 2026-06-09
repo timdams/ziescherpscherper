@@ -34,7 +34,7 @@ De volgende properties geven de lengte terug, omgerekend naar de gevraagde eenhe
 
 **Voorbeeldgebruik:**
 
-```csharp
+```java
 Meetlat mijnLat = new Meetlat();
 mijnLat.BeginLengte = 2; // We stellen in op 2 meter
 Console.WriteLine($"{mijnLat.LengteInM} meter is {mijnLat.LengteInVoet} voet.");
@@ -105,7 +105,7 @@ Gebruik deze formules (gehele deling):
 
 **Voorbeeldgebruik:**
 
-```csharp
+```java
 Kleur k1 = new Kleur(); // Basiskleur (wordt aangepast)
 k1.Rood= 10; k1.Groen= 0; k1.Blauw= 20;
 

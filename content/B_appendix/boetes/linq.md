@@ -24,13 +24,13 @@ Opgelet: de [Array. methoden zoals IndexOf, Fill etc. zijn wél toegestaan](http
 
 In de opgave staat "bereken het gemiddelde van de waarden in de array ``leeftijden``. Dan is volgende oplossing **niet** toegestaan:
 
-```csharp
+```java
 double gemiddelde = leeftijden.Average();
 ```
 
 De juiste oplossing is dan wel:
 
-```csharp
+```java
 double som=0;
 for(int i = 0; i < leeftijden.Length; i++)
 {

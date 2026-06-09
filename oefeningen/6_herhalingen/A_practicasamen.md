@@ -458,7 +458,7 @@ Stel dat je het getal 4563 hebt:
 :::{.callout-tip}
 Je kan van een string weten hoe groot deze is als volgt:
 
-```csharp
+```java
 //veronderstellend dat myInputGetal van het type string is
 int lengte= myInputGetal.Length;  
 ```

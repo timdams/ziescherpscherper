@@ -12,7 +12,7 @@ De nadelen zullen we echter met plezier erbij nemen wanneer we programma's begin
 
 Stel dat je de dagelijkse neerslag wenst te bewaren om zo later de gemiddelde regen te berekenen. Dit kan je zonder arrays eenvoudig:
 
-```csharp
+```java
 int dag1 = 34;
 int dag2 = 45;
 int dag3 = 0;
@@ -25,7 +25,7 @@ int dag7 = 23;
 Als we je nu vragen om de gemiddelde neerslag te berekenen dan krijg je al een redelijk lang statement:
 
 
-```csharp
+```java
 double gemiddelde = (dag1+dag2+dag3+dag4+dag5+dag6+dag7)/7.0;
 ```
 
@@ -35,7 +35,7 @@ Maar wat als je plots de neerslag van een heel jaar wenst te bewaren. Of een hel
 Voorgaande lijst van 7 aparte variabelen kunnen we eenvoudiger definiëren met 1 array (we bespreken de details verderop), genaamd ``regen``:
 
 
-```csharp
+```java
 int[] regen = {34, 45, 0, 34, 12, 0, 23}; 
 ```
 
@@ -47,7 +47,7 @@ int[] regen = {34, 45, 0, 34, 12, 0, 23};
 Het gemiddelde berekenen kan dan als volgt:
 
 
-```csharp
+```java
 double gemiddelde = (regen[0]+regen[1]+regen[2]+regen[3]+regen[4]+regen[5]+regen[6])/7.0;
 ```
 
@@ -58,7 +58,7 @@ Dat lijkt niet veel beter...Integendeel. We zitten nu ook nog met een hoop vierk
 
 De kracht van arrays komt nu: het getal tussen die vierkante haakjes (de index) kan je als een variabele beschouwen en dus ook dynamisch genereren in een loop. Volgend voorbeeld toont hoe we bijvoorbeeld een langere array van elementen met een for-loop overlopen om de som van alle elementen te berekenen:
 
-```csharp
+```java
 int[] regen = {34, 45, 0, 34, 12, 0, 23, 7, 20, 34, 7, 42}; //aanmaken array
 double som = 0;
 for(int i = 0; i<regen.Length;i++)
@@ -95,7 +95,7 @@ Een array creëren (declareren) kan op 3 manieren.
 De eenvoudigste variant is deze waarbij je een array variabele aanmaakt, maar deze nog niet initialiseert. Je maakt enkel een identifier aan, maar zet er nog niets in. De syntax is als volgt:
 
 
-```csharp
+```java
 type[] arraynaam;
 ```
 
@@ -103,7 +103,7 @@ Type kan eender welk bestaand datatype zijn dat je reeds kent. De [] (vierkante 
 
 Voorbeelden van array declaraties kunnen dus bijvoorbeeld zijn:
 
-```csharp
+```java
 int[] verkoopCijfers;
 double[] gewichtHuisdieren;
 bool[] examenAntwoorden;
@@ -116,13 +116,13 @@ Op dit punt bestaan de arrays nog niet . **Hun lengte ligt nog niet vast**. In h
 Stel dat je een array van strings wenst waarin je verschillende kleuren zal plaatsen dan schrijf je:
 
 
-```csharp
+```java
 string[] myColors;
 ```
 
 Vervolgens kunnen we later waarden toekennen aan de array:
 
-```csharp
+```java
 string[] myColors;
 myColors = {"red", "green", "yellow", "orange", "blue"};
 ```
@@ -137,7 +137,7 @@ Je array zal na lijn 2 **een lengte van 5 hebben en kan niet meer groeien of kri
 Indien je ogenblikkelijk waarden wilt toekennen (*initialiseren*) tijdens het aanmaken van de array zelf dan mag dit ook als volgt:
 
 
-```csharp
+```java
 string[] myColors = {"red", "green", "yellow", "orange", "blue"};
 ```
 
@@ -151,7 +151,7 @@ Merk op dat deze manier dus enkel werkt indien je reeds weet welke waarden in de
 
 Nog een andere manier om arrays aan te maken is diegene waarbij je aangeeft hoe groot de array moet zijn. We gaan echter nog niet effectief waarden in de array plaatsen.
 
-```csharp
+```java
 string[] myColors;
 myColors = new string[5];
 ```
@@ -159,7 +159,7 @@ myColors = new string[5];
 Uiteraard kan dit ook in 1 stap:
 
 
-```csharp
+```java
 string[] myColors = new string[5];
 ```
 
@@ -180,7 +180,7 @@ Er is een essentieel verschil tussen manier 1 en 3. Wanneer je bij de sectie "Ge
 Van zodra er waarden in een array staan of moeten bijgeplaatst worden kan je deze benaderen met de zogenaamde **array accessor** notatie. Deze notatie is heel eenvoudigweg de volgende:
 
 
-```csharp
+```java
 myColors[2]; //element met index 2
 ```
 
@@ -221,21 +221,21 @@ Je weet nu hoe je individuele waarden in een array kan benaderen. Ze gebruiken i
 Wanneer je dus het tweede element van een array wenst te gebruiken kan dit bijvoorbeeld als volgt:
 
 
-```csharp
+```java
 Console.WriteLine(myColors[1]);
 ```
 
 of ook
 
 
-```csharp
+```java
 string kleurkeuze = myColors[1];
 ```
 
 of zelfs
 
 
-```csharp
+```java
 if(myColors[1] == "pink")
 ```
 
@@ -245,13 +245,13 @@ Kortom, alles wat je al kon, kan ook met arrays. Je kan ze zelfs als parameters 
 Een array proberen te tonen als volgt gaat niet:
 
 
-```csharp
+```java
 Console.WriteLine(myColors);
 ```
 
 De enige manier alle elementen van een array te tonen is door manueel ieder element individueel naar het scherm te sturen. Bijvoorbeeld:
 
-```csharp
+```java
 for(int i = 0 ; i<myColors.Length;i++)
 {
     Console.WriteLine($"{myColors[i]}");
@@ -263,7 +263,7 @@ for(int i = 0 ; i<myColors.Length;i++)
 
 Stel dat we een array van getallen hebben, dan kunnen we bijvoorbeeld 2 waarden uit die array optellen en opslaan in een andere variabele als volgt:
 
-```csharp
+```java
 int[] numbers = {5, 10, 30, 45};
 int som = numbers[0] + numbers[1];
 ```
@@ -275,7 +275,7 @@ De variabele som zal vervolgens de waarde 15 bevatten (5+10).
 
 Stel dat we *alle* elementen uit de array ``numbers`` met 5 willen verhogen, dan kunnen we schrijven:
 
-```csharp
+```java
 int[] numbers = {5, 10, 30, 45};
 numbers[0] += 5;
 numbers[1] += 5;
@@ -285,7 +285,7 @@ numbers[3] += 5;
 
 Maar eigenlijk zijn we dan het voordeel van arrays niet aan het gebruiken. Met loops maken we bovenstaande oplossing beter zodat deze zal werken, ongeacht het aantal elementen in de array[^vrolijkevrienden]:
 
-```csharp
+```java
 for(int teller = 0; teller < numbers.Length; teller++)
 {
     numbers[teller] += 5;
@@ -303,12 +303,12 @@ for(int teller = 0; teller < numbers.Length; teller++)
 Ook schrijven van waarden naar een array gebruikt dezelfde notatie. Enkel moet je dus deze keer de array accessor-notatie links van de toekenningsoperator plaatsen. Stel dat we bijvoorbeeld de waarde van het eerste element uit de ``myColors`` array willen veranderen van ``red`` naar ``indigo``, dan gebruiken we volgende notatie:
 
 
-```csharp
+```java
 myColors[0] = "indigo";
 ```
 Als we bij aanvang nog niet weten welke waarden de individuele elementen moeten hebben in een array, dan kunnen we deze eerst definiëren, en vervolgens individueel toekennen:
 
-```csharp
+```java
 string[] myColors;
 myColors = new string[5];
 // ...
@@ -322,7 +322,7 @@ myColors[4] = "blue";
 :::{.callout-important}
 Een veel gestelde vraag wanneer een programmeur het nut van arrays nog niet 100% ziet is het volgende. Stel dat je deze code hebt;
 
-```csharp
+```java
 int dag1 = 34;
 int dag2 = 45;
 int dag3 = 0;
@@ -348,14 +348,14 @@ for(int i=1; i<=7; i++)
 
 Soms kan het nodig zijn dat je in een later stadium van je programma de lengte van je array nodig hebt. De ``Length``-eigenschap van iedere array geeft dit weer. Volgend voorbeeld toont dit:
 
-```csharp
+```java
 string[] myColors = {"red", "green", "yellow", "orange", "blue"};
 Console.WriteLine($"Length of array = {myColors.Length}" );
 ```
 
 De ``Length``-eigenschap wordt vaak gebruikt in for/while loops waarmee je de hele array wenst te doorlopen. Door de ``Length``-eigenschap te gebruiken als grenscontrole verzekeren we er ons van dat we nooit buiten de grenzen van de array zullen lezen of schrijven:
 
-```csharp
+```java
 //Alle elementen van een array tonen
 for (int i = 0; i < getallen.Length; i++)
 {
@@ -366,7 +366,7 @@ for (int i = 0; i < getallen.Length; i++)
 :::{.callout-important}
 Elementen benaderen buiten de range van een array geeft erg dikke errors. Het jammer is dat VS dit soort subtiele 'out of range' bugs niet kan detecteren tijdens het compileren. Je zal ze pas ontdekken bij de uitvoer. Volgende code zal perfect gecompileerd worden, maar bij de uitvoer zal er op lijn 2 een foutboodschap verschijnen en het programma zal stoppen:
 
-```csharp
+```java
 int[] getallen = { 1,2,3 };
 Console.WriteLine(getallen[5]);
 ```
@@ -394,7 +394,7 @@ Met al de voorgaande informatie is het nu mogelijk om vlot complexere programma'
 
 Het volgende programma zal een array van integers aanmaken die alle gehele getallen van 0 tot 99 bevat. Vervolgens zal ieder getal met 3 vermenigvuldigd worden. Finaal tonen we enkel die getallen die een veelvoud van 4 zijn na de bewerking.
 
-```csharp
+```java
 //Array aanmaken
 int[] getallen = new int[100]; 
 //Array vullen
@@ -422,7 +422,7 @@ for (int i = 0; i < getallen.Length; i++)
 Begrijp je nu wat ``string[] args`` wil zeggen in je ``Main``? Iedere ``Main`` heeft volgende methode-signatuur:
 
 
-```csharp
+```java
 static void Main(string[] args)
 ```
 
@@ -435,7 +435,7 @@ Volg daarom volgende stappenplan:
 
 1. Maak een nieuw console-project aan genaamd ``argstest``.
 2. Voeg volgende code toe in je ``Main``:
-```csharp
+```java
 for (int i = 0; i < args.Length; i++)
 {
     Console.WriteLine(args[i]);
@@ -464,7 +464,7 @@ Let er zeker op dat je steeds met ``args.Length`` test of er wel genoeg opstarta
 
 De volgorde van operanden bij een && operator zijn belangrijk. Kijk wat er gebeurt als we de operanden omwisselen in de vorige ``if``:
 
-```csharp
+```java
 if ( args[2]=="cool" && args.Length>=2)
 ```
 

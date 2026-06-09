@@ -14,7 +14,7 @@ We hebben volgende klasse-structuur:
 
 Als basis klasse ``Mens`` hebben we:
 
-```csharp
+```java
 internal class Mens
 {
     public void Spreek()
@@ -28,7 +28,7 @@ internal class Mens
 
 Voorts definiëren we de interface ``IVloeker`` als volgt:
 
-```csharp
+```java
 interface IVloeker
 {
     void Vloek();
@@ -40,7 +40,7 @@ We kunnen nu de nodige child-klassen maken:
 1. De niet-vloekers: ``Leraar`` en ``Student``
 2. De vloekers: ``Advocaat`` en ``Politieker``
 
-```csharp
+```java
 internal class Leraar:Mens {} //moet niets speciaal doen
 
 internal class Student:Mens{} //ook studenten doen niets speciaal
@@ -65,7 +65,7 @@ internal class Advocaat: Mens, IVloeker
 ### Vloekende mensen: Het probleem
 We maken een array van mensen aan waarin we van iedere type een vertegenwoordiger plaatsen (uiteraard had dit ook in een ``List<Mens>`` kunnen gebeuren):
 
-```csharp
+```java
 Mens[] mensjes = new Mens[4];
 mensjes[0] = new Leraar();
 mensjes[1] = new Politieker();
@@ -84,7 +84,7 @@ for(int i = 0; i < mensjes.Length; i++)
 ### Oplossing 1: ``is`` to the rescue
 De eerste oplossing is door gebruik te maken van het ``is`` keyword.
 We zullen de array doorlopen en steeds aan het huidige object vragen of dit object de ``IVloeker`` interface bezit, als volgt:
-```csharp
+```java
 for(int i = 0; i<mensjes.Length; i++)
 {
     if(mensjes[i] is IVloeker)
@@ -99,7 +99,7 @@ for(int i = 0; i<mensjes.Length; i++)
 ```
 Vervolgens kunnen we binnen deze ``if`` het huidige object tijdelijk omzetten (casten) naar een ``IVloeker`` object en laten vloeken:
 
-```csharp
+```java
 if(mensjes[i] is IVloeker)
 {
     IVloeker tijdelijk = (IVloeker)mensjes[i];
@@ -110,7 +110,7 @@ if(mensjes[i] is IVloeker)
 ### Oplossing 2: ``as`` to the rescue
 
 Het ``as`` keyword kan ook een toffe oplossing geven. Hierbij zullen we het object proberen om te zetten via ``as`` naar een ``IVloeker``. Als dit lukt (het object is verschillend van ``null``) dan kunnen we het object laten vloeken:
-```csharp
+```java
 for(int i = 0; i<mensjes.Length; i++)
 {
     IVloeker tijdelijk = mensjes[i] as IVloeker;

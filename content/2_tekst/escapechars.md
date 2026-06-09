@@ -16,7 +16,7 @@ Laten we eens kijken naar de werking van het weglatingsteken als voorbeeld (de z
 De volgende code zal de compiler verkeerd interpreteren, omdat hij denkt dat we een leeg karakter willen opslaan:
 
 
-```csharp
+```java
 char weglatingsteken = ''';
 ```
 
@@ -28,7 +28,7 @@ Het gevolg is een berg aan foutboodschappen omdat er na het sluitende weglatings
 **Escape characters to the rescue!** We gaan met de backslash aanduiden dat het volgende teken (het tweede weglatingsteken) een ``char`` voorstelt en niet het sluitende teken in de code.
 
 
-```csharp
+```java
 char weglatingsteken = '\'';
 ```
 
@@ -58,13 +58,13 @@ Er zijn verschillende escape characters in C# toegelaten. We lijsten hier de bel
 Aangezien strings eigenlijk bestaan uit 1 of meerdere char-elementen, is het logisch dat je ook in een string met escape characters kunt werken. Het woord "'s avonds" schrijf je bijvoorbeeld als volgt:
 
 
-```csharp
+```java
 string woord = "\'s avonds";
 ```
 
 Idem met aanhalingstekens. Stel je voor dat je een programma wilt schrijven dat C# code op het scherm toont. Dat doe je dan met volgende, nogal Inception-achtige, manier:
 
-```csharp
+```java
 string inceptionCode = "Console.WriteLine(\"Cool he\");";
 Console.WriteLine(inceptionCode);
 ```
@@ -72,7 +72,7 @@ Console.WriteLine(inceptionCode);
 Merk op dat we voorgaande code nog meer Inception-like kunnen maken door de string ineens in de WriteLine methode te plaatsen:
 
 
-```csharp
+```java
 Console.WriteLine("Console.WriteLine(\"Cool he\");");
 ```
 
@@ -85,7 +85,7 @@ Beide voorbeelden zullen dus volgende tekst op het scherm geven: ``Console.Write
 Volgende codevoorbeeld zal, als alles goed gaat, een zin op het scherm tonen en dan ogenblikkelijk erna een biepje:
 
 
-```csharp
+```java
 Console.WriteLine("Een zin en dan nu ... de biep\a");
 ```
 
@@ -95,7 +95,7 @@ Console.WriteLine("Een zin en dan nu ... de biep\a");
 
 We gebruiken vooral escape characters in strings om bijvoorbeeld witregels en tabs aan te geven. Test bijvoorbeeld volgende lijn code eens:
 
-```csharp
+```java
 string eenString = "Een zin.\t na een tab \nDan eentje op een nieuwe regel";
 Console.WriteLine(eenString);
 ```
@@ -103,7 +103,7 @@ Console.WriteLine(eenString);
 Dit zal als output geven:
 
 
-```csharp
+```java
 Een zin.         na een tab
 Dan eentje op een nieuwe regel
 ```
@@ -122,7 +122,7 @@ In je console-scherm zijn de tab stops vooraf bepaald. Wanneer je dus een tab in
 
 Bovenstaande uitvoer werd als volgt gemaakt:
 
-```csharp
+```java
 Console.WriteLine("01234567890123456789012345678901234567890");
 Console.WriteLine("\t1\t2\t3\t4\t5");
 ```
@@ -138,7 +138,7 @@ Tabstops zijn nuttig om je data mooi uitgelijnd in een tabel te plaatsen. Als je
 
 Het apenstaartje (``@``) voor een ``string`` literal plaatsen is zeggen "beschouw alles binnen de aanhalingstekens als effectieve karakters die deel uitmaken van de inhoud van de tekst". Dit teken heet daarom binnen C# niet voor niets het **verbatim** karakter. Het is belangrijk te beseffen dat **escape characters genegeerd worden** wanneer we het verbatim karakter gebruiken. Dit is vooral handig als je bijvoorbeeld een netwerkadres wilt schrijven en niet iedere ``\`` wilt escapen:
 
-```csharp
+```java
 string zonderAt = "C:\\Temp\\Myfile.txt";
 string metAt = @"C:\Temp\Myfile.txt";
 ```
@@ -151,7 +151,7 @@ Merk op dat aanhalingstekens nog steeds *ge-escape'd* moeten worden. Heb je dus 
 Uiteraard kan je ook het apenstaartje gebruiken in ``Console.WriteLine``. Volgende zal dus de escape karakters tonen in plaats van "uitvoeren":
 
 
-```csharp
+```java
 Console.WriteLine(@"Om een tab te tonen gebruik je \t in C#.");
 ```
 

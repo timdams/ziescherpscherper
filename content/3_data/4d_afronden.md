@@ -13,7 +13,7 @@ Ieder manier gaat de data  op een andere manier behandelen in het afronden, iets
 
 Op het eerste zicht lijkt afronden met ``Math.Round`` en ``Convert.ToX`` gewoon te werken:
 
-```csharp
+```java
 double d1 = 4.2;
 double d2 = 4.8;
 Console.WriteLine($"afgerond: {Math.Round(d1)} en {Math.Round(d2)} ");
@@ -23,7 +23,7 @@ Dit zal de getallen **4 en 5** op het scherm tonen, zoals verwacht.
 
 Je kan via een extra parameters de afronden nog wat bijsturen en vertellen tot hoeveel cijfer na de komma dit moet gebeuren:
     
-```csharp
+```java
 double d1 = 4.12343;
 Console.WriteLine($"afgerond: {Math.Round(d1,1)} en {Math.Round(d1,4)} ");
 ```
@@ -31,7 +31,7 @@ Dit zal de getallen **4.1 en 4.1234** op het scherm tonen. Alles lijkt dus in or
 
 Maar kijk wat er gebeurt wanneer we een getal afronden dat op de helft van een getal ligt:
 
-```csharp
+```java
 double d1 = 4.5;
 double d2 = 5.5;
 Console.WriteLine($"afgerond: {Math.Round(d1)} en {Math.Round(d2)} ");
@@ -50,7 +50,7 @@ Gelukkig kunnen we dit gedrag aanpassen door een extra parameter mee te geven aa
 
 De tweede methode is de versie die wij prefereren, omdat deze het meest voorspelbare resultaat geeft. Nemen we terug ons voorbeeld, maar nu met de extra parameter:
 
-```csharp
+```java
 double d1 = 4.5;
 double d2 = 5.5;
 Console.WriteLine($"afgerond: {Math.Round(d1,MidpointRounding.AwayFromZero)} en {Math.Round(d2, MidpointRounding.AwayFromZero)} ");
@@ -60,7 +60,7 @@ Dan krijgen we **5 en 6** zoals we verwachten.
 
 Als je op de koop toe nog eens wil afronden naar een bepaald aantal cijfers na de komma, dan kan je dit ook nog steeds doen:
 
-```csharp
+```java
 double d1 = 4.12343;
 Console.WriteLine($"afgerond: {Math.Round(d1,1,MidpointRounding.AwayFromZero )} en {Math.Round(d1,4,MidpointRounding.AwayFromZero)} ");
 ```

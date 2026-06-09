@@ -82,7 +82,7 @@ Objecten serialiseren is verrassend eenvoudig en intuïtief.
 
 1. **Voeg de benodigde namespace toe**: Zonder deze 3 namespaces kan je uiteraard niets doen in deze sectie:
 
-```csharp
+```java
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO; 
@@ -90,7 +90,7 @@ using System.IO;
 
 2. **Definieer je klasse**: In principe kan je eender welke klasse serialiseren. Oefen echter eerst met kleine, niet complexe klassen. Probeer zeker eerst associaties te vermijden. Dit is trouwens de eerste keer dat je zal ontdekken waarom properties zo belangrijk zijn: enkel de publieke *zijde* van een object wordt geserialiseerd. Wil je dus private instantievariabelen ook bewaren dan zal je deze via een property beschikbaar moeten maken. Zorg er ook voor dat je klasse ``public``:
 
-```csharp
+```java
 public class Student
 {
     public string Naam { get; set; }
@@ -101,7 +101,7 @@ public class Student
 
 3. **Serialiseer de klasse**: Met behulp van de ``static`` klasse **``JsonSerializer``** kunnen we nu eenvoudig een object omzetten naar zijn JSON-voorstelling, van het type ``string``. Je roept gewoon de ``Serialize`` methode aan en geeft het te serialiseren object mee als argument:
 
-```csharp
+```java
 var student = new Student 
         { Naam = "Barry", Leeftijd = 25, Uitgeschreven = true };
 string jsonString = JsonSerializer.Serialize(student);
@@ -110,7 +110,7 @@ Console.WriteLine(jsonString); //ter controle
 
 4. **Schrijf naar een bestand:** Finaal kunnen we onze bestaande kennis van de  ``File.WriteAllText``-methode gebruiken om de JSON-voorstelling naar een bestand weg te schrijven. Merk op da thet een goede gewoonte is om het bestand een  ".json"-extensie te geven.
 
-```csharp
+```java
 File.WriteAllText("studentdata.json", jsonString);
 ```
 
@@ -131,7 +131,7 @@ De omgekeerde weg: deserialiseren.
 
 Om data uit een JSON-bestand te laden, gebruiken we de Deserialize-methode van de ``JsonSerializer``. We veronderstellen dat de klasse onveranderd is gebleven en dat we nog steeds de nodige namespaces voorzien. De methode is *generic*, dus we moeten meegeven welk datatype we verwachten. Dit is logisch: de methode krijgt een ``string`` en kan niet raden bij welke klasse deze data hoort. voor hetzelfde geld zijn er meerdere klassen met de naam ``Student`` en de properties ``Naam``, ``Leeftijd`` en ``Uitgeschreven``:
 
-```csharp
+```java
 string jsonText = File.ReadAllText("studentdata.json");
 Student ingeladen = JsonSerializer.Deserialize<Student>(jsonText);
 ```
@@ -150,7 +150,7 @@ Attributen zijn kleine codeblokjes die worden toegevoegd aan onze klasse om bepa
 
 Er zijn tal van JSON-gerelateerde attributen beschikbaar om dus het *serialisatiegedrag* bij te sturen. Stel dat we in voorgaande klasse een property hebben die niét mag geserialiseerd worden, dan plaatsen we het ``JsonIgnore`` attribuut boven die property:
 
-```csharp
+```java
 public class Student
 {
     public string Naam { get; set; }
@@ -172,7 +172,7 @@ Ook bij het deserialiseren zou ``Uitgeschreven`` genegeerd worden, zelfs als die
 
 Dit attribuut laat ons toe om de naam van een property aan te passen wanneer deze wordt geserialiseerd. Dit kan handig zijn als de naam van de property niet exact overeenkomt met de naam die we in het JSON-bestand willen gebruiken:
 
-```csharp
+```java
 public class Student
 {
     [JsonPropertyName("VolledigeNaam")]
@@ -195,7 +195,7 @@ Als we hier een object zouden van serialiseren zou dit volgende JSON geven:
 
 Soms is het belangrijk dat bepaalde private informatie ook geserialiseerd wordt. Met het ``JsonInclude`` kan je dat aanduiden:
 
-```csharp
+```java
 public class Student
 {
     public string Naam { get; set; }

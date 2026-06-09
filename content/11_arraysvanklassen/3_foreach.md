@@ -7,7 +7,7 @@ Een ``foreach`` loop zal ieder element in de array één voor één in een tijde
 
 Volgende code toont de werking waarbij we een ``double``-array hebben en alle elementen ervan op het scherm willen tonen:
 
-```csharp
+```java
 double[] metingen = {1.2, 0.89, 3.15, 0.1};
 foreach (double meting in metingen)
 {
@@ -30,7 +30,7 @@ De output zal dan zijn:
 
 Stel dat we een array van Studenten hebben, ``deKlas``, en wensen van deze studenten de naam en geboortejaar op het scherm te tonen. Ook dit kan dan met een ``foreach`` erg eenvoudig:
 
-```csharp
+```java
 foreach (Student student in deKlas)
 {
    Console.WriteLine($"{student.Naam}, {student.Geboortejaar}");
@@ -53,7 +53,7 @@ De foreach loop is weliswaar leesbaarder en eenvoudiger in gebruikt, er zijn ook
 Het feit dat de foreach iteration variabele read-only is wil niet zeggen dat we de inhoud van het onderliggend object niet kunnen aanpassen. De iteration variabele krijgt bij een array van objecten telkens een referentie naar het huidige element. **Deze referentie kunnen we niet aanpassen**, maar we mogen wel de referentie "volgen" om vervolgens iets in het huidige object zelf aan te passen.
 
 Dit mag dus niét:
-```csharp
+```java
 foreach (Student eenStudent in deKlas)
 {
    eenStudent = new Student();
@@ -61,7 +61,7 @@ foreach (Student eenStudent in deKlas)
 ```
 
 Maar dit mag wél:
-```csharp
+```java
 foreach (Student eenStudent in deKlas)
 {
    eenStudent.Geboortejaar++;
@@ -80,7 +80,7 @@ Met de VS snippet ``foreach`` gevolgd door twee maal op de tab-toets te duwen kr
 
 C# heeft een **``var``** keyword. Je mag dit keyword gebruiken ter vervanging van het datatype  op voorwaarde dat de compiler kan achterhalen wat het type (*implicit type*) moet zijn. De compiler kan het type ontdekken aan de hand van de expressie rechts van de toekenningsoperator.
 
-```csharp
+```java
 var getal = 5; //var zal int zijn
 var myArray = new double[20]; //var zal double[] zijn
 var tekst = "Hi there handsome"; //var zal string zijn
@@ -105,7 +105,7 @@ Wanneer je de Visual Studio code snippet voor ``foreach`` gebruikt (``foreach [t
 
 De foreach die we zonet gebruikten kan dus herschreven worden naar:
 
-```csharp
+```java
 foreach (var student in deKlas)
 {
    Console.WriteLine($"{student.Naam}, {student.Geboortejaar}");

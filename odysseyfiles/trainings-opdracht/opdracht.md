@@ -38,7 +38,7 @@ Maak een `Probe` klasse met:
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
 Test je `Probe` klasse:
-```csharp
+```java
 Probe p = new Probe("TestProbe");
 Console.WriteLine(p.Naam);            // TestProbe
 Console.WriteLine(p.Frequentie);      // -1
@@ -76,7 +76,7 @@ Maak een `Artefact` klasse met:
 
 ::: {.callout-tip collapse="true"}
 ## Checkpoint
-```csharp
+```java
 Artefact a = new Artefact();
 Console.WriteLine(a.Naam);          // bv. FKL23
 Console.WriteLine(a.VervaltTimer);  // getal tussen 10 en 20

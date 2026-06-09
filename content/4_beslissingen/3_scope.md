@@ -8,7 +8,7 @@ Zeker wanneer je begint met ``if``, loops, methoden, enz. zal de scope belangrij
 
 Volgende voorbeeld toont bijvoorbeeld de scope van de variabele ``getal``:
 
-```csharp
+```java
 if( iLoveCSharp == true)
 {
     Console.WriteLine("Hoeveel punten op 10 geef je C#?"):
@@ -23,7 +23,7 @@ De variabele ``getal`` wordt aangemaakt  tussen de accolades van de ``if`` en "v
 
 Wil je dus ``getal`` ook nog buiten de ``if`` gebruiken zal je je code moeten herschrijven zodat ``getal`` VOOR de ``if`` wordt aangemaakt. Nu is de scope van variabele groter: daar we steeds naar de *omliggende* accolades moeten kijken. In dit geval bepalen dus de accolades op lijn 1 en 9 de scope:
 
-```csharp
+```java
 {
     int getal = 0 ; //Start scope getal
     if( iLoveCSharp == true)
@@ -48,7 +48,7 @@ Zolang je in de scope van een variabele bent, kan je geen nieuwe variabele met d
 
 Volgende code is dus niet toegestaan:
 
-```csharp
+```java
 int getal = 0;
 {
     int getal = 5; //Deze lijn is niet toegestaan
@@ -61,7 +61,7 @@ Enkel de tweede variabele een andere naam geven is toegestaan in het voorgaande 
 
 In volgende voorbeeld is dit dus wel geldig, daar de scope van de eerste variabele afgesloten wordt door de accolades:
 
-```csharp
+```java
 {
     int getal = 0 ;
     //....

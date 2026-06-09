@@ -2,7 +2,7 @@
 
 De syntax van een while loop is eenvoudig:
 
-```csharp
+```java
 while (conditie) 
 {
   // code zal uitgevoerd worden zolang de conditie waar is
@@ -19,7 +19,7 @@ Telkens wanneer het programma aan het einde van het ``while`` codeblock komt spr
 
 Een voorbeeld van een eenvoudige while loop:
 
-```csharp
+```java
 int tellertje = 0;
 while (tellertje < 100)
 {
@@ -44,7 +44,7 @@ Uiteraard mag de conditie waaraan een loop moet voldoen complexer zijn door midd
 
 Volgende ``while`` bijvoorbeeld zal uitgevoerd worden zolang ``teller`` groter is dan 5 én de variabele ``naam`` van het type ``string`` niet gelijk is aan "tim":
 
-```csharp
+```java
 while(teller > 5 && naam != "tim")
 {
   //Keep repeating
@@ -59,7 +59,7 @@ Volgende twee voorbeelden tonen dit:
 
 Een **bewust oneindige loop**:
 
-```csharp
+```java
 while(true)
 {
   //"To infinity and beyond!"
@@ -68,7 +68,7 @@ while(true)
 
 **Een bug die een oneindige loop veroorzaakt**:
 
-```csharp
+```java
 int teller = 0; 
 while(teller<10)
 {
@@ -87,7 +87,7 @@ Zorg er altijd voor dat de variabele(n) die je in je testconditie gebruikt, ook 
 Let er op dat de scope van variabelen bij loops zeer belangrijk is. Indien je een variabele binnen de loop definieert dan zal deze steeds terug "gereset" worden wanneer de volgende iteratie van de loop start.
 Volgende code toont bijvoorbeeld **foutief** hoe je de som van de eerste 10 getallen (1+2+3+...+10) zou maken:
 
-```csharp
+```java
 int teller = 1;
 while(teller <= 10)
 {
@@ -103,7 +103,7 @@ Voorgaande code zal volgende VS foutboodcshap geven: *The name 'som' does not ex
 
 De **correcte** manier om dit op te lossen is te beseffen dat de variabele ``som`` enkel binnen de accolades van de while-loop gekend is. Op de koop toe wordt deze steeds terug op 0 gezet en er kan dus geen som van alle teller-waarden bijgehouden worden. Hier de oplossing:
 
-```csharp
+```java
 int teller = 1;
 int som = 0;
 while(teller <= 10)
@@ -130,7 +130,7 @@ Vergelijk volgende flowchart van de ``do while`` met die van de ``while``:
 
 De syntax van een ``do while`` is eveneens eenvoudig:
 
-```csharp
+```java
 do{
      //code zal uitgevoerd worden zolang de conditie waar is
 } while (conditie);
@@ -146,7 +146,7 @@ Merk op dat achteraan de testconditie een puntkomma na het ronde haakje staat. *
 
 Het volgende eenvoudige aftelprogramma toont de werking van de ``do while`` loop:
 
-```csharp
+```java
 int i = 10;
 do
 {
@@ -164,14 +164,14 @@ Begrijp je wat dit programma zal doen? Inderdaad, dit zal alle getallen van 9 to
 
 Dankzij loops kunnen we nu ook eenvoudiger omgaan met foutieve input van de gebruiker. Stel dat we volgende vraag hebben gesteld aan de gebruiker:
 
-```csharp
+```java
 Console.WriteLine("Geef uw keuze in: a, b of c");
 string input = Console.ReadLine();
 ```
 
 Met een loop kunnen we nu deze vragen blijven stellen tot de gebruiker een geldige input (a,b of c) geeft:
 
-```csharp
+```java
 string input;
 do
 {
@@ -191,7 +191,7 @@ Ik herhaal voorgaande nog eens nadrukkelijk omdat hier vaak fouten op gemaakt wo
 :::{.callout-tip}
 De booleaanse expressie ``input != "a" && input != "b" && input != "c"`` kan ook anders geschreven met dezelfde interne logica (en dus werking) als:  
 
-```csharp
+```java
 !(input == "a" || input == "b" || input == "c")
 ```
 

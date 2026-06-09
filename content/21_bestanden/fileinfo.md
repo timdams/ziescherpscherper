@@ -7,7 +7,7 @@ De ``FileInfo``klasse heeft 2 specifieke doelen:
 
 We kunnen deze klasse gebruiken door eerst een object te instantiëren, waarbij we aan de constructor het path meegeven naar het te gebruiken bestand:
 
-```csharp
+```java
 FileInfo fileInfo = new FileInfo(pathNaarBestand);
 ```
 
@@ -34,7 +34,7 @@ Nadat het ``fileInfo`` object werd aangemaakt krijg je via een hele resem proper
 
 Het gebruik van deze properties wijst zichzelf uit (uiteraard zijn dit allemaal read-only properties):
 
-```csharp
+```java
 FileInfo info = new FileInfo("bondData.dat");
 if (info.Exists)
 {
@@ -47,7 +47,7 @@ if (info.Exists)
 
 Van zodra je een ``FileInfo``-object hebt, krijg je beschikking over tal van handige methoden. We gaan de 3 nuttigste (``CopyTo``, ``MoveTo`` en ``Delete``) eens tonen in een domme demo:
 
-```csharp
+```java
 FileInfo info = new FileInfo("bondData.dat");
 if(info.Exists)
 {
@@ -84,7 +84,7 @@ Uiteraard is er ook een ``DirectoryInfo`` klasse. En net zoals ``FileInfo`` een 
 
 Deze klasse geeft dus meer informatie over een folder en het gebruik is identiek aan de ``FileInfo``-klasse. Eerst moet er weer een object van aan gemaakt worden:
 
-```csharp
+```java
 DirectoryInfo dirInfo = new DirectoryInfo(@"c:\temp");
 ```
 
@@ -98,7 +98,7 @@ De ``DirectoryInfo``-klasse heeft nog 2 erg nuttige methoden om te bekijken welk
 
 Volgende code toont hoe je kunt visualiseren welke elementen zich in de ``c:\temp``-folder bevinden:
 
-```csharp
+```java
 DirectoryInfo tempInfo = new DirectoryInfo(@"C:\temp");
 
 if(tempInfo.Exists)
@@ -125,13 +125,13 @@ Ten eerste kan je een **searchPattern** als ``string`` meegeven. Hierbij kan je 
 
 Volgende voorbeeld zal alle bestanden die extensie ".txt" hebben teruggeven:
 
-```csharp
+```java
 var tekstBestanden= tempInfo.GetFiles("*.txt");
 ``` 
 
 En deze zal alle bestanden teruggeven wiens bestandsnaam start met "Tim" en dan nog 1 teken bevat. De extensie maakt niet uit: 
 
-```csharp
+```java
 var timBestanden= tempInfo.GetFiles("Tim?.*");
 ``` 
 
@@ -141,7 +141,7 @@ var timBestanden= tempInfo.GetFiles("Tim?.*");
 
 Via een tweede argument bij ``GetFiles`` kan je ook aangeven om niet enkel in de huidige folder te zoeken, maar ook in de subfolders.  Volgende voorbeeld zal alle bestanden zoeken die eindigen op ".txt" , inclusief in de subfolders:
 
-```csharp
+```java
 var gevonden = tempInfo.GetFiles("*.txt", SearchOption.AllDirectories );
 ```
 
@@ -151,7 +151,7 @@ Stel dat je alle subfolders en bestanden in die subfolders wilt oplijsten, inclu
 
 Volgende methode zal telkens in de huidige folder, die je meegeeft als argument, alle bestanden en folders van oplijsten. Het zal vervolgens zichzelf aanroepen met als argument telkens één van de subfolders in de huidige folder: 
 
-```csharp
+```java
 static void ToonFoldersEnBestanden(string path)
 {
     foreach (string bestand in Directory.GetFiles(path))

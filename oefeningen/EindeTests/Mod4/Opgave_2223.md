@@ -17,7 +17,7 @@ Maak een nieuw project aan en zorg ervoor dat volgende klassen diagram wordt toe
 
 ## Klasse Doos:
 
-```csharp
+```java
 abstract class Doos
 {       
     public Doos(int id)

@@ -13,7 +13,7 @@ Object initializer syntax is een eerste glimp in het feit waarom properties zo b
 
 Stel dat we volgende klasse hebben waarin we enkele auto-properties gebruiken. Merk op dat dit evengoed full properties mochten zijn. Voor object initializer syntax maakt dat niet uit, het ziet toch enkel maar het ``public`` gedeelte van de klasse:
 
-```csharp
+```java
 internal class Meting
 {
     public double Temperatuur {get;set;}
@@ -25,7 +25,7 @@ internal class Meting
 We kunnen deze properties beginwaarden geven via volgende initializer syntax:
 
 
-```csharp
+```java
 Meting meting = new Meting() { Temperatuur = 3.4, IsGeconfirmeerd = true};
 ```
 
@@ -35,7 +35,7 @@ Object initializer syntax bestaat er uit dat je een object aanmaakt met de **def
 Bovenstaande code mag ook iets korter nog:
 
 
-```csharp
+```java
 Meting meting = new Meting { Temperatuur = 3.4, IsGeconfirmeerd = true};
 ```
 
@@ -45,7 +45,7 @@ Zie je het verschil? De ronde haakjes van de default constructor mag je dus acht
 
 De volgorde waarin je code wordt uitgevoerd is wel belangrijk. Je ziet het niet duidelijk, maar sowieso wordt eerst nu de default constructor aangeroepen. Pas wanneer die klaar is zullen de properties de waarden krijgen die je meegeeft tussen de accolades. Als je dus zelf een default constructor in ``Meting`` had geschreven dan had eerst die code uitgevoerd zijn geweest. Voorgaande voorbeeld zal intern eigenlijk als volgt plaatsvinden:
 
-```csharp
+```java
 Meting meting = new Meting();
 meting.Temperatuur = 3.4;
 meting.IsGeconfirmeerd = true;
@@ -64,7 +64,7 @@ Object initializer syntax werd ontwikkeld om de wildgroei aan overloaded constru
 
 Door `required` voor een property te plaatsen kan je aangeven dat deze property verplicht moet ingesteld worden wanneer je een object aanmaakt met object initializer syntax: 
 
-```csharp
+```java
 internal class Meting
 {
     public double Temperatuur {get;set;}
@@ -74,13 +74,13 @@ internal class Meting
 
 Wanneer we nu een `Meting` als volgt aanmaken:
 
-```csharp
+```java
 Meting meting = new Meting { Temperatuur = 0.7};
 ```
 
 Dan krijgen we een foutboodschap: *Required member 'Meting.IsGeconfirmeerd' must be set in the object initializer or attribute constructor.*[^attri] Enkel als we dus minstens `IsGeconfirmeerd` ook instellen zal onze code werken:
 
-```csharp
+```java
 Meting meting = new Meting { IsGeconfirmeerd = true};
 ```
 

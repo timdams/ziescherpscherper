@@ -4,7 +4,7 @@
 
 ## Program.cs
 
-```csharp
+```java
 Artefact a = new Artefact();
 
 List<Probe> probes = new List<Probe>();
@@ -63,7 +63,7 @@ else
 
 ## Probe
 
-```csharp
+```java
 class Probe
 {
     public string Naam { get; private set; }
@@ -96,7 +96,7 @@ class Probe
 
 ## Artefact
 
-```csharp
+```java
 class Artefact
 {
     public string Naam { get; private set; }
@@ -145,7 +145,7 @@ class Artefact
 
 ## Zendstation
 
-```csharp
+```java
 class Zendstation
 {
     public static int Frequentie { get; set; } = -1;

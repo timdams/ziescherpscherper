@@ -42,12 +42,12 @@
 1. Splits [4_converteren_casting.md](4_converteren_casting.md) in drie kleinere bestanden: één voor casting, één voor parsing, één voor `Convert`. Dit verlaagt de cognitieve load. Of gebruik duidelijke `:::{.callout-tip} Samenvatting:::` blokken aan het einde van elke subsectie.
 
 2. Vervang `Int32.Parse` door `int.Parse` in alle voorbeelden voor consistentie. In [4_converteren_casting.md](4_converteren_casting.md) regel 211:
-   ```csharp
+   ```java
    int numVal = int.Parse("-105");
    ```
 
 3. Voeg een mini-paragraaf over `TryParse` toe in [4b_inputconverten.md](4b_inputconverten.md) na de "Foutloze input" sectie, zelfs als je het pas later diepgaand behandelt:
-   ```csharp
+   ```java
    if (int.TryParse(input, out int leeftijd)) { /* ok */ }
    ```
 

@@ -12,7 +12,7 @@ Wanneer je een methode aanroept is de volgorde van je actuele parameters belangr
 Met behulp van **named parameters** kan je echter expliciet aangeven welke actuele parameters aan welke formele parameter moet meegegeven worden. 
 
 Stel dat we een methode hebben met volgende signatuur:
-```csharp
+```java
 static void PrintDetails(string seller, int orderNum, string product)
 {
     //do stuff
@@ -22,20 +22,20 @@ static void PrintDetails(string seller, int orderNum, string product)
 Zonder named parameters zou een aanroep van deze methode als volgt kunnen zijn:
 
 
-```csharp
+```java
 PrintDetails("Gift Shop", 31, "Red Mug");
 ```
 
 We kunnen named parameters aangeven door de naam van de parameter gevolgd door een dubbel punt en de waarde. Als we dus bovenstaande methode willen aanroepen kan dat ook als volgt met named parameters:
 
 
-```csharp
+```java
 PrintDetails(orderNum: 31, product: "Red Mug", seller: "Gift Shop");
 ```
 of ook:
 
 
-```csharp
+```java
 PrintDetails(product: "Red Mug", seller: "Gift Shop", orderNum: 31);
 ```
 
@@ -48,13 +48,13 @@ Kortom, op deze manier maakt de volgorde van parameter niets uit. **Dit werkt ec
 
 Je mag echter ook een combinatie gebruiken van named en gewone parameters, maar **dan is de volgorde belangrijk**: je moet je dan houden aan de volgorde van de methode-signatuur. Je verbetert hiermee de leesbaarheid van je code, maar krijgt niet het voordeel van een eigen volgorde te hanteren. Enkele **geldige** voorbeelden:
 
-```csharp
+```java
 PrintDetails("Gift Shop", 31, product: "Red Mug");
 PrintDetails(seller: "Gift Shop", 31, product: "Red Mug"); 
 ```
 
 Enkele **niet geldige** voorbeelden:
-```csharp
+```java
 PrintDetails(product: "Red Mug", 31, "Gift Shop");
 PrintDetails(31, seller: "Gift Shop", "Red Mug");
 ```
@@ -71,13 +71,13 @@ Let op: **Optionele parameters worden steeds achteraan de parameterlijst van de 
 In het volgende voorbeeld maken we een nieuwe methode aan en geven aan dat de laatste twee parameters (``optName`` en ``age``) optioneel zijn door er met de toekenningsoperator een default waarde aan te geven:
 
 
-```csharp
+```java
 static void BookFile(int required, string optName = "unknown", int age = 10)
 ```
 
 Wanneer nu een parameter niet wordt meegegeven, dan zal deze default waarde in de plaats gebruikt worden:
 
-```csharp
+```java
 BookFile(15, "tim", 25); 
 BookFile(20, "dams"); //age zal 10 zijn, optName "dams"
 BookFile(35); //optName zal "unknown" en age zal 10 zijn
@@ -97,14 +97,14 @@ De inhoud van argumenten wordt bij iedere aanroep:
 **Je mag enkel de optionele parameters van achter naar voor weglaten. Volgende aanroep is dus niet geldig**:
 
 
-```csharp
+```java
 BookFile(3, 4); //daar de tweede param een string moet zijn
 ```
 
 Met optionele parameters kunnen we dit omzeilen. Volgende aanroep is wel geldig:
 
 
-```csharp
+```java
 BookFile(3, age: 4);
 ```
 
@@ -117,7 +117,7 @@ Method overloading wil zeggen dat je een **methode met dezelfde naam en returnty
 
 Volgende methoden zijn overloaded:
 
-```csharp
+```java
 static int BerekenOpp(int lengte, int breedte)
 {
     int opp = lengte*breedte;
@@ -133,7 +133,7 @@ static int BerekenOpp(int straal)
 
 Afhankelijk van de aanroep zal dus de ene of andere methode uitgevoerd worden. Volgende code zal dus werken:
 
-```csharp
+```java
 Console.WriteLine($"Rechthoek: {BerekenOpp(5, 6)}");
 Console.WriteLine($"Cirkel: {BerekenOpp(7)}");
 ```
@@ -145,7 +145,7 @@ Indien de compiler twijfelt tijdens de **overload resolution** zal de **betterne
 
 Stel dat we volgende overloaded methoden hebben:
 
-```csharp
+```java
 static int BerekenOpp(int straal) //versie A
 {
     int opp = (int)(Math.PI*straal*straal);
@@ -162,7 +162,7 @@ static int BerekenOpp(double straal) //versie B
 
 Volgende aanroepen zullen dus als volgt uitgevoerd worden, gebaseerd op de betterness rule:
 
-```csharp
+```java
 Console.WriteLine($"Cirkel 1: {BerekenOpp(7)}"); //versie A
 Console.WriteLine($"Cirkel 2: {BerekenOpp(7.5)}"); //versie B
 Console.WriteLine($"Cirkel 3: {BerekenOpp(7.3f)}"); //versie B
@@ -187,7 +187,7 @@ Als je bijvoorbeeld een parameter van het type ``int`` meegeeft bij een methode-
 
 Indien de betterness rule niet werkt, dan zal de eerste parameter bepalen wat er gebruikt wordt. Dat zien we in volgende voorbeeld:
 
-```csharp
+```java
 static void Main(string[] args)
 {
     Toonverhouding(5, 3.4); //versie A
@@ -212,7 +212,7 @@ Indien ook die regel niet werkt dan zal volgende foutmelding verschijnen:
 
 ![We zien aan de foutboodschap duidelijk dat er eerst naar de eerste parameter wordt gekeken bij twijfel.](../assets/4_methoden/overl.png)
 
-```csharp
+```java
 static void Main(string[] args)
 { 
     Toonverhouding(5.6, 3.4);

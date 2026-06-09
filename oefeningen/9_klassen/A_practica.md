@@ -10,7 +10,7 @@ We gaan nu effectief de leerstof van hoofdstuk 9 toepassen: de volgende stap is 
 
 In het intermezzo van vorige week had je een `StudentData` struct. Die bevatte wel de cijfers, maar kon zelf zijn gemiddelde niet berekenen. Je moest die struct telkens doorgeven aan een externe "manager" (jouw methodes).
 
-```csharp
+```java
 // De struct is passief (data)
 StudentData alex = ...;
 
@@ -29,7 +29,7 @@ We verplaatsen de logica (de methodes) **IN** de doos.
 *   **Vroeger (Struct):** Een lijstje met ingrediënten (Data).
 *   **Nu (Class):** Een Chef-kok die de ingrediënten heeft én weet hoe hij ze moet koken (Data + Gedrag).
 
-```csharp
+```java
 // Het object is slim (data + gedrag)
 Student alex = new Student("Alex", 12, 14);
 
@@ -94,7 +94,7 @@ De methode `PrintGraad` controleert de waarde van `Percentage` en toont de bijbe
 **Voorbeeldgebruik:**
 Test je klasse met volgende code in `Main`:
 
-```csharp
+```java
 Rapport mijnPunten = new Rapport();
 mijnPunten.Percentage = 65;
 mijnPunten.PrintGraad(); // Verwachte output: "Voldoende"
@@ -159,7 +159,7 @@ Maak een rekenmachine-klasse die bewerkingen uitvoert op twee getallen.
     *   **Anders:** Geef het resultaat van de deling terug.
 
 **Voorbeeldgebruik:**
-```csharp
+```java
 NummerBerekenaar paar1 = new NummerBerekenaar();
 paar1.Getal1 = 12;
 paar1.Getal2 = 34;
@@ -220,7 +220,7 @@ Sla gegevens van een student op en bereken het gemiddelde.
 
 **Voorbeeldgebruik:**
 
-```csharp
+```java
 Student student1 = new Student();
 student1.Klas = Klassen.TI1;
 student1.Naam = "Joske Vermeulen";
@@ -471,7 +471,7 @@ Voeg nu gedrag toe aan je held.
 
 **Voorbeeldgebruik in Main:**
 
-```csharp
+```java
 Held conan = new Held();
 conan.Naam = "Conan";
 conan.Type = HeldType.Krijger;

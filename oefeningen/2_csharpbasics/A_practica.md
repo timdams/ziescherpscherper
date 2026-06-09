@@ -39,7 +39,7 @@ Om een gemiddelde te berekenen moeten we **eerst** de som nemen van de aparte wa
 
 
 
-```csharp
+```java
 int september = 224;
 int oktober = 177;
 int november = 210;
@@ -87,7 +87,7 @@ Stel dat je later in deze code ook op een andere plek nog de koers nodig hebt, d
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
 
-```csharp
+```java
 double bedragInEuro = 78.65;
 double koers = 1.03;
 double bedragInDollar = bedragInEuro * koers;
@@ -130,7 +130,7 @@ Het is belangrijk dat minstens 1 van je 2 variabelen een ``double`` is. Anders z
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
 
-```csharp
+```java
 double kills=44;
 double deaths = 9.0;
 
@@ -149,7 +149,7 @@ Schrijf een programma waarin je het BTW-percentage 21% als een constante definie
 
 Dit is je startcode:
     
-```csharp   
+```java   
 double prijs = 20;
 const double BTW = 21.0;
 ```
@@ -173,7 +173,7 @@ BTW berekenen is een typische programmeeropdracht. Merk op dat we hier de haakje
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
 
-```csharp
+```java
 double prijs = 20;
 const double BTW = 21.0;
 
@@ -220,7 +220,7 @@ en zo verder...
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-```csharp
+```java
 double gewichtOpAarde = 80.6;
 const double gMerc = 0.38;
 const double gVenus = 0.91;
@@ -261,7 +261,7 @@ Druk op enter voor de volgende lijn.
 
 Je kan wachten tot de gebruiker op enter duwt door gewoon een lege ``Console.ReadLine`` te doen, zoals volgende voorbeeld toont:
 
-```csharp
+```java
 Console.WriteLine("Eerste beeld");
 Console.WriteLine("Druk enter om voort te gaan.");
 Console.ReadLine();
@@ -283,7 +283,7 @@ We misbruiken ``ReadLine`` eigenlijk door invoer aan de gebruiker te vragen, maa
 
 
 
-```csharp
+```java
 int tafel = 411;
 int getal = 1;
 
@@ -365,7 +365,7 @@ Deze wat vreemde oefening wil je doen inzien dat volgorde van berekeningen met b
 
 
 
-```csharp
+```java
 int resultaat1 = -1 + 4 * 6;
 int resultaat2 = ( 35 + 5 ) % 7;
 double resultaat3 = 14 + -4 * 6 / 11.0; // begrijp je waarom je het stuk na de komma niet ziet?
@@ -438,7 +438,7 @@ Gemiddeld/prod  : 4,9 euro
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-```csharp
+```java
 const double prijsFriet = 4.50;
 const double prijsKoninginne = 12.00;
 const double prijsCola = 2.80;
@@ -499,7 +499,7 @@ Je geeft hierbij 2 variabelen mee: de bestandsnaam, en de inhoud van het bestand
 
 Volgende voorbeeld schrijft bijvoorbeeld de zin "Ik ben tim" weg naar een bestand dat zal aangemaakt worden genaamd "me.txt":
 
-```csharp
+```java
 System.IO.File.WriteAllText("me.txt", "Ik ben tim");
 ```
 

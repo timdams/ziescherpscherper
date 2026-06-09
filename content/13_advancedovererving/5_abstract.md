@@ -23,7 +23,7 @@ Met behulp van het keyword **``abstract``** kunnen we aangeven dat een klasse ab
 We plaatsen ``abstract`` voor de klasse definitie om dit aan te duiden.
 
 Een voorbeeld:
-```csharp
+```java
 internal abstract class Dier
 {
     public string Naam {get;set;}
@@ -35,7 +35,7 @@ We kunnen nu geen objecten meer van het type ``Dier`` aanmaken. Volgende code za
 
 
 Maar, we mogen dus wel klassen overerven van deze klasse en instanties van deze nieuwe klasse aanmaken:
-```csharp
+```java
 internal class Paard: Dier
 {
     //...
@@ -61,7 +61,7 @@ Het is logisch dat we mogelijk ook bepaalde zaken in de abstracte klasse als ``a
 
 Via abstracte methoden geven we dit aan: we hoeven enkel de methode signatuur te geven, met ervoor ``abstract``:
 
-```csharp
+```java
 internal abstract class Dier
 {
     public abstract string MaakGeluid();
@@ -77,7 +77,7 @@ Merk op dat er geen codeblock-accolades na de signatuur van abstracte methodes k
 
 De Paard-klasse wordt dan[^wolf]:
 
-```csharp
+```java
 internal class Paard: Dier
 {
   public bool HeeftTetanus {get;set;}
@@ -113,7 +113,7 @@ Properties kunnen ``virtual`` gemaakt worden, en dus ook ``abstract``. Net zoals
 
 Volgend voorbeeld toont hoe dit werkt:
 
-```csharp
+```java
 internal abstract class Dier
 {
     abstract public int MaxLeeftijd { get;}
@@ -146,7 +146,7 @@ Dankzij ``abstract`` kunnen we nu een meer algemene klasse maken in Pong. Beeld 
 
 We definiëren daarom een klasse die alle zaken zal voorstellen die "op het scherm" moeten getoond worden. Omdat we niet weten **HOE** die zaken getoond worden, zal dit een abstracte klasse worden waarbij we de ``TekenOpScherm``-methode bewust niet implementeren:
 
-```csharp
+```java
 internal abstract class SpelObject
 {
     public int X { get; set; }
@@ -160,7 +160,7 @@ We kunnen nu ons klasse ``Balletje`` hier van laten overerven en veranderen volg
 * We halen de ``X`` en ``Y`` properties uit de klasse (daar de parent deze al heeft gedefiniëerd).
 * We veranderen ``TekenOpScherm`` van een ``virtual`` naar een ``override`` versie, daar we nu de abstracte methode van de parent **moeten** implementeren.  Merk op dat dit geen invloed heeft op de child-klassen van ``Balletje``, die zullen nog steeds in staat zijn om de ``Update``-versie van ``Balletje`` te override'n.
 
-```csharp
+```java
 internal class Balletje:SpelObject
 {
     //...
@@ -175,7 +175,7 @@ internal class Balletje:SpelObject
 
 Dankzij deze abstracte klasse hebben we nu een manier om bijvoorbeeld ook een scorebord in het spel te brengen:
 
-```csharp
+```java
 internal class ScoreBoard: SpelObject
 {
     public ScoreBoard()
@@ -199,7 +199,7 @@ internal class ScoreBoard: SpelObject
 
 In ons hoofdprogramma blijven we leven van de kracht van polymorfisme en gebruiken we een snuifje ``is`` en ``as`` om zeker onze ``Balletje`` ook te update'n wanneer nodig. Onze lijst, hernoemd naar ``spelElementen`` zal  nu ``SpelObject`` objecten bevatten:
 
-```csharp
+```java
 List<SpelObject> spelElementen = new List<SpelObject>();
 
 //Balletjes toevoegen...
@@ -224,6 +224,6 @@ while (true)
 
 Indien nu een speler scoort dan kunnen we schrijven:
 
-```csharp
+```java
 score.ScoreSpeler2++;
 ``` 

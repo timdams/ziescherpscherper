@@ -10,7 +10,7 @@ Het gedeelte met de Dictionary wordt niet besproken in de videoclip. De oplossin
 
 ### Main
 
-```csharp
+```java
 Dictionary<string, Zendstation> stationsDB = new Dictionary<string, Zendstation>();
 
 while (true)
@@ -57,7 +57,7 @@ while (true)
 
 ### SlimmeProbe
 
-```csharp
+```java
 class SlimmeProbe : Probe
 {
     public SlimmeProbe(string naamin) : base(naamin)
@@ -83,7 +83,7 @@ class SlimmeProbe : Probe
 
 ### InstabielArtefact
 
-```csharp
+```java
 class InstabielArtefact : Artefact
 {
     static Random r = new Random();

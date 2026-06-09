@@ -277,7 +277,7 @@ Extra'tjes oefeningen gebruiken zaken die niet bij de leerstof horen, maar die e
 
 Met de ``Console.Beep()`` methode kan je muziek maken. Volgende voorbeeld toont bijvoorbeeld hoe je do-re-mi-fa-sol-la-si-do afspeelt:
 
-```csharp
+```java
 Console.Beep(264, 1000);
 Console.Beep(297, 1000);
 Console.Beep(330, 1000);

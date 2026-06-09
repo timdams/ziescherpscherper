@@ -28,7 +28,7 @@ Om de klasse ``Object`` niet te verwarren met het concept "object" zullen we hie
 
 Wanneer je een klasse ``Student`` aanmaakt als volgt: ``class Student{ }``. Dan gebeurt er een zogenaamde impliciete overerving van ``System.Object``. Er staat dus eigenlijk:
 
-```csharp
+```java
 internal class Student: System.Object
 {  }
 ```
@@ -57,7 +57,7 @@ Deze methoden zijn redelijk nutteloos in het begin. Enkel door ze zelf te ``over
 ### ``GetType()``
 Stel dat je een klasse ``Student`` hebt gemaakt in je project. Je kan dan op een object van deze klasse de ``GetType()``-methode aanroepen om te weten wat het type van dit object is:
 
-```csharp
+```java
 Student stud1 = new Student();
 Console.WriteLine(stud1.GetType());
 ```
@@ -66,7 +66,7 @@ Dit zal als uitvoer de namespace gevolgd door het type van het object op het sch
 
 Wil je enkel het type zonder namespace dan is het nuttig te beseffen dat ``GetType()`` eigenlijk een object teruggeeft van het type ``Type`` met meerdere eigenschappen, waaronder ``Name``. Volgende code zal enkel ``Student`` op het scherm tonen:
 
-```csharp
+```java
 Student stud1 = new Student();
 Console.WriteLine(stud1.GetType().Name);
 ```
@@ -78,20 +78,20 @@ Console.WriteLine(stud1.GetType().Name);
 
 Deze methode vind ik het nuttigst. Wanneer je schrijft:
 
-```csharp
+```java
 Console.WriteLine(stud1);
 ```
 
 Wordt er eigenlijk een impliciete aanroep naar ``ToString`` gedaan. Er staat dus eigenlijk:
 
 
-```csharp
+```java
 Console.WriteLine(stud1.ToString());
 ```
 
 Op het scherm verschijnt dan ``StudentManager.Student``. Waarom? Wel, de methode ``ToString()`` wordt in ``System.Object()`` ongeveer als volgt beschreven:
 
-```csharp
+```java
 public virtual string ToString()
 { 
     return GetType(); 
@@ -113,7 +113,7 @@ Het zou natuurlijk fijner zijn dat de ``ToString()-``methode van onze student nu
 
 Stel dat we de ``Voornaam``  gevolgd door de ``Geboortejaar`` (ook een autoprop) willen terugkrijgen. We kunnen dat eenvoudig verkrijgen door ``ToString()`` te overriden:
 
-```csharp
+```java
 internal class Student
 {
     public int Geboortejaar {get;set;}
@@ -137,7 +137,7 @@ Een extra handigheidje van ``ToString`` is dat deze methode wordt gebruikt tijde
 
 Ook deze methode kan je overriden om twee objecten met elkaar te vergelijken:
 
-```csharp
+```java
 if(stud1.Equals(stud2))
 ```
 
@@ -155,7 +155,7 @@ Het is echter aan de maker van de klasse om te beslissen wanneer 2 objecten van 
 
 Stel dat we vinden dat een student gelijk is aan een andere student indien z'n ``Voornaam`` en ``Geboortejaar`` dezelfde is, we kunnen dan de Equals-methode overriden als volgt in de ``Student`` klasse:
 
-```csharp
+```java
 public override bool Equals(Object o)
 {  
     Student temp = (Student)o; //Zie opmerking na code!
@@ -182,7 +182,7 @@ Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` override
 
 Als je nog wat dieper zou graven in de documentatie van ``System.Object`` zou je ontdekken dat er ook een ``static`` methode met als signatuur ``static bool ReferenceEquals(object obj1, object obj2)`` bestaat. Deze handige methode laat je toe om te controleren of 2 variabelen dezelfde referentie hebben. Je kan hiermee dus kijken of 2 variabelen naar hetzelfde object in de heap verwijzen. Het gebruik ervan is eenvoudig:
 
-```csharp
+```java
 if(ReferenceEquals(student1,student3))
 {
     Console.WriteLine("Beide bevatten zelfde referentie!");
