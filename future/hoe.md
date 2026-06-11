@@ -5,6 +5,15 @@
 
 > Dit document beschrijft *wat* er in de nieuwe editie komt en hoe we het in het boek inweven. Voor de motivatie achter deze koers, zie [waarom.md](waarom.md).
 
+
+**OPGELET**: Volgende aspect moeten we nog bespreken voor we verder deze piste opgaan. Een collega merkt namelijk op: "ok, 2e opmerking... spijtig dat je weer veel werk gaat stoppen in de focus op c#... Ik vind dat we nu beter een cursus zouden geven programming principles & OOP: taalonafhankelijk. En je doet oefeningen (lees laat code genereren) in enkele verschillen talen tijdens de labo's om de verschillen in syntax te zien. " Mijn nieuwe inzicht dat ik hem antwoordde: "ja...ik ga nu changes doen die nog "doenbaar zijn op korte termijn". in een volgende fase zou ik heel graag mijn boek herzien dat bij wijze van spreke ieder codevoorbeeld in een andere taal is. constant switchen, omdat de taal er niet toe doet, wel de concepten"
+ "
+
+"Constant van taal wisselen is intellectueel elegant maar cognitief duur voor een échte beginner zonder IT-voorkennis in week 1. Er is een reëel risico dat syntax-ruis de concepten vertroebelt vóór ze stevig zitten. Ik zou pleiten voor sequencing: één ankertaal bij de eerste kennismaking met een concept (om een werkend mentaal model te bouwen), en dáárna hetzelfde concept in andere talen tonen om de taal-onafhankelijkheid te bewijzen. Het "elk voorbeeld in een andere taal"-ideaal werkt beter als bekroning dan als startpunt.
+
+En meteen het labo-format dat beide inzichten verenigt: laat de student via AI hetzelfde concept in meerdere talen genereren en de verschillen beoordelen. Dat is taal-onafhankelijkheid én AI-output-beoordelen in één oefening.
+
+"
 ---
 
 ## 1. Code Literacy — een nieuwe laag bij elk hoofdstuk

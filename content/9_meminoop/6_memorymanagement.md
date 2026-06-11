@@ -14,7 +14,7 @@ In hoofdstuk 8 deed ik reeds uit de doeken dat variabelen op 2 manieren in het g
 * **Value types**: waren variabelen wiens waarde rechtstreeks op de geheugenplek stonden waar de variabele naar verwees. Dit gold voor alle bestaande, ingebakken datatypes zoals ``int``, ``bool``, ``char`` enz. alsook voor ``enum`` types.
 * **Reference types**: deze variabelen bevatten als inhoud een geheugenadres naar een andere plek in het geheugen waar de effectieve waarde van deze variabele stond. We zagen dat dit voorlopig enkel bij arrays gebeurde.
 
-**Ook objecten zijn reference types.** Hoofdstuk 8 liet uitschijnen dat vooral value type variabelen veelvuldig in programma's voorkwamen. Wel je zal nu ontdekken dat reference types véél meer voorkomen: **simpelweg omdat alles in C# een object is** (en dus ook arrays van objecten én zelfs valuetypes, enz.).
+**Ook objecten zijn reference types.** Hoofdstuk 8 liet uitschijnen dat vooral value type variabelen veelvuldig in programma's voorkwamen. Wel, je zal nu ontdekken dat reference types véél meer voorkomen: zodra je met objecten en arrays werkt (en dat doe je voortdurend) heb je met reference types te maken.
 
 Om goed te begrijpen waarom reference types zo belangrijk zijn, zullen we nu eerst eens inzoomen op hoe het geheugen van een C# applicatie werkt. 
 
@@ -163,6 +163,8 @@ Vervolgens wordt de toekenning toegepast en wordt het geheugenadres van het obje
 
 ![Na: stud = new Student();](../assets/6_klassen/memzoom3.png)<!--{width=80%}-->
 
+<!-- TODO ed.5 (review): overweeg één figuur waarin stack en heap náást elkaar staan met pijlen, i.p.v. de losse plaatjes per stap. Houdt het overzicht beter vast. -->
+
 :::{.callout-important}
 Ik ga nogal licht over het ``new``-keyword en de constructor. Maar zoals je merkt is dit een ongelooflijk belangrijk mechanisme in de wereld van de objecten. Het brengt letterlijk objecten tot leven (in de heap) en zal als resultaat laten weten op welke plek in het geheugen het object staat.
 :::
@@ -268,8 +270,24 @@ De variabele ``bewaarEersteHeld`` houdt dus een referentie naar die in ``batmand
 
 :::{.callout-important}
 De GC werkt niet continue daar dit te veel overhead van je computer zou vereisen. De GC zal gewoon om de zoveel tijd alle gereserveerde geheugenplekken van de applicatie controleren en die delen verwijderen die niet meer nodig zijn.
-Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Collect()`` maar dit is ten stelligste af te raden! De GC weet meestal beter dan ons wanneer er gekuist moet worden.
+Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Collect()`` maar dit is ten stelligste af te raden! De GC is geoptimaliseerd om zelf het beste moment te kiezen. Roep je hem zelf op, dan onderbreek je je programma op een ongelegen moment en maak je het meestal net *trager* in plaats van sneller. Laat de GC dus gewoon z'n werk doen.
 :::
+
+### Wat met ``string``?
+
+``string`` is een buitenbeentje. Het is een **reference type** (een string-variabele bevat dus een referentie naar tekst op de heap), maar in de praktijk gedraagt het zich vaak als een value type. Dat komt omdat ``string`` **immutable** is: eens een stuk tekst is aangemaakt, kan je het niet meer wijzigen.
+
+Wanneer je dus schrijft:
+
+```java
+string naam = "tim";
+naam = naam.ToUpper();
+```
+
+dan wijzigt ``ToUpper()`` de originele tekst niet, maar maakt het een *nieuw* stuk tekst (``"TIM"``) waar ``naam`` vervolgens naar verwijst. Vergeet je de toewijzing (``naam.ToUpper();`` zonder ``naam =``), dan verandert er niets aan ``naam``. Onthoud dus: methoden op een ``string`` geven steeds een *nieuwe* string terug, ze passen het origineel nooit aan.
+
+<!-- TODO ed.5 (review): stackgrootte (typisch ~1 MB) en StackOverflowException kort vermelden; nu enkel in de kennisclips. -->
+<!-- TODO ed.5 (review): 'using' als statement (using (var stream = ...)) hoort bij resource management; overweeg korte vermelding. -->
 
 
 

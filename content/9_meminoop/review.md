@@ -1,8 +1,11 @@
 # Review: H10 deel 1 — Geheugenmanagement (9_meminoop/)
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
 
 Deze folder bevat de kern van H10: stack/heap, value vs. reference, GC, objecten in methoden, null en namespaces. De rest van H10 (try/catch) zit in [../20_exceptions/](../20_exceptions/).
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. Let op: nullable types (`string?`, `int?`, `??`) blijven volgens afspraak (CLAUDE.md) nog uitgesteld; die zijn als TODO gemarkeerd. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -14,37 +17,39 @@ Deze folder bevat de kern van H10: stack/heap, value vs. reference, GC, objecten
 
 ## Zwaktes
 
-- Het **bevallingsvoorbeeld** in [6b_objectenenmethoden.md](6b_objectenenmethoden.md) sleept te lang door en eindigt didactisch zwak: er staan tikfouten in (``papa.MaxLengte`` waar het ``dePapa.MaxLengte`` moet zijn, twee keer) én het mengt het *concept van by-reference* met *een methode die ``null`` teruggeeft als guard*. Dat zijn twee aparte lessen.
-- ``string`` wordt nergens expliciet als reference type benoemd, terwijl studenten net daar in de war geraken (waarom werkt `string s = "x"; s = "y";` *toch* alsof het een value type is?). Mis kans om immutability uit te leggen.
-- Het stukje GC sluit af met ``GC.Collect()`` *"ten stelligste afgeraden"* zonder echt uit te leggen waarom — een eerstejaars onthoudt dan vooral dat dit bestaat en gaat het uitproberen.
-- In [nullreference.md](nullreference.md) zegt de tip "VS dwingt je `= null` expliciet te schrijven" zonder context: dit gaat over **nullable reference types** (C# 8+) maar dat begrip valt nooit. Studenten zien dan plots een waarschuwingsstreepje en weten niet waarom.
+- `[~]` Het **bevallingsvoorbeeld** sleept te lang door en mengt by-reference met een methode die ``null`` teruggeeft als guard. Tikfouten ``papa.MaxLengte`` (2x). **(de twee ``papa.MaxLengte``-tikfouten zijn gefixt naar ``dePapa.MaxLengte``; de opsplitsing van het voorbeeld is als TODO gemarkeerd.)**
+- `[v]` ``string`` wordt nergens expliciet als reference type benoemd (waarom werkt `string s = "x"; s = "y";` toch als een value type?). **(sectie "Wat met string?" toegevoegd in 6_memorymanagement.md: reference type maar immutable.)**
+- `[v]` Het stukje GC sluit af met ``GC.Collect()`` *"ten stelligste afgeraden"* zonder echt uit te leggen waarom. **(uitleg toegevoegd: zelf aanroepen onderbreekt op een slecht moment en maakt het meestal trager.)**
+- `[v]` In [nullreference.md](nullreference.md) zegt de tip "VS dwingt je `= null` expliciet te schrijven" zonder context: dit gaat over **nullable reference types** maar dat begrip valt nooit. **(de tip benoemt nu nullable reference types en zegt dat we ze bewust nog niet behandelen, dus de waarschuwing mag genegeerd worden.)**
 
 ## Onduidelijkheden
 
-- In [6_memorymanagement.md](6_memorymanagement.md) staat: *"reference types véél meer voorkomen: simpelweg omdat alles in C# een object is (en dus ook arrays van objecten én zelfs valuetypes, enz.)."* — dit klopt strikt, maar verwart: een `int` is een value type maar erft van `System.Object`. Boxing wordt niet uitgelegd, dus deze zin levert meer vragen op dan antwoorden.
-- De zin *"Merk op dat de variabele ``stud`` eigenlijk de waarde ``null`` heeft. We leggen later uit wat dit juist wil zeggen."* — "later" is in [nullreference.md](nullreference.md), maar tussenin staat het bevallingsvoorbeeld dat al ``null`` als returnwaarde gebruikt. Volgorde wringt.
-- In `ZoekStudent` in [nullreference.md](nullreference.md) wordt de loop niet vroegtijdig afgebroken bij een match — geen probleem, maar bij eerstejaars wekt dat de indruk dat dit zo *moet*. Een korte toelichting (efficiëntie vs. eenvoud) helpt.
-- ``namespace`` wordt uitgelegd, maar **file-scoped namespaces** (`namespace Foo;` zonder accolades, standaard in C# 10+ templates) worden niet vermeld — dat is wel wat studenten in hun nieuwe projecten zien.
+- `[v]` In [6_memorymanagement.md](6_memorymanagement.md) staat: *"...simpelweg omdat alles in C# een object is (en dus ook ... zelfs valuetypes...)."* - dit verwart (boxing wordt niet uitgelegd). **(zin herschreven zonder de boxing-bait: "zodra je met objecten en arrays werkt heb je met reference types te maken".)**
+- `[>]` De zin *"...We leggen later uit wat dit juist wil zeggen."* - "later" is in nullreference.md, maar tussenin staat al een ``null``-returnvoorbeeld. Volgorde wringt. **(hangt samen met de bevallings-opsplitsing; als TODO gemarkeerd, structureel aan Tim.)**
+- `[v]` In `ZoekStudent` wordt de loop niet vroegtijdig afgebroken bij een match. Een korte toelichting (efficiëntie vs. eenvoud) helpt. **(toelichting toegevoegd: het kan sneller met een vroege stop, maar we houden het eenvoudig.)**
+- `[c]` ``namespace`` wordt uitgelegd, maar **file-scoped namespaces** (`namespace Foo;` zonder accolades) worden niet vermeld - dat zien studenten wel in nieuwe projecten. **(TODO-comment geplaatst.)**
 
 ## Gemissen
 
-- **Operator `??` (null-coalescing)** ontbreekt volledig. `?.` wordt wel vermeld, maar `??` en `??=` zijn even essentieel voor moderne C#.
-- **`Nullable<T>` / `int?`** valt niet — terwijl studenten dit later in databases en JSON tegenkomen.
-- **Pass-by-reference voor value types met `ref`/`out`** wordt niet eens kort genoemd; minstens een vooruitwijzing was nuttig.
-- **`string` als immutable reference type** verdient een paar regels: waarom geeft `s.ToUpper()` geen verandering aan `s`?
-- **Concrete grootte van stack** (typisch 1 MB) en **StackOverflowException** worden in de kennisclips genoemd maar niet in de tekst zelf — een korte vermelding maakt het tastbaar.
-- **`using` als statement** (niet directive) — dus de `using (var stream = ...)`-vorm — komt nergens voor, terwijl die thuishoort bij dit hoofdstuk over resource management.
+- `[c]` **Operator `??` (null-coalescing)** ontbreekt; `?.` wordt wel vermeld, maar `??` en `??=` ook. **(TODO-comment geplaatst; bewust uitgesteld i.l.m. de null-features-deferral, beslissing aan Tim.)**
+- `[>]` **`Nullable<T>` / `int?`** valt niet. **(uitgesteld: nullable types worden volgens CLAUDE.md nog niet behandeld.)**
+- `[>]` **Pass-by-reference voor value types met `ref`/`out`** wordt niet kort genoemd. **(uitgesteld: out/ref zitten in de appendix; een vooruitwijzing kan later.)**
+- `[v]` **`string` als immutable reference type** verdient een paar regels. **(sectie "Wat met string?" toegevoegd.)**
+- `[c]` **Concrete grootte van stack** (typisch 1 MB) en **StackOverflowException** staan enkel in de kennisclips. **(TODO-comment geplaatst.)**
+- `[c]` **`using` als statement** (`using (var stream = ...)`) komt nergens voor. **(TODO-comment geplaatst.)**
 
 ## Concrete suggesties
 
-1. Splits het bevallingsvoorbeeld in [6b_objectenenmethoden.md](6b_objectenenmethoden.md) op: bewaar het *by-reference*-deel hier, verhuis het *return null*-deel naar [nullreference.md](nullreference.md) — daar past het beter.
-2. Voeg in [6_memorymanagement.md](6_memorymanagement.md) een minihoofdstukje toe *"Wat met `string`?"* met de boodschap: reference type, maar gedraagt zich als value type omdat het immutable is.
-3. Fix de twee `papa.MaxLengte` tikfouten naar `dePapa.MaxLengte`.
-4. Voeg in [nullreference.md](nullreference.md) een sectie **`??` en `??=`** toe direct na de `?.`-uitleg — drie regels volstaan.
-5. Maak één figuur waarin stack en heap **naast elkaar** staan met pijlen, in plaats van de huidige losse plaatjes per stap. Studenten verliezen overzicht.
-6. Verwijs in de tip over VS-waarschuwingen ([nullreference.md](nullreference.md)) eenmalig naar *nullable reference types* zodat het mysterie weg is.
+1. `[c]` Splits het bevallingsvoorbeeld op (by-reference hier, return-null naar nullreference.md). **(TODO-comment geplaatst; structureel aan Tim.)**
+2. `[v]` Voeg een minihoofdstukje *"Wat met `string`?"* toe. **(gedaan in 6_memorymanagement.md.)**
+3. `[v]` Fix de twee `papa.MaxLengte` tikfouten naar `dePapa.MaxLengte`. **(gedaan.)**
+4. `[c]` Voeg een sectie **`??` en `??=`** toe. **(TODO-comment geplaatst; uitgesteld i.l.m. de null-features-deferral.)**
+5. `[c]` Maak één figuur met stack en heap **naast elkaar**. **(TODO-comment geplaatst; figuur maken is aan Tim.)**
+6. `[v]` Verwijs in de VS-waarschuwingen-tip eenmalig naar *nullable reference types*. **(gedaan, met de toevoeging dat we ze bewust nog niet behandelen.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

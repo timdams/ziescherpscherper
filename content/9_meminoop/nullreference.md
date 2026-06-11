@@ -35,8 +35,12 @@ Dit zal resulteren in een foutboodschap in VS bij de lijn die de uitzondering de
 
 
 :::{.callout-tip}
-We moeten in dit voorbeeld expliciet ``= null`` plaatsen daar Visual Studio slim genoeg is om je te waarschuwen voor eenvoudige potentiële NullReference fouten en je code anders niet zal compileren.
+We moeten in dit voorbeeld expliciet ``= null`` plaatsen daar Visual Studio slim genoeg is om je te waarschuwen voor eenvoudige potentiële NullReference fouten.
+
+Krijg je in je eigen projecten plots groene kronkellijntjes bij code die met ``null`` werkt? Dat hoort bij een C#-functie genaamd **nullable reference types**. Die behandelen we in dit boek bewust nog niet; je mag die waarschuwingen voorlopig negeren (je code blijft gewoon compileren).
 :::
+
+<!-- TODO ed.5 (review): sectie ?? (null-coalescing) en ??= toevoegen direct na de ?.-uitleg. Bewust nog niet gedaan: leunt aan tegen het null-feature-gedeelte dat we voorlopig beperkt houden. Beslissing aan Tim. -->
 
 <!-- \newpage -->
 
@@ -101,6 +105,8 @@ static Student ZoekStudent(Student[] array, string naam)
 }
 ```
 
+Merk op dat deze loop gewoon de hele array doorloopt, ook nadat een match gevonden is. Dat hoeft niet: je zou de lus vroegtijdig kunnen stoppen zodra je iets vindt (efficiënter). We houden het hier bewust eenvoudig, maar besef dat het sneller kan.
+
 ### Bevallen in code met ouders
 
 Tijd om het voorbeeld van de *voortplanting der mensch* er nog eens bij te nemen. Beeld je nu in dat we dichter naar de realiteit willen gaan (meestal toch het doel van OOP) en de baby eigenschappen van beide willen ouders geven. Stel dat mensen een maximum lengte hebben die ze genetisch kunnen halen, aangeduid via een auto-property ``MaxLengte``. De maximale lengte van een baby is steeds de lengte van de grootste ouder (in de echte genetica is dat natuurlijk niet). 
@@ -117,7 +123,7 @@ internal class Mens
         Mens baby = new Mens();
         baby.MaxLengte = MaxLengte;
         if(dePapa.MaxLengte >= MaxLengte)
-            baby.MaxLengte = papa.MaxLengte;
+            baby.MaxLengte = dePapa.MaxLengte;
         return baby;
     }
 }
@@ -141,7 +147,7 @@ Veronderstel dat het geslacht via een enumtype (``enum Geslachten {Man, Vrouw}``
             Mens baby = new Mens();
             baby.MaxLengte = MaxLengte;
             if(dePapa.MaxLengte >= MaxLengte)
-                baby.MaxLengte = papa.MaxLengte;
+                baby.MaxLengte = dePapa.MaxLengte;
             return baby;
         }
         return null;

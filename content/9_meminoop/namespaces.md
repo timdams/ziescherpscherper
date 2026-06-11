@@ -10,6 +10,8 @@ namespace MyEpicGame
 
 De naam die achter de ``namespace`` staat is altijd die van je project, maar waarom is dit eigenlijk?
 
+<!-- TODO ed.5 (review): file-scoped namespaces vermelden (namespace Foo; zonder accolades, standaard in nieuwere C#-templates). Studenten zien deze vorm in hun nieuwe projecten. -->
+
 ### Wat zijn namespaces
 
 Een ``namespace`` wordt gebruikt om te voorkomen dat 2 projecten die toevallig dezelfde klassenamen hebben in conflict komen. Beeld je in dat je een project van iemand anders toevoegt aan jouw project en je ontdekt dat in dat project reeds een klasse ``Student`` aanwezig is. Hoe weet C# nu welke klasse moet gebruikt worden? Want mogelijk wens je beide te gebruiken!

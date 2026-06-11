@@ -65,7 +65,7 @@ m1.OpgemetenDoor = "Lieven Scheire";
 m2.Temperatuur = 5; 
 m2.OpgemetenDoor = "Lieven Scheire";
 m1.VoegMetingToeEnVerwijder(m2);
-Console.WriteLine($"{m1.Temperatuur} en {m2.Temperatuur});
+Console.WriteLine($"{m1.Temperatuur} en {m2.Temperatuur}");
 ```
 
 Dit zal resulteren in volgende output:
@@ -101,6 +101,8 @@ Meting m3 = m1.GenereerRandomMeting();
 ```
 
 Het object ``m3`` zal een temperatuur van ``52`` bevatten en zijn opgemeten door ``Lieven Scheire Junior``.
+
+<!-- TODO ed.5 (review): dit bevallingsvoorbeeld sleept lang door en mengt twee lessen (by-reference én een methode die null als guard teruggeeft). Overweeg het op te splitsen: het by-reference-deel hier houden, het 'return null'-deel naar nullreference.md verhuizen. -->
 
 ### Bevallen in code
 
