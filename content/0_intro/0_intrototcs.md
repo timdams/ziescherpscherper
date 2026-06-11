@@ -16,7 +16,7 @@ status: canon
 > First, solve the problem. Then, write the code.
 
 
-Wel, wel, wie we hier hebben?! Iemand die de edele kunst van het programmeren wil leren? Dan ben je op de juiste plaats gekomen. Je gelooft het misschien niet, maar reeds aan het einde van dit hoofdstuk zal je je eerste eigen computer-applicaties kunnen maken. De weg naar eeuwige roem, glorie, véél vloeken en code herbruiken ligt voor je. Ben je er klaar voor? 
+Wel, wel, wie we hier hebben?! Iemand die de edele kunst van het programmeren wil leren? Dan ben je op de juiste plaats gekomen. Je gelooft het misschien niet, maar reeds aan het einde van dit hoofdstuk zal je je eerste eigen computerapplicaties kunnen maken. De weg naar eeuwige roem, glorie, véél vloeken en code herbruiken ligt voor je. Ben je er klaar voor? 
 
 
 De eerste stappen zijn nooit eenvoudig. Ik probeer daarom het aantal dure woorden, vreemde afkortingen en ingewikkelde schema's tot een minimum te beperken. Maar toch. Als je een nieuwe kunst wil leren zal je je handen én toetsenbord vuil moeten maken. 
@@ -75,7 +75,7 @@ Net zoals er ontelbare spreektalen in de wereld zijn, zijn er ook vele programme
 
 De geschiedenis van de hele .NET-wereld vertellen zou een boek op zich betekenen en gaan ik hier niet doen. Het is nuttig om weten dat er een gigantische bron aan informatie over .NET en C# online te vinden is[^startcs].
 
-[^startcs]:Zie [docs.microsoft.com/en-us/dotnet/csharp/getting-started](docs.microsoft.com/en-us/dotnet/csharp/getting-started).
+[^startcs]: Zie [learn.microsoft.com/dotnet/csharp](https://learn.microsoft.com/dotnet/csharp).
 
 :::{.callout-tip}
 Het fijne van leren programmeren is dat je binnenkort op een bepaald punt gaat komen waarbij de keuze van programmeertaal er minder toe doet. Vergelijk het met het leren van het Frans. Van zodra je Frans onder knie hebt is het veel eenvoudiger om vervolgens Italiaans of Spaans te leren. Zo ook met programmeertalen. De C# taal lijkt bijvoorbeeld als twee druppels water op Java. Ook de talen waar C# van afstamt - C en C++ -  hebben erg herkenbare gelijkenissen.
@@ -122,17 +122,17 @@ Microsoft heeft er een handje van weg om hun producten ingewikkelde volgnummers-
 
 Microsoft heeft gelukkig recent de naamgevingen herschikt én hernoemt in de hoop het allemaal wat duidelijker te maken. Ik zal daarom even kort te bespreken waar we nu zitten.
 
-**.NET 6 (framework)**
+**.NET (framework)**
 
-Telkens er een nieuwe .NET framework werd *gereleased* verscheen er ook een bijhorende nieuwe versie van Visual Studio. Vroeger had je verschillende frameworks binnen de .NET familie zoals *.NET Framework*, *".NET Standard"*, *.NET Core* enz. die allemaal net niet dezelfde doeleinden hadden wat het erg verwarrend maakte. Om dit te vereenvoudigen bestaat sinds 2020 enkel nog .NET gevolgd door een nummer. 
+Telkens er een nieuwe .NET-versie werd *gereleased* verscheen er ook een bijhorende nieuwe versie van Visual Studio. Vroeger had je verschillende frameworks binnen de .NET-familie zoals *.NET Framework*, *.NET Standard*, *.NET Core* enz. die allemaal net niet dezelfde doeleinden hadden, wat het erg verwarrend maakte. Om dit te vereenvoudigen bestaat sinds 2020 enkel nog **.NET gevolgd door een nummer** (.NET 5, .NET 6, ... en intussen al een pak hoger).
 
-Zo had je in 2020 .NET 5 en verschijnt eind 2022 .NET 7. Dit boek maakt gebruikt van **.NET 6** dat verscheen samen met Visual Studio 2022...in november 2021.  Je moet er maar aan uit kunnen.
+Microsoft brengt elk jaar in november een nieuwe .NET-versie uit. De even versienummers zijn **LTS** (*Long Term Support*) en worden langer ondersteund. Dit boek werkt steeds met de **meest recente LTS-versie**. Concrete versienummers vermeld ik bewust zo weinig mogelijk: die veranderen sneller dan dit boek herdrukt wordt.
 
-**C# 10**
+**C#-versie**
 
-De C# taal is eigenlijk nog het eenvoudigst qua nummering. Om de zoveel tijd krijgt C# een update met een nieuwe reeks taal-eigenschappen die je kan, maar niet hoeft te gebruiken. Momenteel zitten we aan **C# 10** dat werd uitgebracht samen met .NET 6. 
+De C#-taal is qua nummering nog het eenvoudigst. Om de zoveel tijd krijgt C# een update met een nieuwe reeks taal-features die je *kan*, maar niet *hoeft* te gebruiken. Elke nieuwe .NET-versie komt samen met een nieuwe C#-versie.
 
-Eind 2023 kwam .NET 8 uit en dus ook alweer een nieuwe versie van C#, namelijk versie 12. De kans is dus groot dat voorgaande zin alweer gedateerd is tegen dat je hem leest. De vernieuwingen in C# zijn niet altijd belangrijk voor beginnende programmeurs. In dit boek heb ik getracht de belangrijkste én meest begrijpbare nieuwe features uit de taal te gebruiken waar relevant.  Over het algemeen gezien mag je stellen dat dit boek tot en met versie .NET 7.3 / C# versie 11 de belangrijkste zaken zal behandelen.
+De vernieuwingen in C# zijn niet altijd belangrijk voor beginnende programmeurs. In dit boek heb ik getracht de belangrijkste én meest begrijpbare nieuwe features uit de taal te gebruiken waar relevant. Welke C#-versie precies bij welke .NET-versie hoort, vind je zo online,  maar als beginner hoef je je daar voorlopig geen zorgen over te maken.
 
 
 :::{.callout-tip}

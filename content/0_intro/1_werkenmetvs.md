@@ -48,6 +48,8 @@ In dit boek zullen we dus steeds werken met *Visual Studio Community 2026*. Niet
 Helaas heeft Microsoft besloten om in augustus 2024 Visual Studio Community voor Mac niet meer aan te bieden. Hierdoor zijn Mac-gebruikers genoodzaakt om met een andere IDE te werken, zoals Visual Studio Code of JetBrains Rider. Helaas zal deze cursus niet verder ingaan op deze alternatieven (je kan overwegen Windows via Bootcamp, Parallels of een virtuele machine te gebruiken indien je met Visual Studio wilt werken).
 :::
 
+<!-- TODO ed.5 (review): VS Code + C# Dev Kit als volwaardig alternatief vermelden voor Mac-studenten. Nu wordt enkel "een andere IDE" genoemd. -->
+
 <!-- \newpage -->
 
 

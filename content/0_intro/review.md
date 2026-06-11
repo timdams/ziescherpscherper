@@ -1,6 +1,9 @@
 # Review: De eerste stappen
 
-> Interne didactische review — niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+> Interne didactische review - niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld (oefeningen of Future). De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -12,43 +15,45 @@
 
 ## Zwaktes
 
-- [0_intrototcs.md](0_intrototcs.md) sectie "Nummering en naamgeving van C#" is **gedateerd**: het boek staat als .NET 6 / C# 10 vermeld, maar [1_werkenmetvs.md](1_werkenmetvs.md) noemt dan weer "Visual Studio 2026". Dat is inconsistent, en .NET 6 is sinds november 2024 end-of-life. Zelfde verhaal: voetnoot 78 verwijst naar `docs.microsoft.com` zonder `https://` en zonder werkende link-syntax.
-- De sprong van [2_firstprogram.md](2_firstprogram.md) naar het volledige `namespace`/`class`/`Main`-blok is groot. Je verklaart het bewust later (H7-H10), maar voor een eerstejaars staan er meteen 4 mysterieuze keywords: `namespace`, `internal`, `class`, `static void`, `string[] args`. De "diep in het zwembad"-callout helpt, maar het blijft veel ruis. Ironisch genoeg zou top-level statements hier didactisch net wél geschikt zijn — je sluit dat actief uit.
-- [3_console.md](3_console.md) introduceert `string result;` op een aparte regel en pas dan `result = Console.ReadLine();`. Dat is geen idiomatisch C# meer en breekt later met wat in [1b_variabelen.md](../1_csharpbasics/1b_variabelen.md) als beste praktijk wordt aangeraden ("declareer met beginwaarde"). Dezelfde inconsistentie zit in de "Meer input vragen"-sectie.
-- `Console.ReadLine()` retourneert sinds C# 8 een **nullable** `string?`. Studenten krijgen vermoedelijk een waarschuwing in VS bij `string result; result = Console.ReadLine();`. Dat wordt nergens benoemd.
-- Het blokje over de "+"-operator in [3_console.md](3_console.md) (sectie "Zinnen aan elkaar plakken") leert iets dat in het volgende hoofdstuk meteen wordt opgevolgd door string interpolation als "moderne aanpak". Waarom hier niet meteen interpolation tonen?
+- `[v]` [0_intrototcs.md](0_intrototcs.md) sectie "Nummering en naamgeving van C#" is **gedateerd**: het boek staat als .NET 6 / C# 10 vermeld, maar [1_werkenmetvs.md](1_werkenmetvs.md) noemt dan weer "Visual Studio 2026". Dat is inconsistent, en .NET 6 is sinds november 2024 end-of-life. Zelfde verhaal: voetnoot 78 verwijst naar `docs.microsoft.com` zonder `https://` en zonder werkende link-syntax. **(versie-sectie generiek gemaakt naar "meest recente LTS-versie"; voetnoot-link gefixt naar https learn.microsoft.com. VS 2026 onveranderd: in 2026 plausibel correct.)**
+- `[~]` De sprong van [2_firstprogram.md](2_firstprogram.md) naar het volledige `namespace`/`class`/`Main`-blok is groot. Je verklaart het bewust later (H7-H10), maar voor een eerstejaars staan er meteen 4 mysterieuze keywords: `namespace`, `internal`, `class`, `static void`, `string[] args`. De "diep in het zwembad"-callout helpt, maar het blijft veel ruis. Ironisch genoeg zou top-level statements hier didactisch net wél geschikt zijn - je sluit dat actief uit. **(harde callout "Voorlopig negeren!" toegevoegd. Top-level statements blijven bewust uitgesloten - dat is een grotere keuze, zie Future.)**
+- `[v]` [3_console.md](3_console.md) introduceert `string result;` op een aparte regel en pas dan `result = Console.ReadLine();`. Dat is geen idiomatisch C# meer en breekt later met wat in [1b_variabelen.md](../1_csharpbasics/1b_variabelen.md) als beste praktijk wordt aangeraden ("declareer met beginwaarde"). Dezelfde inconsistentie zit in de "Meer input vragen"-sectie. **(beide secties naar moderne 1-lijnstijl `string result = Console.ReadLine();`.)**
+- `[>]` `Console.ReadLine()` retourneert sinds C# 8 een **nullable** `string?`. Studenten krijgen vermoedelijk een waarschuwing in VS bij `string result; result = Console.ReadLine();`. Dat wordt nergens benoemd. **(bewust NIET: nullables worden in deze editie nog niet geïntroduceerd, zie CLAUDE.md. De gele waarschuwing blijft dus, net als voorheen.)**
+- `[~]` Het blokje over de "+"-operator in [3_console.md](3_console.md) (sectie "Zinnen aan elkaar plakken") leert iets dat in het volgende hoofdstuk meteen wordt opgevolgd door string interpolation als "moderne aanpak". Waarom hier niet meteen interpolation tonen? **(vooruitwijzing-callout naar string interpolation toegevoegd; de `+`-operator blijft als eerste, eenvoudige stap.)**
 
 ## Onduidelijkheden
 
-- [0_intrototcs.md](0_intrototcs.md) regel 19: typfout "computer-applicaties" / inconsistente koppelteken-stijl door het hoofdstuk heen.
-- [2_firstprogram.md](2_firstprogram.md) regel 80-86 ("Analyse van de code") gebruikt lijnnummers die niet overeenkomen met de getoonde code-snippet (10 lijnen vermeld, snippet heeft er 11 incl. lege regels). Een eerstejaars gaat tellen en raakt in de war.
-- [3_console.md](3_console.md) "Aanhalingsteken of niet?": je gebruikt plots `Console.Write` terwijl het voorbeeld erboven over `WriteLine` gaat. Niet verkeerd, wel verwarrend zonder expliciete toelichting van de switch.
-- [3_console.md](3_console.md) sectie "Opletten met spaties" gebruikt liggende streepjes om spaties te visualiseren, maar de syntax met `_)` in de code maakt het zelf op het eerste zicht lijken op een fout. Voeg in de begeleidende tekst expliciet toe: "deze _ stelt enkel visueel een spatie voor — typ ze niet over".
-- [5_kleuren.md](5_kleuren.md) callout met kleurenlijst mist `White`. Dat is mogelijk gewoon vergeten (er zijn 16 ConsoleColors).
+- `[v]` [0_intrototcs.md](0_intrototcs.md) regel 19: typfout "computer-applicaties" / inconsistente koppelteken-stijl door het hoofdstuk heen. **(typfout gefixt naar "computerapplicaties".)**
+- `[v]` [2_firstprogram.md](2_firstprogram.md) regel 80-86 ("Analyse van de code") gebruikt lijnnummers die niet overeenkomen met de getoonde code-snippet (10 lijnen vermeld, snippet heeft er 11 incl. lege regels). Een eerstejaars gaat tellen en raakt in de war. **(accolade-lijnnummers gecorrigeerd naar 2, 4, 6 en 9, 10, 11.)**
+- `[v]` [3_console.md](3_console.md) "Aanhalingsteken of niet?": je gebruikt plots `Console.Write` terwijl het voorbeeld erboven over `WriteLine` gaat. Niet verkeerd, wel verwarrend zonder expliciete toelichting van de switch. **(consistent gemaakt: nu `Console.WriteLine` zoals het opgebouwde programma.)**
+- `[v]` [3_console.md](3_console.md) sectie "Opletten met spaties" gebruikt liggende streepjes om spaties te visualiseren, maar de syntax met `_)` in de code maakt het zelf op het eerste zicht lijken op een fout. Voeg in de begeleidende tekst expliciet toe: "deze _ stelt enkel visueel een spatie voor - typ ze niet over". **(expliciete waarschuwing toegevoegd in de begeleidende tekst.)**
+- `[v]` [5_kleuren.md](5_kleuren.md) callout met kleurenlijst mist `White`. Dat is mogelijk gewoon vergeten (er zijn 16 ConsoleColors). **(`White` toegevoegd aan de lijst.)**
 
 ## Gemissen
 
-- Geen woord over **comments** in dit hoofdstuk, terwijl ze in code-voorbeelden wel verschijnen ([3_console.md:207](3_console.md)). Gevolg: studenten zien `//` zonder uitleg. Comments staan pas in [1_csharpbasics/0_csharpessentials.md](../1_csharpbasics/0_csharpessentials.md).
-- Geen oefening of "probeer dit zelf"-blok aan het einde. De link naar gitbook-oefeningen in [kennisclips.md](kennisclips.md) volstaat, maar één concrete mini-opdracht in het hoofdstuk zelf zou de stof verankeren.
-- De **VS shortcut-tip** voor `cw[tab][tab]` staat in [3_console.md](3_console.md), maar het broertje `prop[tab][tab]` en de algemene "code snippet"-cultuur (en hoe je ze opzoekt via Tools → Code Snippets Manager) ontbreekt.
-- Waar staat de uitleg van **debugging** (breakpoints, F10, F11)? Een eerstejaars moet leren stappen door code, dat hoort hier al kort vermeld te worden — al was het maar een teaser.
-- Geen mention van **VS Code + C# Dev Kit** als alternatief, terwijl Mac-studenten daar volgens [1_werkenmetvs.md](1_werkenmetvs.md) op aangewezen zijn.
+- `[c]` Geen woord over **comments** in dit hoofdstuk, terwijl ze in code-voorbeelden wel verschijnen ([3_console.md:207](3_console.md)). Gevolg: studenten zien `//` zonder uitleg. Comments staan pas in [1_csharpbasics/0_csharpessentials.md](../1_csharpbasics/0_csharpessentials.md). **(TODO-comment geplaatst in 3_console.md.)**
+- `[>]` Geen oefening of "probeer dit zelf"-blok aan het einde. De link naar gitbook-oefeningen in [kennisclips.md](kennisclips.md) volstaat, maar één concrete mini-opdracht in het hoofdstuk zelf zou de stof verankeren. **(uitgesteld: oefeningen pakken we later aan. TODO-comment in 5_kleuren.md.)**
+- `[c]` De **VS shortcut-tip** voor `cw[tab][tab]` staat in [3_console.md](3_console.md), maar het broertje `prop[tab][tab]` en de algemene "code snippet"-cultuur (en hoe je ze opzoekt via Tools - Code Snippets Manager) ontbreekt. **(TODO-comment geplaatst in 3_console.md.)**
+- `[c]` Waar staat de uitleg van **debugging** (breakpoints, F10, F11)? Een eerstejaars moet leren stappen door code, dat hoort hier al kort vermeld te worden - al was het maar een teaser. **(TODO-comments geplaatst in 4_fouten.md en 3_console.md.)**
+- `[c]` Geen mention van **VS Code + C# Dev Kit** als alternatief, terwijl Mac-studenten daar volgens [1_werkenmetvs.md](1_werkenmetvs.md) op aangewezen zijn. **(TODO-comment geplaatst in 1_werkenmetvs.md.)**
 
 ## Concrete suggesties
 
-1. Maak in [0_intrototcs.md](0_intrototcs.md) de versie-sectie generiek: vervang ".NET 6" en "C# 10" door ".NET 8 (LTS)" of "de meest recente LTS-versie" en verwijs voor exacte versies naar een appendix. Zo veroudert de tekst minder snel.
-2. In [1_werkenmetvs.md](1_werkenmetvs.md) staat "Visual Studio 2026" — controleer of dit klopt of een typfout is voor 2022/2024.
-3. Herschrijf in [3_console.md](3_console.md) de eerste `ReadLine`-introductie naar de moderne stijl en noem expliciet de `?`:
+1. `[v]` Maak in [0_intrototcs.md](0_intrototcs.md) de versie-sectie generiek: vervang ".NET 6" en "C# 10" door ".NET 8 (LTS)" of "de meest recente LTS-versie" en verwijs voor exacte versies naar een appendix. Zo veroudert de tekst minder snel. **(gedaan: generiek naar "meest recente LTS-versie".)**
+2. `[~]` In [1_werkenmetvs.md](1_werkenmetvs.md) staat "Visual Studio 2026" - controleer of dit klopt of een typfout is voor 2022/2024. **(onveranderd gelaten: we zitten in 2026 en het staat consistent door de tekst, dus plausibel correct. Te bevestigen door Tim.)**
+3. `[~]` Herschrijf in [3_console.md](3_console.md) de eerste `ReadLine`-introductie naar de moderne stijl en noem expliciet de `?`:
    ```java
    Console.WriteLine("Geef je naam:");
    string? naam = Console.ReadLine();  //ReadLine kan null teruggeven
    ```
-   En leg dan uit waarom we voorlopig dat `?` mogen negeren maar dat het later terugkomt.
-4. Voeg in [2_firstprogram.md](2_firstprogram.md) een korte expliciete callout toe: *"De keywords `namespace`, `class`, `static void Main` lijken nu mysterieus. Negeer ze. Schrijf enkel binnen de Main-accolades. We komen er in H7-H10 op terug."* Dat staat er nu impliciet, maak het hard.
-5. Voeg een mini-oefening toe aan het einde van [5_kleuren.md](5_kleuren.md): "schrijf een programma dat 'Error' in het rood toont, dan resetcolor, dan 'OK' in het groen". Eerstejaars hebben succeservaringen nodig per hoofdstuk.
-6. Voor [1_killai.md](1_killai.md): voeg een datum toe aan de UI-screenshots ("VS 17.x, screenshot uit ...") of een waarschuwing dat de menu's regelmatig veranderen. De huidige screenshots verouderen snel.
+   En leg dan uit waarom we voorlopig dat `?` mogen negeren maar dat het later terugkomt. **(moderne 1-lijnstijl gedaan, maar ZONDER `?`: nullables worden in deze editie nog niet geïntroduceerd.)**
+4. `[v]` Voeg in [2_firstprogram.md](2_firstprogram.md) een korte expliciete callout toe: *"De keywords `namespace`, `class`, `static void Main` lijken nu mysterieus. Negeer ze. Schrijf enkel binnen de Main-accolades. We komen er in H7-H10 op terug."* Dat staat er nu impliciet, maak het hard. **(callout "Voorlopig negeren!" toegevoegd.)**
+5. `[>]` Voeg een mini-oefening toe aan het einde van [5_kleuren.md](5_kleuren.md): "schrijf een programma dat 'Error' in het rood toont, dan resetcolor, dan 'OK' in het groen". Eerstejaars hebben succeservaringen nodig per hoofdstuk. **(uitgesteld: oefeningen later. TODO-comment geplaatst.)**
+6. `[v]` Voor [1_killai.md](1_killai.md): voeg een datum toe aan de UI-screenshots ("VS 17.x, screenshot uit ...") of een waarschuwing dat de menu's regelmatig veranderen. De huidige screenshots verouderen snel. **(callout-waarschuwing toegevoegd dat screenshots/menu's snel veranderen.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

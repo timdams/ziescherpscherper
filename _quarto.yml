@@ -14,8 +14,6 @@ book:
         href: slides/overzicht.qmd
       - text: "Oefeningen"
         href: oefeningen/overzicht.qmd
-      - text: "Corona Files"
-        href: coronafiles/overzicht.qmd
   chapters:
     - index.qmd
     - content/README.md

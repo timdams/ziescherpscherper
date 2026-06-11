@@ -90,4 +90,6 @@ De meest voorkomende fouten die je als beginnende C# programmeur maakt zijn:
 * Per ongeluk **accolades verwijderd**.
 * Code geschreven op plekken waar dat niet mag (je mag momenteel enkel binnen de accolades van ``Main`` schrijven).
 
+<!-- TODO ed.5 (review): debugging-teaser ontbreekt in dit hoofdstuk. Breakpoints, F10 (step over) en F11 (step into) horen hier al kort vermeld, al was het maar als vooruitblik op het stappen door code. -->
+
 

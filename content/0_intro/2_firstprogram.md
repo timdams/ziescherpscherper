@@ -73,16 +73,22 @@ Laat je niet afschrikken door wat er nu volgt. Ik gooi je even in het diepe gede
 
 #### Analyse van de code
 
+:::{.callout-important}
+**Voorlopig negeren!**
+
+De keywords ``namespace``, ``class`` en ``static void Main`` lijken nu nog mysterieus. Dat geeft niet: **negeer ze gewoon even**. Het enige wat jij momenteel moet doen is code schrijven *binnen* de accolades van ``Main``. We pluizen deze keywords vanaf hoofdstuk 7 helemaal uit.
+:::
+
 Ik zal nu iedere lijn code kort bespreken. Sommige lijnen code zullen lange tijd niet belangrijk zijn. Onthoud nu alvast dat: **alle belangrijke code staat tussen de accolades onder de lijn ``static void Main(string[] args)``**!
 
 
 
-* **Lijn 1**: Dit is de unieke naam waarbinnen we ons programma zullen plaatsen, en het is niet toevallig de naam van je project. Verander dit nooit tenzij je weet wat je aan het doen bent.Ik bespreek *namespaces* in hoofdstuk 10.
+* **Lijn 1**: Dit is de unieke naam waarbinnen we ons programma zullen plaatsen, en het is niet toevallig de naam van je project. Verander dit nooit tenzij je weet wat je aan het doen bent. Ik bespreek *namespaces* in hoofdstuk 10.
 * **Lijn 3**: Hier start je echte programma. Alle code binnen deze Program accolades zullen gecompileerd worden naar een uitvoerbaar bestand. Vanaf hoofdstuk 9 zal deze lijn geen geheimen meer hebben voor je.
 * **Lijn 5**: Het startpunt van iedere console-applicatie. Wat hier gemaakt wordt is een **methode** genaamd ``Main``. Je programma kan meerdere methoden (of functies) bevatten, maar enkel degene genaamd ``Main`` zal door de compiler als het startpunt van het programma gemaakt worden. Deze lijn zal ik in hoofdstuk 7 en hoofdstuk 8 uit de doeken doen.
 * **Lijn 7**: Dit is een **statement** dat de ``WriteLine``-methode aanroept van de ``Console``-bibliotheek. Het zal alle tekst die tussen de aanhalingstekens staat op het scherm tonen. 
 * **Lijn 8**: en ook deze lijn zorgt ervoor dat er tekst op het scherm komt wanneer het programma zal uitgevoerd worden.
-* **Accolades** op lijnen 2, 4, 6, 9 tot en met 10: vervolgens moet voor iedere openende accolade eerder in de code nu ook een bijhorende sluitende volgen. We gebruiken accolades om de *scope* aan te duiden, iets dat we in hoofdstuk 5 geregeld zullen nodig hebben.
+* **Accolades** op lijnen 2, 4, 6, 9, 10 en 11: voor iedere openende accolade (lijnen 2, 4 en 6) moet eerder in de code ook een bijhorende sluitende volgen (lijnen 9, 10 en 11). We gebruiken accolades om de *scope* aan te duiden, iets dat we in hoofdstuk 5 geregeld zullen nodig hebben.
 
 
 Net zoals een recept, zal ook in C# code van **boven naar onder worden uitgevoerd**. 

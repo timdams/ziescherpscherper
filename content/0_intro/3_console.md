@@ -16,23 +16,15 @@ Zo kan je bijvoorbeeld input van de gebruiker inlezen en bewaren in een variabel
 
 ```java
 Console.WriteLine("Geef je naam?");
-string result;
-result = Console.ReadLine();
+string result = Console.ReadLine();
 ```
 
 Wat gebeurt er hier juist?
 
-De tweede lijn code: 
+De tweede lijn code doet eigenlijk twee dingen tegelijk:
 
-* Concreet zeggen we hiermee aan de compiler: maak in het geheugen een plekje vrij waar enkel data van het type string in mag bewaard worden (wat deze zin exact betekent komt later. Onthoud nu dat geheugen van het type ``string`` enkel "tekst" kan bevatten).
-* Noem deze geheugenplek ``result`` zodat we deze later makkelijk kunnen in en uitlezen.
-
-
-
-Derde lijn code:
-
-* Vervolgens roepen we de ``ReadLine`` methode aan. Deze methode zal de invoer van de gebruiker van het toetsenbord uitlezen tot de gebruiker op enter drukt.
-* Het resultaat van de ingevoerde tekst wordt bewaard in de variabele ``result``.
+* Met ``string result`` zeggen we aan de compiler: maak in het geheugen een plekje vrij waar enkel data van het type string in mag bewaard worden, en noem die geheugenplek ``result`` zodat we ze later makkelijk kunnen in- en uitlezen (wat deze zin exact betekent komt later. Onthoud nu dat geheugen van het type ``string`` enkel "tekst" kan bevatten).
+* Met ``= Console.ReadLine()`` roepen we vervolgens de ``ReadLine``-methode aan. Deze leest de invoer van de gebruiker van het toetsenbord uit tot de gebruiker op enter drukt, en het resultaat van die ingevoerde tekst wordt bewaard in ``result``.
 
 :::{.callout-tip}
 **Merk op dat de toekenning in C# van rechts naar links gebeurt.** Vandaar dat ``result`` dus links van de toekenning (``=``) staat en de waarde krijgt van het gedeelte rechts ervan.
@@ -43,11 +35,9 @@ In het voorbeeld bewaren we het resultaat in ``result``, maar dat moet niet zo n
 
 ```java
 Console.WriteLine("Geef je naam?");
-string naam;
-naam = Console.ReadLine();
+string naam = Console.ReadLine();
 Console.WriteLine("Geef de naam van je mama?");
-string naamMama;
-naamMama = Console.ReadLine();
+string naamMama = Console.ReadLine();
 ```
 
 :::
@@ -59,11 +49,10 @@ Je programma zou nu moeten zijn:
 Console.WriteLine("Hello World!");
 Console.WriteLine("Hoi, ik ben het!");
 Console.WriteLine("Wie ben jij?!");
-string result;
-result = Console.ReadLine();
+string result = Console.ReadLine();
 ```
 
-Start nogmaals je programma. Je zal merken dat je programma nu een cursor toont en wacht op invoer nadat het de eerste 3 lijnen tekst op het scherm heeft gezet. Je kan nu eender wat intypen en van zodra je op enter duwt gaat het programma verder. Maar aangezien lijn 5 de laatste lijn van ons algoritme is, zal je programma hierna afsluiten. We hebben dus de gebruiker voor niets iets laten invoeren. 
+Start nogmaals je programma. Je zal merken dat je programma nu een cursor toont en wacht op invoer nadat het de eerste 3 lijnen tekst op het scherm heeft gezet. Je kan nu eender wat intypen en van zodra je op enter duwt gaat het programma verder. Maar aangezien lijn 4 de laatste lijn van ons algoritme is, zal je programma hierna afsluiten. We hebben dus de gebruiker voor niets iets laten invoeren. 
 
 
 <!-- \newpage -->
@@ -90,8 +79,7 @@ Je volledige programma ziet er dus nu zo uit:
 Console.WriteLine("Hello World!");
 Console.WriteLine("Hoi, ik ben het!");
 Console.WriteLine("Wie ben jij?!");
-string result;
-result = Console.ReadLine();
+string result = Console.ReadLine();
 Console.WriteLine("Dag ");
 Console.WriteLine(result);
 Console.WriteLine("hoe gaat het met je?");
@@ -118,7 +106,7 @@ hoe gaat het met je?
 
 Wanneer je de inhoud van een variabele wil gebruiken in een methode zoals ``WriteLine()`` dan plaats je deze zonder aanhalingstekens!
 
-Bekijk zelf eens wat het verschil wordt wanneer je volgende lijn code ``Console.Write(result);`` vervangt door ``Console.Write("result");``.
+Bekijk zelf eens wat het verschil wordt wanneer je volgende lijn code ``Console.WriteLine(result);`` vervangt door ``Console.WriteLine("result");``.
 
 De uitvoer wordt dan:
 
@@ -201,7 +189,7 @@ C# trekt zich niets aan van **witregels die niét binnen aanhalingstekens staan*
 
 Let goed op hoe je spaties gebruikt bij ``WriteLine``. **Indien je spaties buiten de aanhalingstekens plaatst dan heeft dit geen effect.**
 
-Hier een fout gebruik van spaties (de code zal werken maar je spaties worden genegeerd):
+Hier een fout gebruik van spaties (de code zal werken maar je spaties worden genegeerd). **Let op: de liggende streepjes (``_``) hieronder stellen enkel _visueel_ een spatie voor. Typ ze dus niet over!**
 
 ```java
 //we visualiseren de spaties even als liggende streepjes in volgende voorbeeld
@@ -255,6 +243,12 @@ Dag result hoe gaat het met je?
 
 We tonen dus niet de inhoud van ``result``, maar gewoon de tekst "result".
 
+:::{.callout-tip}
+Tekst aan elkaar plakken met ``+`` werkt prima, maar het is niet de meest moderne manier. In het volgende hoofdstuk leer je **string interpolation** kennen, een veel leesbaardere techniek om variabelen middenin tekst te verwerken. Voor nu volstaat de ``+``-operator.
+:::
+
+<!-- TODO ed.5 (review): comments (//) worden hier al gebruikt maar nog nergens uitgelegd. Uitleg staat pas in 1_csharpbasics. Overweeg korte mention. -->
+
 <!-- \newpage -->
 
 
@@ -264,14 +258,12 @@ Als je meerdere inputs van de gebruiker wenst te bewaren zal je meerdere geheuge
 
 ```java
 Console.WriteLine("Geef leeftijd");
-string leeftijd; //eerste variabele aanmaken
-leeftijd = Console.ReadLine();
+string leeftijd = Console.ReadLine(); //eerste variabele aanmaken
 Console.WriteLine("Geef adres");
-string adres; //tweede variabele aanmaken
-adres = Console.ReadLine();
+string adres = Console.ReadLine(); //tweede variabele aanmaken
 ```
 
-Je mag echter ook de variabelen al vroeger aanmaken. In C# zet men de geheugenplek creatie zo dicht mogelijk bij de code waar je die variabele gebruikt.  Maar dat is geen verplichting. Dit mag dus ook:
+Je mag echter de geheugenplek ook al vroeger aanmaken (declareren) en pas later een waarde toekennen. In C# zet men de creatie van een variabele meestal zo dicht mogelijk bij de code waar je die variabele gebruikt. Maar dat is geen verplichting. Dit mag dus ook:
 
 
 ```java
@@ -291,6 +283,9 @@ Hier gaan we: **``cw [tab] [tab]``**
 Als je dus ``cw`` schrijft en dan twee maal op de tab-toets van je toetsenbord duwt verschijnt daar *automagisch* een verse lijn met ``Console.WriteLine();``.
 
 :::
+
+<!-- TODO ed.5 (review): broertje 'prop[tab][tab]' en de algemene snippet-cultuur (Tools -> Code Snippets Manager) ontbreken nog. -->
+<!-- TODO ed.5 (review): debugging-teaser (breakpoints, F10, F11) hoort hier al kort vermeld — al was het maar als vooruitblik. -->
 
 
 

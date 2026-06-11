@@ -23,6 +23,10 @@ Voor we in IntelliCode en Copilot duiken willen we toch nog één keer waarschuw
 
 In hoofdstuk 4 zullen we uitleggen hoe je wél op een verantwoorde manier A.I. kan gebruiken om je code te verbeteren, maar dan wel nadat je de basis onder de knie hebt.
 
+:::{.callout-note}
+De A.I.-tools in Visual Studio veranderen razendsnel. De screenshots en menu-namen hieronder kunnen er bij jou dus net iets anders uitzien dan op het moment dat dit hoofdstuk geschreven werd. Zoek in dat geval gerust even rond. Het idee blijft hetzelfde: de tool opsporen en uitschakelen.
+:::
+
 
 ### IntelliCode
 
