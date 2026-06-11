@@ -40,7 +40,9 @@ De 3 categorieën loops die we net bespraken kunnen in principe met eender welk 
 | ----------------- | :-----------------: | :-----------------: | :-----------------: |
 | While en do while | x             | x               | x              |
 | For               | x             |                 |                |
-| Foreach           | x             |                 |                |
+| Foreach[^foreachlater] | x        |                 |                |
+
+[^foreachlater]: De ``foreach`` nemen we hier enkel voor de volledigheid al even op in de tabel. We leren deze pas echt gebruiken in hoofdstuk 9, wanneer we met arrays en objecten werken. Trek je er voorlopig dus nog niets van aan.
 
 Deze tabel suggereert dat we met ``while`` en ``do while`` meer kunnen, wat ook zo is. Je zal echter gauw ontdekken dat je vaak terugvalt op code met een  ``for`` omdat:
 

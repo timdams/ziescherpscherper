@@ -11,7 +11,7 @@ Volgende voorbeeld toont bijvoorbeeld de scope van de variabele ``getal``:
 ```java
 if( iLoveCSharp == true)
 {
-    Console.WriteLine("Hoeveel punten op 10 geef je C#?"):
+    Console.WriteLine("Hoeveel punten op 10 geef je C#?");
     int getal ; //Start scope getal
     getal = int.Parse(Console.ReadLine());
 } // einde scope getal
@@ -28,14 +28,14 @@ Wil je dus ``getal`` ook nog buiten de ``if`` gebruiken zal je je code moeten he
     int getal = 0 ; //Start scope getal
     if( iLoveCSharp == true)
     {
-        Console.WriteLine("Hoeveel punten op 10 geef je C#?"):
-         getal = int.Parse(Console.ReadLine());
+        Console.WriteLine("Hoeveel punten op 10 geef je C#?");
+        getal = int.Parse(Console.ReadLine());
     } 
     Console.WriteLine(getal); 
 } // einde scope getal
 ```
 
-De buitenste accolades zetten we er even om de scope te benadrukken (maar hoeven dus niet). 
+De buitenste accolades zetten we er even om de scope te benadrukken (maar hoeven dus niet). Zulke "losse" accolades zonder ``if`` of lus errond zie je in de praktijk zelden, maar ze tonen de scope-regel hier wel in z'n zuiverste vorm.
 
 :::{.callout-tip}
 Merk op dat indien je aan nesting doet, de scope doorheen de *inner* geneste codeblocken doorloopt en pas eindigt bij de accolade van het block waarbinnen de variabele werd gedeclareerd.

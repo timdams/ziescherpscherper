@@ -106,5 +106,14 @@ switch (option)
 }
 ```
 
-In dit geval zullen zowel de waarden ``2`` en ``3`` resulteren in de zin "Laden of opslaan gekozen" op het scherm.
+In dit geval zullen zowel de waarden ``2`` en ``3`` resulteren in de zin "Laden of opslaan gekozen" op het scherm. Merk op dat dit enkel werkt omdat ``case 2:`` *geen* eigen code bevat. Van zodra een case wel code bevat, moet je ze afsluiten met ``break`` (zie hieronder).
+
+:::{.callout-warning}
+**``break`` vergeten?**
+
+Kom je uit een taal als C, Java of JavaScript, dan ben je misschien gewoon dat je code "doorvalt" naar de volgende case als je ``break`` vergeet (*fall-through*). **In C# kan dat niet.** Een case die code bevat moét eindigen met ``break`` (of een andere sprong). Vergeet je dat, dan compileert je code gewoon niet en krijg je de fout *"Control cannot fall through from one case label to another"*. C# behoedt je hier dus voor een klassieke, moeilijk te vinden bug.
+:::
+
+<!-- TODO ed.5 (review): switch expression (var result = day switch { ... }, sinds C# 8) overwegen; nu enkel via een externe blogpost-voetnoot. -->
+<!-- TODO ed.5 (review): switch op strings expliciet tonen (menukeuze met letters is een typische beginner-oefening). -->
 

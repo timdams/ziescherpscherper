@@ -148,6 +148,10 @@ Indien de naam gelijk is aan "neo" dan zal de code *tussen de if en het kommapun
 
 
 
+<!-- TODO ed.5 (review): sectie 'ternary operator' (? :) toevoegen na If/else. Bv. string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong"; Korte sectie, één voorbeeld. -->
+<!-- TODO ed.5 (review): pattern matching met 'is' (if (input is int x)) overwegen, modern C#, past thematisch. -->
+<!-- TODO ed.5 (review): short-circuit evaluation verdient een eigen mini-sectie i.p.v. enkel de callout-tip verderop. Concreet voorbeeld: eerst een check doen voor je iets gebruikt dat anders zou crashen. -->
+
 ### If/else
 
 Met "if - else" kunnen we niet enkel zeggen welke code moet uitgevoerd worden als de conditie waar is **maar ook welke specifieke code moet uitgevoerd indien de conditie niet waar is**. Volgend voorbeeld geeft een typisch gebruik van een "if - else" structuur om 2 waarden met elkaar te vergelijken:
@@ -304,15 +308,19 @@ We kunnen ook meerdere booleaanse expressie combineren zodat we complexere uitdr
 Volgende code toont het gebruik hiervan:
 
 ```java
-if( leeftijd > 18 && heeftIdentiteitskaart == true)
+if( leeftijd > 18 && heeftIdentiteitskaart)
 {
     Console.WriteLine("Welkom");
 }
 else 
 {
-    Console.WriteLine("Niet toegelaten!);
+    Console.WriteLine("Niet toegelaten!");
 }
 ```
+
+:::{.callout-tip}
+Merk op dat we ``heeftIdentiteitskaart`` rechtstreeks in de test gebruiken en dus niet ``heeftIdentiteitskaart == true`` schrijven. Die ``== true`` is overbodig: ``heeftIdentiteitskaart`` is zelf al een ``bool`` en dus al een volwaardige booleaanse expressie. Wil je testen op ``false``, schrijf dan ``!heeftIdentiteitskaart``.
+:::
 
 
 

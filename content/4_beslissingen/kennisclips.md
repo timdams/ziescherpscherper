@@ -8,6 +8,7 @@
 * [Switch](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ce2ae654-bd58-45ed-915f-ac460095237f)
 * [Enum](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=41f45fba-c731-4f0a-9e87-ac4600952274)
 * [Demo: Enums gebruiken](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9273e56b-1bfa-4393-a14a-aaed00bd4eaf)
+<!-- TODO ed.5 (review): er is een clip 'logische operators en expressies', maar niets specifiek over volgorde van bewerkingen of De Morgan. Overweeg aparte clip. -->
 
 ### Oefeningen
 

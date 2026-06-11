@@ -205,7 +205,7 @@ enum WeekDagen
     {Maandag=1, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag=50, Zondag=60}
 ```
 
-In dit geval zullen Maandag tot Vrijdag intern als 1 tot en met 5 bewaard worden, Zaterdag als 50, en Zondag als 60.
+In dit geval zullen Maandag tot Vrijdag intern als 1 tot en met 5 bewaard worden, Zaterdag als 50, en Zondag als 60. De "gaten" tussen 5 en 50 zijn geen probleem: de interne waarden van een enum hoeven niet aaneensluitend te zijn. Geef je een waarde geen expliciet getal, dan krijgt ze gewoon het getal van de vorige waarde plus één.
 
 
 :::{.callout-tip}

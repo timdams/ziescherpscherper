@@ -26,9 +26,11 @@ for (setup; finish test; update)
 }
 ```
 
-* **setup**: Hier zetten we de "wachter-variabele" op de beginwaarde. De wachter-variabele is de variabele die we tijdens de loop in het oog zullen houden en die zal bepalen hoe vaak de loop moet uitgevoerd worden (bv. ``int i = 0;``).
-* **finish test**: Hier plaatsen we een booleaanse expressie die de wachter-variabele gebruikt om te testen of een volgende iteratie moet worden uitgevoerd (bv. ``i<11``).
-* **update**: Hier plaatsen we wat er moet gebeuren na iedere iteratie. Meestal zullen we hier de wachter-variabele verhogen of verlagen (bv. ``i = i + 2``).
+* **setup** (in de Microsoft-documentatie de *initializer* genoemd): Hier zetten we de "wachter-variabele" op de beginwaarde. De wachter-variabele is de variabele die we tijdens de loop in het oog zullen houden en die zal bepalen hoe vaak de loop moet uitgevoerd worden (bv. ``int i = 0;``).
+* **finish test** (officieel de *condition*): Hier plaatsen we een booleaanse expressie die de wachter-variabele gebruikt om te testen of een volgende iteratie moet worden uitgevoerd (bv. ``i<11``).
+* **update** (officieel de *iterator*): Hier plaatsen we wat er moet gebeuren na iedere iteratie. Meestal zullen we hier de wachter-variabele verhogen of verlagen (bv. ``i = i + 2``).
+
+> Ik gebruik bewust de wat informelere namen *setup*, *finish test* en *update*. Raadpleeg je later de Microsoft-documentatie, dan zie je daar de termen *initializer*, *condition* en *iterator* staan: net hetzelfde, andere woorden.
 
 <!-- \newpage -->
 
@@ -47,6 +49,10 @@ for (int i = 0; i < 11; i += 2)
 
 
 Deze code zal telkens ``i`` met 2 verhogen(*update*), startende bij 0 (*setup*). Het blijft dit doorlopen zolang i kleiner is dan 11 (*finish test*). Als output krijgen we:
+
+:::{.callout-tip}
+Merk op dat ``i += 2`` exact hetzelfde doet als ``i = i + 2``, maar dan compacter. Dat zijn de *verkorte operatornotaties* uit hoofdstuk 2. Ook ``i++`` (hetzelfde als ``i = i + 1``) komt in loops heel vaak voor. Schrijf gerust de lange vorm als dat voor jou duidelijker is, maar je moet ze sowieso vlot kunnen *lezen*.
+:::
 
 ```text
 0
@@ -96,5 +102,12 @@ Met ``break`` kan je loops altijd vroegtijdig stopzetten. Je springt dan als het
 >``break`` en ``continue`` zijn de subtielere vrienden van ``goto``. Ze werken net als ``goto`` in de schemerzone tussen wat wenselijk is en wat niet. Dit maakt ze extra gevaarlijk. Voordat je ``break`` als oplossing gebruikt, probeer eerst of je de loop netjes kunt afsluiten door bijvoorbeeld de juiste booleaanse expressie in de testconditie te gebruiken. Hetzelfde geldt voor continue, dat ook snel goto-achtige bugs kan veroorzaken.
 >
 >Ik heb gemerkt dat beginnende C#-programmeurs vaak te lui zijn om een deftige stopconditie voor hun loop te schrijven. En dan maar ``break`` als oplossing hanteren.
+
+:::{.callout-tip}
+**Wanneer is ``break`` dan wél oké?** Niet álle ``break``-gebruik is fout. Een legitiem voorbeeld is het *zoek-en-stop*-patroon: je doorzoekt een reeks en zodra je het gezochte element gevonden hebt, heeft verder zoeken geen zin meer. In zo'n geval kan ``break`` net leesbaarder zijn dan een kunstmatige extra booleaanse vlag. De vuistregel: gebruik ``break`` enkel als het je code écht duidelijker maakt, niet als luie vervanging voor een deftige stopconditie.
+:::
+
+<!-- TODO ed.5 (review): mini-sectie "Hoeveel keer loopt deze loop?" met off-by-one-voorbeelden (i<10 vs i<=10, i=0 vs i=1). Nummer 1 beginnersfout. -->
+<!-- TODO ed.5 (review): for(;;)-variant als alternatief voor while(true) kort vermelden (handig voor wie ooit in C/Java terechtkomt). -->
 
 

@@ -28,7 +28,13 @@ while (tellertje < 100)
 }
 ```
 
-Zolang ``tellertje`` kleiner is dan 100 (``tellertje < 100``) zal het met 1 verhoogd worden en op het scherm worden getoond. We krijgen met dit programma dus alle getallen van 1 tot en met 100 op het scherm onder elkaar te zien. Daar de test gebeurt aan het begin van de loop wil dit zeggen dat het getal 100 nog wel getoond zal worden. **Begrijp je waarom?** Test dit zelf!
+Zolang ``tellertje`` kleiner is dan 100 (``tellertje < 100``) zal het met 1 verhoogd worden en op het scherm worden getoond. We krijgen met dit programma dus alle getallen van 1 tot en met 100 op het scherm onder elkaar te zien. Merk op dat het getal 100 wél nog op het scherm verschijnt. **Begrijp je waarom?** Test dit zelf!
+
+:::{.callout-tip collapse="true"}
+## Antwoord
+
+We verhogen ``tellertje`` eerst (``tellertje++``) en tonen het pas daarna. Wanneer ``tellertje`` de waarde 99 heeft, slaagt de test (``99 < 100``), wordt het binnen de loop verhoogd naar 100 en getoond. Pas bij de volgende ronde faalt de test (``100 < 100`` is ``false``) en stopt de loop. Zo glipt 100 er dus nog net door.
+:::
 
 :::{.callout-tip}
 Zodra je dezelfde lijn(en) code meerdere keren onder elkaar ziet staan, is de kans groot dat je dit korter kunt schrijven met behulp van loops (of methoden, wat we in het volgende hoofdstuk zullen bespreken).
@@ -81,10 +87,14 @@ while(teller<10)
 Zorg er altijd voor dat de variabele(n) die je in je testconditie gebruikt, ook effectief in de loop worden aangepast. Als deze in de loop niet verandert dan zal ook de test-conditie dezelfde blijven en heb je dus een oneindige loop gemaakt.
 :::
 
+:::{.callout-tip}
+Zit je per ongeluk in een oneindige loop (je console blijft maar draaien of staat vast)? Geen paniek: stop je programma met de **rode stop-knop** bovenaan in Visual Studio, of pauzeer het met de **Pause/Break-knop** (soms ``Ctrl+Alt+Break``). Zo kan je rustig kijken waar je code blijft hangen.
+:::
+
 
 
 ### Scope van variabelen in loops
-Let er op dat de scope van variabelen bij loops zeer belangrijk is. Indien je een variabele binnen de loop definieert dan zal deze steeds terug "gereset" worden wanneer de volgende iteratie van de loop start.
+Let er op dat de scope van variabelen bij loops zeer belangrijk is. Indien je een variabele binnen de loop definieert dan wordt deze bij elke iteratie **opnieuw aangemaakt** (en dus niet "onthouden" van de vorige ronde). Ze begint met andere woorden telkens weer met haar beginwaarde.
 Volgende code toont bijvoorbeeld **foutief** hoe je de som van de eerste 10 getallen (1+2+3+...+10) zou maken:
 
 ```java
@@ -119,7 +129,7 @@ Console.WriteLine(som);
 
 ## Do while
 
-In tegenstelling tot een ``while`` loop, zal een ``do while`` loop sowieso **minstens 1 keer uitgevoerd worden**. De reden is eenvoudig: de stopconditie  gecontroleerd wordt na iedere iteratie getest. Bij een ``while`` gebeurt dit voor dat er een nieuwe iteratie wordt gestart.
+In tegenstelling tot een ``while`` loop, zal een ``do while`` loop sowieso **minstens 1 keer uitgevoerd worden**. De reden is eenvoudig: de stopconditie wordt pas na iedere iteratie gecontroleerd. Bij een ``while`` gebeurt dit net vóór dat er een nieuwe iteratie wordt gestart.
 
 Vergelijk volgende flowchart van de ``do while`` met die van de ``while``:
 

@@ -1,6 +1,9 @@
 # Review: Beslissingen
 
-> Interne didactische review — niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+> Interne didactische review - niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze (of niet van toepassing op onze setup) · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld (oefeningen, structurele _quarto.yml-wijziging of Future). De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -13,48 +16,48 @@
 
 ## Zwaktes
 
-- De **leesvolgorde** in `_quarto.yml` (intro -> operators -> if -> scope -> switch -> enum) is afwijkend van de bestandsnummering (waar `0_if.md` voor `1_logic_and_relationsoperator.md` zou komen). Dat is verwarrend bij navigatie in de filesystem en voor toekomstig onderhoud. Verwarrende mapnamen voor wie de cursus ooit moet overnemen.
-- [enum.md](enum.md) gebruikt nog `static void Main(string[] args)` (regel 99) terwijl het boek elders al verwijst naar top-level statements (afhankelijk van versie). Inconsistent met moderne C#-stijl die studenten in VS 2022+ standaard zien.
-- In [0_if.md](0_if.md) wordt `if-else if` pas erg laat (regel 189) geïntroduceerd, terwijl het *enum*-hoofdstuk er al onmiddellijk vanuit gaat. Een paar oefenvoorbeelden vóór nesting zou de overgang verzachten.
-- In [enum.md](enum.md) regel 87 staat *"In je console-applicaties moet dit binnen `class Program` gebeuren, maar niét binnen de `Main` methode"*. Met top-level statements in nieuwere templates klopt dit niet meer. Update of voeg een voetnoot toe.
-- De vergelijking `heeftIdentiteitskaart == true` op regel 307 in [0_if.md](0_if.md) is een anti-pattern dat je elders waarschijnlijk wil ontmoedigen. Schrijf gewoon `heeftIdentiteitskaart`.
-- Typo in [0_if.md](0_if.md) regel 313: `"Niet toegelaten!);` — ontbrekende sluitende quote.
-- Typo in [3_scope.md](3_scope.md) regel 14 en 31: dubbelpunten waar puntkomma's horen na `Console.WriteLine(...)`.
+- `[>]` De **leesvolgorde** in `_quarto.yml` (intro -> operators -> if -> scope -> switch -> enum) is afwijkend van de bestandsnummering (waar `0_if.md` voor `1_logic_and_relationsoperator.md` zou komen). Dat is verwarrend bij navigatie in de filesystem en voor toekomstig onderhoud. Verwarrende mapnamen voor wie de cursus ooit moet overnemen. **(uitgesteld: hernoemen/herordenen vereist _quarto.yml-aanpassing; beslissing aan Tim.)**
+- `[~]` [enum.md](enum.md) gebruikt nog `static void Main(string[] args)` (regel 99) terwijl het boek elders al verwijst naar top-level statements (afhankelijk van versie). Inconsistent met moderne C#-stijl die studenten in VS 2022+ standaard zien. **(niet van toepassing: het boek kiest bewust voor klassieke Main, top-level statements staan uit, zie 0_intro. Bewust onveranderd gelaten.)**
+- `[c]` In [0_if.md](0_if.md) wordt `if-else if` pas erg laat (regel 189) geïntroduceerd, terwijl het *enum*-hoofdstuk er al onmiddellijk vanuit gaat. Een paar oefenvoorbeelden vóór nesting zou de overgang verzachten. **(genoteerd; raakt aan oefeningen + volgorde, beide later.)**
+- `[~]` In [enum.md](enum.md) regel 87 staat *"In je console-applicaties moet dit binnen `class Program` gebeuren, maar niét binnen de `Main` methode"*. Met top-level statements in nieuwere templates klopt dit niet meer. Update of voeg een voetnoot toe. **(niet van toepassing: het boek gebruikt klassieke Main; de zin klopt voor onze setup. Onveranderd gelaten.)**
+- `[v]` De vergelijking `heeftIdentiteitskaart == true` op regel 307 in [0_if.md](0_if.md) is een anti-pattern dat je elders waarschijnlijk wil ontmoedigen. Schrijf gewoon `heeftIdentiteitskaart`. **(vereenvoudigd naar `heeftIdentiteitskaart`, met callout-tip waarom `== true` overbodig is.)**
+- `[v]` Typo in [0_if.md](0_if.md) regel 313: `"Niet toegelaten!);` - ontbrekende sluitende quote. **(gefixt.)**
+- `[v]` Typo in [3_scope.md](3_scope.md) regel 14 en 31: dubbelpunten waar puntkomma's horen na `Console.WriteLine(...)`. **(beide gefixt.)**
 
 ## Onduidelijkheden
 
-- In [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md) regel 24 staat dat *"beide operanden moeten van hetzelfde datatype zijn"*. Maar `int` met `double` vergelijken werkt wel (impliciete promotie). Te absoluut geformuleerd.
-- De *"Test jezelf"*-sectie geeft geen oplossingen of links naar oplossingen. Studenten weten niet of ze juist zaten.
-- In [2_switch.md](2_switch.md) ontbreekt uitleg over wat er gebeurt als je `break` vergeet. C# verbiedt dit (in tegenstelling tot C/Java) — dat onderscheid is leerzaam en wordt niet gemaakt.
-- [3_scope.md](3_scope.md) gebruikt op regel 27-36 *gratuite* accolades om scope te tonen. Voor een eerstejaars die nooit eerder zulke "naked blocks" zag is dat eerder verwarrend dan verhelderend. Voeg een zin toe: *"Dit zie je in praktijk zelden, maar het toont de scope-regel zuiver."*
-- In [enum.md](enum.md) regel 165 wordt verteld dat enum intern een `int` is. Maar even later (regel 198) staat `Zaterdag=50, Zondag=60`. De student vraagt zich dan af: kunnen de gaps in de tussenliggende waarden ook bestaan? Dat blijft onbeantwoord.
+- `[v]` In [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md) regel 24 staat dat *"beide operanden moeten van hetzelfde datatype zijn"*. Maar `int` met `double` vergelijken werkt wel (impliciete promotie). Te absoluut geformuleerd. **(genuanceerd: "vergelijkbaar datatype"; int met double mag, met automatische omzetting.)**
+- `[v]` De *"Test jezelf"*-sectie geeft geen oplossingen of links naar oplossingen. Studenten weten niet of ze juist zaten. **(collapse-callout met antwoorden toegevoegd.)**
+- `[v]` In [2_switch.md](2_switch.md) ontbreekt uitleg over wat er gebeurt als je `break` vergeet. C# verbiedt dit (in tegenstelling tot C/Java) - dat onderscheid is leerzaam en wordt niet gemaakt. **(waarschuwing-callout toegevoegd: C# verbiedt fall-through, compile-error.)**
+- `[v]` [3_scope.md](3_scope.md) gebruikt op regel 27-36 *gratuite* accolades om scope te tonen. Voor een eerstejaars die nooit eerder zulke "naked blocks" zag is dat eerder verwarrend dan verhelderend. Voeg een zin toe: *"Dit zie je in praktijk zelden, maar het toont de scope-regel zuiver."* **(zin toegevoegd in die geest.)**
+- `[v]` In [enum.md](enum.md) regel 165 wordt verteld dat enum intern een `int` is. Maar even later (regel 198) staat `Zaterdag=50, Zondag=60`. De student vraagt zich dan af: kunnen de gaps in de tussenliggende waarden ook bestaan? Dat blijft onbeantwoord. **(verduidelijkt: gaten zijn toegelaten, waarden hoeven niet aaneensluitend te zijn.)**
 
 ## Gemissen
 
-- **Ternary operator** (`? :`) ontbreekt volledig. Past hier perfect, vooral voor compacte assignments zoals `string status = age >= 18 ? "volwassen" : "minderjarig";`. Eerstejaars hebben hier echt iets aan.
-- **Pattern matching met `is`** (`if (input is int x)`) — modern C# en past thematisch in dit hoofdstuk.
-- **Switch expression** (`var result = day switch { ... };`) — sinds C# 8 standaard. Je verwijst nu via een footnote naar een externe blogpost — dat is te weinig in 2026.
-- **Short-circuit evaluation** wordt enkel zijdelings genoemd in een callout-tip in [0_if.md](0_if.md). Verdient een eigen mini-sectie met een concreet voorbeeld waarom volgorde belangrijk is (bv. null-check voor dereferentie).
-- **`switch` op strings** wordt niet expliciet getoond, terwijl menustructuren met letterkeuze typische beginner-oefeningen zijn.
-- **Geen kennisclip voor de logische operators afzonderlijk** — er is er één voor "logische operators en expressies" maar niets specifiek over volgorde van bewerkingen of De Morgan.
-- **De Morgan-wetten** worden pas in H6 (loops) geïntroduceerd in een tip. Hadden hier al kunnen verschijnen.
+- `[c]` **Ternary operator** (`? :`) ontbreekt volledig. Past hier perfect, vooral voor compacte assignments zoals `string status = age >= 18 ? "volwassen" : "minderjarig";`. Eerstejaars hebben hier echt iets aan. **(TODO-comment geplaatst in 0_if.md.)**
+- `[c]` **Pattern matching met `is`** (`if (input is int x)`) - modern C# en past thematisch in dit hoofdstuk. **(TODO-comment geplaatst in 0_if.md.)**
+- `[c]` **Switch expression** (`var result = day switch { ... };`) - sinds C# 8 standaard. Je verwijst nu via een footnote naar een externe blogpost - dat is te weinig in 2026. **(TODO-comment geplaatst in 2_switch.md.)**
+- `[c]` **Short-circuit evaluation** wordt enkel zijdelings genoemd in een callout-tip in [0_if.md](0_if.md). Verdient een eigen mini-sectie met een concreet voorbeeld waarom volgorde belangrijk is (bv. null-check voor dereferentie). **(TODO-comment geplaatst in 0_if.md.)**
+- `[c]` **`switch` op strings** wordt niet expliciet getoond, terwijl menustructuren met letterkeuze typische beginner-oefeningen zijn. **(TODO-comment geplaatst in 2_switch.md.)**
+- `[c]` **Geen kennisclip voor de logische operators afzonderlijk** - er is er één voor "logische operators en expressies" maar niets specifiek over volgorde van bewerkingen of De Morgan. **(TODO-comment geplaatst in kennisclips.md.)**
+- `[c]` **De Morgan-wetten** worden pas in H6 (loops) geïntroduceerd in een tip. Hadden hier al kunnen verschijnen. **(TODO-comment geplaatst in 1_logic_and_relationsoperator.md.)**
 
 ## Concrete suggesties
 
-1. Voeg een sectie *Ternary operator* toe in [0_if.md](0_if.md) na *If/else*:
+1. `[c]` Voeg een sectie *Ternary operator* toe in [0_if.md](0_if.md) na *If/else*:
    ```java
    string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong";
    ```
-   Korte sectie, één voorbeeld, klaar.
+   Korte sectie, één voorbeeld, klaar. **(TODO-comment geplaatst.)**
 
-2. Update [enum.md](enum.md) regel 87 om de top-level-statement realiteit te erkennen:
-   *"In een klassieke console-applicatie definieer je dit binnen `class Program` (zie hoofdstuk X over project structuur). Bij top-level statements plaats je de enum bovenaan of onderaan je file."*
+2. `[~]` Update [enum.md](enum.md) regel 87 om de top-level-statement realiteit te erkennen:
+   *"In een klassieke console-applicatie definieer je dit binnen `class Program` (zie hoofdstuk X over project structuur). Bij top-level statements plaats je de enum bovenaan of onderaan je file."* **(niet van toepassing: boek gebruikt klassieke Main, huidige tekst klopt voor onze setup.)**
 
-3. Fix de typos in [0_if.md](0_if.md) regel 313 (ontbrekende quote) en in [3_scope.md](3_scope.md) regel 14, 31 (puntkomma's).
+3. `[v]` Fix de typos in [0_if.md](0_if.md) regel 313 (ontbrekende quote) en in [3_scope.md](3_scope.md) regel 14, 31 (puntkomma's). **(beide gedaan.)**
 
-4. Voeg in [2_switch.md](2_switch.md) een korte sectie *"`break` vergeten"* toe, met de C# compiler-error als voorbeeld. Dit voorkomt verwarring bij studenten die uit C/Java/JavaScript komen.
+4. `[v]` Voeg in [2_switch.md](2_switch.md) een korte sectie *"`break` vergeten"* toe, met de C# compiler-error als voorbeeld. Dit voorkomt verwarring bij studenten die uit C/Java/JavaScript komen. **(waarschuwing-callout toegevoegd.)**
 
-5. Voeg na de *Test jezelf*-sectie in [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md) een details-block met de antwoorden:
+5. `[v]` Voeg na de *Test jezelf*-sectie in [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md) een details-block met de antwoorden:
    ```markdown
    :::{.callout-tip collapse="true"}
    ## Antwoorden
@@ -62,10 +65,13 @@
    ...
    :::
    ```
+   **(collapse-callout met alle antwoorden toegevoegd.)**
 
-6. Hernoem `0_if.md` naar `2_if.md` (of pas de leesvolgorde aan in `_quarto.yml`) zodat filesystem-volgorde overeenkomt met leesvolgorde. Vermijdt verwarring voor toekomstige onderhouders.
+6. `[>]` Hernoem `0_if.md` naar `2_if.md` (of pas de leesvolgorde aan in `_quarto.yml`) zodat filesystem-volgorde overeenkomt met leesvolgorde. Vermijdt verwarring voor toekomstige onderhouders. **(uitgesteld: vereist _quarto.yml-aanpassing.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

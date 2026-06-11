@@ -21,7 +21,7 @@ Relationele operators zijn het hart van booleaanse expressies. En guess what, je
 | ``<=`` |kleiner dan of gelijk aan| 
 | ``>=`` |groter dan of gelijk aan| 
 
-Deze operators hebben steeds twee operanden nodig en geven **een bool als resultaat terug**. Beide operanden  **moeten van hetzelfde datatype zijn**. Je kan geen appelen met peren vergelijken!
+Deze operators hebben steeds twee operanden nodig en geven **een bool als resultaat terug**. Beide operanden moeten van een **vergelijkbaar datatype** zijn: je kan geen appelen met peren vergelijken (bv. een ``string`` met een ``int``). Numerieke types onderling mag je wél vergelijken, ook als ze niet exact hetzelfde zijn: ``int`` met ``double`` werkt, want C# zet de ``int`` automatisch om naar een ``double`` voor de vergelijking.
 
 Daar dit operators zijn kan je deze dus gebruiken in eender welke expressie. Het resultaat van de expressie ``12 > 6`` zal ``true`` als resultaat hebben daar 12 groter is dan 6. Eenvoudig toch.
 
@@ -126,5 +126,20 @@ Wat zal de uitkomst zijn van volgende expressies?
 * ``!(4<=3)``
 * ``true || false``
 * ``!true && false``
+
+:::{.callout-tip collapse="true"}
+## Antwoorden
+
+* ``3>2`` -> ``true``
+* ``4!=4`` -> ``false``
+* ``4<5 && 4<3`` -> ``false`` (``true && false``)
+* ``"a"=="A" || 4>=3`` -> ``true`` (``false || true``, let op: hoofdlettergevoelig)
+* ``(3==3 && 2<1) || 5!=4`` -> ``true`` (``(true && false) || true``)
+* ``!(4<=3)`` -> ``true`` (``!false``)
+* ``true || false`` -> ``true``
+* ``!true && false`` -> ``false`` (``false && false``)
+:::
+
+<!-- TODO ed.5 (review): De Morgan-wetten worden nu pas in H6 (loops) geintroduceerd in een tip. Ze passen hier al (bij de logische operators). Overweeg ze hier te tonen. -->
 
 
