@@ -113,6 +113,11 @@ int balans;
 Console.WriteLine(balans);
 ```
 
+<!-- TODO ed.5 (review): dit voorbeeld klopt niet helemaal: ook een lokale int moet geïnitialiseerd zijn (anders "use of unassigned local variable", zie H2). De bedoelde tegenstelling (value types hebben een default zoals 0) geldt voor instantievariabelen/velden, niet voor lokale variabelen. Overweeg te verduidelijken. -->
+:::
+
+:::{.callout-warning}
+Wanneer je een object-variabele die nog ``null`` is tóch probeert te gebruiken (bijvoorbeeld een property of methode erop aanroepen), dan crasht je programma met een **``NullReferenceException``**. Dit is veruit de meest voorkomende fout bij beginnende OOP-programmeurs: je vergeet een object aan te maken met ``new`` en probeert het dan al te gebruiken. Onthoud die naam goed, je gaat hem nog vaak zien.
 :::
 
 
@@ -143,6 +148,17 @@ Het grote verschil dat deze objecten zullen hebben is dat ze vaak veel complexer
 >Ik onthoud nu alvast **"klassen zijn gewoon een nieuwe vorm van complexere datatypes"** dan diegene die ik totnogtoe heb geleerd? Ok?
 >
 >**Correct. Er verandert dus niet veel. Enkel je variabelen worden krachtiger!**
+
+:::{.callout-tip}
+**Klasse vs. object in één oogopslag:**
+
+| | Klasse | Object |
+| --- | --- | --- |
+| Wat | de blauwdruk / het nieuwe datatype | een concrete instantie volgens die blauwdruk |
+| Waar | meestal in een eigen ``.cs``-bestand | in je ``Main`` of een methode |
+| Hoe gemaakt | met het ``class`` keyword | met het ``new`` keyword |
+
+:::
 
 
 

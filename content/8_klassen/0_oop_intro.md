@@ -163,6 +163,10 @@ De code voor een nieuwe klasse schrijf je best in een apart bestand in je projec
 
 Bijna alle code van zonet hebben we hier geïntegreerd in een ``class Balletje``, maar er zit duidelijk een nieuw sausje over. Vooral aan het begin zien we onze 4 variabelen terugkomen in een nieuw kleedje: namelijk als eigenschappen oftewel *properties* (herkenbaar aan de ``get`` en ``set`` keywords). 
 
+:::{.callout-tip}
+Die ``public int X { get; set; }``-regels zijn zogenaamde **auto-properties**. Beschouw ze voorlopig gewoon als een publieke variabele met wat extra mogelijkheden. Lig nu nog niet wakker van die ``get; set;``-syntax: ik leg properties verderop in dit hoofdstuk ([2_properties.md](2_properties.md)) helemaal uit.
+:::
+
 Maar al bij al lijkt de code grotendeels op wat we al kenden. En dat is goed nieuws. OOP gooit de vorige hoofdstukken niet in de vuilbak, het gaat als het ware een extra laag over het geheel leggen. Let ook op het essentiële woordje ``class`` bovenaan, daar draait alles natuurlijk om: **klassen en objecten**. 
 
 :::{.callout-tip}
@@ -360,6 +364,9 @@ Beeld je in dat je 10 lijnen code nodig had om een random getal te genereren. Ni
 * De ``Next``-methode aanroepen om een getal uit het object te krijgen
 
 Wat er nu juist in die methode gebeurt boeit ons niet. *It just works!* Met dank aan abstractie en de kracht van OOP.
+
+<!-- TODO ed.5 (review): overweeg de "A PIE"-acroniemsectie + Steve Jobs-quote naar het einde van het hoofdstuk te verplaatsen (eerst doen/praktijk, dan filosoferen). Vereist herordening, beslissing aan Tim. -->
+<!-- TODO ed.5 (review): 'internal' in de klassedeclaraties wordt nog niet uitgelegd; overweeg een korte "toverwoord"-mention zoals bij static. -->
 
 ### Tijd voor taart
 

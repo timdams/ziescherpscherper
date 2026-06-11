@@ -29,6 +29,10 @@ DateTime specialeDag = new DateTime(2017,4,21);
 * Lijn 1:  Door aan de klasse de huidige datum en tijd te vragen via ``DateTime.Now``. 
 * Lijn 2:  Door manueel de datum en tijd in te stellen met het ``new`` keyword en de **klasse-constructor** (een concept dat we in hoofdstuk 11 uit de doeken gaan doen)
 
+:::{.callout-tip}
+De getallen tussen de haakjes bij ``new DateTime(2017, 4, 21)`` zijn parameters die de constructor meekrijgt (hier: jaar, maand, dag). Een **constructor** is een speciale methode die een object meteen met de juiste beginwaarden opzet. We leggen constructors volledig uit in hoofdstuk 11; voor nu volstaat het te weten dat je er een object mee initialiseert.
+:::
+
 
 
 

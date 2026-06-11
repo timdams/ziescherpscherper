@@ -25,7 +25,7 @@ internal class SithLord
 }
 ```
 
-**Het is uit den boze dat we eenvoudige instantievariabelen (``energie`` en ``name``) ``public`` maken.** Zouden we dat wel doen dan kunnen externe objecten deze geheime informatie uitlezen!
+**Het is uit den boze dat we eenvoudige instantievariabelen (``energie`` en ``sithName``) ``public`` maken.** Zouden we dat wel doen dan kunnen externe objecten deze geheime informatie uitlezen!
 
 ```java
 SithLord palpatine = new SithLord();
@@ -47,7 +47,7 @@ Er zijn 2 soorten properties[^semiprop] in C#:
 
 Ik behandel eerst full properties, omdat auto-properties een soort afgeleide van full properties zijn. Bepaalde aspecten van full properties worden bij auto-properties achter de scherm verstopt zodat jij als programmeur er geen last van hebt.
 
-[^semiprop]: In één van de volgende versies van C# (normaal versie 11) zal er nog een derde type verschijnen: *semi-auto properties*. Een propertytype dat zich tussen beide bestaande types zal bevinden. De details en exacte gebruik ervan worden nog besproken op [github.com](github.com/dotnet/csharplang/issues/140) door de ontwikkelaars, dus het is nog te vroeg om deze al op te nemen in dit boek. 
+[^semiprop]: Sinds C# 14 bestaat er nog een derde type: *semi-auto properties*, met het ``field`` keyword. Dat zit tussen full en auto-properties in: je krijgt een verborgen instantievariabele (``field``) zonder ze zelf te declareren, en kan toch validatie in de ``set`` schrijven. Onderaan dit hoofdstuk vind je hier een callout over. We werken in dit hoofdstuk verder met de klassieke full en auto-properties.
 
 
 
@@ -266,7 +266,7 @@ We kunnen enkel ``energie`` van buiten uitlezen, maar niet aanpassen.
 
 
 :::{.callout-important}
-Het ``readonly`` keyword heeft andere doelen en wordt NIET gebruikt in C# om een readonly property te maken.
+Verwar dit niet met het ``readonly`` keyword. Dat wordt **niet** gebruikt om een read-only property te maken (daarvoor laat je gewoon de ``set`` weg, zoals hierboven). ``readonly`` dient voor iets anders: het zet je op een *instantievariabele* om aan te geven dat die na de constructor niet meer mag wijzigen. Dat komt later aan bod.
 :::
 
 <!-- \newpage -->

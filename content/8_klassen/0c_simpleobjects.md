@@ -35,6 +35,10 @@ alfons.Praat();
 
 Er zal twee maal ``Ik ben een mens!`` op het scherm verschijnen. Waarbij ``joske`` en ``alfons`` zelf verantwoordelijk hiervoor waren dat dit gebeurde.
 
+:::{.callout-tip}
+**Wat als je een object zelf probeert te tonen?** Schrijf je ``Console.WriteLine(joske);``, dan krijg je geen mooie beschrijving maar iets als ``JouwProject.Mens`` op het scherm (de naam van de klasse). Dat is normaal: C# weet nog niet hoe het jouw object als tekst moet voorstellen. Hoe je dat wél netjes maakt (door ``ToString()`` te voorzien) leer je in een later hoofdstuk.
+:::
+
 <!-- \newpage -->
 
 
@@ -100,6 +104,9 @@ Onderdelen (hoofdzakelijk methoden en datavelden) in een klasse kunnen volgende 
 Er zijn er nog enkele andere (``protected internal``, ``private internal`` en ``file``), maar die bespreken we niet in dit boek.
 :::
 
+<!-- TODO ed.5 (review): namespaces kort benoemen; bij OOP komen studenten met meerdere .cs-files en mogelijke namespace-conflicten in aanraking. -->
+<!-- TODO ed.5 (review): vermelden dat alle types uiteindelijk van 'object' erven (root). Helpt later bij ToString() en collecties. -->
+
 
 
 #### Reden van private
@@ -155,6 +162,8 @@ Het is natuurlijk een beetje vreemd dat nu al onze objecten zeggen dat ze verlie
 Voorlopig doen alle objecten van het type ``Mens`` hetzelfde. Ze kunnen praten en zeggen hetzelfde.
 
 We weten echter dat objecten ook een interne staat hebben die per object individueel is (we zagen dit reeds toen we balletjes over het scherm lieten botsen: ieder balletje onthield z'n eigen richtingsvector en positie). Dit kunnen we dankzij **instantievariabelen** (ook wel **datavelden** of **datafields** genoemd) oplossen. Dit zullen variabelen zijn waarin zaken kunnen bewaard worden die verschillen per object.
+
+<!-- TODO ed.5 (review): het 'this'-keyword nog niet behandelen, maar wel even benoemen ("je gaat dit later zien, bv. this.naam = naam in constructors/setters"). Studenten zien het in oefeningen. -->
 
 Stel je voor dat we onze mensen een geboortejaar willen geven. Ieder object zal zelf in een instantievariabele bijhouden wanneer ze geboren zijn (het vertellen van geheimen zullen we verderop behandelen):
 
