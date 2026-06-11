@@ -71,6 +71,20 @@ foreach (Student eenStudent in deKlas)
 :::
 
 
+:::{.callout-warning}
+**Wat je niét mag doen: een collectie wijzigen tijdens een ``foreach``.** Verwijder of voeg je elementen toe terwijl je over een lijst itereert, dan crasht je programma met *"InvalidOperationException: Collection was modified; enumeration operation may not execute"*. Volgende code is dus fout:
+
+```java
+foreach (var student in deKlas)
+{
+    if (student.Geboortejaar < 2000)
+        deKlas.Remove(student); //FOUT! collectie wijzigen tijdens foreach
+}
+```
+
+Wil je tijdens het doorlopen elementen verwijderen, gebruik dan een gewone ``for``-loop die je **van achter naar voor** doorloopt, of werk op een kopie van de lijst.
+:::
+
 :::{.callout-tip}
 Met de VS snippet ``foreach`` gevolgd door twee maal op de tab-toets te duwen krijg je een kant-en-klare ``foreach`` loop.
 :::

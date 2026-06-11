@@ -1,6 +1,9 @@
 # Review: H12 — Arrays en klassen (11_arraysvanklassen/)
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 Folder dekt arrays van objecten, `List<T>`, `foreach` (+ `var`), en de generieke collecties `Queue`, `Stack`, `Dictionary`. Volgorde in `_quarto.yml`: [7_arraysvanobj.md](7_arraysvanobj.md) → [4_list.md](4_list.md) → [3_foreach.md](3_foreach.md) → [dict.md](dict.md) → [kennisclips.md](kennisclips.md).
 
@@ -16,40 +19,42 @@ Folder dekt arrays van objecten, `List<T>`, `foreach` (+ `var`), en de generieke
 
 ## Zwaktes
 
-- **Geen vergelijkingstabel `array` vs. `List<T>`**. Studenten lezen drie pagina's en moeten zelf afleiden wanneer ze wat kiezen. Een tabel met *vaste/variabele lengte, performance, syntax, methoden* zou hier veel waard zijn.
-- De **foreach-mutation pitfall** wordt gedeeltelijk besproken (read-only variable), maar **collection-modification tijdens iteratie** (`foreach + Remove → InvalidOperationException`) komt niet aan bod. Dit is precies de bug die studenten *wel* schrijven.
-- In [4_list.md](4_list.md) staat een **bug in het Pong-voorbeeld**: `List<Balletje> veelBalletjes = List<Balletje>();` mist `new`. Compileert niet. Studenten gaan dit kopiëren.
-- De **`Sort()`-vermelding** "lees hoofdstuk 17 over interfaces" in [4_list.md](4_list.md) is een vooruitwijzing zonder uitleg waarom — een eerstejaars probeert dan eerst toch `myList.Sort()` op `List<Pokemon>`, krijgt een runtime exception, en raakt verward. Geef minstens één regel: *"voor eigen klassen werkt dit pas als je `IComparable` implementeert."*
-- **Dictionary** in [dict.md](dict.md) gebruikt enkel value-type keys (`int`, `string`). De **vereiste dat een key-type `GetHashCode` en `Equals` correct moet implementeren** wordt niet vermeld. Studenten die later een eigen klasse als key gebruiken, lopen vast.
-- Het bestand heet `dict.md` terwijl het ook `Queue` en `Stack` behandelt. Misleidend.
+- `[c]` **Geen vergelijkingstabel `array` vs. `List<T>`**. **(TODO-comment geplaatst in 4_list.md.)**
+- `[v]` De **foreach-mutation pitfall** (`foreach + Remove → InvalidOperationException`) kwam niet aan bod. **(waarschuwing-callout "Wat je niét mag doen" toegevoegd in 3_foreach.md, met de fix: for van achter naar voor, of op een kopie werken.)**
+- `[v]` In [4_list.md](4_list.md) staat een **bug**: `List<Balletje> veelBalletjes = List<Balletje>();` mist `new`. **(gefixt naar `new List<Balletje>()`.)**
+- `[v]` De **`Sort()`-vermelding** is een vooruitwijzing zonder uitleg waarom. **(uitgebreid: voor eigen klassen krijg je een InvalidOperationException, los je op met IComparable, zie H17.)**
+- `[v]` **Dictionary** vermeldt de key-vereiste (`GetHashCode`/`Equals`) niet. **(callout-important toegevoegd: gebruik voorlopig value types als key; eigen klassen vereisen Equals/GetHashCode-override, zie H13.)**
+- `[c]` Het bestand heet `dict.md` terwijl het ook `Queue` en `Stack` behandelt. **(TODO-comment geplaatst voor hernoeming; vereist _quarto.yml-aanpassing.)**
 
 ## Onduidelijkheden
 
-- *"List<> is een generieke klasse"* in [4_list.md](4_list.md) — generics worden naar de appendix verwezen, maar de syntax `List<int>` wordt nu wel hier gebruikt. Studenten weten niet hoe ze de `<int>`-haakjes moeten lezen. Eén zin volstaat: *"de `<int>` zegt: deze lijst bevat enkel `int`-elementen."*
-- Volgorde van bestanden volgens `_quarto.yml`: arrays-van-objecten → List → foreach → dict. Maar `foreach` wordt in [4_list.md](4_list.md) al gebruikt (`foreach(var bal in veelBalletjes)`) **vóór** [3_foreach.md](3_foreach.md) wordt geïntroduceerd. Hetzelfde geldt voor de `var`-uitleg. Volgorde aanpassen of vooruitwijzen.
-- *"Dictionary werkt zoals een woordenboek"* — de analogie is goed maar de echte essentie (O(1) lookup vs. O(n) bij `List.Find`) wordt niet benoemd. Studenten gebruiken hierdoor `List.Find` waar `Dictionary` veel beter past.
+- `[~]` *"List<> is een generieke klasse"*: studenten weten niet hoe ze de `<int>`-haakjes moeten lezen. **(de bestaande tekst legt al uit dat je tussen `< >` het bevattende datatype zet; afdoende. Diepere generics blijven in de appendix.)**
+- `[c]` Volgorde: `foreach`/`var` worden in [4_list.md](4_list.md) al gebruikt vóór [3_foreach.md](3_foreach.md). **(TODO-comment geplaatst; reorder vereist _quarto.yml-aanpassing.)**
+- `[v]` *"Dictionary werkt zoals een woordenboek"* - de essentie (snelle lookup vs. List.Find) wordt niet benoemd. **(callout-tip toegevoegd: opzoeken op key is veel sneller dan List.Find dat alles moet overlopen.)**
 
 ## Gemissen
 
-- **Trade-off tabel `Array` / `List<T>` / `Dictionary<K,V>`** met *wanneer kies je wat*. Cruciaal voor eerstejaars want ze grijpen alles per default naar `List`.
-- **`Add`/`Remove`/`Contains`/`IndexOf`/`Find`** verdienen elk één regel met een mini-voorbeeld. `Contains` op `List<Pokemon>` heeft dezelfde reference-equality-valkuil als `IndexOf` — wordt niet vermeld.
-- **Dictionary key-vereisten**: `GetHashCode` en `Equals` overriden bij eigen klassen-als-key. Past hier conceptueel, ook al wordt `override` pas in H13 behandeld — een vooruitwijzing volstaat.
-- **LINQ-vooruitwijzing**: na `List<T>` is dit hét moment voor één voetnoot: *"in een later hoofdstuk leer je hoe je met LINQ in één regel kunt filteren, sorteren en projecteren."* Bouwt verwachting op.
-- **`HashSet<T>`** wordt niet vermeld terwijl het naast Queue/Stack/Dictionary thuishoort en vaak het juiste antwoord is wanneer studenten een `List` met `Contains` schrijven.
-- **2D-arrays / jagged arrays van objecten** ontbreken — niet absoluut nodig, maar past hier.
+- `[c]` **Trade-off tabel `Array` / `List<T>` / `Dictionary<K,V>`**. **(TODO-comment geplaatst.)**
+- `[c]` **`Add`/`Remove`/`Contains`/`IndexOf`/`Find`** elk één regel; `Contains` heeft dezelfde reference-equality-valkuil als `IndexOf`. **(IndexOf-callout uitgebreid naar ook `Contains`; aparte mini-voorbeeldregels als TODO gemarkeerd.)**
+- `[v]` **Dictionary key-vereisten** (`GetHashCode`/`Equals` bij eigen klassen). **(callout-important toegevoegd met vooruitwijzing naar H13.)**
+- `[v]` **LINQ-vooruitwijzing** na `List<T>`. **(callout-tip toegevoegd op het einde van 4_list.md.)**
+- `[c]` **`HashSet<T>`** ontbreekt. **(TODO-comment geplaatst in dict.md.)**
+- `[>]` **2D-arrays / jagged arrays van objecten** ontbreken. **(uitgesteld: niet essentieel hier.)**
 
 ## Concrete suggesties
 
-1. Fix de bug in [4_list.md](4_list.md): `List<Balletje> veelBalletjes = new List<Balletje>();`.
-2. Voeg in [4_list.md](4_list.md) of helemaal vooraan in de folder een **vergelijkingstabel** Array vs. List toe. Drie kolommen, zes rijen, klaar.
-3. Hernoem [dict.md](dict.md) naar bv. `collecties.md` of `queue_stack_dict.md` — de huidige naam dekt de inhoud niet.
-4. Voeg in [3_foreach.md](3_foreach.md) een sectie *"Wat je niét mag doen"* toe met het `Remove`-tijdens-iteratie-voorbeeld (`InvalidOperationException: Collection was modified`).
-5. Voeg bij `Sort()` in [4_list.md](4_list.md) de waarschuwing toe: *"voor eigen klassen krijg je een `InvalidOperationException` — zie hoofdstuk 17."*
-6. Voeg in [dict.md](dict.md) een korte tip toe over key-types: *"voor eigen klassen als key moet je later `Equals` en `GetHashCode` overriden — gebruik voorlopig `int`, `string` of een ander value type."*
-7. Pas de leesvolgorde aan zodat [3_foreach.md](3_foreach.md) en de `var`-uitleg vóór [4_list.md](4_list.md) staan, of schrijf de `List`-voorbeelden eerst met `for(int i=...)` zodat `foreach`/`var` later pas opduiken.
-8. Voeg een korte vooruitwijzing naar **LINQ** toe op het einde van [4_list.md](4_list.md).
+1. `[v]` Fix de bug `List<Balletje> veelBalletjes = new List<Balletje>();`. **(gedaan.)**
+2. `[c]` Vergelijkingstabel Array vs. List. **(TODO-comment geplaatst.)**
+3. `[c]` Hernoem [dict.md](dict.md). **(TODO-comment geplaatst.)**
+4. `[v]` Sectie *"Wat je niét mag doen"* met het Remove-tijdens-iteratie-voorbeeld. **(toegevoegd.)**
+5. `[v]` `Sort()`-waarschuwing voor eigen klassen. **(toegevoegd.)**
+6. `[v]` Tip over key-types in [dict.md](dict.md). **(toegevoegd.)**
+7. `[c]` Leesvolgorde foreach/var vóór List. **(TODO-comment geplaatst.)**
+8. `[v]` Vooruitwijzing naar **LINQ** op het einde van [4_list.md](4_list.md). **(toegevoegd.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

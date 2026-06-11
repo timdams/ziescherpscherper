@@ -1,3 +1,6 @@
+<!-- TODO ed.5 (review): bestandsnaam dict.md dekt de inhoud niet (ook Queue en Stack). Overweeg hernoemen naar bv. collecties.md of queue_stack_dict.md (vereist _quarto.yml-aanpassing). -->
+<!-- TODO ed.5 (review): HashSet<T> hoort hier ook thuis: vaak het juiste antwoord wanneer studenten een List met Contains schrijven (unieke waarden, snelle lookup). -->
+
 ## Nuttige collectie-klassen
 
 Naast de generieke ``List`` collectie, zijn er nog enkele andere nuttige generieke 'collectie-klassen' die je geregeld in je projecten kan gebruiken. We bespreken nu de  ``Dictionary``, ``Queue`` en ``Stack``-collecties.
@@ -109,6 +112,10 @@ We kunnen een specifiek element opvragen aan de hand van de key. Stel dat we de 
 Console.WriteLine(klanten[123]);
 ```
 
+:::{.callout-tip}
+Dit opzoeken via de key gaat razendsnel, ongeacht hoe groot de dictionary is. Dat is net de kracht van een ``Dictionary``: een element opzoeken op z'n key is veel sneller dan in een ``List`` zoeken met ``Find`` (waar de computer in het slechtste geval álle elementen moet overlopen). Heb je dus data die je vaak op een unieke sleutel moet opvragen, kies dan een ``Dictionary`` in plaats van een ``List``.
+:::
+
 
 We kunnen nu met behulp van bijvoorbeeld een ``foreach``-loop alle elementen tonen. Hier kunnen we de key met de ``.Key``-property uitlezen en het achterliggende object of waarde met ``.Value``. ``Value`` en ``Key`` hebben daarbij ieder het type dat we hebben gedefinieerd toen we het ``Dictionary``-object aanmaakten, in het volgende geval is de ``Key`` dus van het type ``int`` en ``Value`` van het type ``string``:
 
@@ -138,4 +145,8 @@ studentenLijst.Remove("AB12");
 
 :::{.callout-tip}
 Lijn1 is zo'n typisch voorbeeld waar het gebruik van het keyword ``var`` effectief een meerwaarde heeft. Het zorgt ervoor dat de code mooi op 1 lijn past en leesbaar blijft.
+:::
+
+:::{.callout-important}
+Gebruik als **key** voorlopig steeds een eenvoudig type zoals ``int`` of ``string``. Wil je later een eigen klasse als key gebruiken, dan moet die klasse correct ``Equals`` en ``GetHashCode`` *overriden* (een concept uit hoofdstuk 13). Doe je dat niet, dan lijken je elementen soms gewoon te "verdwijnen" uit de dictionary. Hou het dus voorlopig bij value types als key.
 :::

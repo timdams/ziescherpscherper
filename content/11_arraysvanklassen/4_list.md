@@ -109,11 +109,14 @@ Interessante methoden en properties voorts zijn:
 * ``Insert()``: methode om een element op een specifieke plaats in de lijst in te voegen.
 * ``IndexOf()``: geeft de index terug van het element item in de rij. Indien deze niet in de lijst aanwezig is dan wordt -1 teruggegeven.
 * ``RemoveAt()``: verwijdert een element op de index die je als parameter meegeeft.
-* ``Sort()``: alle elementen in de lijst worden gesorteerd. Merk op dat dit niet altijd werkt zoals je verwacht. Lees zeker in hoofdstuk 17 de sectie omtrent "Interfaces in de praktijk" eerst voor je probeert een lijst van eigen objecten te sorteren.
+* ``Sort()``: alle elementen in de lijst worden gesorteerd. Voor lijsten van ingebouwde types (``int``, ``string``, enz.) werkt dit meteen. Voor een lijst van je **eigen klassen** weet C# echter niet hoe het ze moet rangschikken: je krijgt dan een ``InvalidOperationException``. Dat los je pas op door je klasse ``IComparable`` te laten implementeren. Lees daarvoor in hoofdstuk 17 de sectie "Interfaces in de praktijk".
 
 :::{.callout-important}
-Let op met het gebruik van ``IndexOf`` en objecten. Deze methode zal controleren of de referentie dezelfde is van een bepaald object en daar de index van teruggeven. Je kan deze methode dus wel degelijk met arrays van objecten gebruiken, maar je zal enkel je gewenste object terugvinden indien je reeds een referentie naar het object hebt en dit meegeeft als parameter.
+Let op met het gebruik van ``IndexOf`` (en ``Contains``) en objecten. Deze methoden controleren of de **referentie** dezelfde is van een bepaald object. Je vindt je gewenste object dus enkel terug indien je reeds een referentie naar dat exacte object hebt en dit meegeeft als parameter. Twee aparte objecten met dezelfde inhoud worden dus als *verschillend* beschouwd (tenzij je later ``Equals`` overridet, zie hoofdstuk 13).
 :::
+
+<!-- TODO ed.5 (review): vergelijkingstabel Array vs. List<T> (vaste/variabele lengte, performance, syntax, Length vs Count, methoden). Studenten grijpen anders standaard naar List. -->
+<!-- TODO ed.5 (review): Add/Remove/Contains/Find elk met een mini-voorbeeldregel; Contains heeft dezelfde reference-equality-valkuil als IndexOf. -->
 
 <!-- \newpage -->
 
@@ -152,11 +155,13 @@ while (true)
 
 <!-- \newpage -->
 
+<!-- TODO ed.5 (review): leesvolgorde. Hieronder worden foreach en var al gebruikt, terwijl 3_foreach.md (foreach + var) volgens _quarto.yml pas ná dit bestand komt. Overweeg de volgorde aan te passen, of dit eerste List-voorbeeld met een klassieke for-loop te schrijven. -->
+
 Vooral de code in de ``while`` wordt nu leesbaarder dankzij ``List<Balletje>`` (we gaan ook ineens gebruik maken van onze nieuwe default constructor die de random startwaarde instelde):
 
 ```java
 const int AANTAL_BALLETJES = 100;
-List<Balletje> veelBalletjes = List<Balletje>();
+List<Balletje> veelBalletjes = new List<Balletje>();
 for (int i = 0; i < AANTAL_BALLETJES; i++) //balletjes aanmaken
 {
     veelBalletjes.Add(new Balletje());
@@ -182,3 +187,9 @@ Deze code zou je aan iemand die geen C# kan kunnen tonen en met een beetje geluk
 Als leuke extra bij C# is dat het een erg levende taal is. Jaarlijks komen er nog nieuwe concepten bij. Meestal zijn die ietwat obscuur, maar vaak maken ze de code wel een pak leesbaarder dan ervoor. Alhoewel ik graag werk met arrays, zorgen Lists er bijvoorbeeld voor dat we veel minder met vierkante haakjes moeten werken én verstoppen ze een hoop code om  bijvoorbeeld lijsten te doen groeien en krimpen.
 
  Dit verstoppen kan uiteraard soms een probleem zijn indien je hoog-performante code moet schrijven. Aan de andere kant: denk je dat jij *betere* code kunt schrijven dan de ontwikkelaars van de ``Add``-methode bij ``List``?
+
+:::{.callout-tip}
+**LINQ** behandelen we niet in dit handboek, maar weet dat dit een heel sterke .NET technologie is waarmee je in één leesbare regel een lijst kunt filteren, sorteren of omvormen (bijvoorbeeld "geef alle Pokémon met meer dan 100 HP"). Voorlopig doen we dat nog met loops, maar weet alvast dat het straks veel korter kan.
+:::
+
+<!-- TODO ed.5 (review): bovenstaande LINQ-vooruitwijzing eventueel uitbreiden/concretiseren in latere editie. -->
