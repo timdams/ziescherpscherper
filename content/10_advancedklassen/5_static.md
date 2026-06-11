@@ -125,6 +125,13 @@ We zien dat de variabele ``geboorteJaar`` dus niet meer per object individueel w
 Gebruik static niet te pas en te onpas: vaak druist het in tegen de concepten van OO en wordt het vooral misbruikt.
 :::
 
+:::{.callout-warning}
+**Let op: dit ``geboorteJaar``-voorbeeld is bewust artificieel.** Het toont enkel de *mechaniek* van ``static``. Inhoudelijk is het een slecht ontwerp: een geboortejaar hoort net wél per persoon, niet gedeeld. Verderop zie je met de teller ``aantalFietsen`` een voorbeeld waar ``static`` wél logisch is (iets bijhouden over alle objecten heen, bv. tellen hoeveel er werden aangemaakt). Onthoud dus: ``static`` is voor zaken die bij de *klasse* horen, niet bij een individueel object.
+:::
+
+<!-- TODO ed.5 (review): overweeg dit geboorteJaar-voorbeeld te vervangen door een neutrale teller (bv. aantalMensenAangemaakt) zodat het mentale model meteen klopt. Nu opgelost met een waarschuwing-callout. -->
+<!-- TODO ed.5 (review): verschil static field vs static property vs const expliciet maken (studenten gebruiken public static readonly zonder de varianten te begrijpen). -->
+
 
 Ga je dit soort ``static`` variabelen -ook wel static fields genoemd - vaak nodig hebben? Niet zo vaak. Het volgende concept daarentegen wel!
 
@@ -146,7 +153,7 @@ myMath.Pow(3,2)
 
 De reden dat je de ``Math``-bibliotheek kan aanroepen rechtstreeks **op de klasse** en niet op objecten van die klasse is omdat de methoden in die klasse als ``static`` gedefinieerd staan.
 
-De klasse is op de koop toe ook zelf ``static`` gemaakt. Zo kan er zeker geen twijfel bestaan: deze klasse kan niét in een object gegoten worden.
+De klasse is op de koop toe ook zelf ``static`` gemaakt. Zo kan er zeker geen twijfel bestaan: deze klasse kan niét in een object gegoten worden. **Belangrijk: een ``static class`` mag enkel ``static`` members bevatten** (dus enkel static methoden, fields en properties). De compiler dwingt dit af. Dat is logisch: je kan toch nooit een object van zo'n klasse maken, dus niet-static (per-object) leden zouden zinloos zijn.
 
 De klasse zal er dus zo ongeveer uitzien:
 
@@ -213,6 +220,8 @@ bool gaIkOpPensioenInEenSchrikkeljaar = DateTime.IsLeapYear(2048);
 
 
 
+
+<!-- TODO ed.5 (review): dit Debug.WriteLine-intermezzo breekt de flow van het static-verhaal. Overweeg het naar een eigen sectie/appendix of een aparte tip te verplaatsen. -->
 
 ### Intermezzo: Debug.WriteLine
 

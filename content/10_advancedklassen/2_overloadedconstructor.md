@@ -1,5 +1,8 @@
 
 
+<!-- TODO ed.5 (review): voetnoot over primary constructors (C# 12: public class Punt(int x, int y)). Studenten zien dit in nieuwe record/class-templates en op Stack Overflow. -->
+<!-- TODO ed.5 (review): de 'In'-suffix bij parameternamen (merkIn, noemerIn) is een didactische keuze, geen brede conventie. Overweeg dit eenmalig te documenteren of de suffix te laten vallen, zodat studenten niet verward raken bij andere codebases. -->
+
 ### Overloaded constructors
 
 Soms wil je parameters aan een object meegeven bij de creatie ervan. We willen bijvoorbeeld de bijnaam meegeven die het object moet hebben bij het aanmaken.
@@ -30,7 +33,7 @@ Dat was eenvoudig, hé?
 
 **Maar denk eraan: je hebt een overloaded constructor geschreven. Hierdoor zegt C# eigenlijk tegen je: *"Ok, je schrijft zelf constructors? Trek je plan nu maar. De default constructor zal je ook nu zelf moeten schrijven."***
 
-Je kan nu enkel je objecten nog via de overloaded constructors aanmaken. Schrijf je ``new Student()`` dan zal je een foutboodschap krijgen. Wil je de default constructor toch nog hebben dan zal je die dus ook expliciet moeten schrijven, bijvoorbeeld:
+Je kan nu enkel je objecten nog via de overloaded constructors aanmaken. Schrijf je ``new Student()`` dan zal je een foutboodschap krijgen. De foutmelding die je dan in Visual Studio ziet, is heel concreet: *"'Student' does not contain a constructor that takes 0 arguments"*. Onthoud die: hij betekent bijna altijd dat je zelf een constructor schreef en daardoor de gratis default constructor kwijt bent. Wil je de default constructor toch nog hebben dan zal je die dus ook expliciet moeten schrijven, bijvoorbeeld:
 
 
 ```java
@@ -86,11 +89,11 @@ internal class Student
     public Student(string bijnaamIn, bool isWerkStudentIn) 
     {
         BijNaam = bijnaamIn;
-        IsWerkStudent = isWerkStudentIn
+        IsWerkStudent = isWerkStudentIn;
     }
 
     public string BijNaam { get; private set;}
-    public string IsWerkStudent { get; private set;}
+    public bool IsWerkStudent { get; private set;}
 
 }
 
@@ -108,13 +111,13 @@ internal class Student
     //Default
     public Student() 
     {
-       bijNaam = DEFBIJNAAM;
+       BijNaam = DEFBIJNAAM;
     }
 
     //Overloaded
     public Student(string bijnaamIn) 
     {
-        bijNaam = bijnaamIn;
+        BijNaam = bijnaamIn;
     }
 
     public string BijNaam
@@ -165,7 +168,7 @@ internal class Microfoon
     public Microfoon()
     {
         Merk = "Onbekend";
-        isUitverkocht = true;
+        IsUitverkocht = true;
     }
 
     public string Merk { get; set;}
@@ -180,7 +183,7 @@ Om te voorkomen dat we steeds dezelfde toewijzingen moeten schrijven in construc
 We gebruiken hier een speciale methode aanroep (``this()``) bij de constructorsignatuur. Via deze aanroep kunnen we dan eventueel parameters meegeven, afhankelijk van wat we nodig hebben. De compiler zal aan de hand van de parameters (of het ontbreken) beslissen welke constructor nodig is. 
 
 
-Dit gebeurt met behulp van de klassieke *method overload resolution* en de **betterness** regel.
+Dit gebeurt met behulp van de klassieke *method overload resolution*: de compiler kiest, op basis van het aantal en type parameters, automatisch de best passende constructor. (Voor de fijnproevers: de exacte regels hiervoor heten de *betterness rule*, die we in het methoden-hoofdstuk al kort als verdiepingsstof aanstipten. Je hoeft ze hier niet te kennen.)
 
 
 <!-- \newpage -->
@@ -286,7 +289,7 @@ En vervolgens voegen we een overloaded constructor toe:
 public Breuk(int tellerIn, int noemerIn)
 {
     Teller = tellerIn;
-    Noemer = noemerIn
+    Noemer = noemerIn;
 }
 ```
 
@@ -298,7 +301,7 @@ internal class Breuk
     public Breuk(int tellerIn, int noemerIn)
     {
         Teller = tellerIn;
-        Noemer = noemerIn
+        Noemer = noemerIn;
     }    
     public int Teller {get; private set;}
 
@@ -369,8 +372,8 @@ public Balletje()
 {
     X = rng.Next(0, Console.WindowWidth);
     Y = rng.Next(0, Console.WindowWidth);
-    VX = rng.Nex(-2,3);
-    VY = rng.Nex(-2,3);
+    VX = rng.Next(-2,3);
+    VY = rng.Next(-2,3);
 }
 ```
 

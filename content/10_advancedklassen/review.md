@@ -1,6 +1,9 @@
 # Review: H11 — Gevorderde klasseconcepten (10_advancedklassen/)
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 Folder dekt constructors, overloaded constructors, `this(...)`, object initializer syntax, `required`, en `static`. Volgorde in `_quarto.yml`: [1_constructors.md](1_constructors.md) → [2_overloadedconstructor.md](2_overloadedconstructor.md) → [2_objectinitsyntax.md](2_objectinitsyntax.md) → [5_static.md](5_static.md) → [kennisclips.md](kennisclips.md).
 
@@ -15,40 +18,42 @@ Folder dekt constructors, overloaded constructors, `this(...)`, object initializ
 
 ## Zwaktes
 
-- In [1_constructors.md](1_constructors.md) staat "*we hebben in de klasse Student de constructor nog niet expliciet beschreven... maar deze constructor bestaat wel degelijk*" en daarna "*van zodra je echter beslist om zelf een constructor te schrijven... de default constructor die je gratis kreeg zal ook niet meer bestaan*". Studenten lezen dit twee keer zonder dat het echt blijft hangen, omdat ze geen voorbeeld zien van *de fout* (compile error: "does not contain a constructor that takes 0 arguments"). Een screenshot helpt.
-- [2_objectinitsyntax.md](2_objectinitsyntax.md) introduceert `required` (C# 11), maar de **volgorde van uitvoer** (default constructor → init-block → required-check) wordt niet uitgelegd. Studenten ervaren dit als magie.
-- In [5_static.md](5_static.md) is het `Mens.geboorteJaar`-voorbeeld didactisch zwak: het verandert de *betekenis* van het veld (van "het geboortejaar van deze persoon" naar "een gedeelde teller die toevallig zo heet"). Het illustreert de mechaniek wel, maar leert studenten een fout mentaal model van wat `static` *waar voor staat*.
-- De zin "*De ``Math`` klasse is op de koop toe ook zelf static gemaakt*" suggereert dat `static class` extra is bovenop `static method`. Wordt niet hard genoeg uitgelegd dat een `static class` *enkel* `static` members mag hebben.
-- Tikfouten: missende puntkomma in `Noemer = noemerIn` (twee plekken in [2_overloadedconstructor.md](2_overloadedconstructor.md)), `bijNaam` versus `BijNaam` inconsistent, `gen.Nex` ipv `gen.Next` in de Balletje-tip in [1_constructors.md](1_constructors.md), `IsWerkStudent` als `string` ipv `bool`.
-- De callout dat *static constructors niet besproken worden* sluit de deur, maar wel net als studenten beginnen begrijpen waarom je iets éénmalig zou willen initialiseren. Eén voorbeeldje (zonder diepe uitleg) was genoeg geweest.
+- `[v]` In [1_constructors.md](1_constructors.md) (...): studenten zien geen voorbeeld van *de fout* (compile error: "does not contain a constructor that takes 0 arguments"). Een screenshot helpt. **(de letterlijke foutboodschap is nu inline toegevoegd in 2_overloadedconstructor.md waar de fout optreedt.)**
+- `[~]` [2_objectinitsyntax.md](2_objectinitsyntax.md) introduceert `required`, maar de **volgorde van uitvoer** wordt niet uitgelegd. **(de uitvoervolgorde default-constructor → properties stond al uitgelegd; private-set-beperking toegevoegd. Een expliciete required-check-timing kan nog uitgebreid worden.)**
+- `[~]` In [5_static.md](5_static.md) is het `Mens.geboorteJaar`-voorbeeld didactisch zwak (verkeerd mentaal model). **(waarschuwing-callout toegevoegd die het voorbeeld als bewust artificieel kadert en naar de zinvolle Fiets-teller verwijst; volledige vervanging als TODO gemarkeerd.)**
+- `[v]` De zin "*De ``Math`` klasse is op de koop toe ook zelf static gemaakt*" legt niet hard genoeg uit dat een `static class` *enkel* `static` members mag hebben. **(verduidelijkt: static class mag enkel static members bevatten, compiler dwingt dit af.)**
+- `[v]` Tikfouten: missende puntkomma in `Noemer = noemerIn` (2x), `bijNaam` vs `BijNaam`, `gen.Nex`/`rng.Nex`, `IsWerkStudent` als `string`. **(alle gefixt: `;` toegevoegd, `BijNaam`/`IsUitverkocht` consistent, `IsWerkStudent` → `bool`, `rng.Next`.)**
+- `[c]` De callout dat *static constructors niet besproken worden* sluit de deur. Eén voorbeeldje was genoeg geweest. **(TODO-comment geplaatst.)**
 
 ## Onduidelijkheden
 
-- *"Method overload resolution en de **betterness** regel"* in [2_overloadedconstructor.md](2_overloadedconstructor.md) — *betterness* is jargon dat nergens eerder valt en niet wordt uitgelegd. Wordt door eerstejaars overgeslagen.
-- In [2_objectinitsyntax.md](2_objectinitsyntax.md): "*Object initializer syntax laat je toe om tijdens creatie van een object, properties beginwaarden te geven*" — maar of dit ook werkt voor private setters wordt niet duidelijk. (Het werkt niet, en dat is een veelgestelde vraag.)
-- Bij `static`: het verschil tussen *static field*, *static property* en *const* wordt niet expliciet gemaakt. Studenten gebruiken vaak `public static readonly` zonder de varianten te begrijpen.
-- De `Debug.WriteLine`-intermezzo in [5_static.md](5_static.md) is op zich nuttig, maar zit midden in het static-verhaal en breekt de flow. Hoort beter in een appendix of een aparte tip.
+- `[v]` *"...de **betterness** regel"* - *betterness* is jargon dat nergens eerder valt. **(herschreven naar gewone taal: "de best passende constructor"; betterness enkel als optionele zijopmerking met verwijzing naar H7.)**
+- `[v]` In [2_objectinitsyntax.md](2_objectinitsyntax.md): werkt object initializer ook voor private setters? **(verduidelijkt: nee, enkel voor van buitenaf bereikbare setters.)**
+- `[c]` Bij `static`: het verschil tussen *static field*, *static property* en *const* wordt niet expliciet gemaakt. **(TODO-comment geplaatst.)**
+- `[c]` De `Debug.WriteLine`-intermezzo breekt de flow van het static-verhaal. **(TODO-comment geplaatst voor verplaatsing.)**
 
 ## Gemissen
 
-- **Chained constructors met `: base(...)`** wordt nergens vermeld — past wel bij overerving (H13), dus voorlopig OK, maar één voetnoot kan vooruitwijzen.
-- **`readonly` fields** ontbreken volledig. Toch een eerstejaars-relevant concept (immutability na constructie).
-- **Init-only properties** (`{ get; init; }`, C# 9) worden niet besproken, terwijl `required` wel aan bod komt. Die twee horen samen.
-- **Primary constructors (C# 12)**: `public class Punt(int x, int y)` — kort vermelden als moderne syntax voorkomt verwarring, want studenten zien dit in nieuwe templates en op Stack Overflow.
-- **Static constructor** krijgt één callout waarin staat dat hij niet besproken wordt. Een vooruitwijzing of klein voorbeeld helpt.
-- **Naamgevingsconventie**: `merkIn` als parameter naam impliceert een conventie ("In"-suffix) die in de echte wereld zeldzaam is. Veroorzaakt later verwarring als studenten andere codebases lezen waar parameters gewoon `merk` heten.
+- `[c]` **Chained constructors met `: base(...)`** wordt nergens vermeld. **(TODO-comment geplaatst voor een vooruitwijzing naar H13.)**
+- `[c]` **`readonly` fields** ontbreken volledig. **(TODO-comment geplaatst.)**
+- `[c]` **Init-only properties** (`{ get; init; }`) worden niet besproken, terwijl `required` wel aan bod komt. **(TODO-comment geplaatst.)**
+- `[c]` **Primary constructors (C# 12)**: kort vermelden als moderne syntax. **(TODO-comment geplaatst.)**
+- `[c]` **Static constructor** krijgt enkel "niet besproken". **(TODO-comment geplaatst.)**
+- `[c]` **Naamgevingsconventie** `merkIn` ("In"-suffix) is in de praktijk zeldzaam. **(TODO-comment geplaatst om dit te documenteren of te laten vallen.)**
 
 ## Concrete suggesties
 
-1. Voeg na het *aannemers-stuk* in [1_constructors.md](1_constructors.md) een minivoorbeeld met de **echte foutboodschap** in: "Student does not contain a constructor that takes 0 arguments".
-2. Vervang in [5_static.md](5_static.md) het `Mens.geboorteJaar`-voorbeeld door een neutrale teller (bv. `aantalMensenAangemaakt`). Het huidige voorbeeld geeft een verkeerd mentaal model.
-3. Verhuis de `Debug.WriteLine`-intermezzo naar een eigen sectie of voetnoot.
-4. Voeg in [2_objectinitsyntax.md](2_objectinitsyntax.md) een sectie toe over **`init`-only properties** als logische tussenstap tussen object initializer en `required`.
-5. Fix de tikfouten: `gen.Nex` → `gen.Next`, `IsWerkStudent` → `bool`, ontbrekende `;` na `Noemer = noemerIn`, `bijNaam` consistent maken met `BijNaam` (privésetters via property, niet field).
-6. Voeg in [1_constructors.md](1_constructors.md) of [2_overloadedconstructor.md](2_overloadedconstructor.md) een korte voetnoot over **primary constructors** (C# 12) — studenten zien dat in nieuwe `record class`-templates.
-7. Documenteer de `In`-suffix-keuze (of laat hem vallen): waarom `merkIn` en niet `merk`?
+1. `[v]` Minivoorbeeld met de **echte foutboodschap** ("...does not contain a constructor that takes 0 arguments"). **(inline toegevoegd.)**
+2. `[~]` Vervang het `Mens.geboorteJaar`-voorbeeld door een neutrale teller. **(via waarschuwing-callout gekaderd; volledige vervanging als TODO.)**
+3. `[c]` Verhuis de `Debug.WriteLine`-intermezzo. **(TODO-comment geplaatst.)**
+4. `[c]` Voeg een sectie over **`init`-only properties** toe. **(TODO-comment geplaatst.)**
+5. `[v]` Fix de tikfouten. **(alle gedaan.)**
+6. `[c]` Voeg een voetnoot over **primary constructors** (C# 12) toe. **(TODO-comment geplaatst.)**
+7. `[c]` Documenteer de `In`-suffix-keuze (of laat hem vallen). **(TODO-comment geplaatst.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

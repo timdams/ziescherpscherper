@@ -8,6 +8,8 @@ Dankzij **object initializer syntax** kan je ook parameters tijdens de aanmaak v
 
 :::{.callout-tip}
 Object initializer syntax is een eerste glimp in het feit waarom properties zo belangrijk zijn in C#. Je kan object initializer syntax enkel gebruiken om via properties je object extra beginwaarden te geven.
+
+Dit werkt enkel voor properties waarvan de ``set`` van buitenaf bereikbaar is. Heeft een property een ``private set``, dan kan je ze niet via object initializer syntax instellen (een veelgestelde vraag).
 :::
 
 
@@ -57,6 +59,8 @@ Je bent niet verplicht alle properties via deze syntax in te stellen, enkel de z
 
 <!-- \newpage -->
 
+
+<!-- TODO ed.5 (review): sectie over init-only properties ({ get; init; }, C# 9) toevoegen als logische tussenstap tussen object initializer en required (mag enkel tijdens objectcreatie ingesteld worden, daarna read-only). -->
 
 ## `required` properties
 

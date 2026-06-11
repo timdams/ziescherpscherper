@@ -61,6 +61,10 @@ Als programmeur van eigen klassen zijn er 3 opties voor je:
 :::
 
 
+<!-- TODO ed.5 (review): readonly fields kort vermelden (immutability na constructie); past bij constructors. -->
+<!-- TODO ed.5 (review): vooruitwijzing-voetnoot naar : base(...) voor constructors in overerving (H13). -->
+<!-- TODO ed.5 (review): static constructor: nu enkel "wordt niet besproken"; overweeg één klein voorbeeld of duidelijke vooruitwijzing waarom je iets eenmalig wilt initialiseren. -->
+
 ### Default constructors
 
 De default constructor is een constructor die geen extra parameters aanvaardt. Een default constructor bestaat ALTIJD uit volgende vorm:
