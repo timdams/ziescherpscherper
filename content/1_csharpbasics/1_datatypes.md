@@ -75,7 +75,7 @@ Voor de gehele getallen zijn er volgende datatypes:
 | `ulong` | 64 bits | 0 tot 18 446 744 073 709 551 615 | 
 | `char` | 16 bits | 0 tot 65 535 | 
 
-Het bereik van ieder datatype is een rechtstreeks gevolg van het aantal bits waarmee het getal in dit type wordt voorgesteld. De ``short`` bijvoorbeeld wordt voorgesteld door 16 bits. Eén bit daarvan wordt gebruikt voor het teken (0 of 1, + of -). De overige 15 bits worden gebruikt voor de waarde: van 0 tot 2^15^-1 (= 32767) en van -1 tot -2^15^ (= -32768)
+Het bereik van ieder datatype is een rechtstreeks gevolg van het aantal bits waarmee het getal in dit type wordt voorgesteld. De ``short`` bijvoorbeeld wordt voorgesteld door 16 bits. Met 16 bits kan je 2^16^ (= 65 536) verschillende waarden voorstellen. Omdat een ``short`` ook negatieve getallen moet kunnen bevatten, loopt het bereik van -2^15^ (= -32768) tot 2^15^-1 (= 32767). Hoe C# die negatieve getallen precies binair voorstelt (via een techniek genaamd *two's complement*) behandelen we niet in dit handboek.
 
 
 
@@ -137,8 +137,11 @@ Het gebeurt vaak dat beginnende programmeurs een ``int`` variabele gebruiken ter
 :::
 
 :::{.callout-tip}
-Het ``bool`` datatype is uiteraard het kleinst mogelijke datatype. Hoeveel geheugen zal een variabele van dit type innemen denk je? Inderdaad **1 bit**. 
+Het ``bool`` datatype is uiteraard het kleinst mogelijke datatype. Hoeveel geheugen zal een variabele van dit type innemen denk je? Eén bit zou logisch lijken (true of false, 0 of 1), maar in de praktijk neemt een ``bool`` in C# **1 byte** in. Dat komt omdat een computer geen losse bits adresseert, maar werkt per byte.
 :::
+
+<!-- TODO ed.5 (review): integer overflow ontbreekt (int.MaxValue + 1 = int.MinValue). Past goed bij dit datatypes-hoofdstuk. -->
+<!-- TODO ed.5 (review): geen woord over var (type inference, sinds C# 3). Studenten zien het overal; hoort in dit deel thuis (zie ook 1b_variabelen.md). -->
 
 ### Tekst/String datatype
 

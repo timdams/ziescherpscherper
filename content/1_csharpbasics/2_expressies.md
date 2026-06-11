@@ -63,6 +63,10 @@ double gewichtOpMars = (gewichtOpAarde/gAarde) * gMars; //kg
 Console.WriteLine("Je weegt op Mars " + gewichtOpMars + " kg");
 ```
 
+:::{.callout-tip}
+We plakken hier tekst en variabelen aan elkaar met de ``+``-operator. Dat werkt, maar in hoofdstuk 3 leer je **string interpolation**, een leesbaardere manier om variabelen middenin tekst te zetten. Voor nu houden we het bij deze eenvoudige aanpak.
+:::
+
 #### Modulo operator ``%``
 De modulo operator die we in C# aanduiden met ``%`` verdient wat meer uitleg. Deze operator zal als resultaat de gehele rest teruggeven wanneer we het linkse getal door het rechtse getal delen:
 
@@ -100,7 +104,7 @@ Stel dat we een variabele ``int getal`` hebben:
 | ``getal/=2;`` | ``getal = getal/2;``| variabele delen door een getal|
 
 :::{.callout-tip}
-Je zal deze verkorte notatie vaak tegenkomen. Ze zijn identiek aan elkaar en zullen dus je code niet versnellen. Ze zal enkel compacter zijn om te lezen. Bij twijfel, gebruik gewoon de lange notatie. 
+Je zal deze verkorte notatie vaak tegenkomen. Ze zijn identiek aan elkaar en zullen dus je code niet versnellen. Ze zal enkel compacter zijn om te lezen. Bij twijfel mag je gerust de lange notatie gebruiken. Let wel: ``getal++`` is zó wijdverbreid (zeker in de lussen vanaf hoofdstuk 5) dat je het sowieso vlot moet kunnen *lezen*, ook al schrijf je zelf liever voluit. 
 :::
 
 
@@ -163,7 +167,9 @@ int getal2 = 2;
 int result = getal1/getal2;
 Console.WriteLine(result);
 ```
-**Er zal ``4`` op het scherm verschijnen!** (niet ``4.5`` daar dat geen ``int`` is). 
+**Er zal ``4`` op het scherm verschijnen!** (niet ``4.5`` daar dat geen ``int`` is). Let goed op: C# **kapt het cijfergedeelte na de komma gewoon af** (dat heet *truncatie*), het rondt dus niet af. ``4.5`` wordt zo ``4``, en ook ``4.9`` zou ``4`` worden, niet ``5``.
+
+<!-- TODO ed.5 (review): Math.Round, Math.Floor en Math.Ceiling vermelden, relevant net na deze int/double-deling-val. -->
 
 
 

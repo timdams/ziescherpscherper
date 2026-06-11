@@ -93,7 +93,7 @@ Wanneer we een variabele aanmaken, zal deze moeten voldoen aan enkele afspraken.
 De code die we gaan schrijven moet voldoen aan een hoop regels. Wanneer we in onze code zelf namen (**identifiers**) geven aan variabelen (en later ook methoden, objecten, enz.) dan moeten we een aantal regels volgen:
 
 * **Hoofdlettergevoelig**: de identifiers ``tim`` en ``Tim`` zijn verschillend zoals reeds vermeld.
-* **Geen keywords**: identifiers mogen geen gereserveerde C# keywords zijn. De keywords van 2 pagina's terug mogen dus niet. Varianten waarbij de hoofdletters anders zijn mogen wel.  ``gOTO`` en ``stRINg`` mogen dus wel, maar niet ``goto`` of ``string`` want dat zijn gereserveerde keywords. Een ander voorbeeld ``INT`` mag bijvoorbeeld wel, maar ``int`` niet.
+* **Geen keywords**: identifiers mogen geen gereserveerde C# keywords zijn. De keywords van 2 pagina's terug mogen dus niet. Varianten waarbij de hoofdletters anders zijn mogen wel.  ``gOTO`` en ``stRINg`` mogen dus wel, maar niet ``goto`` of ``string`` want dat zijn gereserveerde keywords. Een ander voorbeeld ``INT`` mag bijvoorbeeld wel, maar ``int`` niet. Doe dit in de praktijk natuurlijk **nooit**: een identifier die enkel in hoofdletters verschilt van een keyword maakt je code nodeloos verwarrend.
 * **Eerste karakter-regel**: het eerste karakter van de identifier mag een  **kleine of grote letter**, of een **liggend streepje** (``_``) zijn.
 * **Alle andere karakters-regels**: de overige karakters volgende de eerste karakter-regel, maar mogen ook cijfers zijn.
 * **Lengte**: Een legale identifier mag zo lang zijn als je wenst, maar je houdt het best leesbaar.
@@ -132,6 +132,8 @@ Er zijn geen vaste afspraken over hoe je je variabelen moet noemen toch hanteren
 
 * **Duidelijke naam**: de identifier moet duidelijk maken waarvoor de identifier dient. Schrijf dus liever ``gewicht`` of ``leeftijd`` in plaats van ``a`` of ``meuh``.
 * **Camel casing**: gebruik camel casing indien je meerdere woorden in je identifier wenst te gebruiken. Camel casing wil zeggen dat ieder nieuw woord terug met een hoofdletter begint. Een goed voorbeeld kan dus zijn ``leeftijdTimDams`` of ``aantalLeerlingenKlas1EA``. Merk op dat we liefst het eerste woord met kleine letter starten. Uiteraard zijn er geen spaties toegelaten.
+
+<!-- TODO ed.5 (review): naming conventions uitbreiden voorbij camelCase: PascalCase voor types/methodes, _camelCase voor private fields. Hoort hier thuis. -->
 
 
 <!-- \newpage -->

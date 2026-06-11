@@ -1,3 +1,6 @@
+<!-- TODO ed.5 (review): aparte subsectie 'var' (type inference) toevoegen. Voorbeeld: var leeftijd = 25; var naam = "Tim"; var lijst = new List<int>(); met tip "gebruik var enkel als het type rechts duidelijk leesbaar is". -->
+<!-- TODO ed.5 (review): nullable types / '?' bewust nog NIET behandeld in deze editie (zie CLAUDE.md). Later kapstok voorzien voor string? in VS-templates. -->
+
 ## Variabelen
 
 De data die we in een programma gebruiken bewaren we in een **variabele van een bepaald datatype**. Een variabele is een plekje in het geheugen dat in je programma zal gereserveerd worden om daarin data te bewaren van het type dat je aan de variabele hebt toegekend. 
@@ -107,14 +110,23 @@ string zin = "Ja hoor";
 ```
 :::
 
-De overige types ``sbyte``, ``short`` en ``ushort`` hebben geen literal aanduiding. Er wordt vanuit gegaan wanneer je een literal probeert toe te wijzen aan één van deze datatypes dat dit zonder problemen zal gaan (ze worden impliciet geconverteerd). 
-
-Volgende code mag dus:
+De overige types ``sbyte``, ``short`` en ``ushort`` hebben geen literal aanduiding. Volgende code mag dus toch:
 
 ```java 
 sbyte start = 127;
 ``` 
-Dit wordt toegestaan, de ``int`` literal 127 zal geconverteerd worden achter de schermen naar een ``sbyte`` en dan toegewezen worden.
+Dit wordt toegestaan omdat ``127`` een **literal** is: de compiler ziet al tijdens het compileren dat die waarde binnen het bereik van een ``sbyte`` past en zet ze stilletjes om. 
+
+:::{.callout-tip}
+Let op: dit lukt enkel omdat het om een vaste literal gaat die de compiler op voorhand kan controleren. Zet je dezelfde waarde eerst in een ``int``-variabele, dan weigert de compiler:
+
+```java
+int x = 127;
+sbyte y = x; //FOUT: een int past niet zomaar in een sbyte
+```
+
+De compiler kan dan immers niet garanderen dat de waarde van ``x`` binnen het bereik van een ``sbyte`` blijft. Hoe je dat soort omzettingen wél forceert (een *cast*) zie je verderop.
+:::
 
 
 #### Literal toewijzen
@@ -167,14 +179,23 @@ Deze schrijfwijzen kunnen handig zijn wanneer je met binaire of hexadecimale dat
 
 #### Beginwaarden van variabelen
 
-Het is een goede gewoonte om variabelen steeds ogenblikkelijk een beginwaarde toe te wijzen. Alhoewel C# altijd vers gedeclareerde variabelen een standaard beginwaarde zal geven, is dit niet zo in oudere programmeertalen. In sommige talen zal een variabele een volledig willekeurige beginwaarde krijgen. Gelukkig in C# is dat niet, maar geef toch maar direct steeds een waarde, al was het maar om je literals te oefenen.
+Het is een goede gewoonte om variabelen steeds ogenblikkelijk een beginwaarde toe te wijzen. C# verplicht je daar zelfs toe voor de variabelen die we nu gebruiken: een **lokale variabele** (een variabele die je binnen ``Main`` of een andere methode declareert) moet een waarde gekregen hebben vóór je ze uitleest. Doe je dat niet, dan weigert de compiler te bouwen met de fout *"use of unassigned local variable"*:
 
-De standaard beginwaarde van een variabele hangt natuurlijk van het datatype af: 
+```java
+int getal;
+Console.WriteLine(getal); //FOUT: 'getal' is nog niet toegekend
+```
 
-* Voor getallen is dat steeds de nulwaarde (dus ``0`` bij  ``int``, ``0.0`` bij ``double``, enz.). 
-* Bij variabelen van het type ``bool`` is dat ``false``. 
-* Bij ``char`` is dat de literal: ``\0`` (in het volgende hoofdstuk leggen we die vreemde backslash uit). 
-* En bij tekst is dat de lege ``string``-literal: ``""`` (maar je mag ook ``String.Empty`` gebruiken).
+In sommige oudere programmeertalen krijg je in dat geval een volledig willekeurige beginwaarde, met vreemde bugs tot gevolg. C# beschermt je daartegen. Geef je variabelen dus altijd meteen een waarde, al was het maar om je literals te oefenen.
+
+:::{.callout-tip}
+Verderop in dit boek leer je **instantievariabelen** kennen (variabelen die bij een object horen, zie het hoofdstuk over klassen). Die krijgen, in tegenstelling tot lokale variabelen, *wél* automatisch een standaard beginwaarde afhankelijk van het datatype:
+
+* Voor getallen is dat steeds de nulwaarde (dus ``0`` bij ``int``, ``0.0`` bij ``double``, enz.).
+* Bij variabelen van het type ``bool`` is dat ``false``.
+* Bij ``char`` is dat de literal ``\0`` (in het volgende hoofdstuk leggen we die vreemde backslash uit).
+* En bij tekst is dat de lege ``string``-literal ``""`` (maar je mag ook ``String.Empty`` gebruiken).
+:::
 
 
 

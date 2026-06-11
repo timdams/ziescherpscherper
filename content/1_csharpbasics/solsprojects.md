@@ -1,3 +1,4 @@
+<!-- TODO ed.5 (review): pedagogische volgorde. Dit bestand bevat solution/project/.sln-uitleg die een student eigenlijk al in H1 (na 0_intro/1_werkenmetvs.md) nodig heeft, vóór hij met variabelen werkt. Overweeg: korte intro naar H1 verplaatsen, gevorderde delen (meerdere projecten, .csproj) in een appendix. Vereist aanpassing van de _quarto.yml-paden, dus bewust nog niet uitgevoerd: beslissing aan Tim. -->
 
 ## Solutions en projecten 
 
@@ -79,7 +80,7 @@ Voorts zien we ook een *.csproj* bestand genaamd *Opdracht1*. Net zoals het .sln
 
 #### De bin-folder 
 
-De "obj" folder ga ik in dit handboek negeren. Maar kijk eens wat er in de "bin" folder staat?! Een folder genaamd **"debug"**. In deze folder zal je de gecompileerde (debug-)versie van je huidige project terecht komen. Je zal wat moeten doorklikken tot de *binnenste folder* (die de naam van de huidige .net versie bevat waarin je compileert).
+De "obj"-folder (daar zet de compiler tijdelijke, tussentijdse bestanden in die hij tijdens het bouwen nodig heeft) ga ik in dit handboek negeren. Maar kijk eens wat er in de "bin" folder staat?! Een folder genaamd **"debug"**. In deze folder zal je de gecompileerde (debug-)versie van je huidige project terecht komen. Je zal wat moeten doorklikken tot de *binnenste folder* (die de naam van de huidige .net versie bevat waarin je compileert).
 
 ![Inhoud van bin/debug/net8.0 nadat project werd gecompileerd](../assets/1_csharpbasics/debugin.png)
 

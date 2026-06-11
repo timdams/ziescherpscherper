@@ -11,6 +11,12 @@ G_AARDE = 10.48; //ZAL ERROR GEVEN
 
 Merk op hoe we de ``const`` variabelen een identifier geven: deze zetten we in ALLCAPS. Hierbij gebruiken we een liggend streepjes om het onderscheid tussen de onderlinge woorden aan te geven. Dit is geen verplichting, maar gewoon een aanbeveling.
 
+<!-- TODO ed.5 (review): dit hoofdstuk is erg kort. Uitbreiden met:
+     - readonly (ander semantiek dan const: waarde mag pas in de constructor gezet worden, niet compile-time vast).
+     - const werkt enkel voor compile-time waarden (bv. 'const DateTime VANDAAG = DateTime.Now;' compileert NIET).
+     - naming-keuze: Microsoft Guidelines raden PascalCase aan voor const, niet ALLCAPS. Beslis welke conventie we propageren en trek ze consistent door het boek. -->
+
+
 :::{.callout-tip}
 Constanten in code worden ook soms **magic numbers** genoemd. De reden hiervoor is dat ze vaak plotsklaps ergens in de code voorkomen, maar wel op een heel andere plek werden gedeclareerd. Hierdoor is het voor de ontwikkelaar niet altijd duidelijk wat de variabele juist doet.
 Het is daarom belangrijk dat je goed nadenkt over het gebruik van magic numbers én deze zeer duidelijke namen geeft. 
