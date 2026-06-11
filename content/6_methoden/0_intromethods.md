@@ -51,6 +51,10 @@ static returntype MethodeNaam(optioneel_parameters)
 }
 ```
 
+:::{.callout-tip}
+Vergeet ``static`` voorlopig even: beschouw het als een verplicht **toverwoord** dat nu eenmaal voor je methoden moet staan. Waarom het er staat en wat het juist doet, leg ik uit in hoofdstuk 11. Tot dan: gewoon meeschrijven en er niet van wakker liggen.
+:::
+
 De eerste lijn noemen we de **methode-signatuur**. Deze lijn verteld alles dat je moet weten om met de methode te werken (returntype, naam en eventuele parameters).
 
 
@@ -264,7 +268,7 @@ Console.WriteLine(ToonVersie()); // MAG NIET!
 
 ### ``return`` 
 
-Je mag het ``return`` keyword eender waar in je methode gebruiken. Weet wel dat van zodra een statement met ``return`` wordt bereikt de methode ogenblikkelijk afsluit en het resultaat achter ``return`` teruggeeft. 
+Je mag het ``return`` keyword eender waar in je methode gebruiken. Weet wel dat van zodra een statement met ``return`` wordt bereikt de methode ogenblikkelijk afsluit en het resultaat achter ``return`` teruggeeft (en in dit geval heb je dan ook geen `break` nodig bij iedere case). 
 
 Soms is dit handig zoals in volgende voorbeeld:
 
@@ -276,22 +280,18 @@ static string WindRichting()
     {
         case 0:
             return "noord";
-            break;
         case 1:
             return "oost";
-            break;
         case 2:
             return "zuid";
-            break;
         case 3:
             return "west";
-            break;
     }
     return "onbekend";
 }
 ```
 
-Merk op dat de onderste lijn (19) nooit zal bereikt worden. Toch vereist C# dit!
+Merk op dat de onderste lijn (``return "onbekend";``) nooit zal bereikt worden. Toch vereist C# dit!
 
 <!-- \newpage -->
 
@@ -304,6 +304,8 @@ Bovenstaande foutboodschap zal je vaak krijgen en geeft altijd aan dat er bepaal
 Foutboodschappen hebben de neiging om gecompliceerder te klinken dan de effectieve fout die ze beschrijven. Een beetje zoals een lector die lesgeeft over iets waar hij zelf niets van begrijpt.
 
 
+
+<!-- TODO ed.5 (review): params-keyword vermelden (Console.WriteLine gebruikt het zelf; studenten zien dit in oefeningen). -->
 
 ## Parameters doorgeven
 
@@ -476,10 +478,7 @@ ToonInfo(37, "Tim"); //mag niet!
 Parameters kunnen op 2 manieren worden doorgegeven aan een methode:
 
 1. **By value** : hierbij wordt **een kopie gemaakt van de huidige waarde**. Het is die kopie die wordt meegegeven.
-2. **by reference**: het adres (**pointer** of **reference**) naar de actuele parameter wordt meegegeven. Aanpassingen aan de actuele parameter in de methode zal daardoor ook zichtbaar zijn binnen de scope van de originele variabele. Parameters *by reference* komen pas vanaf hoofdstuk 9 van pas[^wut].
-
-
-[^wut]: Het tweede punt mag je volledig negeren als je geen flauw benul had wat er net werd gezegd. Ik kom hier later in de volgende hoofdstukken nog uitgebreid op terug!
+2. **by reference**: in plaats van een kopie wordt het *adres* (de zogenaamde **pointer** of **reference**) van de originele variabele meegegeven. Aanpassingen in de methode zijn daardoor óók buiten de methode zichtbaar, op de originele variabele. Dit hebben we voorlopig nog niet nodig: het komt uitgebreid aan bod vanaf het hoofdstuk over arrays (H9). Lig er nu dus nog niet van wakker als dit nog wat abstract aanvoelt.
 
 
 Het effect van manier 1 is hopelijk duidelijk: wanneer je in een methode de inhoud van een actuele parameter aanpast, dan heeft dat geen gevolg op de originele variabele die we meegaven bij de methode-aanroep!
@@ -567,6 +566,10 @@ Deze code heeft een methode die zichzelf aanroept, zonder dat deze ooit afsluit.
 
 ![Deze keer zijn er bewust geen terugkerende pijlen getekend: ze zijn er niet.](../assets/4_methoden/oneindig.png)
 
+<!-- TODO ed.5 (review): korte sectie/tip over methode-grootte (single responsibility, "een methode doet 1 ding"). Sluit aan bij de kennisclip 'goede methoden schrijven'. -->
+
+<!-- TODO ed.5 (review): screenshot toevoegen van hoe je per ongeluk in een lokale functie belandt (VS auto-suggestions). -->
+
 #### Lokale functies...en waarom je ze beter niet gebruikt
 
 Sinds C# 7.0 kan je methoden definiëren binnenin een andere methode. Dit noemt men **lokale functies**  (*local functions*). Alhoewel ze zeker hun nut hebben, is het in deze fase van C# leren **geen goed idee om lokale functies te gebruiken**. 
@@ -653,8 +656,8 @@ Stel dat we een methode hebben geschreven die de macht van een getal berekent (w
 /// <returns></returns>
 static int Macht(int grondtal, int exponent)
 {
-    int result = grondtal;
-    for (int i = 1; i < exponent; i++)
+    int result = 1;
+    for (int i = 0; i < exponent; i++)
     {
         result *= grondtal;
     }

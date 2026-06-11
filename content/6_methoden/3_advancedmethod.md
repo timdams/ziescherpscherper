@@ -141,6 +141,10 @@ Console.WriteLine($"Cirkel: {BerekenOpp(7)}");
 
 #### Betterness rule
 
+:::{.callout-note}
+**Voor de gevorderden.** Deze sectie (inclusief de tabel verderop) is verdiepingsstof. Je hebt ze niet nodig om named en optionele parameters te gebruiken. Slaag je ze nu over, dan mis je niets essentieels: kom gerust later eens terug... Maar terugkomen, hé!
+:::
+
 Indien de compiler twijfelt tijdens de **overload resolution** zal de **betterness rule** worden gehanteerd: de best *passende* methode zal aangeroepen worden.
 
 Stel dat we volgende overloaded methoden hebben:
@@ -229,6 +233,10 @@ static void Toonverhouding(double a, int b)
 }
 ```
 
+
+<!-- TODO ed.5 (review): korte sectie "Wat met out en ref?" toevoegen met 1 voorbeeld via int.TryParse + verwijzing naar appendix. Studenten zien out continu in IntelliSense. -->
+<!-- TODO ed.5 (review): expression-bodied methoden (=> ...) kort tonen; studenten zien deze syntax in nieuwere VS-templates. -->
+<!-- TODO ed.5 (review): tuples als returntype ((int, string) Method()) als extra-callout; modern alternatief voor out-parameters. -->
 
 ### Methoden debugen met step-in
 
