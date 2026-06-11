@@ -7,7 +7,7 @@ Ondertussen hebben we 3 verschillende manier gezien om getallen af te ronden, na
 * Met behulp van **``Math.Round``** .
 * Met behulp van **``Convert.ToX``**.
 
-Ieder manier gaat de data  op een andere manier behandelen in het afronden, iets wat we tot nu toe bewust even hebben genegeerd. Bij casting is het duidelijk, deze rondt dus eigenlijk naar beneden af (het zelfde als wanneer je de ``Math.Floor``-methode zou gebruiken). De twee andere manieren hebben enkele venijnige kantjes die we hier even willen bespreken.
+Ieder manier gaat de data  op een andere manier behandelen in het afronden, iets wat we tot nu toe bewust even hebben genegeerd. Bij casting is het duidelijk: deze **kapt gewoon alles na de komma af** (truncatie). Voor positieve getallen lijkt dat op naar beneden afronden, maar let op met negatieve getallen: ``(int)-2.7`` geeft ``-2`` (richting nul), terwijl ``Math.Floor(-2.7)`` ``-3`` geeft (richting min oneindig). Casting kapt dus af richting nul, en dat is niet altijd hetzelfde als ``Math.Floor``. De twee andere manieren hebben enkele venijnige kantjes die we hier even willen bespreken.
 
 ### Addertjes bij afronden
 
@@ -64,4 +64,8 @@ Als je op de koop toe nog eens wil afronden naar een bepaald aantal cijfers na d
 double d1 = 4.12343;
 Console.WriteLine($"afgerond: {Math.Round(d1,1,MidpointRounding.AwayFromZero )} en {Math.Round(d1,4,MidpointRounding.AwayFromZero)} ");
 ```
+
+<!-- TODO ed.5 (review): tabelletje toevoegen dat de 3 afrondmethodes (casting / Math.Round / Convert.ToInt32) naast elkaar zet voor 4.5, 5.5 en -2.5. Maakt het verschil in één oogopslag duidelijk. -->
+<!-- TODO ed.5 (review): kort verwijzen naar format specifiers ($"{getal:F2}") uit H3 - past thematisch bij afronden. -->
+<!-- TODO ed.5 (review): decimal-type vermelden voor financiële berekeningen (past bij afronden en bankers rounding). -->
 

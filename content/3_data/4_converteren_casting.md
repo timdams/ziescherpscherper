@@ -1,6 +1,8 @@
 # Werken met data  <!--\label{ch:4}-->
 
-
+<!-- TODO ed.5 (review): overweeg dit lange bestand te splitsen in casting / parsing / Convert (elk eigen ademruimte), of een korte samenvattings-callout per subsectie. Vereist _quarto.yml-aanpassing: beslissing aan Tim. -->
+<!-- TODO ed.5 (review): check of de Star Trek/Star Wars-openingsgrap nog aanslaat bij de eerstejaars van 2026. -->
+<!-- TODO ed.5 (review): tabel impliciete numerieke conversies toevoegen (welke types -> welke zonder cast). Nu moeten studenten dit uit voorbeelden afleiden. -->
 
 *Aah, Data, een geliefkoosd personage uit Star Trek.* Maar daar ga ik het niet over hebben. Het wordt tijd dat we onze werkkledij aantrekken en ons echt vuil gaan maken. 
 
@@ -45,7 +47,7 @@ Het is onmogelijk om een kommagetal aan een geheel getal toe te wijzen zonder da
 
 Casting heb je nodig om een variabele van een bepaald type voor een ander type te laten doorgaan. Stel dat je een complexe berekening hebt waar je werkt met verschillende datatypes. Door te casten voorkom je dat je vreemde resultaten krijgt. Je gaat namelijk bepaalde types even als andere types gebruiken.
 
-**Het is belangrijk in te zien dat het casten van een variabele naar een ander type enkel een gevolg heeft *tijdens* het uitwerken van de expressie waarbinnen je werkt.** De variabele in het geheugen zal voor eeuwig en altijd het type zijn waarin het origineel gedeclareerd werd. Je kan dus nooit het datatype van een variabele veranderen!
+**Het is belangrijk in te zien dat het casten van een variabele naar een ander type enkel een gevolg heeft *tijdens* het uitwerken van de expressie waarbinnen je werkt.** De variabele in het geheugen zal voor eeuwig en altijd het type zijn waarin het origineel gedeclareerd werd. Je kan dus nooit het datatype van een variabele veranderen! Wat je wél doet, is de *waarde* van die variabele omzetten en die omgezette waarde ergens anders gebruiken. De variabele zelf blijft onaangeroerd.
 
 
 Casting duid je aan door voor de variabele of literal het datatype tussen haakjes te plaatsen naar wat het omgezet moet worden:
@@ -208,14 +210,14 @@ Parsing wordt gebruikt om tekst(``string``) naar een ander datatype om te zetten
 Voorbeeld van parsing:
 
 ```java
-int numVal = Int32.Parse("-105");
+int numVal = int.Parse("-105");
 Console.WriteLine(numVal);
 ```
 
 Gebruik parsing enkel wanneer je:
 
-1. een ``string`` hebt waarvan je weet dat deze altijd van een specifieke vorm zal zijn die omgezet kan worden naar een ander datatype, bv. een ``int``, dan kan je ``Int32.Parse()`` gebruiken.
-2. input van de gebruiker vraagt (bv. via ``Console.ReadLine``) en niet 100% zeker bent dat deze een getal zal bevatten, gebruik dan ``Int32.TryParse()`` (meer info in de appendix).
+1. een ``string`` hebt waarvan je weet dat deze altijd van een specifieke vorm zal zijn die omgezet kan worden naar een ander datatype, bv. een ``int``, dan kan je ``int.Parse()`` gebruiken.
+2. input van de gebruiker vraagt (bv. via ``Console.ReadLine``) en niet 100% zeker bent dat deze een getal zal bevatten, gebruik dan ``int.TryParse()`` (meer info in de appendix).
 
 De omgekeerde weg: eender welk datatype omzetten naar een ``string``, doe je met de ``ToString``-methode die ieder datatype ingebouwd heeft. Deze methode wordt automatisch aangeroepen wanneer je een variabele van een ander datatype in een string wilt steken, inclusief wanneer je deze in een ``Console.WriteLine()``-statement gebruikt. Toch kan het handig zijn te weten dat je deze methode ook manueel kan aanroepen:
 
@@ -235,7 +237,7 @@ Echter, .NET heeft ook ingebouwde conversie-methoden die je kunnen helpen om dat
 
 ![Gebruik Convert.To pas wanneer je goed het vershcil tussen parsing en casting begrijpt](../assets/1_csharpbasics/convertdoos.png)<!--{width=60%}-->
 
-Al deze methoden zitten binnen de **Convert**-bibliotheek van .NET. Hou er wel rekening mee dat deze manier van werken iets meer processorkracht vraagt dan casting. In applicaties waar je dus véél data moet omzetten, kan dit een verschil maken (denk aan een game die 60 keer per seconde moet berekenen of een object geraakt wordt door een kogel).
+Al deze methoden zitten binnen de **Convert**-bibliotheek van .NET. Het grootste nadeel is dus niet de snelheid, maar dat het een zwarte doos is: je ziet niet of er achter de schermen aan parsing of casting wordt gedaan. Daarom gebruik je ``Convert.To`` best pas wanneer je het verschil tussen casting en parsing goed begrijpt.
 
 
 Het gebruik hiervan is zeer eenvoudig. Enkele voorbeelden:

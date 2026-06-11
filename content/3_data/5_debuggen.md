@@ -84,6 +84,8 @@ De grootste fout die je kunt doen is gewoon door je code te "steppen" en hopen d
 
 Dit geldt trouwens ook wanneer je niet aan het debuggen bent, maar gewoon je programma uitvoert om het te testen. Eigenlijk ben je dan ook aan het debuggen. Ook dan moet je voorspellen wat het eindresultaat zal zijn en of dit overeen komt met wat er op het scherm gebeurt. **Wees kritisch!**
 
+<!-- TODO ed.5 (review): uitgewerkte mini-walkthrough toevoegen waarin de student stap voor stap met breakpoints een bug oplost. Idee: hergebruik de gemiddelde-temperatuur uit de casting-sectie (int-deling-val) en cross-link ernaar. -->
+
 
 
 

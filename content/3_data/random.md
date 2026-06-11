@@ -40,8 +40,10 @@ Console.WriteLine($"Nog een getal: {myGen.Next()}");
 ```
 
 :::{.callout-tip}
-De ``new Random()`` code is iets wat in hoofdstuk 9 en verder volledig uit de doeken zal gedaan worden. Lig er dus nog niet van wakker.
+De ``new Random()`` code is iets wat in hoofdstuk 9 en verder volledig uit de doeken zal gedaan worden. Lig er dus nog niet van wakker.[^randomshared]
 :::
+
+[^randomshared]: Sinds .NET 6 bestaat er ook ``Random.Shared``, een kant-en-klare gedeelde generator die je zonder ``new`` kan gebruiken (bv. ``Random.Shared.Next(0, 11)``). Dat lost meteen het probleem op van meerdere generators met dezelfde seed (zie verderop). In dit boek houden we het bij ``new Random()`` omdat we ``new`` later toch nodig hebben, maar in echte code is ``Random.Shared`` vaak de betere keuze.
 
 
 
@@ -56,6 +58,10 @@ int a = someGenerator.Next(0,11); //getal tussen 0 tot en met 10
 int b = someGenerator.Next(55,100); //getal tussen 55 tot en met 99
 int c = someGenerator.Next(0,b); //getal tussen 0 tot en met (b-1)
 ```
+
+:::{.callout-important}
+**De ondergrens telt wél mee, de bovengrens niet.** ``Next(0, 11)`` geeft dus een getal van 0 tot en met 10, maar nooit 11. Onthoud de vuistregel: wil je een getal *tot en met* X, schrijf dan X+1 als tweede parameter.
+:::
 
 #### Genereer kommagetallen met NextDouble
 Met de ``NextDouble`` methode kan je kommagetallen genereren tussen ``0.0`` en ``1.0`` (1.0 zal niet gegenereerd worden).

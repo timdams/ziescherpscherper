@@ -21,7 +21,7 @@ Invoer van de gebruiker verwerken (dat een andere type dan ``string`` moet zijn)
 
 1. Input **uitlezen** met ``Console.ReadLine()``.
 2. Input **bewaren** in een ``string`` variabele.
-3. De variabele **parsen** met de ``Parse()`` bibliotheek naar het gewenste type.
+3. De variabele **parsen** met de ``Parse()``-methode (bv. ``int.Parse()`` of ``double.Parse()``) naar het gewenste type.
 
 
 
@@ -48,6 +48,8 @@ double gewicht = double.Parse(Console.ReadLine());
 Voorgaande code veronderstelt dat de gebruiker géén fouten invoert[^geenfouten]. De conversie zal namelijk mislukken indien de gebruiker bijvoorbeeld ``Ik weeg 10kg`` invoert in plaats van ``10,3``.
 
 **In de komende hoofdstukken mag je er altijd van uitgaan dat de gebruiker foutloze input geeft.**
+
+<!-- TODO ed.5 (review): korte intro van int.TryParse(input, out int x) hier toevoegen (zelfs zonder meteen te oefenen), als kapstok voor foutgevoelige user input. Staat nu enkel in de appendix-voetnoot. -->
 
 ### Kommagetallen in C\#
 
