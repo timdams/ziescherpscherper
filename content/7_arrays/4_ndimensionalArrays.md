@@ -139,7 +139,7 @@ Dit zal ``27`` teruggeven. We vragen van de laatste array (``[2]``), daarbinneni
 
 ### Lengte van iedere dimensie in een n-dimensionale matrix
 
-Indien je de lengte opvraagt van een meer-dimensionale array dan krijg je de som van iedere lengte van iedere dimensie. Dit is logisch: in het geheugen van een computer worden arrays altijd als 1 dimensionale arrays voorgesteld. De ``boeken`` array zal lengte 12 hebben (3*4) en ``temperaturen`` toevallig ook (3x2x2). 
+Indien je de lengte opvraagt van een meer-dimensionale array dan krijg je het **totaal aantal elementen** (de lengtes van alle dimensies met elkaar vermenigvuldigd, dus niet opgeteld). Dit is logisch: in het geheugen van een computer worden arrays altijd als 1 dimensionale arrays voorgesteld. De ``boeken`` array zal lengte 12 hebben (3*4) en ``temperaturen`` toevallig ook (3x2x2). 
 
 Je kan echter de lengte van iedere aparte dimensie te weten komen met de ``.GetLength()`` methode die iedere array heeft. Als parameter geef je de dimensie mee waarvan je de lengte wenst:
 

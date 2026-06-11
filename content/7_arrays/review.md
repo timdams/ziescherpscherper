@@ -1,6 +1,9 @@
 # Review: Arrays
 
-> Interne didactische review — niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+> Interne didactische review - niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld (oefeningen, structurele _quarto.yml-wijziging of Future). De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -12,40 +15,42 @@
 
 ## Zwaktes
 
-- In [1_ArraysBasics.md](1_ArraysBasics.md) staat in manier 1 deze code: ``myColors = {"red", "green", ...};`` — dat compileert **niet**. Je hebt ``new string[] {...}`` nodig na de declaratie. Dit is dezelfde valkuil als waar studenten op crashen, en hij staat in het handboek als correct voorbeeld.
-- Het **collection-initializer-voorbeeld zonder ``new``** komt verschillende keren voor. Studenten gaan dit overtypen en niet snappen waarom het niet werkt.
-- In [algoarrays.md](algoarrays.md) heeft het tweede ``while``-voorbeeld een typo: ``Console.WriteLine($"is {prijzen[productIndex]}".);`` — de punt staat na het sluitend dubbele aanhalingsteken, niet erna na de hele expression. Dit compileert niet.
-- ``BinarySearch`` wordt in [systemarray.md](systemarray.md) gepresenteerd als een eenvoudige zoekoplossing. Het rare gedrag bij niet-gevonden elementen (negatieve return die het complement is) wordt geminimaliseerd tot *"zal negatief zijn"*. Niet-Vlaamse studenten zien hier vooral *"als je in een gesorteerde array werkt is dit gemakkelijk"* — terwijl een ``foreach`` of een handmatige loop in de praktijk vaker het juiste antwoord is.
-- Het ``args``-voorbeeld in [1_ArraysBasics.md](1_ArraysBasics.md) gebruikt ``args.Length>=2 && args[2]=="cool"`` — dit is fout: bij lengte 2 is index 2 al *out of range*. Moet ``args.Length >= 3`` zijn. Een fout in een voorbeeld dat net over korte-circuit-evaluatie gaat is extra pijnlijk.
-- De jagged-arrays-sectie in [5_jaggedArrays.md](5_jaggedArrays.md) is heel kort en beëindigt het hoofdstuk in een soort wegtrek-modus. Geen samenvatting, geen "wanneer wel/niet jagged".
+- `[v]` In [1_ArraysBasics.md](1_ArraysBasics.md) staat in manier 1 deze code: ``myColors = {"red", "green", ...};`` - dat compileert **niet**. Je hebt ``new string[] {...}`` nodig na de declaratie. Dit is dezelfde valkuil als waar studenten op crashen, en hij staat in het handboek als correct voorbeeld. **(gefixt naar `new string[] {...}` + uitleg wanneer de korte vorm wél mag.)**
+- `[v]` Het **collection-initializer-voorbeeld zonder ``new``** komt verschillende keren voor. Studenten gaan dit overtypen en niet snappen waarom het niet werkt. **(de foute manier-1 is rechtgezet; manier 2 (init bij declaratie) mag de korte vorm wél, dat is nu expliciet vermeld.)**
+- `[v]` In [algoarrays.md](algoarrays.md) heeft het tweede ``while``-voorbeeld een typo: ``Console.WriteLine($"is {prijzen[productIndex]}".);`` - de punt staat na het sluitend dubbele aanhalingsteken. Dit compileert niet. **(gefixt naar `$" is {prijzen[productIndex]}.");`, meteen ook de ontbrekende spatie toegevoegd.)**
+- `[~]` ``BinarySearch`` wordt in [systemarray.md](systemarray.md) gepresenteerd als een eenvoudige zoekoplossing. Het rare gedrag bij niet-gevonden elementen (negatieve return die het complement is) wordt geminimaliseerd tot *"zal negatief zijn"*. Niet-Vlaamse studenten zien hier vooral *"als je in een gesorteerde array werkt is dit gemakkelijk"* - terwijl een ``foreach`` of een handmatige loop in de praktijk vaker het juiste antwoord is. **(``Array.IndexOf`` toegevoegd als de gangbare keuze + caveat dat BinarySearch pas nuttig is bij grote, gesorteerde arrays.)**
+- `[v]` Het ``args``-voorbeeld in [1_ArraysBasics.md](1_ArraysBasics.md) gebruikt ``args.Length>=2 && args[2]=="cool"`` - dit is fout: bij lengte 2 is index 2 al *out of range*. Moet ``args.Length >= 3`` zijn. Een fout in een voorbeeld dat net over korte-circuit-evaluatie gaat is extra pijnlijk. **(beide voorbeelden + de tekst aangepast naar `>=3`.)**
+- `[c]` De jagged-arrays-sectie in [5_jaggedArrays.md](5_jaggedArrays.md) is heel kort en beëindigt het hoofdstuk in een soort wegtrek-modus. Geen samenvatting, geen "wanneer wel/niet jagged". **(TODO-comment geplaatst voor een afsluitende samenvatting.)**
 
 ## Onduidelijkheden
 
-- In de ``algoarrays.md`` "manueel zoeken"-sectie wordt ``index`` uiteindelijk verhoogd voorbij de gevonden positie (``index++`` na de ``if``, ook als gevonden). De student print dan ``index`` terwijl ``index - 1`` de juiste positie is. De code werkt toevallig wel niet omdat de ``while``-conditie ``!gevonden`` ervoor zorgt dat ``index`` niet meer verhoogt — maar enkel na ``do``... eigenlijk wél nog één keer. Dit is fragiel en lastig te volgen. Een voorbeeld met een ``foreach``-vergelijking of een nettere ``for``-loop zou helderder zijn.
-- Bij multi-dimensionale arrays in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) staat *"de derde dimensie bestaat uit drie 2-dimensionale 2 bij 2 arrays"*. Voor een eerstejaars die nog moeite heeft met index 0 te starten, zijn 3D-arrays vermoedelijk een overload. Alles in één callout "voor wie ervan houdt" zou helpen.
-- ``Length`` op multidim arrays geeft in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) het totaal aantal elementen — *niet* de som. De tekst zegt "de som van iedere lengte van iedere dimensie" maar bedoelt het product. Studenten lezen "som" letterlijk.
+- `[c]` In de ``algoarrays.md`` "manueel zoeken"-sectie wordt ``index`` uiteindelijk verhoogd voorbij de gevonden positie (``index++`` na de ``if``, ook als gevonden). De student print dan ``index`` terwijl ``index - 1`` de juiste positie is. (...) Dit is fragiel en lastig te volgen. Een voorbeeld met een ``foreach``-vergelijking of een nettere ``for``-loop zou helderder zijn. **(TODO-comment geplaatst; de werkende code is gelaten, maar een nettere variant is gewenst.)**
+- `[~]` Bij multi-dimensionale arrays in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) staat *"de derde dimensie bestaat uit drie 2-dimensionale 2 bij 2 arrays"*. Voor een eerstejaars die nog moeite heeft met index 0 te starten, zijn 3D-arrays vermoedelijk een overload. Alles in één callout "voor wie ervan houdt" zou helpen. **(bestaande tip raadt al aan dimensies te beperken; bewust niet verder herstructureerd.)**
+- `[v]` ``Length`` op multidim arrays geeft in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) het totaal aantal elementen - *niet* de som. De tekst zegt "de som van iedere lengte van iedere dimensie" maar bedoelt het product. Studenten lezen "som" letterlijk. **(gecorrigeerd naar "totaal aantal elementen (...) vermenigvuldigd, dus niet opgeteld".)**
 
 ## Gemissen
 
-- **``foreach``** wordt nergens in dit hoofdstuk gebruikt of vermeld, terwijl het exact het idiomatische antwoord is op "alle elementen overlopen". De ``for``-loop met ``i < arr.Length`` blijft het enige patroon. Dat is een gemiste kans, en ze zien ``foreach`` in oefeningen wel verschijnen.
-- **``List<T>`` als vooruitblik**: één enkele zin in de inleiding zegt dat lists in hoofdstuk 12 komen. Een korte callout *"Wanneer kies je array vs. List?"* zou nu al houvast geven, want studenten gaan voor alles ``int[]`` proberen.
-- **``Length`` (array) vs. ``Count`` (List/string)**: het verschil komt nooit aan bod. Studenten verwarren dit eindeloos zodra ``string`` en arrays naast elkaar gebruikt worden.
-- **``IndexOutOfRangeException``** wordt vermeld als "Out of Range exception" maar de echte type-naam ontbreekt. Bij debugging zien ze deze naam letterlijk in VS staan.
-- **``Array.IndexOf``** als alternatief voor ``BinarySearch`` op niet-gesorteerde arrays: ontbreekt. Dat is precies wat de student in 90% van de gevallen wil.
-- **``Array.Resize``**: ontbreekt. Strikt genomen kan je een array dus tóch "vergroten" — de waarschuwing dat de lengte vastligt is niet helemaal eerlijk.
-- **LINQ-vooruitblik** (``.Sum()``, ``.Average()``): mag al even genoemd worden, want die opmerking *"de gemiddelde berekenen ziet er nog niet beter uit"* lost zichzelf op met LINQ.
-- **``foreach``-iteratorvariabele is read-only**: typische valkuil. Mag in een callout.
+- `[c]` **``foreach``** wordt nergens in dit hoofdstuk gebruikt of vermeld, terwijl het exact het idiomatische antwoord is op "alle elementen overlopen". De ``for``-loop met ``i < arr.Length`` blijft het enige patroon. Dat is een gemiste kans, en ze zien ``foreach`` in oefeningen wel verschijnen. **(TODO-comment geplaatst.)**
+- `[c]` **``List<T>`` als vooruitblik**: één enkele zin in de inleiding zegt dat lists in hoofdstuk 12 komen. Een korte callout *"Wanneer kies je array vs. List?"* zou nu al houvast geven, want studenten gaan voor alles ``int[]`` proberen. **(TODO-comment geplaatst.)**
+- `[c]` **``Length`` (array) vs. ``Count`` (List/string)**: het verschil komt nooit aan bod. Studenten verwarren dit eindeloos zodra ``string`` en arrays naast elkaar gebruikt worden. **(TODO-comment geplaatst.)**
+- `[v]` **``IndexOutOfRangeException``** wordt vermeld als "Out of Range exception" maar de echte type-naam ontbreekt. Bij debugging zien ze deze naam letterlijk in VS staan. **(echte naam IndexOutOfRangeException toegevoegd.)**
+- `[v]` **``Array.IndexOf``** als alternatief voor ``BinarySearch`` op niet-gesorteerde arrays: ontbreekt. Dat is precies wat de student in 90% van de gevallen wil. **(aparte IndexOf-sectie toegevoegd vóór BinarySearch.)**
+- `[c]` **``Array.Resize``**: ontbreekt. Strikt genomen kan je een array dus tóch "vergroten" - de waarschuwing dat de lengte vastligt is niet helemaal eerlijk. **(TODO-comment geplaatst.)**
+- `[c]` **LINQ-vooruitblik** (``.Sum()``, ``.Average()``): mag al even genoemd worden, want die opmerking *"de gemiddelde berekenen ziet er nog niet beter uit"* lost zichzelf op met LINQ. **(TODO-comment geplaatst.)**
+- `[c]` **``foreach``-iteratorvariabele is read-only**: typische valkuil. Mag in een callout. **(opgenomen in de foreach-TODO.)**
 
 ## Concrete suggesties
 
-1. In [1_ArraysBasics.md](1_ArraysBasics.md), manier 1: vervang ``myColors = {"red", ...};`` door ``myColors = new string[] {"red", ...};`` of laat dit codeblok weg en behoud enkel manier 2 als initialisatie-na-declaratie. Studenten kopiëren je voorbeeld letterlijk.
-2. Fix het ``args``-voorbeeld onderaan [1_ArraysBasics.md](1_ArraysBasics.md): ``args.Length >= 3`` (of ``args.Length > 2``) i.p.v. ``>= 2``. Anders vertelt de callout over short-circuit-eval een fout verhaal.
-3. Voeg in [1_ArraysBasics.md](1_ArraysBasics.md), na de "Lezen"-sectie met de manuele ``for``-loop, een korte ``foreach``-vergelijking toe in een callout. Liever nu dan dat het later "zomaar opduikt".
-4. In [systemarray.md](systemarray.md): voeg ``Array.IndexOf`` als methode toe vóór ``BinarySearch``, en wees explicieter dat ``BinarySearch`` zelden de juiste keuze is voor beginners ("gebruik dit pas als profiling het vraagt").
-5. In [4_ndimensionalArrays.md](4_ndimensionalArrays.md): vervang *"de som van iedere lengte"* door *"het totaal aantal elementen (lengte van iedere dimensie vermenigvuldigd)"*. Eén woord, groot effect.
-6. In [algoarrays.md](algoarrays.md): herschrijf het tweede ``while``-voorbeeld zonder typo en overweeg een eenvoudigere ``for``-variant ernaast — *"hier is dezelfde code, maar met een for"*. Eerstejaars vinden ``while``-zoeken met dubbele conditie zwaar.
+1. `[v]` In [1_ArraysBasics.md](1_ArraysBasics.md), manier 1: vervang ``myColors = {"red", ...};`` door ``myColors = new string[] {"red", ...};`` of laat dit codeblok weg en behoud enkel manier 2 als initialisatie-na-declaratie. Studenten kopiëren je voorbeeld letterlijk. **(gedaan: `new string[] {...}`.)**
+2. `[v]` Fix het ``args``-voorbeeld onderaan [1_ArraysBasics.md](1_ArraysBasics.md): ``args.Length >= 3`` (of ``args.Length > 2``) i.p.v. ``>= 2``. Anders vertelt de callout over short-circuit-eval een fout verhaal. **(gedaan, beide voorbeelden + tekst.)**
+3. `[c]` Voeg in [1_ArraysBasics.md](1_ArraysBasics.md), na de "Lezen"-sectie met de manuele ``for``-loop, een korte ``foreach``-vergelijking toe in een callout. Liever nu dan dat het later "zomaar opduikt". **(TODO-comment geplaatst.)**
+4. `[v]` In [systemarray.md](systemarray.md): voeg ``Array.IndexOf`` als methode toe vóór ``BinarySearch``, en wees explicieter dat ``BinarySearch`` zelden de juiste keuze is voor beginners ("gebruik dit pas als profiling het vraagt"). **(IndexOf-sectie + caveat toegevoegd.)**
+5. `[v]` In [4_ndimensionalArrays.md](4_ndimensionalArrays.md): vervang *"de som van iedere lengte"* door *"het totaal aantal elementen (lengte van iedere dimensie vermenigvuldigd)"*. Eén woord, groot effect. **(gedaan.)**
+6. `[~]` In [algoarrays.md](algoarrays.md): herschrijf het tweede ``while``-voorbeeld zonder typo en overweeg een eenvoudigere ``for``-variant ernaast - *"hier is dezelfde code, maar met een for"*. Eerstejaars vinden ``while``-zoeken met dubbele conditie zwaar. **(typo gefixt; de for-variant is als TODO gemarkeerd.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

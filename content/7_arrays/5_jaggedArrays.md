@@ -30,3 +30,5 @@ De indexering blijft dezelfde, maar ook hier dus niet met komma's, maar met vier
 Uiteraard moet je er wel rekening mee houden dat niet eender welke index binnen een bepaalde sub-array zal werken, het is dan ook aangeraden om zeker de ``Length``-methode te gebruiken om de sub-arrays op hun lengte te bevragen. Wanneer je ``.Length`` bevraagt van de ``tickets`` array dan zal je 3 als antwoord krijgen, daar deze 2D array uit 3 sub-arrays bestaat.
 
 Wil je vervolgens de lengte kennen van de middelste sub-array (met dus index 1) dan gebruik je ``tickets[1].Length``.
+
+<!-- TODO ed.5 (review): hoofdstuk eindigt nogal abrupt. Korte afsluiting/samenvatting toevoegen: wanneer kies je wél/niet voor een jagged array (en wanneer beter een rechthoekige 2D-array of een collectie uit H12). -->

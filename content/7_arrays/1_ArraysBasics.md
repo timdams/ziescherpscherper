@@ -6,6 +6,10 @@ Op papier zijn arrays eenvoudig...helaas programmeren we zelden nog op papier. E
 
 Een nadeel van arrays is dat, eens we de lengte van een array hebben ingesteld, deze lengte niet meer kan veranderd worden. In het hoofdstuk 12 zullen we leren werken met lists en andere collections die dit nadeel niet meer hebben.
 
+<!-- TODO ed.5 (review): korte callout "Wanneer kies je een array vs. een List?" toevoegen als vooruitblik (studenten gaan anders voor alles int[] proberen). -->
+<!-- TODO ed.5 (review): Array.Resize vermelden; technisch kan een array dus tóch "vergroot" worden (de strikte "lengte ligt vast" is niet helemaal eerlijk). -->
+<!-- TODO ed.5 (review): verschil .Length (array) vs .Count (List) vs .Length (string) ergens verduidelijken; veelvoorkomende verwarring. -->
+
 De nadelen zullen we echter met plezier erbij nemen wanneer we programma's beginnen schrijven die werken met véél data van dezelfde soort:  eenvoudigweg kan je stellen dat van zodra je 3 of meer variabelen hebt die dezelfde soort data bevatten (en dus van hetzelfde datatype zijn), een array bijna altijd de oplossing zal zijn.
 
 ## Nut van arrays
@@ -124,10 +128,10 @@ Vervolgens kunnen we later waarden toekennen aan de array:
 
 ```java
 string[] myColors;
-myColors = {"red", "green", "yellow", "orange", "blue"};
+myColors = new string[] {"red", "green", "yellow", "orange", "blue"};
 ```
 
-Je array zal na lijn 2 **een lengte van 5 hebben en kan niet meer groeien of krimpen**.
+Je array zal na lijn 2 **een lengte van 5 hebben en kan niet meer groeien of krimpen**. Merk op dat je hier ``new string[]`` nodig hebt: enkel bij het *initialiseren tijdens de declaratie* (manier 2 hieronder) mag je de korte ``{...}``-vorm zonder ``new`` gebruiken.
 
 <!-- \newpage -->
 
@@ -240,6 +244,9 @@ if(myColors[1] == "pink")
 ```
 
 Kortom, alles wat je al kon, kan ook met arrays. Je kan ze zelfs als parameters aan methoden meegeven of terugkrijgen (zie verder). **De individuele elementen in een array zijn gewone variabelen** (enkel hun naamgeving is gekoppeld aan die van de array en de index van het element in de array).
+
+<!-- TODO ed.5 (review): foreach hier introduceren/vergelijken als idiomatische manier om alle elementen te overlopen (nu enkel de for-loop met i < arr.Length). Ook: foreach-iteratorvariabele is read-only (valkuil). -->
+<!-- TODO ed.5 (review): LINQ-vooruitblik (.Sum(), .Average()) kort noemen bij het gemiddelde-voorbeeld; lost de "ziet er nog niet beter uit"-opmerking op. -->
 
 :::{.callout-warning}
 Een array proberen te tonen als volgt gaat niet:
@@ -371,7 +378,7 @@ int[] getallen = { 1,2,3 };
 Console.WriteLine(getallen[5]);
 ```
 
-Dit zal resulteren in een *"Out of Range exception"*.
+Dit zal resulteren in een *"Index was outside the bounds of the array"*-fout. De officiële naam van deze exception is **``IndexOutOfRangeException``**: die naam zie je ook letterlijk in Visual Studio verschijnen wanneer het misgaat.
 
 Hackers misbruiken dit soort fouten in code om toegang tot delen van het geheugen te krijgen waar ze eigenlijk niet mochten zijn. Dit zijn zogenaamde *buffer overflow attacks*.
 :::
@@ -441,7 +448,7 @@ for (int i = 0; i < args.Length; i++)
     Console.WriteLine(args[i]);
 }
 
-if (args.Length>=2 && args[2]=="cool")
+if (args.Length>=3 && args[2]=="cool")
 {
     Console.WriteLine("Ik ga akkoord!");
 }
@@ -458,14 +465,14 @@ if (args.Length>=2 && args[2]=="cool")
 
 Inderdaad. De spaties gelden als "splitsing" tussen ieder argument. En dus ieder woord zal een apart element in de ``args`` array worden. Je zou nu bijvoorbeeld code kunnen schrijven die iets doet afhankelijk van de parameter, enz.
 
-Let er zeker op dat je steeds met ``args.Length`` test of er wel genoeg opstartargumenten werden meegegeven. Daarom dat we  ``args.Length>=2 && args[2]=="cool"`` schreven.
+Let er zeker op dat je steeds met ``args.Length`` test of er wel genoeg opstartargumenten werden meegegeven. Daarom dat we  ``args.Length>=3 && args[2]=="cool"`` schreven (we hebben minstens 3 argumenten nodig om ``args[2]`` veilig te kunnen uitlezen).
 
 :::{.callout-important}
 
 De volgorde van operanden bij een && operator zijn belangrijk. Kijk wat er gebeurt als we de operanden omwisselen in de vorige ``if``:
 
 ```java
-if ( args[2]=="cool" && args.Length>=2)
+if ( args[2]=="cool" && args.Length>=3)
 ```
 
 

@@ -10,6 +10,8 @@ Twee maar!? Er zijn tal van andere algoritmes. Denk maar aan de verschillende ma
 
 
 
+<!-- TODO ed.5 (review): de manuele do-while-zoek verhoogt 'index' ook na de match, wat fragiel is om te volgen. Overweeg een nettere for-variant ernaast ("hier is dezelfde code, maar met een for") of een foreach-vergelijking. -->
+
 #### Manueel zoeken in arrays
 
 Het nadeel van BinarySearch is dat deze vereist dat je array-elementen gesorteerd staan. Uiteraard is dit niet altijd gewenst. Stel je voor dat je een simulatie maakt voor een fietswedstrijd en wilt weten of een bepaalde wielrenner in de top 5 staat.
@@ -79,7 +81,7 @@ if (teller != producten.Length) //product gevonden!
 if (gevonden)
 {
     Console.Write($"Prijs van {keuzeGebruiker}");
-    Console.WriteLine($"is {prijzen[productIndex]}".);
+    Console.WriteLine($" is {prijzen[productIndex]}.");
 }
 else
 {

@@ -70,12 +70,24 @@ Bekijk zeker ook de overloaded versies die de ``.Copy()`` methode heeft. Zo kan 
 
 
 
+### IndexOf: het element zoeken (ongesorteerd)
+
+In de meeste gevallen wil je gewoon weten op welke index een bepaald element staat, *zonder* dat je array gesorteerd is. Daarvoor gebruik je ``Array.IndexOf``. Deze methode geeft de index van het eerste voorkomen terug, of ``-1`` als het element niet gevonden wordt:
+
+```java
+string[] myColors = { "red", "green", "yellow", "orange", "blue" };
+int indexGreen = Array.IndexOf(myColors, "green"); //geeft 1
+int indexZwart = Array.IndexOf(myColors, "black"); //geeft -1 (niet gevonden)
+```
+
+Dit is voor beginners bijna altijd de juiste keuze om iets in een array te zoeken.
+
 ### BinarySearch: Zoeken in arrays
 
 De ``BinarySearch``-methode maakt het mogelijk om te zoeken naar de index van een gegeven element in een array. 
 
 :::{.callout-important}
-**De ``BinarySearch``-methode werkt enkel indien de elementen in de array gesorteerd staan!**
+**De ``BinarySearch``-methode werkt enkel indien de elementen in de array gesorteerd staan!** Werk je met een ongesorteerde array, gebruik dan ``Array.IndexOf`` (of een eigen loop). ``BinarySearch`` is vooral nuttig bij erg grote, gesorteerde arrays waar snelheid telt: gebruik het pas als je het echt nodig hebt.
 :::
 
 
