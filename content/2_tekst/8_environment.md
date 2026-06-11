@@ -1,3 +1,5 @@
+<!-- TODO ed.5 (review): dit stuk gaat niet over tekst en voelt vreemd aan het einde van H3 (tekst gebruiken in code). Overweeg verplaatsing naar H1 of een appendix. Vereist _quarto.yml-aanpassing, dus bewust nog niet uitgevoerd: beslissing aan Tim. -->
+
 ## Environment bibliotheek
 
 De ``Console`` bibliotheek is maar 1 van de vele bibliotheken die je in je C# programma's kunt gebruiken. 

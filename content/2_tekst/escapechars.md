@@ -42,7 +42,6 @@ Er zijn verschillende escape characters in C# toegelaten. We lijsten hier de bel
 \'      //de apostrof zoals zonet besproken.
 \"      //een aanhalingsteken.
 \\      //een backslash in je tekst tonen. 
-\\\\    //twee backslashes.
 \n      //een nieuwe lijn (zogenaamde *enter* of *newline*).
 \t      //Horizontale tab.
 \uxxxx  //een teken met als hexadecimale UNICODE waarde xxxx.
@@ -80,14 +79,15 @@ Beide voorbeelden zullen dus volgende tekst op het scherm geven: ``Console.Write
 
 ### Biep biep
 
-``\a`` mag je enkel gebruiken als je een koptelefoon op hebt daar dit het escape character is om de computer een biepje te laten doen. 
-
-Volgende codevoorbeeld zal, als alles goed gaat, een zin op het scherm tonen en dan ogenblikkelijk erna een biepje:
-
+``\a`` is het escape character om de computer een biepje te laten doen.
 
 ```java
 Console.WriteLine("Een zin en dan nu ... de biep\a");
 ```
+
+:::{.callout-warning}
+Verwacht hier niet te veel van: op moderne systemen (Windows Terminal, en standaard ook op Linux en Mac) hoor je meestal **niets**. Het ``\a``-teken wordt dan gewoon genegeerd. Je code is dus niet stuk als je geen biep hoort, het is gewoon een overblijfsel uit de tijd van de oude typemachines en terminals.
+:::
 
 
 
@@ -103,7 +103,7 @@ Console.WriteLine(eenString);
 Dit zal als output geven:
 
 
-```java
+```text
 Een zin.         na een tab
 Dan eentje op een nieuwe regel
 ```

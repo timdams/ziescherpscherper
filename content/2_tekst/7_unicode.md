@@ -12,7 +12,7 @@ Je toetsenbord heeft maar een beperkt aantal toetsen. Er zijn echter tal van and
 Dit gaat als volgt in z'n werk:
 
 1. Zoek het teken(s) dat je nodig hebt in een UNICODE-tabel[^unitabel] en noteer de hexadecimale waarde.
-2. Plaats bovenaan in je Main: ``Console.OutputEncoding = System.Text.Encoding.UTF8;``
+2. Zet als **allereerste lijn in je ``Main``** (dus nog vóór je iets met ``Console.Write`` of ``WriteLine`` naar het scherm stuurt): ``Console.OutputEncoding = System.Text.Encoding.UTF8;``. Zet je deze lijn pas later, dan kan tekst die je daarvoor al toonde verkeerd verschijnen.
 3. Je kan nu op 2 manieren dit teken op het scherm krijgen.
 
 [^unitabel]: Zie [UNICODE-table.com)](https://UNICODE-table.com).
@@ -53,6 +53,8 @@ Console.WriteLine("\u00A9");
 <!-- \newpage -->
 
 
+<!-- TODO ed.5 (review): raw string literals (C# 11, """..."""). Moderne opvolger van @"..." voor multiline tekst, JSON, regex. Voor de ASCII-art hieronder zelfs eleganter dan @ (geen gedoe met indentatie). Overweeg aparte subsectie. -->
+
 ### UNICODE-kunst tonen
 
 Soms zou je *multiline* UNICODE-kunst (ook wel ASCII-art genoemd) willen tonen in je C# applicatie. Dit kan je eenvoudig oplossen door gebruik te maken van het ``@`` teken voor een string.
@@ -73,7 +75,7 @@ Console.WriteLine(myname);
 ```
 
 :::{.callout-tip}
-Zowel de $-notatie (voor string interpolatie) als het @-teken kan je gecombineerd gebruiken bij een string:
+Zowel de $-notatie (voor string interpolatie) als het @-teken kan je gecombineerd gebruiken bij een string. De volgorde maakt niet uit: zowel ``$@"..."`` als ``@$"..."`` is toegelaten en doet exact hetzelfde.
 
 
 ```java

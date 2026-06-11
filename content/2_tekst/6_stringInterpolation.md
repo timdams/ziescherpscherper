@@ -82,6 +82,12 @@ Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of ze
 string zin = $"Ik ben {leeftijd*leeftijd+(3*2)} jaar.";
 ```
 
+Een voorbeeld met een methode-aanroep tussen de accolades: ``naam.Length`` geeft het aantal tekens in de string ``naam``:
+
+```java
+string groet = $"Je naam {naam} bestaat uit {naam.Length} tekens.";
+```
+
 :::{.callout-tip}
 Uiteraard mag je dit dus ook gebruiken wanneer je eenvoudigere zaken naar het scherm wenst te sturen gebruik makende van ``Console.WriteLine`` en interpolatie:
 
@@ -154,6 +160,14 @@ Geeft als uitvoer:
 012.30
 99999.30
 ```
+
+:::{.callout-warning}
+**Komma of punt? Dat hangt van je computer af.**
+
+Of je nu ``12,30`` (komma) dan wel ``12.30`` (punt) op het scherm krijgt, hangt af van de **landinstellingen** van de computer waarop je code draait. Op een Belgisch of Nederlands systeem zie je een komma, op een Engels systeem een punt. Hetzelfde geldt voor het ``:C``-formaat (geldbedrag): het muntteken en de scheidingstekens volgen de landinstellingen.
+
+Dat is meestal net wat je wilt, maar het maakt je uitvoer wel *machine-afhankelijk*. Geef je dezelfde oefening door aan een klasgenoot, dan kan zijn uitvoer er anders uitzien. Wil je gegarandeerd altijd dezelfde uitvoer (bijvoorbeeld om met een verwachte oplossing te vergelijken), dan kan je later leren werken met ``CultureInfo`` om de cultuur expliciet vast te zetten.
+:::
 
 :::{.callout-tip}
 Vanaf nu zal ik bijna altijd string interpolatie gebruiken doorheen het boek. Dit is de meest moderne aanpak en zal 99% van de tijd meer leesbare code geven.

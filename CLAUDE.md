@@ -72,6 +72,7 @@ Deploy-target: GitHub Pages van [github.com/timdams/ziescherpscherper](https://g
 - Bestanden zijn `.md` of `.qmd`; in Quarto gedragen die zich nagenoeg gelijk.
 - Callouts via Quarto-syntax (`:::{.callout-important}` etc.).
 - **Nog geen nullables (`string?`, `int?`, ...) gebruiken** in de cursustekst. Nullable reference types worden bewust pas later geïntroduceerd; schrijf in de vroege hoofdstukken gewone types (bv. `string result = Console.ReadLine();`).
+- **Terminologie: gebruik "instantievariabelen", niet "velden"** (`fields`). Dit is de term die doorheen het hele boek consistent gehanteerd wordt.
 - Hoofdstukken eindigen meestal op een `kennisclips.md` met video-embeds.
 - Coding guidelines voor studenten staan onder [content/B_appendix/boetes/](content/B_appendix/boetes/) ("boetes" = puntenaftrek).
 

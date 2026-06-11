@@ -1,6 +1,9 @@
 # Review: Tekst gebruiken in code
 
-> Interne didactische review — niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+> Interne didactische review - niet bedoeld voor publicatie. Bekijk per sectie of de feedback nog actueel is.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld (oefeningen, structurele _quarto.yml-wijziging of Future). De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -13,34 +16,34 @@
 
 ## Zwaktes
 
-- **Geen woord over raw string literals** (C# 11, `"""..."""`). Sinds 2022 is dit dé manier om multiline strings, JSON, regex, etc. mooi te schrijven. Voor multiline ASCII-art ([7_unicode.md:58-73](7_unicode.md)) is `"""..."""` zelfs eleganter dan `@"..."` (geen probleem met indentatie). Dit hoort er minstens bij vermeld te worden.
-- **Geen mention van `string.IsNullOrEmpty` of `string.IsNullOrWhiteSpace`**. Dit is dagelijkse kost zodra je `Console.ReadLine()` gebruikt, en past perfect in dit hoofdstuk.
-- [escapechars.md:45](escapechars.md): de regel `\\\\    //twee backslashes.` is verwarrend — in markdown rendering kan dit verschillend ogen dan in C# zelf. In een C# string-literal zijn `\\\\` vier karakters die voor twee `\\`-tekens staan. Klopt, maar het is uitleg over uitleg over uitleg. Eenvoudiger: laat dit weg.
-- [escapechars.md:83-90](escapechars.md) "Biep biep" met `\a` is een leuke easter egg, maar werkt **niet meer** in moderne Windows Terminal en op Linux/Mac standaard ook niet. Studenten testen dit en concluderen dat hun code stuk is. Voeg een waarschuwing toe of haal weg.
-- [6_stringInterpolation.md](6_stringInterpolation.md) sectie "Strings mooier formatteren" gebruikt `F2` met afronding en heeft een tip over afronden vs afkappen. Goed. Maar je vermeldt **culture / `CultureInfo`** nergens, terwijl `:C` (currency) al locale-afhankelijk is. Studenten met Belgische/Nederlandse settings krijgen `€ 12,34` (met komma) en op een Engels systeem `$12.34` — dat veroorzaakt verwarring bij oefeningen die op verschillende machines getest worden.
-- [6_stringInterpolation.md:131](6_stringInterpolation.md): output van `{number:0.00}` met `12.345` — hier staat in de tekst `12,30` versus `12.30`. De uitvoer hangt opnieuw af van locale. Dit wordt nergens genoemd.
-- [7_unicode.md:15](7_unicode.md): de stap `Console.OutputEncoding = System.Text.Encoding.UTF8;` wordt voorgesteld zonder uitleg waar deze precies hoort (alleen "bovenaan in je Main"). Een eerstejaars die dit op de verkeerde plek zet, krijgt verwarrende output.
+- `[c]` **Geen woord over raw string literals** (C# 11, `"""..."""`). Sinds 2022 is dit dé manier om multiline strings, JSON, regex, etc. mooi te schrijven. Voor multiline ASCII-art ([7_unicode.md:58-73](7_unicode.md)) is `"""..."""` zelfs eleganter dan `@"..."` (geen probleem met indentatie). Dit hoort er minstens bij vermeld te worden. **(TODO-comment geplaatst in 7_unicode.md; nieuwe sectie nog niet geschreven.)**
+- `[c]` **Geen mention van `string.IsNullOrEmpty` of `string.IsNullOrWhiteSpace`**. Dit is dagelijkse kost zodra je `Console.ReadLine()` gebruikt, en past perfect in dit hoofdstuk. **(TODO-comment geplaatst; afstemmen op de no-nullables-keuze van deze editie.)**
+- `[v]` [escapechars.md:45](escapechars.md): de regel `\\\\    //twee backslashes.` is verwarrend - in markdown rendering kan dit verschillend ogen dan in C# zelf. In een C# string-literal zijn `\\\\` vier karakters die voor twee `\\`-tekens staan. Klopt, maar het is uitleg over uitleg over uitleg. Eenvoudiger: laat dit weg. **(regel verwijderd.)**
+- `[v]` [escapechars.md:83-90](escapechars.md) "Biep biep" met `\a` is een leuke easter egg, maar werkt **niet meer** in moderne Windows Terminal en op Linux/Mac standaard ook niet. Studenten testen dit en concluderen dat hun code stuk is. Voeg een waarschuwing toe of haal weg. **(waarschuwing-callout toegevoegd: code is niet stuk, moderne terminals negeren \a.)**
+- `[v]` [6_stringInterpolation.md](6_stringInterpolation.md) sectie "Strings mooier formatteren" gebruikt `F2` met afronding en heeft een tip over afronden vs afkappen. Goed. Maar je vermeldt **culture / `CultureInfo`** nergens, terwijl `:C` (currency) al locale-afhankelijk is. Studenten met Belgische/Nederlandse settings krijgen `€ 12,34` (met komma) en op een Engels systeem `$12.34` - dat veroorzaakt verwarring bij oefeningen die op verschillende machines getest worden. **(waarschuwing-callout toegevoegd over machine-afhankelijke uitvoer + verwijzing naar CultureInfo voor reproduceerbaarheid.)**
+- `[v]` [6_stringInterpolation.md:131](6_stringInterpolation.md): output van `{number:0.00}` met `12.345` - hier staat in de tekst `12,30` versus `12.30`. De uitvoer hangt opnieuw af van locale. Dit wordt nergens genoemd. **(gedekt door dezelfde komma/punt-waarschuwing.)**
+- `[v]` [7_unicode.md:15](7_unicode.md): de stap `Console.OutputEncoding = System.Text.Encoding.UTF8;` wordt voorgesteld zonder uitleg waar deze precies hoort (alleen "bovenaan in je Main"). Een eerstejaars die dit op de verkeerde plek zet, krijgt verwarrende output. **(verduidelijkt: allereerste lijn in Main, vóór elke Console-uitvoer.)**
 
 ## Onduidelijkheden
 
-- [5_chars_strings.md:6-9](5_chars_strings.md) zegt "UNICODE die een 16-bit (UTF-16) voorstelling gebruikt". Dit is half waar — UTF-16 is **één** encoding van Unicode (niet de enige), en .NET gebruikt UTF-16 intern voor `string`. Maar Unicode zelf gaat tot 21 bits per codepoint (vandaar surrogate pairs voor emoji). Door dit te versimpelen krijg je later een probleem: één emoji telt als 2 chars in `string.Length`. Dit hoort minstens als voetnoot vermeld.
-- [escapechars.md:107-109](escapechars.md): "Een zin.         na een tab" — de visuele uitlijning in markdown is onbetrouwbaar. Toon dit liever in een fenced code block met spaties die exact overeenkomen, of gebruik een screenshot.
-- [6_stringInterpolation.md:85-92](6_stringInterpolation.md): "Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of zelfs andere methoden aanroepen". Maar er is geen voorbeeld met method-call. Voeg `$"De lengte is {naam.Length}"` toe.
-- [7_unicode.md:75-89](7_unicode.md): de combinatie `$@"..."` werkt, maar in C# 8+ is `@$"..."` ook toegelaten en de moderne aanbeveling is `$"""..."""` (raw interpolated). Dit is verwarrend zonder een woordje uitleg over volgorde.
-- [8_environment.md](8_environment.md) komt aan het einde van H3 maar gaat niet over tekst. Voelt als een vreemde toevoeging — waarom zit dit in dit hoofdstuk?
+- `[v]` [5_chars_strings.md:6-9](5_chars_strings.md) zegt "UNICODE die een 16-bit (UTF-16) voorstelling gebruikt". Dit is half waar - UTF-16 is **één** encoding van Unicode (niet de enige), en .NET gebruikt UTF-16 intern voor `string`. Maar Unicode zelf gaat tot 21 bits per codepoint (vandaar surrogate pairs voor emoji). Door dit te versimpelen krijg je later een probleem: één emoji telt als 2 chars in `string.Length`. Dit hoort minstens als voetnoot vermeld. **(voetnoot toegevoegd over surrogate pairs / emoji die als 2 telt in .Length; tekst aangepast naar "intern UTF-16".)**
+- `[v]` [escapechars.md:107-109](escapechars.md): "Een zin.         na een tab" - de visuele uitlijning in markdown is onbetrouwbaar. Toon dit liever in een fenced code block met spaties die exact overeenkomen, of gebruik een screenshot. **(stond al in een fenced block; taal-tag gecorrigeerd naar text zodat het als monospace uitvoer rendert.)**
+- `[v]` [6_stringInterpolation.md:85-92](6_stringInterpolation.md): "Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of zelfs andere methoden aanroepen". Maar er is geen voorbeeld met method-call. Voeg `$"De lengte is {naam.Length}"` toe. **(voorbeeld met naam.Length toegevoegd.)**
+- `[v]` [7_unicode.md:75-89](7_unicode.md): de combinatie `$@"..."` werkt, maar in C# 8+ is `@$"..."` ook toegelaten en de moderne aanbeveling is `$"""..."""` (raw interpolated). Dit is verwarrend zonder een woordje uitleg over volgorde. **(note toegevoegd: volgorde maakt niet uit; raw interpolated als TODO bij raw string literals.)**
+- `[>]` [8_environment.md](8_environment.md) komt aan het einde van H3 maar gaat niet over tekst. Voelt als een vreemde toevoeging - waarom zit dit in dit hoofdstuk? **(uitgesteld: verplaatsing vereist _quarto.yml-aanpassing; TODO-flag in 8_environment.md, beslissing aan Tim.)**
 
 ## Gemissen
 
-- **String comparison**: `==` werkt op strings in C# (anders dan Java), maar `string.Equals(a, b, StringComparison.OrdinalIgnoreCase)` is wat eerstejaars vaak nodig hebben. Geen woord over case-insensitive vergelijken.
-- **Veelgebruikte `string`-methodes**: `.ToLower()`, `.ToUpper()`, `.Trim()`, `.Replace()`, `.Contains()`, `.Length`, `.Split()`. Dit zijn dagdagelijkse taken. Op zijn minst een korte tabel of verwijzing naar later hoofdstuk.
-- **`string.Format`** wordt enkel genoemd in een terloopse callout ("zie appendix") maar niet uitgelegd. Voor legacy-code lezen is dit relevant.
-- **Geen oefening** in dit hoofdstuk waarbij studenten zelf een geformatteerde "factuur" of "tabel" moeten maken — net dit hoofdstuk leent zich daar perfect voor.
-- **Indexing**: `naam[0]` om de eerste letter te krijgen wordt nergens vermeld, terwijl het volgens [5_chars_strings.md:48](5_chars_strings.md) ("strings zijn arrays") al wordt geteased.
-- **`StringBuilder`**: niet voor eerstejaars, maar één callout waarin je vermeldt dat strings *immutable* zijn en daarom in loops met veel concatenatie traag — zou hier passen.
+- `[c]` **String comparison**: `==` werkt op strings in C# (anders dan Java), maar `string.Equals(a, b, StringComparison.OrdinalIgnoreCase)` is wat eerstejaars vaak nodig hebben. Geen woord over case-insensitive vergelijken. **(TODO-comment geplaatst.)**
+- `[c]` **Veelgebruikte `string`-methodes**: `.ToLower()`, `.ToUpper()`, `.Trim()`, `.Replace()`, `.Contains()`, `.Length`, `.Split()`. Dit zijn dagdagelijkse taken. Op zijn minst een korte tabel of verwijzing naar later hoofdstuk. **(TODO-comment geplaatst.)**
+- `[~]` **`string.Format`** wordt enkel genoemd in een terloopse callout ("zie appendix") maar niet uitgelegd. Voor legacy-code lezen is dit relevant. **(bewust zo gelaten: verwijzing naar appendix volstaat voorlopig.)**
+- `[>]` **Geen oefening** in dit hoofdstuk waarbij studenten zelf een geformatteerde "factuur" of "tabel" moeten maken - net dit hoofdstuk leent zich daar perfect voor. **(uitgesteld: oefeningen later.)**
+- `[c]` **Indexing**: `naam[0]` om de eerste letter te krijgen wordt nergens vermeld, terwijl het volgens [5_chars_strings.md:48](5_chars_strings.md) ("strings zijn arrays") al wordt geteased. **(TODO-comment geplaatst.)**
+- `[c]` **`StringBuilder`**: niet voor eerstejaars, maar één callout waarin je vermeldt dat strings *immutable* zijn en daarom in loops met veel concatenatie traag - zou hier passen. **(TODO-comment geplaatst.)**
 
 ## Concrete suggesties
 
-1. Voeg in [escapechars.md](escapechars.md) of [7_unicode.md](7_unicode.md) een aparte subsectie **Raw string literals** toe:
+1. `[c]` Voeg in [escapechars.md](escapechars.md) of [7_unicode.md](7_unicode.md) een aparte subsectie **Raw string literals** toe:
    ```java
    string json = """
        {
@@ -49,20 +52,23 @@
        }
        """;
    ```
-   Toon dat dit de moderne opvolger is van `@"..."` voor multiline, zeker handig voor JSON / SQL / regex.
-2. Verplaats [8_environment.md](8_environment.md) naar een andere plek (H1 of een appendix). Het past inhoudelijk niet bij "tekst gebruiken in code".
-3. Voeg in [6_stringInterpolation.md](6_stringInterpolation.md) een waarschuwing toe over **culture-afhankelijkheid** bij `:C` en `:N` formats. Eventueel met expliciete `CultureInfo.InvariantCulture` voor reproduceerbare oefening-output.
-4. Vervang in [escapechars.md](escapechars.md) de `\a`-sectie door een waarschuwing dat dit op moderne terminals meestal niet meer hoorbaar is.
-5. Voeg een korte tabel **veelgebruikte string-methodes** toe aan het einde van [5_chars_strings.md](5_chars_strings.md):
+   Toon dat dit de moderne opvolger is van `@"..."` voor multiline, zeker handig voor JSON / SQL / regex. **(TODO-comment geplaatst in 7_unicode.md.)**
+2. `[>]` Verplaats [8_environment.md](8_environment.md) naar een andere plek (H1 of een appendix). Het past inhoudelijk niet bij "tekst gebruiken in code". **(uitgesteld: TODO-flag in 8_environment.md; vereist _quarto.yml-aanpassing.)**
+3. `[v]` Voeg in [6_stringInterpolation.md](6_stringInterpolation.md) een waarschuwing toe over **culture-afhankelijkheid** bij `:C` en `:N` formats. Eventueel met expliciete `CultureInfo.InvariantCulture` voor reproduceerbare oefening-output. **(waarschuwing-callout toegevoegd, met verwijzing naar CultureInfo.)**
+4. `[v]` Vervang in [escapechars.md](escapechars.md) de `\a`-sectie door een waarschuwing dat dit op moderne terminals meestal niet meer hoorbaar is. **(gedaan.)**
+5. `[c]` Voeg een korte tabel **veelgebruikte string-methodes** toe aan het einde van [5_chars_strings.md](5_chars_strings.md):
    ```java
    "Hello".ToUpper()      //"HELLO"
    "  hi ".Trim()         //"hi"
    "abc".Length           //3
    "Hello".Contains("ll") //true
    ```
-6. Voeg een mini-oefening toe (3-4 regels uitvoer-voorspelling): combineer escape characters, interpolation en formatting. Bijvoorbeeld: "voorspel de output van `Console.WriteLine($"Naam:\t{naam}\nGetal:\t{3.14159:F2}");`".
+   **(TODO-comment geplaatst.)**
+6. `[>]` Voeg een mini-oefening toe (3-4 regels uitvoer-voorspelling): combineer escape characters, interpolation en formatting. Bijvoorbeeld: "voorspel de output van `Console.WriteLine($"Naam:\t{naam}\nGetal:\t{3.14159:F2}");`". **(uitgesteld: oefeningen later.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 
