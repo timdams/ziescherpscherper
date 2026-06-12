@@ -121,6 +121,42 @@ Als we het bestand in een teksteditor zouden openen dan zouden we volgende ``str
 ```
 
 :::{.callout-tip}
+**Leesbaardere JSON met ``WriteIndented``.** Standaard schrijft ``JsonSerializer`` alles op één lange regel (compact, maar lastig te lezen). Wil je nette inspringing, geef dan een ``JsonSerializerOptions``-object mee:
+
+```java
+var opties = new JsonSerializerOptions { WriteIndented = true };
+string jsonString = JsonSerializer.Serialize(student, opties);
+```
+
+De output ziet er dan netjes uitgelijnd uit:
+
+```text
+{
+  "Naam": "Barry",
+  "Leeftijd": 25,
+  "Uitgeschreven": true
+}
+```
+:::
+
+:::{.callout-tip}
+**Lijsten en geneste objecten werken vanzelf.** Je hoeft je niet te beperken tot één plat object. Een hele ``List<Student>`` serialiseer je op exact dezelfde manier; je krijgt dan een JSON-array (vierkante haken) terug:
+
+```java
+var studenten = new List<Student>
+{
+    new Student { Naam = "Barry", Leeftijd = 25, Uitgeschreven = true },
+    new Student { Naam = "Anna",  Leeftijd = 22, Uitgeschreven = false }
+};
+string jsonString = JsonSerializer.Serialize(studenten);
+```
+
+Geneste objecten (een ``Student`` die zelf een ``School``-property heeft, bijvoorbeeld) worden net zo goed mee geserialiseerd, zolang het allemaal publieke properties zijn.
+:::
+
+<!-- TODO ed.5 (review): gemissen nog toe te voegen waar nuttig: (1) System.Text.Json serialiseert enums standaard als getal, niet als naam (JsonStringEnumConverter); (2) record-types worden netjes ondersteund; (3) korte voetnoot dat BinaryFormatter deprecated is sinds .NET 5 (voor wie online oude gidsen tegenkomt); (4) encoding-narigheid (UTF-8/BOM/ANSI) bij bestanden uit Excel/legacy; (5) CSV-parsing als vooruitwijzing (dé eerstejaars-use-case). -->
+
+:::{.callout-tip}
 Je zal  in veel documentatie en online bronnen vaak zien dat men een andere namespace gebruikt om met JSON-bestanden te werken in C#. Tot recent was de ``Newtonsoft.Json`` namespace de geijkte manier. Deze bibliotheek is door een externe firma, Newtonsoft, ontwikkelt (merk op dat het volledig opensource is!) De .NET ontwikkelaars hebben echter veel tijd en moeite in *hun* ``System.Text.Json``namespace gestoken, waardoor er nu een ingebouwde .NET oplossing is. Hierdoor is het aangeraden om nu te werken met de Microsoft oplossing, deze kan quasi alles wat de Newtonsoft-oplossing kan en het zal niet lang meer duren voor het meer zal kunnen.
 :::
 

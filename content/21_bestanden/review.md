@@ -2,6 +2,9 @@
 
 > Interne didactische review — niet bedoeld voor publicatie.
 
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie is nog niet aangepakt.
+
 ## Sterktes
 
 - De *waarschuwingstoon* in [bestandenintro.md](bestandenintro.md) is uitstekend voor eerstejaars: backups maken, exception handling wordt nu echt belangrijk, je kan dingen kapot maken op je harde schijf. Dit is precies de mindset-shift die studenten nodig hebben.
@@ -13,41 +16,45 @@
 
 ## Zwaktes
 
-- In [bestandenintro.md](bestandenintro.md) regel 105-109 staat: `string fullPath = Path.Combine(directory, filename);` — maar de variabelen heten `folder` en `bestand`. Code compileert niet zoals geschreven.
-- In [bestandenintro.md](bestandenintro.md) regel 93: `Console.WriteLine($"Geen schrijfrechten!")` mist de puntkomma. Detail, maar studenten kopiëren letterlijk.
-- In [schrijvenenlezen.md](schrijvenenlezen.md) regel 15: `StreamWriter writer = new StreamWriter("doeeeeeem.txt",true):` — dubbele punt i.p.v. puntkomma. Plus: dit voorbeeld gebruikt *géén* `using`, en je toont pas 30 regels later dat dat gevaarlijk is. Volgorde voelt averechts.
-- De `using`-uitleg in [schrijvenenlezen.md](schrijvenenlezen.md) komt te laat. Studenten zien eerst een onveilige `StreamWriter writer = new StreamWriter(...)` en daarna pas dat ze het anders moeten doen. Beter: meteen vanaf het allereerste voorbeeld `using` gebruiken en de motivatie meteen geven.
-- `File.Create(desktopPath)` in [bestandenintro.md](bestandenintro.md) regel 185 retourneert een `FileStream` die niet wordt gesloten. Dat is een *nest van Disposables*. Op een lockfile-gevoelig systeem geeft dit problemen bij de volgende `File.WriteAllText`. Verdient minstens een callout.
-- In [serialize.md](serialize.md) regel 102: ``Met behulp van de ``static`` klasse **``JsonSerializer``** ...`` — de naam is `JsonSerializer`, dat is een normale `static class`-API, prima — maar de notatie "static klasse" is wel verwarrend voor wie net het verschil tussen klasse en static-leden geleerd heeft. Een mini-recap helpt.
-- `BinaryReader`-volgorde-issue (regel 219-221 in [schrijvenenlezen.md](schrijvenenlezen.md)) is goed uitgelegd, maar je voorbeeld omwisselt eigenlijk *bool* en *int*, terwijl er over "lijn 4 en 5" wordt gesproken. Rechtgetrokken nummering helpt.
+- `[v]` In [bestandenintro.md](bestandenintro.md) `Path.Combine(directory, filename)` terwijl de variabelen `folder` en `bestand` heten. **(rechtgezet naar `Path.Combine(folder, bestand)`.)**
+- `[v]` In [bestandenintro.md](bestandenintro.md) `Console.WriteLine($"Geen schrijfrechten!")` mist de puntkomma. **(puntkomma toegevoegd; overbodige `$` verwijderd.)**
+- `[v]` In [schrijvenenlezen.md](schrijvenenlezen.md) `StreamWriter ...,true):` dubbele punt. **(naar puntkomma gefixt.)**
+- `[~]` De `using`-uitleg komt te laat. **(vooruitwijzende callout toegevoegd bij het eerste blote voorbeeld; de volledige sectievolgorde omgooien is als TODO genoteerd.)**
+- `[v]` `File.Create(desktopPath)` retourneert een ongesloten `FileStream`. **(callout-warning toegevoegd in [bestandenintro.md](bestandenintro.md); het dagboek-voorbeeld in [schrijvenenlezen.md](schrijvenenlezen.md) gebruikt nu `using (FileStream fs = File.Create(...)) { }`.)**
+- `[~]` "static klasse JsonSerializer" verwarrend. **(mini-recap over static klassen toegevoegd in [fileinfo.md](fileinfo.md), waar het verschil File/FileInfo wordt besproken.)**
+- `[v]` `BinaryReader`-volgorde-issue: voorbeeld wisselt bool/int maar tekst zegt "lijn 4 en 5". **(rechtgetrokken naar "het uitlezen van de int en de bool (lijn 5 en 6)".)**
 
 ## Onduidelijkheden
 
-- Niet duidelijk *wanneer* je `File.ReadAllText` of `File.ReadAllLines` gebruikt vs. `StreamReader`. Beide bestaan, beide worden gebruikt, maar er is geen beslissingsregel. Voor grote bestanden vs. kleine bestanden: heel andere keuze.
-- In [serialize.md](serialize.md) wordt JSON gepresenteerd zonder dat de leesbaarheid van de output nooit aangepast wordt — geen vermelding van `JsonSerializerOptions { WriteIndented = true }`. Zo'n tip hoort daar.
-- Wat met geneste objecten / lijsten? Het dagboek- en student-voorbeeld is plat. Studenten gaan dit toepassen op `List<Student>` en lopen tegen weinig of geen extra voorbeelden aan.
-- In [fileinfo.md](fileinfo.md) regel 53-57: het demo-script (`CopyTo` + `MoveTo` + `Delete`) is bewust "dom", maar de `fileInfo.CopyTo` (kleine letter `f`) komt niet overeen met `info` waar het object aan toegekend werd. Compileert niet.
+- `[v]` Wanneer `File.ReadAllText`/`ReadAllLines` vs. `StreamReader`? **(sectie "`File.ReadAllText` of `StreamReader`?" met beslisregel toegevoegd.)**
+- `[v]` `JsonSerializerOptions { WriteIndented = true }` ontbreekt. **(callout toegevoegd.)**
+- `[v]` Geneste objecten / lijsten. **(callout met `List<Student>`-voorbeeld toegevoegd.)**
+- `[v]` In [fileinfo.md](fileinfo.md) `fileInfo.CopyTo` komt niet overeen met `info`. **(rechtgezet naar `info.CopyTo`/`info.MoveTo`/`info.Delete`.)**
 
 ## Gemissen
 
-- **`async`/`await` voor IO** — minstens een vooruitwijzende callout. `File.ReadAllTextAsync` is in moderne console-apps de juiste keuze; studenten gaan dit overal in `Microsoft Docs` zien.
-- **`File.ReadAllText` vs. `StreamReader`-beslisregel.** "Klein bestand → `ReadAllText`. Bestand groter dan ~enkele MB of regel-per-regel verwerken → `StreamReader`."
-- **`using`-declaration-syntax (C# 8+)**: `using StreamWriter writer = new(...);` zonder accolades. Korter, moderner, en de meeste IDE's *suggereren* dit. Studenten gaan zich afvragen waarom hun template-code er anders uitziet dan de jouwe.
-- **`File.Create` retourneert een `FileStream`** — moet ook met `using`. Nu staat er een resource-leak in het voorbeeld.
-- **Exception types specifiek**: `FileNotFoundException`, `DirectoryNotFoundException`, `IOException`, `UnauthorizedAccessException`. Eén tabel met "wanneer krijg je welke" zou helpen.
-- **`System.Text.Json` vs `Newtonsoft.Json`** — je vermeldt het verschil terecht in een callout, maar zegt niet dat *enums standaard als getal* worden geserialiseerd, of dat *records* netjes ondersteund worden. Kleine details, vaak struikelblok.
-- **`BinaryFormatter`** is *deprecated* sinds .NET 5 en wordt verwijderd. Je gebruikt het niet — top — maar overweeg een korte voetnoot voor wie online gidsen tegenkomt die het wél nog gebruiken.
-- **Encoding** (UTF-8, BOM, ANSI) wordt nergens vermeld. Als studenten een bestand uit Excel of een legacy-systeem inlezen, lopen ze hier dadelijk tegenaan.
-- **CSV-parsing** wordt niet aangeraakt. In een eerstejaarsproject is dit dé use-case. Misschien een vooruitwijzing.
+- `[v]` **`async`/`await` voor IO** vooruitwijzing. **(callout met `await File.ReadAllTextAsync` toegevoegd.)**
+- `[v]` **`ReadAllText` vs. `StreamReader`-beslisregel.** **(toegevoegd, zie Onduidelijkheden.)**
+- `[v]` **`using`-declaration-syntax (C# 8+)**. **(callout met de accolade-loze vorm toegevoegd.)**
+- `[v]` **`File.Create` resource-leak**. **(opgelost met `using`, zie Zwaktes.)**
+- `[c]` **Exception types tabel** (`FileNotFoundException`, ...). **(TODO-comment geplaatst in [bestandenintro.md](bestandenintro.md).)**
+- `[c]` **`System.Text.Json`: enums als getal, records ondersteund**. **(TODO-comment in [serialize.md](serialize.md).)**
+- `[c]` **`BinaryFormatter` deprecated** voetnoot. **(TODO-comment in [serialize.md](serialize.md).)**
+- `[c]` **Encoding** (UTF-8/BOM/ANSI). **(TODO-comment in [serialize.md](serialize.md).)**
+- `[c]` **CSV-parsing** vooruitwijzing. **(TODO-comment in [serialize.md](serialize.md).)**
 
 ## Concrete suggesties
 
-1. Trek alle code-typo's uit ([bestandenintro.md](bestandenintro.md), [schrijvenenlezen.md](schrijvenenlezen.md), [fileinfo.md](fileinfo.md)). Studenten kopiëren letterlijk.
-2. Verplaats de `using`-uitleg in [schrijvenenlezen.md](schrijvenenlezen.md) naar *het allereerste* `StreamWriter`-voorbeeld. Toon daarna pas de "blote" variant ter contrast.
-3. Voeg in [schrijvenenlezen.md](schrijvenenlezen.md) een korte sectie "`File.ReadAllText` versus `StreamReader`: wanneer welk?" toe.
-4. Voeg in [serialize.md](serialize.md) een callout toe over `JsonSerializerOptions { WriteIndented = true }` plus één voorbeeld van een lijst/genest object.
-5. Voeg achter [serialize.md](serialize.md) een afsluitende callout "Async IO bestaat ook" met één regel `await File.ReadAllTextAsync(...)`. Geen volledige uitleg — alleen vooruitwijzing.
-6. [kennisclips.md](kennisclips.md) is leeg ("Helaas, nog geen kennisclips"). Op zich oké, maar overweeg om dan minstens een externe video / Microsoft Learn-link te plaatsen zodat de student niet *helemaal* zonder visueel materiaal zit.
+1. `[v]` Trek alle code-typo's uit de drie bestanden. **(gedaan: `Path.Combine`, puntkomma's, dubbele punt, `fileInfo`->`info`, lege bullet, hoofdletter B in hex-dump.)**
+2. `[~]` Verplaats de `using`-uitleg naar het allereerste voorbeeld. **(vooruitwijzende callout toegevoegd; volledige herordening als TODO.)**
+3. `[v]` Sectie "`File.ReadAllText` versus `StreamReader`". **(toegevoegd.)**
+4. `[v]` Callout `WriteIndented` + lijst/genest voorbeeld. **(toegevoegd.)**
+5. `[v]` Afsluitende callout "Async IO bestaat ook". **(toegevoegd.)**
+6. `[>]` [kennisclips.md](kennisclips.md) is intussen niet meer leeg (bevat 3 Panopto-clips + oefeningen + Quizlet). **(geen actie nodig; review op dit punt verouderd.)**
+
+---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ---
 

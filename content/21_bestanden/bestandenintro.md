@@ -81,6 +81,8 @@ File.WriteAllText("doem.txt", "Het einde is nabij");
 File.WriteAllText(@"c:\temp\doem.txt", "Het einde is nabij");
 ```
 
+<!-- TODO ed.5 (review): gemis. Overweeg een kleine tabel "welke exception krijg je wanneer" toe te voegen: FileNotFoundException, DirectoryNotFoundException, IOException, UnauthorizedAccessException. Eén overzicht helpt studenten de juiste catch te kiezen. -->
+
 In het tweede geval is belangrijk te controleren of je wel schrijfrechten hebt voor die folder. Heb je die niet dan zal je een **``UnauthorizedAccessException``** krijgen. We gebruiken dus best exception handling wanneer we met bestanden werken.
 
 ```java
@@ -90,7 +92,7 @@ try
 }
 catch(UnauthorizedAccessException)
 {
-    Console.WriteLine($"Geen schrijfrechten!")
+    Console.WriteLine("Geen schrijfrechten!");
 }
 ```
 
@@ -104,7 +106,7 @@ Stel dat we een bestandsnaam willen samenstellen uit verschillende delen, dan ge
 ```java
 string folder = "data";
 string bestand = "dagboek.txt";
-string fullPath = Path.Combine(directory, filename);
+string fullPath = Path.Combine(folder, bestand);
 Console.WriteLine(fullPath);
 ```
 
@@ -185,3 +187,16 @@ if (!File.Exists(desktopPath))
     File.Create(desktopPath);
 }
 ```
+
+:::{.callout-warning}
+**Let op met ``File.Create``.** Deze methode geeft een ``FileStream`` terug die het bestand *open* houdt. Doe je daar niets mee (zoals hierboven), dan blijft het bestand "in gebruik" en kan een volgende bewerking (bv. ``File.WriteAllText`` op datzelfde bestand) mislukken met een ``IOException``. Wil je het bestand enkel aanmaken, sluit de stream dan meteen met een ``using``:
+
+```java
+using (FileStream fs = File.Create(desktopPath))
+{
+    //fs gaat automatisch dicht aan het einde van dit blok
+}
+```
+
+Wat ``using`` precies doet, zien we dadelijk bij het werken met ``StreamWriter`` en ``StreamReader``.
+:::

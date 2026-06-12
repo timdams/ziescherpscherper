@@ -12,13 +12,19 @@ Er is geen vaste manier om dit te doen. Alles hangt af van je specifieke problee
 Met behulp van een ``StreamWriter`` kan je data naar een bestand (of een andere *streambron*) wegschrijven. Het gebruik ervan is verrassend eenvoudig.
 
 ```java
-StreamWriter writer = new StreamWriter("doeeeeeem.txt",true):
+StreamWriter writer = new StreamWriter("doeeeeeem.txt",true);
 writer.WriteLine("Game over!");
 ```
 
 Inderdaad, net zoals je bij de ``Console``-klasse ``WriteLine`` hebt, heb je dat ook hier om tekst naar een bestand te schrijven. 
 
 Wanneer we een ``writer``-object aanmaken, geven we ook een tweede parameter  (``true``) mee. Dit geeft aan dat de tekst achter de bestaande inhoud van het bestand moet worden toegevoegd (*to append*). Indien je ``false`` meegeeft dan zal de inhoud van het bestand verwijderd worden en start je van een nieuw, leeg bestand.
+
+:::{.callout-warning}
+De ``writer`` hierboven schrijven we even "bloot" om de werking te tonen, maar **zo gebruik je het beter niet**: het bestand blijft dan open (en mogelijk *gelockt*) als er een fout optreedt. Verderop tonen we het ``using``-blok dat dit netjes oplost. Vanaf dan gebruiken we steeds ``using`` rond een ``StreamWriter`` of ``StreamReader``.
+:::
+
+<!-- TODO ed.5 (review): grotere herstructurering. De review stelt voor om using meteen vanaf het allereerste StreamWriter-voorbeeld te tonen en pas daarna de "blote" variant ter contrast. Nu staat het andersom. Hier voorlopig opgelost met een vooruitwijzende callout i.p.v. de hele sectievolgorde om te gooien. -->
 
 #### StreamReader
 
@@ -74,6 +80,36 @@ Wanneer de accolades van lijn 5 worden bereikt, zal het object dat in lijn1 werd
 
 [^dispose]: De Dispose methode wordt aangeroepen om bestanden, folders of andere *resources* expliciet vrij te geven wanneer ze niet langer nodig zijn. Dit voorkomt geheugenlekken en verhoogt de efficiëntie van de toepassing. De methode zit ingebakken in veel klassen die werken met zaken zoals bestanden, netwerkverbindingen, etc. Al deze klassen implementeren de  ``IDisposable`` interface en hebben daarom de ``Dispose`` methode.
 
+:::{.callout-tip}
+**De kortere ``using``-declaratie (modernere C#).** Sinds C# 8 mag je het ``using``-blok ook zonder accolades schrijven. Het object wordt dan netjes opgeruimd aan het einde van het *omliggende* blok (bv. de methode):
+
+```java
+using StreamWriter writer = new StreamWriter("doem.txt");
+writer.WriteLine("Het einde is nabij!");
+writer.WriteLine("Hou vol!");
+//writer gaat automatisch dicht aan het einde van de methode
+```
+
+Beide vormen zijn correct. Visual Studio stelt deze kortere vorm vaak voor; verbaas je dus niet als je template-code er iets anders uitziet.
+:::
+
+### ``File.ReadAllText`` of ``StreamReader``?
+
+Er bestaat ook een nóg eenvoudigere manier om een bestand uit te lezen: de ``File``-klasse heeft kant-en-klare methoden zoals ``File.ReadAllText`` (het hele bestand als één ``string``) en ``File.ReadAllLines`` (een ``string[]`` met alle regels). Je hoeft dan geen ``StreamReader`` en geen lus te schrijven:
+
+```java
+string alles = File.ReadAllText("dagboek.txt");
+string[] regels = File.ReadAllLines("dagboek.txt");
+```
+
+Wanneer kies je nu wat?
+
+* **Klein bestand, in één keer inlezen** (configuratie, een dagboekje, ...): ``File.ReadAllText`` of ``File.ReadAllLines``. Kort en leesbaar.
+* **Groot bestand (vele MB's) of regel-per-regel verwerken**: ``StreamReader`` met de ``while``-lus. Je houdt dan nooit het hele bestand tegelijk in het geheugen, maar leest het stuk per stuk.
+
+:::{.callout-tip}
+**Async IO bestaat ook.** In echte programma's (zeker met grotere bestanden of netwerk) wil je het programma niet laten "bevriezen" terwijl het wacht op de schijf. Daarvoor bestaan asynchrone varianten zoals ``await File.ReadAllTextAsync("dagboek.txt")``. Hoe ``async``/``await`` precies werkt zien we hier nog niet, maar je zal deze vorm overal in de Microsoft-documentatie tegenkomen.
+:::
 
 ###  Uitgewerkt voorbeeld
 
@@ -83,7 +119,8 @@ Dankzij ``StreamReader`` en ``StreamWriter`` hebben we nu reeds een goede greep 
 string dagboekPath = "dagboek.txt";
 if (!File.Exists(dagboekPath))
 {
-    File.Create(dagboekPath);
+    //File.Create geeft een open FileStream terug: meteen sluiten met using
+    using (FileStream fs = File.Create(dagboekPath)) { }
 }
 
 // dagboek tonen
@@ -184,8 +221,8 @@ In dit voorbeeld zou de bestandsgrootte als volgt worden berekend:
 * De integer beslaat 4 bytes.
 * De ``boolean``  beslaat 1 byte.
 * De ``double``  beslaat 8 bytes.
-* De ``char``  beslaat 1 bytes.
-* 
+* De ``char``  beslaat 1 byte.
+
 De totale bestandsgrootte zal daarom 21 bytes zijn.
 
 ### BinaryReader
@@ -217,7 +254,7 @@ Merk op dat we deze keer de modus ``FileMode.Open`` hanteren bij het openen van 
 
 Test gerust eens wat er zou gebeuren als je een van de ``Read``-methode van volgorde zou veranderen. Meestal zal je een uitzondering krijgen omdat de methoden de in te lezen bytes niet begrijpen en kunnen omzetten naar het verwachte datatype.
 
-Als we in het voorgaande voorbeeld lijn 4 en 5 zouden omwisselen dan crasht onze applicatie met een ``EndOfStreamException``.
+Als we in het voorgaande voorbeeld het uitlezen van de ``int`` en de ``bool`` (lijn 5 en 6) zouden omwisselen dan crasht onze applicatie met een ``EndOfStreamException``.
 :::
 
 <!-- \newpage -->
@@ -245,7 +282,7 @@ Dit geeft volgende output:
 ```
 
 :::{.callout-tip}
-De eerste byte (``04``) geeft de lengte van de string aan die volgt, 4 dus. De volgende 4 bytes, ``42 6F 6E 64`` zijn de Unicode waarden voor de letters "b, o, n , d".
+De eerste byte (``04``) geeft de lengte van de string aan die volgt, 4 dus. De volgende 4 bytes, ``42 6F 6E 64`` zijn de UTF-8 waarden voor de letters "B, o, n, d".
 Vervolgens hebben we 4 byes om het getal 7 voor te stellen (``07 00 00 00``). Finaal hebben we nog de byte-waarde ``01`` die de ``bool`` op ``true`` voorstelt.
 :::
 

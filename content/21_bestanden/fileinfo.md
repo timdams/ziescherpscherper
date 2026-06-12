@@ -51,13 +51,13 @@ Van zodra je een ``FileInfo``-object hebt, krijg je beschikking over tal van han
 FileInfo info = new FileInfo("bondData.dat");
 if(info.Exists)
 {
-    fileInfo.CopyTo("supermanData.dat");
-    fileInfo.MoveTo("bond2Data.dat");
-    fileInfo.Delete();
+    info.CopyTo("supermanData.dat");
+    info.MoveTo("bond2Data.dat");
+    info.Delete();
 }
 ```
 
-Als we deze code uitvoeren zullen er 3 zaken gebeuren, op voorwaarde dat het bestand ``bondData.dat`` beschikbaar:
+Als we deze code uitvoeren zullen er 3 zaken gebeuren, op voorwaarde dat het bestand ``bondData.dat`` beschikbaar is:
 
 * Lijn 4: Een tweede bestand ``supermanData.dat`` wordt aangemaakt en zal dezelfde informatie als het originele bestand bevatten.
 * Lijn 5: Het bestand ``bondData.dat`` wordt hernoemd naar ``bond2Data.dat``.
@@ -70,7 +70,11 @@ Als we deze code uitvoeren zullen er 3 zaken gebeuren, op voorwaarde dat het bes
 
 De ``System.IO`` namespace is een nogal verwarrende klasse. Je kan dezelfde zaken op verschillende manieren doen. Er zijn verschillende Readers en Writers. Soms gebruik je static-methoden, soms object-methoden. Wat is het nu? Lig er niet te hard van wakker! Je bent nog maar aan het prille begin van je C# carrière en zal de komende jaren zeker beter aanvoelen wanneer je welke oplossingsstrategie moet toepassen.
 
-Toch willen we kort toelichten wat het verschil is tussen ``File`` en ``FileInfo``. Je hebt gezien dat ik ze beide doorheen dit hoofdstuk door elkaar gebruikte. Beide klassen hebben veel gelijkaardige functionaliteiten, maar de ``File``-klasse is een **``static klasse``**. Terwijl ``FileInfo`` dat niet is. 
+Toch willen we kort toelichten wat het verschil is tussen ``File`` en ``FileInfo``. Je hebt gezien dat ik ze beide doorheen dit hoofdstuk door elkaar gebruikte. Beide klassen hebben veel gelijkaardige functionaliteiten, maar de ``File``-klasse is een **static klasse**. Terwijl ``FileInfo`` dat niet is. 
+
+:::{.callout-tip}
+**Even opfrissen.** Een *static klasse* is een klasse waarvan je geen object hoeft (en kan) aan te maken: je roept de methoden rechtstreeks aan op de klassenaam, zoals ``File.Exists(...)`` of ``Console.WriteLine(...)``. Een gewone klasse zoals ``FileInfo`` instantieer je wél eerst met ``new`` voor je ze gebruikt.
+:::
 
 De ``File`` vereist dus niet dat je telkens een object aanmaakt wanneer je snel iets met een bestand wenst te doen. Bij ``FileInfo`` doen we dit uiteraard wel, waarbij we het path naar het te gebruiken bestand meegeven. 
 
