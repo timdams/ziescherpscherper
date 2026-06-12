@@ -5,6 +5,10 @@ De bestaande .NET klassen gebruiken vaak interfaces om bepaalde zaken uit te voe
 Een typisch voorbeeld is het gebruik van de ``Array.Sort`` methode. Hier wordt het echte nut van interfaces erg duidelijk: de ontwikkelaars van .NET kunnen niet voorspellen hoe andere ontwikkelaars hun bibliotheken gaan gebruiken. Via interfaces geven ze als het ware krijtlijnen en vanaf dan moeten de ontwikkelaars zelf maar bepalen hoe hun nieuwe klassen zullen samenwerken met die van .NET.
 
 
+<!-- TODO ed.5 (review): overweeg de niet-generieke IComparable te vervangen door IComparable<Land>. Dat schrapt de hele 'obj as Land'-cast-discussie en is wat IDE's vandaag suggereren. -->
+<!-- TODO ed.5 (review): IEnumerable wordt hierboven genoemd maar nooit uitgewerkt; dit is dé brug naar foreach/LINQ. Overweeg een mini-uitwerking. -->
+<!-- TODO ed.5 (review): IDisposable + using-statement kort vermelden als vooruitwijzing naar H18 (StreamWriter). -->
+
 ### Sorteren met Array.Sort en de IComparable interface
 
 Een veelgebruikte .NET interface is de ``IComparable`` interface. Deze wordt gebruikt indien .NET bijvoorbeeld een array van objecten wil sorteren. Bij wijze van demonstratie zal ik demonstreren waarom deze interface erg nuttig kan zijn. 
@@ -119,10 +123,10 @@ public int CompareTo(object obj)
         if(Oppervlakte < temp.Oppervlakte) return -1;
         if(this.Inwoners > temp.Inwoners) return 1;
         if(this.Inwoners < temp.Inwoners) return -1;
+        return 0; //gelijke oppervlakte én inwoners
     }
     else
         throw new ArgumentException("Object is not a Land"); 
-    
 }
 ```
 
@@ -153,10 +157,11 @@ Zo simpel!
 
 **Merk op dat we hier de lijst zelf sorteren. Er wordt dus geen nieuwe lijst teruggegeven zoals bij ``Array.Sort()`` het geval is.**
 
-Indien je toch liever ``Array.Sort`` gebruikt dan kunnen we een andere, handige, ingebouwde ``List``-methode gebruiken, namelijk ``ToArray()``, als volgt:
+Indien je toch liever ``Array.Sort`` gebruikt dan kunnen we een andere, handige, ingebouwde ``List``-methode gebruiken, namelijk ``ToArray()``. Let wel op: ``Array.Sort`` geeft niets terug (``void``), maar sorteert de meegegeven array *ter plaatse*. Je mag het resultaat dus niet toewijzen:
 
 ```java
-landLijst = Array.Sort(landLijst.ToArray());
+Land[] landArray = landLijst.ToArray();
+Array.Sort(landArray); //sorteert landArray zelf
 ```
 
 

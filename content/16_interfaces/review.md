@@ -1,6 +1,9 @@
 # Review: H17 Interfaces
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -13,40 +16,42 @@
 
 ## Zwaktes
 
-- De voorbeelden zijn quasi allemaal *fictief* (Zorro, DarthVader, Superhelden, Transformers). Voor het *waarom* werkt dat, maar voor *waar je dit in echte code zal tegenkomen* mis je een brug. `IComparable` in [2_InterfacesInPraktijk.md](2_InterfacesInPraktijk.md) is de enige echte case.
-- Code-bug in [2_InterfacesInPraktijk.md](2_InterfacesInPraktijk.md) regel 122-126: tweede `CompareTo`-versie heeft geen `return 0`/return-pad bij gelijkheid en de `else throw` zit op het verkeerde niveau. Compileert niet zoals het er staat.
-- Code-bug in [presidentinterfaces.md](presidentinterfaces.md) regel 57: `AlleMinisters.Add(new Ceo);` mist haakjes — moet `new Ceo()` zijn. Studenten gaan dat letterlijk overtypen.
-- De stuk-zin "*Stel dat we deze  interface kunnen we gebruiken in een spel vechtspel*" in [1_Interface_intro.MD](1_Interface_intro.MD) regel 36 leest niet vlot.
-- De inleidende paragraaf "Interfaces in de echte wereld" duurt erg lang (auto, USB, HDMI, audio…) voor je bij de C#-definitie komt. Voor herhalers / snelle lezers is dat veel ruis.
-- "Een interface mag géén code bevatten" wordt eerst stellig beweerd (regel 77) en daarna meteen ontkracht (regel 84). Voor een beginner is "regel die toch niet helemaal klopt" verwarrend; overweeg de regel direct te nuanceren in plaats van eerst-stellen-dan-corrigeren.
+- `[~]` De voorbeelden zijn quasi allemaal *fictief*. **(`IComparable` blijft de echte case; een extra echt-wereld-voorbeeld (bv. IDisposable) staat als TODO. Bewust niet alle fictie vervangen.)**
+- `[v]` Code-bug in `CompareTo` (geen `return 0` bij gelijkheid). **(``return 0;`` toegevoegd; nu compileert het.)**
+- `[v]` Code-bug `AlleMinisters.Add(new Ceo);` mist haakjes. **(gefixt naar `new Ceo()`.)**
+- `[v]` De stuk-zin "Stel dat we deze interface kunnen we gebruiken in een spel vechtspel". **(herschreven.)**
+- `[~]` De inleidende "Interfaces in de echte wereld" duurt lang. **(stilistisch; bewust gelaten, inkorten aan Tim.)**
+- `[v]` "Een interface mag géén code bevatten" wordt eerst stellig, dan ontkracht. **(de regel is nu direct genuanceerd: "in de regel géén code, één uitzondering sinds C# 8".)**
 
 ## Onduidelijkheden
 
-- De `is`-sectie aan het einde van [1_Interface_intro.MD](1_Interface_intro.MD) (regel 181+) overlapt met `18_IsAs/2_Polymorfisme_Interfaces.md`. De student leest in dit hoofdstuk al een mini-versie van wat dadelijk een eigen subhoofdstuk wordt. Of de mini-versie weghalen, of expliciet vooruitwijzen.
-- "Interface kan ook overerven van een interface" (regel 244-250) komt zonder gebruikssituatie. Waarom zou je dat doen? Een mini-voorbeeld waarom `IGod : ISuperHeld` zinvol is, zou helpen.
-- De UML-tekening (regel 136) gebruikt `WerkStudent` en `Student` door elkaar — onduidelijk welke nu de interface implementeert.
-- De tip rond `landLijst = Array.Sort(landLijst.ToArray());` in [2_InterfacesInPraktijk.md](2_InterfacesInPraktijk.md) regel 159 klopt niet: `Array.Sort` geeft `void` terug. Dit gaat niet compileren.
+- `[v]` De mini-`is`-sectie overlapt met 18_IsAs. **(expliciete vooruitwijzing toegevoegd dat is/as volledig in H18 komt; mini-versie behouden als kennismaking.)**
+- `[v]` "Interface erft van interface" zonder gebruikssituatie. **(mini-reden + voorbeeld toegevoegd: `IGod : ISuperHeld` met een extra methode.)**
+- `[c]` UML-tekening gebruikt `WerkStudent`/`Student` door elkaar. **(TODO-comment geplaatst; figuur aanpassen is aan Tim.)**
+- `[v]` De `landLijst = Array.Sort(...)`-tip klopt niet (`Array.Sort` is `void`). **(herschreven: array apart sorteren, met expliciete uitleg dat Array.Sort niets teruggeeft.)**
 
 ## Gemissen
 
-- **Vergelijking interface vs. abstracte klasse** ontbreekt volledig. Studenten komen net uit hoofdstuk Polymorfisme/Abstracte klassen en zullen *exact deze* vraag stellen. Een matrix (instantievariabelen, constructors, multiple, code-implementatie, "is-een" vs "kan-iets") is hier essentieel.
-- **`IDisposable`** wordt later in H18 toch nodig (`using`-statement bij `StreamWriter`). Hier missen we de bridge — een mini-voorbeeld of vooruitwijzing zou helpen.
-- **`IEquatable<T>`** als typed alternatief op `Equals(object)` — past mooi bij `18_IsAs/6_equals.md`.
-- **`IEnumerable`** wordt vermeld in regel 3 van [2_InterfacesInPraktijk.md](2_InterfacesInPraktijk.md), maar nooit uitgewerkt. Dit is dé brug naar LINQ en `foreach` — een gemiste kans.
-- **Dependency injection / "program against interfaces, not implementations"** als motivatie. SOLID wordt aangeraakt in een callout (regel 256+) maar oppervlakkig.
-- **Expliciete vs. impliciete implementatie** (`void IFoo.Bar() {}` vs `public void Bar()`) — relevant zodra een klasse twee interfaces heeft met dezelfde methodenaam.
-- **Generic interfaces** (`IComparable<T>` i.p.v. de niet-generic versie). De gegeven `CompareTo(object obj)` met cast is de oude API; de generic versie is moderner én vermijdt de cast.
+- `[v]` **Vergelijking interface vs. abstracte klasse** ontbrak. **(callout met vergelijkingstabel toegevoegd, incl. vuistregel.)**
+- `[c]` **`IDisposable`** bridge naar H18. **(TODO-comment geplaatst.)**
+- `[c]` **`IEquatable<T>`** als typed alternatief. **(TODO-comment geplaatst.)**
+- `[c]` **`IEnumerable`** vermeld maar niet uitgewerkt. **(TODO-comment geplaatst.)**
+- `[c]` **Dependency injection / SOLID** oppervlakkig. **(TODO-comment geplaatst.)**
+- `[c]` **Expliciete vs. impliciete implementatie**. **(TODO-comment geplaatst.)**
+- `[c]` **Generic interfaces** (`IComparable<T>`). **(TODO-comment geplaatst om de niet-generieke versie te vervangen; de huidige (gefixte) versie blijft voorlopig.)**
 
 ## Concrete suggesties
 
-1. Vervang de niet-generic `IComparable` in [2_InterfacesInPraktijk.md](2_InterfacesInPraktijk.md) door `IComparable<Land>`. Dat schrapt meteen de hele cast-discussie en is wat IDE's nu suggereren.
-2. Voeg na [1_Interface_intro.MD](1_Interface_intro.MD) een korte paragraaf "Interface vs. abstracte klasse" toe met een tabel.
-3. Fix de drie code-bugs (`new Ceo()`, ontbrekende `return 0`, `Array.Sort`-returnvalue).
-4. Schrap de mini-`is`-sectie aan het einde van [1_Interface_intro.MD](1_Interface_intro.MD); de volledige behandeling staat in `18_IsAs/2_Polymorfisme_Interfaces.md`.
-5. Toon één concrete .NET-interface die de student de komende weken zelf gaat gebruiken (`IDisposable` + `using`, vooruitwijzend naar H18).
-6. Vervang de UML-tekening met `WerkStudent` door een schema dat consistent is met de tekst eronder.
+1. `[c]` Vervang niet-generic `IComparable` door `IComparable<Land>`. **(TODO-comment geplaatst.)**
+2. `[v]` Paragraaf "Interface vs. abstracte klasse" met tabel. **(toegevoegd.)**
+3. `[v]` Fix de drie code-bugs (`new Ceo()`, `return 0`, `Array.Sort`). **(alle gedaan.)**
+4. `[~]` Schrap de mini-`is`-sectie. **(behouden als kennismaking, met expliciete vooruitwijzing naar H18 i.p.v. schrappen.)**
+5. `[c]` Toon `IDisposable` + `using` als vooruitwijzing naar H18. **(TODO-comment geplaatst.)**
+6. `[c]` UML-tekening consistent maken. **(TODO-comment geplaatst.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

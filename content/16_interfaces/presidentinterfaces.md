@@ -54,7 +54,7 @@ internal class MisterEersteMinister
     public void Regeer()
     {
         List<IMinister> AlleMinisters = new List<IMinister>();
-        AlleMinisters.Add(new Ceo); 
+        AlleMinisters.Add(new Ceo()); 
         foreach (IMinister minister in AlleMinisters)
         {
             minister.Adviseer();

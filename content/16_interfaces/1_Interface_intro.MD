@@ -33,7 +33,7 @@ Een interface is niet meer dan een belofte: het zegt enkel welke publieke method
 Een interface is dus eigenlijk als het ware een klein stukje papier waar je op zet "om aan deze interface te voldoen moet je zeker volgende methoden en properties hebben". Kortom, een interface-bestand meestal een vrij klein bestand. Het is letterlijk de "Dit apparaat is USB 3.0 compatibel"-sticker.
 
 
-Stel dat we deze  interface kunnen we gebruiken in een spel vechtspel tussen karakters, waarin sommige van de klassen ook aan de Superhelden-interface moeten voldoen. Volgende code toont hoe we een interface definiëren in C#:
+Stel dat we zo'n interface willen gebruiken in een vechtspel tussen karakters, waarin sommige klassen ook aan de Superhelden-interface moeten voldoen. Volgende code toont hoe we een interface definiëren in C#:
 
 ```java
 interface ISuperHeld
@@ -74,7 +74,7 @@ Interfaces zijn als het ware standaarden waaraan een klasse moet voldoen, wil he
 * Je kan geen access modifiers specificeren: alles is ``public``[^intnieuw].
 * Je kan nieuwe types (bv. ``enum``) in een interface declareren.
 * Een interface kan niet overerven van een klasse, wel van één of meerdere interfaces.
-* Een interface mag géén code bevatten.
+* Een interface bevat in de regel géén code: enkel de signaturen van methoden en properties (er bestaat één uitzondering sinds C# 8, zie de tip hieronder).
 
 
 [^intnieuw]: In recentere versies van C# (sinds 8.0) is het nu wel toegestaan om ``public`` voor een methode of property te plaatsen. Dit verbeterd de leesbaarheid (daar we gewoon zijn dat het weglaten van een *access modifier* eigenlijk ``private`` betekent, wat bij interfaces dus niet zo is). 
@@ -86,6 +86,20 @@ De laatste regel, *"een interface mag géén code bevatten"*, is deels onwaar. S
 
 <!-- \newpage -->
 
+
+:::{.callout-tip}
+**Interface of abstracte klasse?** Allebei laten ze je toe om af te dwingen dat klassen bepaalde methoden/properties hebben. Wanneer kies je wat?
+
+| | Abstracte klasse | Interface |
+| --- | --- | --- |
+| Gedeelde **code** (methode-body's) | ja | nee (enkel signaturen) |
+| **Instantievariabelen** / state | ja | nee |
+| **Constructors** | ja | nee |
+| Hoeveel kan je er **combineren**? | maar 1 (single inheritance) | meerdere tegelijk |
+| Relatie | "**is een**" | "**kan iets**" / "gedraagt zich als" |
+
+Vuistregel: gaat het om gedeelde code en een echte "is een"-relatie, kies een abstracte klasse. Wil je enkel afdwingen dat verschillende, ongerelateerde klassen "iets kunnen" (bv. ``IVliegt`` voor zowel een ``Vogel`` als een ``Vliegtuig``), kies een interface.
+:::
 
 ## Interfaces en klassen
 
@@ -127,6 +141,8 @@ internal class DarthVader: StarWarsCharacter, IForceUser, IPilot
 
 
 ### Interfaces in UML
+
+<!-- TODO ed.5 (review): de UML-tekening hieronder gebruikt WerkStudent en Student door elkaar; maak de figuur consistent met de tekst (welke klasse implementeert nu de interface?). -->
 
 Een "lolly" op een klasse geeft aan dat deze een bepaalde interface heeft in UML notatie. In volgende tekening hebben we een klasse ``WerkStudent`` en een interface ``IVerkortTraject``. 
 
@@ -180,7 +196,7 @@ Merk op dat VS de nieuwere EBM syntax hier hanteert bij properties. Meer informa
 
 ## Het ``is`` keyword met interfaces
 
-We kunnen ``is`` gebruiken om te weten of een klasse een specifieke interface heeft. Dit laat ons toe om code te schrijven die weer een beetje meer polyvalent wordt. 
+We kunnen ``is`` gebruiken om te weten of een klasse een specifieke interface heeft. Dit laat ons toe om code te schrijven die weer een beetje meer polyvalent wordt. We tonen hier enkel het idee; de ``is``- en ``as``-operatoren komen volledig aan bod in hoofdstuk 18.
 
 Stel dat we volgende klassen hebben waarbij de ``Boek`` klasse de ``IVerwijderbaar`` interface implementeert:
 
@@ -241,12 +257,14 @@ Merk op dat de volgorde belangrijk is: eerst plaats je de klasse waarvan wordt o
 :::
 
 
-Ook mogen interfaces van elkaar overerven:
+Ook mogen interfaces van elkaar overerven. Dat doe je wanneer een nieuwe interface álles van een bestaande interface moet kunnen, plus nog wat extra. Een ``IGod`` is bijvoorbeeld een soort uitgebreide ``ISuperHeld``: wie ``IGod`` implementeert moet sowieso ook alle methoden van ``ISuperHeld`` voorzien, plus de extra dingen die ``IGod`` toevoegt.
 
 
 ```java
-interface IGod:ISuperHeld
-{ }
+interface IGod : ISuperHeld
+{
+    void MaakRegen(); //extra bovenop alles wat een ISuperHeld al moet kunnen
+}
 ```
 
 
@@ -264,7 +282,11 @@ And if not, niet erg.
 Samengevat zegt SOLID dat we een bepaalde hoeveelheid abstractie inbouwen enerzijds (zodat we niet de gore details van klassen moeten kennen om er mee te programmeren) anderzijds dat er een zogenaamde 'separation of concerns' (SoC) moet zijn (ieder deel/klasse/module van je code heeft een specifieke opdracht). 
 
 
-Met interfaces kunnen we volgens de SOLID principes programmeren: het boeit ons niet meer wat er in de klasse zit, we kunnen gewoon aan de interfaces van een klasse zien wat hij kan doen. Handig toch! 
+Met interfaces kunnen we volgens de SOLID principes programmeren: het boeit ons niet meer wat er in de klasse zit, we kunnen gewoon aan de interfaces van een klasse zien wat hij kan doen. Handig toch!
+
+<!-- TODO ed.5 (review): SOLID / "program against interfaces, not implementations" (dependency injection) iets concreter maken; nu blijft het oppervlakkig. -->
+<!-- TODO ed.5 (review): expliciete vs. impliciete interface-implementatie (void IFoo.Bar() vs public void Bar()) vermelden, relevant zodra een klasse twee interfaces met dezelfde methodenaam heeft. -->
+<!-- TODO ed.5 (review): IEquatable<T> als typed alternatief op Equals(object) vermelden (sluit aan bij 18_IsAs/6_equals.md). --> 
 
 :::
 
