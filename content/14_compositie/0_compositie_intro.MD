@@ -12,7 +12,7 @@ Ze beschrijven de relatie tussen 2 objecten. Denk bijvoorbeeld aan een object va
 * **Compositie**: Het interne object heeft geen bestaansreden zonder het omliggende object. Denk bijvoorbeeld aan een kamer in een huis. Als het huis verdwijnt, verdwijnt ook de kamer.
 * **Aggregatie**: Beide objecten kunnen onafhankelijk van elkaar bestaan. Denk hierbij aan de motor in een auto. Wanneer de auto vernietigd wordt kan de motor gered worden en elders gebruikt worden. Een ander voorbeeld zijn de harde schijven in een computer.
 
-Het lijdende voorwerp zal steeds het object zijn dat binnen het onderwerp zal geplaatst worden (*motor* in auto, *schijf* in computer).
+Het "innerlijke" object is steeds het object dat binnen het omliggende object geplaatst wordt (*motor* in auto, *schijf* in computer).
 
 
 ## Heeft een-relatie
@@ -25,6 +25,9 @@ Je hoort ook ogenblikkelijk of het om een "heeft één" of "heeft meerdere"-rela
 Een klassieke fout is overerving gebruiken wanneer je bijvoorbeeld de relatie tussen een boek en z'n pagina's wilt aanduiden. Een boek is géén pagina, ook niet omgekeerd. Er is dus geen sprake van overerving. Een boek HEEFT een pagina (of meerdere). Er is dus sprake van een associatie, namelijk aggregatie (je kan pagina's uit een boek scheuren en deze nog steeds doorgeven aan iemand anders).
 :::
 
+
+<!-- TODO ed.5 (review): overweeg één UML-figuur die volle ruit (compositie) en lege ruit (aggregatie) naast elkaar toont met onderschrift, i.p.v. twee aparte plaatjes. -->
+<!-- TODO ed.5 (review): nullable reference types (HardeSchijf?) als voetnoot bij de null-discussie; bewust nog uitgesteld (zie CLAUDE.md). -->
 
 ### Associaties beschrijven
 
@@ -58,7 +61,7 @@ Herinner je: overerving duiden we aan met een pijl die wijst naar de parent-klas
 
 ### Associatie in de praktijk
 
-Het verschil tussen aggregatie en compositie is vooral van filosofische aard. In de praktijk zijn er weinig verschillen. 
+Het verschil tussen aggregatie en compositie zit vooral in de **levensduur** van het innerlijke object: bij compositie sterft het mee met het omliggende object, bij aggregatie kan het op zichzelf blijven bestaan. In code lijken beide vaak sterk op elkaar, maar dat onderscheid bepaalt wel hoe je je klasse opbouwt (zoals je hieronder zal zien). 
 
 Eens kijken naar het voorbeeld van de computer en de harde schijf. We hebben twee klassen:
 
@@ -72,6 +75,8 @@ internal class HardeSchijf
 ```
 
 Een *PC heeft een HardeSchijf*, dit wil zeggen dat we in de klasse ``PC`` een object (instantievariabele) van het type ``HardeSchijf`` zullen definiëren:
+
+<!-- TODO ed.5 (review): de prefix 'c' in cHardeSchijf is een eigen notatie die nergens wordt uitgelegd. Overweeg ze te documenteren of te laten vallen (gewoon 'hardeSchijf'), consistent met de naamgevingskeuze elders. -->
 
 ```java
 internal class PC
@@ -117,14 +122,14 @@ internal class PC
         if(preinstallHD) 
             cHardeSchijf = new HardeSchijf();
         else 
-            cHardeSchijf == null; 
+            cHardeSchijf = null; 
     } 
 }
 ```
 
 
 
->![](../assets/attention.png)De lijn ``cHardeSchijf == null`` is niet noodzakelijk, daar ``cHardeSchijf`` sowieso ``null`` zal zijn indien we niet in de ``if`` gaan. 
+>![](../assets/attention.png)De lijn ``cHardeSchijf = null`` is niet noodzakelijk, daar ``cHardeSchijf`` sowieso ``null`` zal zijn indien we niet in de ``if`` gaan. 
 >
 >Ik raad je toch aan dit altijd expliciet te doen. Hiermee zeg je nadrukkelijk: *"als we via de overloaded constructor een PC aanmaken en er is geen preinstallatie vereist dan zit er geen harde schijf in de pc"*. Het kan namelijk gebeuren dat voor we aan deze code komen er ondertussen iets voor heeft gezorgd dat ``cHardeSchijf`` alsnog een objectreferentie bevat. Door deze nu expliciet op ``null`` te zetten verwijderen we zeker de harde schijf als die er toch nog had ingezeten.
 >
@@ -153,7 +158,7 @@ internal class PC
 Vervolgens kunnen we nu van buiten het object benaderen en er, als het ware, een nieuwe harde schijf in steken:
 
 ```java
-HardeSchijf mijnHardeSchijf = new HardeSchijf() 
+HardeSchijf mijnHardeSchijf = new HardeSchijf();
 PC mijnPC = new PC();
 mijnPC.CHardeSchijf = mijnHardeSchijf ;
 ```
@@ -162,7 +167,7 @@ Op deze manier hebben we nog steeds een referentie naar ``mijnHardeSchijf`` en z
 
 
 :::{.callout-tip}
-Kortom, nog steeds niets nieuws onder de zon. Alle manieren die ja al kende om met bestaande types objecten aan te maken gelden nog steeds. Compositie deed je al de hele tijd wanneer je bijvoorbeeld zei "een student heeft een geboortejaar" en dan een instantievariabele ``int geboortejaar`` aanmaakte. Het grote verschil is echter dat objecten moeten geïnstantieerd worden, wat niet moest met value-types en je dus iets vaker op ``null`` zal moeten controleren.
+Kortom, nog steeds niets nieuws onder de zon. Alle manieren die je al kende om objecten aan te maken gelden nog steeds. Associatie deed je eigenlijk al de hele tijd wanneer je een object van een *eigen klasse* (een reference type) als instantievariabele in een andere klasse gebruikte, bijvoorbeeld "een PC heeft een HardeSchijf". Het grote verschil met value-types (zoals ``int geboortejaar``) is dat objecten eerst geïnstantieerd moeten worden, en je dus iets vaker op ``null`` zal moeten controleren.
 :::
 
 
@@ -225,7 +230,7 @@ public override string ToString()
         result += $"Capaciteit HD: {cHardeSchijf.MaxCapacity} Gb";
     else
         result += "Er is geen harde schijf aanwezig";
-    return result:
+    return result;
 }
 ```
 
@@ -284,7 +289,7 @@ internal class Boek
 Dit heeft als voordeel dat we de ``Insert`` methode van de ``List``-klasse kunnen gebruiken en niet zelf nog moeten schrijven:
 
 ```java
-zieScherper.AllePaginas.Insert(new Pagina(), 5);   
+zieScherper.AllePaginas.Insert(5, new Pagina());   
 ```
 
 Dit voorbeeld met ``List`` is vanuit OOP-standpunt **geen goede oplossing**. Het vereist namelijk dat programmeurs die jouw klasse ``Boek`` gebruiken, weten dat intern met een ``List`` wordt gewerkt. 
@@ -298,7 +303,7 @@ internal class Boek
     
     public void InsertPagina(Pagina paginaIn, int positie)
     {
-        allPaginas.Insert(paginaIn, positie)
+        AllePaginas.Insert(positie, paginaIn);
     }
 }
 ```
@@ -316,7 +321,7 @@ Begrijp je nu waarom het  geen goed idee is om een interne lijst gewoonweg via e
 
 ## Associatie of overerving?
 
-Ik vertelde in het begin van dit hoofdstuk dat compositie en aggregatie een "heeft een"-relatie aanduiden, terwijl overerving een "is een"-relatie behelst. In de praktijk zal je véél vaker compositie en aggregatie moeten gebruiken dan overerving. 
+Ik vertelde in het begin van dit hoofdstuk dat compositie en aggregatie een "heeft een"-relatie aanduiden, terwijl overerving een "is een"-relatie behelst. In de praktijk zal je véél vaker compositie en aggregatie moeten gebruiken dan overerving. Dit principe is zo bekend dat het in de OOP-literatuur een eigen naam heeft: ***favor composition over inheritance***. Een handige vuistregel: twijfel je of een "is een"-relatie wel echt klopt, kies dan voor een "heeft een"-relatie (associatie).
 Associatie laat ons toe om 2 (of meer) totaal verschillende soorten zaken met elkaar te laten samenwerken, iets wat met overerving enkel kan indien beide zaken een "is een"-relatie hebben. Dit zien we ook in de echte wereld: de zaken rondom ons zullen vaker een compositie/aggregatie-relatie hebben dan een overervings-relatie.
 
 Zoals je hopelijk beseft kan dus alles een compositieobject zijn in een ander object. Denk maar aan een ``Dictionary`` van klanten die je gebruikt in een klasse ``Winkel``. Of wat te denken van de klasse ``Mens`` die uit een hele boel organen bestaat. Ieder orgaan is compositie-object in de klasse ``Mens``, zoals 2 ``Nier``-objecten, een ``Hersenen`` instantie, 1 ``Hart`` instantie enz. Iemand die in jouw Mens-simulator een nieuw hart nodig heeft kan dat dan dankzij *manier 3*, via een property ingeplant krijgen:
@@ -328,8 +333,12 @@ Mens donor = new Mens();
 //Operatie start
 patient.Hart = null; //vorig hart wordt "verwijderd"
 patient.Hart = donor.Hart; 
-donor = null //donor wordt begraven
+donor = null; //donor wordt begraven
 ```
+
+:::{.callout-important}
+Besef goed wat hier gebeurt: na ``patient.Hart = donor.Hart;`` verwijzen ``patient.Hart`` en ``donor.Hart`` **naar hetzelfde ``Hart``-object** in de heap. Het wordt niet gekopieerd. Zolang ``donor`` nog niet weg is, zouden aanpassingen via ``donor.Hart`` dus ook zichtbaar zijn via ``patient.Hart``. Dat is een rechtstreeks gevolg van het werken met referenties: een object delen is niet hetzelfde als een object kopiëren.
+:::
 
 :::{.callout-important}
 Let er wel op dat je niet overal compositie begint toe te passen alsof je de Dokter Frankenstein van C# bent. Hoe meer compositie (of aggregatie) je toepast in een klasse, hoe specifieker die soms wordt, en daardoor mogelijk minder herbruikbaar. Het is om die reden dat we verderop interfaces gaan ontdekken om ervoor te zorgen dat 2 of meerdere klassen minder "op/in elkaar gelijmd" zitten ten gevolge van bijvoorbeeld een nogal hechte compositie.

@@ -4,7 +4,21 @@ Je zult in je zoektocht naar online antwoorden mogelijk al een paar keer het ``t
 
 * Het laat toe dat een object zichzelf kan meegeven als actuele parameter aan een methode.
 * Het laat toe instantievariabelen en properties aan te roepen van het object die mogelijk dezelfde naam hebben als een lokale variabele.
-* We kunnen een andere constructor vanuit een constructor aanroepen zoals reeds gezien (in hoofdstuk 11).
+* We kunnen een andere constructor vanuit een constructor aanroepen zoals reeds gezien (in hoofdstuk 11). Ter herinnering, dat ziet er zo uit:
+
+```java
+public Werknemer() : this(1) //roept de constructor hieronder aan met rang 1
+{ }
+
+public Werknemer(int rangIn)
+{
+    Rang = rangIn;
+}
+```
+
+:::{.callout-important}
+``this`` werkt enkel binnen een **instance-context**: je kan het gebruiken in gewone (niet-``static``) methoden, properties en constructors, want enkel daar bestaat er een "huidig object". In een ``static`` methode is er geen object, en dus kan je daar ``this`` niet gebruiken.
+:::
 
 
 ### Aanroepen van instantievariabelen met zelfde naam
