@@ -60,7 +60,7 @@ De uitvoer zal dan zijn twee maal dezelfde zin tonen: ``Het vliegtuig vliegt doo
 
 
 :::{.callout-important}
-Enkel ``public`` methoden en properties kan je ``virtual`` instellen.
+Je kan een methode of property ``virtual`` instellen zolang ze maar **niet ``private``** is. ``private`` leden zijn immers niet zichtbaar in de child-klasse en kunnen dus ook niet overschreven worden. ``public`` en ``protected`` (zoals het ``protected virtual``-voorbeeld hierboven) kunnen dus wél ``virtual`` zijn.
 :::
 
 
@@ -101,6 +101,12 @@ Indien je iets ``override`` moet de signatuur van je methode of property  identi
 
 Als je in VS override begint te typen in een child-klassen dan kan je met behulp van de tab-toets heel snel de overige code van de signatuur schrijven. 
 :::
+
+:::{.callout-warning}
+**``override`` vergeten? Dan krijg je *hiding* in plaats van *overriding*.** Schrijf je in de child-klasse per ongeluk gewoon ``public void Vlieg()`` (zonder ``override``), dan compileert je code wel, maar krijg je een waarschuwing dat je het ``new`` keyword zou moeten gebruiken. C# denkt dan dat je *bewust* de parent-methode wilt **verbergen** (hiding), niet **overschrijven**. Het gevolg: roep je de methode aan via een parent-referentie, dan wordt toch de oude parent-versie uitgevoerd, niet jouw nieuwe. Krijg je dus die ``new``-waarschuwing, dan ben je vermoedelijk ``override`` vergeten.
+:::
+
+<!-- TODO ed.5 (review): overweeg een korte aparte sectie "hiding (new) vs. overriding (override)" met een uitgewerkt voorbeeld van het verschil in gedrag via een parent-referentie. -->
 
 
 

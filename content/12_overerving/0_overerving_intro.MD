@@ -47,6 +47,10 @@ Wanneer we "x **heeft een** y" zeggen gaat het **niet** over overerving, maar ov
 Het is niet omdat 2 klassen delen gelijkaardige (of dezelfde) code hebben dat hier dus automatisch overerving van toepassing is. Enkel indien er een realistische "is een"-relatie bestaat kan overerving toegepast worden.
 :::
 
+:::{.callout-tip}
+Pas op: zelfs een taalkundig correcte "is een"-relatie leidt niet altijd tot goede overerving. Het klassieke voorbeeld: een vierkant *is een* rechthoek, en toch geeft een ``Vierkant : Rechthoek`` later vaak brokkelige code. In hoofdstuk 16 (polymorfisme) komen we hier op terug. Onthoud voorlopig: de "is een"-test is een goede eerste filter, maar geen absolute garantie.
+:::
+
 
 <!-- \newpage -->
 
@@ -97,13 +101,13 @@ aDier.KanHinnikken = false; //!!! zal niet werken!
 ```
 
 
-### Transitief
+### Alles wordt overgeërfd
 
-**Overerving in C# is transitief**. Dit wil zeggen dat de child-klasse ALLES overerft van de parent-klasse: methoden, properties, enz.
+**Bij overerving in C# erft de child-klasse ALLES van de parent-klasse**: methoden, properties, instantievariabelen, enz. 
 
 Dit kleine, korte zinnetje herbergt aardig wat kracht. Dankzij overerving kunnen we onze klasse dus proper en kort houden indien er een "is een" relatie bestaat. Er zijn echter ook enkele kanttekeningen aangaande overerving die ik in de komende secties uit te doeken zal doen. 
 
-Alhoewel overerving transitief is, wil dat niet zeggen dat ``private`` variabelen plots zichtbaar zijn in de child-klasse. De child-klasse erft  ook de ``private`` instantievariabelen over, maar C# houdt zich wel aan de regels en zal voorkomen dat de child-code aan deze private parent instantievariabelen kan.
+Alhoewel alles wordt overgeërfd, wil dat niet zeggen dat ``private`` variabelen plots zichtbaar zijn in de child-klasse. De child-klasse erft  ook de ``private`` instantievariabelen over, maar C# houdt zich wel aan de regels en zal voorkomen dat de child-code aan deze private parent instantievariabelen kan.
 
 <!-- \newpage -->
 
@@ -149,7 +153,7 @@ Echter, de ``private`` delen van een klasse blijven beperkt tot dat stuk waar de
 
 ### ``protected`` keyword
 
-Ook al is overerving transitief, hou er rekening mee dat private variabelen en methoden van de parent-klasse NIET rechtstreeks aanroepbaar zijn in de child-klasse. ``private`` geeft aan dat het element enkel in de klasse zichtbaar is:
+Ook al wordt alles overgeërfd, hou er rekening mee dat private variabelen en methoden van de parent-klasse NIET rechtstreeks aanroepbaar zijn in de child-klasse. ``private`` geeft aan dat het element enkel in de klasse zichtbaar is:
 
 ```java
 internal class Paard: Dier
@@ -182,8 +186,19 @@ internal class Dier
 ```
 
 :::{.callout-tip}
-Alhoewel ``protected`` z'n nut heeft, is het meestal veiliger om alles nog steeds via properties te doen. Je kan dus beter van een property met ``private set`` er één met ``protected set`` van maken, zodat de achterliggende instantievariabele beschermd blijft.
+Alhoewel ``protected`` z'n nut heeft, is het meestal veiliger om alles nog steeds via properties te doen. Je kan dus beter van een property met ``private set`` er één met ``protected set`` van maken, zodat de achterliggende instantievariabele beschermd blijft. Een voorbeeld:
+
+```java
+internal class Dier
+{
+    public int Geboortejaar { get; protected set; }
+}
+```
+
+De buitenwereld kan ``Geboortejaar`` nu enkel uitlezen, maar de klasse zelf én haar child-klassen mogen de waarde wél instellen.
 :::
+
+<!-- TODO ed.5 (review): access modifier-tabel toevoegen (private / protected / internal / public x zichtbaar binnen klasse / child / extern / assembly) bovenaan de protected-sectie. Vat de hele zichtbaarheidsdiscussie in één blik samen. -->
 
 <!-- \newpage -->
 
@@ -191,10 +206,12 @@ Alhoewel ``protected`` z'n nut heeft, is het meestal veiliger om alles nog steed
 
 ### Multiple inheritance
 
-In C# is het niet mogelijk om een klasse van meer dan één parent-klasse te laten overerven (zogenaamde *multiple inheritance*).  Dit is wel mogelijk in sommige andere object georiënteerde talen. Het is in C# dus niet mogelijk om een klasse ``Mens`` te maken die tegelijkertijd overerft van de klasse ``Aap`` en van ``Tekening``. 
+In C# is het niet mogelijk om een klasse van meer dan één parent-klasse te laten overerven (zogenaamde *multiple inheritance*).  Dit is wel mogelijk in sommige andere object georiënteerde talen. Het is in C# dus niet mogelijk om een klasse ``Mens`` te maken die tegelijkertijd overerft van de klasse ``Aap`` en van ``Tekening``. C# heeft hier bewust voor gekozen om het zogenaamde *diamond problem* te vermijden: erft een klasse van twee parents die elk dezelfde methode hebben, dan weet de compiler niet meer welke van de twee hij moet gebruiken. Voor situaties waar je toch meerdere "rollen" wil combineren, gebruik je interfaces (hoofdstuk 16).
 
 Als puntje bij paaltje komt zal je trouwens bijna nooit multiple inheritance in de echte wereld tegenkomen (het typische tegenvoorbeeld is het vogelbekdier...maar hoe vaak ga je dat moeten modelleren in een project). Vaker zullen compositie en interfaces de oplossing zijn voor je probleem: 2 essentiële OOP aspecten die ik in de volgende hoofdstukken uit de doeken zal doen.
 
+
+<!-- TODO ed.5 (review): naast sealed op klasseniveau ook 'sealed override' op methodeniveau vermelden (om verdere override in diepere child-klassen te blokkeren). -->
 
 ### ``sealed``
 

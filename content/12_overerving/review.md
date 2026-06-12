@@ -1,6 +1,9 @@
 # Review: Overerving
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -12,35 +15,37 @@
 
 ## Zwaktes
 
-- De volgorde in `_quarto.yml` (intro → constructors → virtual/override → base) is contra-intuïtief: in [3_constructors_inheritance.md](3_constructors_inheritance.md) wordt al `:base()` gebruikt voordat het `base` keyword zelf is uitgelegd in [2_base.md](2_base.md). De constructor-tip op regel 41-43 ("we hebben een soortgelijke werking ook reeds gezien") klopt niet meer in deze volgorde.
-- In [0_overerving_intro.MD](0_overerving_intro.MD) regel 7 wordt `Soldaat` van `class Program` "omarming" uitgelegd in een wat slordige zin — de eerste paragraaf van het hele hoofdstuk leest stroef ("derde letter in het acroniem A PIE… we hadden reeds…").
-- De callout op regel 62-64 in [1_virtual_override.md](1_virtual_override.md) zegt "enkel `public` methoden kan je `virtual` instellen", maar één regel eerder (regel 44) staat het tegenovergestelde voorbeeld `protected virtual int SayWhatNow()`. Dat is een directe tegenstrijdigheid binnen hetzelfde bestand.
-- "Hiding" met het `new` keyword komt nergens aan bod, ook niet als waarschuwing. Studenten die per ongeluk `public void Vlieg()` schrijven in een child-klasse (zonder `override`) krijgen een compiler-warning over `new` en hebben dan geen kapstok om te begrijpen wat dat betekent.
+- `[c]` De volgorde in `_quarto.yml` is contra-intuïtief: `:base()` wordt gebruikt vóór het base-keyword is uitgelegd. **(TODO-comment geplaatst in 3_constructors_inheritance.md; reorder vereist _quarto.yml-aanpassing.)**
+- `[>]` In [0_overerving_intro.MD](0_overerving_intro.MD) leest de eerste paragraaf stroef. **(stilistische herwerking van de openingsparagraaf overgelaten aan Tim; geen inhoudelijke fout.)**
+- `[v]` De callout zegt "enkel `public` methoden kan je `virtual` instellen", maar er staat een `protected virtual`-voorbeeld. Tegenstrijdigheid. **(callout gecorrigeerd: virtual mag op alles behalve private; protected-voorbeeld klopt dus.)**
+- `[v]` "Hiding" met het `new` keyword komt nergens aan bod. **(waarschuwing-callout toegevoegd in 1_virtual_override.md: override vergeten geeft de `new`/hiding-waarschuwing; + TODO voor een uitgewerkte sectie.)**
 
 ## Onduidelijkheden
 
-- "Transitief" in [0_overerving_intro.MD](0_overerving_intro.MD) regel 102: het woord "transitief" suggereert wiskundig: "als A overerft van B en B van C, dan ook A van C". Wat je hier eigenlijk bedoelt is *volledig* (alles wordt overgeërfd). Studenten kennen "transitief" nog niet uit een wiskundecontext en zullen die term verwarrend vinden.
-- In [3_constructors_inheritance.md](3_constructors_inheritance.md) regel 3-7 staat "Eerst de basis-klasse, gevolgd door alle parent-klassen, finaal de klasse zelf" — "basis-klasse" en "parent-klasse" zijn synoniemen elders in de cursus. De zin lijkt drie niveaus te onderscheiden waar er feitelijk twee zijn.
-- De tip op regel 184-186 in [0_overerving_intro.MD](0_overerving_intro.MD) ("`protected set` van een property") is correct maar te kort voor wie het concept nieuw is — een mini-codeblok zou veel verduidelijken.
+- `[v]` "Transitief" is verwarrend jargon; bedoeld wordt *volledig* (alles wordt overgeërfd). **(sectie hernoemd naar "Alles wordt overgeërfd" en de term "transitief" overal vervangen door gewone taal.)**
+- `[v]` In [3_constructors_inheritance.md](3_constructors_inheritance.md) lijkt "basis-klasse / parent-klassen / klasse zelf" drie niveaus te onderscheiden waar er feitelijk twee zijn. **(herschreven: van de verste voorouder naar beneden, met expliciete vermelding dat het er in het eenvoudige geval gewoon twee zijn.)**
+- `[v]` De tip over `protected set` is te kort. **(mini-codeblok toegevoegd dat `{ get; protected set; }` toont en uitlegt.)**
 
 ## Gemissen
 
-- **`protected` versus `private` versus `public`**: een klein vergelijkingstabelletje (zichtbaarheid binnen klasse / child / extern) ontbreekt. `internal` zou hier ook even hernomen mogen worden in dezelfde tabel.
-- **Single-inheritance restrictie**: wel vermeld (regel 192-196), maar de pijnlijke kant — *waarom* C# dit zo doet (diamond problem) — wordt overgeslagen. Eén zinnetje over diamond conflicts zou de keuze legitimeren.
-- **Square-Rectangle / Liskov-counterexample**: de "is een"-test wordt absoluut gepresenteerd, terwijl klassieke voorbeelden tonen dat *taalkundig* correcte is-een-relaties (een vierkant *is een* rechthoek) toch slechte overerving opleveren. Dit hoort minstens als waarschuwing in deze sectie, of als doorverwijzing naar H16.
-- **`new` keyword voor method hiding**: zie boven; minstens als "wat als ik `override` vergeet?"-callout.
-- **`sealed`-methoden**: enkel `sealed` op klasseniveau wordt getoond; `sealed override` op methodeniveau (om verdere override te blokkeren) niet.
+- `[c]` **`protected`/`private`/`public`-tabel** ontbreekt. **(TODO-comment geplaatst.)**
+- `[v]` **Single-inheritance**: *waarom* (diamond problem) werd overgeslagen. **(zin toegevoegd over het diamond problem + verwijzing naar interfaces in H16.)**
+- `[v]` **Square-Rectangle / Liskov-counterexample**: de "is een"-test wordt te absoluut gepresenteerd. **(callout-tip toegevoegd over het vierkant/rechthoek-probleem, met doorverwijzing naar H16.)**
+- `[v]` **`new` keyword voor method hiding**: "wat als ik `override` vergeet?". **(waarschuwing-callout toegevoegd in 1_virtual_override.md.)**
+- `[c]` **`sealed`-methoden** (`sealed override`): enkel `sealed` op klasseniveau staat er. **(TODO-comment geplaatst.)**
 
 ## Concrete suggesties
 
-1. Wissel de leesvolgorde in `_quarto.yml`: intro → virtual/override → base → constructors. Dan klopt de "we hebben dit al gezien"-tip in [3_constructors_inheritance.md](3_constructors_inheritance.md) regel 41-43 weer.
-2. Los de `public`/`protected virtual`-tegenstrijdigheid in [1_virtual_override.md](1_virtual_override.md) op: ofwel de callout op regel 62-64 schrappen, ofwel het `protected`-voorbeeld op regel 44 weghalen.
-3. Voeg in [0_overerving_intro.MD](0_overerving_intro.MD) een korte sectie "`new`-keyword: hiding ≠ overriding" toe, met één voorbeeld van wat er gebeurt als je `override` vergeet en hoe de compiler-warning eruitziet.
-4. Vervang "transitief" door "volledig" of "alles erft mee" — of behoud "transitief" maar leg de term expliciet uit met een zinnetje.
-5. Voeg een mini-callout toe over het square-rectangle-probleem als opwarming voor H16/polymorfisme: "in H16 zien we dat een taalkundige is-een-relatie soms toch leidt tot brokkelige code".
-6. Een access modifier-tabel (private/protected/internal/public × klasse/child/extern/assembly) bovenaan de `protected`-sectie zou de hele zichtbaarheidsdiscussie in één blik samenvatten.
+1. `[c]` Wissel de leesvolgorde in `_quarto.yml`. **(TODO-comment geplaatst; structureel.)**
+2. `[v]` Los de `public`/`protected virtual`-tegenstrijdigheid op. **(callout gecorrigeerd: virtual mag op alles behalve private.)**
+3. `[v]` Korte uitleg "`new`-keyword: hiding ≠ overriding". **(waarschuwing-callout toegevoegd + TODO voor een uitgewerkte sectie.)**
+4. `[v]` Vervang "transitief". **(gedaan: "alles wordt overgeërfd".)**
+5. `[v]` Mini-callout over het square-rectangle-probleem. **(toegevoegd, met verwijzing naar H16.)**
+6. `[c]` Access modifier-tabel. **(TODO-comment geplaatst.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

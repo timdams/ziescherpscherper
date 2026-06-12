@@ -1,12 +1,14 @@
+<!-- TODO ed.5 (review): leesvolgorde. Dit bestand gebruikt al :base() terwijl het base-keyword pas in 2_base.md wordt uitgelegd. Overweeg de _quarto.yml-volgorde aan te passen naar intro -> virtual/override -> base -> constructors. -->
+
 ## Constructors bij overerving
 
 Wanneer je een object instantiëert van een child-klasse dan gebeuren er meerdere zaken na elkaar, in volgende volgorde:
 
-* Eerst wordt de constructor aangeroepen van de basis-klasse.
-* Gevolgd door de constructors van alle parent-klassen.
-* Finaal de constructor van de klasse zelf.
+* Eerst wordt de constructor van de **verste voorouder** (de bovenste klasse in de overervingsketen) aangeroepen.
+* Vervolgens werk je die keten naar beneden af: elke tussenliggende parent-klasse komt aan de beurt.
+* Finaal wordt de constructor van de klasse zelf uitgevoerd.
 
-Dit is logisch: de child-klasse heeft de "fundering" nodig van z'n parent-klasse om te kunnen werken. 
+In de eenvoudigste situatie (één child die overerft van één parent) zijn dat er dus gewoon twee: eerst de parent, dan de child. Dit is logisch: de child-klasse heeft de "fundering" nodig van z'n parent-klasse om te kunnen werken. 
 
 Volgende voorbeeld toont dit in actie:
 
