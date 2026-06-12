@@ -125,6 +125,26 @@ for(int i = 0; i<mensjes.Length; i++)
 }
 ```
 
+### Oplossing 3: pattern matching (de moderne manier)
+
+In moderne C# combineer je de ``is``-check en de omzetting in één regel met *pattern matching* (zie het vorige onderdeel). Dat maakt oplossing 1 nog korter en is wat je vandaag in echte code zal zien:
+
+```java
+for(int i = 0; i<mensjes.Length; i++)
+{
+    if(mensjes[i] is IVloeker vloeker)
+    {
+        vloeker.Vloek();
+    }
+    else
+    {
+        mensjes[i].Spreek();
+    }
+}
+```
+
+De harde cast uit oplossing 1 (``(IVloeker)mensjes[i]``) heb je hier niet meer nodig: slaagt de ``is``-check, dan zit het object al klaar in ``vloeker``.
+
 
 <!-- \newpage -->
 

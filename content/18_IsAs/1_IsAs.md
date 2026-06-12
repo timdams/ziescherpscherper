@@ -1,3 +1,6 @@
+<!-- TODO ed.5 (review): structureel. is/as/equals is nu gesplitst over H16 en H17 (1_IsAs + 6_equals onder H16, 2_Polymorfisme_Interfaces onder H17), wat de leesvolgorde stroef maakt. Overweeg de drie bestanden samen in één hoofdstuk te zetten (volgorde 1 -> 2 -> 6), met één vooruitwijzing naar interfaces. Vereist _quarto.yml-aanpassing. -->
+<!-- TODO ed.5 (review): bestandsnaam 6_equals.md is inconsistent (geen 3,4,5). Overweeg te hernoemen naar 3_equals.md. -->
+
 ## De ``is`` en ``as`` keywords
 Dankzij polymorfisme kunnen we dus child en parent-objecten door elkaar gebruiken. De keywords ``is`` en ``as`` gaan ons helpen om door het bos van objecten het bos nog te zien. 
 
@@ -100,6 +103,54 @@ if(jos != null)
     //Doe Mens-zaken 
 }
 ```
+
+:::{.callout-important}
+**``as`` werkt enkel met reference types** (objecten van klassen en interfaces). Je kan ``as`` dus **niet** gebruiken op gewone value types zoals ``int`` of ``bool``. Iets als ``int getal = mijnObject as int;`` zal niet compileren. (Voor value types bestaat een variant met een vraagteken, maar die zien we hier nog niet.)
+:::
+
+:::{.callout-tip}
+**Wanneer ``is`` en wanneer ``as``?** Vuistregel: wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
+:::
+
+### Pattern matching: ``is`` met een variabele
+
+Moderne C# (sinds C# 7) laat toe om de ``is``-controle en het omzetten in **één** stap te doen. Je plaatst gewoon een variabelenaam achter het type. Slaagt de ``is``-check, dan zit het omgezette object meteen in die variabele klaar voor gebruik. Dit heet *pattern matching*.
+
+In plaats van:
+
+```java
+if(mijnAuto is Voertuig)
+{
+    Voertuig v = (Voertuig)mijnAuto;
+    //...gebruik v
+}
+```
+
+schrijf je korter en veiliger:
+
+```java
+if(mijnAuto is Voertuig v)
+{
+    //v is hier meteen beschikbaar als Voertuig
+}
+```
+
+Je zal deze vorm overal in moderne C#-code (en op StackOverflow) tegenkomen, dus het loont om ze te herkennen en te gebruiken.
+
+<!-- TODO ed.5 (review): ook switch met patterns vermelden (switch (obj) { case IVloeker v: ... } of de expression-form). Krachtig naast de if/else-loops. -->
+
+:::{.callout-tip}
+In dezelfde geest schrijf je je null-controles tegenwoordig vaak met ``is null`` en ``is not null`` in plaats van ``== null`` en ``!= null``:
+
+```java
+if (jos is not null)
+{
+    //...
+}
+```
+
+Beide werken; ``is null`` / ``is not null`` is de modernere, iets veiligere schrijfwijze.
+:::
 
 ### Volgorde van bewerkingen met ``is`` en ``as``
 

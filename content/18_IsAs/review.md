@@ -1,6 +1,9 @@
 # Review: 18_IsAs (`is`/`as`/`Equals`, gesplitst over H16 en H17)
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **splitsing over twee hoofdstukken** is een structurele keuze (TODO-flag in 1_IsAs.md). De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Splitsing over twee hoofdstukken: didactisch verdedigbaar?
 
@@ -22,36 +25,38 @@ In `_quarto.yml` is deze folder verspreid:
 
 ## Zwaktes
 
-- De pattern matching variant `if (mensjes[i] is IVloeker vloeker) { vloeker.Vloek(); }` (sinds C# 7) wordt niét getoond, terwijl die de hele `is`+cast-dans van [2_Polymorfisme_Interfaces.md](2_Polymorfisme_Interfaces.md) regel 102-107 in één regel oplost. Studenten zien deze syntax meteen op StackOverflow en zullen vragen waarom jouw code anders is.
-- De "Oplossing 1" in [2_Polymorfisme_Interfaces.md](2_Polymorfisme_Interfaces.md) gebruikt een harde cast `(IVloeker)mensjes[i]` net nadat je in [1_IsAs.md](1_IsAs.md) hebt uitgelegd dat dat onveilig is. De `is`-check redt het hier wel, maar de leesvolgorde is wringt.
-- [6_equals.md](6_equals.md) is heel kort en sluit abrupt af. Geen `GetHashCode`, geen vermelding dat `Equals` zonder `GetHashCode` overriden bugs geeft in `Dictionary`/`HashSet`.
-- Inconsistentie in nummering: bestand heet `6_equals.md` maar er zijn geen 3, 4, 5 — historisch wellicht, maar verwarrend bij het sorteren van bestanden in VS Code.
+- `[v]` De pattern matching variant `if (... is IVloeker vloeker)` werd niet getoond. **(aparte "Pattern matching"-sectie toegevoegd in 1_IsAs.md, plus een "Oplossing 3"-pattern-variant in 2_Polymorfisme_Interfaces.md.)**
+- `[v]` "Oplossing 1" gebruikt een harde cast net na de uitleg dat dat onveilig is. **(de moderne pattern-variant (Oplossing 3) zonder cast is toegevoegd; de oude vorm blijft als "vroeger".)**
+- `[v]` [6_equals.md](6_equals.md) is kort en sluit abrupt af; geen `GetHashCode`. **(uitgebreid met GetHashCode-contract (HashCode.Combine), `==` vs `.Equals()` en een record-vooruitwijzing.)**
+- `[c]` Nummering `6_equals.md` (geen 3,4,5). **(TODO-comment geplaatst.)**
 
 ## Onduidelijkheden
 
-- In [1_IsAs.md](1_IsAs.md) regel 32-37 zegt je "Auto is geen Voertuig" — fout in de tekst. Moet zijn: "Persoon is géén Voertuig". Ah, ik zie het staat er al — maar de lezer moet twee keer kijken door de fettige opmaak. Overweeg uitlijnen met code.
-- Het is na lezing van [1_IsAs.md](1_IsAs.md) niet helder *wanneer* je `as` zou kiezen boven `is + cast`. Een mini-richtlijn ("één check + gebruik = `as`; meerdere onafhankelijke checks = `is`") zou helpen.
-- In [6_equals.md](6_equals.md) wordt niet gezegd waarom je überhaupt `Equals` zou overriden. De link naar `==` versus `.Equals()`-semantiek ontbreekt.
+- `[~]` "Auto is geen Voertuig"-opmaak laat de lezer twee keer kijken. **(de tekst klopt al inhoudelijk ("Persoon is géén Voertuig"); puur opmaak, bewust gelaten.)**
+- `[v]` Wanneer kies je `as` boven `is + cast`? **(vuistregel-callout toegevoegd: gebruik je het object daarna meteen, kies `as`; enkel een ja/nee-vraag, kies `is`.)**
+- `[v]` In [6_equals.md](6_equals.md) ontbreekt waarom je `Equals` overridet (`==` vs `.Equals()`). **(sectie "`==` of `.Equals()`?" toegevoegd over referentie- vs. inhoudsvergelijking.)**
 
 ## Gemissen
 
-- **Pattern matching met `is`** (`is Type t`) — C# 7+ — moet erin. Niet als gimmick, als hoofdsyntax: dit is wat moderne C# code doet.
-- **Switch met patterns** (`switch (obj) { case IVloeker v: v.Vloek(); break; }` of de expression-form) — vooral didactisch krachtig naast je `if/else`-loops.
-- **`as` werkt enkel met reference types en nullable value types** — niet met `int`, `bool`, etc. Dit gaat een student *zeker* een keer tegen de muur lopen. Vermeld het expliciet.
-- **`Equals` + `GetHashCode`-contract**. Hoort bij [6_equals.md](6_equals.md). Kort: "wie `Equals` overridet, moet `GetHashCode` overriden, anders breken `Dictionary`/`HashSet`."
-- **`==` vs `.Equals()`** semantisch verschil voor strings, references, value types. Hier hoort het.
-- **`record`-types** (C# 9+) als modern alternatief voor je hele "vergelijken op inhoud"-verhaal. Eén regel `public record Student(string Voornaam, int Geboortejaar);` doet wat je nu in 10 regels handmatig schrijft. Minstens een vooruitwijzende callout.
-- **`is null` / `is not null`** als idiomatic null check (i.p.v. `== null`) — heel courant in moderne C#-codebases.
+- `[v]` **Pattern matching met `is`** (`is Type t`). **(aparte sectie toegevoegd in 1_IsAs.md.)**
+- `[c]` **Switch met patterns**. **(TODO-comment kan; niet inline toegevoegd. Genoteerd voor latere uitbreiding.)**
+- `[v]` **`as` werkt enkel met reference types**, niet met `int`/`bool`. **(callout-important toegevoegd.)**
+- `[v]` **`Equals` + `GetHashCode`-contract**. **(toegevoegd in 6_equals.md met HashCode.Combine.)**
+- `[v]` **`==` vs `.Equals()`**. **(sectie toegevoegd.)**
+- `[v]` **`record`-types** als modern alternatief. **(vooruitwijzende callout toegevoegd in 6_equals.md.)**
+- `[v]` **`is null` / `is not null`** als idiomatic null check. **(callout toegevoegd in 1_IsAs.md.)**
 
 ## Concrete suggesties
 
-1. Beslis: alle drie bestanden in één hoofdstuk. Mijn voorstel: H16 (Polymorfisme) — daar wordt het naturlijke vervolg. Eén kort vooruitwijzend kadertje in H16 zegt: "Met interfaces wordt dit nóg krachtiger; zie hoofdstuk 17."
-2. Voeg een aparte sectie "Pattern matching" toe na [1_IsAs.md](1_IsAs.md) — `is Type t`, switch-patterns, `is not null`. Eén pagina volstaat.
-3. Breid [6_equals.md](6_equals.md) uit met `GetHashCode`, `==` vs `.Equals()` en een vooruitwijzing naar `record`-types in de appendix.
-4. Vervang in [2_Polymorfisme_Interfaces.md](2_Polymorfisme_Interfaces.md) "Oplossing 1" door pattern matching (`is IVloeker v`) zodat lezers de moderne syntax zien — laat de oude vorm staan als "vroeger schreef men…".
-5. Hernoem `6_equals.md` naar `3_equals.md` (of geef alle drie consecutieve nummers) — kleine polish.
+1. `[c]` Beslis: alle drie bestanden in één hoofdstuk. **(TODO-flag geplaatst; structurele _quarto.yml-keuze aan Tim.)**
+2. `[v]` Aparte sectie "Pattern matching" (`is Type t`, `is not null`). **(toegevoegd; switch-patterns als TODO.)**
+3. `[v]` Breid [6_equals.md](6_equals.md) uit met `GetHashCode`, `==` vs `.Equals()`, record. **(gedaan.)**
+4. `[v]` Toon de moderne pattern-matching-vorm in [2_Polymorfisme_Interfaces.md](2_Polymorfisme_Interfaces.md). **(Oplossing 3 toegevoegd.)**
+5. `[c]` Hernoem `6_equals.md` → `3_equals.md`. **(TODO-comment geplaatst.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 
