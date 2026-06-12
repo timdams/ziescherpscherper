@@ -1,3 +1,5 @@
+<!-- TODO ed.5 (review): bestandsnaam-typo: polypraktijd.md -> polypraktijk.md (vereist aanpassing in _quarto.yml). -->
+
 ## Polymorfisme in de praktijk
 
 Beeld je in dat je een klasse ``EersteMinister`` hebt met een methode ``Regeer`` en je wilt een eenvoudig land simuleren.
@@ -79,12 +81,28 @@ internal class MinisterVanMilieu:Minister
   private void VerhoogBosSubsidies(){ ... }
   private void OpenOnderzoek(){ ... }
   private void ContacteerGreenpeace(){ ... }
+}
+
+internal class MinisterBZ:Minister 
+{
+  public override void Adviseer()
+  {
+      Console.WriteLine("Zorg voor de binnenlandse veiligheid.");
   }
 }
 
-internal class MinisterBZ:Minister {}
-internal class MinisterVanEconomie:Minister {}
+internal class MinisterVanEconomie:Minister 
+{
+  public override void Adviseer()
+  {
+      Console.WriteLine("Verlaag de belastingen.");
+  }
+}
 ```
+
+:::{.callout-tip}
+Merk op dat élke child van de abstracte ``Minister``-klasse verplicht is om ``Adviseer`` te ``override``'n. Een lege ``MinisterBZ : Minister {}`` zou niet compileren, want dan blijft de abstracte methode "leeg".
+:::
 
 <!-- \newpage -->
 

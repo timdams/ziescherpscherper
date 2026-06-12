@@ -1,6 +1,9 @@
 # Review: Polymorfisme
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -13,39 +16,41 @@
 
 ## Zwaktes
 
-- Polymorfisme wordt hier vrijwel uitsluitend gepresenteerd als *subtype-polymorfisme via overerving*. Het woord "polymorfisme" is breder (overloading, generics) en die andere vormen worden niet eens genoemd — niet eens als "we noemen er hier één, er bestaan andere".
-- De openingsregel "vierde grote pijler" en het terugkerende A PIE-acroniem komt nu voor de zoveelste keer terug. Bij elk hoofdstuk in deze reeks staat een variatie. Eén keer in de inleiding van het boek volstaat.
-- De Pong-paragraaf op regel 101-118 introduceert drie nieuwe `Balletje`-subklassen (`InstabielBalletje`, `TeleportBalletje`) zonder code te tonen. De student moet ze zelf bedenken om de demo te begrijpen — terwijl de demo net moet illustreren *dat* het werkt.
-- [polypraktijd.md](polypraktijd.md) heeft een typo in de bestandsnaam: "polypraktijd" → vermoedelijk "polypraktijk". Dit wordt opgenomen in URL/sidebar.
-- Op regel 67-70 in [11_polymo_intro.MD](11_polymo_intro.MD) staat een belangrijk fenomeen impliciet: `System.Object mijnObject = new Varken();` werkt, "maar geluid maken werkt niet". Het *waarom* (statische binding op variable type) wordt overgeslagen — dit is precies waar studenten over struikelen.
+- `[v]` Polymorfisme wordt enkel als subtype-polymorfisme gepresenteerd; andere vormen niet genoemd. **(voetnoot toegevoegd over overloading (H7) en generics (appendix).)**
+- `[~]` De terugkerende "vierde pijler"/A PIE-herhaling. **(stilistisch; bewust gelaten, herordening/inkorten aan Tim.)**
+- `[v]` De Pong-subklassen worden zonder code getoond. **(een concrete `InstabielBalletje`-implementatie toegevoegd met `override Update()` + `base.Update()`.)**
+- `[c]` Bestandsnaam-typo `polypraktijd` → `polypraktijk`. **(TODO-comment geplaatst; rename vereist _quarto.yml-aanpassing.)**
+- `[v]` `System.Object mijnObject = new Varken();` "geluid maken werkt niet" zonder *waarom*. **(uitgelegd: de compiler kijkt naar het variabele-type, niet naar het echte object.)**
 
 ## Onduidelijkheden
 
-- De term "**upcasting**" valt op regel 61 zonder dat een tegenpool ("downcasting") wordt benoemd. Studenten weten daarna niet dat ook het omgekeerde mogelijk is (en gevaarlijk). Dit is precies de brug naar [content/18_IsAs/](../18_IsAs/), maar de cross-reference ontbreekt hier.
-- Op regel 46 in [11_polymo_intro.MD](11_polymo_intro.MD): "enkel zaken die `override` zijn in de child-klasse zullen met de specialisatie-code werken". Dat is correct, maar voor een eerstejaars cryptisch — leg uit dat dit *late binding* heet, of vermijd de jargon-vrije halve uitleg.
-- "Polymorfisme zorgt ervoor dat `virtual` en `override` effectief werken" (regel 7) wordt geponeerd maar niet uitgelegd. Pas later wordt dat helder, en zelfs daar wordt het mechanisme niet benoemd.
-- Het code-voorbeeld op regel 95-115 in [polypraktijd.md](polypraktijd.md) toont stap 1 ("alle ministers overerven van abstract `Minister`"), maar de drie subklassen `MinisterBZ` en `MinisterVanEconomie` op regel 85-86 worden als lege klassen getoond — dan krijg je een compileerfout omdat de abstracte methode niet geïmplementeerd is. Studenten die kopiëren raken in de war.
+- `[v]` "**upcasting**" zonder tegenpool "downcasting" + ontbrekende cross-ref naar 18_IsAs. **(downcasting benoemd, met expliciete forward-link naar hoofdstuk 18 (is/as).)**
+- `[v]` "enkel zaken die `override` zijn" is cryptisch. **(uitgelegd als *late binding* in de callout.)**
+- `[v]` "Polymorfisme zorgt dat `virtual`/`override` werken" wordt niet uitgelegd. **(de late-binding-callout legt nu uit dat het enkel werkt dankzij `virtual`/`abstract`.)**
+- `[v]` De lege `MinisterBZ`/`MinisterVanEconomie` compileren niet (abstracte methode niet geïmplementeerd). **(beide voorzien van een minimale `override Adviseer`; ook een dubbele accolade in MinisterVanMilieu gefixt + verklarende callout.)**
 
 ## Gemissen
 
-- **Liskov Substitution Principle (informeel)**: nu polymorfisme *werkt*, hoort hier minstens een waarschuwing dat een child-klasse zich gedragsmatig moet kunnen gedragen als parent. Het klassieke `Vierkant : Rechthoek`-voorbeeld dat in H13 al hoort opgeworpen te zijn, kan hier de payoff krijgen.
-- **Late binding / dynamic dispatch**: het concept dat *de runtime* beslist welke override wordt aangeroepen (op basis van het werkelijke object, niet het variabele-type) is *de* magie van polymorfisme. Nu staat er enkel "het werkt" — de mechaniek wordt verzwegen.
-- **Waarom is `virtual` nodig?**: zonder `virtual` valt polymorfisme stil bij niet-virtuele methoden. In dit hoofdstuk is *het hele punt* van virtual nu pas zichtbaar; toch wordt dit niet expliciet gemaakt.
-- **Subtype- vs. ad-hoc- vs. parametric-polymorfisme**: één voetnoot ("er bestaan ook andere vormen van polymorfisme zoals overloading en generics, zie appendix") plaatst de student in een groter kader.
-- **Cross-reference naar [content/18_IsAs/](../18_IsAs/)**: nergens wordt verteld dat upcast omkeerbaar is via `is`/`as`. Dat is de natuurlijke volgende stap.
-- **Polymorfisme breekt bij `new` (hiding)**: indien `new` keyword in H13 wordt toegevoegd (zie review daar), is dit hét hoofdstuk om te tonen dat polymorfisme dan niet werkt zoals verwacht.
+- `[v]` **Liskov Substitution Principle (informeel)**. **(callout-tip toegevoegd met de vierkant/rechthoek-payoff en de kernvraag.)**
+- `[v]` **Late binding / dynamic dispatch**: de mechaniek werd verzwegen. **(callout toegevoegd die late binding expliciet benoemt en uitlegt.)**
+- `[v]` **Waarom is `virtual` nodig?**. **(de late-binding-callout maakt dit nu expliciet: zonder virtual/abstract geen late binding.)**
+- `[v]` **Andere vormen van polymorfisme** (overloading, generics). **(voetnoot toegevoegd.)**
+- `[v]` **Cross-reference naar 18_IsAs**. **(toegevoegd bij de downcasting-uitleg.)**
+- `[c]` **Polymorfisme breekt bij `new` (hiding)**: tonen dat polymorfisme dan niet werkt. **(TODO-comment kan; hangt samen met de hiding-sectie die in H13 als TODO staat. Genoteerd, niet inline toegevoegd.)**
 
 ## Concrete suggesties
 
-1. Hernoem `polypraktijd.md` naar `polypraktijk.md` en pas de verwijzing in `_quarto.yml` aan.
-2. Voeg in de Pong-paragraaf op regel 101-118 *één* concrete subklasse-implementatie toe (bijvoorbeeld `InstabielBalletje`) zodat studenten de syntax niet hoeven te raden.
-3. Vul de `MinisterBZ` en `MinisterVanEconomie` op regel 85-86 in [polypraktijd.md](polypraktijd.md) aan met een minimale `override` van `Adviseer`, anders compileert het voorbeeld niet.
-4. Voeg een korte sectie "late binding" of "dynamic dispatch" toe aan het einde van [11_polymo_intro.MD](11_polymo_intro.MD), met als kernzin: "C# kijkt op runtime naar het echte object, niet naar het type van de variabele".
-5. Introduceer **downcasting** als concept op het einde van [11_polymo_intro.MD](11_polymo_intro.MD) met expliciete forward-link naar het `is`/`as`-hoofdstuk.
-6. Voeg een mini-callout toe over Liskov: "een `Paard` moet zich kunnen gedragen als een `Dier` zonder vreemde verrassingen — dit principe heet *Liskov substitution*".
-7. Vermeld in een voetnoot de andere soorten polymorfisme (overloading uit H8, generics uit appendix).
+1. `[c]` Hernoem `polypraktijd.md` → `polypraktijk.md`. **(TODO-comment geplaatst.)**
+2. `[v]` Eén concrete Pong-subklasse-implementatie. **(InstabielBalletje toegevoegd.)**
+3. `[v]` Vul `MinisterBZ`/`MinisterVanEconomie` aan met een `override`. **(gedaan.)**
+4. `[v]` Late binding / dynamic dispatch-uitleg. **(callout toegevoegd.)**
+5. `[v]` Introduceer downcasting + forward-link naar is/as. **(gedaan.)**
+6. `[v]` Liskov mini-callout. **(toegevoegd.)**
+7. `[v]` Voetnoot andere soorten polymorfisme. **(toegevoegd.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 
