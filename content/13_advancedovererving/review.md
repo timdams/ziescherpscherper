@@ -1,6 +1,9 @@
 # Review: Gevorderde overervingsconcepten
 
-> Interne didactische review — niet bedoeld voor publicatie.
+> Interne didactische review - niet bedoeld voor publicatie.
+
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **Future**-sectie en de mini-oefeningen zijn nog niet aangepakt.
 
 ## Sterktes
 
@@ -12,36 +15,38 @@
 
 ## Zwaktes
 
-- De `Equals`-override op regel 159-163 van [4_System_Object.md](4_System_Object.md) is **gevaarlijke code**: er wordt zonder controle gecast (`Student temp = (Student)o;`) en `o == null` wordt niet getest, terwijl de regels zelf op regel 147 expliciet vermelden dat `false` moet worden teruggegeven bij `null`. Een student die dit overneemt schendt zijn eigen contract.
-- `GetHashCode` overriden wordt afgedaan met "ligt buiten de scope" (regel 173). Tegelijk impliceert de tekst dat je verplicht bent dit ook te doen na `Equals`. Dat is frustrerend: ofwel toon één werkend voorbeeld (`HashCode.Combine(...)`), ofwel toon de compiler-warning zodat studenten weten waar die vandaan komt.
-- Het Pong-voorbeeld op regel 200-223 van [5_abstract.md](5_abstract.md) bevat compileerfouten: `var score = new ScoreBoard()` mist puntkomma, en `spelElementen.Add();` heeft geen argument. Studenten die kopiëren raken in de war.
-- De zin "Alle 4 methoden in System.Object zijn `virtual`" op regel 106 is feitelijk onjuist: `GetType()` is **niet** `virtual` (en `ReferenceEquals` zelfs `static`). Dit is een zuivere fout.
-- De tip-callout op regel 167 ("dit concept noemen we polymorfisme — zie hoofdstuk 16") komt steeds terug ("we komen dichter") en wordt een running gag, maar lost het concrete probleem (downcast) hier niet op. Eén zin uitleg over downcasting zou volstaan.
+- `[v]` De `Equals`-override is **gevaarlijke code**: harde cast zonder null/type-check, terwijl het contract `false` bij `null` vereist. **(herschreven met `if (o is not Student temp) return false;` (is-pattern), dat meteen null én verkeerd type afvangt.)**
+- `[v]` `GetHashCode` werd afgedaan met "ligt buiten de scope" terwijl het verplicht is na `Equals`. **(werkend voorbeeld toegevoegd met `HashCode.Combine(Voornaam, Geboortejaar)`; ook de Dictionary/HashSet-relevantie benoemd.)**
+- `[v]` Het Pong-voorbeeld bevatte compileerfouten (`new ScoreBoard()` zonder `;`, `spelElementen.Add();` zonder argument). **(gefixt naar `new ScoreBoard();` en `spelElementen.Add(score);`.)**
+- `[v]` De zin "Alle 4 methoden in System.Object zijn `virtual`" is fout (`GetType` is niet virtual). **(gecorrigeerd naar "drie van de vier", met uitleg waarom GetType niet virtual is.)**
+- `[v]` De polymorfisme-callout lost het downcast-probleem niet op. **(de callout legt nu de is-pattern uit (controle + cast in één), met vooruitwijzing naar H18 en H16.)**
 
 ## Onduidelijkheden
 
-- Op regel 12 in [5_abstract.md](5_abstract.md) verwijs je naar "hoofdstuk 9" voor de blauwdruk-definitie. Met de huidige nummering is dat hoofdstuk 11 of 12 — verifieer of deze cross-reference nog klopt na de hernummering.
-- "Object" versus "object" in [4_System_Object.md](4_System_Object.md): de tip op regel 19-21 belooft consistent `System.Object` te gebruiken, maar verderop staat soms `Object` (regel 144), soms `object` (regel 159, parameter). Voor een eerstejaars is `Object`/`object` (alias voor `System.Object`) niet vanzelfsprekend.
-- De volgorde abstract method → abstract property in [5_abstract.md](5_abstract.md) is fijn, maar het verschil tussen *abstracte read-only property* en *gewone read-only property* wordt niet geëxpliciteerd. Studenten zien `{ get; }` en denken misschien aan een autoprop.
+- `[v]` Cross-reference "hoofdstuk 9" voor de blauwdruk-definitie verifiëren. **(gecontroleerd: de blauwdruk-definities staan in de map 8_klassen, die label ch:9 draagt. "Hoofdstuk 9" klopt dus; onveranderd gelaten.)**
+- `[~]` "Object" versus "object" (alias) is niet vanzelfsprekend voor eerstejaars. **(de Equals-parameter is nu consistent `object` (lowercase); een diepere uitleg over de Object/object-alias bewust beperkt gehouden.)**
+- `[v]` Het verschil *abstracte read-only property* vs. *gewone read-only property* wordt niet geëxpliciteerd. **(zin toegevoegd: een abstracte `{ get; }` heeft géén implementatie/backing field, anders dan een auto-property.)**
 
 ## Gemissen
 
-- **Coherentie met [content/B_appendix/6_equals.md](../B_appendix/6_equals.md) en [content/18_IsAs/](../18_IsAs/)**: de cast in `Equals` schreeuwt om `is`/`as`-patroon, maar je gebruikt hier nog de C-style cast. De tekstbox kondigt H16/H17 aan zonder de feitelijke "moderne" oplossing (pattern matching: `if (o is Student temp)`) te noemen.
-- **Abstract versus interface**: nergens wordt nu al een spoiler/teaser gegeven dat interfaces bestaan en wanneer je daarvoor zou kiezen boven `abstract`. Een mini-callout "abstract klasse versus interface — komt later" zou helpen, want studenten googelen sowieso.
-- **Sealed class als alternatief voor abstract**: na hoofdstuk 12 weet de student dat `sealed` bestaat. Een korte vergelijking ("abstract = je MOET overerven; sealed = je MAG niet overerven") sluit het mentale model.
-- **`object.ReferenceEquals` versus `==`**: de waarschuwing op regel 192 dat `==` overschreven kan worden komt uit de lucht vallen (operator overloading is appendix-stof). Of leg het hier even uit, of laat het weg en verwijs door.
-- **`ToString` en formatting**: `IFormattable`/`ToString(string format)` valt buiten scope, maar één voetnoot "later kan je dit nog rijker maken" zou de leergierige student tevreden stellen.
+- `[v]` **Coherentie met de `is`/`as`-aanpak**: de cast in `Equals` schreeuwt om pattern matching. **(de moderne oplossing `if (o is not Student temp)` wordt nu effectief gebruikt en benoemd, met verwijzing naar H18.)**
+- `[v]` **Abstract versus interface**: teaser ontbrak. **(callout-tip toegevoegd in 5_abstract.md: interface is een lichtere variant, wanneer kies je wat.)**
+- `[v]` **Sealed class als tegenpool van abstract**. **(callout toegevoegd: abstract = je MOET overerven; sealed = je MAG niet overerven.)**
+- `[~]` **`ReferenceEquals` versus `==`**: de waarschuwing rond operator overloading komt uit de lucht vallen. **(bewust beperkt gehouden; verwijst al naar de appendix. Eventueel later inkorten/herformuleren.)**
+- `[c]` **`ToString` en formatting** (`IFormattable`): vooruitwijzing voor de leergierige student. **(TODO-comment kan later; voorlopig genoteerd, niet kritisch.)**
 
 ## Concrete suggesties
 
-1. Schrijf het `Equals`-voorbeeld om met `is`-pattern matching of op zijn minst met expliciete null-check en `as`-cast: `if (o is not Student temp) return false;`. Dit illustreert ook meteen waarom `is`/`as` (H17) bestaat.
-2. Verwijder of verbeter de `GetHashCode`-paragraaf: toon `HashCode.Combine(Voornaam, Geboortejaar)` als one-liner. Dat is sinds .NET Core probleemloos beschikbaar en didactisch ondoenlijk om weg te laten.
-3. Corrigeer de bewering "alle 4 methoden zijn `virtual`" naar "drie van de vier" (`GetType` is niet `virtual` en kan niet overschreven worden).
-4. Fix de syntaxisfouten in het Pong-voorbeeld onderaan [5_abstract.md](5_abstract.md): `var score = new ScoreBoard();` en `spelElementen.Add(score);`.
-5. Voeg een korte teaser-callout toe over interfaces als "lichtere variant" van abstract — eerstejaars mogen weten dat het bestaat voor ze ernaar gaan zoeken.
-6. Verifieer de cross-reference "hoofdstuk 9" op regel 4 van [5_abstract.md](5_abstract.md) tegen de huidige nummering in `_quarto.yml`.
+1. `[v]` `Equals`-voorbeeld met `is`-pattern matching. **(gedaan: `if (o is not Student temp) return false;`.)**
+2. `[v]` `GetHashCode` met `HashCode.Combine(...)` one-liner. **(gedaan.)**
+3. `[v]` Corrigeer "alle 4 methoden zijn `virtual`" naar "drie van de vier". **(gedaan.)**
+4. `[v]` Fix de Pong-syntaxfouten. **(gedaan.)**
+5. `[v]` Teaser-callout over interfaces als lichtere variant. **(toegevoegd.)**
+6. `[v]` Cross-reference "hoofdstuk 9" verifiëren. **(geverifieerd: klopt; 8_klassen = ch:9.)**
 
 ---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ## Future — ideeën voor de nieuwe editie
 

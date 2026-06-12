@@ -11,7 +11,7 @@ En wat zie je voor je als ik vraag om een "geometrische figuur" in te beelden. E
 
 Toch is het concept "geometrische figuur" een belangrijk concept: we weten dat alle geometrische figuren een gemeenschappelijke definitie hebben, namelijk - met dank aan Encyclo.nl- dat het *twee- of meerdimensionale grafische elementen zijn waarvan de vorm wiskundig te berekenen valt.* En dus is er ook een bestaansreden voor een klasse ``GeometrischeFiguur``.**Objecten van deze abstracte klasse maken daarentegen lijkt ons nutteloos.**
 
-Het is dit concept, **abstracte klasse** datik in dit hoofdstuk uit te doeken doe. Het laat ons toe klassen te definiëren die niet niet kunnen geïnstantieerd worden, maar die wel dienst kunnen doen als parentklasse voor andere klassen.
+Het is dit concept, **abstracte klasse**, dat ik in dit hoofdstuk uit de doeken doe. Het laat ons toe klassen te definiëren die niet kunnen geïnstantieerd worden, maar die wel dienst kunnen doen als parentklasse voor andere klassen.
 
 
 ### Abstracte klassen in C\#
@@ -52,6 +52,14 @@ En als we polymorfisme gebruiken (*soon!*) dan mag dit ook: ``Dier paardje = new
 
 :::{.callout-tip}
 In het begin lijkt ``abstract`` een beperkende factor: je kan minder dan ervoor. Maar het heeft dus één heel duidelijke functie: je kan een parent-klasse maken waarin de gedeelde functionaliteit van je child-klassen in zit, zonder dat je deze parent-klasse op zich kunt gebruiken. 
+:::
+
+:::{.callout-tip}
+Mooi om te zien hoe ``abstract`` en ``sealed`` elkaars tegenpolen zijn: bij een **``abstract``** klasse *moet* je overerven (je kan er zelf geen objecten van maken), terwijl je bij een **``sealed``** klasse net *niet* mag overerven.
+:::
+
+:::{.callout-tip}
+**Abstracte klasse of interface?** Verderop (hoofdstuk 16) leer je *interfaces* kennen, een soort lichtere variant van een abstracte klasse: ze bevatten enkel afspraken (welke methoden/properties er moeten zijn) maar geen gedeelde code of state. Heb je gedeelde code of instantievariabelen nodig, dan is een abstracte klasse de juiste keuze; gaat het puur om "deze klassen kunnen X", dan past een interface beter. Lig er nu nog niet van wakker, maar weet alvast dat het bestaat.
 :::
 
 
@@ -131,6 +139,8 @@ internal class Olifant : Dier
 }
 ```
 
+Let op: een abstracte ``{ get; }`` is **niet** hetzelfde als een gewone auto-property. Bij een abstracte property staat er bewust *geen* implementatie (geen body, geen verborgen instantievariabele): de child-klasse moet die zelf voorzien, net zoals bij een abstracte methode.
+
 Wanneer je een abstracte property maakt dien je ogenblikkelijk aan te geven of het om een readonly, writeonly, of property met get én set gaat:
 
 * ``public abstract int Oppervlakte {get;}``
@@ -205,8 +215,8 @@ List<SpelObject> spelElementen = new List<SpelObject>();
 //Balletjes toevoegen...
 
 //En nu het scoreboard
-var score = new ScoreBoard()
-spelElementen.Add();
+var score = new ScoreBoard();
+spelElementen.Add(score);
 
 while (true)
 {

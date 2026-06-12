@@ -103,9 +103,9 @@ Merk twee zaken op:
 1. ``GetType()`` wordt aangeroepen en die output krijg je dus terug.
 2. De methode is **virtual** gedefinieerd.
 
-**Alle 4 methoden in System.Object zijn ``virtual``, en je kan deze dus ``override``'n!**
+**Drie van de vier methoden in System.Object zijn ``virtual`` (``ToString``, ``Equals`` en ``GetHashCode``), en je kan die dus ``override``'n!** ``GetType()`` is bewust *niet* ``virtual``: die moet altijd het echte runtime-type teruggeven, dus het zou gevaarlijk zijn als je dat zou kunnen overschrijven.
 
-Nu komen we tot het hart van deze methoden. Aangezien ze alle 4 ``virtual`` zijn, kunnen we de werking ervan naar onze hand zetten in onze eigen klassen. Aardig wat .NET bibliotheken rekenen er namelijk op dat je deze methoden op de juiste manier hebt aangepast, zodat ook jouw nieuwe klassen perfect kunnen samenwerken met deze bibliotheken. Een eerste voorbeeld hiervan toonde ik net: de ``Console.WriteLine`` methode gebruikt van iedere parameter dat je er aan meegeeft de ``ToString``-methode om de parameter op het scherm als ``string`` te tonen.
+Nu komen we tot het hart van deze methoden. Aangezien drie ervan ``virtual`` zijn, kunnen we de werking ervan naar onze hand zetten in onze eigen klassen. Aardig wat .NET bibliotheken rekenen er namelijk op dat je deze methoden op de juiste manier hebt aangepast, zodat ook jouw nieuwe klassen perfect kunnen samenwerken met deze bibliotheken. Een eerste voorbeeld hiervan toonde ik net: de ``Console.WriteLine`` methode gebruikt van iedere parameter dat je er aan meegeeft de ``ToString``-methode om de parameter op het scherm als ``string`` te tonen.
  
 #### ``ToString()`` overriden
 
@@ -130,6 +130,8 @@ Wanneer je nu ``Console.WriteLine(stud1);`` - gelet dat hij de properties ``Voor
 :::{.callout-tip}
 Een extra handigheidje van ``ToString`` is dat deze methode wordt gebruikt tijdens het debuggen om je objecten samen te vatten in het watch-venster.
 :::
+
+<!-- TODO ed.5 (review): voetnoot voor de leergierige student dat je ToString later nog rijker kan maken (bv. ToString(string format) / IFormattable). Buiten scope, maar een vooruitwijzing kan. -->
 
  
  
@@ -156,21 +158,31 @@ Het is echter aan de maker van de klasse om te beslissen wanneer 2 objecten van 
 Stel dat we vinden dat een student gelijk is aan een andere student indien z'n ``Voornaam`` en ``Geboortejaar`` dezelfde is, we kunnen dan de Equals-methode overriden als volgt in de ``Student`` klasse:
 
 ```java
-public override bool Equals(Object o)
+public override bool Equals(object o)
 {  
-    Student temp = (Student)o; //Zie opmerking na code!
+    if (o is not Student temp) //null of geen Student? Dan niet gelijk.
+        return false;
     return (Geboortejaar == temp.Geboortejaar && Voornaam == temp.Voornaam);
 }
 ```
 
 :::{.callout-tip}
-De lijn ``Student temp = (Student)o;`` zal het ``object o`` casten naar een ``Student``. Doe je dit niet dan kan je niet aan de interne Student-variabelen van het ``object o``. Dit concept noemen we **polymorfisme** (zie nog steeds hoofdstuk 16....We komen dichter!).
+De regel ``if (o is not Student temp)`` doet twee dingen tegelijk: ze controleert of ``o`` wel degelijk een ``Student`` is (en niet ``null`` of een ander type) én, als dat zo is, steekt ze ``o`` meteen als ``Student`` in de variabele ``temp``. Zo respecteren we netjes de afspraak dat we ``false`` teruggeven bij ``null`` of een verkeerd type. Zonder deze controle zou een harde cast (``(Student)o``) crashen op een ``null`` of een ander type. Dit ``is``-patroon (en het bijbehorende ``as``) leer je verderop in hoofdstuk 18; het is ook een eerste glimp van **polymorfisme** (hoofdstuk 16). We komen dichter!
 :::
 
 
 
 ### ``GetHashcode()`` overriden
-Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde unieke hashcode teruggeven. Wil je dit dus implementeren dan zal je dus een (bestaand) algoritme moeten schrijven dat een uniek nummer genereert voor ieder niet-gelijke object. Algoritmes bespreken om zelf een hash te genereren liggen niet in de scope van dit boek. 
+Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde hashcode teruggeven (dit is belangrijk wanneer je objecten als key in een ``Dictionary`` of in een ``HashSet`` gebruikt). Vroeger was zelf een goede hash schrijven knap lastig, maar tegenwoordig doe je dat eenvoudig met de ingebouwde ``HashCode.Combine``. Je geeft daar dezelfde velden aan mee die je ook in ``Equals`` vergelijkt:
+
+```java
+public override int GetHashCode()
+{
+    return HashCode.Combine(Voornaam, Geboortejaar);
+}
+```
+
+Het zelf uitschrijven van hash-algoritmes ligt buiten de scope van dit boek, maar dankzij ``HashCode.Combine`` heb je dat ook niet nodig.
 
 
 
