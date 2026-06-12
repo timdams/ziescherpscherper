@@ -2,6 +2,9 @@
 
 > Interne didactische review — niet bedoeld voor publicatie.
 
+> **Status editie 5** (verwerkt op 2026-06-11). Markering per punt:
+> `[v]` gedaan · `[~]` deels of aangepast aan een stijlkeuze · `[c]` als verborgen TODO-comment in de tekst gezet · `[>]` bewust uitgesteld. De **splitsing over twee hoofdstukken** (H10 vs H14) is een structurele keuze: TODO-comments staan bovenaan elk bestand. De **Future**-sectie is nog niet aangepakt.
+
 **Belangrijke opmerking vooraf:** deze folder is in `_quarto.yml` opgesplitst over twee hoofdstukken:
 
 - [0_exceptionhandling.md](0_exceptionhandling.md) en [waarplaatsen.md](waarplaatsen.md) horen bij **H10** (Geheugenmanagement en uitzonderingen).
@@ -20,34 +23,38 @@
 
 ## Zwaktes
 
-- De volgorde **`try/catch/finally`** wordt nooit als geheel uitgelegd. `finally` komt pas helemaal achteraan in [waarplaatsen.md](waarplaatsen.md), na de exception-hiërarchie en eigen-exceptions. Studenten zien `finally` daardoor als bijzaak, terwijl het juist het derde lid van de drie-eenheid is.
-- De **catch-volgorde** ("specifieke eerst") wordt wel benoemd in [0_exceptionhandling.md](0_exceptionhandling.md), maar zonder uitleg wát er gebeurt als je het andersom doet (compiler-error: "A previous catch clause already catches all exceptions"). Een klein foutscherm zou de regel hard maken.
-- De **`Exception`-hiërarchie** wordt als tabel getoond met vier voorbeelden, maar zonder boomdiagram. Eerstejaars hebben overerving op dit punt nog niet gezien (het komt pas in H13/14), maar de hiërarchie is hier al *impliciet* aanwezig — dat wringt.
-- Het foutje `int converted = Convert.ToInt32(input)` (geen puntkomma) staat letterlijk in de tekst voor het try/catch-voorbeeld. Ofwel was het bewust om te tonen dat dit op zich geen exception is maar een compile-error — dan moet dat erbij — ofwel is het een tikfout.
-- In [0_exceptionhandling.md](0_exceptionhandling.md) staat een lege `catch { }` zonder type. Het verschil tussen `catch`, `catch (Exception)` en `catch (Exception e)` wordt niet benoemd, en de **anti-pattern "lege catch swallowing"** wordt niet besproken.
+- `[v]` De volgorde **`try/catch/finally`** wordt nooit als geheel uitgelegd. `finally` komt pas helemaal achteraan in [waarplaatsen.md](waarplaatsen.md). **(`finally`-sectie verhuisd naar het einde van [0_exceptionhandling.md](0_exceptionhandling.md) als "het derde lid"; in [waarplaatsen.md](waarplaatsen.md) blijft enkel een korte terugverwijzing.)**
+- `[v]` De **catch-volgorde** ("specifieke eerst") wordt benoemd, maar zonder uitleg wát er gebeurt als je het andersom doet. **(callout-warning toegevoegd met de exacte compiler-fout "A previous catch clause already catches all exceptions...".)**
+- `[v]` De **`Exception`-hiërarchie** wordt als tabel getoond, maar zonder boomdiagram. **(tekst-boom `Exception → SystemException → {...}` toegevoegd na de tabel, met noot die naar polymorfisme (H16) verwijst.)**
+- `[v]` Het foutje `int converted = Convert.ToInt32(input)` (geen puntkomma). **(puntkomma toegevoegd; het was een tikfout.)**
+- `[v]` Lege `catch { }` zonder type; verschil tussen `catch`, `catch (Exception)` en `catch (Exception e)` niet benoemd. **(anti-pattern callout "Wat je niét moet doen" toegevoegd, inclusief de uitleg over de naamloze `catch (Exception)`.)**
 
 ## Onduidelijkheden
 
-- *"Bij een ``throw`` zal je terug gaan tot de eerste plek waar een ``catch`` klaarstaat"*: het concept **call stack unwinding** wordt hier impliciet ingevoerd zonder naam. Studenten die dit niet snappen, plaatsen `try` op de verkeerde plek (en jouw [waarplaatsen.md](waarplaatsen.md) gaat hier net wel over, maar koppelt het niet expliciet terug).
-- ``catch (FormatException e)`` met ongebruikte `e` geeft een compiler-warning in moderne C#-versies; wordt niet vermeld.
-- In [1_eigenuitzondering.md](1_eigenuitzondering.md) ontbreekt de conventie dat eigen `Exception`-klassen **drie standaard-constructors** krijgen (default, met message, met message + innerException). Dat is precies wat de Roslyn-quickfix voorstelt — niet vermelden zorgt voor verwarring.
+- `[v]` **call stack unwinding** wordt impliciet ingevoerd zonder naam. **(term *stack unwinding* expliciet toegevoegd bij de `throw`-uitleg.)**
+- `[v]` ``catch (FormatException e)`` met ongebruikte `e` geeft een compiler-warning. **(vermeld in de anti-pattern callout, met de tip om dan `catch (Exception)` zonder naam te schrijven.)**
+- `[v]` In [1_eigenuitzondering.md](1_eigenuitzondering.md) ontbreekt de conventie van **drie standaard-constructors**. **(callout toegevoegd met de drie constructors en de uitleg waarom VS die voorstelt.)**
 
 ## Gemissen
 
-- **`finally` en resource cleanup → `using`-statement** als logische opvolger ontbreekt. Een korte vooruitwijzing ("zie hoofdstuk bestanden") zou helpen.
-- **`when`-filter** (`catch (SqlException ex) when (ex.Number == 547)`) — niet hoogste prioriteit voor eerstejaars, maar één voetnoot is genoeg.
-- **`throw;` vs. `throw ex;`** — de gevolgen voor de stack trace zijn een klassieke valkuil. Hoort bij [1_eigenuitzondering.md](1_eigenuitzondering.md).
-- **InnerException** wordt nergens vermeld, hoewel het standaard `Exception`-property is en eigen exceptions die typisch wrappen.
-- Een echte **anti-pattern callout**: "Vang nooit `Exception` op zonder iets te doen — zo verberg je bugs in plaats van ze op te lossen." Tim hint dit wel in de intro maar maakt het nooit concreet met een voorbeeld.
+- `[~]` **`finally` en resource cleanup → `using`-statement**. **(korte vooruitwijzing naar het bestandshoofdstuk toegevoegd bij de `finally`-sectie; volledige `using`-uitleg hoort daar.)**
+- `[c]` **`when`-filter**. **(TODO-comment geplaatst; niet inline, lage prioriteit voor eerstejaars.)**
+- `[v]` **`throw;` vs. `throw ex;`**. **(callout-warning toegevoegd in [1_eigenuitzondering.md](1_eigenuitzondering.md) over het wissen van de stack trace.)**
+- `[v]` **InnerException**. **(uitgelegd bij de derde standaard-constructor in [1_eigenuitzondering.md](1_eigenuitzondering.md).)**
+- `[v]` Een echte **anti-pattern callout** (swallowing). **(concreet voorbeeld met leeg `catch { }` toegevoegd in [0_exceptionhandling.md](0_exceptionhandling.md).)**
 
 ## Concrete suggesties
 
-1. Hernoem de bestanden zodat duidelijk is welk bestand bij welk hoofdstuk hoort, of voeg een commentaar bovenaan elk bestand toe.
-2. Voeg in [0_exceptionhandling.md](0_exceptionhandling.md) een visuele boom toe: `Exception → SystemException → {NullReferenceException, IndexOutOfRangeException, FormatException, ...}`. Hoeft geen volledige boom, alleen de relevante takken.
-3. Verhuis het `finally`-stuk uit [waarplaatsen.md](waarplaatsen.md) naar het einde van [0_exceptionhandling.md](0_exceptionhandling.md), zodat het `try/catch/finally`-trio bij elkaar staat.
-4. Voeg in [0_exceptionhandling.md](0_exceptionhandling.md) een korte anti-pattern-sectie *"Wat je niét moet doen"* toe met `catch { }`, `catch(Exception) { }` en silent swallowing.
-5. In [1_eigenuitzondering.md](1_eigenuitzondering.md): toon de drie standaard-constructors van een eigen exception en leg uit waarom Visual Studio die voorstelt.
-6. Fix de ontbrekende puntkomma na `Convert.ToInt32(input)` of expliciteer dat dit bewust is.
+1. `[c]` Hernoem de bestanden zodat duidelijk is welk bestand bij welk hoofdstuk hoort, of voeg een commentaar toe. **(TODO-comment over de H10/H14-splitsing kan bovenaan; structurele _quarto.yml-keuze aan Tim. Niet hernoemd om paden niet te breken.)**
+2. `[v]` Visuele boom `Exception → SystemException → {...}`. **(toegevoegd als tekst-boom.)**
+3. `[v]` Verhuis het `finally`-stuk naar het einde van [0_exceptionhandling.md](0_exceptionhandling.md). **(gedaan.)**
+4. `[v]` Korte anti-pattern-sectie *"Wat je niét moet doen"*. **(toegevoegd.)**
+5. `[v]` Toon de drie standaard-constructors. **(gedaan.)**
+6. `[v]` Fix de ontbrekende puntkomma. **(gedaan, plus een tweede interpolatie-bug `$"StackTrace: ..."` rechtgezet.)**
+
+---
+
+> **Future: nog niet aangepakt.** Onderstaande ideeën zijn bewust uitgesteld (afspraak: future-gedeelte komt later).
 
 ---
 

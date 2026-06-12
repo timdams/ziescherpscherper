@@ -1,3 +1,5 @@
+<!-- TODO ed.5 (review): structureel. Dit bestand hoort in _quarto.yml bij H14 (na overerving), niet bij H10 zoals 0_exceptionhandling.md + waarplaatsen.md. De gedeelde mapnaam 20_exceptions verbergt dat. Zie de TODO bovenaan 0_exceptionhandling.md. -->
+
 ## Zelf exceptions maken
 
 We zijn ondertussen al gewend aan het opvangen van uitzonderingen met behulp van ``try`` en ``catch``. Ook bij exception handling wordt overerving toegepast. De uitzonderingen die we opvangen zijn steeds objecten van het type ``Exception`` of van een afgeleide klasse. Denk maar aan de ``NullReferenceException`` klasse die werd overgeërfd van ``Exception``. 
@@ -61,6 +63,37 @@ internal class Timception: Exception
 
 :::{.callout-tip}
 Merk op dat we hier met ``base.ToString()`` ervoor zorgen dat ook de foutboodschap van het parent-gedeelte van de uitzondering wordt weergegeven. 
+:::
+
+:::{.callout-tip}
+**De drie standaard-constructors.** Wanneer je in Visual Studio een eigen exception aanmaakt, stelt de quickfix vaak voor om drie constructors te genereren. Dat is een afspraak die alle .NET-exceptions volgen, en het loont om ze ook in je eigen exceptions te voorzien:
+
+```java
+internal class Timception : Exception
+{
+    public Timception() { }                                  //leeg
+    public Timception(string message) : base(message) { }    //met eigen boodschap
+    public Timception(string message, Exception inner)       //met onderliggende fout
+        : base(message, inner) { }
+}
+```
+
+* De **eerste** is de lege default constructor.
+* De **tweede** laat je een eigen ``Message`` meegeven (die je daarna via ``e.Message`` kan uitlezen).
+* De **derde** laat je een *onderliggende* exception meegeven (de **``InnerException``**). Dat is handig wanneer je een lage-niveau-fout "verpakt" in een meer betekenisvolle eigen exception: de originele fout blijft dan bewaard in ``e.InnerException``.
+:::
+
+:::{.callout-warning}
+**``throw;`` versus ``throw ex;``.** Vang je een exception op en wil je ze opnieuw doorgooien, gebruik dan ``throw;`` (zonder de variabele). Schrijf je ``throw ex;``, dan wordt de **stack trace gewist** en lijkt het alsof de fout op die plek ontstond, wat het terugvinden van de echte oorzaak veel moeilijker maakt.
+
+```java
+catch (Exception e)
+{
+    //...iets doen, bv. loggen...
+    throw;      //GOED: behoudt de originele stack trace
+    //throw e;  //SLECHT: wist de stack trace
+}
+```
 :::
 
 

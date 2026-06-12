@@ -1,3 +1,5 @@
+<!-- TODO ed.5 (review): structureel. Deze folder is in _quarto.yml gesplitst over twee hoofdstukken: 0_exceptionhandling.md + waarplaatsen.md horen bij H10 (geheugen + uitzonderingen), 1_eigenuitzondering.md hoort pas bij H14 (na overerving). De mapnaam + file-prefixes verbergen die splitsing. Overweeg te hernoemen (bv. h10_*/h14_*) of 1_eigenuitzondering.md naar een aparte folder onder content/14_* te verhuizen. Vereist _quarto.yml-aanpassing. -->
+
 ## Exception handling
 
 *Het wordt tijd om de olifant in de kamer te benoemen. Het wordt tijd om een bekentenis te maken... Ben je er klaar voor?! Hier komt ie. Luister goed, maar zeg het niet door: ik heb al de hele tijd informatie voor je achter gehouden! Sorry, het was sterker dan mezelf. Maar ik deed het voor jou. Het was de enige manier om ervoor te zorgen dat je leerde programmeren zonder constant bugs in je code achter te laten. Dus ja, hopelijk neem je het me niet kwalijk?*
@@ -61,7 +63,7 @@ In volgend stukje code kunnen uitzonderingen optreden zoals we zonet zagen:
 
 ```java
 string input = Console.ReadLine();
-int converted = Convert.ToInt32(input)
+int converted = Convert.ToInt32(input);
 ```
 
 Een ``FormatException`` zal optreden wanneer de gebruiker tekst of een kommagetal invoert. De ``Convert.ToInt32()`` methode kan niet met andere input dan gehele getallen werken.
@@ -87,7 +89,7 @@ Indien er nu een uitzondering optreedt dan zal de tekst "Verkeerde invoer" getoo
 
 ### Een exception genereren met ``throw``
 
-Je kan ook zelf eender waar in je code een uitzondering **opwerpen**. Je doet dit met het **``throw``** keyword. De werking is quasi dezelfde als het ``return`` keyword. Alleen zal bij een ``throw`` je *terug gaan* tot de eerste plek waar een ``catch`` klaarstaat om de uitzondering op te vangen. Om een uitzondering op te werpen dien je eerst een ``Exception`` object aan te maken en daar de nodige informatie in te plaatsen. In hoofdstuk 14 ga ik hier nog wat dieper op in, maar hier alvast een voorbeeldje:
+Je kan ook zelf eender waar in je code een uitzondering **opwerpen**. Je doet dit met het **``throw``** keyword. De werking is quasi dezelfde als het ``return`` keyword. Alleen zal bij een ``throw`` je *terug gaan* tot de eerste plek waar een ``catch`` klaarstaat om de uitzondering op te vangen. Dit "naar boven klimmen" door de opeenvolgende methode-aanroepen heet *stack unwinding*: de uitvoering verlaat de huidige methode, dan de methode die deze aanriep, enz., tot er ergens een passende ``catch`` gevonden wordt. Net daarom is het belangrijk om je ``try``/``catch`` op de juiste plek te zetten (zie verderop). Om een uitzondering op te werpen dien je eerst een ``Exception`` object aan te maken en daar de nodige informatie in te plaatsen. In hoofdstuk 14 ga ik hier nog wat dieper op in, maar hier alvast een voorbeeldje:
 
 ```java
 //Een error treedt op
@@ -110,6 +112,18 @@ Afhankelijk van het soort fout kunnen we echter ook andere soort uitzonderingen 
 |`SystemException`|	Klasse voor uitzonderingen die niet al te belangrijk zijn en die mogelijk verholpen kunnen worden.|
 |`IndexOutOfRangeException`|	De index is te groot of te klein voor de benadering van een array|
 |`NullReferenceException`|	Benadering van een niet-geïnitialiseerd object |
+
+Al deze klassen vormen samen een **hiërarchie**: elke specifieke exception is uiteindelijk een afgeleide (child) van ``Exception``. Vereenvoudigd:
+
+```text
+Exception
+ └── SystemException
+      ├── IndexOutOfRangeException
+      ├── NullReferenceException
+      └── FormatException
+```
+
+Dat een specifieke exception "een" ``Exception`` is, is precies waarom een ``catch (Exception e)`` ook al die specifiekere uitzonderingen opvangt (denk aan polymorfisme uit hoofdstuk 16).
 
 
 Je kan in het catch blok aangeven welke soort exceptions je wil vangen in dat blok. Als je bijvoorbeeld alle Exceptions wil opvangen schrijf je:
@@ -142,6 +156,22 @@ catch (Exception e)
 ```
 
 Indien een ``FormatException`` optreedt dan zal het eerste catch-blok uitgevoerd worden, in alle andere gevallen het tweede. Het tweede blok zal niet uitgevoerd worden indien een ``FormatException`` optreedt.
+
+:::{.callout-warning}
+**De volgorde is verplicht: specifiek eerst, algemeen laatst.** Zet je het algemene ``catch (Exception e)`` *boven* het specifieke ``catch (FormatException e)``, dan compileert je code niet en krijg je de fout *"A previous catch clause already catches all exceptions of this or of a super type"*. Logisch: het algemene blok zou alles al opvangen, waardoor het specifieke blok nooit bereikt kan worden.
+:::
+
+:::{.callout-tip}
+**Wat je niét moet doen.** Een leeg ``catch``-blok (of ``catch (Exception) { }``) dat de fout opvangt maar er *niets* mee doet, is een gevaarlijk anti-pattern: je verbergt bugs in plaats van ze op te lossen. Het programma lijkt te werken, maar fouten gebeuren stilletjes op de achtergrond. Vang dus enkel exceptions op waar je ook echt iets zinnig mee doet (een nette boodschap tonen, loggen, een alternatief proberen).
+
+```java
+//SLECHT: fout wordt stil ingeslikt
+try { /* ... */ }
+catch { }
+```
+
+Schrijf je het exception-object niet uit (``catch (Exception e)`` zonder ``e`` ergens te gebruiken), dan geeft VS trouwens een waarschuwing. Je mag dan gewoon ``catch (Exception)`` schrijven zonder naam.
+:::
 
 
 
@@ -185,7 +215,7 @@ catch (Exception e)
     Console.WriteLine("Message:"+e.Message);
  
     Console.WriteLine($"Targetsite: {e.TargetSite}");
-    Console.WriteLine("StackTrace: {e.StackTrace}");
+    Console.WriteLine($"StackTrace: {e.StackTrace}");
 }
 ```
 
@@ -193,6 +223,35 @@ catch (Exception e)
 :::{.callout-important}
 Vanuit een security standpunt is het zelden aangeraden om Exception informatie zomaar rechtstreeks naar de gebruiker te sturen. Mogelijk bevat de informatie gevoelige informatie en zou deze door kwaadwillige gebruikers kunnen misbruikt worden om bugs in je programma te vinden.
 :::
+
+### ``finally``: het derde lid
+
+Naast ``try`` en ``catch`` bestaat er nog een derde blok: **``finally``**. Dit blok laat je toe om code uit te voeren die ALTIJD moet uitgevoerd worden, ongeacht of er een exception is opgetreden of niet. Je gebruikt dit bijvoorbeeld om er zeker van te zijn dat een bestand dat je opende ook weer netjes wordt afgesloten, of dat een netwerkverbinding wordt vrijgegeven.
+
+```java
+try
+{
+    //...code die kan mislukken
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+finally
+{
+    //Plaats hier zaken die sowieso moeten gebeuren,
+    //bv. een geopend bestand terug afsluiten.
+}
+```
+
+Het ``finally``-blok loopt dus zowel wanneer alles goed ging als wanneer er een exception werd opgevangen. Zo vormen ``try``, ``catch`` en ``finally`` samen de drie-eenheid van exception handling.
+
+:::{.callout-tip}
+Voor het specifieke geval van "iets openen en daarna gegarandeerd weer sluiten" bestaat een nettere, kortere schrijfwijze: het ``using``-statement. Dat zie je later bij het hoofdstuk over bestandsverwerking.
+:::
+
+<!-- TODO ed.5 (review): when-filter (catch (... ex) when (ex.Number == 547)) eventueel als korte voetnoot toevoegen. Niet hoogste prioriteit voor eerstejaars. -->
+<!-- TODO ed.5 (review): taalkeuze-callout (Python try/except/finally, JS geen checked exceptions, Rust Result<T,E>) is een Future-idee, nog niet toegevoegd. -->
 
 
 

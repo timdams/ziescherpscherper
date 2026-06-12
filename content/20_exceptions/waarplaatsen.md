@@ -93,24 +93,6 @@ Ongeldige URI: de indeling van de URI kan niet worden bepaald.
 
 Met andere woorden, indien een bepaalde url niet geldig is dan zal deze overgeslagen worden en gaat de methode verder naar de volgende. Op deze manier kunnen we alsnog alle urls trachten te downloaden.
 
-
-
-### finally 
-Soms zal je na een try-catch-blok ook nog een ``finally`` blok zien staan. Dit blok laat je toe om code uit te voeren die ALTIJD moet uitgevoerd worden, ongeacht of er een exception is opgetreden of niet. Je kan dit gebruiken om bijvoorbeeld er zeker van te zijn dat het bestand dat je wou uitlezen terug afgesloten wordt.
-
-```java
-try
-{
-    Uri uri = new Uri(urls[i]);
-    string result = webClient.DownloadString(uri);
-    Console.WriteLine($"{uri} gedownload. Resultaat: {result}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-finally
-{
-    //Plaats hier zaken die sowieso moeten gebeuren. 
-}
-```
+:::{.callout-tip}
+Het ``finally``-blok (de code die sowieso loopt, of er nu een exception optreedt of niet) hebben we eerder al gezien bij het ``try/catch/finally``-trio. Je kan het ook hier rond het downloadgedeelte plaatsen wanneer er per url iets is dat sowieso moet gebeuren.
+:::
