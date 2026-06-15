@@ -4,4 +4,23 @@ title: "Slides overzicht"
 
 # Slides
 
-Hier komt een overzicht van alle slides.
+Lesslides per hoofdstuk, in de stijl van het handboek.
+
+* [H1: De eerste stappen](h01_eerstestappen.html)
+* [H2: De basisconcepten van C#](h02_basisconcepten.html)
+* [H3: Tekst gebruiken in code](h03_tekst.html)
+* [H4: Werken met data](h04_data.html)
+* [H5: Beslissingen](h05_beslissingen.html)
+* [H6: Herhalingen](h06_herhalingen.html)
+* [H7: Methoden](h07_methoden.html)
+* [H8: Arrays](h08_arrays.html)
+* [H9: Object georiënteerd programmeren](h09_oop.html)
+* [H10: Geheugen- en codebeheer](h10_geheugen_exceptions.html)
+* [H11: Gevorderde klasseconcepten](h11_gevorderdeklassen.html)
+* [H12: Arrays en klassen](h12_arraysenklassen.html)
+* [H13: Overerving](h13_overerving.html)
+* [H14: Gevorderde overervingsconcepten](h14_gevorderdeovererving.html)
+* [H15: Compositie en aggregatie](h15_compositie.html)
+* [H16: Polymorfisme](h16_polymorfisme.html)
+* [H17: Interfaces](h17_interfaces.html)
+* [H18: Bestandsverwerking](h18_bestanden.html)

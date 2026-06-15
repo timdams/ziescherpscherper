@@ -4,6 +4,7 @@
 *_files/
 **/*.quarto_ipynb
 /build/
+slidesOld/
 site_libs/
 
 # Single-file render output: Quarto rendert .html (+ _files/) naast de bron.

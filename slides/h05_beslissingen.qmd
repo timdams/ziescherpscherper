@@ -1,0 +1,511 @@
+---
+title: "Beslissingen"
+subtitle: "Zie Scherp Scherper - Hoofdstuk 5"
+author: "Tim Dams"
+format:
+  revealjs:
+    theme: [default, _extensions/grantmcdermott/clean/clean.scss]
+    lang: nl
+    slide-number: true
+    transition: slide
+    embed-resources: true
+---
+
+## Wat leer je in dit hoofdstuk?
+
+Na dit hoofdstuk kan je:
+
+* **booleaanse expressies** schrijven met **relationele** en **logische** operators
+* de **volgorde van bewerkingen** correct toepassen
+* beslissingen nemen met **`if`**, **`if/else`** en **`if/else if`**
+* de **scope** van een variabele bepalen
+* een **`switch`** gebruiken in plaats van een lange `if`-keten
+* een eigen **`enum`** maken en inzetten voor leesbare, veilige code
+
+---
+
+## Van lineair naar beslissingen
+
+Tot nu toe waren onze programma's een rechtlijnige lijst opdrachten:
+
+```text
+Neem geld uit spaarpot
+Wandel naar de bakker
+Vraag om een brood
+Betaal en keer huiswaarts
+```
+
+::: {.fragment}
+De realiteit is zelden zo rechtlijnig. Een beter algoritme **beslist** onderweg:
+
+```text
+Geld op? Stop dan. Anders: ga verder.
+Bakker toe? Stop dan. Anders: koop brood.
+```
+:::
+
+---
+
+## Booleaanse expressies
+
+> Een **booleaanse expressie** is C#-code die een **`bool`** als resultaat geeft.
+
+De operators in dit hoofdstuk zijn **test-operators**: ze testen of iets waar is of niet.
+
+---
+
+## Relationele operators
+
+| Operator | Betekenis |
+|---|---|
+| `>` `<` | groter / kleiner dan |
+| `>=` `<=` | groter / kleiner dan of gelijk aan |
+| `==` | gelijk aan |
+| `!=` | niet gelijk aan |
+
+* Twee operanden, resultaat is een **`bool`**
+* De types moeten **vergelijkbaar** zijn (geen `string` met `int`)
+
+::: {.callout-warning .fragment}
+`=` kent een waarde toe, `==` test op gelijkheid. Een klassieke verwarring.
+:::
+
+---
+
+## Logische operators
+
+Voor samengestelde voorwaarden ("hongerig **EN** genoeg geld"):
+
+* **`&&`** (EN): `true` als **beide** operanden `true` zijn
+* **`||`** (OF): `true` als **minstens één** operand `true` is
+* **`!`** (NIET): keert de waarde om
+
+```csharp
+bool result = (4 < 6) && ("ja" == "nee");  // true && false  => false
+```
+
+Logische operators verwachten **`bool`**-operanden en geven een `bool` terug.
+
+---
+
+## Volgorde van bewerkingen
+
+Belangrijk zodra je expressies combineert:
+
+1. `!` (logische NIET)
+2. `*`  `/`  `%`
+3. `+`  `-`
+4. `<`  `<=`  `>`  `>=`
+5. `==`  `!=`
+6. `&&`
+7. `||`
+
+::: {.callout-tip .fragment}
+Twijfel je? Gebruik **haakjes**. Dat maakt je code leesbaarder en je bedoeling expliciet.
+:::
+
+---
+
+## Test jezelf
+
+```csharp
+4 < 5 && 4 < 3
+"a" == "A" || 4 >= 3
+(3 == 3 && 2 < 1) || 5 != 4
+!(4 <= 3)
+```
+
+::: {.fragment}
+* `false` (`true && false`)
+* `true` (`false || true`, let op: hoofdlettergevoelig)
+* `true` (`(true && false) || true`)
+* `true` (`!false`)
+:::
+
+---
+
+## If
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```csharp
+int nummer = 3;
+if (nummer < 5)
+{
+    Console.WriteLine("Ja");
+}
+Console.WriteLine("Nee");
+```
+
+Het `if`-blok draait enkel als de expressie **`true`** is. De lijn erna draait **altijd**.
+:::
+
+::: {.column width="40%"}
+![Flowchart.](../content/assets/2_beslissingen/ifflow.png)
+:::
+
+::::
+
+---
+
+## Werk altijd met accolades
+
+Zonder accolades hoort **enkel de eerste lijn** bij de `if`:
+
+```csharp
+if (tijd < 20)
+    Console.WriteLine("Doe zo voort.");
+    Console.WriteLine("Je bent er bijna!"); // verschijnt ALTIJD
+```
+
+::: {.callout-tip .fragment}
+Inspringen heeft in C# **geen** invloed op de programmaflow (anders dan in Python). De accolades bepalen het blok.
+:::
+
+---
+
+## Veelgemaakte fouten met if
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/attention.png)
+:::
+
+::: {.column width="78%"}
+Voorman hier, even wakker schudden. Klassiekers met `if`:
+
+* **appelen en peren** vergelijken (`"4" > 3`)
+* **accolades vergeten**
+* een **puntkomma** na de booleaanse expressie
+:::
+
+::::
+
+---
+
+## De puntkomma-val
+
+:::: {.columns}
+
+::: {.column width="58%"}
+```csharp
+if (naam == "neo");
+{
+    Console.WriteLine("Red pill?");
+    Console.WriteLine("Or blue pill?");
+}
+```
+
+De `;` sluit de `if` meteen af. Het blok eronder draait **altijd**, ongeacht de naam.
+:::
+
+::: {.column width="42%"}
+![De flow loopt langs de if.](../content/assets/2_beslissingen/ifflowsemicolon.png)
+:::
+
+::::
+
+---
+
+## If/else
+
+```csharp
+if (waterpeil > MAX)
+{
+    Console.WriteLine("Waterpeil staat te hoog!");
+}
+else
+{
+    Console.WriteLine("Waterpeil is in orde.");
+}
+```
+
+::: {.callout-warning .fragment}
+Een `else` krijgt **geen** eigen booleaanse expressie. `else (a <= b)` is fout: de `else` draait gewoon wanneer de `if` niet waar was.
+:::
+
+---
+
+## If - else if
+
+```csharp
+if (x > 100)
+    Console.WriteLine("Groter dan 100");
+else if (x > 10)
+    Console.WriteLine("Groter dan 10");
+else
+    Console.WriteLine("Kleiner dan of gelijk aan 10");
+```
+
+::: {.callout-important .fragment}
+De **volgorde is cruciaal**. Zet je `x > 10` bovenaan, dan wordt `x > 100` nooit bereikt: bij 110 slaat de eerste test al toe.
+:::
+
+---
+
+## Nesting
+
+Beslissingen in beslissingen:
+
+```csharp
+if (huidigeTemperatuur < MAX_TEMP)
+{
+    Console.WriteLine("Temperatuur normaal");
+}
+else
+{
+    Console.WriteLine("Temperatuur te hoog!");
+    if (dokterVanWacht == "")
+        Console.WriteLine("Oei! Geen dokter van wacht!");
+    else
+        Console.WriteLine($"{dokterVanWacht} gecontacteerd");
+}
+```
+
+---
+
+## Combineren met logische operators
+
+```csharp
+if (leeftijd > 18 && heeftIdentiteitskaart)
+    Console.WriteLine("Welkom");
+else
+    Console.WriteLine("Niet toegelaten!");
+```
+
+::: {.callout-tip .fragment}
+Schrijf `heeftIdentiteitskaart`, niet `heeftIdentiteitskaart == true`. Een `bool` is zelf al een booleaanse expressie. Testen op `false`? Schrijf `!heeftIdentiteitskaart`.
+:::
+
+---
+
+## if blijft lastig
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/care.png)
+:::
+
+::: {.column width="78%"}
+Laat al die uitleg je niet wijsmaken dat `if`-structuren eenvoudig zijn. Het is als met pijl en boog leren jagen: vlekkeloos op een stilstaande schijf, tot er een mammoet op je afkomt. *Da's andere kak hé?*
+
+Teken zeker in het begin een **flowchart**. *Bezint eer ge begint.*
+:::
+
+::::
+
+---
+
+## Scope van variabelen
+
+De **omliggende accolades** bepalen waar een variabele leeft:
+
+```csharp
+if (iLoveCSharp)
+{
+    int getal = int.Parse(Console.ReadLine());
+} // einde scope van getal
+
+Console.WriteLine(getal); // FOUT: getal bestaat hier niet meer
+```
+
+Vergelijk het met kamers in een gebouw: wat je in een kamer maakt, blijft in die kamer.
+
+---
+
+## Scope oplossen
+
+Declareer de variabele **vóór** het blok waar je ze later nodig hebt:
+
+```csharp
+int getal = 0;
+if (iLoveCSharp)
+{
+    getal = int.Parse(Console.ReadLine());
+}
+Console.WriteLine(getal); // ok
+```
+
+::: {.callout-important .fragment}
+Binnen eenzelfde scope mag je niet twee variabelen met **dezelfde naam** maken.
+:::
+
+---
+
+## Switch
+
+Een lange `if/else if`-keten korter schrijven:
+
+```csharp
+switch (option)
+{
+    case 1:
+        Console.WriteLine("Afbreken gekozen");
+        break;
+    case 2:
+        Console.WriteLine("Opslaan gekozen");
+        break;
+    default:
+        Console.WriteLine("Onbekende keuze");
+        break;
+}
+```
+
+Vier nieuwe keywords: **`switch`**, **`case`**, **`break`**, **`default`**.
+
+---
+
+## Switch: de spelregels
+
+* De **case-waarden** zijn **constanten** (literals), geen variabelen
+* Ze moeten van **hetzelfde type** zijn als de testwaarde
+* Vergelijking gaat **van boven naar onder**; geen match? Dan **`default`**
+
+::: {.callout-tip .fragment}
+Accolades per case hoeven niet, maar elke case met code eindigt op **`break`**.
+:::
+
+---
+
+## Fallthrough en de break-regel
+
+```csharp
+case 2:
+case 3:
+    Console.WriteLine("Laden of opslaan gekozen");
+    break;
+```
+
+Twee cases die dezelfde code delen. Dit werkt enkel omdat `case 2:` zelf **geen** code bevat.
+
+::: {.callout-warning .fragment}
+Kom je van C, Java of JavaScript: in C# **mag** een case met code niet "doorvallen". Vergeet je `break`, dan **compileert** je code niet. C# behoedt je voor een klassieke bug.
+:::
+
+---
+
+## Enum: de bestaansreden
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/attention.png)
+:::
+
+::: {.column width="78%"}
+Een dag van de week bijhouden zonder enum is foutgevoelig:
+
+* met een **`int`** (1 tot 7): wat bij waarde 9 of -4? En was 2 nu dinsdag?
+* met een **`string`** (`"maandag"`): één typefout (`"Maandag"`) en je test faalt
+:::
+
+::::
+
+---
+
+## Enum: het beste van twee werelden
+
+Een **`enum`** is een eigen datatype met een vaste set toegelaten waarden:
+
+```csharp
+enum Weekdagen { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag, Zondag };
+```
+
+* Leesbaarder en minder foutgevoelig
+* IntelliSense vult de mogelijke waarden voor je in
+
+::: {.callout-note .fragment}
+Definieer het type binnen `class Program`, maar **niet** binnen `Main`.
+:::
+
+---
+
+## Enum gebruiken
+
+```csharp
+Weekdagen dagKeuze = Weekdagen.Donderdag;
+
+if (dagKeuze == Weekdagen.Woensdag) { /* ... */ }
+
+switch (dagKeuze)
+{
+    case Weekdagen.Maandag:
+        Console.WriteLine("It's monday!");
+        break;
+    // ...
+}
+```
+
+Variabelen zoals gewoonlijk, maar beperkt tot de gedefinieerde waarden. Veel leesbaarder.
+
+---
+
+## Enum is intern een int
+
+```csharp
+int keuze = 3;
+Weekdagen dag = (Weekdagen)keuze; // Donderdag (telt vanaf 0)
+```
+
+* Standaard genummerd vanaf **0** (`Maandag` = 0, `Dinsdag` = 1, ...)
+* Je kan dat zelf sturen:
+
+```csharp
+enum Weekdagen { Maandag = 1, Dinsdag, Woensdag, Zaterdag = 50, Zondag = 60 }
+```
+
+Geen expliciet getal? Dan krijgt een waarde die van de vorige plus één.
+
+---
+
+## Enum in de praktijk
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/care.png)
+:::
+
+::: {.column width="78%"}
+Gebruik `enum` telkens je vooraf weet welke waarden mogelijk zijn. Klassiek bij *finite state machines*:
+
+```csharp
+enum Gamestate { Intro, Startmenu, Ingame, Gameover }
+```
+
+Daarna een nette `switch` op `playerGameState`. Of denk aan schaken: `Schaakstuk.Paard`.
+:::
+
+::::
+
+---
+
+## Conclusie
+
+* **Booleaanse expressies** combineren relationele en logische operators tot een `bool`
+* **`if`**, **`if/else`** en **`if/else if`**: let op accolades, puntkomma's en de **volgorde**
+* De **scope** van een variabele wordt door de omliggende accolades bepaald
+* Een **`switch`** verkort een lange `if`-keten; elke case met code eindigt op **`break`**
+* Een **`enum`** maakt code leesbaarder en veiliger: een eigen type met vaste waarden
+
+::: {.callout-tip}
+Volgende halte: **herhalingen** met `while`, `do-while` en `for`.
+:::
+
+---
+
+## Meer weten
+
+**Kennisclips**
+
+* [Logische operators en expressies](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=0cc5ce02-e957-4de0-980b-ac4600952358)
+* [If](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e1565009-be4b-4fed-a1fa-ac46009522dc)
+* [Scope van variabelen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=16593f9b-a0fa-4b9b-a869-ac4600958190)
+* [Switch](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ce2ae654-bd58-45ed-915f-ac460095237f)
+* [Enum](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=41f45fba-c731-4f0a-9e87-ac4600952274)
+* [Demo: Enums gebruiken](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9273e56b-1bfa-4393-a14a-aaed00bd4eaf)
+
+[Oefeningen H5](https://apwt.gitbook.io/ziescherp-oefeningen/h5-beslissingen/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918620856/zie-scherp-scherper-hoofdstuk-05-flash-cards/)
