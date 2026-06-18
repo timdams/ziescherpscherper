@@ -1,0 +1,9 @@
+/*-- scss:rules --*/
+
+// 'C#' leesbaar houden ondanks het ultradunne Roboto-thema.
+// Het '#' verdwijnt anders bijna in de dunne letter; .cs geeft enkel
+// die term wat meer gewicht (en houdt 'C' en '#' op dezelfde regel).
+.reveal .cs {
+  font-weight: 500;
+  white-space: nowrap;
+}

@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: ../build/slidesBlend
+  render:
+    - "*.qmd"
+    - "!overzicht.qmd"
+
+website:
+  title: "Zie Scherp - Slides (Blend)"
+
+format:
+  revealjs:
+    theme: [default, _extensions/grantmcdermott/clean/clean.scss]
+    lang: nl
+    slide-number: true
+    transition: slide

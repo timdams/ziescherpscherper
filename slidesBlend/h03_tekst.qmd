@@ -1,0 +1,412 @@
+---
+title: "Tekst gebruiken in code"
+subtitle: "Zie Scherp Scherper - Hoofdstuk 3"
+author: "Tim Dams"
+format:
+  revealjs:
+    theme: [default, _extensions/grantmcdermott/clean/clean.scss, custom.scss]
+    lang: nl
+    slide-number: true
+    transition: slide
+    embed-resources: true
+---
+
+## Wat leer je in dit hoofdstuk?
+
+Na dit hoofdstuk kan je:
+
+* het verschil tussen **`char`** en **`string`** uitleggen
+* **ASCII** en **UNICODE** situeren en weten hoe .NET tekst bewaart
+* **escape characters** (`\n`, `\t`, `\"`, ...) en het **verbatim** teken `@` gebruiken
+* tekst samenvoegen en formatteren met **string interpolation** (`$`)
+* speciale **UNICODE-tekens** op het scherm tonen
+* info over de machine ophalen via de **`Environment`**-bibliotheek
+
+---
+
+## Alles is een char
+
+* Elk teken dat je intypt is een **`char`**
+* Je toetsenbord toont maar een fractie van alle mogelijke tekens (vergelijk met een Spaans, Tunesisch of Chinees toetsenbord)
+
+Voor we tekst inlezen, moeten we begrijpen **hoe** een computer al die tekens voorstelt.
+
+---
+
+## Van ASCII naar UNICODE
+
+:::: {.columns}
+
+::: {.column width="55%"}
+* **ASCII**: de oude standaard, maar 128 tekens (7 bits)
+* **UNICODE**: de opvolger, ruimte voor meer dan 1 miljoen tekens
+* De eerste 128 UNICODE-tekens zijn identiek aan ASCII (compatibel)
+* .NET bewaart een `string` intern als **UTF-16**
+:::
+
+::: {.column width="45%"}
+![De eerste 128 tekens (bron: Wikipedia).](../content/assets/1_csharpbasics/asciihires.png)
+:::
+
+::::
+
+::: {.callout-tip .fragment}
+De eerste 32 tekens zijn "onzichtbare" stuurtekens uit het Telex-tijdperk (*line feed*, *bell*, ...).
+:::
+
+---
+
+## Char
+
+```csharp
+char eenLetter = 'X';
+Console.WriteLine(eenLetter);
+```
+
+* Één enkel karakter, tussen **apostrofs** (`'`)
+* **Intern bewaard als een 16-bit getal** (de UNICODE-waarde)
+
+::: {.callout-important .fragment}
+`char eenGetal = '7';` bewaart het teken `7`, niet het getal 7. Wil je ermee rekenen, dan moet je eerst converteren (hoofdstuk 4).
+:::
+
+---
+
+## String
+
+> Een **`string`** is een reeks van 0, 1 of meer `char`-elementen.
+
+* Tekst staat tussen **dubbele aanhalingstekens** (`"`)
+* Een `char` gebruikt een apostrof, een `string` aanhalingstekens
+
+::: {.callout-tip .fragment}
+In hoofdstuk 8 ontdek je dat een `string` eigenlijk een **array** van chars is.
+:::
+
+---
+
+## Drie keer "1", drie types
+
+```csharp
+char eenKarakter = '1';
+string eenString = "1";
+int eenGetal = 1;
+
+Console.WriteLine(eenKarakter);
+Console.WriteLine(eenString);
+Console.WriteLine(eenGetal);
+```
+
+Driemaal een `1` onder elkaar, maar telkens een ander **type**. Boeiend programma, hoor.
+
+---
+
+## Escape characters
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/attention.png)
+:::
+
+::: {.column width="78%"}
+Niet de boeiendste materie (geen opvolger van Prison Break), maar wie ze beheerst, tovert mooiere tekst op het scherm.
+
+Sommige tekens hebben een **speciale functie** (bv. `"` begrenst een string). Met een **backslash** (`\`) zeg je: behandel het volgende teken letterlijk.
+:::
+
+::::
+
+---
+
+## Het probleem, en de redding
+
+```csharp
+char weglatingsteken = ''';  // VS raakt volledig in de war
+```
+
+. . .
+
+**Escape characters to the rescue:**
+
+```csharp
+char weglatingsteken = '\'';
+```
+
+![](../content/assets/1_csharpbasics/escape.png){width=70%}
+
+---
+
+## De belangrijkste escape characters
+
+```text
+\'      apostrof
+\"      aanhalingsteken
+\\      backslash
+\n      nieuwe lijn (enter / newline)
+\t      horizontale tab
+\uxxxx  teken met hexadecimale UNICODE-waarde xxxx
+```
+
+---
+
+## Escape in strings
+
+```csharp
+string woord = "\'s avonds";
+```
+
+Code op het scherm tonen wordt al snel *Inception*:
+
+```csharp
+Console.WriteLine("Console.WriteLine(\"Cool he\");");
+```
+
+Uitvoer:
+
+```text
+Console.WriteLine("Cool he");
+```
+
+---
+
+## Witregels en tabs
+
+```csharp
+string eenString = "Een zin.\t na een tab \nDan een nieuwe regel";
+Console.WriteLine(eenString);
+```
+
+Uitvoer:
+
+```text
+Een zin.         na een tab
+Dan een nieuwe regel
+```
+
+::: {.callout-tip .fragment}
+`\t` springt naar de volgende vaste **tabstop**, handig om data uitgelijnd in een tabel te zetten.
+:::
+
+---
+
+## Het verbatim teken @
+
+Het apenstaartje `@` voor een string zegt: **behandel alles letterlijk**, escape characters worden genegeerd.
+
+```csharp
+string zonderAt = "C:\\Temp\\Myfile.txt";
+string metAt = @"C:\Temp\Myfile.txt";
+```
+
+::: {.callout-note .fragment}
+Aanhalingstekens moet je nog steeds escapen. Heb je een `"` in je tekst, dan kan `@` niet helpen.
+:::
+
+---
+
+## Strings samenvoegen met +
+
+De `+`-operator plakt tekst aan elkaar (**concatenatie**), van links naar rechts:
+
+```csharp
+Console.WriteLine("1" + 1 + 1);     // 111
+Console.WriteLine(1 + 1 + "1");     // 21
+Console.WriteLine("1" + (1 + 1));   // 12
+```
+
+::: {.callout-warning .fragment}
+De **linkse operand** bepaalt het resultaat bij twijfel. Bij `"1" + 1 + 1` wordt eerst `"11"`, dan `"111"`. Bij `1 + 1 + "1"` wordt eerst `2`, dan `"21"`.
+:::
+
+---
+
+## String interpolation met $
+
+Lange `+`-zinnen worden onleesbaar. Zet een **`$`** voor de string en alles tussen `{ }` wordt als code uitgevoerd:
+
+```csharp
+int leeftijd = 13;
+string naam = "Finkelstein";
+string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
+```
+
+Veel leesbaarder dan de `+`-variant.
+
+::: {.callout-tip .fragment}
+Vanaf nu gebruik ik bijna altijd string interpolation. Het is de moderne aanpak en 99% van de tijd leesbaarder.
+:::
+
+---
+
+## Expressies in interpolatie
+
+Tussen de accolades mag **elke expressie**:
+
+```csharp
+string a = $"Ik ben {leeftijd + 4} jaar.";          // 17
+string b = $"Je naam telt {naam.Length} tekens.";   // methode-aanroep
+Console.WriteLine($"3 maal 9 is {3 * 9}");           // 27
+```
+
+De expressie wordt eerst berekend, dan in de tekst geplaatst.
+
+---
+
+## Formatteren
+
+Plaats een dubbelpunt na de expressie om de weergave te sturen:
+
+```csharp
+double number = 12.345;
+Console.WriteLine($"{number:F2}");   // 12,35  (afgerond, niet afgekapt)
+```
+
+* `F2`: kommagetal met 2 cijfers na de komma
+* `D5`: geheel getal met minstens 5 cijfers (`123` wordt `00123`)
+* `C`: geldbedrag volgens de landinstellingen
+
+---
+
+## Formatteren met een masker
+
+```csharp
+double number = 12.3;
+Console.WriteLine($"{number:0.00}");    // 12,30
+Console.WriteLine($"{number:000.00}");  // 012,30
+```
+
+::: {.callout-warning}
+**Komma of punt hangt van de computer af.** Op een Belgisch systeem zie je `12,30`, op een Engels `12.30`. Dat maakt je uitvoer **machine-afhankelijk**. Wil je dat vastzetten, dan leer je later `CultureInfo` kennen.
+:::
+
+---
+
+## De char-val: 'A' + 'B'
+
+```csharp
+char letter1 = 'A';
+char letter2 = 'B';
+Console.WriteLine(letter1 + letter2);
+```
+
+. . .
+
+**Op het scherm: `131`, niet "AB".**
+
+Een `char` bewaart een getal: `A` = 65, `B` = 66. De `+`-operator bestaat niet voor `char`, dus [C#]{.cs} rekent met `int`: 65 + 66 = **131**.
+
+---
+
+## Speciale UNICODE-tekens tonen
+
+:::: {.columns}
+
+::: {.column width="60%"}
+Eerst de juiste encoding instellen als **allereerste lijn** in `Main`:
+
+```csharp
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+```
+
+Daarna, bv. het copyright-teken (UNICODE `0x00A9`):
+
+```csharp
+char copyright = (char)0x00A9;
+Console.WriteLine(copyright);
+Console.WriteLine("©");
+```
+:::
+
+::: {.column width="40%"}
+![Dit Wikipedia-logo bestaat volledig uit UNICODE-tekens.](../content/assets/1_csharpbasics/asciiwiki.png)
+:::
+
+::::
+
+---
+
+## UNICODE-kunst
+
+Multiline ASCII-art toon je met een verbatim string `@`:
+
+```csharp
+string titel = @"
+ _______ _____
+|__   __|  __ \
+   | |  | |  | |
+   | |  | |  | |
+   |_|  |_|__/ ";
+Console.WriteLine(titel);
+```
+
+::: {.callout-tip .fragment}
+`$` en `@` mogen samen: zowel `$@"..."` als `@$"..."` werkt en doet hetzelfde.
+:::
+
+---
+
+## De Environment-bibliotheek
+
+`Console` is maar één bibliotheek. **`Environment`** geeft info over de machine waarop je programma draait:
+
+```csharp
+string pcname = Environment.MachineName;
+int proccount = Environment.ProcessorCount;
+string username = Environment.UserName;
+Console.WriteLine($"Je computer heet {pcname} met {proccount} processoren.");
+```
+
+::: {.callout-important .fragment}
+Op een andere computer krijg je andere resultaten. Test zulke code dus op meerdere systemen.
+:::
+
+---
+
+## Programma afsluiten
+
+```csharp
+Environment.Exit(0);
+```
+
+Het getal is de **exitcode**: handig om later in logbestanden te zien waarom een programma stopte.
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/care.png)
+:::
+
+::: {.column width="78%"}
+[C#]{.cs} leren lijkt in het begin soms saai, daarom strooi ik er af en toe iets geavanceerds tussen. Niemand kent élke bibliotheek: het is aan jou om te ontdekken welke nuttig zijn voor jouw probleem.
+:::
+
+::::
+
+---
+
+## Conclusie
+
+* Een **`char`** is één teken (een 16-bit getal), een **`string`** is een reeks chars
+* **UNICODE** (UTF-16 in .NET) volgt ASCII op en bevat meer dan een miljoen tekens
+* **Escape characters** (`\n`, `\t`, `\"`) en **`@`** sturen hoe tekst geïnterpreteerd wordt
+* **String interpolation** (`$"...{expressie}..."`) is de leesbare, moderne manier om tekst op te bouwen
+* Let op de **char-val** (`'A' + 'B'` = 131) en op **machine-afhankelijke** formattering
+
+::: {.callout-tip}
+Volgende halte: **werken met data**: converteren, casten en rekenen.
+:::
+
+---
+
+## Meer weten
+
+**Kennisclips**
+
+* [Char en strings](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dace7ae4-e4aa-4686-a3aa-ac38008c4f5e)
+* [Escape characters](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e80901c9-0baa-47d3-9c18-ac380085c4d1)
+* [String interpolation](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a054ae85-1e31-44ba-b3fb-ac38008554a1)
+* [Unicode tonen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9b7eb60b-35fd-4f4e-b825-ac3800850087)
+* [Environment bibliotheek](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=72cdbd18-2533-4106-aac5-af0f00809b06)
+
+[Oefeningen H3](https://apwt.gitbook.io/ziescherp-oefeningen/h3-tekst-gebruiken-in-code/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918618502/zie-scherp-scherper-hoofdstuk-03-flash-cards/)
