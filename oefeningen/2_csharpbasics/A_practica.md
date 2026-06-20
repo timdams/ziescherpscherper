@@ -23,7 +23,7 @@ We vragen in deze oefeningen nog geen input aan de gebruiker. Alle getallen word
 <!--# Hoofdstuk 2-->
 
 
-# Gemiddelde (*Essential*)
+# Gemiddelde (*Essential*) {#h02-gemiddelde}
 
 Maak 3 variabelen aan van het type ``int`` genaamd ``september``, ``oktober`` en ``november``. Plaats in elke variabele de hoeveelheid uren slaap je die in die maand verwacht te doen. Bereken nu het gemiddelde van 3 maanden en toon het resultaat op het scherm (kies uiteraard 3 verschillende hoeveelheden slaap). 
 
@@ -51,7 +51,7 @@ Console.WriteLine("Je sliep gemiddeld:"+gemiddelde + " uren per maand.");
 
 :::: 
 
-# Euro naar dollar (*Essential*)
+# Euro naar dollar (*Essential*) {#h02-euro-naar-dollar}
 
 Ontwerp een toepassing waarmee je een bedrag (dat je hardcode in een variabele), inclusief komma-getallen  in euro kan omrekenen naar dollar. Gebruik hierbij de huidige wisselkoers. Je hoeft niet af te ronden. Het resultaat op het scherm wordt als volgt weergegeven: ``[x] EUR is gelijk aan [y] USD``.
 
@@ -99,7 +99,7 @@ Console.WriteLine(bedragInEuro + " EUR is gelijk aan "+bedragInDollar + " USD.")
 :::: 
 
 
-# Kill/Death-ratio (*Essential*)
+# Kill/Death-ratio (*Essential*) {#h02-kill-death-ratio}
 
 :::{.callout-tip}
 De k/d ratio is de verhouding tussen het aantal kills dat je in een spel hebt gehaald ten opzichte van het aantal keer dat je zelf bent gestorven, deads. Wanneer deze verhouding dus groter is dan 1 heb je vaker iemand gedood dan dat je zelf gestorven bent. Onder de 1 is dit net omgekeerd...en ben je dus niet zo goed in het spel dat je aan het spelen bent.
@@ -143,7 +143,7 @@ Console.WriteLine("Je k/d-ratio is "+(kills/deaths));
 
 
 
-# BTW (*Essential*)
+# BTW (*Essential*) {#h02-btw}
 
 Schrijf een programma waarin je het BTW-percentage 21% als een constante definieert door het keyword ``const`` voor de variabele te zetten. Vervolgens toon je een prijs naar keuze, met en zonder btw op het scherm. 
 
@@ -186,7 +186,7 @@ Console.WriteLine("Prijs "+prijs + " euro zonder btw. Met BTW: " + berekening + 
 
 :::: 
 
-# Gewicht in space (*Essential*)
+# Gewicht in space (*Essential*) {#h02-gewicht-in-space}
 
 Je massa is overal dezelfde. Je gewicht daarentegen is afhankelijk van de zwaartekracht van de plek waar je bent. Zo is je gewicht veel groter op Jupiter dan op Mars (uitgedrukt in Newton).
 
@@ -233,7 +233,7 @@ Console.WriteLine("Je weegt op Venus " + (gewichtOpAarde * gVenus) + " N.");
 
 :::: 
 
-# Tafel en Console.Clear() (*Essential*)
+# Tafel en Console.Clear() (*Essential*) {#h02-tafel-en-console-clear}
 
 Met het statement ``Console.Clear();`` kan je de console - je raadt het nooit - leegmaken. Test deze code in het volgende programma:
 
@@ -328,7 +328,7 @@ Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
 
 :::: 
 
-# Simple maths
+# Simple maths {#h02-simple-maths}
 Schrijf een programma dat de uitkomst van volgende resultaten op het scherm toont:
 
 
@@ -379,7 +379,7 @@ Console.WriteLine("2 + 15 / 6 * 1 - 7 % 2 geeft "+resultaat4);
 
 :::: 
 
-# De Kassa (*Final Essentials*)
+# De Kassa (*Final Essentials*) {#h02-de-kassa}
 
 
 
@@ -485,7 +485,7 @@ Console.WriteLine(lijn);
 ```
 :::: 
 
-# Tekstmaker (PRO)
+# Tekstmaker (PRO) {#h02-tekstmaker}
 
 :::{.callout-tip}
 PRO oefeningen bevatten leerstof die mogelijk niet in deze cursus wordt behandeld, of die in een later hoofdstuk pas aan bod zal komen.

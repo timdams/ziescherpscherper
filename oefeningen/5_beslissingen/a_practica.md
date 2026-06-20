@@ -8,7 +8,7 @@ Oefeningen worden sinds vorig hoofdstuk al eens wat langer. Het is belangrijk da
 
 
 
-# BMI met if (*Essential*)
+# BMI met if (*Essential*) {#h05-bmi-met-if}
 
 Pas je BMI-programma uit het vorige hoofdstuk aan zodat je programma feedback geeft aan de gebruiker naargelang het berekende BMI.
 
@@ -81,7 +81,7 @@ else
 ::::
 
 
-# Schoenverkoper
+# Schoenverkoper {#h05-schoenverkoper}
 
 Fase 1: Maak een oefening die aan de gebruiker vraagt hoeveel paar schoenen hij wenst te kopen. Ieder paar schoenen kost steeds 20 euro. Indien de gebruiker 10 paar of meer koopt kosten de eerste 9 paar nog steeds 20 euro, de overige kosten echter maar 10 euro. Toon aan de gebruiker de totale prijs.
 
@@ -185,7 +185,7 @@ Console.WriteLine($"Prijs is {prijs}");
 ::::
 
 
-# Ohm-berekenaar
+# Ohm-berekenaar {#h05-ohm-berekenaar}
 Vraag aan de gebruiker wat hij wenst te berekenen: spanning, weerstand of stroomsterkte. Vraag vervolgens de 2 andere waarden (als dus de gebruiker "Spanning" kiest vraag je aan de gebruiker de stroomsterkte en de weerstand) en bereken m.b.v. de wet van Ohm de gewenste waarde tot 2 cijfers na de komma.
 
 Voorbeeld output:
@@ -243,7 +243,7 @@ else
 
 
 
-# Orakeltje van Delphi, part deux (*Essential*)
+# Orakeltje van Delphi, part deux (*Essential*) {#h05-orakeltje-van-delphi-part-deux}
 We gaan het Orakeltje verbeteren. Voor het orakel je vertelt hoe lang je te leven hebt zal het eerste vragen of je een vrouw (``v``) of een man (``m``) bent. Dan vraagt ze je leeftijd.
 Mannen leven maximum tot hun 120 jaar. Vrouwen echter tot 150 jaar. Laat het orakel een duur voorspellen die kan. Als een vrouw van 50 de vraag stelt dan zal het orakel dus een getal van 5 tot en met 100 (``150-50``) genereren. Een man van 35 zal van 5 tot en met 85 (``120-35``) jaren langer kunnen leven. 
 
@@ -275,7 +275,7 @@ Console.WriteLine($"Je zal nog {delphi.Next(5,max)} jaar leven");
 ::::
 
 
-# Casino (*Essential*)
+# Casino (*Essential*) {#h05-casino}
 Genereer  een random getal van 1 t.e.m. 6 maar toon dit niet aan de gebruiker. Vraag aan de gebruiker welk getal hij denkt dat de computer heeft "geworpen". Indien de gebruiker juist raadt verschijnt er "proficiat" op het scherm. Anders: "You lose. Ik wierp [getal]".
 
 Voorbeeld:
@@ -307,7 +307,7 @@ You lose. Ik wierp 1.
 ::::
 
 
-# Casino 3
+# Casino 3 {#h05-casino-3}
 Vul de voorgaande oefening aan, maar laat de gebruiker 3x na mekaar raden. Enkel als hij juist raadt mag hij nog eens raden. Als hij ook de derde juist raadt wint hij. In alle andere gevallen niet.
 
 
@@ -374,7 +374,7 @@ else
 ::::
 
 
-# Schaakstuk 
+# Schaakstuk {#h05-schaakstuk}
 
 Definieer de verschillende schaakstukken in een enum-type (Pion, Loper, Koning, etc.). Maak 2 variabelen aan van dit nieuwe datatype en vraag aan de gebruiker welke waarde elke moet krijgen (bv variabele 1 een pion , variabele 2 een koningin).
 
@@ -535,7 +535,7 @@ public static void Main()
 ::::
 
 
-# Quiz 
+# Quiz {#h05-quiz}
 Maak een quiz. Maak gebruik van het ``switch``-statement om de input van de gebruiker (a, b, c of d) te verwerken en bij iedere vraag aan te geven of dit juist of fout is. Voorzie 3 multiple choice vragen. Houd bij hoe vaak de speler juist antwoordde en geef op het einde de eindscore (Juist is +2, fout is -1).
 
 Zoek op hoe je de kleur van de letters en de achtergrond in een console-applicatie kunt aanpassen en pas dit toe op je quiz om deze er iets boeiender uit te laten zien. Toon iedere vraag op een nieuw scherm.
@@ -619,7 +619,7 @@ Console.WriteLine($"Je eindscore bedraagt:{eindscore}");
 
 
 
-# Schrikkeljaar (*Essential*)
+# Schrikkeljaar (*Essential*) {#h05-schrikkeljaar}
 De gebruiker voert een jaartal in en jouw programma toont of het wel of geen schrikkeljaar is. Een schrikkeljaar is deelbaar door 4, behalve als het ook deelbaar is door 100, tenzij het wél deelbaar is door 400.
 Bijvoorbeeld: 
 * 1997: geen schrikkeljaar
@@ -644,7 +644,7 @@ else
 
 
 
-# Kleurcode weerstand naar ohm
+# Kleurcode weerstand naar ohm {#h05-kleurcode-weerstand-naar-ohm}
 
 Vraag aan de gebruiker om de ringkleuren van de eerste 3 ringen in te voeren als tekst (bv ``groen``). Toon vervolgens de waarde van deze weerstand ([kleuren van de ringen kan je in deze tabel vinden](https://www.digikey.nl/-/media/Images/Marketing/Resources/Calculator/resistor-color-chart.png?la=nl-NL&ts=4db603f5-4e9b-4759-84b7-21a04d18b1a8))
 Als dus de gebruiker na elkaar invoert:
@@ -718,7 +718,7 @@ Console.WriteLine($"Deze weerstand heeft een waarde van {resultaat} Ohm");
 
 
 
-# GuntherD Stemwijzer (*Essential*)
+# GuntherD Stemwijzer (*Essential*) {#h05-guntherd-stemwijzer}
 Kan jij volgende ludieke stemwijzer van GuntherD in een eenvoudig programma gieten dat door een reeks j/n vragen aan de gebruiker uiteindelijk zijn "stemprofiel" toont?
 
 ![Bron Stubru](../assets/2_beslissingen/stemwijzer.png)
@@ -815,7 +815,7 @@ static void Main(string[] args)
 
 
 
-# Enum seizoenen (*Essential*)
+# Enum seizoenen (*Essential*) {#h05-enum-seizoenen}
 Maak een ``enum`` die de seizoenen van het jaar bevat. Vraag aan de gebruiker om een maandnummer in te voeren. Gebruik vervolgens een switch om te bepalen in welk seizoen deze maand (grotendeels) ligt. Wijs deze enum toe aan een variabele in de switch.
 Vervolgens gebruik je een if om, gebaseerd op deze enum-variabele, te tonen of het om een koud seizoen (winter en herfst) of een warm seizoen (zomer en lente) gaat.
 
@@ -870,7 +870,7 @@ else //Seizoen.Onbekend
 ::::
 
 
-# Enum verkeerslicht (*Essential*)
+# Enum verkeerslicht (*Essential*) {#h05-enum-verkeerslicht}
  
  
 Je gaat een programma schrijven dat het gedrag van een verkeerslicht simuleert met behulp van een enum. De gebruiker moet het verkeerslicht (een ``enum`` variabele) een status geven (groen, oranje of rood), en op basis daarvan moet het programma een bericht weergeven over wat een bestuurder moet doen.
@@ -913,7 +913,7 @@ switch (licht)
 ::::
 
 
-# Enum bij BMI
+# Enum bij BMI {#h05-enum-bij-bmi}
 
 Maak een enum die de verschillende soorten gewichten voorstelt (Obees, Zwaarlijvig, NormaalGewicht, etc.) Pas de bestaande "BMI met if" oefening aan zodat je deze enum gebruikt om je code leesbaarder te maken. 
 
@@ -969,7 +969,7 @@ Console.ResetColor();
 
 
 
-# Schaak-Elo met if en Random 
+# Schaak-Elo met if en Random {#h05-schaak-elo-met-if-en-random}
 
 In plaats van de 3 mogelijke scenarios (win,loss, draw) vraag je nu aan de gebruiker wie van beide spelers heeft gewonnen ("A", "B" of "D" van Draw/gelijk) en toont enkel de nieuwe ratings gebaseerd op de ingevoerde uitslag.
 
@@ -1043,7 +1043,7 @@ Console.WriteLine($"Nieuwe rating van B:{Math.Round(rbnew, 0)}");
 ::::
 
 
-#  Fifa ranking berekenen (PRO)
+# Fifa ranking berekenen (PRO) {#h05-fifa-ranking-berekenen}
 
 FIFA berekent de score per nationaal voetbal team met een eigen formule . [Volgende document vat deze samen.](https://digitalhub.fifa.com/m/f99da4f73212220/original/edbm045h0udbwkqew35a-pdf.pdf).
 
@@ -1151,7 +1151,7 @@ Console.WriteLine($"Nieuwe score P: {Math.Round(P, 2)}");
 
 
 
-# Oscars: The Academy kiest (*Final Essential*)
+# Oscars: The Academy kiest (*Final Essential*) {#h05-oscars-the-academy-kiest}
 
 Tijd om al je kennis samen te brengen voor het grootste filmevenement van het jaar! Schrijf een programma dat bepaalt of een film in aanmerking komt voor een Oscar-nominatie. Deze oefening bundelt ``enum``, ``switch``, ``if``, ``Random`` en user input.
 

@@ -20,7 +20,7 @@ Maak telkens een volledig nieuwe solution aan per oefening (enkel de oefening "S
 
 
 
-# Wie ben ik (*Essential*)
+# Wie ben ik (*Essential*) {#h01-wie-ben-ik}
 
 Schrijf een applicatie dat onder elkaar volgende informatie op het scherm toont gebruik makende van ``WriteLine()``:
 
@@ -47,7 +47,7 @@ Console.WriteLine("38");
 
 
 
-# Visitekaart (*Essential*) 
+# Visitekaart (*Essential*) {#h01-visitekaart}
 
 Schrijf een programma dat aan de gebruiker de volgende zaken vraagt:
 
@@ -102,7 +102,7 @@ Console.WriteLine(hobby);
 :::: 
 
 
-# Fake GPT (*Essential*) 
+# Fake GPT (*Essential*) {#h01-fake-gpt}
 
 Schrijf een programma dat de gebruiker om een vraag vraagt en vervolgens een antwoord geeft, namelijk: "Dat is een interessante vraag! Ik zal er eens over nadenken en later op terugkomen."
 
@@ -124,7 +124,7 @@ Console.WriteLine("Dat is een interessante vraag! Ik zal er eens over nadenken e
 :::: 
 
 
-# Stad kleuren (*Essential*) 
+# Stad kleuren (*Essential*) {#h01-stad-kleuren}
 
 Open terug je "Wie ben ik"-solution. Pas de code aan zodat je stad in rode letters met witte achtergrond wordt getoond. Vergeet niet je kleur terug te resetten naar de standaardkleuren na het tonen van de stad.
 
@@ -146,7 +146,7 @@ Console.WriteLine("38");
 
 :::: 
 
-# Rommel zin (*Essential*) 
+# Rommel zin (*Essential*) {#h01-rommel-zin}
 
 Schrijf een applicatie met behulp van ``ReadLine()`` en ``WriteLine()``-methoden waarbij de computer aan de gebruiker om zijn of haar favoriete kleur, eten, auto en boek vraagt. Het programma gaat echter de gebruiker plagen en de ingelezen informatie op de verkeerde manier aan de gebruiker tonen. Het programma zal de antwoorden namelijk door elkaar halen waardoor de computer vervolgens toont: 
 
@@ -191,7 +191,7 @@ Console.WriteLine("Je favoriete kleur is "+ favEten +". Je eet graag "+ favAuto 
 ```
 :::: 
 
-# Woordenslinger (*Essential*)
+# Woordenslinger (*Essential*) {#h01-woordenslinger}
 
 Maak een applicatie die volgende woorden na elkaar in twee zinnen toont, waarbij de letters van het woord de kleur van het woord zelf hebben:
 
@@ -230,7 +230,7 @@ Console.ResetColor();
 
 :::: 
 
-# Tekening
+# Tekening {#h01-tekening}
 
 Kan je volgende afbeeldingen namaken in de console?
 
@@ -269,10 +269,10 @@ Console.ResetColor();
 ```
 :::: 
 
-# Muziek (*Extra'tjes*)
+# Muziek  {#h01-muziek}
 
 :::{.callout-tip}
-Extra'tjes oefeningen gebruiken zaken die niet bij de leerstof horen, maar die eenvoudig genoeg zijn om eens te bekijken. Meestal zijn ze ook nog eens leuk om te maken, wat mooi is meegenomen.
+Deze oefening hoort niet bij de leerstof, maar is wel leuk om te maken. Merk op dat op Mac je mogelijk geen geluid zult horen (en het dus geen nut heeft deze oefening te maken in dat geval).
 :::
 
 Met de ``Console.Beep()`` methode kan je muziek maken. Volgende voorbeeld toont bijvoorbeeld hoe je do-re-mi-fa-sol-la-si-do afspeelt:
@@ -308,7 +308,7 @@ Console.WriteLine("Dat is een interessante vraag! Ik zal er eens over nadenken e
 ```
 :::: 
 
-# Regenboog Ticket (*Final Essentials*)
+# Regenboog Ticket (*Final Essentials*) {#h01-regenboog-ticket}
 
 :::{.callout-tip}
 Een *Final Essentials* oefening is een opgave waarin zoveel mogelijk leerstof van de voorbije oefeningen aan bod komt. Je zal voor deze oefeningen vaak wat meer tijd nodig hebben en dus mogelijk niet in het labo kunnen maken.

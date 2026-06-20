@@ -14,7 +14,7 @@ Bekijk zeker de Wiskunde-quizprogramma-opdracht!
 
 
 
-# Boekhouder (*Essential*)
+# Boekhouder (*Essential*) {#h06-boekhouder}
 
 Maak een 'boekhoud-programma': de gebruiker kan continu positieve en negatieve getallen invoeren. Telkens hij op enter duwt wordt de huidige invoer aan de balans bijgevoegd. Het programma stopt met getallen vragen wanneer de gebruiker 'q' invoert. Finaal worden dan de volgende zaken op het scherm getoond:
 
@@ -72,7 +72,7 @@ Console.WriteLine($"Gemiddel : {somTotaal / teller}");
 ::::
 
 
-# Hoger Lager (*Essential*)
+# Hoger Lager (*Essential*) {#h06-hoger-lager}
 
 
 Simulatie van het "hoger-lager" spel. Het programma kiest een random-getal van 1 tot en met 100 (telkens inbegrepen). Vervolgens wordt de gebruiker gevraagd om een gok te doen en toont het programma of de gok juist was, te laag was ("hoger") of te hoog ("lager"). Het programma blijft gokken van de gebruiker accepteren tot de gok juist is of de gebruiker besluit te stoppen (door een negatief getal in te voeren). Het aantal beurten wordt op het einde van het spel getoond en de mogelijkheid om opnieuw te spelen.
@@ -163,7 +163,7 @@ if(tries== MAXTRIES && !guessed) //NIEUWE CODE
 
 
 
-# Wiskundequiz (*Essential*)
+# Wiskundequiz (*Essential*) {#h06-wiskundequiz}
 Maak een applicatie die je kan gebruiken om je tafels van vermenigvuldigen te oefenen. De applicatie vraagt steeds een willekeurige vermenigvuldiging (enkel getallen tussen 1 tot en met 10) en de gebruiker moet de oplossing invoeren.
 Indien correct gaat de gebruiker verder. Bij fout stopt het programma en wordt getoond hoeveel keer je juist hebt ingevoerd.
 
@@ -195,7 +195,7 @@ do
 ::::
 
 
-# Wiskundequiz met levels (*Essential*)
+# Wiskundequiz met levels (*Essential*) {#h06-wiskundequiz-met-levels}
 
 Bouw levels in de voorgaande wiskundequiz. Per 5 juiste antwoorden, stijg je 1 level. Het level bepaalt het bereik van getallen die gegenereerd worden bij de oefening. Bijvoorbeeld level 1 enkel getallen van 1 tot en met 5, level 2 tot en met 10, level 3 tot en met 20 etc.
 
@@ -237,7 +237,7 @@ do
 
 PRO: Kan je ervoor zorgen dat het bereik van de getalgeneratie met een formule afhankelijk is van het level? Zodat je de grenzen per level niet moet hardcoden?
 
-# Wiskunde-quizprogramma
+# Wiskunde-quizprogramma {#h06-wiskunde-quizprogramma}
 
 Integreer voorgaande quiz met een menu dat je bijvoorbeeld in codemenu hebt gemaakt. Het menu wordt aan de start getoond en geeft de gebruiker de optie om te kiezen wat hij wenst te doen:
 
@@ -306,7 +306,7 @@ do
 ::::
 
 
-# Tekenen
+# Tekenen {#h06-tekenen}
 
 Twee getallen van 2 tot en met 20 worden ingelezen (invoercontrole!). Er moet een open rechthoek afgedrukt worden bestaande uit `*`en waarbij de ingelezen getallen respectievelijk de breedte en de hoogte van de rechthoek voorstellen. Als bijvoorbeeld 10 en 4 werden ingelezen, wordt de volgende rechthoek getoond:
 
@@ -350,7 +350,7 @@ for (int rij = 1; rij <= hoogte; rij++)
 ::::
 
 
-# Steen schaar papier (*Essential*)
+# Steen schaar papier (*Essential*) {#h06-steen-schaar-papier}
 
 Maak een applicatie waarbij de gebruiker steen-schaar-papier met de computer kan spelen. De gebruiker kiest telkens steen, schaar of papier en drukt op enter. Vervolgens kiest de computer willekeurig steen, schaar of papier (gebruik de Random.Next() methode, waarbij je deze van  1 tot en met 3 laat varieren). 
 Vervolgens krijgt de winnaar 1 punt:
@@ -439,7 +439,7 @@ static void Main(string[] args)
 ::::
 
 
-# Codemenu (*Essential*)
+# Codemenu (*Essential*) {#h06-codemenu}
 
 Maak een applicatie die bij het opstarten een keuze menu toont. Het menu toont 5 verschillende oefeningen naar keuze. Telkens de gebruiker in het menu een oefening kiest (door a, b, c, d of e in te voeren) wordt de code van die oefening getoond. Vervolgens kan de gebruiker op enter duwen zodat terug het menu verschijnt, zodat de gebruiker een nieuwe oefening kan kiezen
 
@@ -486,7 +486,7 @@ do
 ::::
 
 
-# Become Neo
+# Become Neo {#h06-become-neo}
 
 ![Neo Tim](../assets/neotim.png)
 
@@ -560,7 +560,7 @@ while (true)
 
 
 
-# BeerSong
+# BeerSong {#h06-beersong}
 
 Schrijf een BeerSong-generator zoals onderstaande output. Merk op dat de laatste 5 zinnen anders zijn:
 
@@ -619,7 +619,7 @@ Console.WriteLine("2 bottles of beer on the wall, 2 bottles of beer.\n" +
 
 
 
-# De slag om Helm's Deep (*Final Essentials*)
+# De slag om Helm's Deep (*Final Essentials*) {#h06-de-slag-om-helm-s-deep}
 
 Tijdens de slag om Helm's Deep houden Legolas en Gimli een wedstrijd bij wie de meeste vijanden kan verslaan.
 Schrijf een programma dat deze heroïsche strijd bijhoudt. Zorg voor een gebruiksvriendelijke interface met kleuren.

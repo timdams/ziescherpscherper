@@ -25,7 +25,7 @@ Oefeningen waar *n* wordt gebruikt geven aan dat dit een getal is dat je aan de 
 
 
 
-# Opwarmers 1 (*Essential*)
+# Opwarmers 1 (*Essential*) {#h06-opwarmers-1}
 
 * Toon alle natuurlijke getallen van 1 tot *n*. (bv 1,2,3,4,5,6)
 
@@ -100,7 +100,7 @@ Console.WriteLine($"Som oneven tot {n} = {som7}");
 ::::
 
 
-# Opwarmers van opwarmers
+# Opwarmers van opwarmers {#h06-opwarmers-van-opwarmers}
 
 
 :::{.callout-tip}
@@ -344,7 +344,7 @@ Console.WriteLine($"Reeks 20 termen:\n  4+8+12: {t1}\n  4+10+16: {t2}\n  1+3+9: 
 
 
 
-# Tafels van vermenigvuldigen 1 
+# Tafels van vermenigvuldigen 1 {#h06-tafels-van-vermenigvuldigen-1}
 Gebruik de kracht van loops om pijlsnel de tafels van vermenigvuldigen op het scherm te tonen *van een getal naar keuze*(dus bijvoorbeeld 2x1, 2x2, tot 2x10 en alles daartussen).
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
@@ -360,7 +360,7 @@ while(teller <= 10)
 ```
 ::::
 
-# Tafels van supervermenigvuldigen   (*Essential*)
+# Tafels van supervermenigvuldigen   (*Essential*) {#h06-tafels-van-supervermenigvuldigen}
 Gebruik de kracht van **geneste** loops om pijlsnel alle tafels van vermenigvuldigen op het scherm te tonen *van de getallen 1 tot en met n*(dus 1x1, 1x2,... 1xn, 2x1, 2x2,...,2xn tot en met n x n).
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
@@ -377,7 +377,7 @@ for (int i = 1;i <= n; i++)
 ```
 ::::
 
-# RNA Transscriptie (*Essential*)
+# RNA Transscriptie (*Essential*) {#h06-rna-transscriptie}
 
 DNA heeft steeds een RNA-complement (DNA is het gevolg van RNA transscriptie). Schrijf een programma dat een ingevoerde DNA-string omzet naar een RNA-string. De gebruiker voert steeds 1 DNA-nucleotide in per keer en duwt op enter, de RNA string wordt steeds groter. Na 12 karakters stopt het programma.
 
@@ -432,7 +432,7 @@ Console.WriteLine(RNA);
 
 ::::
 
-# Armstrong nummer (PRO)
+# Armstrong nummer (PRO) {#h06-armstrong-nummer}
 Een getal is een *narcistisch getal* of *armstronggetal* als het de som is van zijn eigen cijfers elk tot de macht verheven van het aantal cijfers.
 
 * 9 is een Armstrong nummer, want 9 = 9^1 = 9
@@ -493,7 +493,7 @@ else
 
 ::::
 
-# Schaak-elo met loop 
+# Schaak-elo met loop {#h06-schaak-elo-met-loop}
 
 Zorg ervoor dat je Schaak-elo programma "blijft werken" als volgt:
 
@@ -547,7 +547,7 @@ Console.WriteLine($"Eindrating: {Math.Round(ra, 0)}");
 ```
 ::::
 
-# Euler project (*Essential*)
+# Euler project (*Essential*) {#h06-euler-project}
 Maak volgende opdracht van [projecteuler.net](http://projecteuler.net):
 
 >Indien we alle natuurlijke getallen van 0 tot en met 10 oplijsten die een meervoud van 3 of 5 zijn, dan krijgen we de getallen 3,5,6,9 en 10. De som van deze 4 getallen is 33.
@@ -574,7 +574,7 @@ Console.WriteLine($"Som:{som}");
 
 
 
-# De Casting Call (*Final Essentials*)
+# De Casting Call (*Final Essentials*) {#h06-de-casting-call}
 
 Jij bent de regisseur van de volgende grote Hollywood-blockbuster. Vandaag houd je een casting call om de hoofdrolspeler te vinden. Schrijf een programma dat dit auditieproces beheert.
 

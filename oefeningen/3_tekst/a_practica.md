@@ -8,7 +8,7 @@ Vanaf dit hoofdstuk wordt verwacht dat je steeds  **string interpolatie** gebrui
 
 
 
-# Mad Libs (*Essential*)
+# Mad Libs (*Essential*) {#h03-mad-libs}
 
 MadLibs is een populair woordspelletje waarbij de gebruiker een aantal verschillende woorden moet opgeven. Vervolgens worden deze woorden in een verhaal geplaatst dat zo plots erg grappig kan worden.
 
@@ -63,7 +63,7 @@ Console.WriteLine($"Op een dag ging {naam} naar de AP Hogeschool. Hij zag daar e
 
 
 
-# Dertien in een dozijn (*Essential*)
+# Dertien in een dozijn (*Essential*) {#h03-dertien-in-een-dozijn}
 
 [Een klassieker (youtube-filmpje)](https://www.youtube.com/watch?v=ygpXHgITuUU). 
 
@@ -107,7 +107,7 @@ Console.WriteLine($"{aantalEieren} passen in {dozen} dozen van doosgrootte: {doo
 
 
 
-# Escape conversatie (*Essential*)
+# Escape conversatie (*Essential*) {#h03-escape-conversatie}
 
 Gegeven volgende code:
 
@@ -143,7 +143,7 @@ Console.WriteLine(dialoog);
 
 ::::
 
-# Systeem informatie (*Essential*)
+# Systeem informatie (*Essential*) {#h03-systeem-informatie}
 
 
 Maak een applicatie die de belangrijkste computer-informatie (geheugen, etc) aan de gebruiker toont m.b.v. de ``Environment``.
@@ -229,7 +229,7 @@ PRO-oefening, dus geen oplossing voorzien.
 ::::
 
 
-# Unicode Art
+# Unicode Art {#h03-unicode-art}
 
 Genereer je naam in Unicode Art met een van de [vele online generators](https://www.google.com/search?q=unicode+art+generator&oq=unicode+art&aqs=chrome.0.0j69i57j0l2j0i22i30l3.3647j0j1&sourceid=chrome&ie=UTF-8). Toon deze art (m.b.v. ``WriteLine`` of ``Write``) aan de start van een van je bestaande programma's, zodat nu je naam wordt getoond wanneer het programma start, gevolgd door de rest.
 
@@ -256,7 +256,7 @@ Genereer je naam in Unicode Art met een van de [vele online generators](https://
 
 ::::
 
-# Boardingpass (*Final Essentials*)
+# Boardingpass (*Final Essentials*) {#h03-boardingpass}
 
 
 
@@ -308,7 +308,7 @@ Vergeet niet `Console.Clear()` te gebruiken om het scherm leeg te maken.
 ::::
 
 
-# Shell-starter (PRO-oefening)
+# Shell-starter (PRO-oefening) {#h03-shell-starter}
 
 Je kan de output van een ``Process.Start()`` programma naar je console scherm sturen. Dit vereist wat meer code. Volgend voorbeeld zal de output van het commando ``ipconfig /all`` op het scherm tonen:
 

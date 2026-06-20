@@ -17,7 +17,7 @@ Gebruikersinvoer in de voorbeelden zullen met een liggend streepje voorafgegaan 
 
 
 
-# Supercomputer
+# Supercomputer {#h04-supercomputer}
 
 
 Vraag aan de gebruiker 3 kommagetallen. Bereken het gemiddelde van deze 3 getallen en toon dit als een kommagetal op het scherm
@@ -50,7 +50,7 @@ Console.WriteLine($"Gemiddelde is {(getal1+getal2+getal3)/3}");
 ::::
 
 
-# Vierkant (*Essential*) 
+# Vierkant (*Essential*) {#h04-vierkant}
 Schrijf een programma om de omtrek en de oppervlakte van een vierkant te bepalen. De zijde wordt ingelezen.
 
 Voorbeeld:
@@ -82,7 +82,7 @@ Console.WriteLine($"Oppervlakte is {oppervlakte}");
 ::::
 
 
-# Balk 
+# Balk {#h04-balk}
 
 Bereken de oppervlakte en de inhoud van een balk . De gegevens (hoogte, breedte, lengte) worden ingelezen als gehele getallen. Zorg ervoor dat de uitvoer er als volgt uitziet:
 
@@ -121,7 +121,7 @@ Console.WriteLine($"inhoud: {lengte*breedte*hoogte}");
 
 
 
-# BMI berekenaar (*Essential*) 
+# BMI berekenaar (*Essential*) {#h04-bmi-berekenaar}
 Maak een programma dat aan de gebruiker z'n lengte (in cm) en gewicht (in kg) vraagt en vervolgens de berekende BMI (Body Mass Index) toont. Zoek zelf op hoe je het BMI berekent.
 
 Gebruik ``Math.Round`` om de uitkomst tot maximum 2 cijfers na de komma te tonen.
@@ -163,7 +163,7 @@ Console.WriteLine($"Een persoon met een lengte van {lengteInMeter} m en een gewi
 ::::
 
 
-# Op-de-poef (*Essential*)
+# Op-de-poef (*Essential*) {#h04-op-de-poef}
 Een vaste klant in je café bestelt altijd "op-de-poef". Dat wil zeggen dat hij niet onmiddellijk betaalt en dat z'n rekeningen worden neergeschreven. Ooit zal de klant dan gevraagd worden de hele som te betalen.
 
 Schrijf een programma dat 5 keer na elkaar aan de barman vraagt om een bedrag in te voeren. Het ingevoerde bedrag wordt opgeteld bij wat er reeds op de rekening staat. Na 5 keer wordt de totale som getoond alsook hoeveel weken het duurt indien de klant wekelijks 10 euro afbetaalt.
@@ -243,7 +243,7 @@ Console.WriteLine(zin);
 
 
 
-# Feestkassa (*Essential*)
+# Feestkassa (*Essential*) {#h04-feestkassa}
 De plaatselijke voetbalclub organiseert een mosselfestijn. Naast mosselen met frietjes (20 EUR) bieden ze voor de kinderen de mogelijkheid om een koninginnenhapje (10 EUR) te kiezen. Verder is er een ijsje als nagerecht voorzien (3 EUR). Om het gemakkelijk te maken kosten alle dranken 2 EUR.
 
 
@@ -300,7 +300,7 @@ Console.WriteLine($"\nHet totaal te betalen bedrag is {totaal} EURO.");
 ::::
 
 
-# Het Orakeltje van Delphi (*Essential*)
+# Het Orakeltje van Delphi (*Essential*) {#h04-het-orakeltje-van-delphi}
 Gebruik een random generator om een orakel (een duur woord voor waarzegger) te maken, namelijk de kleine broer of zus van het [Orakel van Delphi](https://nl.wikipedia.org/wiki/Orakel_van_Delphi). Het programma zal aan de gebruiker vertellen hoe lang deze nog zal leven. Bijvoorbeeld: "Je zal nog 15 jaar leven.".
  
 Het orakel zal enkel realistische getallen geven. M.a.w., getallen van 5 tot en met 125 jaar.
@@ -320,7 +320,7 @@ Console.WriteLine($"Je zal nog {delphi.Next(5,126)} jaar leven");
 ::::
 
 
-# Geometric fun 
+# Geometric fun {#h04-geometric-fun}
 
 Vraag aan de gebruiker een hoek in graden. Zet deze om naar radialen , gebruik ``Math.PI`` voor Pi. Gebruik vervolgens de verschillende geometrische functies in de ``Math.`` bibliotheek om de sinus (``.Sin``), cosinus (``.Cos``) en tangens (``.Tan``) van de hoek aan de gebruiker te tonen 
 
@@ -356,7 +356,7 @@ Console.WriteLine($"Tangens van {hoekInGraden} graden is {Math.Tan(hoekInRadiale
 
 ::::
 
-# Schaak-ELO  (PRO)
+# Schaak-ELO  (PRO) {#h04-schaak-elo}
 
 
 
@@ -420,7 +420,7 @@ Console.WriteLine(Math.Round(rbnew,0));
 ::::
 
 
-# De Festivalganger (*Final Essentials*)
+# De Festivalganger (*Final Essentials*) {#h04-de-festivalganger}
 
 Je hebt tickets bemachtigd voor een fantastisch driedaags festival! Maar festivals zijn duur, dus je besluit een app te schrijven om je budget te beheren.
 
