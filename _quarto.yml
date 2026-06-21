@@ -11,6 +11,8 @@ book:
     background: light
     pinned: true
     left:
+      - text: "Handboek"
+        href: index.qmd
       - text: "Slides"
         href: slides/overzicht.qmd
       - text: "Oefeningen"
@@ -195,7 +197,6 @@ book:
   appendices:
     - slides/overzicht.qmd
     - oefeningen/overzicht.qmd
-    - coronafiles/overzicht.qmd
 
 bibliography: references.bib
 

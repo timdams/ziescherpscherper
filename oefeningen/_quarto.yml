@@ -9,6 +9,16 @@ project:
 
 website:
   title: "Zie Scherp – Oefeningen"
+  navbar:
+    background: light
+    pinned: true
+    left:
+      - text: "Handboek"
+        href: https://www.ziescherp.be/index.html
+      - text: "Slides"
+        href: https://www.ziescherp.be/slides/overzicht.html
+      - text: "Oefeningen"
+        href: overzicht.qmd
   sidebar:
     style: docked
     contents:
@@ -184,6 +194,14 @@ website:
 
 format:
   html:
-    theme: sandstone
+    theme: [cosmo, brand, ../custom.scss]
     lang: nl
     toc: true
+    toc-title: "Op deze pagina"
+    highlight-style: github
+    code-copy: true
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
