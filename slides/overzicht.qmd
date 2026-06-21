@@ -1,26 +1,36 @@
 ---
-title: "Slides overzicht"
+title: "Slides"
 ---
 
-# Slides
+Hieronder vind je een overzicht van de lesslides bij het handboek. Elke presentatie opent in een nieuw tabblad, of je downloadt ze als PDF.
 
-Lesslides per hoofdstuk, in de stijl van het handboek.
+## Beschikbare presentaties
 
-* [H1: De eerste stappen](h01_eerstestappen.html)
-* [H2: De basisconcepten van C#](h02_basisconcepten.html)
-* [H3: Tekst gebruiken in code](h03_tekst.html)
-* [H4: Werken met data](h04_data.html)
-* [H5: Beslissingen](h05_beslissingen.html)
-* [H6: Herhalingen](h06_herhalingen.html)
-* [H7: Methoden](h07_methoden.html)
-* [H8: Arrays](h08_arrays.html)
-* [H9: Object georiënteerd programmeren](h09_oop.html)
-* [H10: Geheugen- en codebeheer](h10_geheugen_exceptions.html)
-* [H11: Gevorderde klasseconcepten](h11_gevorderdeklassen.html)
-* [H12: Arrays en klassen](h12_arraysenklassen.html)
-* [H13: Overerving](h13_overerving.html)
-* [H14: Gevorderde overervingsconcepten](h14_gevorderdeovererving.html)
-* [H15: Compositie en aggregatie](h15_compositie.html)
-* [H16: Polymorfisme](h16_polymorfisme.html)
-* [H17: Interfaces](h17_interfaces.html)
-* [H18: Bestandsverwerking](h18_bestanden.html)
+| Hoofdstuk | Presentatie | PDF |
+|-----------|-------------|-----|
+| ✅ H1: De eerste stappen | [Bekijk slides](h01_eerstestappen.html){target="_blank"} | [Download PDF](h01_eerstestappen.pdf) |
+| ✅ H2: De basisconcepten van C# | [Bekijk slides](h02_basisconcepten.html){target="_blank"} | [Download PDF](h02_basisconcepten.pdf) |
+| ✅ H3: Tekst gebruiken in code | [Bekijk slides](h03_tekst.html){target="_blank"} | [Download PDF](h03_tekst.pdf) |
+| ✅ H4: Werken met data | [Bekijk slides](h04_data.html){target="_blank"} | [Download PDF](h04_data.pdf) |
+| ✅ H5: Beslissingen | [Bekijk slides](h05_beslissingen.html){target="_blank"} | [Download PDF](h05_beslissingen.pdf) |
+| ✅ H6: Herhalingen | [Bekijk slides](h06_herhalingen.html){target="_blank"} | [Download PDF](h06_herhalingen.pdf) |
+| ✅ H7: Methoden | [Bekijk slides](h07_methoden.html){target="_blank"} | [Download PDF](h07_methoden.pdf) |
+| ✅ H8: Arrays | [Bekijk slides](h08_arrays.html){target="_blank"} | [Download PDF](h08_arrays.pdf) |
+| ✅ H9: Object georiënteerd programmeren | [Bekijk slides](h09_oop.html){target="_blank"} | [Download PDF](h09_oop.pdf) |
+| ✅ H10: Geheugen- en codebeheer | [Bekijk slides](h10_geheugen_exceptions.html){target="_blank"} | [Download PDF](h10_geheugen_exceptions.pdf) |
+| ✅ H11: Gevorderde klasseconcepten | [Bekijk slides](h11_gevorderdeklassen.html){target="_blank"} | [Download PDF](h11_gevorderdeklassen.pdf) |
+| ✅ H12: Arrays en klassen | [Bekijk slides](h12_arraysenklassen.html){target="_blank"} | [Download PDF](h12_arraysenklassen.pdf) |
+| ✅ H13: Overerving | [Bekijk slides](h13_overerving.html){target="_blank"} | [Download PDF](h13_overerving.pdf) |
+| ✅ H14: Gevorderde overervingsconcepten | [Bekijk slides](h14_gevorderdeovererving.html){target="_blank"} | [Download PDF](h14_gevorderdeovererving.pdf) |
+| ✅ H15: Compositie en aggregatie | [Bekijk slides](h15_compositie.html){target="_blank"} | [Download PDF](h15_compositie.pdf) |
+| ✅ H16: Polymorfisme | [Bekijk slides](h16_polymorfisme.html){target="_blank"} | [Download PDF](h16_polymorfisme.pdf) |
+| ✅ H17: Interfaces | [Bekijk slides](h17_interfaces.html){target="_blank"} | [Download PDF](h17_interfaces.pdf) |
+| ✅ H18: Bestandsverwerking | [Bekijk slides](h18_bestanden.html){target="_blank"} | [Download PDF](h18_bestanden.pdf) |
+
+**Legende:**
+
+* ❌: Slides nog niet beschikbaar
+* ✅: Slides beschikbaar
+* 🕒: Slides in ontwikkeling (mogen niet als leerstof gebruikt worden)
+</content>
+</invoke>
