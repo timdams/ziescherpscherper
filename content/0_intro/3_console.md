@@ -263,6 +263,13 @@ Console.WriteLine("Geef adres");
 string adres = Console.ReadLine(); //tweede variabele aanmaken
 ```
 
+:::{.callout-tip}
+Je kan met behulp van `//` commentaar in code plaatsen. Alles na die *forward slashes* zal genegeerd worden door de compiler tot aan de eerstvolgende witregel. 
+
+We zullen verderop bespreken hoe je dit kan gebruiken om bijvoorbeeld de werking van je code meer toe te lichten.
+:::
+
+
 Je mag echter de geheugenplek ook al vroeger aanmaken (declareren) en pas later een waarde toekennen. In C# zet men de creatie van een variabele meestal zo dicht mogelijk bij de code waar je die variabele gebruikt. Maar dat is geen verplichting. Dit mag dus ook:
 
 
