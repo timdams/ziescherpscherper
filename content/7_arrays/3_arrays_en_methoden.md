@@ -66,6 +66,7 @@ ToonArray(leeftijden);
 En de output zal dan zijn:
 
 
+::: {.console}
 ```text
 Array output:
 2
@@ -73,6 +74,7 @@ Array output:
 1
 6
 ```
+:::
 
 <!-- \newpage -->
 

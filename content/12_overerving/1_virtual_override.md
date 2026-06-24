@@ -49,7 +49,7 @@ Terzijde: ``static`` methoden kunnen niet ``virtual`` gezet worden.
 
 Stel dat we 2 objecten aanmaken en laten vliegen:
 
-```java
+```{.java filename="Program.cs"}
 Vliegtuig topGun = new Vliegtuig();
 Raket spaceX1 = new Raket();
 topGun.Vlieg();
@@ -71,18 +71,20 @@ Momenteel doet het ``virtual`` keyword niets. Het is enkel een signaal aan mede-
 
 Een raket is een vliegtuig, toch vliegt het anders. We willen dus de methode ``Vlieg`` anders uitvoeren voor een raket. Daar hebben we **override** voor nodig. Door override voor een methode in de child-klasse te plaatsen zeggen we "gebruik deze implementatie en niet die van de parent klasse."
 
-```java
-internal class Raket:Vliegtuig
+```{.java filename="Raket.cs"}
+internal class Raket : Vliegtuig
 {
-   public override void Vlieg()
+   public override void Vlieg()                            // <1>
    {
       Console.WriteLine("De raket verdwijnt in de ruimte.");
-   }     
+   }
 }
 ```
 
+1. ``override`` vervangt de implementatie van de gelijknamige ``virtual``-methode uit ``Vliegtuig``. De signatuur moet identiek blijven: enkel ``virtual`` wordt ``override``.
+
 De uitvoer van volgende code zal nu anders zijn:
-```java
+```{.java filename="Program.cs"}
 Vliegtuig topGun = new Vliegtuig();
 Raket spaceX1 = new Raket();
 topGun.Vlieg();
@@ -91,10 +93,12 @@ spaceX1.Vlieg();
 
 Uitvoer:
 
+::: {.console}
 ```text
 Het vliegtuig vliegt door de wolken.
 De raket verdwijnt in de ruimte.
 ```
+:::
 
 :::{.callout-tip title="Zie verder"}
 C# is hier streng: een methode mag pas overschreven worden als de parent ze expliciet ``virtual`` zet, en de child moet expliciet ``override`` schrijven. In **Python** is daar niets van: élke methode is automatisch overschrijfbaar, je herschrijft ze gewoon in de child-klasse:

@@ -28,10 +28,12 @@ Console.WriteLine("Nee");
 
 De uitvoer van dit programma zal zijn:
 
+::: {.console}
 ```text
 Ja
 Nee
 ```
+:::
 
 
 
@@ -96,19 +98,23 @@ if ( tijd < 20 )
 
 Deze code zal dus 2 mogelijke outputs op het scherm geven. Indien de *``tijd`` groter of gelijk is aan 20* dan krijgen we volgende output:
 
+::: {.console}
 ```text
 Je bent er bijna!
 ```
+:::
 
 <!-- \newpage -->
 
 
 Maar indien de ``tijd`` kleiner is dan 20 krijgen we:
 
+::: {.console}
 ```text
 Doe zo voort. 
 Je bent er bijna!
 ```
+:::
 
 Dit is uiteraard niet de output die we verwachten. We willen de motiverende boodschappen (beide zinnen) enkel tonen indien de gebruiker nog tijd heeft. De juiste oplossing is:
 
@@ -135,10 +141,12 @@ if ( naam == "neo" );
 
 De uitvoer van voorgaande zal altijd de volgende zijn, ongeacht of de gebruikersnaam gelijk is aan "neo":
 
+::: {.console}
 ```text
 Take the red pill?
 Or the blue pill?
 ```
+:::
 
 
 Indien de naam gelijk is aan "neo" dan zal de code *tussen de if en het kommapunt op lijn 1* uitgevoerd worden. Kortom, er wordt niets gedaan (daar hier geen code staat). Het block erachter dat de 2 zinnen op het scherm zet wordt altijd uitgevoerd. 

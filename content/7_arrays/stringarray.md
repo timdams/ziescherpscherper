@@ -67,10 +67,12 @@ Console.WriteLine(boek);
 Dit zal de output op het scherm zijn (de spaties achteraan op lijn 1 zie je niet, maar zijn er dus wel):
 
 
+::: {.console}
 ```text
    Ik ben Reinhardt   
 Ik ben Reinhardt
 ```
+:::
 
 
 
@@ -134,9 +136,11 @@ Console.WriteLine(boek);
 Output op het scherm:
 
 
+::: {.console}
 ```text
 Ik Mercy
 ```
+:::
 
 In voorgaande voorbeeld gaven we de methode ``Remove`` de opdracht: *"verwijder alles vanaf het element met index 3 (de ``b``) en dit gedurende 4 tekens (dus tot en mét de spatie na ``ben``)"*.
 

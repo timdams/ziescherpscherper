@@ -103,10 +103,12 @@ Console.WriteLine(eenString);
 Dit zal als output geven:
 
 
+::: {.console}
 ```text
 Een zin.         na een tab
 Dan eentje op een nieuwe regel
 ```
+:::
 
 ### Over tabstops
 
@@ -169,9 +171,11 @@ Console.WriteLine(@"Om een tab te tonen gebruik je \t in C#.");
 Wat zal resulteren in volgende uitvoer:
 
 
+::: {.console}
 ```text
 Om een tab te tonen gebruik je \t in C#.
 ```
+:::
 
 
 

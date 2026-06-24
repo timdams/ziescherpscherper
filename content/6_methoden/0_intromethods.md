@@ -513,11 +513,13 @@ static void Main(string[] args)
 
 In de output zien we dat ``mijnLeeftijd`` niet werd aangepast in de methode:
 
+::: {.console}
 ```text
 Je bent 40 jaar.
 Hoera. Je bent 41 jaar geworden.
 Je bent 40 jaar.
 ```
+:::
 
 ### Methoden nesten
 

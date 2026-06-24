@@ -33,6 +33,7 @@ while(tellerA < 3 ) //outer loop
 
 De uitvoer hiervan zal als volgt zijn:
 
+::: {.console}
 ```text
 A:1,  B: 1
 A:1,  B: 2
@@ -50,6 +51,7 @@ A:3,  B: 3
 A:3,  B: 4
 A:3,  B: 5
 ```
+:::
 
 Merk het 'ritme' op in de uitvoer. De linkse teller gaat een pak trager dan de rechtse.
 

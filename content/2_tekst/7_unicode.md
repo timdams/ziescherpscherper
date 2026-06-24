@@ -85,9 +85,11 @@ Console.WriteLine($@"1/1={1+1}. \tGeen tab");
 Dit geeft als output (\t wordt door het apenstaartje genegeerd):
 
 
+::: {.console}
 ```text
 1/1=2. \tGeen tab
 ```
+:::
 :::
 
 

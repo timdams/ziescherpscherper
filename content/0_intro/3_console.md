@@ -99,6 +99,7 @@ Test het programma en voer je naam in wanneer de cursor knippert.
 
 Voorbeelduitvoer (lijn 3 is wat de gebruiker heeft ingetypt)
 
+::: {.console}
 ```text
 Hoi, ik ben het!
 Wie ben jij?!
@@ -107,6 +108,7 @@ Dag
 tim
 hoe gaat het met je?
 ```
+:::
 
 <!-- \newpage -->
 
@@ -120,6 +122,7 @@ Bekijk zelf eens wat het verschil wordt wanneer je volgende lijn code ``Console.
 
 De uitvoer wordt dan:
 
+::: {.console}
 ```text
 Hoi, ik ben het!
 Wie ben jij?!
@@ -128,6 +131,7 @@ Dag
 result
 hoe gaat het met je?
 ```
+:::
 
 We krijgen dus letterlijk de tekst "result" op het scherm in plaats van de gebruikersinvoer die we in de variabele bewaarden.
 
@@ -177,12 +181,14 @@ Console.Write(" hoe gaat het met je?");
 
 Je uitvoer wordt nu:
 
+::: {.console}
 ```text
 Hoi, ik ben het!
 Wie ben jij?!
 tim [enter]
 Dag tim hoe gaat het met je?
 ```
+:::
 
 
 
@@ -247,9 +253,11 @@ Console.WriteLine("Dag "+ "result" + " hoe gaat het met je?");
 
 We krijgen dan altijd dezelfde output, namelijk:
 
+::: {.console}
 ```text
 Dag result hoe gaat het met je?
 ```
+:::
 
 We tonen dus niet de inhoud van ``result``, maar gewoon de tekst "result".
 

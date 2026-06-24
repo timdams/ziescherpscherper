@@ -31,11 +31,13 @@ Console.WriteLine("1" + (1 + 1));
 Geeft als uitvoer:
 
 
+::: {.console}
 ```text
 111
 21
 12
 ```
+:::
 
 Was dit de uitvoer die je voorspeld had?
 
@@ -176,10 +178,12 @@ Console.WriteLine($"{number2:000.00}");
 ```
 
 Geeft als uitvoer:
+::: {.console}
 ```text
 012.30
 99999.30
 ```
+:::
 
 :::{.callout-warning}
 **Komma of punt? Dat hangt van je computer af.**

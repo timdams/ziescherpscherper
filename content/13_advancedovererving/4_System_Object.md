@@ -128,19 +128,37 @@ Het zou natuurlijk fijner zijn dat de ``ToString()-``methode van onze student nu
 
 Stel dat we de ``Voornaam``  gevolgd door de ``Geboortejaar`` (ook een autoprop) willen terugkrijgen. We kunnen dat eenvoudig verkrijgen door ``ToString()`` te overriden:
 
-```java
+```{.java filename="Student.cs"}
 internal class Student
 {
     public int Geboortejaar {get;set;}
     public string Voornaam {get;set;}
-    public override string ToString()
+    public override string ToString()                 // <1>
     {
-        return $"{Voornaam} ({Geboortejaar})";
+        return $"{Voornaam} ({Geboortejaar})";        // <2>
     }
 }
 ```
 
-Wanneer je nu ``Console.WriteLine(stud1);`` - gelet dat hij de properties ``Voornaam`` en ``Geboortejaar`` heeft - zou schrijven dan wordt je output: ``Tim Dams (1981)``.
+1. We ``override``'n de ``virtual`` ``ToString()`` die we van ``System.Object`` erven.
+2. In plaats van de kale type-naam geven we nu zelfgekozen, nuttige info terug.
+
+Wat er precies verandert ten opzichte van de geërfde versie:
+
+```diff
+- // Geërfd van System.Object: geeft enkel de type-naam terug
+- public virtual string ToString() => GetType().ToString();   // "StudentManager.Student"
++ // Onze eigen override in Student: geeft nuttige info terug
++ public override string ToString() => $"{Voornaam} ({Geboortejaar})";   // "Tim Dams (1981)"
+```
+
+Wanneer je nu ``Console.WriteLine(stud1);`` - gelet dat hij de properties ``Voornaam`` en ``Geboortejaar`` heeft - zou schrijven dan wordt je output:
+
+::: {.console}
+```text
+Tim Dams (1981)
+```
+:::
 
 :::{.callout-tip}
 Een extra handigheidje van ``ToString`` is dat deze methode wordt gebruikt tijdens het debuggen om je objecten samen te vatten in het watch-venster.
@@ -190,12 +208,28 @@ De regel ``if (o is not Student temp)`` doet twee dingen tegelijk: ze controleer
 ### ``GetHashcode()`` overriden
 Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde hashcode teruggeven (dit is belangrijk wanneer je objecten als key in een ``Dictionary`` of in een ``HashSet`` gebruikt). Vroeger was zelf een goede hash schrijven knap lastig, maar tegenwoordig doe je dat eenvoudig met de ingebouwde ``HashCode.Combine``. Je geeft daar dezelfde instantievariabelen aan mee die je ook in ``Equals`` vergelijkt:
 
-```java
+::: {.panel-tabset}
+
+## Vandaag: `HashCode.Combine`
+
+```{.java filename="Student.cs"}
 public override int GetHashCode()
 {
     return HashCode.Combine(Voornaam, Geboortejaar);
 }
 ```
+
+## Vroeger: handmatig met XOR
+
+```{.java filename="Student.cs"}
+public override int GetHashCode()
+{
+    // De hashes van de velden zelf combineren met ^ (de XOR-operator).
+    return Voornaam.GetHashCode() ^ Geboortejaar.GetHashCode();
+}
+```
+
+:::
 
 Het zelf uitschrijven van hash-algoritmes ligt buiten de scope van dit boek, maar dankzij ``HashCode.Combine`` heb je dat ook niet nodig.
 

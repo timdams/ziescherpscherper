@@ -75,6 +75,7 @@ Geen losse setup, conditie en update dus: Python verstopt die in `range`. Veel b
 Merk op dat ``i += 2`` exact hetzelfde doet als ``i = i + 2``, maar dan compacter. Dat zijn de *verkorte operatornotaties* uit hoofdstuk 2. Ook ``i++`` (hetzelfde als ``i = i + 1``) komt in loops heel vaak voor. Schrijf gerust de lange vorm als dat voor jou duidelijker is, maar je moet ze sowieso vlot kunnen *lezen*.
 :::
 
+::: {.console}
 ```text
 0
 2
@@ -83,6 +84,7 @@ Merk op dat ``i += 2`` exact hetzelfde doet als ``i = i + 2``, maar dan compacte
 8
 10
 ```
+:::
 
 
 :::{.callout-tip}
