@@ -64,6 +64,17 @@ double kommagetal = 13.8;
 int kommaNietWelkom = (int)kommagetal;
 ```
 
+::: {.callout-tip title="Zie verder"}
+C# is **streng**: je moet expliciet zeggen dat je een type wilt omzetten. **JavaScript** doet net het omgekeerde en zet types automatisch om (*type coercion*). Dat lijkt handig, maar is een beruchte valkuil:
+
+```javascript
+console.log("5" + 3);  // "53"  (de 3 wordt een string)
+console.log("5" * 3);  // 15    (de "5" wordt een getal)
+```
+
+Bij `+` wint de string en plak je teksten aan elkaar, bij `*` wint het getal. JavaScript raadt zelf wat je bedoelt; in C# zou dit gewoon een compileerfout geven, en dat is hier een voordeel: je krijgt geen verrassingen.
+:::
+
 Door casting te gebruiken zeg je eigenlijk aan de compiler 2 zaken: 
 
 1. Volgende variabele die van het type ``double`` is, moet aan deze variabele van het type ``int`` toegekend worden.

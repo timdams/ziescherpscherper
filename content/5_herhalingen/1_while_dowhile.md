@@ -150,6 +150,19 @@ do{
 Merk op dat achteraan de testconditie een puntkomma na het ronde haakje staat. **Deze vergeten is een véél voorkomende fout. Bij een while is dit niet!**
 :::
 
+::: {.callout-tip title="Zie verder"}
+De `do while` ken je terug in **C**, **C++**, **Java** en **JavaScript**, telkens met diezelfde "test-achteraan"-structuur. **Python** daarentegen heeft helemaal geen do-while. Wil je daar iets dat minstens een keer draait, dan bootst men dat na met een `while True` plus een `break`:
+
+```python
+while True:
+    keuze = input("Geef uw keuze in: a, b of c ")
+    if keuze in ("a", "b", "c"):
+        break
+```
+
+Dat is meteen een mooi voorbeeld van wat je hierboven net leert: in Python ben je vaak verplicht om `break` te gebruiken, terwijl je in C# de stopconditie netjes achteraan de `do while` kan zetten.
+:::
+
 <!-- \newpage -->
 
 

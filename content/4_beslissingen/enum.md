@@ -71,6 +71,19 @@ Het keyword ``enum`` geeft aan dat we een nieuw datatype maken dat maar enkele m
 In C# zitten al veel enum-types ingebouwd. Denk maar aan ``ConsoleColor``: wanneer je de kleur van het lettertype van de console wilt veranderen gebruiken we een enum-type. Er werd reeds gedefinieerd wat de toegelaten waarden zijn, bijvoorbeeld: ``Console.ForegroundColor = ConsoleColor.Red;`` 
 :::
 
+
+::: {.callout-tip title="Zie verder"}
+Niet elke taal kent een ``enum``. **JavaScript** heeft er bijvoorbeeld geen, daar moeten programmeurs zich behelpen met een gewoon object vol constanten. Maar **TypeScript** (JavaScript met types) heeft wél een echte ``enum``, die sterk op die van C# lijkt:
+
+```typescript
+enum Weekdag { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag }
+
+let keuze: Weekdag = Weekdag.Woensdag;
+```
+
+Net als in C# worden de waarden intern vanaf ``0`` genummerd en kan je een variabele beperken tot enkel deze waarden.
+:::
+
 <!-- \newpage -->
 
 

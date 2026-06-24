@@ -20,6 +20,18 @@ public Werknemer(int rangIn)
 ``this`` werkt enkel binnen een **instance-context**: je kan het gebruiken in gewone (niet-``static``) methoden, properties en constructors, want enkel daar bestaat er een "huidig object". In een ``static`` methode is er geen object, en dus kan je daar ``this`` niet gebruiken.
 :::
 
+::: {.callout-tip title="Zie verder"}
+In **Python** bestaat er geen impliciet ``this``. Daar geef je het huidige object expliciet mee als de eerste parameter van elke methode, traditioneel ``self`` genaamd:
+
+```python
+class Auto:
+    def start(self):
+        print(self.merk)
+```
+
+In C# is ``this`` dus een verborgen extra die de compiler voor je regelt; in Python staat datzelfde object gewoon zichtbaar als eerste parameter. **JavaScript** heeft wél een ``this``, maar met beruchte binding-regels: waarnaar ``this`` verwijst hangt af van *hoe* je een functie aanroept, niet van waar ze staat. Dat zorgt voor heel wat verwarring.
+:::
+
 
 ### Aanroepen van instantievariabelen met zelfde naam
 

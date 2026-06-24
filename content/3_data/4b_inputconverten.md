@@ -40,6 +40,16 @@ Console.WriteLine("Geef je gewicht:");
 double gewicht = double.Parse(Console.ReadLine());
 ```
 
+::: {.callout-tip title="Zie verder"}
+In **Python** doe je hetzelfde, maar veel korter: input lezen gebeurt met `input()` en omzetten naar een getal met de functie `int()` of `float()`:
+
+```python
+gewicht = float(input("Geef je gewicht: "))
+```
+
+Waar C# een aparte `Parse`-methode per type heeft (`int.Parse`, `double.Parse`), gebruikt Python gewoon de naam van het type als functie. Het idee is identiek: tekst inlezen en daarna omzetten naar het type dat je nodig hebt.
+:::
+
 
 
 

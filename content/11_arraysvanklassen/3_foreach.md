@@ -39,6 +39,25 @@ foreach (Student student in deKlas)
 
 **Merk op dat al deze voorbeelden ook met een ``List`` in plaats van een array werken.**
 
+::: {.callout-tip title="Zie verder"}
+De ``foreach``-loop is helemaal niet uniek voor C#. In **Python** schrijf je net hetzelfde idee, maar zonder type en zonder accolades:
+
+```python
+for meting in metingen:
+    print(meting)
+```
+
+In **JavaScript** heet dit ``for...of``:
+
+```javascript
+for (const meting of metingen) {
+    console.log(meting);
+}
+```
+
+Drie talen, exact dezelfde gedachte: "neem elk element één voor één". Enkel de schrijfwijze verschilt.
+:::
+
 
 ### Opgelet bij het gebruik van foreach loops
 

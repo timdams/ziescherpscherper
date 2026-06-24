@@ -15,6 +15,17 @@ List<string[]> listOfStringarrays = new List<string[]>();
 
 **Zoals je ziet hoeven we bij het aanmaken van een ``List`` geen begingrootte mee te geven, wat we wel bij arrays moeten doen. Dit is één van de voordelen van ``List``: ze groeien mee.**
 
+::: {.callout-tip title="Zie verder"}
+In **Python** bestaat zoiets als ``List<>`` niet apart: een ``list`` is ingebouwd in de taal en groeit gewoon mee. Je hoeft er ook geen type bij te zetten, want Python is dynamisch getypeerd:
+
+```python
+namen = ["Tim", "An"]
+namen.append("Jan")
+```
+
+In **Java** lijkt het sterk op C#: daar gebruik je ``ArrayList<String>`` met ``.add(...)``. Zelfde idee, ander jasje. C# zit hier dus dicht bij Java, en ver van het ongetypeerde Python.
+:::
+
 :::{.callout-tip}
 In dit boek behandel ik het concept generieke klassen enkel in de appendix. 
 

@@ -20,6 +20,21 @@ Indien je een klasse schrijft zonder een expliciete parent dan zal deze steeds `
 Om de klasse ``Object`` niet te verwarren met het concept "object" zullen we hier steeds praten over ``System.Object``.
 :::
 
+::: {.callout-tip title="Zie verder"}
+Dit is geen typisch C#-trucje: ook **Java** kent precies dezelfde oer-klasse, daar gewoon ``Object`` genoemd. Elke klasse erft er impliciet van, en je krijgt er eveneens methoden zoals ``toString()``, ``equals()`` en ``hashCode()`` bovenop:
+
+```java
+class Student {
+    // erft automatisch van java.lang.Object
+}
+
+Student stud = new Student();
+System.out.println(stud.getClass().getName()); // Student
+```
+
+Heel gelijkaardig dus: één gemeenschappelijke basisklasse waar alles van afstamt. Ook **Python** doet dit met ``object``.
+:::
+
 
 
 
@@ -173,7 +188,7 @@ De regel ``if (o is not Student temp)`` doet twee dingen tegelijk: ze controleer
 
 
 ### ``GetHashcode()`` overriden
-Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde hashcode teruggeven (dit is belangrijk wanneer je objecten als key in een ``Dictionary`` of in een ``HashSet`` gebruikt). Vroeger was zelf een goede hash schrijven knap lastig, maar tegenwoordig doe je dat eenvoudig met de ingebouwde ``HashCode.Combine``. Je geeft daar dezelfde velden aan mee die je ook in ``Equals`` vergelijkt:
+Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde hashcode teruggeven (dit is belangrijk wanneer je objecten als key in een ``Dictionary`` of in een ``HashSet`` gebruikt). Vroeger was zelf een goede hash schrijven knap lastig, maar tegenwoordig doe je dat eenvoudig met de ingebouwde ``HashCode.Combine``. Je geeft daar dezelfde instantievariabelen aan mee die je ook in ``Equals`` vergelijkt:
 
 ```java
 public override int GetHashCode()

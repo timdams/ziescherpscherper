@@ -210,6 +210,31 @@ Mooi toch?!
 
 Dankzij ``static`` kunnen we dus eigen bibliotheken van methoden én properties aanmaken die we kunnen aanroepen rechtstreeks op de klasse. We kunnen deze aanroepen zonder dat er een instantie van de klasse moet zijn.
 
+::: {.callout-tip title="Zie verder"}
+In **Java** werkt ``static`` zo goed als identiek aan C#: een gedeelde teller bij de klasse, en een methode die je op de klasse aanroept zonder object:
+
+```java
+class Fiets {
+    static int aantalFietsen = 0;
+    Fiets() { aantalFietsen++; }
+    static int getAantal() { return aantalFietsen; }
+}
+```
+
+**Python** doet hetzelfde met andere woorden: een variabele rechtstreeks in de klasse (geen `self`) is een gedeelde *class variable*, en `@staticmethod` maakt een methode die je op de klasse aanroept:
+
+```python
+class Fiets:
+    aantal_fietsen = 0   # gedeeld over alle objecten
+
+    @staticmethod
+    def beschrijf():
+        print("Een fiets")
+```
+
+Telkens hetzelfde principe: dit hoort bij de *klasse*, niet bij een individueel object.
+:::
+
 Je mag ook hybride klassen maken waarin sommige delen ``static`` zijn en andere niet. De ``DateTime`` klasse uit het eerste hoofdstuk bijvoorbeeld is zo'n klasse. De meeste dingen gebeurden *non-static* toch was er ook bijvoorbeeld de ``static`` property ``Now`` om de huidige tijd terug te krijgen, alsook de ``IsLeapYear`` hulpmethode die we rechtstreeks op de klasse ``DateTime`` moesten aanroepen:
 
 

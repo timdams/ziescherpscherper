@@ -138,6 +138,19 @@ Console.WriteLine($"Rechthoek: {BerekenOpp(5, 6)}");
 Console.WriteLine($"Cirkel: {BerekenOpp(7)}");
 ```
 
+::: {.callout-tip title="Zie verder"}
+**Python** kent geen overloading. Je kan er geen twee functies met dezelfde naam definiëren: de tweede overschrijft gewoon de eerste. Pythonisten lossen dit op met default-parameters:
+
+```python
+def bereken_opp(lengte, breedte=None):
+    if breedte is None:
+        return int(3.14159 * lengte * lengte)  # cirkel
+    return lengte * breedte                     # rechthoek
+```
+
+In C# kiest de compiler op voorhand de juiste versie op basis van het aantal en type parameters. In Python schrijf je die keuze zelf binnenin je functie met een `if`.
+:::
+
 
 #### Betterness rule
 

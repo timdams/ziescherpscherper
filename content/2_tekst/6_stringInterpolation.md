@@ -65,6 +65,26 @@ Zoals je kan zien is dit veel meer leesbare code dan de eerste manier.
 
 Het resultaat zal dan worden: ``Ik ben Finkelstein en ik ben 13 jaar.``
 
+::: {.callout-tip title="Zie verder"}
+Veel andere talen kennen net hetzelfde idee, met een net iets ander tekentje vooraan. In **Python** heet dit een *f-string*:
+
+```python
+naam = "Finkelstein"
+leeftijd = 13
+zin = f"Ik ben {naam} en ik ben {leeftijd} jaar."
+```
+
+En in **JavaScript** gebruik je *template literals* met backticks en een dollarteken voor de accolades:
+
+```javascript
+const naam = "Finkelstein";
+const leeftijd = 13;
+const zin = `Ik ben ${naam} en ik ben ${leeftijd} jaar.`;
+```
+
+Bijna identiek aan de ``$``-notatie van C#. Leer je dus deze manier van werken goed aan, dan voel je je meteen thuis in heel wat andere talen.
+:::
+
 
 #### Berekeningen doen bij string interpolatie
 

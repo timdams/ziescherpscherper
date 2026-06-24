@@ -150,6 +150,22 @@ string[] regels = File.ReadAllLines("dagboek.txt");
 
 ---
 
+## Zie verder: een bestand lezen
+
+::: {.callout-tip title="Zie verder"}
+In **Python** doet `with open` exact wat ons `using`-blok doet: het bestand gaat automatisch dicht aan het einde van het blok, ook bij een fout.
+
+```python
+with open("dagboek.txt") as f:
+    inhoud = f.read()
+# f is hier al netjes gesloten
+```
+
+Waar C# een `StreamReader` plus `using` nodig heeft, vangt Python beide in één korte regel.
+:::
+
+---
+
 ## Uitgewerkt: een dagboek
 
 ```csharp
@@ -293,6 +309,22 @@ Met `new JsonSerializerOptions { WriteIndented = true }` krijg je nette inspring
 
 ---
 
+## Zie verder: JSON in JavaScript
+
+::: {.callout-tip title="Zie verder"}
+JSON staat voor *JavaScript Object Notation* en komt dus letterlijk uit **JavaScript**. Geen aparte `JsonSerializer` nodig: serialiseren zit ingebouwd.
+
+```javascript
+const student = { naam: "Barry", leeftijd: 25 };
+const jsonString = JSON.stringify(student);
+// {"naam":"Barry","leeftijd":25}
+```
+
+Nóg directer dan C#: omdat JSON uit JavaScript stamt, is een object en zijn JSON-voorstelling bijna hetzelfde ding.
+:::
+
+---
+
 ## JSON deserialiseren
 
 De omgekeerde weg is **generic**: je geeft het verwachte type mee.
@@ -304,6 +336,24 @@ Student ingeladen = JsonSerializer.Deserialize<Student>(json);
 
 ::: {.callout-note .fragment}
 Met attributen stuur je het gedrag bij: `[JsonIgnore]` slaat een property over, `[JsonPropertyName("...")]` hernoemt ze, `[JsonInclude]` neemt iets privaat toch mee.
+:::
+
+---
+
+## Zie verder: JSON in Python
+
+::: {.callout-tip title="Zie verder"}
+**Python** gebruikt zijn ingebouwde `json`-module: `json.dumps` serialiseert, `json.loads` deserialiseert.
+
+```python
+import json
+
+student = {"naam": "Barry", "leeftijd": 25}
+json_string = json.dumps(student)   # object -> JSON-tekst
+terug = json.loads(json_string)     # JSON-tekst -> dict
+```
+
+Verschil met C#: je hoeft geen type mee te geven. Python geeft een `dict` terug, waar C# via `Deserialize<Student>` weet bij welke klasse de data hoort.
 :::
 
 ---

@@ -30,6 +30,19 @@ Deze methode vereist twee parameters:
 * De eerste is het grondtal.
 * De tweede is de exponent ("tot de hoeveelste macht").
 
+::: {.callout-tip title="Zie verder"}
+In C# is `Math` altijd beschikbaar, zonder dat je iets hoeft te doen. In **Python** zit wiskunde in een aparte *module* die je eerst moet **importeren** met `import`:
+
+```python
+import math
+
+resultaat = math.pow(getal, 3)
+wortel = math.sqrt(144)   # 12.0
+```
+
+Zie je `math.` voor elke methode? Dat is de naam van de module. Je moet hem dus bovenaan eerst importeren voor je hem kan gebruiken. In C# horen klassen zoals `Math` standaard bij de taal en hoef je niets te importeren.
+:::
+
 
 <!-- \newpage -->
 

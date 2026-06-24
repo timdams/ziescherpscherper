@@ -112,6 +112,25 @@ We kunnen een specifiek element opvragen aan de hand van de key. Stel dat we de 
 Console.WriteLine(klanten[123]);
 ```
 
+::: {.callout-tip title="Zie verder"}
+Een ``Dictionary`` heet in **Python** een ``dict`` en zit ingebouwd in de taal met een handige ``{}``-syntax. Geen types opgeven, gewoon sleutel-waarde-paren:
+
+```python
+klanten = {123: "Tim Dams", 6463: "James Bond"}
+print(klanten[123])
+```
+
+In **JavaScript** gebruik je hiervoor een ``Map`` (of een gewoon object):
+
+```javascript
+const klanten = new Map();
+klanten.set(123, "Tim Dams");
+console.log(klanten.get(123));
+```
+
+De Python-versie staat het dichtst bij de leesbaarheid van C#, de JavaScript-``Map`` werkt met aparte ``set``- en ``get``-methoden.
+:::
+
 :::{.callout-tip}
 Dit opzoeken via de key gaat razendsnel, ongeacht hoe groot de dictionary is. Dat is net de kracht van een ``Dictionary``: een element opzoeken op z'n key is veel sneller dan in een ``List`` zoeken met ``Find`` (waar de computer in het slechtste geval álle elementen moet overlopen). Heb je dus data die je vaak op een unieke sleutel moet opvragen, kies dan een ``Dictionary`` in plaats van een ``List``.
 :::

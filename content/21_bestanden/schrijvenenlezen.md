@@ -111,6 +111,18 @@ Wanneer kies je nu wat?
 **Async IO bestaat ook.** In echte programma's (zeker met grotere bestanden of netwerk) wil je het programma niet laten "bevriezen" terwijl het wacht op de schijf. Daarvoor bestaan asynchrone varianten zoals ``await File.ReadAllTextAsync("dagboek.txt")``. Hoe ``async``/``await`` precies werkt zien we hier nog niet, maar je zal deze vorm overal in de Microsoft-documentatie tegenkomen.
 :::
 
+::: {.callout-tip title="Zie verder"}
+In **Python** doet het ``with open``-blok exact wat ons ``using``-blok doet: het bestand gaat automatisch dicht aan het einde van het blok, ook als er een fout optreedt.
+
+```python
+with open("dagboek.txt") as f:
+    inhoud = f.read()
+# f is hier al netjes gesloten
+```
+
+Mooi contrast: waar C# een aparte ``StreamReader`` en een ``using`` nodig heeft, vangt Python beide in één korte regel.
+:::
+
 ###  Uitgewerkt voorbeeld
 
 Dankzij ``StreamReader`` en ``StreamWriter`` hebben we nu reeds een goede greep op werken met bestanden. Laten we eens alles combineren tot een functioneel programma. We maken een dagboek-programma. Telkens het programma opstart zal het de reeds bestaande dagboek-schrijfsels tonen. Vervolgens kan de gebruiker een nieuwe tekst toevoegen. Nadien sluit het programma af. We gebruiken  ``DateTime.Now`` om ieder schrijfsel van een duidelijke tijd en datum te voorzien:

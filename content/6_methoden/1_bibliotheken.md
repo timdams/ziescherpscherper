@@ -44,6 +44,18 @@ Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden a
 
 ![De icoontjes geven aan of het om een methode (kubus), een eigenschap (Engelse sleutel) of een "event" (bliksem) gaat. Events behandel ik niet in dit handboek.](../assets/4_methoden/methoden4.png)
 
+::: {.callout-tip title="Zie verder"}
+In C# haal je bibliotheken binnen met `using`. **Python** doet dit met `import`:
+
+```python
+import math
+
+print(math.sqrt(16))
+```
+
+Het idee is hetzelfde als bij C#: je geeft aan welke bibliotheek je wilt gebruiken en spreekt nadien de methoden aan via de naam ervan (hier `math.sqrt`, zoals `Math.Sqrt` in C#). Het keyword verschilt, de gedachte niet.
+:::
+
 <!-- \newpage -->
 
 

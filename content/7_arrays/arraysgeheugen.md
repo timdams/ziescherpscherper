@@ -77,6 +77,19 @@ ploegen[1] = "Beerschot";
 
 En waar staan de ploegen in de nieuwePloegen array (``"Anderlecht"`` en ``"Brugge"``)? **Die array in het geheugen is niet meer bereikbaar** (de garbage collector zal deze ten gepaste verwijderen, wat in hoofdstuk 10 zal toegelicht worden).
 
+::: {.callout-tip title="Zie verder"}
+Net dezelfde valkuil bestaat in **JavaScript**: arrays werken er ook by reference, dus `=` maakt geen kopie maar een alias.
+
+```javascript
+let ploegen = ["Beerschot", "Antwerp"];
+let nieuwe = ploegen;     // geen kopie, zelfde array!
+nieuwe[1] = "Brugge";
+console.log(ploegen[1]);  // "Brugge" - ploegen mee aangepast
+```
+
+Heel gelijkaardig dus aan C#. Een echte kopie maak je in JavaScript bijvoorbeeld met `let kopie = [...ploegen];`.
+:::
+
 <!-- \newpage -->
 
 

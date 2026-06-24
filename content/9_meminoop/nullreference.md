@@ -19,6 +19,25 @@ Van zodra je een referentie naar een object (een bestaand of eentje dat je net m
 Merk op dat de GC enkel op de heap werkt. Indien er in de stack dus een variabele de waarde ``null`` heeft zal de GC deze nooit verwijderen!
 :::
 
+::: {.callout-tip title="Zie verder"}
+Bijna elke taal heeft een manier om "geen waarde" aan te duiden, maar met een eigen naam. In **Python** heet dat ``None``:
+
+```python
+student = None
+if student is None:
+    print("Nog geen student.")
+```
+
+**JavaScript** maakt het nog wat ingewikkelder: daar bestaan er twéé van. ``null`` (bewust leeg, door jou gezet) én ``undefined`` (nog nooit een waarde gekregen):
+
+```javascript
+let student = null;       // bewust leeg
+let leeftijd;             // undefined: nooit toegekend
+```
+
+C# houdt het simpel met enkel ``null``, maar het idee "deze variabele verwijst (nog) nergens naar" kom je in zowat elke taal tegen.
+:::
+
 
 ### NullReferenceException
 

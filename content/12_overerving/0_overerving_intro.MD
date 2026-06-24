@@ -89,6 +89,21 @@ internal class Dier
 }
 ```
 
+::: {.callout-tip title="Zie verder"}
+Het idee van overerving bestaat in zowat elke OO-taal, alleen de notatie verschilt. In **Python** zet je de parent-klasse tussen haakjes achter de naam:
+
+```python
+class Dier:
+    def eet(self):
+        pass
+
+class Paard(Dier):
+    pass
+```
+
+Java gebruikt dan weer het woord ``extends`` (``class Paard extends Dier``) en C++ schrijft ``class Paard : public Dier``. Hetzelfde concept, telkens een andere schrijfwijze.
+:::
+
 We zeggen dus dat ``Paard`` overerft van de klasse ``Dier``. Het paard is dus een specialisatie van dier. Objecten van het type ``Dier`` kunnen enkel de ``Eet``-methode aanroepen. Objecten van het type ``Paard`` kunnen de ``Eet``-methode aanroepen én ze hebben ook een property ``KanHinnikken``. Een paard kan dus alles wat een dier kan en wat het zelf kan. Een dier kan enkel wat het zelf kan:
 
 ```java

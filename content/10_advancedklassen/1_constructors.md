@@ -36,6 +36,30 @@ De constructor is een unieke methode die wordt aangeroepen bij het aanmaken van 
 
 Momenteel hebben we in de klasse ``Student`` de constructor nog niet expliciet beschreven.  Maar zoals je aan bovenstaande code ziet bestaat deze constructor al wel degelijk.Hij doet echter niets extra. Zo krijgen de instantievariabelen gewoon hun default waarde toegekend, afhankelijk van hun datatype.
 
+::: {.callout-tip title="Zie verder"}
+In C# heeft de constructor dezelfde naam als de klasse. Niet elke taal doet dat. In **Python** heet de constructor altijd `__init__` en is de eerste parameter `self` (de verwijzing naar het object zelf):
+
+```python
+class Auto:
+    def __init__(self, merk):
+        self.merk = merk
+
+mijnAuto = Auto("Bovarc")
+```
+
+In **JavaScript** is het idee weer hetzelfde, maar heet de methode gewoon `constructor`:
+
+```javascript
+class Auto {
+    constructor(merk) {
+        this.merk = merk;
+    }
+}
+```
+
+Drie talen, hetzelfde idee (code die bij de geboorte van een object draait), telkens een andere naam.
+:::
+
 :::{.callout-important}
 
 De naam "constructor" zegt duidelijk waarvoor het concept dient: *het construeren van objecten*. Constructors mogen maar op 1 moment in het leven van een object aangeroepen worden: tijdens hun geboorte m.b.v. ``new``. 

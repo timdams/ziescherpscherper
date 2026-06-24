@@ -84,6 +84,24 @@ Waarom voert `a.MaakGeluid()` toch de **Varken**-versie uit?
 
 ---
 
+## Zie verder: polymorfisme in Python
+
+::: {.callout-tip title="Zie verder"}
+C# heeft een gemeenschappelijke parent plus `virtual`/`override` nodig. **Python** doet het via *duck typing*: heeft het object de methode, dan werkt het gewoon, zonder gedeelde basisklasse.
+
+```python
+def laat_spreken(dier):
+    print(dier.maak_geluid())   # elk object met die methode werkt
+
+laat_spreken(Paard())   # Hinnikhinnik
+laat_spreken(Varken())  # Oinkoink
+```
+
+Bij Python merk je pas tijdens het uitvoeren of een object de methode echt heeft; C# controleert dat al bij het compileren.
+:::
+
+---
+
 ## Upcasting
 
 Een child toewijzen aan een parent-variabele (**upcasting**) gaat automatisch, tot zelfs:
@@ -218,6 +236,28 @@ foreach (var middel in alleMiddelen)
 
 ---
 
+## Zie verder: type-check in andere talen
+
+::: {.callout-tip title="Zie verder"}
+Dezelfde vraag, andere notatie. In **Python** is het een functie:
+
+```python
+if isinstance(mijn_auto, Voertuig):
+    print("mijn_auto is een Voertuig")
+```
+
+In **JavaScript** een operator:
+
+```javascript
+if (mijnAuto instanceof Voertuig) {
+    console.log("mijnAuto is een Voertuig");
+}
+```
+
+:::
+
+---
+
 ## Het as-keyword
 
 `as` **probeert** te converteren; lukt het niet, dan krijg je **`null`** in plaats van een crash:
@@ -283,6 +323,28 @@ Wie `Equals` overridet, override **ook** `GetHashCode` (met `HashCode.Combine`),
 
 ::: {.callout-tip .fragment}
 Sinds C# 9 regelen **`record`**-types dit automatisch: `public record Student(string Voornaam, int Geboortejaar);` genereert zelf `Equals`, `GetHashCode` én `ToString`. We doen het hier met de hand om te begrijpen wat eronder zit.
+:::
+
+---
+
+## Zie verder: gelijkheid in andere talen
+
+::: {.callout-tip title="Zie verder"}
+Zelf bepalen wanneer objecten gelijk zijn, doe je via een vaste methode. **Python** override `__eq__` (zit achter `==`):
+
+```python
+def __eq__(self, other):
+    return self.voornaam == other.voornaam
+```
+
+**Java** lijkt op C#: override `equals` (en `hashCode`):
+
+```java
+@Override
+public boolean equals(Object o) { ... }
+```
+
+In **JavaScript** kan `===` niet overschreven worden: daar schrijf je zelf een functie `zijnGelijk(a, b)`.
 :::
 
 ---

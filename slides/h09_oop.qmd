@@ -188,6 +188,21 @@ internal class Auto
 
 ---
 
+## Zie verder: moet alles in een klasse?
+
+::: {.callout-tip title="Zie verder"}
+Dat *alle* code in een klasse moet, deelt C# met **Java**. **Python** en **JavaScript** zijn losser: daar mag je gewoon losse code en functies schrijven.
+
+```python
+# een volledig geldig programma, geen klasse in zicht
+print("Hallo wereld")
+```
+
+OOP is daar een keuze, geen verplichting. In **C** bestaat het begrip klasse zelfs niet. C# zit aan het strenge eind.
+:::
+
+---
+
 ## Objecten aanmaken met new
 
 ```csharp
@@ -396,6 +411,21 @@ public int Energie
 ```
 
 `palpatine.Energie = -1;` heeft nu **geen effect**: negatieve energie wordt geweigerd.
+
+---
+
+## Zie verder: properties elders
+
+::: {.callout-tip title="Zie verder"}
+**Java** kent geen properties: daar schrijf je met de hand een aparte *getter* en *setter*:
+
+```java
+sith.setEnergie(20);
+System.out.println(sith.getEnergie());
+```
+
+**Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.
+:::
 
 ---
 

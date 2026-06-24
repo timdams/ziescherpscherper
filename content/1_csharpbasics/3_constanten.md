@@ -11,6 +11,17 @@ G_AARDE = 10.48; //ZAL ERROR GEVEN
 
 Merk op hoe we de ``const`` variabelen een identifier geven: deze zetten we in ALLCAPS. Hierbij gebruiken we een liggend streepjes om het onderscheid tussen de onderlinge woorden aan te geven. Dit is geen verplichting, maar gewoon een aanbeveling.
 
+::: {.callout-tip title="Zie verder"}
+**Python** kent geen echt `const`-keyword. Je kan er een waarde dus niet hard onveranderlijk maken: men spreekt enkel af dat een naam in ALLCAPS "met rust gelaten moet worden". Het is puur een belofte tussen programmeurs, geen regel die de taal afdwingt.
+
+```python
+G_AARDE = 9.81   # afspraak: niet wijzigen
+G_AARDE = 10.48  # Python staat dit gewoon toe, geen fout
+```
+
+In C# vangt de compiler die tweede regel meteen op. Dat is precies het verschil dat doorheen dit hoofdstuk terugkomt: C# laat de taal regels afdwingen, terwijl talen als Python veel overlaten aan de discipline van de programmeur.
+:::
+
 <!-- TODO ed.5 (review): dit hoofdstuk is erg kort. Uitbreiden met:
      - readonly (ander semantiek dan const: waarde mag pas in de constructor gezet worden, niet compile-time vast).
      - const werkt enkel voor compile-time waarden (bv. 'const DateTime VANDAAG = DateTime.Now;' compileert NIET).

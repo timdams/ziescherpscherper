@@ -113,6 +113,19 @@ Wil je deze volgorde dus veranderen in een samengestelde expressie, dan moet je 
 [^volgorde]: Bekijk zeker de tabel op [docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators) waar de volgorde van alle operators wordt beschreven.
 
 
+::: {.callout-tip title="Zie verder"}
+In **Python** gebruik je geen symbolen voor de logische operators, maar gewone Engelse woorden: ``and``, ``or`` en ``not``:
+
+```python
+if leeftijd > 18 and heeft_kaart:
+    print("Welkom")
+
+resultaat = not (0 == 2)
+```
+
+Waar C# dus ``&&``, ``||`` en ``!`` schrijft, leest Python bijna als een gewone zin. De werking is identiek (inclusief het stoppen zodra het resultaat vaststaat).
+:::
+
 
 ### Test jezelf
 

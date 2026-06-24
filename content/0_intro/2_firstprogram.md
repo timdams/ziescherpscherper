@@ -137,6 +137,16 @@ Console.WriteLine("Wie ben jij?!");
 
 De ``WriteLine`` methode zal alle tekst tonen die tussen de aanhalingstekens (``"  "``) staat. **De aanhalingstekens aan het begin en einde van de tekst zijn uiterst belangrijk! Alsook het puntkomma helemaal achteraan.**
 
+::: {.callout-tip title="Zie verder"}
+In **Python** krijg je tekst op het scherm met ``print``. Er is geen ``namespace``, ``class`` of ``Main`` nodig: één lijn volstaat.
+
+```python
+print("Wie ben jij?!")
+```
+
+Geen accolades en geen puntkomma: Python heeft veel minder ceremonie nodig dan C#. Die extra structuur in C# (``namespace``, ``class``, ``Main``) lijkt nu omslachtig, maar krijgt verderop in het boek stuk voor stuk betekenis.
+:::
+
 Je code binnen de ``Main`` accolades zou nu moeten zijn:
 
 ```java

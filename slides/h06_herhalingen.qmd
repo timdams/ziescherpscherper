@@ -155,6 +155,23 @@ Let op de **puntkomma** na `while (conditie);`. Vergeten is een klassieke fout (
 
 ---
 
+## Zie verder: do-while bestaat niet overal
+
+::: {.callout-tip title="Zie verder"}
+De `do while` ken je terug in **C**, **C++**, **Java** en **JavaScript**. **Python** heeft hem niet. Iets dat minstens één keer draait, bootst men er na met `while True` + `break`:
+
+```python
+while True:
+    keuze = input("Geef uw keuze: a, b of c ")
+    if keuze in ("a", "b", "c"):
+        break
+```
+
+In Python ben je dus vaak verplicht om `break` te gebruiken waar C# een nette stopconditie achteraan de `do while` toelaat.
+:::
+
+---
+
 ## Foute input opvangen
 
 `do while` is ideaal om te blijven vragen tot de input klopt:
@@ -229,6 +246,27 @@ for (setup; finish test; update)
 
 ::: {.callout-tip .fragment}
 Typ `for` + tweemaal **[tab]** in VS voor een kant-en-klare for-loop.
+:::
+
+---
+
+## Zie verder: de for-loop elders
+
+::: {.callout-tip title="Zie verder"}
+De drie-delige for komt uit **C** en is bijna letterlijk overgenomen door **C++**, **Java** en **JavaScript**:
+
+```java
+for (int i = 0; i < 11; i += 2) {
+    System.out.println(i);
+}
+```
+
+**Python** breekt ermee: geen teller-met-conditie, je loopt altijd *over* iets. Tellen doe je met `range`:
+
+```python
+for i in range(0, 11, 2):
+    print(i)
+```
 :::
 
 ---

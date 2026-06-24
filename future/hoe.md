@@ -92,3 +92,9 @@ Een AI-developer van de toekomst schrijft minder zelf, maar moet wél kunnen ins
 - **Een afsluitende reflectie** in het slothoofdstuk: *"Als je morgen een Python-codebase moet lezen, welke C#-kennis neem je mee, welke niet?"*
 
 Doel: studenten verlaten het boek niet enkel als C#-gebruiker, maar als *programmeur die C# kent en weet waar hij past*.
+
+
+Ideen:
+
+*Zie verder*: bij ieder concept het concept ook in een andere taa toelichten in een "zie verder" kader.
+*Zie nu*: AI output lezen op bugs.

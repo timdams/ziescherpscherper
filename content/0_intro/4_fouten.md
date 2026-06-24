@@ -14,6 +14,17 @@ Je code zal pas compileren indien deze foutloos is geschreven. Herinner je dat c
 
 Zolang er dus fouten in je code staan moet je deze eerst oplossen voor je verder kan. Gelukkig helpt VS je daarmee op 2 manieren:
 
+::: {.callout-tip title="Zie verder"}
+In **JavaScript** is dat helemaal anders. JavaScript wordt niet eerst gecompileerd maar lijn per lijn geinterpreteerd terwijl het programma draait. Een schrijffout houdt je programma dus niet vooraf tegen: het draait gewoon tot het op die fout botst.
+
+```javascript
+console.log("Dit verschijnt nog wel");
+consle.log("Pas hier crasht het programma");
+```
+
+De eerste lijn wordt netjes uitgevoerd, pas bij de tweede (met de typfout ``consle``) loopt het mis. In C# weigert de compiler je hele programma te starten zolang er ergens een fout staat: je vangt fouten dus vroeger, nog voor je programma ook maar één lijn heeft gedraaid.
+:::
+
 * Fouten in code worden met een rode squiggly onderlijnd.
 * Onderaan zie je in de statusbalk of je fouten hebt.
 

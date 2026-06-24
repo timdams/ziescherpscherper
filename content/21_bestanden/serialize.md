@@ -154,6 +154,18 @@ string jsonString = JsonSerializer.Serialize(studenten);
 Geneste objecten (een ``Student`` die zelf een ``School``-property heeft, bijvoorbeeld) worden net zo goed mee geserialiseerd, zolang het allemaal publieke properties zijn.
 :::
 
+::: {.callout-tip title="Zie verder"}
+JSON staat voor *JavaScript Object Notation*, en het komt dus letterlijk uit **JavaScript**. Daar heb je geen aparte ``JsonSerializer`` nodig: serialiseren zit ingebouwd via ``JSON.stringify``.
+
+```javascript
+const student = { naam: "Barry", leeftijd: 25, uitgeschreven: true };
+const jsonString = JSON.stringify(student);
+console.log(jsonString); // {"naam":"Barry","leeftijd":25,"uitgeschreven":true}
+```
+
+Heel gelijkaardig aan C#, maar nóg directer: omdat JSON uit JavaScript stamt, is een JavaScript-object en zijn JSON-voorstelling bijna hetzelfde ding.
+:::
+
 <!-- TODO ed.5 (review): gemissen nog toe te voegen waar nuttig: (1) System.Text.Json serialiseert enums standaard als getal, niet als naam (JsonStringEnumConverter); (2) record-types worden netjes ondersteund; (3) korte voetnoot dat BinaryFormatter deprecated is sinds .NET 5 (voor wie online oude gidsen tegenkomt); (4) encoding-narigheid (UTF-8/BOM/ANSI) bij bestanden uit Excel/legacy; (5) CSV-parsing als vooruitwijzing (dé eerstejaars-use-case). -->
 
 :::{.callout-tip}
@@ -171,6 +183,20 @@ Om data uit een JSON-bestand te laden, gebruiken we de Deserialize-methode van d
 string jsonText = File.ReadAllText("studentdata.json");
 Student ingeladen = JsonSerializer.Deserialize<Student>(jsonText);
 ```
+
+::: {.callout-tip title="Zie verder"}
+**Python** pakt JSON aan met zijn ingebouwde ``json``-module: ``json.dumps`` serialiseert, ``json.loads`` deserialiseert.
+
+```python
+import json
+
+student = {"naam": "Barry", "leeftijd": 25, "uitgeschreven": True}
+json_string = json.dumps(student)          # object -> JSON-tekst
+terug = json.loads(json_string)            # JSON-tekst -> dict
+```
+
+Verschil met C#: je hoeft bij het deserialiseren geen type mee te geven. Python geeft je gewoon een ``dict`` terug, terwijl C# weet bij welke klasse de data hoort via ``Deserialize<Student>``.
+:::
 
 
 ### Serialisatiegedrag bijsturen

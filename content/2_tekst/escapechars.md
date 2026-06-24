@@ -145,6 +145,17 @@ string metAt = @"C:\Temp\Myfile.txt";
 
 Merk op dat aanhalingstekens nog steeds *ge-escape'd* moeten worden. Heb je dus een stuk tekst met een aanhalingsteken in dan zal je zonder het apenstaartje moeten werken.
 
+::: {.callout-tip title="Zie verder"}
+Ook **Python** kent zo'n verbatim-string, daar heet het een *raw string*. Je plaatst een ``r`` voor de string in plaats van een ``@``:
+
+```python
+zonder_r = "C:\\Temp\\Myfile.txt"
+met_r = r"C:\Temp\Myfile.txt"
+```
+
+Exact hetzelfde idee als het apenstaartje in C#: de backslashes worden gewoon als tekst behandeld en niet als escape character. Handig dus voor bestandspaden en voor zogenaamde *reguliere expressies*, die vol backslashes staan.
+:::
+
 <!-- \newpage -->
 
 

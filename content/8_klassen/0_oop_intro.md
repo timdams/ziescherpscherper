@@ -30,6 +30,19 @@ namespace WorldDominationTool
 
 De klasse ``Program`` zorgt ervoor dat ons programma voldoet aan de C# afspraken die zeggen dat alle C# code in klassen moet staan. 
 
+::: {.callout-tip title="Zie verder"}
+Dat *alle* code in een klasse moet zitten, deelt C# met **Java**: ook daar verplicht de taal je om zelfs een simpel "hallo"-programma in een klasse te verpakken.
+
+**Python** en **JavaScript** zijn hierin veel losser. Daar mag je gewoon los code en functies schrijven, zonder ook maar één klasse:
+
+```python
+# een volledig geldig Python-programma, geen klasse in zicht
+print("Hallo wereld")
+```
+
+OOP is in die talen dus een keuze, geen verplichting. In **C** ten slotte bestaat het begrip klasse helemaal niet: daar werk je met losse functies en `struct`s. C# zit aan het strenge eind van het spectrum: het is, zoals de titel zegt, OO in hart en nieren.
+:::
+
 
 
 >![](../assets/care.png)Duizend mammoeten en sabeltandtijgers! Ik dacht dat ik nu wel mee zou zijn met alles wat C# me zou voorschotelen. Helaas, wolharige neushoorn-kaas, niet dus. Ik ga een voorspelling doen: van alle hoofdstukken in dit boek, wordt dit hoofdstuk hetgene waar je het meest je tanden op gaat stuk bijten. Hou dus vol, geef niet te snel op en kom geregeld hier terug. Succes gewenst!

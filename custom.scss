@@ -19,7 +19,7 @@ $headings-font-weight: 700;
 $paragraph-margin-bottom: 1.15rem;
 
 // --- Kleuren ---
-$body-bg: #ffffff;
+$body-bg: #fafaf7;
 $body-color: #2b2b33;          // donker leigrijs, zachter dan zwart
 $headings-color: #1a1a22;      // bijna zwart voor strakke koppen
 
@@ -37,12 +37,12 @@ $border-radius-lg: 0.75rem;
 $border-color: #e6e8eb;
 
 // --- Navbar (licht en strak) ---
-$navbar-bg: #ffffff;
+$navbar-bg: #ffffff;           // bewust wit: contrast met warme pagina-achtergrond
 $navbar-fg: #2b2b33;
 $navbar-hl: $ap-red;
 
 // --- Sidebar met hoofdstukken (links) ---
-$sidebar-bg: #ffffff;
+$sidebar-bg: #ffffff;          // bewust wit: visuele scheiding van het contentgebied
 $sidebar-fg: #4a4a55;
 $sidebar-hl: $ap-red;
 
@@ -116,6 +116,17 @@ h1.title::after,
   font-size: 1.05rem;
   margin-top: 1.6rem;
   color: #3a3a44;
+}
+
+// ---------- Drop cap (eerste letter van elk hoofdstuk) ----------
+main .level1 > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 0.82;
+  margin: 0.05em 0.12em 0 0;
+  color: $ap-red;
+  font-family: $font-family-sans-serif;
 }
 
 // ---------- Links ----------
@@ -201,6 +212,7 @@ div.sourceCode {
   background: $code-block-bg;
   border: 1px solid #e9ecef;
   border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.02);
 }
 pre.sourceCode {
   padding: 0.9rem 1.1rem;
@@ -297,6 +309,19 @@ figcaption {
 .page-navigation .nav-page a:hover {
   border-color: $ap-red;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+// ---------- Leesvoortgangsbalk ----------
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: $ap-red;
+  z-index: 9999;
+  transition: width 0.08s linear;
+  pointer-events: none;
 }
 
 // ---------- Diverse ----------

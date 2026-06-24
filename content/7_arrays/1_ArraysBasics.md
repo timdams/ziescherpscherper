@@ -6,6 +6,18 @@ Op papier zijn arrays eenvoudig...helaas programmeren we zelden nog op papier. E
 
 Een nadeel van arrays is dat, eens we de lengte van een array hebben ingesteld, deze lengte niet meer kan veranderd worden. In het hoofdstuk 12 zullen we leren werken met lists en andere collections die dit nadeel niet meer hebben.
 
+::: {.callout-tip title="Zie verder"}
+In **Python** bestaat geen array met vaste grootte. Je gebruikt er een `list`, die dynamisch groeit en zelfs gemengde types mag bevatten:
+
+```python
+getallen = [1, 2, 3]
+getallen.append(4)       # de lijst groeit gewoon mee
+getallen.append("vier")  # mag in Python zelfs een ander type zijn
+```
+
+Totaal anders dan een C#-array dus: daar ligt de lengte vast en bevat elk element hetzelfde type. De Python-`list` lijkt eerder op de `List` die je in hoofdstuk 12 leert kennen.
+:::
+
 <!-- TODO ed.5 (review): korte callout "Wanneer kies je een array vs. een List?" toevoegen als vooruitblik (studenten gaan anders voor alles int[] proberen). -->
 <!-- TODO ed.5 (review): Array.Resize vermelden; technisch kan een array dus tóch "vergroot" worden (de strikte "lengte ligt vast" is niet helemaal eerlijk). -->
 <!-- TODO ed.5 (review): verschil .Length (array) vs .Count (List) vs .Length (string) ergens verduidelijken; veelvoorkomende verwarring. -->
@@ -381,6 +393,17 @@ Console.WriteLine(getallen[5]);
 Dit zal resulteren in een *"Index was outside the bounds of the array"*-fout. De officiële naam van deze exception is **``IndexOutOfRangeException``**: die naam zie je ook letterlijk in Visual Studio verschijnen wanneer het misgaat.
 
 Hackers misbruiken dit soort fouten in code om toegang tot delen van het geheugen te krijgen waar ze eigenlijk niet mochten zijn. Dit zijn zogenaamde *buffer overflow attacks*.
+:::
+
+::: {.callout-tip title="Zie verder"}
+C# beschermt je: voorbij de array lezen geeft netjes een `IndexOutOfRangeException`. In **C** is dat anders: arrays doen daar geen enkele controle op hun grenzen.
+
+```c
+int getallen[3] = {1, 2, 3};
+printf("%d", getallen[5]); // geen foutmelding!
+```
+
+In plaats van een nette exception lees je in C zomaar willekeurige geheugeninhoud, of je programma crasht. Net die ongecontroleerde toegang maakt de buffer overflow attacks van hierboven mogelijk.
 :::
 
 

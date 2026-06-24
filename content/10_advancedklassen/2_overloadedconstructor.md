@@ -99,6 +99,28 @@ internal class Student
 
 ```
 
+::: {.callout-tip title="Zie verder"}
+C#, **Java** en **C++** laten allemaal meerdere constructors toe met een verschillend aantal of type parameters (overloading). In Java ziet dat er bijna identiek uit aan C#:
+
+```java
+class Student {
+    Student(String bijnaam) { ... }
+    Student(String bijnaam, boolean isWerkstudent) { ... }
+}
+```
+
+**Python** kent dat overloaden niet: een klasse heeft daar maar één `__init__`. Je lost het op met default-parameterwaarden:
+
+```python
+class Student:
+    def __init__(self, bijnaam, is_werkstudent=False):
+        self.bijnaam = bijnaam
+        self.is_werkstudent = is_werkstudent
+```
+
+Eén constructor die zich als meerdere gedraagt: of je nu `Student("Jos")` of `Student("Jos", True)` schrijft, het werkt.
+:::
+
 :::{.callout-tip}
 Merk op dat je ook **full properties best aanroept in je constructor** en niet rechtstreeks de achterliggende instantievariabele. Zo kan je ogenblikkelijk de typische controles in een ``set`` in gebruik nemen.
 

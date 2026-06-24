@@ -84,6 +84,21 @@ bpaard.KanHinnikken = true; // van Paard
 
 ---
 
+## Zie verder: overervings-syntax
+
+::: {.callout-tip title="Zie verder"}
+Hetzelfde idee, andere notatie. In **Python** zet je de parent tussen haakjes:
+
+```python
+class Paard(Dier):
+    pass
+```
+
+**Java** gebruikt ``extends`` (``class Paard extends Dier``), **C++** schrijft ``class Paard : public Dier``.
+:::
+
+---
+
 ## Alles wordt overgeërfd
 
 :::: {.columns}
@@ -249,6 +264,22 @@ Vergeet je `override` (en schrijf je gewoon `public void Vlieg()`), dan krijg je
 
 ---
 
+## Zie verder: virtual en override
+
+::: {.callout-tip title="Zie verder"}
+C# vereist expliciet ``virtual`` op de parent én ``override`` op de child. In **Python** is élke methode automatisch overschrijfbaar, zonder keywords:
+
+```python
+class Raket(Vliegtuig):
+    def vlieg(self):
+        print("De raket verdwijnt in de ruimte.")
+```
+
+Ook **Java** maakt elke (niet-``final``) methode standaard overschrijfbaar. C# kiest bewust het omgekeerde.
+:::
+
+---
+
 ## base in een methode
 
 Wil je de parent-versie **hergebruiken** en uitbreiden? Roep ze aan met **`base`**:
@@ -265,6 +296,22 @@ internal class Frituur : Restaurant
 ```
 
 Zo blijft de basislogica op **één** plek staan: verandert de basisprijs, dan klopt alles nog.
+
+---
+
+## Zie verder: base versus super
+
+::: {.callout-tip title="Zie verder"}
+Wat C# ``base`` noemt, heet in **Python** en **Java** net ``super``:
+
+```python
+class Frituur(Restaurant):
+    def poets_alles(self):
+        super().poets_alles()   # in C#: base.PoetsAlles()
+        self.kosten += 500
+```
+
+:::
 
 ---
 

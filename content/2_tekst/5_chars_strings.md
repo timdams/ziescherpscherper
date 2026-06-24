@@ -68,6 +68,18 @@ Console.WriteLine(eenGetal);
 
 Het programma zal driemaal een ``1`` onder elkaar tonen. Boeiend programma, hoor.
 
+::: {.callout-tip title="Zie verder"}
+In **C** bestaat er helemaal geen echt ``string``-type. Een stuk tekst is daar gewoon een rij van losse ``char``-elementen in een array, afgesloten met een onzichtbaar null-karakter (``\0``) zodat de computer weet waar de tekst stopt:
+
+```c
+char letter = 'X';
+char woord[] = "Tim";   // eigenlijk {'T', 'i', 'm', '\0'}
+printf("%c en %s\n", letter, woord);
+```
+
+In C# is een ``string`` een volwaardig ingebouwd type met handige methodes (``.Length``, ``.ToUpper()``, enz.). In C moet je zelf met dat null-karakter en met arrays rekening houden. Mooi om te zien dat het idee "een string is een reeks chars" daar heel letterlijk wordt: in C# is dat onder de motorkap eigenlijk ook zo.
+:::
+
 <!-- TODO ed.5 (review): korte tabel veelgebruikte string-methodes toevoegen: .ToUpper()/.ToLower(), .Trim(), .Length, .Contains(), .Replace(), .Split(). Dagdagelijkse kost. -->
 <!-- TODO ed.5 (review): indexing naam[0] om de eerste letter te krijgen vermelden (sluit aan bij "strings zijn arrays"). -->
 <!-- TODO ed.5 (review): string-vergelijking: == werkt op strings in C# (anders dan Java); string.Equals(a, b, StringComparison.OrdinalIgnoreCase) voor case-insensitive. -->

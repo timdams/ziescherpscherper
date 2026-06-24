@@ -174,6 +174,22 @@ else
 ![Flowchart van bovenstaande code.](../assets/2_beslissingen/ifelseflow.png)<!--{width=60%}-->
 
 
+::: {.callout-tip title="Zie verder"}
+In **Python** zie je geen accolades. Daar bepaalt de **inspringing** (de witruimte links) welke code bij de ``if`` hoort, en het tussenstuk heet ``elif`` in plaats van ``else if``:
+
+```python
+if leeftijd >= 18:
+    print("meerderjarig")
+elif leeftijd > 12:
+    print("tiener")
+else:
+    print("kind")
+```
+
+In C# heeft inspringen geen enkele invloed op de programmaflow: enkel de accolades tellen. In Python is het net omgekeerd, daar is de inspringing verplicht en bepaalt zij de blokken. Vergeet je in Python een spatie, dan verandert de betekenis van je code.
+:::
+
+
 :::{.callout-warning}
 Een veel gemaakte fout is bij de ``else`` sectie ook een booleaanse expressie plaatsen. Dit kan niet: de ``else`` sectie zal gewoon uitgevoerd worden indien de ``if`` sectie NIET uitgevoerd werd. Volgende code MAG DUS NIET:
 

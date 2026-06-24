@@ -65,6 +65,25 @@ internal class Timception: Exception
 Merk op dat we hier met ``base.ToString()`` ervoor zorgen dat ook de foutboodschap van het parent-gedeelte van de uitzondering wordt weergegeven. 
 :::
 
+::: {.callout-tip title="Zie verder"}
+In **Python** werkt dit verrassend gelijkaardig: ook daar maak je een eigen uitzondering door over te erven van ``Exception``, en gooi je ze op met ``raise`` (het equivalent van ``throw``):
+
+```python
+class Timception(Exception):
+    pass
+
+def tims_methode():
+    raise Timception("Een wilde exception verschijnt!")
+
+try:
+    tims_methode()
+except Timception as e:
+    print(e)
+```
+
+Zelfde idee als in C#: een eigen klasse die erft van de algemene ``Exception``-basisklasse, en die je elders kan opvangen.
+:::
+
 :::{.callout-tip}
 **De drie standaard-constructors.** Wanneer je in Visual Studio een eigen exception aanmaakt, stelt de quickfix vaak voor om drie constructors te genereren. Dat is een afspraak die alle .NET-exceptions volgen, en het loont om ze ook in je eigen exceptions te voorzien:
 

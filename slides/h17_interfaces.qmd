@@ -63,6 +63,23 @@ interface ISuperHeld
 
 ---
 
+## Zie verder: interfaces elders
+
+::: {.callout-tip title="Zie verder"}
+**Java** en **TypeScript** hebben net als C# een echt `interface`-keyword:
+
+```typescript
+interface ISuperHeld {
+    schietLasers(): void;
+    power: number;
+}
+```
+
+**Python** doet aan *duck typing*: geen verplichte interface, zolang een object toevallig de juiste methoden heeft, mag je het gebruiken. C# laat de compiler je belofte hard controleren.
+:::
+
+---
+
 ## De regels
 
 * Geen **instantievariabelen** en geen **constructors**
@@ -157,6 +174,20 @@ Eerst de parent-klasse, dan de interface(s).
 
 ::: {.callout-note .fragment}
 Interfaces mogen ook van elkaar erven: `interface IGod : ISuperHeld`.
+:::
+
+---
+
+## Zie verder: waarom maar één parent?
+
+::: {.callout-tip title="Zie verder"}
+Dat je meerdere interfaces maar één klasse mag erven, koos **Java** ook bewust. **C++** laat wél meervoudige overerving van klassen toe:
+
+```cpp
+class Zorro : public Man, public SuperHeld { };  // mag in C++
+```
+
+Krachtig, maar het leidt tot het *diamond problem*: erven twee parents dezelfde methode, dan weet de compiler niet meer welke. Door enkel meervoudige *interfaces* (zonder eigen code) toe te laten, ontwijken C# en Java dat volledig.
 :::
 
 ---

@@ -114,6 +114,26 @@ In dit geval zullen zowel de waarden ``2`` en ``3`` resulteren in de zin "Laden 
 Kom je uit een taal als C, Java of JavaScript, dan ben je misschien gewoon dat je code "doorvalt" naar de volgende case als je ``break`` vergeet (*fall-through*). **In C# kan dat niet.** Een case die code bevat moét eindigen met ``break`` (of een andere sprong). Vergeet je dat, dan compileert je code gewoon niet en krijg je de fout *"Control cannot fall through from one case label to another"*. C# behoedt je hier dus voor een klassieke, moeilijk te vinden bug.
 :::
 
+
+::: {.callout-tip title="Zie verder"}
+In **JavaScript** bestaat ``switch`` ook, en lijkt hij sterk op die van C#. Maar hier valt de uitvoer wél door naar de volgende case als je ``break`` vergeet:
+
+```javascript
+switch (option) {
+    case 1:
+        console.log("Afbreken gekozen");
+        // GEEN break: valt door naar case 2!
+    case 2:
+        console.log("Opslaan gekozen");
+        break;
+    default:
+        console.log("Onbekende keuze");
+}
+```
+
+Bij ``option`` gelijk aan ``1`` verschijnen hier zowel "Afbreken gekozen" als "Opslaan gekozen", omdat de eerste case geen ``break`` heeft. Dit is een beruchte bron van bugs. C# weigert net daarom code waarin een case met inhoud niet netjes wordt afgesloten.
+:::
+
 <!-- TODO ed.5 (review): switch expression (var result = day switch { ... }, sinds C# 8) overwegen; nu enkel via een externe blogpost-voetnoot. -->
 <!-- TODO ed.5 (review): switch op strings expliciet tonen (menukeuze met letters is een typische beginner-oefening). -->
 

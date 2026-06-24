@@ -50,6 +50,27 @@ for (int i = 0; i < 11; i += 2)
 
 Deze code zal telkens ``i`` met 2 verhogen(*update*), startende bij 0 (*setup*). Het blijft dit doorlopen zolang i kleiner is dan 11 (*finish test*). Als output krijgen we:
 
+::: {.callout-tip title="Zie verder"}
+Deze drie-delige for-syntax (`setup; finish test; update`) is geen C#-uitvinding: ze komt rechtstreeks uit **C** en is daarna bijna letterlijk overgenomen door **C++**, **Java** en **JavaScript**. Vergelijk maar met Java:
+
+```java
+for (int i = 0; i < 11; i += 2) {
+    System.out.println(i);
+}
+```
+
+Op de manier van afdrukken na is dit identiek aan C#. Ken je de for-loop hier, dan kan je ze in al die talen meteen lezen.
+
+**Python** breekt volledig met die traditie. Daar bestaat geen teller-met-conditie-for; je loopt altijd *over* iets. Wil je tellen, dan vraag je een reeks getallen op met `range`:
+
+```python
+for i in range(0, 11, 2):   # van 0 tot (niet incl.) 11, stap 2
+    print(i)
+```
+
+Geen losse setup, conditie en update dus: Python verstopt die in `range`. Veel beknopter, maar het werkt enkel als je vooraf weet over welke reeks je loopt.
+:::
+
 :::{.callout-tip}
 Merk op dat ``i += 2`` exact hetzelfde doet als ``i = i + 2``, maar dan compacter. Dat zijn de *verkorte operatornotaties* uit hoofdstuk 2. Ook ``i++`` (hetzelfde als ``i = i + 1``) komt in loops heel vaak voor. Schrijf gerust de lange vorm als dat voor jou duidelijker is, maar je moet ze sowieso vlot kunnen *lezen*.
 :::

@@ -96,6 +96,22 @@ Het vliegtuig vliegt door de wolken.
 De raket verdwijnt in de ruimte.
 ```
 
+:::{.callout-tip title="Zie verder"}
+C# is hier streng: een methode mag pas overschreven worden als de parent ze expliciet ``virtual`` zet, en de child moet expliciet ``override`` schrijven. In **Python** is daar niets van: élke methode is automatisch overschrijfbaar, je herschrijft ze gewoon in de child-klasse:
+
+```python
+class Vliegtuig:
+    def vlieg(self):
+        print("Het vliegtuig vliegt door de wolken.")
+
+class Raket(Vliegtuig):
+    def vlieg(self):           # geen virtual, geen override nodig
+        print("De raket verdwijnt in de ruimte.")
+```
+
+Ook **Java** maakt elke (niet-``final``) methode standaard overschrijfbaar. C# kiest bewust voor het omgekeerde: niets mag overschreven worden tenzij je het uitdrukkelijk toelaat.
+:::
+
 :::{.callout-tip}
 Indien je iets ``override`` moet de signatuur van je methode of property  identiek zijn aan deze van de parent-klasse. Het enige verschil is dat je het keyword ``virtual`` vervangt door ``override``.
 

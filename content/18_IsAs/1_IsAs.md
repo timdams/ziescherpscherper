@@ -53,6 +53,25 @@ if(rambo is Voertuig)
 
 De uitvoer zal worden: ``mijnAuto is een Voertuig``. 
 
+::: {.callout-tip title="Zie verder"}
+Het idee "is dit object van dat type?" bestaat in zowat elke OOP-taal, maar elke taal heeft er een eigen woord voor. Waar C# ``obj is Voertuig`` schrijft, doe je in **Python** dit met de functie ``isinstance``:
+
+```python
+if isinstance(mijn_auto, Voertuig):
+    print("mijn_auto is een Voertuig")
+```
+
+En in **JavaScript** gebruik je de operator ``instanceof``:
+
+```javascript
+if (mijnAuto instanceof Voertuig) {
+    console.log("mijnAuto is een Voertuig");
+}
+```
+
+Drie keer dezelfde vraag, drie keer een andere notatie: een keyword (``is``), een functie (``isinstance``) of een operator (``instanceof``).
+:::
+
 
 
 Met polymorfisme wordt dit voorbeeld echter interessanter. Wat als we een hoop objecten in een lijst van voertuigen plaatsen en nu enkel met de auto's iets willen doen, dan kan dat:

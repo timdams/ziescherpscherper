@@ -57,6 +57,17 @@ Vergeet ``static`` voorlopig even: beschouw het als een verplicht **toverwoord**
 
 De eerste lijn noemen we de **methode-signatuur**. Deze lijn verteld alles dat je moet weten om met de methode te werken (returntype, naam en eventuele parameters).
 
+::: {.callout-tip title="Zie verder"}
+**Python** doet dit zo:
+
+```python
+def tel_op(a, b):
+    return a + b
+```
+
+In Python schrijf je gewoon `def` en hoef je geen returntype of types voor je parameters op te geven. Dat scheelt typewerk, maar je verliest de hulp van de compiler: Python merkt pas tijdens het uitvoeren of je per ongeluk een verkeerd type meegaf, terwijl C# je dat al meteen vertelt.
+:::
+
 
 Vervolgens kan je deze methode elders oproepen als volgt, indien de methode geen parameters vereist:
 

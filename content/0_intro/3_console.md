@@ -30,6 +30,16 @@ De tweede lijn code doet eigenlijk twee dingen tegelijk:
 **Merk op dat de toekenning in C# van rechts naar links gebeurt.** Vandaar dat ``result`` dus links van de toekenning (``=``) staat en de waarde krijgt van het gedeelte rechts ervan.
 :::
 
+::: {.callout-tip title="Zie verder"}
+In **Python** lees je input in met de ingebouwde ``input``-functie. De tekst die je meegeeft wordt meteen als vraag op het scherm getoond, dus je hebt geen aparte ``WriteLine`` nodig:
+
+```python
+result = input("Geef je naam?")
+```
+
+In C# moet je het type van je variabele opgeven (``string result``), terwijl Python dat zelf afleidt. C# is een sterk getypeerde taal: je legt vooraf vast welk soort data ergens in mag, en de compiler controleert dat voor je.
+:::
+
 :::{.callout-tip}
 In het voorbeeld bewaren we het resultaat in ``result``, maar dat moet niet zo noemen. In dit voorbeeld vragen we 2 zaken en bewaren deze in 2 aparte variabelen:
 

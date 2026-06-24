@@ -210,15 +210,24 @@ format:
     highlight-style: github
     code-copy: true
     grid:
-      sidebar-width: 290px
-      body-width: 820px
-      margin-width: 240px
+      sidebar-width: 280px
+      body-width: 900px
+      margin-width: 200px
       gutter-width: 1.5rem
     include-in-header:
       text: |
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <div id="reading-progress"></div>
+        <script>
+        window.addEventListener('scroll', function() {
+          var el = document.getElementById('reading-progress');
+          var s = window.scrollY || document.documentElement.scrollTop;
+          var d = document.documentElement.scrollHeight - window.innerHeight;
+          el.style.width = (d > 0 ? (s / d * 100) : 0) + '%';
+        });
+        </script>
   typst:
     mainfont: "Arial"
     papersize: a4

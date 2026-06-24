@@ -101,6 +101,22 @@ Eens de lengte vastligt, kan een array **niet meer groeien of krimpen**. (Lists 
 
 ---
 
+## Zie verder: vaste vs dynamische lengte
+
+::: {.callout-tip title="Zie verder"}
+In **Python** bestaat geen array met vaste grootte, wel een dynamische `list`:
+
+```python
+getallen = [1, 2, 3]
+getallen.append(4)       # groeit gewoon mee
+getallen.append("vier")  # mag zelfs een ander type zijn
+```
+
+Totaal anders dan een C#-array (vaste lengte, 1 type). Lijkt eerder op de `List` uit hoofdstuk 12.
+:::
+
+---
+
 ## Index en accessor
 
 :::: {.columns}
@@ -166,6 +182,21 @@ De compiler vangt dit **niet**: je ontdekt het pas bij de uitvoer.
 
 ---
 
+## Zie verder: geen bounds-checking in C
+
+::: {.callout-tip title="Zie verder"}
+C# gooit netjes een `IndexOutOfRangeException`. In **C** is er geen enkele grenscontrole:
+
+```c
+int getallen[3] = {1, 2, 3};
+printf("%d", getallen[5]); // geen foutmelding!
+```
+
+Je leest dan zomaar willekeurige geheugeninhoud of je programma crasht. Net dat maakt buffer overflow attacks mogelijk.
+:::
+
+---
+
 ## Geheugen: value vs reference
 
 * **Value types** (`int`, `double`, ...) bevatten de **waarde** zelf
@@ -196,6 +227,23 @@ Beide variabelen wijzen nu naar **dezelfde** array. `nieuwe[1] = "..."` past dus
 :::
 
 ::::
+
+---
+
+## Zie verder: dezelfde val in JavaScript
+
+::: {.callout-tip title="Zie verder"}
+Ook **JavaScript**-arrays werken by reference, dus `=` maakt een alias, geen kopie:
+
+```javascript
+let ploegen = ["Beerschot", "Antwerp"];
+let nieuwe = ploegen;     // zelfde array!
+nieuwe[1] = "Brugge";
+console.log(ploegen[1]);  // "Brugge"
+```
+
+Heel gelijkaardig aan C#. Een echte kopie: `let kopie = [...ploegen];`.
+:::
 
 ---
 

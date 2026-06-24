@@ -93,6 +93,21 @@ De instantie van een geaggregeerd object kan op verschillende manieren aangemaak
 Associatie is net zoals overerving een belangrijk onderdeel van het OOP paradigma. Er is geen exacte oplossingsstrategie om associatie toe te passen: deze zal afhankelijk zijn van je specifieke probleem en oplossing. Staar je dus niet blind op deze voorbeelden: het is maar een greep uit de vele manieren waarmee je associateis kunt gebruiken.
 :::
 
+::: {.callout-tip title="Zie verder"}
+Compositie (de "heeft een"-relatie) werkt in **Python** quasi identiek aan C#: je bewaart gewoon een object van een andere klasse als instantievariabele:
+
+```python
+class HardeSchijf:
+    pass
+
+class PC:
+    def __init__(self):
+        self.harde_schijf = HardeSchijf()   # PC heeft een HardeSchijf
+```
+
+Het idee "een object in een ander object" is dus geen C#-eigenaardigheid, maar een principe dat in elke OO-taal terugkomt. Ook de vuistregel *favor composition over inheritance* geldt over de talen heen.
+:::
+
 
 
 #### Manier 1: Rechtstreeks de instantievariabele instellen

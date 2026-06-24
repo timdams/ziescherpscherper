@@ -99,7 +99,7 @@ De eerste lijn van een full property beschrijft de naam (identifier) en datatype
 Vervolgens zeggen we wat voor **datatype** de property moet zijn en geven we het een naam die moet voldoen aan de identifier regels van weleer. Voor de buitenwereld zal een property zich gedragen als een gewone variabele, met de naam ``Energie`` van het type ``int``.
 
 
-Indien je de property gaat gebruiken om een instantievariabele naar buiten beschikbaar te stellen, dan is het een goede gewoonte om dezelfde naam als dat veld te nemen maar nu met een hoofdletter (dus ``Energie`` i.p.v. ``energie``).
+Indien je de property gaat gebruiken om een instantievariabele naar buiten beschikbaar te stellen, dan is het een goede gewoonte om dezelfde naam als die instantievariabele te nemen maar nu met een hoofdletter (dus ``Energie`` i.p.v. ``energie``).
 
 #### Full property: get gedeelte
 
@@ -206,6 +206,31 @@ We mogen de code binnen ``set`` en ``get`` zo complex maken als we zelf willen.
 
 :::{.callout-tip}
 Probeer wel steeds de OOP-principes te hanteren wanneer je met properties werkt: in de ``get`` en ``set`` van een property mogen enkel die dingen gebeuren die de verantwoordelijkheid van de property zelf zijn. Je gaat dus bijvoorbeeld niet controleren of een andere property geen illegale waarden krijgt, daar is die andere property voor verantwoordelijk.
+:::
+
+::: {.callout-tip title="Zie verder"}
+Properties met `get`/`set` zijn typisch voor C#. **Java** kent ze niet als taalconcept: daar schrijf je voor elke instantievariabele met de hand twee aparte methoden, een *getter* en een *setter*. Van buiten ziet dat er rommeliger uit:
+
+```java
+sith.setEnergie(20);
+System.out.println(sith.getEnergie());
+```
+
+**Python** zit er dichter bij dankzij de `@property`-decorator: je schrijft methoden, maar gebruikt ze van buiten alsof het een gewone variabele is, net als in C#:
+
+```python
+class SithLord:
+    @property
+    def energie(self):
+        return self._energie
+
+    @energie.setter
+    def energie(self, waarde):
+        if waarde >= 0:
+            self._energie = waarde
+```
+
+De kern is overal dezelfde: je verbergt de instantievariabele en regelt de toegang via code. C# maakt die aanpak alleen het meest elegant met zijn ingebouwde property-syntax.
 :::
 
 

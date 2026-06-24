@@ -273,6 +273,17 @@ De GC werkt niet continue daar dit te veel overhead van je computer zou vereisen
 Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Collect()`` maar dit is ten stelligste af te raden! De GC is geoptimaliseerd om zelf het beste moment te kiezen. Roep je hem zelf op, dan onderbreek je je programma op een ongelegen moment en maak je het meestal net *trager* in plaats van sneller. Laat de GC dus gewoon z'n werk doen.
 :::
 
+::: {.callout-tip title="Zie verder"}
+C# heeft een GC die het opruimen voor je doet. In **C++** bestaat zoiets niet: je beheert geheugen volledig zelf met ``new`` en ``delete``.
+
+```cpp
+int* p = new int(5);   // geheugen reserveren
+delete p;              // zelf weer vrijgeven
+```
+
+Vergeet je die ``delete``, dan lek je geheugen (*memory leak*); roep je ``delete`` twee keer op, dan crasht je programma. De C#-GC neemt dit risico volledig van je over.
+:::
+
 ### Wat met ``string``?
 
 ``string`` is een buitenbeentje. Het is een **reference type** (een string-variabele bevat dus een referentie naar tekst op de heap), maar in de praktijk gedraagt het zich vaak als een value type. Dat komt omdat ``string`` **immutable** is: eens een stuk tekst is aangemaakt, kan je het niet meer wijzigen.

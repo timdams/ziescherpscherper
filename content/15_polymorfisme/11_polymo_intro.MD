@@ -49,6 +49,28 @@ Console.WriteLine(anotherAnimal.MaakGeluid()); //Hinnikhinnik
 
 ![Het gearceerde deel is  niet bereikbaar voor de 2 variabelen in de stack daar deze van het type ``Dier`` zijn.](../assets/7_overerving/varkenpaard.png)
 
+::: {.callout-tip title="Zie verder"}
+In C# heb je voor polymorfisme een gemeenschappelijke parent-klasse nodig (hier ``Dier``) plus ``virtual``/``override``. In **Python** krijg je hetzelfde resultaat zomaar via *duck typing*: "als het loopt als een eend en kwaakt als een eend, dan is het een eend". Er is geen gedeelde basisklasse nodig; als het object de juiste methode heeft, werkt het gewoon:
+
+```python
+class Paard:
+    def maak_geluid(self):
+        return "Hinnikhinnik"
+
+class Varken:
+    def maak_geluid(self):
+        return "Oinkoink"
+
+def laat_spreken(dier):
+    print(dier.maak_geluid())   # werkt voor elk object met die methode
+
+laat_spreken(Paard())   # Hinnikhinnik
+laat_spreken(Varken())  # Oinkoink
+```
+
+Twee talen, hetzelfde doel, maar een totaal andere weg: C# controleert de types streng vooraf, Python kijkt pas tijdens de uitvoer of de methode bestaat.
+:::
+
 
 :::{.callout-tip}
 Het is belangrijk te beseffen dat ``someAnimal`` en ``anotherAnimal`` van het type ``Dier`` zijn en dus enkel die dingen kunnen die in ``Dier`` beschreven staan. Enkel zaken die ``override`` zijn in de child-klasse zullen met de specialisatie-code werken.

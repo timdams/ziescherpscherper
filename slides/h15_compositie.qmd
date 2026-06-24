@@ -83,6 +83,25 @@ Vergeet niet die `HardeSchijf` ook te **instantiëren**, anders blijft hij de he
 
 ---
 
+## Zie verder: compositie in Python
+
+::: {.callout-tip title="Zie verder"}
+In **Python** werkt de "heeft een"-relatie quasi identiek: gewoon een object als instantievariabele.
+
+```python
+class HardeSchijf:
+    pass
+
+class PC:
+    def __init__(self):
+        self.harde_schijf = HardeSchijf()   # PC heeft een HardeSchijf
+```
+
+"Een object in een ander object" is geen C#-eigenaardigheid, maar geldt in elke OO-taal. Net als *favor composition over inheritance*.
+:::
+
+---
+
 ## Manier 1 en 2: compositie
 
 Meteen bij de instantievariabele, of via de constructor:
@@ -193,6 +212,22 @@ In de praktijk gebruik je veel vaker een **heeft-een** dan een **is-een**-relati
 
 ::: {.callout-important .fragment}
 `this` werkt enkel in een **instance-context** (gewone methoden, properties, constructors). In een `static` methode bestaat er geen "huidig object".
+:::
+
+---
+
+## Zie verder: this in Python en JavaScript
+
+::: {.callout-tip title="Zie verder"}
+In **Python** bestaat er geen impliciet `this`: je geeft het huidige object expliciet mee als eerste parameter, traditioneel `self`.
+
+```python
+class Auto:
+    def start(self):
+        print(self.merk)
+```
+
+C# regelt `this` verborgen via de compiler; Python toont datzelfde object gewoon als eerste parameter. **JavaScript** heeft wél `this`, maar met beruchte binding-regels: waarnaar het verwijst hangt af van *hoe* je een functie aanroept.
 :::
 
 ---

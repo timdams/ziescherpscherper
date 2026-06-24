@@ -111,6 +111,24 @@ Van zodra een klasse een abstracte methode of property heeft dan ben je verplich
 Het zou heel vreemd zijn om objecten in het leven te kunnen roepen die letterlijk stukken ontbrekende code hebben...
 :::
 
+::: {.callout-tip title="Zie verder"}
+**C++** kent het keyword ``abstract`` niet. Toch bestaat exact hetzelfde idee daar onder een andere naam: een "pure virtual" methode. Je zet ``= 0`` achter de signatuur, en zo'n klasse kan je niet instantiëren:
+
+```cpp
+class Dier {
+public:
+    virtual std::string MaakGeluid() = 0; // pure virtual: geen body
+};
+
+class Paard : public Dier {
+public:
+    std::string MaakGeluid() override { return "Hinnikhinnik"; }
+};
+```
+
+Zelfde concept (een klasse met een gat dat de child moet invullen), heel andere notatie. **Python** doet dit dan weer met de ``ABC``-module en ``@abstractmethod``, dichter bij de C#-aanpak.
+:::
+
 
 
 
