@@ -1,10 +1,6 @@
 ## Enum
 
-
-
 >![](../assets/attention.png)Helm op alsjeblieft! ``enum`` is een erg onderschat concept bij beginnende programmeurs. Enums zijn wat raar in het begin, maar van zodra je er mee weg bent zal je niet meer zonder kunnen en zal je code zoveel eleganter en stoerder worden. Zet je helm dus op en begin er aan!
-
-
 
 ### De bestaansreden voor enums
 
@@ -34,8 +30,6 @@ Deze oplossing heeft 2 grote nadelen:
 
 * Wat als we per ongeluk ``dagKeuze`` een niet geldige waarde geven, zoals 9, 2000 of -4 ?
 * De code is niet erg leesbaar. Wat was ``dagKeuze ==2`` nu weer? Was ``2`` nu dinsdag of woensdag (want misschien was maandag 0 i.p.v. 1) ?
-
-
 
 #### Slechte oplossing 2: Met strings
 
@@ -71,22 +65,7 @@ Het keyword ``enum`` geeft aan dat we een nieuw datatype maken dat maar enkele m
 In C# zitten al veel enum-types ingebouwd. Denk maar aan ``ConsoleColor``: wanneer je de kleur van het lettertype van de console wilt veranderen gebruiken we een enum-type. Er werd reeds gedefinieerd wat de toegelaten waarden zijn, bijvoorbeeld: ``Console.ForegroundColor = ConsoleColor.Red;`` 
 :::
 
-
-::: {.callout-tip title="Zie verder"}
-Niet elke taal kent een ``enum``. **JavaScript** heeft er bijvoorbeeld geen, daar moeten programmeurs zich behelpen met een gewoon object vol constanten. Maar **TypeScript** (JavaScript met types) heeft wél een echte ``enum``, die sterk op die van C# lijkt:
-
-```typescript
-enum Weekdag { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag }
-
-let keuze: Weekdag = Weekdag.Woensdag;
-```
-
-Net als in C# worden de waarden intern vanaf ``0`` genummerd en kan je een variabele beperken tot enkel deze waarden.
-:::
-
 <!-- \newpage -->
-
-
 
 ### Zelf enum maken
 
@@ -98,7 +77,6 @@ Zelf een ``enum`` type maken en gebruiken gebeurt in 2 stappen:
 #### Stap 1: het nieuwe datatype definiëren
 
 We maken eerst een enum type aan. **In je console-applicaties moet dit binnen ``class Program`` gebeuren, maar niét binnen de ``Main`` methode**:
-
 
 ```java
 enum Weekdagen{Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag,Zaterdag,Zondag};
@@ -117,7 +95,6 @@ static void Main(string[] args)
 
 We hebben nu letterlijk **een nieuw datatype aangemaakt**, genaamd ``Weekdagen``. 
 
-
 #### Stap 2: variabelen van het nieuwe datatype aanmaken en gebruiken
 
 Net zoals ``int``, ``double`` enz. kan je nu ook variabelen van het type ``Weekdagen`` aanmaken. Hoe cool is dat!? 
@@ -131,7 +108,6 @@ Weekdagen andereKeuze;
 
 En vervolgens kunnen we waarden aan deze variabelen toewijzen als volgt:
 
-
 ```java
 dagKeuze = Weekdagen.Donderdag;
 ```
@@ -140,11 +116,9 @@ Kortom: we hebben variabelen zoals we gewoon zijn, het enige verschil is dat we 
 
 <!-- \newpage -->
 
-
 ### Enums en beslissingen werken graag samen
 
 Ook de beslissingsstructuren worden leesbaarder:
-
 
 ```java
 if(dagKeuze == Weekdagen.Woensdag)
@@ -171,8 +145,6 @@ Hoe?
 * Profit!
 :::
 
-
-
 ### Conversie van en naar enum variabelen
 
 **De waarde van een enum-variabelen wordt intern als een ``int`` bewaard.** In het geval van de ``Weekdagen`` zal ``maandag`` standaard de waarde 0 krijgen, dinsdag 1, enz.
@@ -184,8 +156,6 @@ int keuze = 3;
 Weekdagen dagKeuze = (Weekdagen)keuze;
 //dagKeuze zal de waarde Weekdagen.Donderdag hebben
 ```
-
-
 
 Wil je dus bijvoorbeeld 1 dag bijtellen dan kan je schrijven:
 
@@ -202,7 +172,6 @@ Let er wel op dat je geen extra dag op Zondag probeert bij te tellen. Dat zal ni
 
 Standaard worden de enum waarden intern dus genummerd beginnende bij 0. Je kan dit ook manueel veranderen door bij het maken van de ``enum`` expliciet aan te geven wat de interne waarde moet zijn, als volgt:
 
-
 ```java
 enum WeekDagen 
     {Maandag=1, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag, Zondag}
@@ -212,7 +181,6 @@ De dagen zullen nu vanaf 1 genummerd worden, dus ``WeekDagen.Woensdag`` zal de w
 
 We kunnen ook nog meer informatie meegeven, bijvoorbeeld:
 
-
 ```java
 enum WeekDagen 
     {Maandag=1, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag=50, Zondag=60}
@@ -220,13 +188,11 @@ enum WeekDagen
 
 In dit geval zullen Maandag tot Vrijdag intern als 1 tot en met 5 bewaard worden, Zaterdag als 50, en Zondag als 60. De "gaten" tussen 5 en 50 zijn geen probleem: de interne waarden van een enum hoeven niet aaneensluitend te zijn. Geef je een waarde geen expliciet getal, dan krijgt ze gewoon het getal van de vorige waarde plus één.
 
-
 :::{.callout-tip}
 De individuele enum waarden moeten steeds met een hoofdletter starten. 
 :::
 
 <!-- \newpage -->
-
 
 ### Gebruikersinvoer naar enum
 
@@ -257,7 +223,6 @@ Sinds .NET 5  uitkwam, is er een meer gebruiksvriendelijke manier verschenen om 
 
 Echter, zelfs zonder generics te kennen zou volgende code toch begrijpbaar moeten zijn. We gebruiken terug het eerder gedefinieerde ``Menu`` type en de nieuw beschikbare ``Enum.Parse< >``- methode :
 
-
 ```java
 Menu keuze = Enum.Parse<Menu>(Console.ReadLine());
 ```
@@ -266,15 +231,11 @@ We plaatsen tussen de ``<  > `` het enum datatype naar waar we willen parsen.
 
 Optioneel kan je via een tweede argument van het type bool aangeven of de parsing hoofdlettergevoelig is (``false``) of niet (``true``) :
 
-
 ```java
 Menu keuze = Enum.Parse<Menu>(Console.ReadLine(), true); 
 ```
 
-
-
 <!-- \newpage -->
-
 
 >![](../assets/care.png)Ah, de tijden zonder ``enum``. Ik weet nog hoe we onze grotten beschilderden zonder ons druk te moeten maken in enumeraties. Om maar te zeggen: je kan perfect leven zonder ``enum``. Vele programmeurs voor je hebben dit bewezen. Echter, van zodra ze ``enum`` ontdekten (en begrepen) zijn nog maar weinig programmeurs er terug van afgestapt. 
 >
@@ -308,12 +269,7 @@ switch(playerGameState)
 
 Een ander typisch voorbeeld is schaken. We maken een enum om de speelstukken voor te stellen (``Pion, Koning, Toren`` enz.) en kunnen hen dan laten bewegen en vechten in uiterst leesbare code:
 
-
 ```java
 if(spelstuk == Schaakstuk.Paard)
 ```
-
-
-
-
 

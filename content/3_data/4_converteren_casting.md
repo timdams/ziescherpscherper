@@ -14,17 +14,14 @@ Laten we eens onderzoeken hoe we data van 'vorm' kunnen veranderen.
 
 ## Appelen en peren
 
-
 Wanneer je de waarde van een variabele wilt toekennen aan een variabele van een ander type mag dit niet zomaar. 
 Volgende code zal bijvoorbeeld een dikke foutboodschap geven:
-
 
 ```java
 int leeftijd = 4.3;
 ```
 
 ![Een zogenaamde 'impliciete casting' error.](../assets/1_csharpbasics/casterror2.png)
-
 
 Je kan geen appelen in peren veranderen zonder magie: in het geval van C# zal je moeten **converteren of casten**. 
 
@@ -34,14 +31,11 @@ Dit kan op 3 manieren:
 * Via de **Convert. bibliotheek** van .NET.
 * Via **parsing** : Deze manier is enkel bruikbaar om strings om te zetten naar andere datatypes.
 
-
 ## Casting
 
 Het is onmogelijk om een kommagetal aan een geheel getal toe te wijzen zonder dat er informatie verloren zal gaan. Toch willen we dit soms doen. **Van zodra we een numerieke variabele van het ene type willen toekennen aan een variabele van een ander numeriek type en er dataverlies zal plaatsvinden dan moeten we aan casting doen.**
 
-
 ![Casting](../assets/1_csharpbasics/castingnum.png)<!--{width=60%}-->
-
 
 ### Wat is casting
 
@@ -49,9 +43,7 @@ Casting heb je nodig om een variabele van een bepaald type voor een ander type t
 
 **Het is belangrijk in te zien dat het casten van een variabele naar een ander type enkel een gevolg heeft *tijdens* het uitwerken van de expressie waarbinnen je werkt.** De variabele in het geheugen zal voor eeuwig en altijd het type zijn waarin het origineel gedeclareerd werd. Je kan dus nooit het datatype van een variabele veranderen! Wat je wél doet, is de *waarde* van die variabele omzetten en die omgezette waarde ergens anders gebruiken. De variabele zelf blijft onaangeroerd.
 
-
 Casting duid je aan door voor de variabele of literal het datatype tussen haakjes te plaatsen naar wat het omgezet moet worden:
-
 
 ```java
 int mijngetal = (int)3.5;
@@ -63,17 +55,6 @@ of
 double kommagetal = 13.8;
 int kommaNietWelkom = (int)kommagetal;
 ```
-
-::: {.callout-tip title="Zie verder"}
-C# is **streng**: je moet expliciet zeggen dat je een type wilt omzetten. **JavaScript** doet net het omgekeerde en zet types automatisch om (*type coercion*). Dat lijkt handig, maar is een beruchte valkuil:
-
-```javascript
-console.log("5" + 3);  // "53"  (de 3 wordt een string)
-console.log("5" * 3);  // 15    (de "5" wordt een getal)
-```
-
-Bij `+` wint de string en plak je teksten aan elkaar, bij `*` wint het getal. JavaScript raadt zelf wat je bedoelt; in C# zou dit gewoon een compileerfout geven, en dat is hier een voordeel: je krijgt geen verrassingen.
-:::
 
 Door casting te gebruiken zeg je eigenlijk aan de compiler 2 zaken: 
 
@@ -88,12 +69,9 @@ Je dient enkel aan casting te doen wanneer je aan *narrowing* doet. **Bij narrow
 Het is een voorzorgsmaatregel om te voorkomen dat we de compiler later verwijten dat hij belangrijke gegevens heeft verloren tijdens de omzetting. Door casting te gebruiken, geven we aan dat we de compiler niet de schuld zullen geven van dit dataverlies.
 :::
 
-
-
 ### Narrowing
 
 Casting doe je wanneer je een variabele wilt toekennen aan een andere variabele van een ander type dat daar eigenlijk **niet inpast** zonder dataverlies. We moeten dan aan **narrowing** doen, letterlijk het versmallen van de data.
-
 
 Bekijk eens het volgende voorbeeld:
 
@@ -124,11 +102,9 @@ Merk op dat `hoofdMeting` nooit van datatype is veranderd; enkel de inhoud ervan
 
 <!-- \newpage -->
 
-
 ### Narrowing in de praktijk
 
 Stel dat ``tempGisteren`` en ``tempVandaag`` van het type ``int`` zijn, maar dat we nu de gemiddelde temperatuur willen weten. De formule voor gemiddelde temperatuur over 2 dagen is:
-
 
 ```java
 int tempGemiddeld = (tempGisteren + tempVandaag)/2;
@@ -140,7 +116,6 @@ Het probleem is dat het gemiddelde van 2 getallen niet noodzakelijk een geheel g
 
 Hoe krijgen we de correctere uitslag te zien? Eens testen wat er gebeurt als we ``tempGemiddeld`` als ``double`` declareren:
 
-
 ```java
 double tempGemiddeld = (tempGisteren + tempVandaag) / 2;
 ```
@@ -148,7 +123,6 @@ double tempGemiddeld = (tempGisteren + tempVandaag) / 2;
 Als we dit testen zal nog steeds de waarde ``22.0`` aan ``tempGemiddeld`` toegewezen worden. De expressie rechts van de toekenning bevat nog steeds enkel integers en de computer zal dus ook de berekening en het resultaat als integer beschouwen, ongeacht dat deze in een ``double`` moet gezet worden.
 
 We moeten dus ook de rechterkant van de toekenning als ``double`` beschouwen. *We doen dit, zoals eerder vermeld, door middel van **casting***, als volgt:
-
 
 ```java
 double tempGemiddeld = ((double)tempGisteren + (double)tempVandaag) / 2;
@@ -168,14 +142,12 @@ Er zijn ook andere oplossingen die het gewenste resultaat geven, namelijk:
 
 Let echter op dat niet alle oplossingen bij dit soort oefeningen steeds dezelfde resultaten geeft. Goed testen is de boodschap en nadenken over de volgorde van berekeningen en wat het datatype van ieder tussenresultaat zal zijn. Laten we dat eens analyseren bij voorgaande 4 voorbeelden:
 
-
 1. Eerst tellen we twee integers op, wat dus een nieuwe integer geeft, die we vervolgens delen door een ``double``, wat dus een ``double`` als resultaat geeft.
 2. Eerst tellen we twee integers op, wat weer een integer geeft, vervolgens zetten we dit resultaat om naar een ``double`` en delen dit door een ``int`` wat dus een ``double`` geeft.
 3. Eerst zetten ``tempGisteren`` om naar een ``double``. Vervolgens tellen we een ``double`` met een ``int`` op, wat een double als tussenresultaat geeft. Dit delen we dan door een ``int`` wat een ``double`` finaal geeft.
 4. Hetzelfde als de vorige stap, maar nu zetten we eerst ``tempVandaag`` om naar een ``double``.
 
 :::
-
 
 :::{.callout-important}
 Merk op dat er een subtiel verschil is tussen volgende 2 lijnen code:
@@ -187,7 +159,6 @@ In het eerste zullen we het resultaat van de som naar ``double`` omzetten. In he
 :::
 
 <!-- \newpage -->
-
 
 ### Widening
 
@@ -206,12 +177,9 @@ Er gaat **geen** inhoud verloren echter. Je hoeft dus niet expliciet de casting-
 
 Merk op dat je perfect casting hier mag gebruiken, maar daar de conversie impliciet zonder problemen kan plaatsvinden hoeft dit dus niet. Deze code is echter even juist (en soms een veilige gewoonte om te doen, better safe than sorry):
 
-
 ```java
 secundaireMeting = (double) hoofdMeting;
 ```
-
-
 
 ## Parsing en ``.ToString()``
 Naast casting bestaat er ook nog **parsing**.
@@ -239,7 +207,6 @@ string getalAlsString = getal.ToString();
 
 ![Parsing: enkel voor strings.](../assets/1_csharpbasics/pars.png)<!--{width=60%}-->
 
-
 ## Conversie
 
 Casting en parsing zijn de 'oldschool' manieren van data omzetten die vooral zeer nuttig is daar deze compacte code geeft en ook werkt in andere C#-gerelateerde programmeertalen zoals C, C++ en Java. 
@@ -249,7 +216,6 @@ Echter, .NET heeft ook ingebouwde conversie-methoden die je kunnen helpen om dat
 ![Gebruik Convert.To pas wanneer je goed het vershcil tussen parsing en casting begrijpt](../assets/1_csharpbasics/convertdoos.png)<!--{width=60%}-->
 
 Al deze methoden zitten binnen de **Convert**-bibliotheek van .NET. Het grootste nadeel is dus niet de snelheid, maar dat het een zwarte doos is: je ziet niet of er achter de schermen aan parsing of casting wordt gedaan. Daarom gebruik je ``Convert.To`` best pas wanneer je het verschil tussen casting en parsing goed begrijpt.
-
 
 Het gebruik hiervan is zeer eenvoudig. Enkele voorbeelden:
 
@@ -283,9 +249,6 @@ Omgekeerd, een ``bool`` naar een ``int`` converteren zal enkel werken met de res
 Lees zeker de volgende sectie omtrent afronden, want de ``Convert.ToX``-methoden zullen je soms verrassen wanneer je bijvoorbeeld een ``double`` naar een ``int`` omzet.
 
 :::
-
-
-
 
 ## Casting, conversie of parsing?
 

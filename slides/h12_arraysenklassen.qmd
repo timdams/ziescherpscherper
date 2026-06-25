@@ -86,21 +86,6 @@ List<Pokemon> pokedex = new List<Pokemon>();
 
 ---
 
-## Zie verder: List in andere talen
-
-::: {.callout-tip title="Zie verder"}
-In **Python** is een ``list`` ingebouwd en typeloos:
-
-```python
-namen = ["Tim", "An"]
-namen.append("Jan")
-```
-
-In **Java** lijkt het sterk op C#: ``ArrayList<String>`` met ``.add(...)``.
-:::
-
----
-
 ## Elementen toevoegen
 
 ```csharp
@@ -185,28 +170,6 @@ foreach (double meting in metingen)
 ```
 
 De **iteration variable** (`meting`) krijgt elk element om de beurt. Geen teller nodig, en werkt ook op een `List`.
-
----
-
-## Zie verder: foreach in andere talen
-
-::: {.callout-tip title="Zie verder"}
-In **Python** schrijf je net hetzelfde idee, zonder type en accolades:
-
-```python
-for meting in metingen:
-    print(meting)
-```
-
-In **JavaScript** heet dit ``for...of``:
-
-```javascript
-for (const meting of metingen) {
-    console.log(meting);
-}
-```
-
-:::
 
 ---
 
@@ -328,28 +291,6 @@ Opzoeken via de key gaat **razendsnel**, ongeacht de grootte. Veel sneller dan z
 
 ---
 
-## Zie verder: Dictionary in andere talen
-
-::: {.callout-tip title="Zie verder"}
-In **Python** heet dit een ``dict``, ingebouwd met een handige ``{}``-syntax:
-
-```python
-klanten = {123: "Tim Dams", 6463: "James Bond"}
-print(klanten[123])
-```
-
-In **JavaScript** gebruik je een ``Map`` met ``set`` en ``get``:
-
-```javascript
-const klanten = new Map();
-klanten.set(123, "Tim Dams");
-console.log(klanten.get(123));
-```
-
-:::
-
----
-
 ## Dictionary doorlopen
 
 ```csharp
@@ -378,6 +319,63 @@ Gebruik voorlopig een eenvoudig type (`int`, `string`) als key. Een eigen klasse
 ::: {.callout-tip}
 Volgende halte: **overerving**, waar klassen eigenschappen en gedrag van elkaar erven.
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: List in andere talen
+
+In **Python** is een ``list`` ingebouwd en typeloos:
+
+```python
+namen = ["Tim", "An"]
+namen.append("Jan")
+```
+
+In **Java** lijkt het sterk op C#: ``ArrayList<String>`` met ``.add(...)``.
+
+---
+
+## Zie verder: foreach in andere talen
+
+In **Python** schrijf je net hetzelfde idee, zonder type en accolades:
+
+```python
+for meting in metingen:
+    print(meting)
+```
+
+In **JavaScript** heet dit ``for...of``:
+
+```javascript
+for (const meting of metingen) {
+    console.log(meting);
+}
+```
+
+---
+
+## Zie verder: Dictionary in andere talen
+
+In **Python** heet dit een ``dict``, ingebouwd met een handige ``{}``-syntax:
+
+```python
+klanten = {123: "Tim Dams", 6463: "James Bond"}
+print(klanten[123])
+```
+
+In **JavaScript** gebruik je een ``Map`` met ``set`` en ``get``:
+
+```javascript
+const klanten = new Map();
+klanten.set(123, "Tim Dams");
+console.log(klanten.get(123));
+```
 
 ---
 

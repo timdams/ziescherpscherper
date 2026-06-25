@@ -20,32 +20,15 @@ public Werknemer(int rangIn)
 ``this`` werkt enkel binnen een **instance-context**: je kan het gebruiken in gewone (niet-``static``) methoden, properties en constructors, want enkel daar bestaat er een "huidig object". In een ``static`` methode is er geen object, en dus kan je daar ``this`` niet gebruiken.
 :::
 
-::: {.callout-tip title="Zie verder"}
-In **Python** bestaat er geen impliciet ``this``. Daar geef je het huidige object expliciet mee als de eerste parameter van elke methode, traditioneel ``self`` genaamd:
-
-```python
-class Auto:
-    def start(self):
-        print(self.merk)
-```
-
-In C# is ``this`` dus een verborgen extra die de compiler voor je regelt; in Python staat datzelfde object gewoon zichtbaar als eerste parameter. **JavaScript** heeft wél een ``this``, maar met beruchte binding-regels: waarnaar ``this`` verwijst hangt af van *hoe* je een functie aanroept, niet van waar ze staat. Dat zorgt voor heel wat verwarring.
-:::
-
-
 ### Aanroepen van instantievariabelen met zelfde naam
 
 Wanneer je ``this`` gebruikt binnen een klasse, dan zal je zien dat bij het schrijven van de dot-operator je ogenblikkelijk de volledige interne structuur van de klasse kunt bereiken:
-
 
 ![Met this zien we letterlijk alles dat de klasse heeft aan te bieden, ongeacht de access modifiers.](../assets/7_overerving/thisme.png)<!--{width=80%}-->
 
 Enerzijds ben je vrij om altijd ``this`` te gebruiken wanneer je eender wat van de klasse zelf wilt bereiken. Vooral in oudere code-voorbeelden zal je dat nog vaak zien gebeuren.
 
-
-
 Anderzijds laat ``this`` ook toe om properties, methoden en instantievariabelen aan te roepen wanneer die mogelijk op de huidige plek niet aanroepbaar zijn omdat hun naam conflicteert met een lokale variabele dat dezelfde naam heeft:
-
 
 ![Bij conflicterende namen binnen dezelfde scope zal this ons helpen om toch buiten de huidige methode aan een gelijknamig element te geraken.](../assets/7_overerving/thisinst.png)<!--{width=90%}-->
 
@@ -55,10 +38,7 @@ De lijn ``Levens = 5;`` in de constructor zal de parameter zelf van waarde aanpa
 Merk op dat qua naamgeving de keuze van de formele parameter ``Levens`` in de constructor sowieso een ongelukkige keuze is in dit voorbeeld. 
 :::
 
-
 <!-- \newpage -->
-
-
 
 ### Object geeft zichzelf mee als parameter
 
@@ -97,7 +77,4 @@ if(francis.IsPromoveerbaar())
     Console.WriteLine("Jeuj!");
 }
 ```
-
-
-
 

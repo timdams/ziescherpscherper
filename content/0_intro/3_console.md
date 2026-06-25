@@ -30,16 +30,6 @@ De tweede lijn code doet eigenlijk twee dingen tegelijk:
 **Merk op dat de toekenning in C# van rechts naar links gebeurt.** Vandaar dat ``result`` dus links van de toekenning (``=``) staat en de waarde krijgt van het gedeelte rechts ervan.
 :::
 
-::: {.callout-tip title="Zie verder"}
-In **Python** lees je input in met de ingebouwde ``input``-functie. De tekst die je meegeeft wordt meteen als vraag op het scherm getoond, dus je hebt geen aparte ``WriteLine`` nodig:
-
-```python
-result = input("Geef je naam?")
-```
-
-In C# moet je het type van je variabele opgeven (``string result``), terwijl Python dat zelf afleidt. C# is een sterk getypeerde taal: je legt vooraf vast welk soort data ergens in mag, en de compiler controleert dat voor je.
-:::
-
 :::{.callout-tip}
 In het voorbeeld bewaren we het resultaat in ``result``, maar dat moet niet zo noemen. In dit voorbeeld vragen we 2 zaken en bewaren deze in 2 aparte variabelen:
 
@@ -52,7 +42,6 @@ string naamMama = Console.ReadLine();
 
 :::
 
-
 Je programma zou nu moeten zijn:
 
 ```java
@@ -64,10 +53,7 @@ string result = Console.ReadLine();
 
 Start nogmaals je programma. Je zal merken dat je programma nu een cursor toont en wacht op invoer nadat het de eerste 3 lijnen tekst op het scherm heeft gezet. Je kan nu eender wat intypen en van zodra je op enter duwt gaat het programma verder. Maar aangezien lijn 4 de laatste lijn van ons algoritme is, zal je programma hierna afsluiten. We hebben dus de gebruiker voor niets iets laten invoeren. 
 
-
 <!-- \newpage -->
-
-
 
 ### Input gebruiker gebruiken
 
@@ -112,8 +98,6 @@ hoe gaat het met je?
 
 <!-- \newpage -->
 
-
-
 ### Aanhalingsteken of niet?
 
 Wanneer je de inhoud van een variabele wil gebruiken in een methode zoals ``WriteLine()`` dan plaats je deze zonder aanhalingstekens!
@@ -134,10 +118,6 @@ hoe gaat het met je?
 :::
 
 We krijgen dus letterlijk de tekst "result" op het scherm in plaats van de gebruikersinvoer die we in de variabele bewaarden.
-
-
-
-
 
 ### Write en WriteLine
 
@@ -168,7 +148,6 @@ Wat is er hier "verkeerd" gelopen? Al je tekst van de laatste lijn plakt zo dich
 
 <!-- \newpage -->
 
-
 Inderdaad, ik ben spaties vergeten toe te voegen. Spaties zijn ook tekens die op scherm moeten komen - ook al zien we ze niet - en je dient dus binnen de aanhalingstekens spaties toe te voegen. 
 
 Namelijk:
@@ -190,12 +169,9 @@ Dag tim hoe gaat het met je?
 ```
 :::
 
-
-
 ### Witregels in C\#
 
 C# trekt zich niets aan van **witregels die niét binnen aanhalingstekens staan**. Zowel spaties, enters en tabs worden genegeerd. Met andere woorden: je kan het voorgaande programma perfect in één lange lijn code typen, zonder enters. Dit is echter niet aangeraden want het maakt je code een pak onleesbaarder.
-
 
 ![Voorgaande programma in exact 1 lijn. Cool? Ja, in sommige kringen. Dom en onleesbaar? Ook ja.](../assets/1_csharpbasics/online.png)
 
@@ -223,13 +199,9 @@ Console.Write("_hoe gaat het met je?");
 ```
 :::
 
-
-
-
 ### Zinnen aan elkaar plakken
 
 We kunnen dit allemaal nog een pak korter tonen zonder dat de code onleesbaar wordt. De plus-operator (``+``) in C# kan je namelijk gebruiken om tekst achter elkaar te *plakken*. De laatste 3 lijnen code kunnen dan korter geschreven worden als volgt:
-
 
 ```java
 Console.WriteLine("Dag " + result + " hoe gaat het met je?");
@@ -239,13 +211,11 @@ Merk op dat ``result`` dus NIET tussen aanhalingstekens staat, in tegenstelling 
 
 Bekijk zelf eens wat het verschil wordt wanneer je volgende lijn code:
 
-
 ```java
 Console.WriteLine("Dag "+ result + " hoe gaat het met je?");
 ```
 
 Vervangt door: 
-
 
 ```java
 Console.WriteLine("Dag "+ "result" + " hoe gaat het met je?");
@@ -269,7 +239,6 @@ Tekst aan elkaar plakken met ``+`` werkt prima, maar het is niet de meest modern
 
 <!-- \newpage -->
 
-
 ### Meer input vragen
 
 Als je meerdere inputs van de gebruiker wenst te bewaren zal je meerdere geheugenplekken (variabelen) nodig hebben. Bijvoorbeeld:
@@ -287,9 +256,7 @@ Je kan met behulp van `//` commentaar in code plaatsen. Alles na die *forward sl
 We zullen verderop bespreken hoe je dit kan gebruiken om bijvoorbeeld de werking van je code meer toe te lichten.
 :::
 
-
 Je mag echter de geheugenplek ook al vroeger aanmaken (declareren) en pas later een waarde toekennen. In C# zet men de creatie van een variabele meestal zo dicht mogelijk bij de code waar je die variabele gebruikt. Maar dat is geen verplichting. Dit mag dus ook:
-
 
 ```java
 string leeftijd; //eerste variabele aanmaken
@@ -311,6 +278,4 @@ Als je dus ``cw`` schrijft en dan twee maal op de tab-toets van je toetsenbord d
 
 <!-- TODO ed.5 (review): broertje 'prop[tab][tab]' en de algemene snippet-cultuur (Tools -> Code Snippets Manager) ontbreken nog. -->
 <!-- TODO ed.5 (review): debugging-teaser (breakpoints, F10, F11) hoort hier al kort vermeld — al was het maar als vooruitblik. -->
-
-
 

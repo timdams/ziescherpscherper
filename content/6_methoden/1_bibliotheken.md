@@ -6,9 +6,7 @@ Sommige methoden vereisen dat je een aantal parameters meegeeft. De parameters d
 
 Maar wat als je niet weet in welke volgorde je arguementen moet meegeven? **Intellisense** is dan de oplossing! Typ de methode in je code en stop met typen na het eerste ronde haakje. Vervolgens zal Intellisense alle mogelijke manieren tonen waarop je deze methoden kan oproepen. Met de omhoog- en omlaagpijltjes van het toetsenbord kan je alle mogelijke manieren bekijken.
 
-
 ![Dit soort popups bevat een schat aan informatie.](../assets/4_methoden/methoden1.png)<!--{width=60%}-->
-
 
 In de voorgaande screenshot zien we dat Intellisense telkens duidelijke de methode-signatuur beschrijft: 
 
@@ -22,14 +20,11 @@ Met behulp van de F1-toets kunnen we meer info over de methode in kwestie tonen.
 
 <!-- \newpage -->
 
-
 ### Intellisense
 
 *Wat kan deze .NET bibliotheek eigenlijk?* is een veelgestelde vraag. Zeker wanneer je de basis van C# onder de knie hebt en je stilletjes aan met bestaande .NET bibliotheken wilt gaan werken. Wat volgt is een essentieel onderdeel van VS dat veel gevloek en tandengeknars zal voorkomen.
 
 De online documentatie van VS is zeer uitgebreid en dankzij **IntelliSense** krijg je ook aardig wat informatie tijdens het typen van de code zelf. IntelliSense is de achterliggende technologie in VS die ervoor zorgt dat je minder moet typen. Als een soort assistent probeert IntelliSense een beetje te voorspellen wat je gaat typen en zal je daarmee helpen. 
-
-
 
 Type eens het volgende in:
 
@@ -41,23 +36,9 @@ Wacht nu even en er zal na het punt (``.``) een lijst komen van methoden en fiel
 
 Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden allemaal bij de ``Console`` bibliotheek horen. Indien gewenst kan je vervolgens de gewenste methode selecteren en op spatie duwen zodat deze in je code verschijnt.
 
-
 ![De icoontjes geven aan of het om een methode (kubus), een eigenschap (Engelse sleutel) of een "event" (bliksem) gaat. Events behandel ik niet in dit handboek.](../assets/4_methoden/methoden4.png)
 
-::: {.callout-tip title="Zie verder"}
-In C# haal je bibliotheken binnen met `using`. **Python** doet dit met `import`:
-
-```python
-import math
-
-print(math.sqrt(16))
-```
-
-Het idee is hetzelfde als bij C#: je geeft aan welke bibliotheek je wilt gebruiken en spreekt nadien de methoden aan via de naam ervan (hier `math.sqrt`, zoals `Math.Sqrt` in C#). Het keyword verschilt, de gedachte niet.
-:::
-
 <!-- \newpage -->
-
 
 #### Herbruikbare gebruikersinvoer vragen
 
@@ -80,16 +61,11 @@ static int VraagInt(string zin)
 
 De code van zonet kan je dan nu herschrijven naar:
 
-
 ```java
 int leeftijd = VraagInt("Geef leeftijd");
 ```
 
 Het voorgaande voorbeeld toont ook ineens aan waarom methoden helpen om je code leesbaarder en onderhoudbaarder te maken. Je ``Main`` blijft gevrijwaard van veel repeterende lijnen code en heeft aanroepen naar methoden met een duidelijke naam die ieder een specifiek ding doen. Dit maakt het debuggen ook eenvoudiger: je ziet in één oogopslag wat een methode doet.
 
-
 <!-- \newpage -->
-
-
-
 

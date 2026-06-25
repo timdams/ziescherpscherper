@@ -21,7 +21,6 @@ Alle datatypes die we tot nog toe zagen - ``string`` is een speciaal geval en ne
 
 Kijk wat er gebeurt bij volgende code:
 
-
 ```java
 int[] getallen = {5,42,2};
 int age = 5
@@ -29,11 +28,7 @@ int age = 5
 
 In ``getallen`` bewaren enkel een geheugenadres bewaren dat wijst naar de plek waar de effectieve waarden staan elders in het geheugen. Terwijl in ``age`` effectief de waarde "5" zal bewaard worden. De afbeelding op volgende pagina geeft dit weer.
 
-
-
 ![De wolk stelt het werkgeheugen voor. De geheugenadressen zijn willekeurig.](../assets/5_arrays/geheugen.png)<!--{width=75%}-->
-
-
 
 Het gevolg van voorgaande is dat volgende code niet zal doen wat je vermoedelijk wenst:
 
@@ -43,26 +38,19 @@ string[] nieuwePloegen = {"Anderlecht", "Brugge"};
 nieuwePloegen = ploegen;
 ```
 
-
 De situatie wanneer lijn 2 werd uitgevoerd is de volgende:
-
 
 ![Beerschot is de ploeg van't stad ;)](../assets/5_arrays/refbeervoor.png)<!--{width=80%}-->
 
 <!-- \newpage -->
 
-
 Zonder het bestaan van *references* zou je verwachten dat op lijn 3 ``nieuwePloegen`` een kopie krijgt van de inhoud van ``ploegen``. Dat is dus niet zo.
 
 Lijn 3 zal perfect werken. Wat er echter is gebeurd, is dat we de referentie naar ``ploegen`` ook in ``nieuwePloegen`` hebben geplaatst. **Bijgevolg verwijzen beide variabelen naar dezelfde array, namelijk die waar ``ploegen`` al naar verwees.** We hebben een soort *alias* gemaakt en kunnen nu op twee manieren de array met de Antwerpse voetbalploegen benaderen. De nieuwe situatie na lijn 3 is dus de volgende geworden:
 
-
 ![Beerschot is nog steeds de ploeg van't stad!](../assets/5_arrays/refbeer.png)<!--{width=80%}-->
 
-
-
 Als je vervolgens schrijft:
-
 
 ```java
 nieuwePloegen[1] = "Beerschot";
@@ -70,28 +58,13 @@ nieuwePloegen[1] = "Beerschot";
 
 Dan is dat hetzelfde als onderstaande schrijven daar beide variabele naar dezelfde array-inhoud verwijzen. Het effect zal dus hetzelfde zijn.
 
-
 ```java
 ploegen[1] = "Beerschot";
 ```
 
 En waar staan de ploegen in de nieuwePloegen array (``"Anderlecht"`` en ``"Brugge"``)? **Die array in het geheugen is niet meer bereikbaar** (de garbage collector zal deze ten gepaste verwijderen, wat in hoofdstuk 10 zal toegelicht worden).
 
-::: {.callout-tip title="Zie verder"}
-Net dezelfde valkuil bestaat in **JavaScript**: arrays werken er ook by reference, dus `=` maakt geen kopie maar een alias.
-
-```javascript
-let ploegen = ["Beerschot", "Antwerp"];
-let nieuwe = ploegen;     // geen kopie, zelfde array!
-nieuwe[1] = "Brugge";
-console.log(ploegen[1]);  // "Brugge" - ploegen mee aangepast
-```
-
-Heel gelijkaardig dus aan C#. Een echte kopie maak je in JavaScript bijvoorbeeld met `let kopie = [...ploegen];`.
-:::
-
 <!-- \newpage -->
-
 
 #### De oplossing als je arrays wilt kopiëren
 
@@ -116,10 +89,7 @@ for(int i = 0; i < ploegen.Length; i++)
 Er is een ingebouwde methode in de ``Array``-bibliotheek (deze bibliotheek zien we in de volgende sectie) die ook toelaat om arrays te kopiëren genaamd ``Copy``. 
 :::
 
-
 :::{.callout-important}
 Wanneer je met arrays van objecten (zie hoofdstuk 12) werkt dan zal bovenstaande mogelijk niet het gewenste resultaat geven daar we nu ook de individuele referenties van een object kopiëren!
 :::
-
-
 

@@ -2,7 +2,6 @@
 
 Een groot deel van je leven als ontwikkelaar zal bestaan uit het bewerken van variabelen in code. Meestal zullen die bewerkingen voorafgaan van berekeningen. De ``System.Math`` bibliotheek zal ons hier bij kunnen helpen. Zoals de naam al doet vermoeden staat deze bibliotheek voor *Mathematics*: wiskunde!
 
-
 ### De Math-bibliotheek
 
 De Math-bibliotheek bevat handige methoden voor een groot aantal typische wiskundige bewerkingen. Zaken die je er bijvoorbeeld in zal terugvinden: 
@@ -20,7 +19,6 @@ double result = getal * getal * getal; //SLECHTE MANIER
 
 Dit valt nog mee, maar wat als je 3 tot de zevende macht moest berekenen? Laten we eens kijken hoe ``Math`` ons kan helpen, dankzij de ``Pow``  methode (**Power**, Engels voor macht):
 
-
 ```java
 double result = Math.Pow(getal, 3);
 ```
@@ -30,31 +28,13 @@ Deze methode vereist twee parameters:
 * De eerste is het grondtal.
 * De tweede is de exponent ("tot de hoeveelste macht").
 
-::: {.callout-tip title="Zie verder"}
-In C# is `Math` altijd beschikbaar, zonder dat je iets hoeft te doen. In **Python** zit wiskunde in een aparte *module* die je eerst moet **importeren** met `import`:
-
-```python
-import math
-
-resultaat = math.pow(getal, 3)
-wortel = math.sqrt(144)   # 12.0
-```
-
-Zie je `math.` voor elke methode? Dat is de naam van de module. Je moet hem dus bovenaan eerst importeren voor je hem kan gebruiken. In C# horen klassen zoals `Math` standaard bij de taal en hoef je niets te importeren.
-:::
-
-
 <!-- \newpage -->
-
 
 #### De Math bibliotheek ontdekken
 
 Als je in Visual Studio ``Math`` schrijft in je code, gevolgd door een punt (``.``) krijg je alles te zien wat de Math-bibliotheek kan doen:
 
-
 ![De sterretjes geven de meestgebruikte methoden in deze bibliotheek aan. Vervolgens verschijnen alle overige methoden, properties, enz. alfabetisch.](../assets/4_methoden/methoden3.png)<!--{width=60%}-->
-
-
 
 Een kubusje voor een naam wil zeggen dat het om een **Methode** gaat (zoals ``Console.ReadLine()``). Een vierkantje met twee streepjes in zijn constanten (zoals ``Pi`` en het getal van Euler (``e``)).
 
@@ -80,11 +60,9 @@ Twijfel je over de werking van een methode, gebruik dan de help als volgt:
 
 <!-- \newpage -->
 
-
 #### PI 
 
 Ook het getal Pi (``3.141...``) is beschikbaar in de Math-bibliotheek. Het witte icoontje voor PI bij Intellisense toont aan dat het hier om een *field* gaat: een eenvoudige variabele met een specifieke waarde. In dit geval gaat het zelfs om een ``const`` field, met de waarde van Pi van het type double.
-
 
 ```java
 const double PI= 3.141...;
@@ -96,10 +74,6 @@ Je kan deze als volgt gebruiken in berekeningen zoals
 double straal = 5.5;
 double omtrek = Math.PI * 2 * straal;
 ```
-
-
-
-
 
 ### Bereik in code weten 
 Het bereik van datatypes ligt weliswaar vast (zie hoofdstuk 2). Maar het is nuttig om weten dat deze ook in de compiler gekend is.  Ieder datatype heeft een aantal ingebouwde zaken die je kan gebruiken om onder andere de maximum en minimum-waarde van een datatype te gebruiken. Volgend voorbeeld toont hoe dit kan:

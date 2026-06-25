@@ -4,8 +4,6 @@ Nu we methoden in de vingers krijgen, is het tijd om naar enkele gevorderde aspe
 
 [^structdoc]: Dit hoofdstuk is grotendeels gebaseerd op [docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments) .
 
-
-
 ### Named parameters
 Wanneer je een methode aanroept is de volgorde van je actuele parameters belangrijk: deze moeten meegeven worden in de volgorde zoals de methode ze verwacht.
 
@@ -21,19 +19,16 @@ static void PrintDetails(string seller, int orderNum, string product)
 
 Zonder named parameters zou een aanroep van deze methode als volgt kunnen zijn:
 
-
 ```java
 PrintDetails("Gift Shop", 31, "Red Mug");
 ```
 
 We kunnen named parameters aangeven door de naam van de parameter gevolgd door een dubbel punt en de waarde. Als we dus bovenstaande methode willen aanroepen kan dat ook als volgt met named parameters:
 
-
 ```java
 PrintDetails(orderNum: 31, product: "Red Mug", seller: "Gift Shop");
 ```
 of ook:
-
 
 ```java
 PrintDetails(product: "Red Mug", seller: "Gift Shop", orderNum: 31);
@@ -42,7 +37,6 @@ PrintDetails(product: "Red Mug", seller: "Gift Shop", orderNum: 31);
 Kortom, op deze manier maakt de volgorde van parameter niets uit. **Dit werkt echter enkel als je alle parameters op deze manier gebruikt.**
 
 <!-- \newpage -->
-
 
 #### Named en unnamed mixen: volgorde wél belangrijk
 
@@ -61,7 +55,6 @@ PrintDetails(31, seller: "Gift Shop", "Red Mug");
 
 <!-- \newpage -->
 
-
 ### Optionele parameters
 
 Soms wil je dat een methode een standaardwaarde voor een parameter gebruikt indien de programmeur in z'n aanroep geen waarde meegaf. Dat kan met behulp zogenaamde van **optionele of default parameters**. Je geeft aan dat een parameter optioneel is door deze een default waarde te geven in de methode-signatuur. Deze waarde zal dan gebruikt worden indien de parameter geen waarde van de aanroeper heeft gekregen. 
@@ -69,7 +62,6 @@ Soms wil je dat een methode een standaardwaarde voor een parameter gebruikt indi
 Let op: **Optionele parameters worden steeds achteraan de parameterlijst van de methode geplaatst**.
 
 In het volgende voorbeeld maken we een nieuwe methode aan en geven aan dat de laatste twee parameters (``optName`` en ``age``) optioneel zijn door er met de toekenningsoperator een default waarde aan te geven:
-
 
 ```java
 static void BookFile(int required, string optName = "unknown", int age = 10)
@@ -91,11 +83,7 @@ De inhoud van argumenten wordt bij iedere aanroep:
 | Lijn 2  | 20  | "dams"  | 10  |   
 | Lijn 3  | 35  | "unknown"   | 10  |   
 
-
-
-
 **Je mag enkel de optionele parameters van achter naar voor weglaten. Volgende aanroep is dus niet geldig**:
-
 
 ```java
 BookFile(3, 4); //daar de tweede param een string moet zijn
@@ -103,13 +91,9 @@ BookFile(3, 4); //daar de tweede param een string moet zijn
 
 Met optionele parameters kunnen we dit omzeilen. Volgende aanroep is wel geldig:
 
-
 ```java
 BookFile(3, age: 4);
 ```
-
-
-
 
 ### Method overloading
 
@@ -138,20 +122,6 @@ Console.WriteLine($"Rechthoek: {BerekenOpp(5, 6)}");
 Console.WriteLine($"Cirkel: {BerekenOpp(7)}");
 ```
 
-::: {.callout-tip title="Zie verder"}
-**Python** kent geen overloading. Je kan er geen twee functies met dezelfde naam definiëren: de tweede overschrijft gewoon de eerste. Pythonisten lossen dit op met default-parameters:
-
-```python
-def bereken_opp(lengte, breedte=None):
-    if breedte is None:
-        return int(3.14159 * lengte * lengte)  # cirkel
-    return lengte * breedte                     # rechthoek
-```
-
-In C# kiest de compiler op voorhand de juiste versie op basis van het aantal en type parameters. In Python schrijf je die keuze zelf binnenin je functie met een `if`.
-:::
-
-
 #### Betterness rule
 
 :::{.callout-note}
@@ -174,8 +144,6 @@ static int BerekenOpp(double straal) //versie B
     return opp;
 }
 ```
-
-
 
 Volgende aanroepen zullen dus als volgt uitgevoerd worden, gebaseerd op de betterness rule:
 
@@ -224,7 +192,6 @@ static void Toonverhouding(double a, int b) //versie B
 
 <!-- \newpage -->
 
-
 Indien ook die regel niet werkt dan zal volgende foutmelding verschijnen:
 
 ![We zien aan de foutboodschap duidelijk dat er eerst naar de eerste parameter wordt gekeken bij twijfel.](../assets/4_methoden/overl.png)
@@ -245,7 +212,6 @@ static void Toonverhouding(double a, int b)
     Console.WriteLine($"{a}/{b}");
 }
 ```
-
 
 <!-- TODO ed.5 (review): korte sectie "Wat met out en ref?" toevoegen met 1 voorbeeld via int.TryParse + verwijzing naar appendix. Studenten zien out continu in IntelliSense. -->
 <!-- TODO ed.5 (review): expression-bodied methoden (=> ...) kort tonen; studenten zien deze syntax in nieuwere VS-templates. -->

@@ -15,17 +15,6 @@ List<string[]> listOfStringarrays = new List<string[]>();
 
 **Zoals je ziet hoeven we bij het aanmaken van een ``List`` geen begingrootte mee te geven, wat we wel bij arrays moeten doen. Dit is één van de voordelen van ``List``: ze groeien mee.**
 
-::: {.callout-tip title="Zie verder"}
-In **Python** bestaat zoiets als ``List<>`` niet apart: een ``list`` is ingebouwd in de taal en groeit gewoon mee. Je hoeft er ook geen type bij te zetten, want Python is dynamisch getypeerd:
-
-```python
-namen = ["Tim", "An"]
-namen.append("Jan")
-```
-
-In **Java** lijkt het sterk op C#: daar gebruik je ``ArrayList<String>`` met ``.add(...)``. Zelfde idee, ander jasje. C# zit hier dus dicht bij Java, en ver van het ongetypeerde Python.
-:::
-
 :::{.callout-tip}
 In dit boek behandel ik het concept generieke klassen enkel in de appendix. 
 
@@ -39,12 +28,9 @@ De generieke ``List<>`` klasse bevindt zich in de ``System.Collections.Generic``
 
 <!-- \newpage -->
 
-
 ### Elementen toevoegen
 
 Via de ``Add()``-methode kan je elementen toevoegen aan de lijst. Je dient als parameter aan de methode mee te geven wat je aan de lijst wenst toe te voegen. **Deze parameter moet uiteraard van het type zijn dat de ``List`` verwacht.** 
-
-
 
 In volgende voorbeeld maken we een List aan die objecten van het type string mag bevatten en vervolgens plaatsen we er twee elementen in.
 
@@ -53,8 +39,6 @@ List<string> mijnPersonages = new List<string>();
 mijnPersonages.Add("Reinhardt");
 mijnPersonages.Add("Mercy");
 ``` 
-
-
 
 Ook meer complexe datatypes kan je dus toevoegen:
 
@@ -88,8 +72,6 @@ List<Pokemon> pokedex = new List<Pokemon>()
 
 <!-- \newpage -->
 
-
-
 ### Elementen indexeren
 
 **Het leuke van een ``List`` is dat je deze ook kan gebruiken als een gewone array**, waarbij je met behulp van de indexer elementen individueel kan aanroepen. Stel bijvoorbeeld dat we een lijst hebben met minstens 4 strings in. Volgende code toont hoe we de string op positie 3 kunnen uitlezen en hoe we die op positie 2 overschrijven, net zoals we reeds kenden van arrays:
@@ -99,9 +81,6 @@ Console.WriteLine(mijnPersonages[3]);
 mijnPersonages[2] = "Torbjorn";
 ```
 
-
-
-
 Ook de klassieke werking met loops blijft gelden. **De enige aanpassing is dat ``List<>`` niet met ``Length`` werkt maar met ``Count``**:
 
 ```java
@@ -110,7 +89,6 @@ for(int i = 0 ; i < mijnPersonages.Count; i++)
     Console.WriteLine(mijnPersonages[i])
 }
 ```
-
 
 ### Wat kan een List nog?
 
@@ -130,7 +108,6 @@ Let op met het gebruik van ``IndexOf`` (en ``Contains``) en objecten. Deze metho
 <!-- TODO ed.5 (review): Add/Remove/Contains/Find elk met een mini-voorbeeldregel; Contains heeft dezelfde reference-equality-valkuil als IndexOf. -->
 
 <!-- \newpage -->
-
 
 ### Een wereld met OOP: Pong list
 

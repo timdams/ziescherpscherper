@@ -12,8 +12,6 @@ Aan de achterkant van je computer (en ook in de pc zelf) zijn tal van hardware-i
 Voor je dolenthousiast wordt, denkende dat je eindelijk grafische applicaties (GUI oftewel Graphical User Interface applicaties) gaat maken, moet ik je helaas teleurstellen. Dit hoofdstuk behandelt het programmeer-concept *interfaces* wat eigenlijk niets te maken heeft met User Interfaces. U weze gewaarschuwd.
 :::
 
-
-
 **Interfaces in OOP**
 
 Dit concept van interfaces uit de echte wereld heeft ook een OOP variant. Namelijk de interface tussen 2 (of meer) klassen. Door te beloven dat een klasse aan een bepaalde interface voldoet kunnen alle klassen die deze interface "kennen" met elkaar praten. **Een interface in OOP is een beschrijving van publieke methoden en properties die de klasse belooft te hebben.** Net zoals je een fotocamera kunt kopen die de HDMI en USB-interface heeft, zo ook kan je nu een klasse maken die bijvoorbeeld de interfaces ``ISecure`` en ``IStreamable``heeft.
@@ -22,16 +20,13 @@ Dit concept van interfaces uit de echte wereld heeft ook een OOP variant. Nameli
 Interfaces zijn als het ware stempels die we op een klasse kunnen plakken om zo te zeggen *"deze klasse gebruikt interface xyz"*. Gebruikers van de klasse hoeven dan niet de hele klasse uit te spitten en weten dat alle klassen met interface xyz dezelfde publieke properties en methoden hebben. 
 :::
 
-
 :::{.callout-important}
 Een interface is niet meer dan een belofte: het zegt enkel welke publieke methoden en properties de klassen bezit. **Het zegt echter niets over de effectieve code/implementatie van deze methoden en properties.**
 :::
 
-
 ### Interfaces in C\#
 
 Een interface is dus eigenlijk als het ware een klein stukje papier waar je op zet "om aan deze interface te voldoen moet je zeker volgende methoden en properties hebben". Kortom, een interface-bestand meestal een vrij klein bestand. Het is letterlijk de "Dit apparaat is USB 3.0 compatibel"-sticker.
-
 
 Stel dat we zo'n interface willen gebruiken in een vechtspel tussen karakters, waarin sommige klassen ook aan de Superhelden-interface moeten voldoen. Volgende code toont hoe we een interface definiëren in C#:
 
@@ -50,41 +45,15 @@ Enkele opmerkingen hierbij zijn op z'n plaats:
 * Methoden en properties gaan niet vooraf van ``public``: interfaces zijn van nature al publiek, dus alle methoden en properties van de interface zijn dat bijgevolg ook (uiteraard geldt dit niet voor andere methoden in de klassen, deze mogen nog steeds ``private`` zijn als dat nodig is).
 * Er wordt geen code/implementatie gegeven: iedere methode eindigt ogenblikkelijk met een puntkomma.
 
-
 **Het is in de klassen waar we deze interface "aanhangen", dat we nu vervolgens verplicht zijn deze methode en properties te implementeren.**
-
-::: {.callout-tip title="Zie verder"}
-**Java** en **TypeScript** hebben net als C# een echt `interface`-keyword dat bijna identiek werkt. Een TypeScript-interface ziet er bijvoorbeeld zo uit:
-
-```typescript
-interface ISuperHeld {
-    schietLasers(): void;
-    power: number;
-}
-```
-
-**Python** pakt het radicaal anders aan met *duck typing*: "if it walks like a duck and quacks like a duck, it's a duck". Daar bestaat geen verplichte interface; zolang een object toevallig de juiste methoden heeft, mag je het gebruiken. Python dwingt dus niets af op voorhand, terwijl C# de compiler laat controleren dat je je belofte ook nakomt.
-
-```python
-class Zorro:
-    def schiet_lasers(self):   # geen interface nodig, gewoon de methode hebben volstaat
-        print("pewpew")
-```
-
-In **C** ten slotte bestaat het hele begrip interface niet. C# zit dus aan de strenge, gecontroleerde kant: een interface is een belofte die de taal hard afdwingt.
-:::
 
 :::{.callout-tip}
 Ook abstracte klassen kunnen één of meerdere interfaces hebben. In het geval van een abstracte klasse is deze niet verplicht de interface ook al te implementeren, en mag (delen van) de interface ook als abstract aangeduid worden.
 :::
 
-
 :::{.callout-tip}
 Een interface is een beschrijving hoe een component een andere component kan gebruiken, zonder te zeggen hoe dit moet gebeuren. De interface is met andere woorden 100% scheiding tussen de methode/property-signatuur en de eigenlijke implementatie ervan.
 :::
-
-
-
 
 #### Interface regels
 
@@ -97,16 +66,13 @@ Interfaces zijn als het ware standaarden waaraan een klasse moet voldoen, wil he
 * Een interface kan niet overerven van een klasse, wel van één of meerdere interfaces.
 * Een interface bevat in de regel géén code: enkel de signaturen van methoden en properties (er bestaat één uitzondering sinds C# 8, zie de tip hieronder).
 
-
 [^intnieuw]: In recentere versies van C# (sinds 8.0) is het nu wel toegestaan om ``public`` voor een methode of property te plaatsen. Dit verbeterd de leesbaarheid (daar we gewoon zijn dat het weglaten van een *access modifier* eigenlijk ``private`` betekent, wat bij interfaces dus niet zo is). 
-
 
 :::{.callout-tip}
 De laatste regel, *"een interface mag géén code bevatten"*, is deels onwaar. Sinds C# 8.0 bestaan *default interface methods*. Dit zijn interface-methoden die standaardimplementaties bevatten. Deze implementaties worden gebruikt wanneer de methode niet is geïmplementeerd in de klasse die de interface overneemt. Ik behandel deze hier niet en raad je  om interfaces te leren gebruiken waar ze voor bedoeld waren: property- en methodesignaturen zonder code.
 :::
 
 <!-- \newpage -->
-
 
 :::{.callout-tip}
 **Interface of abstracte klasse?** Allebei laten ze je toe om af te dwingen dat klassen bepaalde methoden/properties hebben. Wanneer kies je wat?
@@ -153,13 +119,11 @@ Zolang de klasse ``Zorro`` niet exact de interface inhoud implementeert zal deze
 
 De klasse in dit voorbeeld blijft wel overerven van ``System.Object``. Het is ook perfect mogelijk om een klasse te hebben die én overerft van een specifieke klasse én meerdere interfaces heeft:
 
-
 ```java
 internal class DarthVader: StarWarsCharacter, IForceUser, IPilot
 ```
 
 <!-- \newpage -->
-
 
 ### Interfaces in UML
 
@@ -169,25 +133,17 @@ Een "lolly" op een klasse geeft aan dat deze een bepaalde interface heeft in UML
 
 We gebruiken de UML notatie voor een interface om aan te geven dat de ``Student`` klasse de ``IVerkortTraject`` interface heeft:
 
-
 ![Interface UML notatie.](../assets/9_interfaces/uml.png)<!--{width=70%}-->
 
 #### Interfaces visualiseren 
 
 Een visuele manier om interfaces voor te stellen is de volgende. Eigenlijk is een interface als het ware een blad papier dat je bovenop je klasse kunt houden. Op het blad staan de methoden en properties beschreven die de interface moet hebben. Als je het blad mooi bovenop een klasse plaatst die de interface belooft te doen, dan zouden de gaten in het blad mooi bovenop de respectievelijke methoden en properties van de klasse passen.
 
-
 ![Het UML "lolly'tje" kan je als een haakje beschouwen waaraan de interface bengelt.](../assets/9_interfaces/intzorro.png)<!--{width=70%}-->
-
 
 ![Vervolgens kunnen we de interface met het haakje aan de klasse hangen.](../assets/9_interfaces/intzorro2.png)<!--{width=50%}-->
 
-
-
-
-
 :::{.callout-warning}
-
 
 Ik zei net: *"Volgende interface kunnen we gebruiken in een spel waarin sommige klassen superhelden zijn."* Die zin impliceert toch overerving "sommige klassen **zijn** superhelden"? 
 
@@ -201,26 +157,19 @@ Merk wel op dat de interface NIET de implementatie bevat van wat een superheld j
 
 <!-- \newpage -->
 
-
 ### Lampje wederom to the rescue
 
 Wanneer je in VS een klasse schrijft die een bepaalde interface moet hebben, dan kan je die snel implementeren. Je schrijft de klasse-signatuur en klikt er dan op: links verschijnt het *lampje* waar je vervolgens op kunt klikken en kiezen voor "Implement interface". En presto!
 
-
 ![Als het lampje niet ogenblikkelijk verschijnt kan je ook altijd rechterklikken op het rood onderstreepte woord en kiezen voor "Quick Actions and Refactorings...". ](../assets/9_interfaces/implint.png)<!--{width=80%}-->
 
-
 Merk op dat VS de nieuwere EBM syntax hier hanteert bij properties. Meer informatie hierover vind je in de appendix.
-
-
-
 
 ## Het ``is`` keyword met interfaces
 
 We kunnen ``is`` gebruiken om te weten of een klasse een specifieke interface heeft. Dit laat ons toe om code te schrijven die weer een beetje meer polyvalent wordt. We tonen hier enkel het idee; de ``is``- en ``as``-operatoren komen volledig aan bod in hoofdstuk 18.
 
 Stel dat we volgende klassen hebben waarbij de ``Boek`` klasse de ``IVerwijderbaar`` interface implementeert:
-
 
 ```java
 interface IVerwijderbaar{ ... };
@@ -257,8 +206,6 @@ foreach(var persoon in WerkNemers)
 }
 ```
 
-
-
 ### Meerder interfaces
 Een nadeel van overerving is dat een klasse maar van 1 klasse kan overerven. Een klasse mag echter wel meerdere interfaces met zich meedragen:
 ```java
@@ -277,21 +224,7 @@ internal class Batman:Man, ISuperHeld, ICoureur
 Merk op dat de volgorde belangrijk is: eerst plaats je de klasse waarvan wordt overgeërfd, dan pas de interface(s).
 :::
 
-::: {.callout-tip title="Zie verder"}
-Dat je meerdere interfaces maar slechts één klasse mag overerven, is precies de oplossing die **Java** ook koos. Beide talen verbieden bewust *meervoudige overerving* van klassen, en gebruiken interfaces als veilig alternatief.
-
-**C++** doet dat net niet: daar mag een klasse wél van meerdere klassen tegelijk overerven.
-
-```cpp
-class Zorro : public Man, public SuperHeld { };  // mag in C++
-```
-
-Krachtig, maar het leidt tot het beruchte *diamond problem*: erven twee parents dezelfde methode, dan weet de compiler niet meer welke hij moet kiezen. Door enkel meervoudige *interfaces* toe te laten (interfaces hebben immers geen eigen code), ontwijken C# en Java dat probleem volledig.
-:::
-
-
 Ook mogen interfaces van elkaar overerven. Dat doe je wanneer een nieuwe interface álles van een bestaande interface moet kunnen, plus nog wat extra. Een ``IGod`` is bijvoorbeeld een soort uitgebreide ``ISuperHeld``: wie ``IGod`` implementeert moet sowieso ook alle methoden van ``ISuperHeld`` voorzien, plus de extra dingen die ``IGod`` toevoegt.
-
 
 ```java
 interface IGod : ISuperHeld
@@ -300,20 +233,14 @@ interface IGod : ISuperHeld
 }
 ```
 
-
-
-
-
 :::{.callout-warning}
 
 In kleine projecten lijken interfaces wat overkill, en dat zijn ze vaak wel. Van zodra je een iets complexer project krijgt met meerdere klassen die onderling met elkaar allerlei zaken moeten doen, dan zijn interfaces je dikke vrienden!
 Je hebt misschien al over de *SOLID programmeerprincipes* gehoord? 
 
-
 And if not, niet erg. 
 
 Samengevat zegt SOLID dat we een bepaalde hoeveelheid abstractie inbouwen enerzijds (zodat we niet de gore details van klassen moeten kennen om er mee te programmeren) anderzijds dat er een zogenaamde 'separation of concerns' (SoC) moet zijn (ieder deel/klasse/module van je code heeft een specifieke opdracht). 
-
 
 Met interfaces kunnen we volgens de SOLID principes programmeren: het boeit ons niet meer wat er in de klasse zit, we kunnen gewoon aan de interfaces van een klasse zien wat hij kan doen. Handig toch!
 
@@ -322,7 +249,4 @@ Met interfaces kunnen we volgens de SOLID principes programmeren: het boeit ons 
 <!-- TODO ed.5 (review): IEquatable<T> als typed alternatief op Equals(object) vermelden (sluit aan bij 18_IsAs/6_equals.md). --> 
 
 :::
-
-
-
 

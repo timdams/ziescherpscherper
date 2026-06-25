@@ -26,9 +26,7 @@ Dat is aardig wat bizarre code he? En ik toon maar een stuk. Kortom: we mogen bl
 
 Trouwens. Het is heel normaal dat voorgaande code je zenuwachtig maakt. Negeer ze maar![^wowzo]
 
-
 [^wowzo]: Toch nieuwsgierig hoe wat er allemaal achter de schermen gebeurt? Voorgaande code komt uit [github.com/dotnet/runtime/blob/main/src/libraries/System.Console/src/System/ConsolePal.Windows.cs](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Console/src/System/ConsolePal.Windows.cs), waar je ook alle andere broncode van de *dotnet runtime* zal terugvinden. 
-
 
 ## Werking van methoden
 
@@ -57,20 +55,7 @@ Vergeet ``static`` voorlopig even: beschouw het als een verplicht **toverwoord**
 
 De eerste lijn noemen we de **methode-signatuur**. Deze lijn verteld alles dat je moet weten om met de methode te werken (returntype, naam en eventuele parameters).
 
-::: {.callout-tip title="Zie verder"}
-**Python** doet dit zo:
-
-```python
-def tel_op(a, b):
-    return a + b
-```
-
-In Python schrijf je gewoon `def` en hoef je geen returntype of types voor je parameters op te geven. Dat scheelt typewerk, maar je verliest de hulp van de compiler: Python merkt pas tijdens het uitvoeren of je per ongeluk een verkeerd type meegaf, terwijl C# je dat al meteen vertelt.
-:::
-
-
 Vervolgens kan je deze methode elders oproepen als volgt, indien de methode geen parameters vereist:
-
 
 ```java
 MethodeNaam();
@@ -79,7 +64,6 @@ MethodeNaam();
 Dat is een mondvol. We gaan daarom de methoden even stapsgewijs leren kennen. Let's go!
 
 <!-- \newpage -->
-
 
 ### Een eenvoudige methode
 
@@ -94,10 +78,7 @@ static void ToonTitel()
 }
 ```
 
-
-
 Vanaf nu kan je eender waar in je programma deze methode aanroepen door te schrijven:
-
 
 ```java
 ToonTitel();
@@ -128,9 +109,7 @@ namespace Demo1
 }
 ```
 
-
 <!-- \newpage -->
-
 
 Volgende afbeelding toont hoe je programma doorheen de code loopt. De pijlen geven de flow aan:
 
@@ -155,10 +134,7 @@ static void Main(string[] args)
 ``string[] args`` is een verhaal apart en zullen we in het volgende hoofdstuk bekijken. Ik verklap alvast dat je via deze ``args`` opstartparameters aan je programma kan meegeven tijdens het opstarten (bijvoorbeeld ``explorer.exe google.com``) zodat je code hier iets mee kan doen.
 :::
 
-
-
 <!-- \newpage -->
-
 
 ## Returntypes van methoden
 
@@ -187,7 +163,6 @@ static string VerkrijgAuteurNaam()
 
 Een mogelijke manier om deze methode in je programma te gebruiken zou nu kunnen zijn:
 
-
 ```java
 string myName = VerkrijgAuteurNaam();
 ```
@@ -206,8 +181,6 @@ Of verderop misschien als volgt:
 Console.WriteLine($"Auteur van dit boek: {VerkrijgAuteurNaam()}");
 ```
 
-
-
 :::{.callout-tip}
 Je mag zowel literals als variabelen en zelfs andere methode-aanroepen plaatsen achter het ``return`` keyword. Zolang het maar om een expressie gaat die een resultaat heeft kan dit. Voorgaande methode kunnen we dus ook schrijven als:
 
@@ -221,7 +194,6 @@ static string VerkrijgAuteurNaam()
 :::
 
 <!-- \newpage -->
-
 
 ## Een uitgewerkte methode
 
@@ -246,7 +218,6 @@ internal class Program
     }
 }
 ```
-
 
 ### ``void`` 
 
@@ -275,7 +246,6 @@ Console.WriteLine(ToonVersie()); // MAG NIET!
 ```
 
 <!-- \newpage -->
-
 
 ### ``return`` 
 
@@ -306,7 +276,6 @@ Merk op dat de onderste lijn (``return "onbekend";``) nooit zal bereikt worden. 
 
 <!-- \newpage -->
 
-
 >![](../assets/attention.png)Dacht je nu echt dat ik weg was?! Het is me opgevallen dat je niet altijd de foutboodschappen in VS leest. Ik blijf alvast uit jouw buurt als je zo doorgaat. Doe jezelf (en mij) dus een plezier en probeer die foutboodschappen in de toekomst te begrijpen. Er zijn er maar een handvol en bijna altijd komen ze op hetzelfde neer. Neem nou de volgende:**Not all code paths return a value**
 Die ga je nog vaak tegenkomen!
 
@@ -314,17 +283,13 @@ Bovenstaande foutboodschap zal je vaak krijgen en geeft altijd aan dat er bepaal
 
 Foutboodschappen hebben de neiging om gecompliceerder te klinken dan de effectieve fout die ze beschrijven. Een beetje zoals een lector die lesgeeft over iets waar hij zelf niets van begrijpt.
 
-
-
 <!-- TODO ed.5 (review): params-keyword vermelden (Console.WriteLine gebruikt het zelf; studenten zien dit in oefeningen). -->
 
 ## Parameters doorgeven
 
 Methoden zijn handig vanwege de herbruikbaarheid. Wanneer je een methode hebt geschreven om de sinus van een hoek te berekenen, dan is het echter ook handig dat je de hoek als parameter kunt meegeven zodat de methode kan gebruikt worden voor eender welke hoekwaarde. 
 
-
 Indien er wel parameters nodig zijn dan geef je die mee als volgt:
-
 
 ```java
 MethodeNaam(parameter1, parameter2, …);
@@ -333,7 +298,6 @@ MethodeNaam(parameter1, parameter2, …);
 Je hebt dit ook al geregeld gebruikt. Wanneer je tekst op het scherm wilt tonen dan roep je de ``WriteLine`` methode aan en geef je 1 parameter mee, namelijk hetgeen dat op het scherm moet komen. 
 
 <!-- \newpage -->
-
 
 ### Methoden met formele parameters
 
@@ -349,7 +313,6 @@ static returntype MethodeNaam(type parameter1, type parameter2)
 ```
 
 Deze formele parameters zijn nu beschikbaar binnen de methode om mee te werken naar believen.
-
 
 Stel bijvoorbeeld dat we onze ``FaculteitVan5`` willen veralgemenen naar een methode die voor alle getallen werkt, dan zou je volgende methode kunnen schrijven:
 
@@ -376,18 +339,15 @@ int resultaat = BerekenFaculteit(getal);
 
 Of sneller:
 
-
 ```java
 int resultaat = BerekenFaculteit(5);
 ```
-
 
 Als we even later ``resultaat`` dan zouden gebruiken zal er de waarde ``120``  in zitten.
 
 :::{.callout-tip}
 Parameters worden "by value" meegegeven (zie het hoofdstuk over Arrays hierna) wat wil zeggen dat een **kopie** van de waarde wordt meegegeven. Als je dus in de methode de waarde van de parameter aanpast, dan heeft dit géén invloed op de waarde van de originele parameter waar je de methode aanriep.
 :::
-
 
 Je zou nu echter de waarde van getal kunnen aanpassen (door bijvoorbeeld aan de gebruiker te vragen welke faculteit moet berekend worden) en je code zal nog steeds werken.
 
@@ -396,9 +356,6 @@ Veel beginnende programmeurs zijn soms verward dat de naam van de parameter in d
 
 Het is echter logisch dat deze niet noodzakelijk gelijk moeten zijn: het enige dat er gebeurt is dat de methodeparameter de waarde krijgt die je meegeeft, ongeacht van waar de parameter komt.
 :::
-
-
-
 
 En wat als je de faculteiten wenst te kennen van alle getallen tussen 1 en 10?  Dan zou je schrijven:
 
@@ -433,7 +390,6 @@ Faculteit van 10 is 3628800
 Merk op dat dankzij je methode, je véél code maar één keer moet schrijven, wat de kans op fouten verlaagt.
 :::
 
-
 ### Volgorde van parameters
 
 De volgorde waarin je je parameters meegeeft bij de aanroep van een methode is belangrijk. De eerste variabele wordt aan de eerste parameter toegekend, enz. Het volgende voorbeeld toont dit. 
@@ -457,7 +413,6 @@ ToonDeling(3.5 , 2.1 );
 ToonDeling(2.1 , 3.5 );
 ```
 
-
 Zeker wanneer je met verschillende types als formele parameters werkt is de volgorde belangrijk. Het verschil met de vorige methode is hier wel dat VS jou zal helpen wanneer je volgorde niet klopt. 
 
 Stel dat we volgende methode hebben gemaakt:
@@ -471,18 +426,15 @@ static void ToonInfo(string name, int age)
 
 Deze aanroep is correct:
 
-
 ```java
 ToonInfo("Tim", 37);
 ```
 
 Maar deze is **FOUT** en zal niet compileren:
 
-
 ```java
 ToonInfo(37, "Tim"); //mag niet!
 ```
-
 
 ### Doorgeven van parameters
 
@@ -490,7 +442,6 @@ Parameters kunnen op 2 manieren worden doorgegeven aan een methode:
 
 1. **By value** : hierbij wordt **een kopie gemaakt van de huidige waarde**. Het is die kopie die wordt meegegeven.
 2. **by reference**: in plaats van een kopie wordt het *adres* (de zogenaamde **pointer** of **reference**) van de originele variabele meegegeven. Aanpassingen in de methode zijn daardoor óók buiten de methode zichtbaar, op de originele variabele. Dit hebben we voorlopig nog niet nodig: het komt uitgebreid aan bod vanaf het hoofdstuk over arrays (H9). Lig er nu dus nog niet van wakker als dit nog wat abstract aanvoelt.
-
 
 Het effect van manier 1 is hopelijk duidelijk: wanneer je in een methode de inhoud van een actuele parameter aanpast, dan heeft dat geen gevolg op de originele variabele die we meegaven bij de methode-aanroep!
 
@@ -556,9 +507,6 @@ Er verschijnt "Tim" op het scherm.
 
 ![Visualisatie van de code zonder terugkerende pijlen.](../assets/4_methoden/mmethods.png)<!--{width=70%}-->
 
-
-
-
 ### Bugs met methoden
 
 Wanneer je programma's complexer worden moet je zeker opletten dat je geen oneindige *methode-lussen* creëert. Zie je de fout in volgende code?
@@ -589,7 +537,6 @@ Sinds C# 7.0 kan je methoden definiëren binnenin een andere methode. Dit noemt 
 
 Het is veel belangrijker dat je eerst goed leert methoden schrijven. Beginnende programmeurs schrijven soms per ongeluk een lokale functies. Dan ontdekken ze dat ze die methode nergens kunnen aanroepen. Lokale functies zijn alleen oproepbaar binnen de methode waarin ze zijn gedefinieerd.
 
-
 Kortom, zorg dat je nooit dit schrijft!
 
 ```java
@@ -618,9 +565,6 @@ static void Main(string[] args)
 }
 ```
 
-
-
-
 >![](../assets/attention.png) Even ingrijpen en je wijzen op recursie zodat je code niet in je gezicht blijft ontploffen. 
 
 **Recursie** is een geavanceerd programmeerconcept wat niet in dit boek wordt besproken (enkel in hoofdstuk 18 gaan we recursie nog kort ontmoeten), maar laten we het hier kort toelichten. Recursieve methoden zijn methoden die zichzelf aanroepen maar wél op een gegeven moment stoppen wanneer dat moet gebeuren. Volgend voorbeeld is een recursieve methode om de som van alle getallen tussen ``start`` en ``stop`` te berekenen:
@@ -639,18 +583,13 @@ static int BerekenSomRecursief(int start, int stop)
 ```
 Je herkent recursie aan het feit dat de methode zichzelf aanroept. Maar een controle voorkomt dat die aanroep blijft gebeuren zonder dat er ooit een methode wordt afgesloten. We krijgen 6 terug (1+2+3) als we de methode als volgt aanroepen:
 
-
 ```java
 int einde = BerekenSomRecursief(1,3);
 ``` 
 
-
 ![Flow van de recursie.](../assets/4_methoden/recursie.png)
 
-
-
 <!-- \newpage -->
-
 
 ### Commentaar aan methoden toevoegen
 
@@ -680,8 +619,5 @@ static int Macht(int grondtal, int exponent)
 
 Wanneer we nu elders de methode ``Macht`` gebruiken dan krijgen we automatische extra informatie:
 
-
 ![Het is aanbevolen om je documentatie in het Engels te doen, niet zoals in dit voorbeeld dus.](../assets/4_methoden/comment.png)<!--{width=50%}-->
-
-
 

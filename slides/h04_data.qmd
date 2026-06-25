@@ -55,21 +55,6 @@ Een variabele verandert **nooit** van type. Je zet enkel de **waarde** om en geb
 
 ---
 
-## Zie verder: type-coercion
-
-::: {.callout-tip title="Zie verder"}
-C# is streng. **JavaScript** zet types net automatisch om (*coercion*):
-
-```javascript
-console.log("5" + 3);  // "53"  (de 3 wordt een string)
-console.log("5" * 3);  // 15    (de "5" wordt een getal)
-```
-
-Bij `+` wint de string, bij `*` het getal. In C# geeft dit een compileerfout.
-:::
-
----
-
 ## Narrowing
 
 :::: {.columns}
@@ -173,20 +158,6 @@ De komende hoofdstukken mag je ervan uitgaan dat de gebruiker **foutloze** invoe
 
 ---
 
-## Zie verder: input parsen
-
-::: {.callout-tip title="Zie verder"}
-**Python** doet dit korter: de naam van het type is meteen de omzetfunctie:
-
-```python
-gewicht = float(input("Geef je gewicht: "))
-```
-
-C# heeft een aparte `Parse` per type (`int.Parse`, `double.Parse`).
-:::
-
----
-
 ## Komma of punt?
 
 * **In je code** schrijf je een kommagetal-literal altijd met een **punt**: `9.81` (onafhankelijk van je taalinstellingen)
@@ -253,22 +224,6 @@ Verder o.a. `Sin`, `Cos`, `Tan`, `Ceiling`, `Floor`, `Abs`.
 
 ::: {.callout-tip .fragment}
 Typ `Math.` en IntelliSense toont alles. Cursor op een methode + **`F1`** opent de documentatie.
-:::
-
----
-
-## Zie verder: een module importeren
-
-::: {.callout-tip title="Zie verder"}
-In **Python** zit wiskunde in een aparte *module* die je eerst moet importeren:
-
-```python
-import math
-
-wortel = math.sqrt(144)   # 12.0
-```
-
-`math.` ervoor is de modulenaam. In C# hoort `Math` standaard bij de taal: niets importeren.
 :::
 
 ---
@@ -498,6 +453,51 @@ AI wordt pas krachtig in **dialoog**. Anders is het een searchengine *on steroid
 ::: {.callout-tip}
 Volgende halte: **beslissingen** nemen met `if`, vergelijkingen en `switch`.
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: type-coercion
+
+C# is streng. **JavaScript** zet types net automatisch om (*coercion*):
+
+```javascript
+console.log("5" + 3);  // "53"  (de 3 wordt een string)
+console.log("5" * 3);  // 15    (de "5" wordt een getal)
+```
+
+Bij `+` wint de string, bij `*` het getal. In C# geeft dit een compileerfout.
+
+---
+
+## Zie verder: input parsen
+
+**Python** doet dit korter: de naam van het type is meteen de omzetfunctie:
+
+```python
+gewicht = float(input("Geef je gewicht: "))
+```
+
+C# heeft een aparte `Parse` per type (`int.Parse`, `double.Parse`).
+
+---
+
+## Zie verder: een module importeren
+
+In **Python** zit wiskunde in een aparte *module* die je eerst moet importeren:
+
+```python
+import math
+
+wortel = math.sqrt(144)   # 12.0
+```
+
+`math.` ervoor is de modulenaam. In C# hoort `Math` standaard bij de taal: niets importeren.
 
 ---
 

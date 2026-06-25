@@ -88,23 +88,6 @@ Logische operators verwachten **`bool`**-operanden en geven een `bool` terug.
 
 ---
 
-## Zie verder: logische operators in Python
-
-::: {.callout-tip title="Zie verder"}
-**Python** gebruikt woorden in plaats van symbolen:
-
-```python
-if leeftijd > 18 and heeft_kaart:
-    print("Welkom")
-
-resultaat = not (0 == 2)
-```
-
-Waar C# `&&`, `||` en `!` schrijft, leest Python bijna als een gewone zin (`and`, `or`, `not`). De werking is identiek.
-:::
-
----
-
 ## Volgorde van bewerkingen
 
 Belangrijk zodra je expressies combineert:
@@ -241,25 +224,6 @@ else
 
 ::: {.callout-warning .fragment}
 Een `else` krijgt **geen** eigen booleaanse expressie. `else (a <= b)` is fout: de `else` draait gewoon wanneer de `if` niet waar was.
-:::
-
----
-
-## Zie verder: if/else in Python
-
-::: {.callout-tip title="Zie verder"}
-**Python** kent geen accolades. De **inspringing** bepaalt het blok, en het tussenstuk heet `elif`:
-
-```python
-if leeftijd >= 18:
-    print("meerderjarig")
-elif leeftijd > 12:
-    print("tiener")
-else:
-    print("kind")
-```
-
-In C# telt enkel de accolade en is inspringen louter cosmetisch. In Python is het net omgekeerd: de inspringing is verplicht en bepaalt de structuur.
 :::
 
 ---
@@ -423,27 +387,6 @@ Kom je van C, Java of JavaScript: in C# **mag** een case met code niet "doorvall
 
 ---
 
-## Zie verder: switch in JavaScript
-
-::: {.callout-tip title="Zie verder"}
-In **JavaScript** valt de uitvoer wél door naar de volgende case als je `break` vergeet:
-
-```javascript
-switch (option) {
-    case 1:
-        console.log("Afbreken gekozen");
-        // GEEN break: valt door naar case 2!
-    case 2:
-        console.log("Opslaan gekozen");
-        break;
-}
-```
-
-Bij `option` gelijk aan `1` verschijnen hier **beide** lijnen. Een beruchte bron van bugs. C# weigert net daarom code zonder `break` bij een case met inhoud.
-:::
-
----
-
 ## Enum: de bestaansreden
 
 :::: {.columns}
@@ -476,22 +419,6 @@ enum Weekdagen { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag, Zonda
 
 ::: {.callout-note .fragment}
 Definieer het type binnen `class Program`, maar **niet** binnen `Main`.
-:::
-
----
-
-## Zie verder: enum in TypeScript
-
-::: {.callout-tip title="Zie verder"}
-**JavaScript** kent geen `enum`. Maar **TypeScript** (JavaScript met types) wel, en die lijkt sterk op die van C#:
-
-```typescript
-enum Weekdag { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag }
-
-let keuze: Weekdag = Weekdag.Woensdag;
-```
-
-Net als in C# worden de waarden vanaf `0` genummerd en blijft een variabele beperkt tot deze waarden.
 :::
 
 ---
@@ -567,6 +494,77 @@ Daarna een nette `switch` op `playerGameState`. Of denk aan schaken: `Schaakstuk
 ::: {.callout-tip}
 Volgende halte: **herhalingen** met `while`, `do-while` en `for`.
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: logische operators in Python
+
+**Python** gebruikt woorden in plaats van symbolen:
+
+```python
+if leeftijd > 18 and heeft_kaart:
+    print("Welkom")
+
+resultaat = not (0 == 2)
+```
+
+Waar C# `&&`, `||` en `!` schrijft, leest Python bijna als een gewone zin (`and`, `or`, `not`). De werking is identiek.
+
+---
+
+## Zie verder: if/else in Python
+
+**Python** kent geen accolades. De **inspringing** bepaalt het blok, en het tussenstuk heet `elif`:
+
+```python
+if leeftijd >= 18:
+    print("meerderjarig")
+elif leeftijd > 12:
+    print("tiener")
+else:
+    print("kind")
+```
+
+In C# telt enkel de accolade en is inspringen louter cosmetisch. In Python is het net omgekeerd: de inspringing is verplicht en bepaalt de structuur.
+
+---
+
+## Zie verder: switch in JavaScript
+
+In **JavaScript** valt de uitvoer wél door naar de volgende case als je `break` vergeet:
+
+```javascript
+switch (option) {
+    case 1:
+        console.log("Afbreken gekozen");
+        // GEEN break: valt door naar case 2!
+    case 2:
+        console.log("Opslaan gekozen");
+        break;
+}
+```
+
+Bij `option` gelijk aan `1` verschijnen hier **beide** lijnen. Een beruchte bron van bugs. C# weigert net daarom code zonder `break` bij een case met inhoud.
+
+---
+
+## Zie verder: enum in TypeScript
+
+**JavaScript** kent geen `enum`. Maar **TypeScript** (JavaScript met types) wel, en die lijkt sterk op die van C#:
+
+```typescript
+enum Weekdag { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag }
+
+let keuze: Weekdag = Weekdag.Woensdag;
+```
+
+Net als in C# worden de waarden vanaf `0` genummerd en blijft een variabele beperkt tot deze waarden.
 
 ---
 

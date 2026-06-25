@@ -17,13 +17,9 @@ Bij klassen en objecten duidt ``static`` aan dat een methode of variabele "gedee
 Ook een constructor kan ``static`` gemaakt worden, maar dat ga ik in dit boek niet bespreken. Samengevat kan je een *static constructor* gebruiken indien je een soort *oer-constructor* wilt hebben die eenmalig wordt aangeroepen wanneer het allereerste object van een klasse wordt aangemaakt. Wanneer een tweede instantie wordt aangemaakt zal de *static constructor* niet meer aangeroepen worden.
 :::
 
-
 :::{.callout-important}
 We vereenvoudigen bewust het keyword ``static`` wat om verwarring te voorkomen. Het "delen van informatie dankzij ``static``" is een gevolg, niet de reden. Met ``static`` geven we eigenlijk aan dat het element bij de klasse zelf behoort én niet bij instanties van die klasse.
 :::
-
-
-
 
 ### Static fields
 
@@ -63,7 +59,6 @@ Console.WriteLine($"{m2.Geboortejaar}");
 
 Dan zien we volgende uitvoer:
 
-
 ```text
 2
 1
@@ -72,7 +67,6 @@ Dan zien we volgende uitvoer:
 Ieder object houdt de stand van z'n eigen variabelen bij. Ze kunnen elkaars interne - zowel publieke als private - staat niet rechtstreeks veranderen.
 
 <!-- \newpage -->
-
 
 #### En nu, mét static fields
 
@@ -112,7 +106,6 @@ Console.WriteLine($"{m2.Geboortejaar}");;
 
 Dan wordt de uitvoer:
 
-
 ```text
 4
 4
@@ -132,13 +125,11 @@ Gebruik static niet te pas en te onpas: vaak druist het in tegen de concepten va
 <!-- TODO ed.5 (review): overweeg dit geboorteJaar-voorbeeld te vervangen door een neutrale teller (bv. aantalMensenAangemaakt) zodat het mentale model meteen klopt. Nu opgelost met een waarschuwing-callout. -->
 <!-- TODO ed.5 (review): verschil static field vs static property vs const expliciet maken (studenten gebruiken public static readonly zonder de varianten te begrijpen). -->
 
-
 Ga je dit soort ``static`` variabelen -ook wel static fields genoemd - vaak nodig hebben? Niet zo vaak. Het volgende concept daarentegen wel!
 
 ### Static methoden en klassen
 
 Heb je er al bij stil gestaan waarom je dit kan doen:
-
 
 ```java
 Math.Pow(3,2);
@@ -176,7 +167,6 @@ Zoals je hopelijk al merkt zijn er aardig wat keywords die je nog voor methode e
 
 <!-- \newpage -->
 
-
 #### Voorbeeld van static methoden
 
 Stel dat we enkele veelgebruikte methoden willen groeperen en deze gebruiken zonder telkens een object te moeten aanmaken dan doen we dit als volgt:
@@ -196,9 +186,6 @@ internal static class EpicLibrary
 }
 ```
 
-
-
-
 We kunnen deze methoden nu als volgt aanroepen:
 
 ```java
@@ -210,41 +197,11 @@ Mooi toch?!
 
 Dankzij ``static`` kunnen we dus eigen bibliotheken van methoden én properties aanmaken die we kunnen aanroepen rechtstreeks op de klasse. We kunnen deze aanroepen zonder dat er een instantie van de klasse moet zijn.
 
-::: {.callout-tip title="Zie verder"}
-In **Java** werkt ``static`` zo goed als identiek aan C#: een gedeelde teller bij de klasse, en een methode die je op de klasse aanroept zonder object:
-
-```java
-class Fiets {
-    static int aantalFietsen = 0;
-    Fiets() { aantalFietsen++; }
-    static int getAantal() { return aantalFietsen; }
-}
-```
-
-**Python** doet hetzelfde met andere woorden: een variabele rechtstreeks in de klasse (geen `self`) is een gedeelde *class variable*, en `@staticmethod` maakt een methode die je op de klasse aanroept:
-
-```python
-class Fiets:
-    aantal_fietsen = 0   # gedeeld over alle objecten
-
-    @staticmethod
-    def beschrijf():
-        print("Een fiets")
-```
-
-Telkens hetzelfde principe: dit hoort bij de *klasse*, niet bij een individueel object.
-:::
-
 Je mag ook hybride klassen maken waarin sommige delen ``static`` zijn en andere niet. De ``DateTime`` klasse uit het eerste hoofdstuk bijvoorbeeld is zo'n klasse. De meeste dingen gebeurden *non-static* toch was er ook bijvoorbeeld de ``static`` property ``Now`` om de huidige tijd terug te krijgen, alsook de ``IsLeapYear`` hulpmethode die we rechtstreeks op de klasse ``DateTime`` moesten aanroepen:
-
 
 ```java
 bool gaIkOpPensioenInEenSchrikkeljaar = DateTime.IsLeapYear(2048);
 ```
-
-
-
-
 
 <!-- TODO ed.5 (review): dit Debug.WriteLine-intermezzo breekt de flow van het static-verhaal. Overweeg het naar een eigen sectie/appendix of een aparte tip te verplaatsen. -->
 
@@ -255,7 +212,6 @@ Even een kort intermezzo dat we in de volgende sectie gaan gebruiken, namelijk d
 De ``Debug`` klasse (die in de ``System.Diagnostics`` namespace staat) kan je gebruiken om eenvoudig zaken naar het *debug output venster* te sturen tijdens het debuggen. Dit is handig om te voorkomen dat je debug informatie steeds naar het console-scherm moet sturen . Het zou niet de eerste keer zijn dat iemand vergeet een bepaalde ``Console.WriteLine`` te verwijderen uit het finale product en zo mogelijk gevoelige debug-informatie naar de eindgebruikers lekt.
 
 <!-- \newpage -->
-
 
 Volgende code toont een voorbeeld (merk lijn 1 op die vereist is):
 ```java
@@ -274,22 +230,13 @@ namespace debugdemo
 }
 ```
 
-
-
 Als je voorgaande code uitvoert in debugger modus, dan zal je enkel de tekst ``Hello World! Console`` in je console zien verschijnen. De andere lijn kan je terugvinden in het "Output" venster in Visual Studio:
 
-
 ![Het is wat zoeken tussen de andere output die VS genereert, daarom heb ik "onze" output even geel gemarkeerd.](../assets/6_klassen/debugmode.png)<!--{width=80%}-->
-
-
-
 
 >![](../assets/gotopolice.png)Mooi zo. Nu we dat hebben bekeken kunnen terug keren naar het gebruik van het ``static`` keyword. Of zoals mijn grootvader zaliger altijd zei *"goto static!"*.
 >
 >**MILJAAR!**
-
-
-
 
 #### Nog een voorbeeld van het gebruik van ``static``
 
@@ -311,8 +258,6 @@ internal class Fiets
     }
 }
 ```
-
-
 
 Merk op dat we de methode ``VerminderFiets`` enkel via de klasse kunnen aanroepen daar deze ``static`` werd gemaakt. We kunnen echter nog steeds ``Fiets``-objecten aanmaken aangezien de klasse zelf niet ``static`` werd gemaakt.
 
@@ -337,9 +282,7 @@ Er zijn nu 3 gemaakt
 STATIC:Er zijn 2 fietsen
 ```
 
-
 <!-- \newpage -->
-
 
 ### Static tegenover non-static
 
@@ -365,7 +308,6 @@ Volgende vereenvoudiging maakt duidelijk wat kan aangeroepen worden en wat niet:
 
 ![De pijl duidt aan of methoden en variabelen kunnen bereikt worden of niet.](../assets/6_klassen/staticcall.png)<!--{width=75%}-->
 
-
 :::{.callout-warning}
 
 Een eenvoudige regel is te onthouden dat van zodra je in een ``static`` *omgeving* bent, je niet meer naar de niet-static delen van je code zal geraken.
@@ -375,7 +317,6 @@ Zoals je ziet is de ``Main`` methode als ``static`` gedefinieerd. Willen we dus 
 :::
 
 <!-- \newpage -->
-
 
 ### Static properties 
 
@@ -407,7 +348,6 @@ Balletje.Breedte = 10;
 We zouden zelfs de grenzen van het veld dynamisch kunnen maken en laten afhangen van het huidige level.
 :::
 
-
 De interne werking van de balletjes hoeft dus geen rekening meer te houden met de grenzen van het scherm. We passen de ``Update``-methode aan, rekening houdend met deze nieuwe kennis:
 
 ```java
@@ -427,10 +367,7 @@ public void Update()
 }
 ```
 
-
 <!-- \newpage -->
-
-
 
 En nu kunnen we vlot balletjes laten rond bewegen op bijvoorbeeld een klein deeltje maar van het scherm:
 
@@ -458,16 +395,11 @@ static void Main(string[] args)
 }
 ```
 
-
-
-
-
 ### ``static`` en ``Random``
 
 >![](../assets/attention.png)Je zal ``static`` minder vaak nodig hebben dan non-static zaken. Alhoewel: wanneer je werkt met een klasse waarin je een ``Random``-number generator gebruikt, dan is het een goede gewoonte deze generator ``static`` te maken zodat alle objecten deze ene generator gebruiken. Anders bestaat de kans dat je objecten dezelfde random getallen zullen aanmaken wanneer ze toevallig op quasi hetzelfde moment werden geïnstantieerd of methoden in aanroept.
 
 <!-- \newpage -->
-
 
 Test maar eens wat er gebeurt als je volgende klasse hebt:
 
@@ -506,6 +438,4 @@ internal class Dobbelsteen
     }
 }
 ```
-
-
 

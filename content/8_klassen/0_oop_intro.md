@@ -9,13 +9,11 @@ Er is echter een alternatief: **object georiënteerd Programmeren** (**OOP**, *O
 
 Bij OOP draait alles rond **klassen en objecten** die intern nog steeds gestructureerde code  bevatten. Alle bekende concepten zoals loops, methoden en beslissingsstructuren blijven bestaan. We gaan ze echter verpakken in handige, kleinere aparte klassen. Met OOP wordt onze code **modulair, leesbaarder en onderhoudsvriendelijker**. Bovendien wordt de code krachtiger en kunnen we complexere problemen eenvoudiger oplossen.
 
-
 >![](../assets/attention.png)Ik zet "oplossen" tussen aanhalingstekens. Net zoals alles binnen dit domein ben jij als programmeur uiteindelijk degene die het boeltje moet oplossen. Code, programmeerparadigma's en bibliotheken zijn niet meer dan nuttig gereedschap in jouw arsenaal van programmeertools. Als jij beslist om een hamer als zaag te gebruiken... Tja, dan houd ik m'n hart vast voor het resultaat. 
 
 Dit geldt ook voor de technieken die je nog in dit boek gaat leren: ze zijn "een tool", niets meer. Jij zal ze nog steeds zo optimaal mogelijk moeten leren gebruiken. Uiteraard is het doel van dit boek je zo duidelijk mogelijk het verschil én de bruikbaarheid van de verschillende nieuwe technieken aan te leren.
 
 ## C# is OO in hart en nieren
-
 
 Toen C# werd ontwikkeld in 2001 was één van de hoofddoelen van de programmeertaal om *"een eenvoudige, moderne, objectgeoriënteerde programmeertaal voor algemene doeleinden"* te worden. **C# is van de grond af opgebouwd met het OOP paradigma  als primaire drijfveer.** Een paradigma is een algemeen geaccepteerde manier van denken en doen binnen een bepaald vakgebied, in dit geval binnen de programmeerwereld.
 
@@ -30,26 +28,9 @@ namespace WorldDominationTool
 
 De klasse ``Program`` zorgt ervoor dat ons programma voldoet aan de C# afspraken die zeggen dat alle C# code in klassen moet staan. 
 
-::: {.callout-tip title="Zie verder"}
-Dat *alle* code in een klasse moet zitten, deelt C# met **Java**: ook daar verplicht de taal je om zelfs een simpel "hallo"-programma in een klasse te verpakken.
-
-**Python** en **JavaScript** zijn hierin veel losser. Daar mag je gewoon los code en functies schrijven, zonder ook maar één klasse:
-
-```python
-# een volledig geldig Python-programma, geen klasse in zicht
-print("Hallo wereld")
-```
-
-OOP is in die talen dus een keuze, geen verplichting. In **C** ten slotte bestaat het begrip klasse helemaal niet: daar werk je met losse functies en `struct`s. C# zit aan het strenge eind van het spectrum: het is, zoals de titel zegt, OO in hart en nieren.
-:::
-
-
-
 >![](../assets/care.png)Duizend mammoeten en sabeltandtijgers! Ik dacht dat ik nu wel mee zou zijn met alles wat C# me zou voorschotelen. Helaas, wolharige neushoorn-kaas, niet dus. Ik ga een voorspelling doen: van alle hoofdstukken in dit boek, wordt dit hoofdstuk hetgene waar je het meest je tanden op gaat stuk bijten. Hou dus vol, geef niet te snel op en kom geregeld hier terug. Succes gewenst!
 
 <!-- \newpage -->
-
-
 
 ### Een wereld zonder OOP: Pong
 
@@ -87,7 +68,6 @@ Hopelijk begrijp je deze code. Test ze maar eens in een programma. Zoals je zal 
 
 <!-- \newpage -->
 
-
 #### Extra balletjes?
 
 Dit soort applicatie in C# schrijven met behulp van gestructureerde programmeer-concepten is redelijk eenvoudig. Maar wat als we nu 2 balletjes nodig hebben? Laten we arrays even links laten liggen en het gewoon eens naïef oplossen. Al na enkele lijnen kopiëren merken we dat onze code ongelooflijk rommelachtig gaat worden en we bijna iedere lijn moeten dupliceren:
@@ -124,7 +104,6 @@ while (true)
 
 <!-- \newpage -->
 
-
 ### Een wereld met OOP: Pong
 
 Uiteraard zijn we nu eventjes gestructureerd programmeren aan het demoniseren, dit is echter een bekend 21e eeuws trucje om je punt te maken. 
@@ -153,7 +132,6 @@ internal class Balletje
         }
         X = X + VX;
 
-
         if (Y + VY >= Console.WindowHeight || Y + VY < 0)
         {
             VY = -VY;
@@ -173,7 +151,6 @@ internal class Balletje
 De code voor een nieuwe klasse schrijf je best in een apart bestand in je project. Klik bovenaan in de menu balk op "Project" en kies dan "Add class...". Geef het bestand de naam "Balletje.cs". 
 :::
 
-
 Bijna alle code van zonet hebben we hier geïntegreerd in een ``class Balletje``, maar er zit duidelijk een nieuw sausje over. Vooral aan het begin zien we onze 4 variabelen terugkomen in een nieuw kleedje: namelijk als eigenschappen oftewel *properties* (herkenbaar aan de ``get`` en ``set`` keywords). 
 
 :::{.callout-tip}
@@ -185,7 +162,6 @@ Maar al bij al lijkt de code grotendeels op wat we al kenden. En dat is goed nie
 :::{.callout-tip}
 Een klasse is een blauwdruk van een bepaalde soort 'dingen' of objecten. Objecten zijn de "echte" dingen die werken volgens de beschrijving van de klasse. Ja ik heb zonet 2x hetzelfde verteld, maar het is essentiëel dat je het verschil tussen de termen **klasse** en **object** goed begrijpt. 
 :::
-
 
 Laten we eens een **balletje-object** in het leven roepen. In de main schrijven we daarom dit:
 
@@ -225,8 +201,6 @@ De loopcode is herleid tot 2 aanroepen van **methoden op het ``bal1`` object**: 
 
 Run deze code maar eens. Inderdaad, deze code doet exact hetzelfde als hiervoor. Ook nu krijgen we 1 balletje dat op het scherm over en weer botst. 
 
-
-
 En nu - abracadabra - kijk goed hoe eenvoudig onze code blijft als we 2 balletjes nodig hebben:
 
 ```java
@@ -258,11 +232,6 @@ Dit is de volledige code om 2 balletjes te hebben. Hoe mooi is dat?!
 
 **De kracht van OOP zit hem in het feit dat we de logica IN DE OBJECTEN ZELF plaatsen. De objecten zijn met andere woorden verantwoordelijk om hun eigen gedrag uit te voeren gebaseerd op externe impulsen en hun eigen interne toestand.** In onze main zeggen we aan beide balletjes "update je zelf eens", gevolgd door "teken je zelf eens". 
 
-
-
-
-
-
 Wanneer we 3 of meer balletjes zouden nodig hebben dan zullen we best arrays in de mix moeten gooien. Onze code blijft echter véél eenvoudiger én krachtiger dan wanneer we in het voorgaande enkel de kennis gebruikten die we totnogtoe hadden. Omdat we toch al in het diepe eind zitten, zal ik hier toch al eens tonen hoe we 100 balletjes op het scherm kunnen laten botsen (we gaan ``Random`` gebruiken zodat er wat willekeurigheid in de balletjes zit):
 
 ```java
@@ -293,13 +262,11 @@ while (true)
 }
 ```
 
-
 De reden dat we nu twee loops gebruiken, is omdat we in de updatefase eerst alle objecten willen bijwerken (soms in relatie tot andere objecten) voordat we alles opnieuw op het scherm tekenen. Anders kan het zijn dat je vreemde effecten te zien krijgt als je bijvoorbeeld balletjes tegen elkaar wil laten wegbotsen.
 
 Ok, zwem maar snel naar de kant. We gaan al het voorgaande van begin tot einde uit de doeken doen! Leg die handdoek niet te ver weg, we gaan hem nog nodig hebben.
 
 <!-- \newpage -->
-
 
 ## Klassen en objecten
 
@@ -315,8 +282,6 @@ Neem eens een kijkje aan een druk kruispunt waar fietsers, voetgangers, auto's e
 * Fietsers behoren tot de klasse Fietser.
 
 [^jan]:Dit voorbeeld is gebaseerd op de inleiding van het inzichtvolle boek "Handboek objectgeoriënteerd programmeren" door Jan Beurghs (EAN: 9789059406476).
-
-
 
 ### Definitie klasse en object
 
@@ -335,7 +300,6 @@ Objecten zijn instanties met een eigen levenscyclus die wordt gekenmerkt door:
 Je zou dit kunnen vergelijken met het grondplan voor een huis dat tien keer in een straat zal gebouwd worden. Het plan is de *klasse*. De effectieve huizen die we bouwen aan de hand van dit plan zijn de instanties of objecten van deze klasse. Ieder huis heeft een eigen toestand (ander type bakstenen, wel of geen zonnepannelen) en gedrag (rolluiken gaan open als de zon opkomt).
 :::
 
-
 De klasse beschrijft het algemene **gedrag** van de individuele objecten. Dit gedrag wordt meestal bepaald door de interne staat van ieder object op zichzelf, de zogenaamde **eigenschappen**. Nemen we het voorbeeld van de klasse Auto: de huidige snelheid van een individueel auto-object is mogelijks gebaseerd op het merk (eigenschap) van die auto, alsook welke energiebron (eigenschap) die auto heeft. 
 
 Voorts kunnen objecten ook beïnvloed worden door 'de buitenwereld': naast de interne staat van ieder object, leven de objecten natuurlijk in een bepaalde context, zoals een druk kruispunt. Andere objecten op dat kruispunt kunnen invloed hebben op wat een auto-object doet. 
@@ -349,15 +313,10 @@ Met andere woorden: we kunnen 'van buiten uit' vaak ook het gedrag en de interne
 Wanneer je later de specificaties voor een opdracht krijgt en snel wilt ontdekken wat potentiële klassen zijn, dan is het een goede tip om op zoek te gaan naar de zelfstandige naamwoorden (*substantieven*) in de tekst. Dit zijn meestal de objecten en/of klassen die jouw applicatie zal nodig hebben.
 :::
 
-
 :::{.callout-tip}
 95% van de tijd zullen we in dit boek de voorgaande definitie van een klasse beschrijven, namelijk de blauwdruk voor de objecten die er op gebaseerd zijn. Je zou kunnen zeggen dat de klasse een fabriekje is dat objecten kan maken.
 Echter, wanneer we het ``static`` keyword zullen bespreken gaan we ontdekken dat heel af en toe een klasse ook als een soort object door het leven kan gaan. Heel vreemd allemaal!
 :::
-
-
-
-
 
 ### Abstractie en encapsulatie
 
@@ -404,11 +363,7 @@ Steve Jobs, de oprichter van Apple, was een fervent fan van OOP. In een intervie
 
 Vooral die laatste zin verdient het om nog eens in vet herhaald te worden: **"They encapsulate complexity, and the interfaces to that complexity are high level."**
 
-
 >![](../assets/attention.png)Ik zie dat je gereedsschapkist al aardig gevuld is. Zoals je misschien al gemerkt hebt aan deze sectie, zullen we vanaf nu ook geregeld minder "praktische" en eerder "filosofische" zaken tegenkomen. Maar wees gerust, je zal toch een grotere gereedsschapkist nodig hebben. Echter, net zoals een voorman niet alleen moet kunnen metsen en timmeren, maar ook stabiliteitsplannen begrijpen, zal ook jij moeten begrijpen wat de grotere ideeën achter bepaalde concepten zijn.
 >
 >Zet nu je helm maar op, want in de volgende sectie gaan we wel degelijk onze handen lekker vuil maken!
-
-
-
 

@@ -8,7 +8,6 @@ We zijn ondertussen al gewend aan het opvangen van uitzonderingen met behulp van
 Dat wil zeggen dat ``Exception``s ook maar "gewone klassen" zijn en dus ook aan alle andere regels binnen C# moeten voldoen. Zo ondersteunen ze polymorfisme (*sooooon!*), kan je ze in arrays plaatsen, enz.
 :::
 
-
 Bijgevolg is het logisch dat je in je code **uitzonderingen zelf kunt maken en opwerpen**. Vervolgens kan je deze elders opvangen. 
 
 Een voorbeeld van een bestaand ``Exception`` type gebruiken. We gaan zelf een ``Exception`` object aanmaken (met ``new``) en dit vervolgens opwerpen wanneer we een uitzondering opmerken.  In dit geval wanneer ``getal`` de waarde ``0`` heeft: 
@@ -38,11 +37,9 @@ static void Main(string[] args)
 
 De uitvoer zal zijn:
 
-
 ```text
 BOEM. ZWART GAT!
 ```
-
 
 De lijn ``throw new DivideByZeroException("BOEM. ZWART GAT!");`` zorgt er dus voor dat we een eigen foutboodschap verpakken en opwerpen.
 
@@ -63,25 +60,6 @@ internal class Timception: Exception
 
 :::{.callout-tip}
 Merk op dat we hier met ``base.ToString()`` ervoor zorgen dat ook de foutboodschap van het parent-gedeelte van de uitzondering wordt weergegeven. 
-:::
-
-::: {.callout-tip title="Zie verder"}
-In **Python** werkt dit verrassend gelijkaardig: ook daar maak je een eigen uitzondering door over te erven van ``Exception``, en gooi je ze op met ``raise`` (het equivalent van ``throw``):
-
-```python
-class Timception(Exception):
-    pass
-
-def tims_methode():
-    raise Timception("Een wilde exception verschijnt!")
-
-try:
-    tims_methode()
-except Timception as e:
-    print(e)
-```
-
-Zelfde idee als in C#: een eigen klasse die erft van de algemene ``Exception``-basisklasse, en die je elders kan opvangen.
 :::
 
 :::{.callout-tip}
@@ -115,7 +93,6 @@ catch (Exception e)
 ```
 :::
 
-
 Om deze exception nu zelf op te werpen gebruiken we het keyword **``throw``** gevolgd door een object van het type uitzondering dat je wenst op te werpen. 
 
 In volgende voorbeeld gooien we onze eigen exception op een bepaald punt in de code op en vangen deze dan op:
@@ -141,7 +118,4 @@ static public void TimsMethode()
     throw new Timception();
 }
 ```
-
-
-
 

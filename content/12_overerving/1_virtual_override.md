@@ -21,7 +21,6 @@ Enkel indien een element met ``virtual`` werd aangeduid, kan je deze dus met ``o
 
 <!-- \newpage -->
 
-
 ### Een voorbeeld met vliegende objecten
 
 Stel je voor dat je een applicatie hebt met 2 klassen, ``Vliegtuig`` en ``Raket``. Een raket is een vliegtuig, maar kan veel hoger vliegen dan een vliegtuig. Omdat we weten dat potentiële childklassen op een andere manier zullen willen vliegen, zullen we de methode ``Vlieg`` ``virtual`` zetten:
@@ -46,7 +45,6 @@ Merk op dat we het keyword ``virtual`` mee opnemen in de methodesignatuur op lij
 Terzijde: ``static`` methoden kunnen niet ``virtual`` gezet worden.
 :::
 
-
 Stel dat we 2 objecten aanmaken en laten vliegen:
 
 ```{.java filename="Program.cs"}
@@ -58,14 +56,11 @@ spaceX1.Vlieg();
 
 De uitvoer zal dan zijn twee maal dezelfde zin tonen: ``Het vliegtuig vliegt door de wolken.``
 
-
 :::{.callout-important}
 Je kan een methode of property ``virtual`` instellen zolang ze maar **niet ``private``** is. ``private`` leden zijn immers niet zichtbaar in de child-klasse en kunnen dus ook niet overschreven worden. ``public`` en ``protected`` (zoals het ``protected virtual``-voorbeeld hierboven) kunnen dus wél ``virtual`` zijn.
 :::
 
-
 <!-- \newpage -->
-
 
 Momenteel doet het ``virtual`` keyword niets. Het is enkel een signaal aan mede-programmeurs: *"hey, als je wilt mag je de werking van deze methode aanpassen als je van deze klasse overerft."*
 
@@ -100,22 +95,6 @@ De raket verdwijnt in de ruimte.
 ```
 :::
 
-:::{.callout-tip title="Zie verder"}
-C# is hier streng: een methode mag pas overschreven worden als de parent ze expliciet ``virtual`` zet, en de child moet expliciet ``override`` schrijven. In **Python** is daar niets van: élke methode is automatisch overschrijfbaar, je herschrijft ze gewoon in de child-klasse:
-
-```python
-class Vliegtuig:
-    def vlieg(self):
-        print("Het vliegtuig vliegt door de wolken.")
-
-class Raket(Vliegtuig):
-    def vlieg(self):           # geen virtual, geen override nodig
-        print("De raket verdwijnt in de ruimte.")
-```
-
-Ook **Java** maakt elke (niet-``final``) methode standaard overschrijfbaar. C# kiest bewust voor het omgekeerde: niets mag overschreven worden tenzij je het uitdrukkelijk toelaat.
-:::
-
 :::{.callout-tip}
 Indien je iets ``override`` moet de signatuur van je methode of property  identiek zijn aan deze van de parent-klasse. Het enige verschil is dat je het keyword ``virtual`` vervangt door ``override``.
 
@@ -127,7 +106,4 @@ Als je in VS override begint te typen in een child-klassen dan kan je met behulp
 :::
 
 <!-- TODO ed.5 (review): overweeg een korte aparte sectie "hiding (new) vs. overriding (override)" met een uitgewerkt voorbeeld van het verschil in gedrag via een parent-referentie. -->
-
-
-
 

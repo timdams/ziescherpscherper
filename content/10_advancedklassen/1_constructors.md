@@ -19,7 +19,6 @@ Uiteraard is dit niet alles. In dit hoofdstuk bekijken we:
 ### Werking new operator
 Objecten die je aanmaakt komen niet zomaar tot leven. Nieuwe objecten maken we aan met behulp van de ``new`` operator zoals we al gezien hebben:
 
-
 ```java
 Student frankVermeulen = new Student();
 ```
@@ -36,36 +35,11 @@ De constructor is een unieke methode die wordt aangeroepen bij het aanmaken van 
 
 Momenteel hebben we in de klasse ``Student`` de constructor nog niet expliciet beschreven.  Maar zoals je aan bovenstaande code ziet bestaat deze constructor al wel degelijk.Hij doet echter niets extra. Zo krijgen de instantievariabelen gewoon hun default waarde toegekend, afhankelijk van hun datatype.
 
-::: {.callout-tip title="Zie verder"}
-In C# heeft de constructor dezelfde naam als de klasse. Niet elke taal doet dat. In **Python** heet de constructor altijd `__init__` en is de eerste parameter `self` (de verwijzing naar het object zelf):
-
-```python
-class Auto:
-    def __init__(self, merk):
-        self.merk = merk
-
-mijnAuto = Auto("Bovarc")
-```
-
-In **JavaScript** is het idee weer hetzelfde, maar heet de methode gewoon `constructor`:
-
-```javascript
-class Auto {
-    constructor(merk) {
-        this.merk = merk;
-    }
-}
-```
-
-Drie talen, hetzelfde idee (code die bij de geboorte van een object draait), telkens een andere naam.
-:::
-
 :::{.callout-important}
 
 De naam "constructor" zegt duidelijk waarvoor het concept dient: *het construeren van objecten*. Constructors mogen maar op 1 moment in het leven van een object aangeroepen worden: tijdens hun geboorte m.b.v. ``new``. 
 **Je mag een constructor op geen enkel ander moment gebruiken!**
 :::
-
 
 ### Soorten constructors
 
@@ -75,7 +49,6 @@ Als programmeur van eigen klassen zijn er 3 opties voor je:
 * Je hebt enkel een **default constructor** nodig: je kan nog steeds objecten met ``new Student()`` aanmaken. Maar je gaat zelf beschrijven wat er moet gebeuren in de default constructor. De default constructor herken je aan het feit dat je geen parameters meegeeft aan de constructor tijdens de ``new`` aanroep.
 * Je gebruikt één of meerdere **overloaded constructors**: hierbij zal je dan actuele parameters kunnen meegeven bij de creatie van een object. Denk maar aan ``new Student(24, "Jos")``.
 
-
 :::{.callout-warning}
 
 **Constructors zijn soms gratis, soms niet.** Een lege default constructor voor je klasse krijg je standaard wanneer je een nieuwe klasse aanmaakt. Je ziet deze niet en kan deze niet aanpassen. Je kan echter daarom altijd objecten met ``new Student()`` aanmaken.**Van zodra je echter beslist om zelf één of meerdere constructors te schrijven zal C# zeggen: "Ok, jij je zin, nu doe je alles zelf". De default constructor die je gratis kreeg zal ook niet meer bestaan. Heb je die nodig dan zal je die dus zelf moeten schrijven!**
@@ -83,7 +56,6 @@ Als programmeur van eigen klassen zijn er 3 opties voor je:
 *Een nadeel van C# is dat het soms dingen voor ons achter de schermen doet, en soms niet.* Het is mijn taak je dan ook duidelijk te maken wanneer dat wél en wanneer dat net niét gebeurt. Ik vergelijk het altijd met het werken met aannemers: soms ruimen ze hun eigen rommel op nadien, maar soms ook niet. Alles hangt er van af hoe ik die aannemer heb opgetrommeld.
 
 :::
-
 
 <!-- TODO ed.5 (review): readonly fields kort vermelden (immutability na constructie); past bij constructors. -->
 <!-- TODO ed.5 (review): vooruitwijzing-voetnoot naar : base(...) voor constructors in overerving (H13). -->
@@ -138,17 +110,13 @@ internal class Student
 
 <!-- \newpage -->
 
-
-
 Telkens we nu een object zouden aanmaken met ``new Student()`` zal de waarde in ``UurVanInschrijven`` afhangen van het moment waarop we de code uitvoeren. Beeld je in dat we dit programma uitvoeren om half twaalf 's morgens:
-
 
 ```java
 Student eenStudent = new Student();
 ```
 
 Dan zal de property ``UurVanInschrijven`` van ``eenStudent`` op ``11`` worden ingesteld.
-
 
 :::{.callout-tip}
 Constructors zijn soms nogal zwaarwichtig indien je enkel een eenvoudige auto-property een startwaarde wenst te geven. Wanneer dat het geval is mag je dit ook als volgt doen:

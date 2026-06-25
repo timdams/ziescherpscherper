@@ -8,8 +8,6 @@ De latijnse naam polymorfisme bestaat uit 2 delen: *poly* en *morfisme*, letterl
 
 Polymorfisme laat ons toe dat objecten kunnen behandeld worden als objecten van de klasse waar ze van overerven. Dit klinkt logisch, maar zoals je zo meteen zal zien zal je hierdoor erg krachtige code kunnen schrijven. Anderzijds zorgt polymorfisme er ook voor dat het ``virtual`` en ``override`` concept bij methoden en properties ook effectief werkt. Het is echter vooral de eerste eigenschap waar ik in dit hoofdstuk dieper op in ga.
 
-
-
 ## De "is een"-relatie in actie
 
 Dankzij overerving kunnen we "is een"-relaties beschrijven. Soms is het echter handig dat we alle child-objecten als dat van hun parent kunnen beschouwen. Beeld je in dat je een gigantische klasse-hiërarchie hebt gemaakt, maar finaal wil je wel dat alle objecten een bepaalde property aanpassen die ze gemeenschappelijk hebben. Zonder polymorfisme is dat een probleem. 
@@ -49,38 +47,13 @@ Console.WriteLine(anotherAnimal.MaakGeluid()); //Hinnikhinnik
 
 ![Het gearceerde deel is  niet bereikbaar voor de 2 variabelen in de stack daar deze van het type ``Dier`` zijn.](../assets/7_overerving/varkenpaard.png)
 
-::: {.callout-tip title="Zie verder"}
-In C# heb je voor polymorfisme een gemeenschappelijke parent-klasse nodig (hier ``Dier``) plus ``virtual``/``override``. In **Python** krijg je hetzelfde resultaat zomaar via *duck typing*: "als het loopt als een eend en kwaakt als een eend, dan is het een eend". Er is geen gedeelde basisklasse nodig; als het object de juiste methode heeft, werkt het gewoon:
-
-```python
-class Paard:
-    def maak_geluid(self):
-        return "Hinnikhinnik"
-
-class Varken:
-    def maak_geluid(self):
-        return "Oinkoink"
-
-def laat_spreken(dier):
-    print(dier.maak_geluid())   # werkt voor elk object met die methode
-
-laat_spreken(Paard())   # Hinnikhinnik
-laat_spreken(Varken())  # Oinkoink
-```
-
-Twee talen, hetzelfde doel, maar een totaal andere weg: C# controleert de types streng vooraf, Python kijkt pas tijdens de uitvoer of de methode bestaat.
-:::
-
-
 :::{.callout-tip}
 Het is belangrijk te beseffen dat ``someAnimal`` en ``anotherAnimal`` van het type ``Dier`` zijn en dus enkel die dingen kunnen die in ``Dier`` beschreven staan. Enkel zaken die ``override`` zijn in de child-klasse zullen met de specialisatie-code werken.
 
 Dat C# bij ``someAnimal.MaakGeluid()`` toch de *Varken*-versie uitvoert (en niet zomaar een algemene Dier-versie) heet **late binding** (of *dynamic dispatch*): de keuze welke ``override`` draait, wordt pas tijdens de uitvoer gemaakt, op basis van het **echte object** in de heap, niet op basis van het type van de variabele. Dit late binding is enkel mogelijk omdat de methode ``virtual`` (of ``abstract``) is; bij een gewone methode kijkt C# enkel naar het variabele-type.
 :::
 
-
 <!-- \newpage -->
-
 
 <!-- TODO ed.5 (review): zodra de hiding/new-sectie (H13 TODO) er is, hier tonen dat polymorfisme NIET werkt zoals verwacht bij 'new' (hiding) i.p.v. 'override'. -->
 
@@ -90,7 +63,6 @@ Kortom, polymorfisme laat ons toe om referenties (naar objecten van een child-ty
 
 Dit wil ook zeggen dat dit mag (daar alles overerft van ``System.Object``):
 
-
 ```java
 System.Object mijnObject = new Varken();
 ```
@@ -98,8 +70,6 @@ System.Object mijnObject = new Varken();
 Alhoewel ``mijnObject`` effectief een ``Varken`` is (in het geheugen), kunnen we enkel aan dat gedeelte dat in de klasse ``System.Object`` staat beschreven (``ToString``, ``Equals`` enz.). Als we het varken toch geluid willen laten maken, dan zal dat niet werken! De reden: de compiler kijkt naar het **type van de variabele** (hier ``System.Object``), niet naar het echte object in de heap, en staat dus enkel toe wat ``System.Object`` kent.
 
 Het toewijzen van een child aan een parent-variabele heet **upcasting** (naar boven in de hiërarchie) en gebeurt automatisch. Wil je omgekeerd het varken toch terug als ``Varken`` aanspreken, dan moet je **downcasting** doen (terug naar beneden, expliciet). Dat is foutgevoeliger en doe je veilig met de ``is``- en ``as``-operatoren, die we in hoofdstuk 18 bekijken.
-
-
 
 ## Arrays en polymorfisme
 
@@ -123,14 +93,10 @@ We hebben nu een manier gevonden om onze objecten op de juiste momenten even als
 **Met grote kracht...** Polymorfisme werkt enkel mooi als een child-klasse zich ook écht *kan gedragen* als z'n parent, zonder vreemde verrassingen. Een ``Paard`` dat je als ``Dier`` behandelt, moet alles doen wat je van een ``Dier`` verwacht. Dit principe heet het *Liskov substitution principle*. Het klassieke tegenvoorbeeld (een ``Vierkant`` die overerft van ``Rechthoek``) toont dat een taalkundig kloppende "is een"-relatie tóch tot brokkelige code kan leiden. Hou dus bij het ontwerpen van je hiërarchie in het achterhoofd: kan elk child overal de plaats van z'n parent innemen?
 :::
 
-
-
-
 >![](../assets/care.png)<!--{width=15%}-->
 Polymorfisme is een heel krachtig concept. Door een referentie naar een object te bewaren in een variabele van z'n basistype en, wanneer nodig, ze als 'zichzelf' te gebruiken wordt je code een pak eenvoudiger.
 >
 >Vaak weet je niet op voorhand wat voor elementen je in je lijst wilt plaatsen. Via polymorfisme lossen we dit op. Stel dat je een ``List<Person>`` hebt waar echter elementen van subklassen (``Bakker``, ``Student``, enz.) in terecht kunnen komen. Polymorfisme laat gewoon toe om ook deze elementen in die lijst te plaatsen.
-
 
 ### Een wereld met OOP: Pong polymorfisme
 
@@ -165,6 +131,5 @@ veelBalletjes.Add(new Balletje());
 veelBalletjes.Add(new InstabielBalletje());
 veelBalletjes.Add(new TeleportBalletje());
 ```
-
 
 We hebben nu 5 balletjes: 2 gewone, en eentje van de 3 nieuwe types elk. Alle overige code verderop, waarin we de lijst doorlopen en de ``Update`` en ``TekenOpScherm`` aanroepen van ieder balletje, moet niet aangepast worden.

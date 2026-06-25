@@ -8,7 +8,6 @@ Telkens een introductie begint zoals de vorige paragraaf, dan weet je dat er een
 Waarom wil je objecten kunnen serialiseren naar een bestand? Eenvoudig: het laat je toe om de huidige staat van je programma naar een bestand weg te schrijven en later terug op te halen. Je maakt letterlijk een *savepoint* van je programma en geeft je gebruiker de mogelijkheid om op een later moment vanaf dat punt verder te werken.
 :::
 
-
 ###  JSON
 
 Serialiseren naar een binair bestand resulteert in een zeer compact, maar onleesbaar bestand. Dit type bestand is uiterst efficiënt wat betreft opslag en snelheid bij het inlezen. Echter, het aanpassen van een binair bestand is uiterst complex en het biedt geen garantie dat dit bestand nadien nog correct kan worden gedeserialiseerd naar een object. Bovendien is kennis van het exacte binaire formaat vereist om enige aanpassing te maken, wat handmatig werken vrijwel onmogelijk maakt.
@@ -16,8 +15,6 @@ Serialiseren naar een binair bestand resulteert in een zeer compact, maar onlees
 Serialiseren naar een tekstbestand geeft daarentegen een zeer leesbaar en dus makkelijker aanpasbaar bestand. Het biedt eveneens het voordeel dat je het bestand eenvoudig kan openen, wijzigen en opslaan met behulp van een eenvoudige teksteditor. We moeten echter nauwkeurig specificeren welk datatype welke string vertegenwoordigt en structuren consequent aanhouden om misverstanden te vermijden.
 
 <!-- \newpage -->
-
-
 
 Het **JSON**-bestandsformaat (JavaScript Object Notation) combineert het beste van beide werelden. We gaan niet alle details van JSON in dit boek bespreken, daar de essentie ervan zeer eenvoudig is. Een JSON-bestand is ogenblikkelijk herkenbaar en leesbaar:
 
@@ -30,8 +27,6 @@ Het **JSON**-bestandsformaat (JavaScript Object Notation) combineert het beste v
     }  
 }  
 ```
-
-
 
 :::{.callout-tip}
 JSON is de spirituele opvolger van XML. Alhoewel dit bestandsformaat nog steeds populair is, zien we toch dat meer en meer applicaties met JSON beginnen werken. XML-bestanden zijn door de grote hoeveelheid tags net iets minder leesbaar dan JSON-bestanden. Zeg nu zelf:
@@ -71,12 +66,9 @@ Met JSON kun je complexe datastructuren representeren zoals arrays en geneste ob
 
 <!-- \newpage -->
 
-
 ### Serialiseren in C# naar JSON
 
 Om klassen in C# te serialiseren naar JSON-bestanden, kun je gebruik maken van de ``System.Text.Json`` namespace. 
-
-
 
 Objecten serialiseren is verrassend eenvoudig en intuïtief. 
 
@@ -154,24 +146,11 @@ string jsonString = JsonSerializer.Serialize(studenten);
 Geneste objecten (een ``Student`` die zelf een ``School``-property heeft, bijvoorbeeld) worden net zo goed mee geserialiseerd, zolang het allemaal publieke properties zijn.
 :::
 
-::: {.callout-tip title="Zie verder"}
-JSON staat voor *JavaScript Object Notation*, en het komt dus letterlijk uit **JavaScript**. Daar heb je geen aparte ``JsonSerializer`` nodig: serialiseren zit ingebouwd via ``JSON.stringify``.
-
-```javascript
-const student = { naam: "Barry", leeftijd: 25, uitgeschreven: true };
-const jsonString = JSON.stringify(student);
-console.log(jsonString); // {"naam":"Barry","leeftijd":25,"uitgeschreven":true}
-```
-
-Heel gelijkaardig aan C#, maar nóg directer: omdat JSON uit JavaScript stamt, is een JavaScript-object en zijn JSON-voorstelling bijna hetzelfde ding.
-:::
-
 <!-- TODO ed.5 (review): gemissen nog toe te voegen waar nuttig: (1) System.Text.Json serialiseert enums standaard als getal, niet als naam (JsonStringEnumConverter); (2) record-types worden netjes ondersteund; (3) korte voetnoot dat BinaryFormatter deprecated is sinds .NET 5 (voor wie online oude gidsen tegenkomt); (4) encoding-narigheid (UTF-8/BOM/ANSI) bij bestanden uit Excel/legacy; (5) CSV-parsing als vooruitwijzing (dé eerstejaars-use-case). -->
 
 :::{.callout-tip}
 Je zal  in veel documentatie en online bronnen vaak zien dat men een andere namespace gebruikt om met JSON-bestanden te werken in C#. Tot recent was de ``Newtonsoft.Json`` namespace de geijkte manier. Deze bibliotheek is door een externe firma, Newtonsoft, ontwikkelt (merk op dat het volledig opensource is!) De .NET ontwikkelaars hebben echter veel tijd en moeite in *hun* ``System.Text.Json``namespace gestoken, waardoor er nu een ingebouwde .NET oplossing is. Hierdoor is het aangeraden om nu te werken met de Microsoft oplossing, deze kan quasi alles wat de Newtonsoft-oplossing kan en het zal niet lang meer duren voor het meer zal kunnen.
 :::
-
 
 ### Deserialiseren in C# naar JSON
 
@@ -184,21 +163,6 @@ string jsonText = File.ReadAllText("studentdata.json");
 Student ingeladen = JsonSerializer.Deserialize<Student>(jsonText);
 ```
 
-::: {.callout-tip title="Zie verder"}
-**Python** pakt JSON aan met zijn ingebouwde ``json``-module: ``json.dumps`` serialiseert, ``json.loads`` deserialiseert.
-
-```python
-import json
-
-student = {"naam": "Barry", "leeftijd": 25, "uitgeschreven": True}
-json_string = json.dumps(student)          # object -> JSON-tekst
-terug = json.loads(json_string)            # JSON-tekst -> dict
-```
-
-Verschil met C#: je hoeft bij het deserialiseren geen type mee te geven. Python geeft je gewoon een ``dict`` terug, terwijl C# weet bij welke klasse de data hoort via ``Deserialize<Student>``.
-:::
-
-
 ### Serialisatiegedrag bijsturen
 
 Soms zijn er zaken in een klasse die niet direct als JSON kunnen worden geserialiseerd. Denk aan private instantievariabelen en read-only properties. Deze zaken zijn niet beschikbaar voor de buitenwereld. In dergelijke gevallen kunnen we het serialisatiegedrag aanpassen door attributen te gebruiken.
@@ -206,7 +170,6 @@ Soms zijn er zaken in een klasse die niet direct als JSON kunnen worden geserial
 :::{.callout-tip}
 Attributen zijn kleine codeblokjes die worden toegevoegd aan onze klasse om bepaalde eigenschappen van de klasse aan te passen. Bijvoorbeeld, we kunnen een attribuut gebruiken om een property te laten overslaan bij het serialiseren. Attributen zijn herkenbaar aan de tekst tussen vierkante haken boven een klasse-element. Merk op dat attributen niéts met arrays te maken hebben. Ze zijn een C# manier om je code als het ware meta-informatie te geven die door de compiler of andere bibliotheken kan gebruikt worden.
 :::
-
 
 #### JsonIgnore
 
@@ -252,7 +215,6 @@ Als we hier een object zouden van serialiseren zou dit volgende JSON geven:
 
 <!-- \newpage -->
 
-
 #### JsonInclude
 
 Soms is het belangrijk dat bepaalde private informatie ook geserialiseerd wordt. Met het ``JsonInclude`` kan je dat aanduiden:
@@ -280,7 +242,6 @@ Er zijn nog tal van attributen om het serialisatiegedrag te verbeteren. Deze zij
 
 <!-- \newpage -->
 
-
 ### Onbekende JSON deserialiseren
 
 Als afsluiter toon ik graag een *verborgen feature* van VS die mij al veel tijd heeft bespaard. Stel dat je een stuk JSON hebt van elders[^apirest] dat je in je code wilt kunnen deserialiseren naar een object. Het JSON-bestand is echter vrij complex en gebruikt bijvoorbeeld allerlei geneste objecten (door associatie) en arrays, etc. Kortom, hier manueel de juiste klasse(n) voor schrijven voor je verder kan is veel werk. Zoals je al vermoedde kan je dit heel eenvoudig oplossen. 
@@ -292,7 +253,5 @@ Als afsluiter toon ik graag een *verborgen feature* van VS die mij al veel tijd 
 ![Deze feature krijgt van mij de prijs voor "Meest onderschatte eigenschap van VS"](../assets/21files/jsonpaste.png)
 
 Visual Studio heeft nu voor je de nodige klassen geschreven die exact overeen komen met de JSON die jij wilt kunnen deserialiseren. Handig toch?!
-
-
 
 [^apirest]: Een typische use-case is wanneer je met een online webapi *praat* die met JSON antwoordt.

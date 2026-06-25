@@ -14,7 +14,6 @@ if (booleaanse expressie)
 
 Enkel indien de booleaanse expressie **waar** is (``true`` ), zal de code binnen de accolades van het ``if``-blok uitgevoerd worden. Indien de expressie niet waar is (``false``) dan wordt het blok overgeslagen en gaat het programma verder met de code eronder.
 
-
 Een voorbeeld:
 
 ```java
@@ -35,19 +34,11 @@ Nee
 ```
 :::
 
-
-
-
 Indien `` nummer`` groter of gelijk aan 5 was dan zou er enkel ``Nee`` op het scherm zijn verschenen. De lijn ``Console.WriteLine("Nee");`` zal sowieso uitgevoerd worden zoals je ook kan zien in de flowchart op de volgende pagina.[^code2]
-
-
 
 [^code2]: [Code2flow.com](https://code2flow.com) is een handige tool om je reeds geschreven C# code om te zetten naar een flowchart. Het kan je helpen om vreemde bugs te ontdekken. Uiteraard is de eerste stap debuggen en door je code *steppen*: vaak zal je ogenblikkelijk zien waar je code verkeerd loopt.
 
-
 ![De flowchart van het eerste voorbeeld](../assets/2_beslissingen/ifflow.png)<!--{width=20%}-->
-
-
 
 ### if met een block
 
@@ -62,22 +53,16 @@ if ( nummer < 5 )
 }
 ```
 
-
 ![Accolades zijn duidelijk belangrijk.](../assets/2_beslissingen/iffflowblock.png)<!--{width=25%}-->
 
-
-
 <!-- \newpage -->
-
 
 ### Veelgemaakte fouten met ``if``
 
 >![](../assets/attention.png)Voorman hier! Je hebt me gemist. Ik merk het. Het ging goed de laatste tijd. Maar nu wordt het tijd dat ik je weer even wakker schud want de code die je nu gaat bouwen kan érg vreemde gedragingen krijgen als je niet goed oplet. Luister daarom even naar deze lijst van veel gemaakte fouten wanneer je met ``if`` begint te werken. 
 
-
 #### Appelen en peren vergelijken
 De types in je booleaanse expressie moeten steeds vergelijkbaar zijn. Volgende code zal niet compileren: 
-
 
 ```java
 if( "4" > 3)
@@ -106,7 +91,6 @@ Je bent er bijna!
 
 <!-- \newpage -->
 
-
 Maar indien de ``tijd`` kleiner is dan 20 krijgen we:
 
 ::: {.console}
@@ -125,7 +109,6 @@ if ( tijd < 20 )
     Console.WriteLine ("Je bent er bijna!"); 
 } 
 ```
-
 
 #### Een puntkomma plaatsen na de booleaanse expressie 
 
@@ -148,13 +131,9 @@ Or the blue pill?
 ```
 :::
 
-
 Indien de naam gelijk is aan "neo" dan zal de code *tussen de if en het kommapunt op lijn 1* uitgevoerd worden. Kortom, er wordt niets gedaan (daar hier geen code staat). Het block erachter dat de 2 zinnen op het scherm zet wordt altijd uitgevoerd. 
 
-
 <!-- \newpage -->
-
-
 
 <!-- TODO ed.5 (review): sectie 'ternary operator' (? :) toevoegen na If/else. Bv. string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong"; Korte sectie, één voorbeeld. -->
 <!-- TODO ed.5 (review): pattern matching met 'is' (if (input is int x)) overwegen, modern C#, past thematisch. -->
@@ -178,25 +157,7 @@ else
 }
 ```
 
-
 ![Flowchart van bovenstaande code.](../assets/2_beslissingen/ifelseflow.png)<!--{width=60%}-->
-
-
-::: {.callout-tip title="Zie verder"}
-In **Python** zie je geen accolades. Daar bepaalt de **inspringing** (de witruimte links) welke code bij de ``if`` hoort, en het tussenstuk heet ``elif`` in plaats van ``else if``:
-
-```python
-if leeftijd >= 18:
-    print("meerderjarig")
-elif leeftijd > 12:
-    print("tiener")
-else:
-    print("kind")
-```
-
-In C# heeft inspringen geen enkele invloed op de programmaflow: enkel de accolades tellen. In Python is het net omgekeerd, daar is de inspringing verplicht en bepaalt zij de blokken. Vergeet je in Python een spatie, dan verandert de betekenis van je code.
-:::
-
 
 :::{.callout-warning}
 Een veel gemaakte fout is bij de ``else`` sectie ook een booleaanse expressie plaatsen. Dit kan niet: de ``else`` sectie zal gewoon uitgevoerd worden indien de ``if`` sectie NIET uitgevoerd werd. Volgende code MAG DUS NIET:
@@ -210,9 +171,7 @@ else (a <= b) //<FOUT!
 
 :::
 
-
 <!-- \newpage -->
-
 
 ### If - else if
 
@@ -256,7 +215,6 @@ else
 
 ```
 
-
 :::{.callout-important}
 De volgorde van opeenvolgende "if - else if - else" tests is uiterst belangrijk. Als we in de voorgaande code de volgorde van de twee tests omdraaien, zal het tweede blok (``x > 100``) nooit worden bereikt. 
 
@@ -278,12 +236,10 @@ else
 
 :::
 
-
 :::{.callout-tip}
 Hoe minder tests de computer moet doen, hoe meer performant de code zal uitgevoerd worden. Voor complexe applicaties die bijvoorbeeld in realtime veel berekeningen moeten doen kan het dus een gigantische invloed hebben of een reeks "if - else if else" testen vlot wordt doorlopen. Het is dan ook een goede gewoonte - indien de logica van het algoritme het toelaat - om de meest voorkomende test bovenaan te plaatsen. 
 
 Dit zelfde geldt ook binnen een test zelf wanneer we met logische operators werken. Deze worden altijd volgens de regels van de volgorde van berekeningen uitgevoerd. Volgende test wordt van links naar rechts uitgevoerd:
-
 
 ```java
 x > 100 && a != "stop"
@@ -292,9 +248,7 @@ x > 100 && a != "stop"
 Omdat beide operanden van de EN-operatie ``true`` moeten zijn om een juiste test te krijgen, zal de computer de test automatisch stoppen indien reeds de linkse operand (``x > 100``) niet waar is. Bij dit soort tests probeer je dus ervoor te zorgen dat de tests die het minste kans op slagen hebben (of beter: het vaakst niét zal slagen) eerst te laten testen, zodat de computer geen onnodige extra tests doet.
 :::
 
-
 <!-- \newpage -->
-
 
 ### Nesting
 
@@ -346,14 +300,9 @@ else
 Merk op dat we ``heeftIdentiteitskaart`` rechtstreeks in de test gebruiken en dus niet ``heeftIdentiteitskaart == true`` schrijven. Die ``== true`` is overbodig: ``heeftIdentiteitskaart`` is zelf al een ``bool`` en dus al een volwaardige booleaanse expressie. Wil je testen op ``false``, schrijf dan ``!heeftIdentiteitskaart``.
 :::
 
-
-
 <!-- \newpage -->
-
-
 
 >![](../assets/care.png)Laat deze tiental bladzijden uitleg je niet de indruk geven dat code schrijven met ``if``-structuren een eenvoudige job is. Vergelijk het met van je pa leren hoe je met pijl en boog moet jagen, wat vlekkeloos gaat op een stilstaande schijf, tot je in het bos voor een mammoet staat die op je komt afgestormd. *Da's andere kak hé?*
 >
 >Het is dan ook aangeraden om, zeker in het begin, om steeds een flowchart te tekenen van wat je juist wilt bereiken. Dit zal je helpen om je code op een juiste manier op te bouwen (denk maar aan nesting en het plaatsen van meerdere "if -else" structuren in of na elkaar). *Bezint eer ge begint.*
-
 

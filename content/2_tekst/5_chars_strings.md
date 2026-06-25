@@ -10,14 +10,9 @@ UNICODE volgt de ASCII-standaard op. Door de verdere digitalisering van de werel
 
 UNICODE bevat ook de eerste 128 tekens van ASCII. Daardoor zijn beide standaarden compatibel. Dankzij UNICODE kunnen we nu wereldwijd elke smiley, letter, en pictogram op dezelfde manier delen. Voor statistiekliefhebbers: er zijn 1.111.998 UNICODE tekens mogelijk. In versie 15.1, uitgebracht in september 2023, zijn daarvan 149.813 tekens gedefinieerd. Er is dus nog ruimte over.
 
-
 De eerste 32 karakters zijn "onzichtbare" karakters die een historische reden (in ASCII) hebben om in de lijst te staan, maar sommige ervan zijn ondertussen niet meer erg nuttig. Origineel werd ASCII ontwikkeld als standaard om in de vorige eeuw via de Telex te communiceren. Vandaar dat vele van deze karakters commando's lijken om oude typemachines aan te sturen (*line feed, bell, form feed*, enz.), wat ze dus ook effectief zijn!
 
-
-
 ![De eerste 128 karakters met hun waarden (bron Wikipedia).](../assets/1_csharpbasics/asciihires.png)<!--{width=80%}-->
-
-
 
 ## Tekst datatypes
 
@@ -38,8 +33,6 @@ Je kan eender welk UNICODE-teken in een `char` bewaren, namelijk een letter, een
 
 Merk dus op dat volgende lijn: ``char eenGetal = '7';`` weliswaar een getal als teken opslaat, maar dat intern de compiler deze variabele steeds als een ``char`` zal gebruiken. **Als je dit cijfer zou willen gebruiken als effectief cijfer om wiskundige bewerkingen op uit te voeren, dan zal je dit eerst moeten converteren naar een getal** (we zullen dit in hoofdstuk 4 uitleggen).
 
-
-
 ### String
 
 **Een ``string`` is een reeks van 0, 1 of meerdere `char`-elementen.**
@@ -49,7 +42,6 @@ We gebruiken het ``string`` datatype om tekst voor te stellen. Je begrijpt waars
 :::{.callout-tip}
 In hoofdstuk 8 zullen we ontdekken dat strings eigenlijk zogenaamde arrays zijn. 
 :::
-
 
 #### Strings declareren
 Merk op dat we bij een ``string`` literal gebruik maken van aanhalingstekens (`"`) terwijl bij een ``char`` literal we een apostrof gebruiken (`'`). Dit is de manier om een ``string`` met lengte 1 van een ``char`` te onderscheiden.
@@ -67,18 +59,6 @@ Console.WriteLine(eenGetal);
 ```
 
 Het programma zal driemaal een ``1`` onder elkaar tonen. Boeiend programma, hoor.
-
-::: {.callout-tip title="Zie verder"}
-In **C** bestaat er helemaal geen echt ``string``-type. Een stuk tekst is daar gewoon een rij van losse ``char``-elementen in een array, afgesloten met een onzichtbaar null-karakter (``\0``) zodat de computer weet waar de tekst stopt:
-
-```c
-char letter = 'X';
-char woord[] = "Tim";   // eigenlijk {'T', 'i', 'm', '\0'}
-printf("%c en %s\n", letter, woord);
-```
-
-In C# is een ``string`` een volwaardig ingebouwd type met handige methodes (``.Length``, ``.ToUpper()``, enz.). In C moet je zelf met dat null-karakter en met arrays rekening houden. Mooi om te zien dat het idee "een string is een reeks chars" daar heel letterlijk wordt: in C# is dat onder de motorkap eigenlijk ook zo.
-:::
 
 <!-- TODO ed.5 (review): korte tabel veelgebruikte string-methodes toevoegen: .ToUpper()/.ToLower(), .Trim(), .Length, .Contains(), .Replace(), .Split(). Dagdagelijkse kost. -->
 <!-- TODO ed.5 (review): indexing naam[0] om de eerste letter te krijgen vermelden (sluit aan bij "strings zijn arrays"). -->

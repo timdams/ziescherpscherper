@@ -14,23 +14,10 @@ Je code zal pas compileren indien deze foutloos is geschreven. Herinner je dat c
 
 Zolang er dus fouten in je code staan moet je deze eerst oplossen voor je verder kan. Gelukkig helpt VS je daarmee op 2 manieren:
 
-::: {.callout-tip title="Zie verder"}
-In **JavaScript** is dat helemaal anders. JavaScript wordt niet eerst gecompileerd maar lijn per lijn geinterpreteerd terwijl het programma draait. Een schrijffout houdt je programma dus niet vooraf tegen: het draait gewoon tot het op die fout botst.
-
-```javascript
-console.log("Dit verschijnt nog wel");
-consle.log("Pas hier crasht het programma");
-```
-
-De eerste lijn wordt netjes uitgevoerd, pas bij de tweede (met de typfout ``consle``) loopt het mis. In C# weigert de compiler je hele programma te starten zolang er ergens een fout staat: je vangt fouten dus vroeger, nog voor je programma ook maar één lijn heeft gedraaid.
-:::
-
 * Fouten in code worden met een rode squiggly onderlijnd.
 * Onderaan zie je in de statusbalk of je fouten hebt.
 
 ![Zie je de fout?](../assets/0_intro/error.PNG)
-
-
 
 Laat je trouwens niet afschrikken door de gigantische reeks fouten die soms plots op je scherm verschijnen. VS begint al enthousiast fouten te zoeken terwijl je mogelijk nog volop aan het typen bent. 
 
@@ -40,17 +27,13 @@ Als je plots veel fouten krijgt, kijk dan altijd vlak boven de plek waar de fout
 
 <!-- \newpage -->
 
-
 ### Fouten sneller vinden
 
 Uiteraard ga je vaak code hebben die meerdere schermen omvat. Je kan via de error-list snel naar al je fouten gaan. Open deze door op het error-icoontje onderaan te klikken:
 
 ![So many errors?!](../assets/1_csharpbasics/errors.png)<!--{width=25%}-->
 
-
-
 Dit zal de "error list" openen (**een schermdeel van VS dat ik aanraad om altijd open te laten én dus niet weg te klikken**). Warnings kunnen we - voorlopig - meestal negeren en deze 'filter' hoef je dus niet aan te zetten.
-
 
 ![De error list.](../assets/0_intro/errorlist.PNG)
 
@@ -58,9 +41,7 @@ In de error list kan je nu op iedere foutboodscap klikken om ogenblikkelijk naar
 
 Zou je toch willen compileren en je hebt nog fouten dan zal VS je proberen tegen te houden. **Lees nu onmiddellijk wat de voorman hierover te vertellen heeft.**
 
-
 ![OPLETTEN!](../assets/0_intro/errorwarning.PNG)<!--{width=60%}-->
-
 
 :::{.callout-warning}
 
@@ -68,12 +49,6 @@ Opletten aub : Indien je op de groene start knop duwt en bovenstaande waarschuwi
 
 Lees de boodschap eens goed na: wat denk je dat er gebeurt als je op 'yes' duwt? Inderdaad, VS zal de laatste werkende versie uitvoeren en dus niet de code die je nu hebt staan waarin nog fouten staan.
 :::
-
-
-
-
-
-
 
 ### Fouten oplossen met lampje
 
@@ -89,8 +64,6 @@ Warnings kan je voorlopig over het algemeen negeren . Bekijk ze gewoon af en toe
 
 <!-- \newpage -->
 
-
-
 ### Meest voorkomende fouten
 
 De meest voorkomende fouten die je als beginnende C# programmeur maakt zijn:
@@ -102,5 +75,4 @@ De meest voorkomende fouten die je als beginnende C# programmeur maakt zijn:
 * Code geschreven op plekken waar dat niet mag (je mag momenteel enkel binnen de accolades van ``Main`` schrijven).
 
 <!-- TODO ed.5 (review): debugging-teaser ontbreekt in dit hoofdstuk. Breakpoints, F10 (step over) en F11 (step into) horen hier al kort vermeld, al was het maar als vooruitblik op het stappen door code. -->
-
 

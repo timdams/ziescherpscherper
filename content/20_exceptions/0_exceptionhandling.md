@@ -10,7 +10,6 @@ Wat een dramatische start zeg. Waar was dat voor nodig?! De reden is eenvoudig: 
 
 Maar uiteindelijk blijf je wel met slechte code zitten en een gouden regel in programmeren is dat slechte code je altijd zal achtervolgen en je ooit dubbel en hard zal straffen voor iedere bug waar je te lui voor was om op te lossen. **Kortom, exception handling is de finale fase van goedgeschreven code.**
 
-
 ### Waarom exception handling?
 
 Veel fouten in je code zijn het gevolg van:
@@ -54,9 +53,6 @@ catch
 }
 ```
 
-
-
-
 ### Een try catch voorbeeld
 
 In volgend stukje code kunnen uitzonderingen optreden zoals we zonet zagen:
@@ -86,29 +82,6 @@ Indien er nu een uitzondering optreedt dan zal de tekst "Verkeerde invoer" getoo
 
 [^elegant]: Merk op dat dit probleem eleganter kan opgelost worden met ``TryParse`` wat in het appendix wordt uitgelegd.
 
-::: {.callout-tip title="Zie verder"}
-**Python** kent net als C# echte exceptions, alleen heten de keywords er net iets anders: ``try`` blijft ``try``, maar ``catch`` wordt ``except``:
-
-```python
-try:
-    getal = int(input())
-except ValueError:
-    print("Verkeerde invoer!")
-```
-
-De taal **C** heeft daarentegen *helemaal geen* exceptions. Daar moet je elke functie zelf laten teruggeven of ze gelukt is, meestal via een returnwaarde of een foutcode die je telkens manueel controleert:
-
-```c
-int getal;
-if (scanf("%d", &getal) != 1) {   // 1 = gelukt
-    printf("Verkeerde invoer!\n");
-}
-```
-
-Je merkt het verschil: in C ben je verplicht na elke aanroep zelf de fout te checken, terwijl ``try``/``catch`` die controle netjes bundelt.
-:::
-
-
 ### Een exception genereren met ``throw``
 
 Je kan ook zelf eender waar in je code een uitzondering **opwerpen**. Je doet dit met het **``throw``** keyword. De werking is quasi dezelfde als het ``return`` keyword. Alleen zal bij een ``throw`` je *terug gaan* tot de eerste plek waar een ``catch`` klaarstaat om de uitzondering op te vangen. Dit "naar boven klimmen" door de opeenvolgende methode-aanroepen heet *stack unwinding*: de uitvoering verlaat de huidige methode, dan de methode die deze aanriep, enz., tot er ergens een passende ``catch`` gevonden wordt. Net daarom is het belangrijk om je ``try``/``catch`` op de juiste plek te zetten (zie verderop). Om een uitzondering op te werpen dien je eerst een ``Exception`` object aan te maken en daar de nodige informatie in te plaatsen. In hoofdstuk 14 ga ik hier nog wat dieper op in, maar hier alvast een voorbeeldje:
@@ -121,8 +94,6 @@ throw new Exception("Wow, dit loopt fout");
 Afhankelijk van het soort fout kunnen we echter ook andere soort uitzonderingen opwerpen. Draai daarom snel deze pagina om en ontdek hoe dit kan!
 
 <!-- \newpage -->
-
-
 
 ### Meerdere catchblokken
 
@@ -146,7 +117,6 @@ Exception
 ```
 
 Dat een specifieke exception "een" ``Exception`` is, is precies waarom een ``catch (Exception e)`` ook al die specifiekere uitzonderingen opvangt (denk aan polymorfisme uit hoofdstuk 16).
-
 
 Je kan in het catch blok aangeven welke soort exceptions je wil vangen in dat blok. Als je bijvoorbeeld alle Exceptions wil opvangen schrijf je:
 
@@ -195,22 +165,15 @@ catch { }
 Schrijf je het exception-object niet uit (``catch (Exception e)`` zonder ``e`` ergens te gebruiken), dan geeft VS trouwens een waarschuwing. Je mag dan gewoon ``catch (Exception)`` schrijven zonder naam.
 :::
 
-
-
-
 ### Welke exceptions worden gegooid?
 
 De online .NET documentatie is de manier om te weten te komen welke exceptions een methode mogelijk kan opgooien. Gaan we bijvoorbeeld naar de documentatie van de ``Int32.Parse``-methode[^intparsedoc] dan zien we daar een sectie "Exceptions" waar klaar en duidelijk wordt beschreven wanneer welke exception wanneer wordt opgeworpen.
 
-
-
 ![Een deel van de documentatie. ](../assets/20_exceptions/msdn.png)<!--{width=60%}-->
-
 
 [^intparsedoc]: Zie [docs.microsoft.com/dotnet/api/system.int32.parse](https://docs.microsoft.com/dotnet/api/system.int32.parse).
 
 <!-- \newpage -->
-
 
 ### Werken met de exception parameter
 
@@ -227,7 +190,6 @@ Alle ``Exception``-objecten bevatten volgende informatie:
 |`TargetSite`|	Methode die de exception heeft gegenereerd (staat bij StackTrace helemaal bovenaan).|
 |`ToString()`	|Geeft het type van de exception, Message en StackTrace terug als string.|
 
-
 We kunnen via deze parameter meer informatie uit de opgeworpen uitzondering uitlezen en bijvoorbeeld aan de gebruiker tonen:
 
 ```java
@@ -240,7 +202,6 @@ catch (Exception e)
     Console.WriteLine($"StackTrace: {e.StackTrace}");
 }
 ```
-
 
 :::{.callout-important}
 Vanuit een security standpunt is het zelden aangeraden om Exception informatie zomaar rechtstreeks naar de gebruiker te sturen. Mogelijk bevat de informatie gevoelige informatie en zou deze door kwaadwillige gebruikers kunnen misbruikt worden om bugs in je programma te vinden.
@@ -274,8 +235,4 @@ Voor het specifieke geval van "iets openen en daarna gegarandeerd weer sluiten" 
 
 <!-- TODO ed.5 (review): when-filter (catch (... ex) when (ex.Number == 547)) eventueel als korte voetnoot toevoegen. Niet hoogste prioriteit voor eerstejaars. -->
 <!-- TODO ed.5 (review): taalkeuze-callout (Python try/except/finally, JS geen checked exceptions, Rust Result<T,E>) is een Future-idee, nog niet toegevoegd. -->
-
-
-
-
 

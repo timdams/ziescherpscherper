@@ -8,12 +8,9 @@ Deze manier van werken - methoden gebruiken om instantievariabelen aan te passen
 **Properties (*eigenschappen*) zijn de C# manier om objecten hun interne staat in en uit te lezen. Ze zorgen voor een gecontroleerde toegang tot de interne structuur van je objecten.** 
 :::
 
-
-
 ### Star Wars en de nood aan properties 
 
 In het Star Wars universum heb je goede oude "Darth Vader". Hij behoort tot de mysterieuze klasse van de Sith Lords. Deze Lords lopen met een geheim rond: ze hebben een *Sithnaam*. Deze naam mogen de Lords enkel bekend maken aan andere Sith Lords. Voorts heeft een Sith Lord ook een hoeveelheid energie (*The Force*) waarmee hij kattekwaad kan uithalen. Deze energie kan nooit onder nul gezet worden.
-
 
 We kunnen voorgaande als volgt schrijven:
 
@@ -36,7 +33,6 @@ We willen echter wel van buiten uit het energie-level van een sithLord kunnen in
 
 **Properties lossen dit probleem op.**
 
-
 ### 2 soorten properties
 
 Er zijn 2 soorten properties[^semiprop] in C#:
@@ -44,12 +40,9 @@ Er zijn 2 soorten properties[^semiprop] in C#:
 * **Full properties**: deze stijl van properties verplicht ons véél code te schrijven, maar we hebben ook volledige controle over wat er gebeurt.
 * **Auto-properties**: deze zijn exact het omgekeerde van full properties. Je moet niet veel code schrijven, maar je hebt ook weinig (eigenlijk géén) controle over wat er gebeurt.
 
-
 Ik behandel eerst full properties, omdat auto-properties een soort afgeleide van full properties zijn. Bepaalde aspecten van full properties worden bij auto-properties achter de scherm verstopt zodat jij als programmeur er geen last van hebt.
 
 [^semiprop]: Sinds C# 14 bestaat er nog een derde type: *semi-auto properties*, met het ``field`` keyword. Dat zit tussen full en auto-properties in: je krijgt een verborgen instantievariabele (``field``) zonder ze zelf te declareren, en kan toch validatie in de ``set`` schrijven. Onderaan dit hoofdstuk vind je hier een callout over. We werken in dit hoofdstuk verder met de klassieke full en auto-properties.
-
-
 
 ### Full properties
 
@@ -76,8 +69,6 @@ internal class SithLord
 }
 ```
 
-
-
 Dankzij voorgaande code kunnen we nu buiten het object de property ``Energie`` gebruiken als volgt:
 
 ```java
@@ -88,16 +79,12 @@ Console.WriteLine($"Vaders energie is {Vader.Energie}"); //get
 
 Laten we eens inzoomen op de full property code.
 
-
-
-
 #### Full property: identifier en datatype
 De eerste lijn van een full property beschrijft de naam (identifier) en datatype van de property: ``public int Energie``
 
 **Een property is altijd ``public``** daar dit de essentie van een property net is "de buitenwereld gecontroleerde toegang tot de interne staat van een object geven".
 
 Vervolgens zeggen we wat voor **datatype** de property moet zijn en geven we het een naam die moet voldoen aan de identifier regels van weleer. Voor de buitenwereld zal een property zich gedragen als een gewone variabele, met de naam ``Energie`` van het type ``int``.
-
 
 Indien je de property gaat gebruiken om een instantievariabele naar buiten beschikbaar te stellen, dan is het een goede gewoonte om dezelfde naam als die instantievariabele te nemen maar nu met een hoofdletter (dus ``Energie`` i.p.v. ``energie``).
 
@@ -122,7 +109,6 @@ We mogen eender wat doen in het get-gedeelte (net zoals bij methoden) zolang er 
 
 <!-- \newpage -->
 
-
 #### Full property: set gedeelte
 
 In het set-gedeelte schrijven we de code die we moeten hanteren indien men van buiten een waarde aan de property wenst te geven om zo een instantievariabele aan te passen. 
@@ -139,7 +125,6 @@ De waarde die we van buiten krijgen (als een parameter zeg maar) zal altijd in e
 :::{.callout-tip}
 Deze ``value`` parameter is een geserveerd keyword van de ``set`` syntax en kan je niet hernoemen of voor iets anders gebruiken. 
 :::
-
 
 Vervolgens kunnen we ``value`` toewijzen aan de interne variabele indien gewenst: ``energie = value;``. Uiteraard kunnen we die toewijzing dus ook gecontroleerd laten gebeuren, wat ik zo meteen uitleg.
 
@@ -164,13 +149,9 @@ internal class Auto
 ```
 :::
 
-
 :::{.callout-tip}
 Visual Studio heeft een ingebouwde *snippet* om snel een full property, inclusief een bijhorende private instantievariabele, te schrijven. **Typ "propfull" gevolgd door twee maal op de tab-toets te duwen.**
 :::
-
-
-
 
 ### Full property met toegangscontrole
 
@@ -197,7 +178,6 @@ public int Energie
 
 Volgende lijn zal dus geen effect hebben:
 
-
 ```java 
 palpatine.Energie = -1;
 ```
@@ -208,37 +188,7 @@ We mogen de code binnen ``set`` en ``get`` zo complex maken als we zelf willen.
 Probeer wel steeds de OOP-principes te hanteren wanneer je met properties werkt: in de ``get`` en ``set`` van een property mogen enkel die dingen gebeuren die de verantwoordelijkheid van de property zelf zijn. Je gaat dus bijvoorbeeld niet controleren of een andere property geen illegale waarden krijgt, daar is die andere property voor verantwoordelijk.
 :::
 
-::: {.callout-tip title="Zie verder"}
-Properties met `get`/`set` zijn typisch voor C#. **Java** kent ze niet als taalconcept: daar schrijf je voor elke instantievariabele met de hand twee aparte methoden, een *getter* en een *setter*. Van buiten ziet dat er rommeliger uit:
-
-```java
-sith.setEnergie(20);
-System.out.println(sith.getEnergie());
-```
-
-**Python** zit er dichter bij dankzij de `@property`-decorator: je schrijft methoden, maar gebruikt ze van buiten alsof het een gewone variabele is, net als in C#:
-
-```python
-class SithLord:
-    @property
-    def energie(self):
-        return self._energie
-
-    @energie.setter
-    def energie(self, waarde):
-        if waarde >= 0:
-            self._energie = waarde
-```
-
-De kern is overal dezelfde: je verbergt de instantievariabele en regelt de toegang via code. C# maakt die aanpak alleen het meest elegant met zijn ingebouwde property-syntax.
-:::
-
-
-
-
-
 <!-- \newpage -->
-
 
 ### Property variaties
 
@@ -251,15 +201,11 @@ We zijn niet verplicht om zowel de ``get`` en de ``set`` code van een property t
 
 ![De verschillende full properties mooi opgelijst.](../assets/6_klassen/allprops.png)<!--{width=100%}-->
 
-
-
-
 <!-- \newpage -->
 
 #### Write-only property
 
 Dit soort properties zijn handig indien je informatie naar een object wenst te sturen dat niet mag of moet uitgelezen kunnen worden. Het meest typische voorbeeld is een property ``Pincode`` van een klasse ``BankRekening``. 
-
 
 ```java
 public int Energie
@@ -272,8 +218,6 @@ public int Energie
 }
 ```
 We kunnen dus enkel ``energie`` een waarde geven, maar niet van buiten uitlezen.
-
-
 
 #### Read-only property
 Letterlijk het omgekeerde van een write-only property. Deze gebruik je vaak wanneer je informatie uit een object wil kunnen uitlezen uit een instantievariabele dat NIET door de buitenwereld mag aangepast worden.
@@ -289,17 +233,13 @@ public int Energie
 ```
 We kunnen enkel ``energie`` van buiten uitlezen, maar niet aanpassen.
 
-
 :::{.callout-important}
 Verwar dit niet met het ``readonly`` keyword. Dat wordt **niet** gebruikt om een read-only property te maken (daarvoor laat je gewoon de ``set`` weg, zoals hierboven). ``readonly`` dient voor iets anders: het zet je op een *instantievariabele* om aan te geven dat die na de constructor niet meer mag wijzigen. Dat komt later aan bod.
 :::
 
 <!-- \newpage -->
 
-
-
 #### Read-only property met private set
-
 
 Soms gebeurt het dat we van enkel voor de buitenwereld de property read-only willen maken. We willen in de klasse zelf nog steeds controleren dat er geen illegale waarden aan private instantievariabelen worden gegeven. Op dat moment definiëren we een read-only property met een private setter:
 
@@ -320,7 +260,6 @@ public int Energie
 
 Van buiten zal enkel code werken die de ``get`` van deze property aanroept, bijvoorbeeld:
 
-
 ```java
 Console.WriteLine(palpatine.Energie);
 ```
@@ -331,15 +270,9 @@ Code die de ``set`` van buiten nodig heeft (bv. ``palpatine.Energie = 65;``) zal
 Het is een goede gewoonte om **altijd** via de properties je interne variabele aan te passen en niet rechtstreeks via de instantievariabele zelf. Dit is zo'n nuttige tip dat we op de volgende pagina de voorman hier ook nog even over aan het woord gaan laten.
 :::
 
-
-
-
-
-
 >![](../assets/attention.png)Lukt het een beetje? Properties zijn in het begin wat overweldigend, maar geloof me: ze zijn zowat dé belangrijkste bewoners in de .NET/C# wereld.
 
 <!-- \newpage -->
-
 
 **Nu even goed opletten**: indien we **in** het object de instantievariabelen willen aanpassen dan is het een goede gewoonte om ook dat **via de property** te doen (ook al zit je in het object zelf en heb dus eigenlijk de property niet nodig). Zo zorgen we ervoor dat de bestaande controle in de property niet wordt omzeilt. Kijk zelf naar volgende **slechte** codevoorbeeld:
 
@@ -378,15 +311,9 @@ public void ResetLord(int resetWaarde)
 }
 ```
 
-
-
-
-
 #### Read-only properties die transformeren
 
-
 ![Transformerende properties: Erg nuttig, maar vaak wat stiefmoederlijk behandeld.](../assets/6_klassen/proptrans.png)<!--{width=60%}-->
-
 
 Je bent uiteraard niet verplicht om voor iedere instantievariabele een bijhorende property te schrijven. Omgekeerd ook: mogelijk wil je extra properties hebben voor data die je 'on-the-fly' kan genereren dat niet noodzakelijk uit een instantievariabele komt. Stel dat we volgende klasse hebben:
 
@@ -422,9 +349,6 @@ internal class Persoon
 }
 ```
 
-
-
-
 :::{.callout-tip}
 **Methode of property?**
 
@@ -436,15 +360,6 @@ De regels zijn niet in steen gebeiteld, maar ruwweg kan je stellen dat:
 * Betreft het een eigenschap van het object, dan gebruik je een **property** indien het om data gaat die snel verkregen of berekend kan worden. Gaat het om data die zwaardere en/of langere berekeningen vereist dan is een methode nog steeds aangeraden.
 
 :::
-
-
-
-
-
-
-
-
-
 
 :::{.callout-note}
 **Nieuw in C# 14: Het `field` keyword**

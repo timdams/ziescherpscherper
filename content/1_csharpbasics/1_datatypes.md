@@ -21,18 +21,6 @@ Je hoeft die andere talen helemaal niet te kennen. Het gaat niet om de details, 
 Wie de grote concepten herkent over de taalgrenzen heen, kan ook code lezen in een taal die hij nooit formeel leerde. Dat is precies de vaardigheid die belangrijker wordt: niet zozeer foutloos code *typen*, maar code *kunnen lezen en inschatten*. De "Zie verder"-callouts trainen net die spier.
 :::
 
-::: {.callout-tip title="Zie verder"}
-In **Python** werkt dit totaal anders. Daar geef je nooit een type op: je gooit gewoon een waarde in een variabele en Python zoekt zelf wel uit wat het is. Diezelfde variabele mag bovendien later een heel ander soort data bevatten.
-
-```python
-x = 5        # x is nu een geheel getal
-x = "hallo"  # en nu plots tekst, Python klaagt niet
-```
-
-In C# zou de tweede regel meteen een compilatiefout geven: een `int`-variabele blijft een `int`. Python kiest voor gemak en snelheid van schrijven, C# kiest voor zekerheid: de compiler vangt typefouten al voor je programma ooit draait.
-:::
-
-
 Er zijn verscheine basistypes in C# gedeclareerd, zogenaamde **primitieve datatypes**:. 
 
 In dit boek leren we werken met datatypes voor:
@@ -54,13 +42,10 @@ Het datatype ``string`` heb je al gezien in het vorig hoofdstuk. Je hebt toen ee
 
 Verderop plaatsen we dan iets waar de gebruiker iets kan intypen in die variabele: 
 
-
 ```java
 result = Console.ReadLine();
 ```
 :::
-
-
 
 ### Basistypen voor getallen
 Alhoewel een computer digitaal werkt en enkel 0'n en 1'n bewaart zou dat voor ons niet erg handig werken. C# heeft daarom een hoop datatypes gedefinieerd om te werken met getallen zoals wij ze kennen, gehele en kommagetallen. Intern zullen deze getallen nog steeds binair bewaard worden, maar dat is tijdens het programmeren zelden een probleem.
@@ -79,9 +64,7 @@ Ieder type hierboven heeft een bepaald bereik en hoeveelheid geheugen nodig. Je 
 Of toch: wat met real-time first person shooters die miljoenen berekeningen per seconde moeten uitvoeren? Daar zal iedere bit en byte tellen. Op andere apparaten (smartphone, arduino, smart fridges, enz.) is iedere byte geheugen nog kostbaarder. **Kortom: kies steeds bewust het datatype dat het beste 'past' voor je probleem qua bereik, precisie en geheugengebruik.**
 :::
 
-
 <!-- \newpage -->
-
 
 #### Gehele getallen
 Voor de gehele getallen zijn er volgende datatypes:
@@ -100,8 +83,6 @@ Voor de gehele getallen zijn er volgende datatypes:
 
 Het bereik van ieder datatype is een rechtstreeks gevolg van het aantal bits waarmee het getal in dit type wordt voorgesteld. De ``short`` bijvoorbeeld wordt voorgesteld door 16 bits. Met 16 bits kan je 2^16^ (= 65 536) verschillende waarden voorstellen. Omdat een ``short`` ook negatieve getallen moet kunnen bevatten, loopt het bereik van -2^15^ (= -32768) tot 2^15^-1 (= 32767). Hoe C# die negatieve getallen precies binair voorstelt (via een techniek genaamd *two's complement*) behandelen we niet in dit handboek.
 
-
-
 Enkele opmerkingen bij voorgaande tabel:
 
 * De `s` vooraan `sbyte` staat voor ``signed``: m.a.w. 1 bit wordt gebruikt om het + of - teken te bewaren. 
@@ -109,29 +90,11 @@ Enkele opmerkingen bij voorgaande tabel:
 * `char` bewaart karakters. We zullen verderop dit datatype uitspitten en ontdekken dat karakters (alle tekens op het toetsenbord, inclusief getallen, leesteken, enz.) als gehele, binaire getallen worden bewaard. Daarom staat `char` in deze lijst.
 * Het grootste getal bij `long` is 2^63^-1 (*negen triljoen tweehonderddrieëntwintig biljard driehonderd tweeënzeventig biljoen zesendertig miljard achthonderdvierenvijftig miljoen zevenhonderdvijfenzeventigduizend achthonderd en zeven*). Dit zijn maar 63 bits?! Inderaad, de laatste bit wordt wederom gebruikt om het teken te bewaren.
 
-::: {.callout-tip title="Zie verder"}
-Die hele waaier aan integer-types vind je heel herkenbaar terug in **C** en **C++**: ook daar kies je tussen `char`, `short`, `int`, `long` (en `unsigned`-varianten) net omdat het geheugen telt. C en C# delen hier duidelijk dezelfde wortels.
-
-**JavaScript** doet net het tegenovergestelde: daar bestaat maar een enkel getaltype, `number`, en dat is altijd een 64-bit kommagetal. Een aparte `int` of `byte` bestaat niet.
-
-```javascript
-let leeftijd = 25;     // intern een 64-bit kommagetal
-let prijs = 19.99;     // exact hetzelfde type
-```
-
-Handig (je hoeft nooit te kiezen), maar het verklaart ook waarom JavaScript bij heel grote gehele getallen onnauwkeurig wordt: precies de afweging tussen bereik, precisie en geheugen die je hierboven leert maken.
-:::
-
-
 <!-- \newpage -->
-
 
 >![](../assets/care.png)"Wow. Moet je al die datatypes uit het hoofd kennen? Ik was al blij dat ik tekst op het scherm kon tonen."
 >
 >Uiteraard kan het geen kwaad dat je de belangrijkste datatypes onthoudt, anderzijds zul je zelf merken dat door gewoon veel te programmeren je vanzelf wel zult ontdekken welke datatypes je waar kunt gebruiken. Laat je dus niet afschrikken door de ellenlange tabellen met datatypes in dit hoofdstuk, we gaan er maar een handvol effectief van gebruiken.
-
-
-
 
 #### Kommagetallen
 Voor de kommagetallen zijn er maar 3 mogelijkheden. Ieder datatype heeft een 'voordeel' tegenover de 2 andere, dit voordeel staat vet in de tabel:
@@ -148,8 +111,6 @@ Zoals je ziet moet je bij kommagetallen een afweging maken tussen 3 even belangr
 Bij twijfel opteren we meestal voor kommagetallen om het **``double``** datatype te gebruiken. Bij gehele getallen kiezen we meestal voor **``int``**.
 :::
 
-
-
 :::{.callout-tip}
 De precisie van een getal is het aantal beduidende cijfers. Enkele voorbeelden:
 
@@ -158,9 +119,6 @@ De precisie van een getal is het aantal beduidende cijfers. Enkele voorbeelden:
 * ``0.0032`` heeft precisie 2.
 
 :::
-
-
-
 
 ### Boolean datatype
 
@@ -176,17 +134,6 @@ Het gebeurt vaak dat beginnende programmeurs een ``int`` variabele gebruiken ter
 Het ``bool`` datatype is uiteraard het kleinst mogelijke datatype. Hoeveel geheugen zal een variabele van dit type innemen denk je? Eén bit zou logisch lijken (true of false, 0 of 1), maar in de praktijk neemt een ``bool`` in C# **1 byte** in. Dat komt omdat een computer geen losse bits adresseert, maar werkt per byte.
 :::
 
-::: {.callout-tip title="Zie verder"}
-Dat C# een echt `bool`-type heeft, is niet vanzelfsprekend. In de oude **C**-standaard bestond er helemaal geen booleantype: men gebruikte gewoon een `int`, waarbij `0` voor false stond en alles wat niet nul is voor true.
-
-```c
-int klaar = 0;        /* false */
-if (klaar) { /* ... */ }   /* draait niet, want 0 telt als false */
-```
-
-C# (net als Java en Python) maakt van `true` en `false` echte, aparte waarden. Het voordeel: je kan een getal niet per ongeluk als voorwaarde gebruiken, wat in C een klassieke bron van bugs is.
-:::
-
 <!-- TODO ed.5 (review): integer overflow ontbreekt (int.MaxValue + 1 = int.MinValue). Past goed bij dit datatypes-hoofdstuk. -->
 <!-- TODO ed.5 (review): geen woord over var (type inference, sinds C# 3). Studenten zien het overal; hoort in dit deel thuis (zie ook 1b_variabelen.md). -->
 
@@ -199,14 +146,7 @@ Hier alvast een voorsmaakje:
 * Tekst kan bewaard worden in het ``string`` datatype.
 * Een enkel karakter wordt bewaard in het ``char`` datatype dat we ook hierboven al even hebben zien passeren.
 
-
 <!-- \newpage -->
 
-
-
 >![](../assets/care.png)Wat een gortdroge tekst was me dat nu net? Waarom moeten we al deze datatypes kennen? Wel, we hebben deze nodig om **variabelen** aan te maken. En variabelen zijn het hart van ieder programma. Zonder variabelen ben je aan het programmeren aan een programma dat een soort vergevorderde vorm van dementie heeft en hoegenaamd niets kan onthouden. 
-
-
-
-
 

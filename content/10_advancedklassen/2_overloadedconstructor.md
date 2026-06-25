@@ -9,7 +9,6 @@ Soms wil je parameters aan een object meegeven bij de creatie ervan. We willen b
 
 Met andere woorden, stel dat we dit willen schrijven:
 
-
 ```java
 Student jos = new Student("Lord Oakenwood");
 ```
@@ -35,7 +34,6 @@ Dat was eenvoudig, hé?
 
 Je kan nu enkel je objecten nog via de overloaded constructors aanmaken. Schrijf je ``new Student()`` dan zal je een foutboodschap krijgen. De foutmelding die je dan in Visual Studio ziet, is heel concreet: *"'Student' does not contain a constructor that takes 0 arguments"*. Onthoud die: hij betekent bijna altijd dat je zelf een constructor schreef en daardoor de gratis default constructor kwijt bent. Wil je de default constructor toch nog hebben dan zal je die dus ook expliciet moeten schrijven, bijvoorbeeld:
 
-
 ```java
 internal class Student
 {
@@ -54,7 +52,6 @@ internal class Student
 }
 ```
 
-
 :::{.callout-warning}
 
 Voorgaande wil ik nog eenmaal herhalen. Herinner je m'n voorbeeld van die aannemers die soms wel en soms niet opruimden? Ik zal nog eens samenvatten hoe het zit met constructors in C#:
@@ -63,8 +60,6 @@ Voorgaande wil ik nog eenmaal herhalen. Herinner je m'n voorbeeld van die aannem
 
 Van zodra je één constructor zelf schrijft krijg je niets meer gratis én zal je dus zelf die constructors moeten bijschrijven die jouw code vereist.
 :::
-
-
 
 #### Meerdere overloaded constructors
 Wil je meerdere overloaded constructors dan mag dat ook. Je wilt misschien een constructor die de bijnaam vraagt alsook een ``bool`` om mee te geven of het om een werkstudent gaat:
@@ -98,28 +93,6 @@ internal class Student
 }
 
 ```
-
-::: {.callout-tip title="Zie verder"}
-C#, **Java** en **C++** laten allemaal meerdere constructors toe met een verschillend aantal of type parameters (overloading). In Java ziet dat er bijna identiek uit aan C#:
-
-```java
-class Student {
-    Student(String bijnaam) { ... }
-    Student(String bijnaam, boolean isWerkstudent) { ... }
-}
-```
-
-**Python** kent dat overloaden niet: een klasse heeft daar maar één `__init__`. Je lost het op met default-parameterwaarden:
-
-```python
-class Student:
-    def __init__(self, bijnaam, is_werkstudent=False):
-        self.bijnaam = bijnaam
-        self.is_werkstudent = is_werkstudent
-```
-
-Eén constructor die zich als meerdere gedraagt: of je nu `Student("Jos")` of `Student("Jos", True)` schrijft, het werkt.
-:::
 
 :::{.callout-tip}
 Merk op dat je ook **full properties best aanroept in je constructor** en niet rechtstreeks de achterliggende instantievariabele. Zo kan je ogenblikkelijk de typische controles in een ``set`` in gebruik nemen.
@@ -167,7 +140,6 @@ Deze manier voorkomt dat de constructors verantwoordelijk zijn opdat properties 
 
 :::
 
-
 ### Constructors hergebruiken met ``this()``
 
 Beeld je in dat je volgende klasse hebt:
@@ -204,12 +176,9 @@ Om te voorkomen dat we steeds dezelfde toewijzingen moeten schrijven in construc
 
 We gebruiken hier een speciale methode aanroep (``this()``) bij de constructorsignatuur. Via deze aanroep kunnen we dan eventueel parameters meegeven, afhankelijk van wat we nodig hebben. De compiler zal aan de hand van de parameters (of het ontbreken) beslissen welke constructor nodig is. 
 
-
 Dit gebeurt met behulp van de klassieke *method overload resolution*: de compiler kiest, op basis van het aantal en type parameters, automatisch de best passende constructor. (Voor de fijnproevers: de exacte regels hiervoor heten de *betterness rule*, die we in het methoden-hoofdstuk al kort als verdiepingsstof aanstipten. Je hoeft ze hier niet te kennen.)
 
-
 <!-- \newpage -->
-
 
 Voorgaande klasse gaan we herschrijven zodat alle constructors de bovenste overloaded constructor gebruiken en zo voorkomen dat we te veel dubbele code hebben:
 
@@ -250,11 +219,6 @@ Wanneer we een object aanmaken  (met ``new Microfoon(true)``) dan zal uiteindeli
 2. Ogenblikkelijk wordt de meegegeven actuele parameter ``isUitverkochtIn`` doorgegeven om de overloaded constructor ``Microfoon(string merkIn, bool isUitverkochtIn)`` te benaderen.
 3. Deze constructor zal het ``Merk`` op ``Bovarc`` zetten en ``IsUitverkocht`` op ``true`` (daar we die parameter doorgeven).
 4. We keren nu terug naar de contructor ``Microfoon(bool isUitverkochtIn)`` en voeren de code hiervan uit. Bijgevolg wordt de waarde in ``Merk`` overschreven met ``Wit Product``. 
-
-
-
-
-
 
 #### Welke constructors moet ik nu eigenlijk allemaal voorzien? 
 
@@ -303,8 +267,6 @@ public int Noemer
 
 <!-- \newpage -->
 
-
-
 En vervolgens voegen we een overloaded constructor toe:
 
 ```java
@@ -349,11 +311,7 @@ Hierdoor kan ik geen ``Breuk`` objecten meer als volgt aanmaken:``Breuk eenBreuk
 
 ``Breuk eenBreuk = new Breuk(21,8);``
 
-
-
 <!-- \newpage -->
-
-
 
 ### Een wereld met OOP: Pong constructors
 
@@ -400,6 +358,4 @@ public Balletje()
 ```
 
 :::
-
-
 

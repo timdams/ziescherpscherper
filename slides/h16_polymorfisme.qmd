@@ -84,24 +84,6 @@ Waarom voert `a.MaakGeluid()` toch de **Varken**-versie uit?
 
 ---
 
-## Zie verder: polymorfisme in Python
-
-::: {.callout-tip title="Zie verder"}
-C# heeft een gemeenschappelijke parent plus `virtual`/`override` nodig. **Python** doet het via *duck typing*: heeft het object de methode, dan werkt het gewoon, zonder gedeelde basisklasse.
-
-```python
-def laat_spreken(dier):
-    print(dier.maak_geluid())   # elk object met die methode werkt
-
-laat_spreken(Paard())   # Hinnikhinnik
-laat_spreken(Varken())  # Oinkoink
-```
-
-Bij Python merk je pas tijdens het uitvoeren of een object de methode echt heeft; C# controleert dat al bij het compileren.
-:::
-
----
-
 ## Upcasting
 
 Een child toewijzen aan een parent-variabele (**upcasting**) gaat automatisch, tot zelfs:
@@ -236,28 +218,6 @@ foreach (var middel in alleMiddelen)
 
 ---
 
-## Zie verder: type-check in andere talen
-
-::: {.callout-tip title="Zie verder"}
-Dezelfde vraag, andere notatie. In **Python** is het een functie:
-
-```python
-if isinstance(mijn_auto, Voertuig):
-    print("mijn_auto is een Voertuig")
-```
-
-In **JavaScript** een operator:
-
-```javascript
-if (mijnAuto instanceof Voertuig) {
-    console.log("mijnAuto is een Voertuig");
-}
-```
-
-:::
-
----
-
 ## Het as-keyword
 
 `as` **probeert** te converteren; lukt het niet, dan krijg je **`null`** in plaats van een crash:
@@ -327,9 +287,63 @@ Sinds C# 9 regelen **`record`**-types dit automatisch: `public record Student(st
 
 ---
 
+## Conclusie
+
+* **Polymorfisme** behandelt child-objecten als hun parent; **late binding** kiest de juiste `override`
+* **Upcasting** gaat vanzelf; voor **downcasting** gebruik je `is` en `as`
+* Een **`List<Basistype>`** met child-objecten maakt code flexibel en kort (de premier!)
+* **`is`** toetst een type, **`as`** zet veilig om (`null` bij mislukking), **pattern matching** doet beide
+* Override **`Equals`** voor vergelijking op inhoud, en vergeet **`GetHashCode`** niet
+
+::: {.callout-tip}
+Volgende halte: **interfaces**, contracten die klassen beloven na te komen.
+:::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: polymorfisme in Python
+
+C# heeft een gemeenschappelijke parent plus `virtual`/`override` nodig. **Python** doet het via *duck typing*: heeft het object de methode, dan werkt het gewoon, zonder gedeelde basisklasse.
+
+```python
+def laat_spreken(dier):
+    print(dier.maak_geluid())   # elk object met die methode werkt
+
+laat_spreken(Paard())   # Hinnikhinnik
+laat_spreken(Varken())  # Oinkoink
+```
+
+Bij Python merk je pas tijdens het uitvoeren of een object de methode echt heeft; C# controleert dat al bij het compileren.
+
+---
+
+## Zie verder: type-check in andere talen
+
+Dezelfde vraag, andere notatie. In **Python** is het een functie:
+
+```python
+if isinstance(mijn_auto, Voertuig):
+    print("mijn_auto is een Voertuig")
+```
+
+In **JavaScript** een operator:
+
+```javascript
+if (mijnAuto instanceof Voertuig) {
+    console.log("mijnAuto is een Voertuig");
+}
+```
+
+---
+
 ## Zie verder: gelijkheid in andere talen
 
-::: {.callout-tip title="Zie verder"}
 Zelf bepalen wanneer objecten gelijk zijn, doe je via een vaste methode. **Python** override `__eq__` (zit achter `==`):
 
 ```python
@@ -345,21 +359,6 @@ public boolean equals(Object o) { ... }
 ```
 
 In **JavaScript** kan `===` niet overschreven worden: daar schrijf je zelf een functie `zijnGelijk(a, b)`.
-:::
-
----
-
-## Conclusie
-
-* **Polymorfisme** behandelt child-objecten als hun parent; **late binding** kiest de juiste `override`
-* **Upcasting** gaat vanzelf; voor **downcasting** gebruik je `is` en `as`
-* Een **`List<Basistype>`** met child-objecten maakt code flexibel en kort (de premier!)
-* **`is`** toetst een type, **`as`** zet veilig om (`null` bij mislukking), **pattern matching** doet beide
-* Override **`Equals`** voor vergelijking op inhoud, en vergeet **`GetHashCode`** niet
-
-::: {.callout-tip}
-Volgende halte: **interfaces**, contracten die klassen beloven na te komen.
-:::
 
 ---
 

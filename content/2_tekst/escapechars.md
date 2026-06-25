@@ -1,10 +1,6 @@
 ## Escape characters
 
-
-
-
 >![](../assets/attention.png)De voorman hier! Escape characters zijn niet de boeiendste materie om te bespreken. Je zou nog kunnen hopen dat het een opvolger is van Prison Break of zo. Helaas is dat niet zo. Echter: als je escape characters beheerst zal je veel eenvoudiger én mooier tekst op je scherm kunnen toveren. Let dus even goed op a.u.b.
-
 
 Naast letters en tekens mogen in string en chars ook escape characters staan. In C# hebben bepaalde tekens namelijk een speciale functie. Denk maar aan de dubbele aanhalingstekens (`"`) om het begin en einde van een string-literal mee aan te geven.
  
@@ -15,18 +11,15 @@ We hebben dus een manier nodig om aan te duiden wanneer de compiler het eerstvol
 Laten we eens kijken naar de werking van het weglatingsteken als voorbeeld (de zogenaamde apostrof of afkappingsteken, om bijvoorbeeld ``'s avonds`` te schrijven)
 De volgende code zal de compiler verkeerd interpreteren, omdat hij denkt dat we een leeg karakter willen opslaan:
 
-
 ```java
 char weglatingsteken = ''';
 ```
 
 Het gevolg is een berg aan foutboodschappen omdat er na het sluitende weglatingsteken (het tweede) plots nog één (het derde) verschijnt. VS is volledig in de war en weet niet wat doen. 
 
-
 ![Hulp! VS snapt er niets van!](../assets/1_csharpbasics/escape.png)
 
 **Escape characters to the rescue!** We gaan met de backslash aanduiden dat het volgende teken (het tweede weglatingsteken) een ``char`` voorstelt en niet het sluitende teken in de code.
-
 
 ```java
 char weglatingsteken = '\'';
@@ -51,11 +44,9 @@ Er zijn verschillende escape characters in C# toegelaten. We lijsten hier de bel
 
 <!-- \newpage -->
 
-
 ### Escape characters in strings
 
 Aangezien strings eigenlijk bestaan uit 1 of meerdere char-elementen, is het logisch dat je ook in een string met escape characters kunt werken. Het woord "'s avonds" schrijf je bijvoorbeeld als volgt:
-
 
 ```java
 string woord = "\'s avonds";
@@ -69,7 +60,6 @@ Console.WriteLine(inceptionCode);
 ```
 
 Merk op dat we voorgaande code nog meer Inception-like kunnen maken door de string ineens in de WriteLine methode te plaatsen:
-
 
 ```java
 Console.WriteLine("Console.WriteLine(\"Cool he\");");
@@ -89,8 +79,6 @@ Console.WriteLine("Een zin en dan nu ... de biep\a");
 Verwacht hier niet te veel van: op moderne systemen (Windows Terminal, en standaard ook op Linux en Mac) hoor je meestal **niets**. Het ``\a``-teken wordt dan gewoon genegeerd. Je code is dus niet stuk als je geen biep hoort, het is gewoon een overblijfsel uit de tijd van de oude typemachines en terminals.
 :::
 
-
-
 ### Witregels en tabs
 
 We gebruiken vooral escape characters in strings om bijvoorbeeld witregels en tabs aan te geven. Test bijvoorbeeld volgende lijn code eens:
@@ -101,7 +89,6 @@ Console.WriteLine(eenString);
 ```
 
 Dit zal als output geven:
-
 
 ::: {.console}
 ```text
@@ -116,7 +103,6 @@ Als je het niet gewoon bent de tab-toets op je toetsenbord te gebruiken dan is d
 
 In je console-scherm zijn de tab stops vooraf bepaald. Wanneer je dus een tab invoegt zal de cursor zich verplaatsen naar de eerstvolgende tab stop. In volgende tekstuitvoer zie je de tabstops op de tweede lijn "gevisualiseerd":
 
-
 ```text
 01234567890123456789012345678901234567890123456789
         1       2       3       4       5
@@ -129,12 +115,9 @@ Console.WriteLine("01234567890123456789012345678901234567890");
 Console.WriteLine("\t1\t2\t3\t4\t5");
 ```
 
-
 Tabstops zijn nuttig om je data mooi uitgelijnd in een tabel te plaatsen. Als je dat dan nog eens combineert met de UNICODE karakters om tabellen te tekenen kan je toffe dingen maken. Deze karakters, de zogenaamde "Box Drawing" subset, staan in UNICODE gedefinieerd als de tekens met hexadecimale code 0x2500 en verder. Bekijk zeker eens een datasheet met alle tekens.[^ascitekenen].
 
-
 [^ascitekenen]:www.unicode.org/charts/PDF/U2500.pdf
-
 
 ### Het verbatim karakter ``@``
 
@@ -147,22 +130,9 @@ string metAt = @"C:\Temp\Myfile.txt";
 
 Merk op dat aanhalingstekens nog steeds *ge-escape'd* moeten worden. Heb je dus een stuk tekst met een aanhalingsteken in dan zal je zonder het apenstaartje moeten werken.
 
-::: {.callout-tip title="Zie verder"}
-Ook **Python** kent zo'n verbatim-string, daar heet het een *raw string*. Je plaatst een ``r`` voor de string in plaats van een ``@``:
-
-```python
-zonder_r = "C:\\Temp\\Myfile.txt"
-met_r = r"C:\Temp\Myfile.txt"
-```
-
-Exact hetzelfde idee als het apenstaartje in C#: de backslashes worden gewoon als tekst behandeld en niet als escape character. Handig dus voor bestandspaden en voor zogenaamde *reguliere expressies*, die vol backslashes staan.
-:::
-
 <!-- \newpage -->
 
-
 Uiteraard kan je ook het apenstaartje gebruiken in ``Console.WriteLine``. Volgende zal dus de escape karakters tonen in plaats van "uitvoeren":
-
 
 ```java
 Console.WriteLine(@"Om een tab te tonen gebruik je \t in C#.");
@@ -170,12 +140,9 @@ Console.WriteLine(@"Om een tab te tonen gebruik je \t in C#.");
 
 Wat zal resulteren in volgende uitvoer:
 
-
 ::: {.console}
 ```text
 Om een tab te tonen gebruik je \t in C#.
 ```
 :::
-
-
 

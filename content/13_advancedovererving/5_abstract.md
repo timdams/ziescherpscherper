@@ -13,7 +13,6 @@ Toch is het concept "geometrische figuur" een belangrijk concept: we weten dat a
 
 Het is dit concept, **abstracte klasse**, dat ik in dit hoofdstuk uit de doeken doe. Het laat ons toe klassen te definiëren die niet kunnen geïnstantieerd worden, maar die wel dienst kunnen doen als parentklasse voor andere klassen.
 
-
 ### Abstracte klassen in C\#
 
 Laten we voorgaande eens praktisch binnen C# bekijken. Soms maken we een parent-klasse waarvan geen instanties kunnen gemaakt worden: denk aan de parent-klasse ``Dier``. Voorbeelden van subklassen van Dier zijn ``Paard`` en ``Wolf``. Van ``Paard`` en ``Wolf`` is het logisch dat je instanties kan maken (echte paardjes en wolfjes) maar van 'een dier'? Hoe zou dat er uit zien? Maar toch willen we bepaalde delen gemeenschappelijk maken (alle dieren hebben bijvoorbeeld zuurstof nodig).
@@ -31,8 +30,6 @@ internal abstract class Dier
 ```
 
 We kunnen nu geen objecten meer van het type ``Dier`` aanmaken. Volgende code zal een foutboodschap geven: ``Dier hetDier = new Dier();``
-
-
 
 Maar, we mogen dus wel klassen overerven van deze klasse en instanties van deze nieuwe klasse aanmaken:
 ```java
@@ -62,7 +59,6 @@ Mooi om te zien hoe ``abstract`` en ``sealed`` elkaars tegenpolen zijn: bij een 
 **Abstracte klasse of interface?** Verderop (hoofdstuk 16) leer je *interfaces* kennen, een soort lichtere variant van een abstracte klasse: ze bevatten enkel afspraken (welke methoden/properties er moeten zijn) maar geen gedeelde code of state. Heb je gedeelde code of instantievariabelen nodig, dan is een abstracte klasse de juiste keuze; gaat het puur om "deze klassen kunnen X", dan past een interface beter. Lig er nu nog niet van wakker, maar weet alvast dat het bestaat.
 :::
 
-
 ### Abstracte methoden
 
 Het is logisch dat we mogelijk ook bepaalde zaken in de abstracte klasse als ``abstract`` kunnen aanduiden. Beeld je in dat je een methode ``MaakGeluid`` hebt in je klasse ``Dier``. Wat voor een geluid maakt 'een dier'? We kunnen dus ook geen implementatie (code) geven in de abstracte parent klasse, maar willen wel zeker ervoor zorgen dat alle child-klassen van ``Dier`` geluid kunnen maken, op wat voor manier dan ook.
@@ -81,7 +77,6 @@ Door het keyword ``abstract`` **zijn child-klassen verplicht deze abstracte meth
 :::{.callout-tip}
 Merk op dat er geen codeblock-accolades na de signatuur van abstracte methodes komt.
 :::
-
 
 De Paard-klasse wordt dan[^wolf]:
 
@@ -103,35 +98,12 @@ Dit is dus niet hetzelfde als ``virtual`` waar een ``override`` MAG. Bij ``abstr
 
 ![Alhoewel de code voor MaakGeluid staat beschreven in de klasse Paard, zal deze als het ware ingevuld worden op de plek ervoor in de klasse Dier.](../assets/7_overerving/abstracttemplate.png)<!--{width=65%}-->
 
-
 :::{.callout-important}
 #### Abstracte methoden enkel in abstracte klassen
 Van zodra een klasse een abstracte methode of property heeft dan ben je verplicht om de klasse ook abstract te maken. 
 
 Het zou heel vreemd zijn om objecten in het leven te kunnen roepen die letterlijk stukken ontbrekende code hebben...
 :::
-
-::: {.callout-tip title="Zie verder"}
-**C++** kent het keyword ``abstract`` niet. Toch bestaat exact hetzelfde idee daar onder een andere naam: een "pure virtual" methode. Je zet ``= 0`` achter de signatuur, en zo'n klasse kan je niet instantiëren:
-
-```cpp
-class Dier {
-public:
-    virtual std::string MaakGeluid() = 0; // pure virtual: geen body
-};
-
-class Paard : public Dier {
-public:
-    std::string MaakGeluid() override { return "Hinnikhinnik"; }
-};
-```
-
-Zelfde concept (een klasse met een gat dat de child moet invullen), heel andere notatie. **Python** doet dit dan weer met de ``ABC``-module en ``@abstractmethod``, dichter bij de C#-aanpak.
-:::
-
-
-
-
 
 ### Abstracte properties
 
@@ -167,7 +139,6 @@ Wanneer je een abstracte property maakt dien je ogenblikkelijk aan te geven of h
 
 <!-- \newpage -->
 
-
 ### Een wereld met OOP: Pong en ``abstract``
 
 Dankzij ``abstract`` kunnen we nu een meer algemene klasse maken in Pong. Beeld je in dat je naast balletjes ook andere zaken op het scherm wilt tonen. Echter, niet alles moet als een gek over het scherm vliegen én is op de koop toe niet noodzakelijk een *child* van de ``Balletje``-klasse. 
@@ -199,7 +170,6 @@ internal class Balletje:SpelObject
 ```
 
 <!-- \newpage -->
-
 
 Dankzij deze abstracte klasse hebben we nu een manier om bijvoorbeeld ook een scorebord in het spel te brengen:
 

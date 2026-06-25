@@ -6,38 +6,16 @@ Maar dan stelt zich natuurlijk de vraag: *staat er nog iets boven alle klassen d
 
 **De vraag stellen is ze beantwoorden! Er is effectief een oer-klasse, genaamd de ``System.Object``-klasse, waar alles en iedereen in C# van moet overerven.**
 
-
-
 ## `System.Object`
 **Alle** klassen in C# zijn afstammelingen van de **``System.Object``** klasse. Zowel de bestaande ingebouwde klassen zoals ``Random`` en ``Console``. Maar ook klassen die je zelf maakt erven over van ``System.Object``. En ja, zelfs de bestaande valuetype datatypes zoals ``int`` en ``bool`` zijn verre afstammelingen van ``System.Object``.
 
 ![Enkele voorbeelden. Merk op dat er véél meer ingebouwde klassen in .NET zitten dan degene die ik hier toon.](../assets/7_overerving/systemroot.png)
-
 
 Indien je een klasse schrijft zonder een expliciete parent dan zal deze steeds ``System.Object`` als rechtstreekse parent hebben. Ook afgeleide klassen stammen dus uiteindelijk af van ``System.Object``. Concreet wil dit zeggen dat alle klassen ``System.Object``-klassen zijn en dus ook de bijhorende functionaliteit ervan hebben.
 
 :::{.callout-tip}
 Om de klasse ``Object`` niet te verwarren met het concept "object" zullen we hier steeds praten over ``System.Object``.
 :::
-
-::: {.callout-tip title="Zie verder"}
-Dit is geen typisch C#-trucje: ook **Java** kent precies dezelfde oer-klasse, daar gewoon ``Object`` genoemd. Elke klasse erft er impliciet van, en je krijgt er eveneens methoden zoals ``toString()``, ``equals()`` en ``hashCode()`` bovenop:
-
-```java
-class Student {
-    // erft automatisch van java.lang.Object
-}
-
-Student stud = new Student();
-System.out.println(stud.getClass().getName()); // Student
-```
-
-Heel gelijkaardig dus: één gemeenschappelijke basisklasse waar alles van afstamt. Ook **Python** doet dit met ``object``.
-:::
-
-
-
-
 
 ### Impliciete overerving
 
@@ -50,11 +28,7 @@ internal class Student: System.Object
 
 Wat je trouwens ook expliciet zelf mag schrijven, dat maakt niet uit. **Maar van zodra je een klasse schrijft die nergens expliciet van overerft, dan zal deze automatisch van ``System.Object`` overerven.[^objetovererf]:**
 
-
 [^objetovererf]: Je kan in de .NET documentatie altijd opzoeken waar een klasse van overerft. De ``Type`` klasse bijvoorbeeld erft finaal ook van ``System.Object`` over. Eerst erft ``Type`` over van de ``MemberInfo`` klasse, die op zijn beurt overerft van de oer-klasse.
-
-
-
 
 ### Hoe ziet ``System.Object`` er uit?
 Wanneer je een lege klasse maakt dan zal je misschien al gezien hebben dat instanties van deze nieuwe klasse reeds 4 methoden ingebouwd hebben, dit zijn uiteraard de methoden die in de ``System.Object`` klasse staan gedefiniëerd:
@@ -67,7 +41,6 @@ Wanneer je een lege klasse maakt dan zal je misschien al gezien hebben dat insta
 |``ToString()``| Geeft een ``string`` terug die het object voorstelt.|
 
 Deze methoden zijn redelijk nutteloos in het begin. Enkel door ze zelf te ``overriden`` zullen ze hun nut bewijzen. Uiteraard kan je de de methoden testen om te zien wat er gebeurt.
-
 
 ### ``GetType()``
 Stel dat je een klasse ``Student`` hebt gemaakt in je project. Je kan dan op een object van deze klasse de ``GetType()``-methode aanroepen om te weten wat het type van dit object is:
@@ -86,9 +59,6 @@ Student stud1 = new Student();
 Console.WriteLine(stud1.GetType().Name);
 ```
 
-
-
-
 ### ``ToString()``: het werkpaardje van System.Object
 
 Deze methode vind ik het nuttigst. Wanneer je schrijft:
@@ -98,7 +68,6 @@ Console.WriteLine(stud1);
 ```
 
 Wordt er eigenlijk een impliciete aanroep naar ``ToString`` gedaan. Er staat dus eigenlijk:
-
 
 ```java
 Console.WriteLine(stud1.ToString());
@@ -184,7 +153,6 @@ Twee objecten zijn gelijk voor .NET als aan volgende afspraken wordt voldaan:
 * Het mag enkel ``true`` teruggeven als zowel ``stud1.Equals(stud2);`` als ``stud2.Equals(stud1);`` waar zijn.
 * Indien ``stud1.Equals(stud2)`` true teruggeeft en ``stud1.Equals(stud3)`` ook ``true`` is, dan moet ``stud2.Equals(stud3)`` ook ``true`` zijn.
 
-
 #### ``Equals()`` overriden
 Het is echter aan de maker van de klasse om te beslissen wanneer 2 objecten van een zelfde type gelijk zijn. Het is dus niet zo dat iedere waarde van een instantievariabele bijvoorbeeld gelijk moet zijn opdat 2 objecten gelijk zijn. Alles hangt af van de wijze waarop de klasse dienst moet doen.
 
@@ -202,8 +170,6 @@ public override bool Equals(object o)
 :::{.callout-tip}
 De regel ``if (o is not Student temp)`` doet twee dingen tegelijk: ze controleert of ``o`` wel degelijk een ``Student`` is (en niet ``null`` of een ander type) én, als dat zo is, steekt ze ``o`` meteen als ``Student`` in de variabele ``temp``. Zo respecteren we netjes de afspraak dat we ``false`` teruggeven bij ``null`` of een verkeerd type. Zonder deze controle zou een harde cast (``(Student)o``) crashen op een ``null`` of een ander type. Dit ``is``-patroon (en het bijbehorende ``as``) leer je verderop in hoofdstuk 18; het is ook een eerste glimp van **polymorfisme** (hoofdstuk 16). We komen dichter!
 :::
-
-
 
 ### ``GetHashcode()`` overriden
 Indien je ``Equals`` override dan moet je eigenlijk ook ``GetHashCode`` overriden, daar er wordt verondersteld dat twee gelijke objecten ook dezelfde hashcode teruggeven (dit is belangrijk wanneer je objecten als key in een ``Dictionary`` of in een ``HashSet`` gebruikt). Vroeger was zelf een goede hash schrijven knap lastig, maar tegenwoordig doe je dat eenvoudig met de ingebouwde ``HashCode.Combine``. Je geeft daar dezelfde instantievariabelen aan mee die je ook in ``Equals`` vergelijkt:
@@ -232,12 +198,6 @@ public override int GetHashCode()
 :::
 
 Het zelf uitschrijven van hash-algoritmes ligt buiten de scope van dit boek, maar dankzij ``HashCode.Combine`` heb je dat ook niet nodig.
-
-
-
-
-
-
 
 ### ``ReferenceEquals()``
 

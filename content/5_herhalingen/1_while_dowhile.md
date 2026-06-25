@@ -13,9 +13,7 @@ Net als bij een ``if``-statement wordt de conditie hier uitgedrukt als een boole
 
 Telkens wanneer het programma aan het einde van het ``while`` codeblock komt springt het terug naar de conditie bovenaan en zal de test wederom uitgevoerd worden. Is deze weer ``true`` dan wordt de code weer uitgevoerd. Van zodra de test ``false`` is zal de code voorbij het codeblock springen en na het ``while`` codeblok doorgaan. De flowchart is duidelijk:
 
-
 ![While flowchart.](../assets/3_loops/while.png)<!--{width=75%}-->
-
 
 Een voorbeeld van een eenvoudige while loop:
 
@@ -41,8 +39,6 @@ Zodra je dezelfde lijn(en) code meerdere keren onder elkaar ziet staan, is de ka
 
 Code onder elkaar kopiëren en plakken is dus vaak een duidelijke indicator dat je loops kan gebruiken.
 :::
-
-
 
 ### Complexe condities
 
@@ -91,8 +87,6 @@ Zorg er altijd voor dat de variabele(n) die je in je testconditie gebruikt, ook 
 Zit je per ongeluk in een oneindige loop (je console blijft maar draaien of staat vast)? Geen paniek: stop je programma met de **rode stop-knop** bovenaan in Visual Studio, of pauzeer het met de **Pause/Break-knop** (soms ``Ctrl+Alt+Break``). Zo kan je rustig kijken waar je code blijft hangen.
 :::
 
-
-
 ### Scope van variabelen in loops
 Let er op dat de scope van variabelen bij loops zeer belangrijk is. Indien je een variabele binnen de loop definieert dan wordt deze bij elke iteratie **opnieuw aangemaakt** (en dus niet "onthouden" van de vorige ronde). Ze begint met andere woorden telkens weer met haar beginwaarde.
 Volgende code toont bijvoorbeeld **foutief** hoe je de som van de eerste 10 getallen (1+2+3+...+10) zou maken:
@@ -110,7 +104,6 @@ Console.WriteLine(som); //deze lijn zal een fout genereren
 
 Voorgaande code zal volgende VS foutboodcshap geven: *The name 'som' does not exist in the current context*.
 
-
 De **correcte** manier om dit op te lossen is te beseffen dat de variabele ``som`` enkel binnen de accolades van de while-loop gekend is. Op de koop toe wordt deze steeds terug op 0 gezet en er kan dus geen som van alle teller-waarden bijgehouden worden. Hier de oplossing:
 
 ```java
@@ -126,17 +119,13 @@ Console.WriteLine(som);
 
 <!-- \newpage -->
 
-
 ## Do while
 
 In tegenstelling tot een ``while`` loop, zal een ``do while`` loop sowieso **minstens 1 keer uitgevoerd worden**. De reden is eenvoudig: de stopconditie wordt pas na iedere iteratie gecontroleerd. Bij een ``while`` gebeurt dit net vóór dat er een nieuwe iteratie wordt gestart.
 
 Vergelijk volgende flowchart van de ``do while`` met die van de ``while``:
 
-
 ![De ``do while`` flowchart.](../assets/3_loops/dowhile.png)<!--{width=63%}-->
-
-
 
 De syntax van een ``do while`` is eveneens eenvoudig:
 
@@ -150,22 +139,7 @@ do{
 Merk op dat achteraan de testconditie een puntkomma na het ronde haakje staat. **Deze vergeten is een véél voorkomende fout. Bij een while is dit niet!**
 :::
 
-::: {.callout-tip title="Zie verder"}
-De `do while` ken je terug in **C**, **C++**, **Java** en **JavaScript**, telkens met diezelfde "test-achteraan"-structuur. **Python** daarentegen heeft helemaal geen do-while. Wil je daar iets dat minstens een keer draait, dan bootst men dat na met een `while True` plus een `break`:
-
-```python
-while True:
-    keuze = input("Geef uw keuze in: a, b of c ")
-    if keuze in ("a", "b", "c"):
-        break
-```
-
-Dat is meteen een mooi voorbeeld van wat je hierboven net leert: in Python ben je vaak verplicht om `break` te gebruiken, terwijl je in C# de stopconditie netjes achteraan de `do while` kan zetten.
-:::
-
 <!-- \newpage -->
-
-
 
 Het volgende eenvoudige aftelprogramma toont de werking van de ``do while`` loop:
 
@@ -179,9 +153,6 @@ do
 ```
 
 Begrijp je wat dit programma zal doen? Inderdaad, dit zal alle getallen van 9 tot en met 0 onder elkaar op het scherm zetten.
-
-
-
 
 ### Foute input van gebruiker met loops verwerken
 
@@ -232,5 +203,4 @@ Deze wetten zeggen dat (uitgedrukt even in C# voor de duidelijkheid):
 
 Zie je hoe ik de tweede wet gebruikt heb in het voorgaande voorbeeld om de alternatieve logica te vinden?
 :::
-
 

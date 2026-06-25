@@ -147,21 +147,6 @@ Roep **nooit** zelf `GC.Collect()` op. De GC kiest zelf het beste moment; jij ma
 
 ---
 
-## Zie verder: geheugen zelf beheren
-
-::: {.callout-tip title="Zie verder"}
-C# heeft een GC. In **C++** beheer je geheugen zelf met `new` en `delete`:
-
-```cpp
-int* p = new int(5);   // reserveren
-delete p;              // zelf weer vrijgeven
-```
-
-Vergeet je `delete`, dan lek je geheugen (*memory leak*). De C#-GC neemt dat risico van je over.
-:::
-
----
-
 ## string: een buitenbeentje
 
 `string` is een **reference type**, maar gedraagt zich vaak als een value type omdat het **immutable** is:
@@ -224,27 +209,6 @@ Console.WriteLine(stud1?.Naam); // korter: enkel als niet null
 
 ::: {.callout-note .fragment}
 Groene kronkellijntjes rond `null`? Dat is de *nullable reference types*-functie. Die behandelen we bewust nog niet; je mag ze voorlopig negeren.
-:::
-
----
-
-## Zie verder: "geen waarde"
-
-::: {.callout-tip title="Zie verder"}
-**Python** noemt `null` gewoon `None`:
-
-```python
-student = None
-if student is None:
-    print("Nog geen student.")
-```
-
-**JavaScript** heeft er zelfs twee: `null` (bewust leeg) én `undefined` (nooit toegekend):
-
-```javascript
-let student = null;   // bewust leeg
-let leeftijd;         // undefined
-```
 :::
 
 ---
@@ -324,30 +288,6 @@ catch
 
 * In het **`try`**-blok staat code die kan mislukken
 * Het **`catch`**-blok vangt de uitzondering op en laat je programma netjes verder werken
-
----
-
-## Zie verder: fouten in andere talen
-
-::: {.callout-tip title="Zie verder"}
-**Python** kent ook exceptions, maar `catch` heet er `except`:
-
-```python
-try:
-    getal = int(input())
-except ValueError:
-    print("Verkeerde invoer!")
-```
-
-De taal **C** heeft *geen* exceptions: je checkt zelf na elke aanroep een foutcode:
-
-```c
-int getal;
-if (scanf("%d", &getal) != 1) {   // 1 = gelukt
-    printf("Verkeerde invoer!\n");
-}
-```
-:::
 
 ---
 
@@ -452,6 +392,66 @@ De plaats van je `try`/`catch` bepaalt dus hoe je programma op fouten reageert.
 ::: {.callout-tip}
 Volgende halte: **gevorderde klasseconcepten**, met constructors en `static`.
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: geheugen zelf beheren
+
+C# heeft een GC. In **C++** beheer je geheugen zelf met `new` en `delete`:
+
+```cpp
+int* p = new int(5);   // reserveren
+delete p;              // zelf weer vrijgeven
+```
+
+Vergeet je `delete`, dan lek je geheugen (*memory leak*). De C#-GC neemt dat risico van je over.
+
+---
+
+## Zie verder: "geen waarde"
+
+**Python** noemt `null` gewoon `None`:
+
+```python
+student = None
+if student is None:
+    print("Nog geen student.")
+```
+
+**JavaScript** heeft er zelfs twee: `null` (bewust leeg) én `undefined` (nooit toegekend):
+
+```javascript
+let student = null;   // bewust leeg
+let leeftijd;         // undefined
+```
+
+---
+
+## Zie verder: fouten in andere talen
+
+**Python** kent ook exceptions, maar `catch` heet er `except`:
+
+```python
+try:
+    getal = int(input())
+except ValueError:
+    print("Verkeerde invoer!")
+```
+
+De taal **C** heeft *geen* exceptions: je checkt zelf na elke aanroep een foutcode:
+
+```c
+int getal;
+if (scanf("%d", &getal) != 1) {   // 1 = gelukt
+    printf("Verkeerde invoer!\n");
+}
+```
 
 ---
 

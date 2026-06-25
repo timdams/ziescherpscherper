@@ -4,7 +4,6 @@ De locaties en paths van bestanden kennen is...interessant. Het wordt natuurlijk
 
 Er is geen vaste manier om dit te doen. Alles hangt af van je specifieke probleem. We zullen daarom enkele veel gebruikte *use-cases* bekijken.
 
-
 ### StreamWriter en StreamReader 
 
 #### StreamWriter
@@ -46,8 +45,6 @@ De conditie op lijn 4 verdient wat toelichting. We doen hier 2 zaken:
 
 1. We lezen de volgende lijn uit met behulp van ``ReadLine``.
 2. Wanneer we aan het einde van het bestand zijn zouden we ``null`` terugkrijgen uit ``ReadLine``. Daarom dat we vervolgens hierop controleren. Enkel als we dus effectief nog tekst uitlezen mogen we nogmaals in de loop gaan.
-
-
 
 ### ``using`` alternatief
 
@@ -111,18 +108,6 @@ Wanneer kies je nu wat?
 **Async IO bestaat ook.** In echte programma's (zeker met grotere bestanden of netwerk) wil je het programma niet laten "bevriezen" terwijl het wacht op de schijf. Daarvoor bestaan asynchrone varianten zoals ``await File.ReadAllTextAsync("dagboek.txt")``. Hoe ``async``/``await`` precies werkt zien we hier nog niet, maar je zal deze vorm overal in de Microsoft-documentatie tegenkomen.
 :::
 
-::: {.callout-tip title="Zie verder"}
-In **Python** doet het ``with open``-blok exact wat ons ``using``-blok doet: het bestand gaat automatisch dicht aan het einde van het blok, ook als er een fout optreedt.
-
-```python
-with open("dagboek.txt") as f:
-    inhoud = f.read()
-# f is hier al netjes gesloten
-```
-
-Mooi contrast: waar C# een aparte ``StreamReader`` en een ``using`` nodig heeft, vangt Python beide in één korte regel.
-:::
-
 ###  Uitgewerkt voorbeeld
 
 Dankzij ``StreamReader`` en ``StreamWriter`` hebben we nu reeds een goede greep op werken met bestanden. Laten we eens alles combineren tot een functioneel programma. We maken een dagboek-programma. Telkens het programma opstart zal het de reeds bestaande dagboek-schrijfsels tonen. Vervolgens kan de gebruiker een nieuwe tekst toevoegen. Nadien sluit het programma af. We gebruiken  ``DateTime.Now`` om ieder schrijfsel van een duidelijke tijd en datum te voorzien:
@@ -162,7 +147,6 @@ using (StreamWriter writer = new StreamWriter(dagboekPath,true))
 Totnogtoe werkten we enkel met tekstbestanden om strings uit te lezen. Uiteraard hoeft dit niet, maar het is wel eenvoudig. Soms wil je echter ook binaire bestanden aanmaken en verwerken. Dat kan met de ``BinaryWriter`` en ``BinaryReader``. Dit is echter iets complexer.
 
 De extra moeilijkheid is het feit dat we nu niet meer beperkt zijn tot het wegschrijven van strings. We kunnen perfect een bestand aanmaken dat een opeenvolging van waardes bevat met allemaal verschillende datatypes.  Vooral bij het uitlezen zal dit die extra complexiteit én foutgevoeligheid geven.
-
 
 ### BinaryWriter
 
@@ -271,7 +255,6 @@ Als we in het voorgaande voorbeeld het uitlezen van de ``int`` en de ``bool`` (l
 
 <!-- \newpage -->
 
-
 ### Binaire inhoud tonen
 
 De ``File``-klasse heeft een handige methode ``ReadAllBytes`` waarmee je snel de binaire inhoud van een bestand kunt bekijken. Deze methode is nuttig wanneer je de exacte gegevens van een bestand wilt inspecteren.
@@ -297,7 +280,6 @@ Dit geeft volgende output:
 De eerste byte (``04``) geeft de lengte van de string aan die volgt, 4 dus. De volgende 4 bytes, ``42 6F 6E 64`` zijn de UTF-8 waarden voor de letters "B, o, n, d".
 Vervolgens hebben we 4 byes om het getal 7 voor te stellen (``07 00 00 00``). Finaal hebben we nog de byte-waarde ``01`` die de ``bool`` op ``true`` voorstelt.
 :::
-
 
 :::{.callout-tip}
 Vond je het vreemd dat 7 binair als ``07 00 00 00`` werd voorgesteld? 

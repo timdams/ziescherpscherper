@@ -68,31 +68,6 @@ public override int GetHashCode()
 
 Waarom zou je ``Equals`` eigenlijk overriden? Het verschil zit hem in *waarop* je vergelijkt. Standaard vergelijkt ``==`` voor objecten de **referenties**: twee aparte objecten met exact dezelfde inhoud zijn voor ``==`` dus *niet* gelijk (ze staan op een andere plek in de heap). Door ``Equals`` te overriden bepaal jij zelf wanneer twee objecten gelijk zijn op basis van hun **inhoud** (hier: dezelfde ``Voornaam`` en ``Geboortejaar``).
 
-::: {.callout-tip title="Zie verder"}
-Zelf bepalen wanneer twee objecten "gelijk" zijn doe je in andere talen via een vaste, speciale methode. In **Python** override je daarvoor de magische methode ``__eq__``, die meteen achter de gewone ``==`` zit:
-
-```python
-class Student:
-    def __eq__(self, other):
-        return (self.geboortejaar == other.geboortejaar
-                and self.voornaam == other.voornaam)
-```
-
-In **Java** lijkt het bijna op C#: je overridet ``equals`` (let op de kleine letter):
-
-```java
-@Override
-public boolean equals(Object o) {
-    if (!(o instanceof Student)) return false;
-    Student temp = (Student) o;
-    return geboortejaar == temp.geboortejaar
-        && voornaam.equals(temp.voornaam);
-}
-```
-
-Net als in C# geldt in Java: wie ``equals`` overridet, override ook ``hashCode``. In **JavaScript** bestaat zoiets niet: ``===`` blijft altijd op referentie vergelijken en valt niet te overriden. Daar schrijf je gewoon zelf een functie ``zijnGelijk(a, b)``.
-:::
-
 :::{.callout-tip}
 Sinds C# 9 bestaan er **``record``**-types die dit hele "vergelijken op inhoud"-verhaal automatisch voor je regelen: één regel zoals ``public record Student(string Voornaam, int Geboortejaar);`` genereert zelf een correcte ``Equals``, ``GetHashCode`` én ``ToString``. We schrijven het hier nog met de hand zodat je begrijpt wat er onder de motorkap gebeurt, maar weet alvast dat het korter kan.
 :::

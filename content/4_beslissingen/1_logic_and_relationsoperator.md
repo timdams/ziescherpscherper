@@ -36,11 +36,9 @@ Console.WriteLine(isKleiner);
 Er zal `false` als output op het scherm verschijnen.
 :::
 
-
 :::{.callout-warning}
 Er is een groot verschil tussen de ``=`` operator en de ``==`` operator. De eerste is de toekenningsoperator en zal de rechtse operand aan de linkse operand toewijzen. De tweede zal de linkse met de rechtse operand op gelijkheid vergelijken en een ``bool`` teruggeven.
 :::
-
 
 ### Logische operators
 
@@ -58,7 +56,6 @@ De *EN* en *OF* operators verwachten 2 operanden. Maar de *NIET*-operator verwac
 
 Aangezien onze relationele operators ``bool`` als resultaat geven, kunnen we dus de uitvoer van deze operators gebruiken als operanden voor de logische operators. We gebruiken hierbij haakjes om zeker de volgorde juist te krijgen:
 
-
 ```java
 bool result = (4 < 6) && ("ja" == "nee");
 ```
@@ -75,7 +72,6 @@ Vervolgens wordt dan de logische EN getest en krijgen we finaal ``false`` in ``r
 
 Je kan de niet-operator voor een expressie zetten om het resultaat van de expressie te inverteren.  Bijvoorbeeld:
 
-
 ```java
 bool result = !(0==2) 
 ```
@@ -88,11 +84,9 @@ Merk op dat we deze code ook kunnen schrijven als:
 bool result = (0!=2) 
 ```
 
-
 :::{.callout-warning}
 Alhoewel we voorgaande ook zonder haakjes kunnen schrijven, raad ik dit af. Haakjes zorgen ervoor dat je code leesbaarder wordt. Maar nog belangrijker: het maakt de volgorde van bewerkingen explicieter. Als je niet zeker weet welke operator voorrang heeft, kun je haakjes gebruiken om de juiste volgorde af te dwingen. Dit helpt je om logische fouten te voorkomen die kunnen ontstaan door verkeerde veronderstellingen.
 :::
-
 
 #### Volgorde van bewerkingen
 
@@ -108,24 +102,7 @@ De volgorde van bewerkingen wordt nu belangrijk[^volgorde]! In C# hebben de oper
 
 Wil je deze volgorde dus veranderen in een samengestelde expressie, dan moet je gebruik maken van haakjes.
 
-
-
 [^volgorde]: Bekijk zeker de tabel op [docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators) waar de volgorde van alle operators wordt beschreven.
-
-
-::: {.callout-tip title="Zie verder"}
-In **Python** gebruik je geen symbolen voor de logische operators, maar gewone Engelse woorden: ``and``, ``or`` en ``not``:
-
-```python
-if leeftijd > 18 and heeft_kaart:
-    print("Welkom")
-
-resultaat = not (0 == 2)
-```
-
-Waar C# dus ``&&``, ``||`` en ``!`` schrijft, leest Python bijna als een gewone zin. De werking is identiek (inclusief het stoppen zodra het resultaat vaststaat).
-:::
-
 
 ### Test jezelf
 
@@ -154,5 +131,4 @@ Wat zal de uitkomst zijn van volgende expressies?
 :::
 
 <!-- TODO ed.5 (review): De Morgan-wetten worden nu pas in H6 (loops) geintroduceerd in een tip. Ze passen hier al (bij de logische operators). Overweeg ze hier te tonen. -->
-
 

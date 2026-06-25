@@ -63,21 +63,6 @@ Vergeet `static` voorlopig: beschouw het als een verplicht **toverwoord**. Waaro
 
 ---
 
-## Zie verder: methode-signatuur
-
-::: {.callout-tip title="Zie verder"}
-**Python** doet dit zo:
-
-```python
-def tel_op(a, b):
-    return a + b
-```
-
-Geen returntype, geen types voor parameters. Dat scheelt typewerk, maar Python merkt een verkeerd type pas tijdens het uitvoeren.
-:::
-
----
-
 ## Een eenvoudige methode
 
 :::: {.columns}
@@ -377,22 +362,6 @@ Typ `///` boven een methode en VS maakt het skelet. Bij elke aanroep krijg je da
 
 ---
 
-## Zie verder: bibliotheken importeren
-
-::: {.callout-tip title="Zie verder"}
-In C# haal je bibliotheken binnen met `using`. **Python** doet dit met `import`:
-
-```python
-import math
-
-print(math.sqrt(16))
-```
-
-Hetzelfde idee als bij C#: je geeft aan welke bibliotheek je wilt en spreekt de methoden aan via de naam (`math.sqrt`, zoals `Math.Sqrt`).
-:::
-
----
-
 ## Herbruikbare input
 
 Komt deze constructie vaak voor?
@@ -479,23 +448,6 @@ Twijfelt de compiler tussen types, dan kiest hij via de **betterness rule** de b
 
 ---
 
-## Zie verder: overloading
-
-::: {.callout-tip title="Zie verder"}
-**Python** kent geen overloading: een tweede functie met dezelfde naam overschrijft de eerste. Pythonisten gebruiken default-parameters:
-
-```python
-def bereken_opp(lengte, breedte=None):
-    if breedte is None:
-        return int(3.14159 * lengte * lengte)  # cirkel
-    return lengte * breedte                     # rechthoek
-```
-
-C# laat de compiler op voorhand de juiste versie kiezen. In Python schrijf je die keuze zelf met een `if`.
-:::
-
----
-
 ## Methoden debuggen: step in
 
 Herinner je de debugknoppen uit hoofdstuk 4? Eén lieten we toen liggen: **step in**.
@@ -518,6 +470,54 @@ Simpel, maar oefen het toch een paar keer.
 ::: {.callout-tip}
 Volgende halte: **arrays**, om vele waarden samen in één variabele bij te houden.
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: methode-signatuur
+
+**Python** doet dit zo:
+
+```python
+def tel_op(a, b):
+    return a + b
+```
+
+Geen returntype, geen types voor parameters. Dat scheelt typewerk, maar Python merkt een verkeerd type pas tijdens het uitvoeren.
+
+---
+
+## Zie verder: bibliotheken importeren
+
+In C# haal je bibliotheken binnen met `using`. **Python** doet dit met `import`:
+
+```python
+import math
+
+print(math.sqrt(16))
+```
+
+Hetzelfde idee als bij C#: je geeft aan welke bibliotheek je wilt en spreekt de methoden aan via de naam (`math.sqrt`, zoals `Math.Sqrt`).
+
+---
+
+## Zie verder: overloading
+
+**Python** kent geen overloading: een tweede functie met dezelfde naam overschrijft de eerste. Pythonisten gebruiken default-parameters:
+
+```python
+def bereken_opp(lengte, breedte=None):
+    if breedte is None:
+        return int(3.14159 * lengte * lengte)  # cirkel
+    return lengte * breedte                     # rechthoek
+```
+
+C# laat de compiler op voorhand de juiste versie kiezen. In Python schrijf je die keuze zelf met een `if`.
 
 ---
 

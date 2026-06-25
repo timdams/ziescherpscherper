@@ -5,7 +5,6 @@
 
 Naast de generieke ``List`` collectie, zijn er nog enkele andere nuttige generieke 'collectie-klassen' die je geregeld in je projecten kan gebruiken. We bespreken nu de  ``Dictionary``, ``Queue`` en ``Stack``-collecties.
 
-
 ### ``Queue<>`` collectie
 
 Een queue (uitgesproken als *kjioe*) stelt een "first in, first out"-lijst (FIFO) voor. Een ``Queue`` stelt de rijen voor die we in het echte leven ook hebben wanneer we bijvoorbeeld aanschuiven aan een ticketverkoop of in de supermarkt. Met deze klasse kunnen we zo’n rij simuleren en ervoor zorgen dat steeds het eerste/oudste element in de rij als eerste wordt behandeld. Nieuwe elementen worden achteraan de rij toegevoegd.
@@ -16,7 +15,6 @@ We gebruiken onder andere volgende 2 methoden[^peek] om met een ``Queue``-lijst 
 * ``Dequeue()``: geeft een referentie naar het eerste element in de queue terug en verwijdert dit vervolgens.
 
 ![De Queue: een wachtrij van objecten en een verdomd moeilijk woord om te schrijven.](../assets/10_generics/queue.png)<!--{width=70%}-->
-
 
 Voorbeeld:
 
@@ -37,9 +35,7 @@ Ik tweedes.
 
 [^peek]: Een andere interessante methode is **Peek()**: hiermee kunnen we kijken in de queue wat het eerste element is, zonder het te verwijderen.
 
-
 <!-- \newpage -->
-
 
 ### ``Stack<>`` collectie
 Daar waar een queue "first in,first out" is, is een stack "last in,first out" (LIFO). Met andere woorden het recentst toegevoegde element zal steeds vooraan staan en als eerste verwerkt worden. Je kan dit vergelijken met een stapel papieren waar je steeds bovenop een nieuw papier legt.
@@ -48,7 +44,6 @@ Ook de klasse ``Stack`` heeft verschillende methoden, waarvan volgende 2 methode
 
 * ``Push(T item)``: plaats een nieuw element bovenop de stapel.
 * ``Pop()``: geeft het bovenste element in de stack terug en verwijdert dit vervolgens.
-
 
 ![De stack: een toren van objecten](../assets/10_generics/stack.png)<!--{width=70%}-->
 
@@ -73,21 +68,17 @@ Ik tweede.
 
 <!-- \newpage -->
 
-
-
 ### ``Dictionary<>`` collectie
 
 In een **dictionary** wordt ieder element voorgesteld door een sleutel (**key** of index) en een waarde (**value**). 
 
 De sleutel moet een unieke waarde zijn zodat het element kan opgevraagd worden uit de dictionary aan de hand van deze sleutel zonder dat er duplicaten zijn.
 
-
 Bij de declaratie van de ``Dictionary`` dien je op te geven wat het datatype van de key zal zijn, alsook het type van de waarde (*value*). 
 
 :::{.callout-tip}
 De ``Dictionary``-klasse emuleert dus letterlijk de werking van een woordenboek,  waarbij ieder woord uniek is en een bijhorende uitleg heeft. Het woord is de sleutel, de bijhorende uitleg is de waarde. 
 :::
-
 
 #### Gebruik Dictionary
 In het volgende voorbeeld maken we een ``Dictionary`` van klanten aan. Iedere klant heeft een unieke ID (de key is van het type ``int``) alsook een naam (die niet noodzakelijk uniek is en de waarde voorstelt):
@@ -100,41 +91,19 @@ klanten.Add(666, "The beast");
 klanten.Add(700, "James Bond");
 ``` 
 
-
 ![Visuele voorstelling van de net aangemaakte Dictionary](../assets/10_generics/diction.png)<!--{width=70%}-->
 
 Bij de declaratie van ``klanten`` plaatsen we dus tussen de ``< >`` twee datatypes: het eerste duidt het datatype van de key aan, het tweede dat van de values.
 
 We kunnen een specifiek element opvragen aan de hand van de key. Stel dat we de waarde (naam) van de klant met key (``id``) gelijk aan ``123`` willen tonen, dan schrijven we:
 
-
 ```java
 Console.WriteLine(klanten[123]);
 ```
 
-::: {.callout-tip title="Zie verder"}
-Een ``Dictionary`` heet in **Python** een ``dict`` en zit ingebouwd in de taal met een handige ``{}``-syntax. Geen types opgeven, gewoon sleutel-waarde-paren:
-
-```python
-klanten = {123: "Tim Dams", 6463: "James Bond"}
-print(klanten[123])
-```
-
-In **JavaScript** gebruik je hiervoor een ``Map`` (of een gewoon object):
-
-```javascript
-const klanten = new Map();
-klanten.set(123, "Tim Dams");
-console.log(klanten.get(123));
-```
-
-De Python-versie staat het dichtst bij de leesbaarheid van C#, de JavaScript-``Map`` werkt met aparte ``set``- en ``get``-methoden.
-:::
-
 :::{.callout-tip}
 Dit opzoeken via de key gaat razendsnel, ongeacht hoe groot de dictionary is. Dat is net de kracht van een ``Dictionary``: een element opzoeken op z'n key is veel sneller dan in een ``List`` zoeken met ``Find`` (waar de computer in het slechtste geval álle elementen moet overlopen). Heb je dus data die je vaak op een unieke sleutel moet opvragen, kies dan een ``Dictionary`` in plaats van een ``List``.
 :::
-
 
 We kunnen nu met behulp van bijvoorbeeld een ``foreach``-loop alle elementen tonen. Hier kunnen we de key met de ``.Key``-property uitlezen en het achterliggende object of waarde met ``.Value``. ``Value`` en ``Key`` hebben daarbij ieder het type dat we hebben gedefinieerd toen we het ``Dictionary``-object aanmaakten, in het volgende geval is de ``Key`` dus van het type ``int`` en ``Value`` van het type ``string``:
 
@@ -144,9 +113,6 @@ foreach (var item in klanten)
     Console.WriteLine(item.Key+ "\t:"+item.Value);
 }
 ```
-
-
-
 
 De key werkt dus net als de index bij gewone arrays. Alleen heeft de key nu geen relatie meer met de positie van het element in de collectie, maar is een unieke identifier van het element in kwestie. 
 

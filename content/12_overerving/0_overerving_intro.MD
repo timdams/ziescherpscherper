@@ -19,14 +19,11 @@ Dankzij overerving kunnen we de gemeenschappelijk code van de child-klassen verh
 Deze introductie doet uitschijnen dat overerving enkel z'n nut heeft om *dubbele code* te vermijden, wat niet zo is. Dubbele code vermijden via overerving is eerder een gevolg ervan. Overerving is een erg krachtig concept dat in de komende hoofdstukken telkens zal terugkomen bij polymorfisme, interfaces, enz.
 :::
 
-
-
 ## Wat is overerving
 
 Overerving (**inheritance**) laat ons toe om klassen te specialiseren vanuit een reeds bestaande parent- of basisklasse. Wanneer we een klasse van een andere klasse overerven dan zeggen we dat deze nieuwe klasse een child-klasse of sub-klasse is van de bestaande parent-klasse of super-klasse.
 
 De child-klasse kan alles wat de parent-klasse kan, maar de nieuwe klasse kan nu ook extra specialisatie-code krijgen.
-
 
 ### Is-een relatie
 
@@ -42,7 +39,6 @@ Als je dus in een programmeeropdracht het werkwoord *zijn* tegenkomt - was, is, 
 Wanneer we "x **heeft een** y" zeggen gaat het **niet** over overerving, maar over een associatie (zoals compositatie of aggregatie) wat ik in het volgende hoofdstuk zal uitleggen. 
 :::
 
-
 :::{.callout-important}
 Het is niet omdat 2 klassen delen gelijkaardige (of dezelfde) code hebben dat hier dus automatisch overerving van toepassing is. Enkel indien er een realistische "is een"-relatie bestaat kan overerving toegepast worden.
 :::
@@ -51,24 +47,18 @@ Het is niet omdat 2 klassen delen gelijkaardige (of dezelfde) code hebben dat hi
 Pas op: zelfs een taalkundig correcte "is een"-relatie leidt niet altijd tot goede overerving. Het klassieke voorbeeld: een vierkant *is een* rechthoek, en toch geeft een ``Vierkant : Rechthoek`` later vaak brokkelige code. In hoofdstuk 16 (polymorfisme) komen we hier op terug. Onthoud voorlopig: de "is een"-test is een goede eerste filter, maar geen absolute garantie.
 :::
 
-
 <!-- \newpage -->
-
 
 ### Overerving beschrijven
 In UML-notatie duiden we een overervings-relatie aan met een pijl van van de child- naar de parentklasse:
-
 
 ![Wat zou een parent-klasse van Levend Wezen kunnen zijn?](../assets/7_overerving/paardtulp.png)<!--{width=50%}-->
 
 En als we het voorbeeld van de mens en z'n voorgangers nemen dan zou een vereenvoudigd UML-schema er als volgt uitzien:
 
-
 ![Oververing van onze soort.](../assets/7_overerving/homo.png)<!--{width=30%}-->
 
-
 <!-- \newpage -->
-
 
 ## Overerving in C\#
 
@@ -89,21 +79,6 @@ internal class Dier
 }
 ```
 
-::: {.callout-tip title="Zie verder"}
-Het idee van overerving bestaat in zowat elke OO-taal, alleen de notatie verschilt. In **Python** zet je de parent-klasse tussen haakjes achter de naam:
-
-```python
-class Dier:
-    def eet(self):
-        pass
-
-class Paard(Dier):
-    pass
-```
-
-Java gebruikt dan weer het woord ``extends`` (``class Paard extends Dier``) en C++ schrijft ``class Paard : public Dier``. Hetzelfde concept, telkens een andere schrijfwijze.
-:::
-
 We zeggen dus dat ``Paard`` overerft van de klasse ``Dier``. Het paard is dus een specialisatie van dier. Objecten van het type ``Dier`` kunnen enkel de ``Eet``-methode aanroepen. Objecten van het type ``Paard`` kunnen de ``Eet``-methode aanroepen én ze hebben ook een property ``KanHinnikken``. Een paard kan dus alles wat een dier kan en wat het zelf kan. Een dier kan enkel wat het zelf kan:
 
 ```java
@@ -115,7 +90,6 @@ bPaard.KanHinnikken = false;
 aDier.KanHinnikken = false; //!!! zal niet werken!
 ```
 
-
 ### Alles wordt overgeërfd
 
 **Bij overerving in C# erft de child-klasse ALLES van de parent-klasse**: methoden, properties, instantievariabelen, enz. 
@@ -126,13 +100,11 @@ Alhoewel alles wordt overgeërfd, wil dat niet zeggen dat ``private`` variabelen
 
 <!-- \newpage -->
 
-
 ### Overerving en het geheugen
 
 Tijd om eens te kijken hoe het voorgaande er uitziet in de heap en de stack, met een voorbeeld: een applicatie om aan gebouwbeheer te doen.
 
 Beeld je in dat je volgende klassehiërarchie hebt vastgelegd:
-
 
 ![Villa, Huis en Appartement zijn een Gebouw. En Villa is op de koop toe een specialisatie van Huis.](../assets/7_overerving/klasgebouwen.png)<!--{width=50%}-->
 
@@ -140,9 +112,7 @@ Vervolgens maken we van iedere klasse 1 object aan. De objecten in het geheugen 
 
 ![We zien duidelijk dat een Appartement-object bestaat uit 2 delen: het Gebouw en de specialisatie Appartement.](../assets/7_overerving/gebouwobjecten.png)
 
-
 <!-- \newpage -->
-
 
 Laten we eens 2 objecten aanmaken en kijken wat er in de heap en stack gebeurt:
 
@@ -153,18 +123,13 @@ Villa groteVilla = new Villa();
 
 Dat ziet er dan als volgt uit:
 
-
 ![Blik op het geheugen nadat we een Huis en Villa hebben geïnstantieerd.](../assets/7_overerving/overervinggeheugen.png)<!--{width=55%}-->
 
 Ook hier zien we duidelijk dat een ``Villa`` object alle "code" in zich heeft die zowel in de klasse ``Villa`` staat (de specialisatie) alsook die waarvan wordt overgeërfd, ``Huis``. Bijgevolg heeft ``groteVilla`` dus ook de "code" van ``Gebouw`` "in zich" door de transitiviteits-eigenschap van overerving. 
 
 Echter, de ``private`` delen van een klasse blijven beperkt tot dat stuk waar de variabele of methode origineel toe hoort. Als er dus in de klasse ``Huis`` een variabele ``private bool heeftDeurbel`` was, dan zal de code in de klasse ``Villa`` daar niet aan geraken:
 
-
 ![Private is echt private. Enkelde code binnen de klasse Huis kan deze bool benaderen.](../assets/7_overerving/privscope.png)<!--{width=60%}-->
-
-
-
 
 ### ``protected`` keyword
 
@@ -217,14 +182,11 @@ De buitenwereld kan ``Geboortejaar`` nu enkel uitlezen, maar de klasse zelf én 
 
 <!-- \newpage -->
 
-
-
 ### Multiple inheritance
 
 In C# is het niet mogelijk om een klasse van meer dan één parent-klasse te laten overerven (zogenaamde *multiple inheritance*).  Dit is wel mogelijk in sommige andere object georiënteerde talen. Het is in C# dus niet mogelijk om een klasse ``Mens`` te maken die tegelijkertijd overerft van de klasse ``Aap`` en van ``Tekening``. C# heeft hier bewust voor gekozen om het zogenaamde *diamond problem* te vermijden: erft een klasse van twee parents die elk dezelfde methode hebben, dan weet de compiler niet meer welke van de twee hij moet gebruiken. Voor situaties waar je toch meerdere "rollen" wil combineren, gebruik je interfaces (hoofdstuk 16).
 
 Als puntje bij paaltje komt zal je trouwens bijna nooit multiple inheritance in de echte wereld tegenkomen (het typische tegenvoorbeeld is het vogelbekdier...maar hoe vaak ga je dat moeten modelleren in een project). Vaker zullen compositie en interfaces de oplossing zijn voor je probleem: 2 essentiële OOP aspecten die ik in de volgende hoofdstukken uit de doeken zal doen.
-
 
 <!-- TODO ed.5 (review): naast sealed op klasseniveau ook 'sealed override' op methodeniveau vermelden (om verdere override in diepere child-klassen te blokkeren). -->
 

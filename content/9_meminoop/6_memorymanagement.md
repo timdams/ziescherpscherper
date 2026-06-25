@@ -6,7 +6,6 @@ Vervolgens gaan we kort de keywords ``using`` en ``namespace`` bekijken. Die twe
 
 Finaal lijkt het ons een goed moment om je robuustere, minder crashende, code te leren schrijven. Exception handling, de naam zegt het al, gaat ons helpen om die typische uitzonderingen (zoals deling door 0) in algoritmes op een elegante manier op te vangen (en dus niet door een nest van ``if`` structuren te schrijven in de hoop dat je iedere mogelijke uitzondering kunt opvangen).
 
-
 ## Geheugenbeheer in C\#
 
 In hoofdstuk 8 deed ik reeds uit de doeken dat variabelen op 2 manieren in het geheugen kunnen leven:
@@ -40,7 +39,6 @@ Volgende tabel vat samen welke type in welk geheugen wordt bewaard:
 
 ![Stack en heap](../assets/5_arrays/gc1.png)<!--{width=75%}-->
 
-
 ### Waarom twee geheugens?
 
 Waarom plaatsen we niet alles in de stack? De reden hiervoor is dat bij het compileren van je applicatie er reeds zal berekend worden hoeveel geheugen de stack zal nodig hebben. Wanneer je programma dus later wordt uitgevoerd weet het OS perfect hoeveel geheugen het minstens moet reserveren bij het besturingssysteem.
@@ -50,9 +48,6 @@ Er is echter een probleem: de compiler kan niet alles perfect berekenen of voors
 Het zou nutteloos (en zonde) zijn om reeds bij aanvang een bepaalde hoeveelheid stackgeheugen voor een array te reserveren als we niet weten hoe groot die zal worden. Beeld je in dat alle applicaties op je computer *voor alle zekerheid* een halve gigabyte aan geheugen zouden vragen. Je computer zou enkele terabyte aan geheugen nodig hebben. Het is dus veel realistischer om enkel het geheugen te reserveren waar de compiler 100% zeker van is dat deze zal nodig zijn.
 
 De heap laat ons toe om geheugen op een wat minder gestructureerde manier in te palmen. Tijdens de uitvoer van het programma fungeert de heap als een grote speelplaats waar je overal dingen kunt neerzetten, zolang er maar ruimte vrij is. De stack daarentegen is het kleine bankje naast de zandbak: handig, snel, en met een precies bekende grootte.
-
-
-
 
 ### Value types in de stack
 
@@ -83,8 +78,6 @@ void VerhoogParameter(int a)
 }
 ```
 
-
-
 Bij de aanroep geven we een kopie van de variabele mee:
 ```java
 int getal = 5;
@@ -95,7 +88,6 @@ Console.WriteLine($"Na methode {getal}");
 De parameter ``a`` zal de waarde ``5`` gekopieerd krijgen. Maar wanneer we nu zaken aanpassen in ``a`` zal dit geen effect hebben op de waarde van ``getal``.
 
 De output van bovenstaand programma zal zijn:
-
 
 ```text
 In methode 6
@@ -108,8 +100,6 @@ Na methode 5
 
 Concreet zijn dit alle zaken die vaak redelijk groot zullen zijn of waarvan op voorhand niet kan voorspeld worden hoe groot ze *at runtime* zullen zijn (denk maar aan arrays, instanties van complexe klassen, enz.).
 
-
-
 ### = operator bij reference types
 
 Wanneer we de = operator gebruiken bij een reference type dan kopiëren we de referentie naar de waarde van de rechtse operand, niet de waarde zelf.
@@ -121,11 +111,9 @@ We bekijken nu de impact van de = operator bij:
 
 <!-- \newpage -->
 
-
 #### = operator bij objecten
 
 We zien dit gedrag bij alle reference types, zoals objecten:
-
 
 ```java
 Student stud = new Student();
@@ -146,14 +134,11 @@ stud = new Student();
 
 Het geheugen na lijn 1 ziet er zo uit:
 
-
 ![Na lijn 1](../assets/6_klassen/memzoom1.png)<!--{width=85%}-->
-
 
 Merk op dat de variabele ``stud`` eigenlijk de waarde ``null`` heeft. We leggen later uit wat dit juist wil zeggen.
 
 <!-- \newpage -->
-
 
 Lijn 2 gaan we nog trager bekijken: Eerst zal het gedeelte rechts van de ``=``-operator uitgevoerd worden. Er wordt dus **in de heap** een nieuw ``Student``-object aangemaakt:
 
@@ -169,10 +154,7 @@ Vervolgens wordt de toekenning toegepast en wordt het geheugenadres van het obje
 Ik ga nogal licht over het ``new``-keyword en de constructor. Maar zoals je merkt is dit een ongelooflijk belangrijk mechanisme in de wereld van de objecten. Het brengt letterlijk objecten tot leven (in de heap) en zal als resultaat laten weten op welke plek in het geheugen het object staat.
 :::
 
-
-
 <!-- \newpage -->
-
 
 #### = operator bij arrays
 
@@ -195,17 +177,14 @@ Console.WriteLine(nummers[0]);
 
 We zullen dus als output krijgen:
 
-
 ```text
 999
 999
 ```
 
-
 ![De situatie op het einde.](../assets/5_arrays/refarr2.png)<!--{width=70%}-->
 
 <!-- \newpage -->
-
 
 Hetzelfde gedrag zien we bij objecten:
 
@@ -216,11 +195,9 @@ Student b = new Student("Queen");
 
 Geeft volgende situatie in het geheugen:
 
-
 ![Merk op dat de geheugenplekken willekeurig zijn. De auteur was te lui om telkens nieuwe geheugenplekken te verzinnen, daarom dat je sommige getallen ziet terugkomen.](../assets/5_arrays/queenabba.png)<!--{width=100%}-->
 
 <!-- \newpage -->
-
 
 Schrijven we dan het volgende:
 
@@ -231,22 +208,17 @@ Console.WriteLine(a.Naam);
 
 Dan  zullen we in dit geval dus ``Abba`` op het scherm zien omdat zowel ``b`` als ``a`` naar hetzelfde object in de heap verwijzen. Het originele "Queen"-object zijn we kwijt en zal verdwijnen (zie Garbage Collector verderop).
 
-
 ![Het is een goede gewoonte om dit soort tekeningen met pijlen steeds mentaal (of op papier) te maken wanneer je werken met referenties onder de knie wilt krijgen.](../assets/5_arrays/queenabba2.png)<!--{width=60%}-->
 
 :::{.callout-important}
 De meeste klassen zullen met value type-properties en instantievariabelen werken in zich, toch worden deze ook samen met het gehele object in de heap bewaard en niet in de stack. Kortom **het hele object** ongeacht de vorm (*datatypes*) van z'n inhoud wordt in de heap bewaard.
 :::
 
-
 <!-- \newpage -->
-
 
 ### De Garbage Collector 
 Een stille held van .NET is de zogenaamde GC, de **Garbage Collector**. Dit is een geautomatiseerd onderdeel van ieder C# programma dat ervoor zorgt dat we geen geheugen nodeloos gereserveerd houden.
 De GC zal geregeld het geheugen doorlopen en kijken of er in de heap objecten staat waar geen referenties naar verwijzen. Indien er geen referenties naar wijzen zal dit object verwijderd worden.
-
-
 
 ![Objecten in de heap waar geen referenties naar wijzen zullen ten gepaste tijde verwijderd worden.](../assets/5_arrays/gc2.png)<!--{width=60%}-->
 
@@ -273,17 +245,6 @@ De GC werkt niet continue daar dit te veel overhead van je computer zou vereisen
 Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Collect()`` maar dit is ten stelligste af te raden! De GC is geoptimaliseerd om zelf het beste moment te kiezen. Roep je hem zelf op, dan onderbreek je je programma op een ongelegen moment en maak je het meestal net *trager* in plaats van sneller. Laat de GC dus gewoon z'n werk doen.
 :::
 
-::: {.callout-tip title="Zie verder"}
-C# heeft een GC die het opruimen voor je doet. In **C++** bestaat zoiets niet: je beheert geheugen volledig zelf met ``new`` en ``delete``.
-
-```cpp
-int* p = new int(5);   // geheugen reserveren
-delete p;              // zelf weer vrijgeven
-```
-
-Vergeet je die ``delete``, dan lek je geheugen (*memory leak*); roep je ``delete`` twee keer op, dan crasht je programma. De C#-GC neemt dit risico volledig van je over.
-:::
-
 ### Wat met ``string``?
 
 ``string`` is een buitenbeentje. Het is een **reference type** (een string-variabele bevat dus een referentie naar tekst op de heap), maar in de praktijk gedraagt het zich vaak als een value type. Dat komt omdat ``string`` **immutable** is: eens een stuk tekst is aangemaakt, kan je het niet meer wijzigen.
@@ -299,6 +260,4 @@ dan wijzigt ``ToUpper()`` de originele tekst niet, maar maakt het een *nieuw* st
 
 <!-- TODO ed.5 (review): stackgrootte (typisch ~1 MB) en StackOverflowException kort vermelden; nu enkel in de kennisclips. -->
 <!-- TODO ed.5 (review): 'using' als statement (using (var stream = ...)) hoort bij resource management; overweeg korte vermelding. -->
-
-
 

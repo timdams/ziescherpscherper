@@ -42,27 +42,9 @@ Het ``base`` keyword laat ons toe om in onze code expliciet een methode of prope
 We hebben een soortgelijke werking ook reeds gezien bij de constructors van overgeërfde klassen.
 :::
 
-:::{.callout-tip title="Zie verder"}
-C# noemt de verwijzing naar de parent-klasse ``base``. **Python** en **Java** noemen dat net ``super``. In Python roep je de parent-versie zo aan:
-
-```python
-class Frituur(Restaurant):
-    def poets_alles(self):
-        super().poets_alles()   # in C#: base.PoetsAlles()
-        self.kosten += 500
-```
-
-Andere naam, exact dezelfde bedoeling: "voer eerst de implementatie van de parent uit en bouw daarop voort".
-:::
-
 <!-- \newpage -->
 
-
 Je kan zelf beslissen waar in je code je ``base`` aanroept. Soms doe je dat aan de start van de methode, soms op het einde, soms halverwege. Alles hangt er van af wat je juist nodig hebt.
-
-
-
-
 
 >![](../assets/care.png)**"Ik denk dat ik een extra voorbeeldje nodig ga hebben."**
 
@@ -99,7 +81,6 @@ internal class ModerneMens: Oermens
 ```
 
 <!-- \newpage -->
-
 
 ### Een wereld met OOP: Pong overerving
 

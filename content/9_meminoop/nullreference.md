@@ -19,26 +19,6 @@ Van zodra je een referentie naar een object (een bestaand of eentje dat je net m
 Merk op dat de GC enkel op de heap werkt. Indien er in de stack dus een variabele de waarde ``null`` heeft zal de GC deze nooit verwijderen!
 :::
 
-::: {.callout-tip title="Zie verder"}
-Bijna elke taal heeft een manier om "geen waarde" aan te duiden, maar met een eigen naam. In **Python** heet dat ``None``:
-
-```python
-student = None
-if student is None:
-    print("Nog geen student.")
-```
-
-**JavaScript** maakt het nog wat ingewikkelder: daar bestaan er twéé van. ``null`` (bewust leeg, door jou gezet) én ``undefined`` (nog nooit een waarde gekregen):
-
-```javascript
-let student = null;       // bewust leeg
-let leeftijd;             // undefined: nooit toegekend
-```
-
-C# houdt het simpel met enkel ``null``, maar het idee "deze variabele verwijst (nog) nergens naar" kom je in zowat elke taal tegen.
-:::
-
-
 ### NullReferenceException
 
 Een veel voorkomende foutboodschap tijdens de uitvoer van je applicatie is een ``NullReferenceException``. Deze zal optreden wanneer je code een object probeert te benaderen wiens waarde ``null`` is (een onbestaand object met andere woorden).
@@ -52,7 +32,6 @@ Console.WriteLine(stud1.Name);
 
 Dit zal resulteren in een foutboodschap in VS bij de lijn die de uitzondering detecteert: "System.NullReferenceException: 'Object reference not set to an instance of an object'. stud1 was null".
 
-
 :::{.callout-tip}
 We moeten in dit voorbeeld expliciet ``= null`` plaatsen daar Visual Studio slim genoeg is om je te waarschuwen voor eenvoudige potentiële NullReference fouten.
 
@@ -62,8 +41,6 @@ Krijg je in je eigen projecten plots groene kronkellijntjes bij code die met ``n
 <!-- TODO ed.5 (review): sectie ?? (null-coalescing) en ??= toevoegen direct na de ?.-uitleg. Bewust nog niet gedaan: leunt aan tegen het null-feature-gedeelte dat we voorlopig beperkt houden. Beslissing aan Tim. -->
 
 <!-- \newpage -->
-
-
 
 ### NullReferenceException voorkomen
 
@@ -91,7 +68,6 @@ if(stud1 != null)
 
 Op die manier voorkom je een ``NullReferenceException``. Het is uiteraard omslachtig om steeds die check te doen. Je mag daarom ook schrijven:
 
-
 ```java
 Console.WriteLine(stud1?.Name)
 ```
@@ -101,8 +77,6 @@ Het vraagteken direct na het object geeft aan: *"Gelieve de code na dit vraagtek
 Bovenstaande code zal dus gewoon een lege lijn op scherm plaatsen indien ``stud1`` effectief ``null`` is, anders komt de naam op het scherm.
 
 <!-- \newpage -->
-
-
 
 ### Return ``null``
 
@@ -152,7 +126,6 @@ Mooi toch?!
 
 <!-- \newpage -->
 
-
 Om het nu volledig te maken zullen we er voor zorgen dat enkel een vrouw kan voortplanten. Voorts kan ze zich enkel voortplanten met behulp van een van een man (merk op dat OOP als doel heeft de realiteit te benaderen, maar ook te vereenvoudigen naargelang het probleem).  
 
 Veronderstel dat het geslacht via een enumtype (``enum Geslachten {Man, Vrouw}``) in een auto-property ``Geslacht`` wordt bewaard.  We voegen daarom bovenaan in de ``PlantVoort``-methode nog een kleine check in én return'n een leeg (``null``) object als de voortplanting faalt (we zouden ook een ``Exception`` kunnen opwerpen):
@@ -185,7 +158,6 @@ papa.MaxLengte = 169;
 
 Mens baby = mama.PlantVoort(papa);
 ```
-
 
 :::{.callout-tip}
 Hopelijk voel je bij dit voorbeeld hetzelfde enthousiasme als toen we Pong naar OOP omzetten. Probeer voorgaande voorbeeld eens te schrijven met je kennis VOOR je klassen en objecten kende? Doenbaar? Zeker. Veel werk? Dat nog meer. En daar is het ons om te doen: krachtige, makkelijker te onderhouden code leren schrijven!

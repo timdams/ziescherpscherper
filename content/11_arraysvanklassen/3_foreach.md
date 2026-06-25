@@ -39,26 +39,6 @@ foreach (Student student in deKlas)
 
 **Merk op dat al deze voorbeelden ook met een ``List`` in plaats van een array werken.**
 
-::: {.callout-tip title="Zie verder"}
-De ``foreach``-loop is helemaal niet uniek voor C#. In **Python** schrijf je net hetzelfde idee, maar zonder type en zonder accolades:
-
-```python
-for meting in metingen:
-    print(meting)
-```
-
-In **JavaScript** heet dit ``for...of``:
-
-```javascript
-for (const meting of metingen) {
-    console.log(meting);
-}
-```
-
-Drie talen, exact dezelfde gedachte: "neem elk element één voor één". Enkel de schrijfwijze verschilt.
-:::
-
-
 ### Opgelet bij het gebruik van foreach loops
 
 De foreach loop is weliswaar leesbaarder en eenvoudiger in gebruikt, er zijn ook 3 erg belangrijke nadelen aan:
@@ -66,7 +46,6 @@ De foreach loop is weliswaar leesbaarder en eenvoudiger in gebruikt, er zijn ook
 * De foreach iteration variabele is *read-only*: je kan dus geen waarden in de array aanpassen, enkel uitlezen. Dit ogenschijnlijk eenvoudige zinnetje heeft echter veel gevolgen. Je kan met een ``foreach``-loop dus **nooit de inhoud van de variabele aanpassen** (lees zeker de waarschuwing hieronder). Wens je dat wel te doen, dan dien je de klassieke ``while``, ``do while`` of ``for`` loops te gebruiken.
 * De foreach loop gebruik je enkel als je **alle elementen van een array wenst te benaderen**. In alle andere gevallen zal je een ander soort loop moeten gebruiken (daar ik geen fan van ``break`` ben).
 * Voorts heb je geen teller (die je gratis bij een ``for`` krijgt) om bij te houden hoeveel objecten je al hebt benaderd. Heb je dus een teller nodig dan zal je deze manueel moeten aanmaken zoals je ook bij een ``while`` en ``do while`` loop moet doen.
-
 
 :::{.callout-important}
 Het feit dat de foreach iteration variabele read-only is wil niet zeggen dat we de inhoud van het onderliggend object niet kunnen aanpassen. De iteration variabele krijgt bij een array van objecten telkens een referentie naar het huidige element. **Deze referentie kunnen we niet aanpassen**, maar we mogen wel de referentie "volgen" om vervolgens iets in het huidige object zelf aan te passen.
@@ -89,7 +68,6 @@ foreach (Student eenStudent in deKlas)
 
 :::
 
-
 :::{.callout-warning}
 **Wat je niét mag doen: een collectie wijzigen tijdens een ``foreach``.** Verwijder of voeg je elementen toe terwijl je over een lijst itereert, dan crasht je programma met *"InvalidOperationException: Collection was modified; enumeration operation may not execute"*. Volgende code is dus fout:
 
@@ -108,7 +86,6 @@ Wil je tijdens het doorlopen elementen verwijderen, gebruik dan een gewone ``for
 Met de VS snippet ``foreach`` gevolgd door twee maal op de tab-toets te duwen krijg je een kant-en-klare ``foreach`` loop.
 :::
 
-
 ## Het ``var`` keyword
 
 C# heeft een **``var``** keyword. Je mag dit keyword gebruiken ter vervanging van het datatype  op voorwaarde dat de compiler kan achterhalen wat het type (*implicit type*) moet zijn. De compiler kan het type ontdekken aan de hand van de expressie rechts van de toekenningsoperator.
@@ -123,14 +100,12 @@ var ikke = new Leerkracht(); //var zal Leerkracht zijn
 :::{.callout-tip}
 **Opgelet**: het ``var`` keyword is gewoon een *lazy programmer syntax toevoeging* om te voorkomen dat je als programmeur niet constant het type moet schrijven.
 
-
 Bij JavaScript heeft ``var`` een totaal andere functie, daar zegt het eigenlijk: "het type dat je in deze variabele kan steken is...variabel". Met andere woorden, het kan de ene keer ``string`` zijn, dan  ``int``, enz.
 
 Bij C# gaat dit niet: eens je een variabele aanmaakt dan zal dat type onveranderbaar zijn en kan je er alleen waarden aan toekennen van dat type. 
 
 JavaScript is namelijk een *dynamically typed language*. C# is daarentegen een *statically typed language*. Er is één uitzondering bij C#: wanneer je met ``dynamic`` leert werken kan je C# ook tijdelijk als een dynamically typed taal gebruiken (maar dat wordt niet besproken in dit boek).
 :::
-
 
 ## var en foreach
 
@@ -146,5 +121,4 @@ foreach (var student in deKlas)
 ```
 
 Merk op dat dit hoegenaamd geen invloed heeft op je applicatie. Wanneer je code gaat compileren die het keyword ``var`` bevatten dan zal de compiler eerst alle *vars* vervangen door het juiste type, én dan pas beginnen compileren.
-
 

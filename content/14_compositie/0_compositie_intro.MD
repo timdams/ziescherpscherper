@@ -4,8 +4,6 @@
 Dit hoofdstuk is kort maar krachtig. Ik ga eigenlijk niets nieuws uitleggen. Ik ga zaken benoemen die je waarschijnlijk al toepaste, zonder te weten dat er daar ook een naam voor was.
 :::
 
-
-
 We spreken over compositie (**compositie**) en aggregatie (**aggregation**) wanneer we een object in een ander object gebruiken. Beide termen zijn zogenaamde **associaties**. 
 Ze beschrijven de relatie tussen 2 objecten. Denk bijvoorbeeld aan een object van het type ``Motor`` dat je gebruikt in een object van het type ``Auto``. Afhankelijk of het *interne* object kan bestaan zonder het *omliggende* object bepaalt of het gaat om aggregatie of compositie:
 
@@ -13,7 +11,6 @@ Ze beschrijven de relatie tussen 2 objecten. Denk bijvoorbeeld aan een object va
 * **Aggregatie**: Beide objecten kunnen onafhankelijk van elkaar bestaan. Denk hierbij aan de motor in een auto. Wanneer de auto vernietigd wordt kan de motor gered worden en elders gebruikt worden. Een ander voorbeeld zijn de harde schijven in een computer.
 
 Het "innerlijke" object is steeds het object dat binnen het omliggende object geplaatst wordt (*motor* in auto, *schijf* in computer).
-
 
 ## Heeft een-relatie
 
@@ -25,7 +22,6 @@ Je hoort ook ogenblikkelijk of het om een "heeft één" of "heeft meerdere"-rela
 Een klassieke fout is overerving gebruiken wanneer je bijvoorbeeld de relatie tussen een boek en z'n pagina's wilt aanduiden. Een boek is géén pagina, ook niet omgekeerd. Er is dus geen sprake van overerving. Een boek HEEFT een pagina (of meerdere). Er is dus sprake van een associatie, namelijk aggregatie (je kan pagina's uit een boek scheuren en deze nog steeds doorgeven aan iemand anders).
 :::
 
-
 <!-- TODO ed.5 (review): overweeg één UML-figuur die volle ruit (compositie) en lege ruit (aggregatie) naast elkaar toont met onderschrift, i.p.v. twee aparte plaatjes. -->
 <!-- TODO ed.5 (review): nullable reference types (HardeSchijf?) als voetnoot bij de null-discussie; bewust nog uitgesteld (zie CLAUDE.md). -->
 
@@ -33,31 +29,21 @@ Een klassieke fout is overerving gebruiken wanneer je bijvoorbeeld de relatie tu
 
 Compositie duiden we aan met een lijn die begint met een volle ruit aan de kant van de klasse die de objecten in zich heeft:
 
-
 ![Compositie: een huis heeft een slaapkamer en heeft een badkamer.](../assets/6_klassen/compuml.png)<!--{width=70%}-->
-
-
 
 Aggregatie duiden we op exact dezelfde manier aan, maar de ruiten zijn niet gevuld. Optioneel duidt een getal aan iedere kant van de lijn de verhouding aan (zowel bij aggregatie als compositie), zodat we kunnen aangeven hoeveel (of geen) objecten het omliggende object kan hebben:
 
-
 ![Aggregatie: een computer heeft minstens 1 processor nodig, maar kan er tot 8 hebben. Ieder element kan echter ook op zichzelf bestaan.](../assets/6_klassen/multipplecompuml.png)<!--{width=70%}-->
-
 
 <!-- \newpage -->
 
-
 Uiteraard zijn ook combinaties mogelijk. Stel je voor dat je een applicatie moet ontwerpen waarin je een reeks huizen moet bouwen, waarbij er in de slaapkamer steeds een computer moet gezet worden:
 
-
 ![Een computer kan je uit een brandend huis redden. De kamers van het huis zelf helaas niet.](../assets/6_klassen/compagg.png)<!--{width=70%}-->
-
 
 :::{.callout-tip}
 Herinner je: overerving duiden we aan met een pijl die wijst naar de parent-klasse en duidt een "is een"-relatie aan.
 :::
-
-
 
 ### Associatie in de praktijk
 
@@ -93,23 +79,6 @@ De instantie van een geaggregeerd object kan op verschillende manieren aangemaak
 Associatie is net zoals overerving een belangrijk onderdeel van het OOP paradigma. Er is geen exacte oplossingsstrategie om associatie toe te passen: deze zal afhankelijk zijn van je specifieke probleem en oplossing. Staar je dus niet blind op deze voorbeelden: het is maar een greep uit de vele manieren waarmee je associateis kunt gebruiken.
 :::
 
-::: {.callout-tip title="Zie verder"}
-Compositie (de "heeft een"-relatie) werkt in **Python** quasi identiek aan C#: je bewaart gewoon een object van een andere klasse als instantievariabele:
-
-```python
-class HardeSchijf:
-    pass
-
-class PC:
-    def __init__(self):
-        self.harde_schijf = HardeSchijf()   # PC heeft een HardeSchijf
-```
-
-Het idee "een object in een ander object" is dus geen C#-eigenaardigheid, maar een principe dat in elke OO-taal terugkomt. Ook de vuistregel *favor composition over inheritance* geldt over de talen heen.
-:::
-
-
-
 #### Manier 1: Rechtstreeks de instantievariabele instellen
 
 Wanneer we wensen dat iedere nieuwe PC ogenblikkelijk een interne harde schijf heeft dan kunnen we dit doen door ogenblikkelijk de instantievariabele een object te geven: 
@@ -120,8 +89,6 @@ internal class PC
     private HardeSchijf cHardeSchijf = new HardeSchijf();
 }
 ```
-
-
 
 #### Manier 2: Via de constructor(s)
 Willen we echter bij het aanmaken van een nieuwe pc ook iets meer controle over wat voor harde schijf er wordt geïnstalleerd, dan kan dit ook via de constructors. We zouden dan bijvoorbeeld afhankelijk van bepaalde parameters in de (overloaded) constructors de schijf andere eigenschappen kunnen geven:
@@ -142,8 +109,6 @@ internal class PC
 }
 ```
 
-
-
 >![](../assets/attention.png)De lijn ``cHardeSchijf = null`` is niet noodzakelijk, daar ``cHardeSchijf`` sowieso ``null`` zal zijn indien we niet in de ``if`` gaan. 
 >
 >Ik raad je toch aan dit altijd expliciet te doen. Hiermee zeg je nadrukkelijk: *"als we via de overloaded constructor een PC aanmaken en er is geen preinstallatie vereist dan zit er geen harde schijf in de pc"*. Het kan namelijk gebeuren dat voor we aan deze code komen er ondertussen iets voor heeft gezorgd dat ``cHardeSchijf`` alsnog een objectreferentie bevat. Door deze nu expliciet op ``null`` te zetten verwijderen we zeker de harde schijf als die er toch nog had ingezeten.
@@ -151,8 +116,6 @@ internal class PC
 >Heb je gezien hoe ik praat over deze preinstallatie alsof het om iets gaat dat in het echte leven gebeurt? Dit is bewust: het OOP paradigma draait om het feit dat het ons toelaat de realiteit zo dicht mogelijk te benaderen. Het helpt dan ook om je code (en probleemanalyse) steeds vanuit de context van de "echte wereld" te benaderen. Bijna ieder concept uit de echte wereld heeft een equivalent binnen C# als OOP-taal.
 >
 >Het is een goede OOP oefening om af en toe in je omgeving eens rond te kijken, en wat je ziet vervolgens te vertalen naar een structuur van klassen, objecten en verbanden tussen die dingen (overerving, compositie, arrays en later ook nog polymorfisme en interfaces).
-
-
 
 #### Manier 3: Properties
 
@@ -169,7 +132,6 @@ internal class PC
 
 <!-- \newpage -->
 
-
 Vervolgens kunnen we nu van buiten het object benaderen en er, als het ware, een nieuwe harde schijf in steken:
 
 ```java
@@ -180,14 +142,9 @@ mijnPC.CHardeSchijf = mijnHardeSchijf ;
 
 Op deze manier hebben we nog steeds een referentie naar ``mijnHardeSchijf`` en zal de GC dit object dus niet verwijderen wanneer ``mijnPC`` wordt opgekuist.
 
-
 :::{.callout-tip}
 Kortom, nog steeds niets nieuws onder de zon. Alle manieren die je al kende om objecten aan te maken gelden nog steeds. Associatie deed je eigenlijk al de hele tijd wanneer je een object van een *eigen klasse* (een reference type) als instantievariabele in een andere klasse gebruikte, bijvoorbeeld "een PC heeft een HardeSchijf". Het grote verschil met value-types (zoals ``int geboortejaar``) is dat objecten eerst geïnstantieerd moeten worden, en je dus iets vaker op ``null`` zal moeten controleren.
 :::
-
-
-
-
 
 ### Associatie objecten gebruiken
 
@@ -206,13 +163,11 @@ internal class PC
 
 <!-- \newpage -->
 
-
 ### Associaties en referenties
 
 Het moge duidelijk zijn: compositie/aggregatie en referenties horen samen. Maar hoe ziet dit er allemaal uit in het geheugen? Blij dat je het vraagt! 
 
 Wanneer we van voorgaande klasse een object aanmaken als volgt:
-
 
 ```java
 PC mijnSuperPC = new PC();
@@ -229,7 +184,6 @@ Zoals je ziet is het belangrijk te beseffen dat bij compositie én aggregatie he
 *Of zoals het hoofdstuk al begon: eigenlijk niets nieuws onder de zon!*
 
 <!-- \newpage -->
-
 
 #### NullReferenceException is een klassieke fout
 
@@ -250,9 +204,6 @@ public override string ToString()
 ```
 
 En uiteraard kan het ook nooit kwaad om alles in ``try-catch`` blokken te zetten, alleen is dat op detail-niveau niet werkbaar: je werkt met objecten en zal dus bijna de hele tijd code hebben waar ``NullReferenceException`` een potentieel gevaar is. Het is dus beter om vanaf de start je code zodanig te schrijven (met controles op ``null``) dat er quasi geen uitzonderingen op ``null`` kunnen optreden.
-
-
-
 
 ## "Heeft meerdere"- relatie
 
@@ -289,8 +240,6 @@ Pagina mijnDerdePagina = new Pagina();
 zieScherper.InsertPagina(mijnDerdePagina, 2);
 ```
 
-
-
 Of een voorbeeld met ``List``:
 
 ```java
@@ -325,7 +274,6 @@ internal class Boek
 
 Pagina's voegen we nu als volgt toe:
 
-
 ```java
 zieScherper.InsertPagina(new Pagina(), 5); 
 ```
@@ -358,11 +306,4 @@ Besef goed wat hier gebeurt: na ``patient.Hart = donor.Hart;`` verwijzen ``patie
 :::{.callout-important}
 Let er wel op dat je niet overal compositie begint toe te passen alsof je de Dokter Frankenstein van C# bent. Hoe meer compositie (of aggregatie) je toepast in een klasse, hoe specifieker die soms wordt, en daardoor mogelijk minder herbruikbaar. Het is om die reden dat we verderop interfaces gaan ontdekken om ervoor te zorgen dat 2 of meerdere klassen minder "op/in elkaar gelijmd" zitten ten gevolge van bijvoorbeeld een nogal hechte compositie.
 :::
-
-
-
-
-
-
-
 

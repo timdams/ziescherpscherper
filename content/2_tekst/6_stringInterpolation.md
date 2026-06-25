@@ -2,13 +2,10 @@
 
 Tot nogtoe gebruikten we de +-operator om strings aan elkaar te plakken. We gaan deze manier meer in detail bekijken, gevolgd door een moderner alternatief: door middel van string interpolatie met de ``$``-notatie.
 
-
 In de volgende sectie gaan we van volgende informatie uit:
 
 * Stel dat je 2 variabelen hebt ``int leeftijd = 13`` en ``string naam = "Finkelstein"``.
 * We willen de inhoud van deze variabelen samenvoegen in een nieuwe ``string zin`` die zal bestaan uit de tekst: ``Ik ben Finkelstein en ik ben 13 jaar.``
-
-
 
 ### String samenvoegen met de +-operator
 
@@ -30,7 +27,6 @@ Console.WriteLine("1" + (1 + 1));
 
 Geeft als uitvoer:
 
-
 ::: {.console}
 ```text
 111
@@ -47,8 +43,6 @@ Kijken we dus naar ``"1"+1+1`` dan wordt dit eerst ``"11"+1`` en vervolgens dit 
 
 Bij ``1+1+"1"`` krijgen we eerst ``2+"1"``. Dit geeft vervolgens ``21``. Aangezien C# niet kan bepalen dat de string iets bevat wat een getal kan zijn, en dus besluit om beide operanden als een ``string`` te zien wat altijd de veiligste oplossing is.
 
-
-
 ### String interpolation met $-notatie
 
 Het nadeel van de +-operator is dat je strings soms erg lang en onleesbaar worden. 
@@ -56,7 +50,6 @@ Het nadeel van de +-operator is dat je strings soms erg lang en onleesbaar worde
 Dankzij *string interpolation* kan dit wel **waarbij we het ``$``-teken gebruiken vooraan de ``string`` om aan te geven dat specifieke delen van de zin geïnterpoleerd moeten worden**
 
 Door het $-teken **VOOR** de string te plaatsen geef je aan dat alle delen in de string die *tussen accolades staan* als code mogen beschouwd worden. Een voorbeeld maakt dit duidelijk:
-
 
 ```java
 string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
@@ -66,27 +59,6 @@ In dit geval zal de inhoud van de variabele ``naam`` tussen de string op de plek
 Zoals je kan zien is dit veel meer leesbare code dan de eerste manier.
 
 Het resultaat zal dan worden: ``Ik ben Finkelstein en ik ben 13 jaar.``
-
-::: {.callout-tip title="Zie verder"}
-Veel andere talen kennen net hetzelfde idee, met een net iets ander tekentje vooraan. In **Python** heet dit een *f-string*:
-
-```python
-naam = "Finkelstein"
-leeftijd = 13
-zin = f"Ik ben {naam} en ik ben {leeftijd} jaar."
-```
-
-En in **JavaScript** gebruik je *template literals* met backticks en een dollarteken voor de accolades:
-
-```javascript
-const naam = "Finkelstein";
-const leeftijd = 13;
-const zin = `Ik ben ${naam} en ik ben ${leeftijd} jaar.`;
-```
-
-Bijna identiek aan de ``$``-notatie van C#. Leer je dus deze manier van werken goed aan, dan voel je je meteen thuis in heel wat andere talen.
-:::
-
 
 #### Berekeningen doen bij string interpolatie
 
@@ -98,7 +70,6 @@ string zin = $"Ik ben {leeftijd+4} jaar.";
 Alle expressies tussen de accolades zullen eerst uitgevoerd worden voor ze tussen de string worden geplaatst. De uitvoer wordt nu dus: ```Ik ben 17 jaar.```
 
 Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of zelfs andere methoden aanroepen:
-
 
 ```java
 string zin = $"Ik ben {leeftijd*leeftijd+(3*2)} jaar.";
@@ -113,13 +84,10 @@ string groet = $"Je naam {naam} bestaat uit {naam.Length} tekens.";
 :::{.callout-tip}
 Uiteraard mag je dit dus ook gebruiken wanneer je eenvoudigere zaken naar het scherm wenst te sturen gebruik makende van ``Console.WriteLine`` en interpolatie:
 
-
 ```java
 Console.WriteLine($"3 maal 9 is {3*9}");
 ```
 :::
-
-
 
 ## Strings mooier formatteren
 
@@ -136,7 +104,6 @@ Er zal ``12.35`` op het scherm verschijnen. ``F2`` na het dubbelpunt geeft aan d
 
 Merk op dat bij string formattering er **afgerond** wordt, en dus niet *afgekapt*. 
 
-
 Nog enkele nuttige vormen:
 
 * ``D5``: toon een geheel getal als een 5 cijfer getal. ``123`` wordt ``00123``. Maar ``123456`` zal volledig getoond worden. De ``Dx`` formattering werkt enkel op gehele getallen. Uiteraard zijn er dus ook andere varianten zoals ``D2``, etc.
@@ -148,7 +115,6 @@ Alle overige format specifiers kan je in de documentatie opzoeken[^formatdoc].
 [^formatdoc]: Zie [docs.microsoft.com/dotnet/standard/base-types/standard-numeric-format-strings](https://docs.microsoft.com/dotnet/standard/base-types/standard-numeric-format-strings).
 
 <!-- \newpage -->
-
 
 ### Formateren met een masker
 
@@ -201,7 +167,6 @@ In de appendix leg ik uit hoe je vroeger met behulp van ``String.Format()`` stri
 
 <!-- \newpage -->
 
-
 ## Optellen van char variabelen
 
 We hebben al gezien dat intern een ``char`` als een geheel getal wordt voorgesteld. Stel dat we volgende ``char``-variabelen aanmaken: 
@@ -212,7 +177,6 @@ char letter2 = 'B';
 ```
 
 Bij string mogen we de +-operator gebruiken om 2 strings aan elkaar te plakken. **Bij char mag dat niet!** Of beter, dit mag maar zal niet het resultaat geven dat je mogelijk verwacht wanneer je voor het eerst hiermee leert werken. Oordeel zelf:
-
 
 ```java
 Console.WriteLine(letter1 + letter2);
@@ -229,8 +193,6 @@ dan zal de compiler deze twee waarden letterlijk optellen en het nieuw verkregen
 * De UNICODE-voorstelling van `A` is 0x041 oftewel **`65`**. In het geheugen staat dus het geheel getal ``65``.
 * `B` wordt voorgesteld door **`66`**.
 * Als we dus de variabelen ``letter1`` en ``letter2`` optellen geeft dit **131**. 
-
-
 
 :::{.callout-tip}
 Je zou misschien verwachten dat C# vervolgens het element op plaats 131 in de UNICODE tabel zou tonen. 

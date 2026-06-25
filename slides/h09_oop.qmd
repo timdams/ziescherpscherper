@@ -188,21 +188,6 @@ internal class Auto
 
 ---
 
-## Zie verder: moet alles in een klasse?
-
-::: {.callout-tip title="Zie verder"}
-Dat *alle* code in een klasse moet, deelt C# met **Java**. **Python** en **JavaScript** zijn losser: daar mag je gewoon losse code en functies schrijven.
-
-```python
-# een volledig geldig programma, geen klasse in zicht
-print("Hallo wereld")
-```
-
-OOP is daar een keuze, geen verplichting. In **C** bestaat het begrip klasse zelfs niet. C# zit aan het strenge eind.
-:::
-
----
-
 ## Objecten aanmaken met new
 
 ```csharp
@@ -414,21 +399,6 @@ public int Energie
 
 ---
 
-## Zie verder: properties elders
-
-::: {.callout-tip title="Zie verder"}
-**Java** kent geen properties: daar schrijf je met de hand een aparte *getter* en *setter*:
-
-```java
-sith.setEnergie(20);
-System.out.println(sith.getEnergie());
-```
-
-**Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.
-:::
-
----
-
 ## Property-variaties
 
 :::: {.columns}
@@ -581,6 +551,38 @@ We doorliepen vier fasen:
 ::: {.callout-tip}
 Volgende halte: **geheugenmanagement** en **uitzonderingen** (exceptions).
 :::
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: moet alles in een klasse?
+
+Dat *alle* code in een klasse moet, deelt C# met **Java**. **Python** en **JavaScript** zijn losser: daar mag je gewoon losse code en functies schrijven.
+
+```python
+# een volledig geldig programma, geen klasse in zicht
+print("Hallo wereld")
+```
+
+OOP is daar een keuze, geen verplichting. In **C** bestaat het begrip klasse zelfs niet. C# zit aan het strenge eind.
+
+---
+
+## Zie verder: properties elders
+
+**Java** kent geen properties: daar schrijf je met de hand een aparte *getter* en *setter*:
+
+```java
+sith.setEnergie(20);
+System.out.println(sith.getEnergie());
+```
+
+**Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.
 
 ---
 
