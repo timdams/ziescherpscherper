@@ -517,3 +517,48 @@ Volgende halte: **beslissingen** nemen met `if`, vergelijkingen en `switch`.
 * [Debuggen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=37dc025a-d40e-4610-8d00-ac3f00a2923b)
 
 [Oefeningen H4](https://apwt.gitbook.io/ziescherp-oefeningen/h4-werken-met-data/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918621177/zie-scherp-scherper-hoofdstuk-04-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: type-coercion
+
+C# is streng. **JavaScript** zet types net automatisch om (*coercion*):
+
+```javascript
+console.log("5" + 3);  // "53"  (de 3 wordt een string)
+console.log("5" * 3);  // 15    (de "5" wordt een getal)
+```
+
+Bij `+` wint de string, bij `*` het getal. In C# geeft dit een compileerfout.
+
+---
+
+## Zie verder: input parsen
+
+**Python** doet dit korter: de naam van het type is meteen de omzetfunctie:
+
+```python
+gewicht = float(input("Geef je gewicht: "))
+```
+
+C# heeft een aparte `Parse` per type (`int.Parse`, `double.Parse`).
+
+---
+
+## Zie verder: een module importeren
+
+In **Python** zit wiskunde in een aparte *module* die je eerst moet importeren:
+
+```python
+import math
+
+wortel = math.sqrt(144)   # 12.0
+```
+
+`math.` ervoor is de modulenaam. In C# hoort `Math` standaard bij de taal: niets importeren.

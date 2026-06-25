@@ -479,3 +479,63 @@ Volgende halte: **gevorderde klasseconcepten**, met constructors en `static`.
 * [Stack Overflow Exception](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=640a52f0-9ea0-42fc-b1f6-ab7a0093eda6)
 
 [Oefeningen H10](https://apwt.gitbook.io/ziescherp-oefeningen/h10-geheugenmanagement-uitzonderingen-en-namespaces/a_poke1) · [Quizlet flashcards](https://quizlet.com/be/918632155/zie-scherp-scherper-hoofdstuk-10-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: geheugen zelf beheren
+
+C# heeft een GC. In **C++** beheer je geheugen zelf met `new` en `delete`:
+
+```cpp
+int* p = new int(5);   // reserveren
+delete p;              // zelf weer vrijgeven
+```
+
+Vergeet je `delete`, dan lek je geheugen (*memory leak*). De C#-GC neemt dat risico van je over.
+
+---
+
+## Zie verder: "geen waarde"
+
+**Python** noemt `null` gewoon `None`:
+
+```python
+student = None
+if student is None:
+    print("Nog geen student.")
+```
+
+**JavaScript** heeft er zelfs twee: `null` (bewust leeg) én `undefined` (nooit toegekend):
+
+```javascript
+let student = null;   // bewust leeg
+let leeftijd;         // undefined
+```
+
+---
+
+## Zie verder: fouten in andere talen
+
+**Python** kent ook exceptions, maar `catch` heet er `except`:
+
+```python
+try:
+    getal = int(input())
+except ValueError:
+    print("Verkeerde invoer!")
+```
+
+De taal **C** heeft *geen* exceptions: je checkt zelf na elke aanroep een foutcode:
+
+```c
+int getal;
+if (scanf("%d", &getal) != 1) {   // 1 = gelukt
+    printf("Verkeerde invoer!\n");
+}
+```

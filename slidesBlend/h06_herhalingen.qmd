@@ -464,3 +464,43 @@ Volgende halte: **methoden**, om je code op te delen in herbruikbare blokken.
 * [Micro-tips om loop-opgaven op te lossen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f1563c19-3b86-4603-a86d-ac4f00924132)
 
 [Oefeningen H6](https://apwt.gitbook.io/ziescherp-oefeningen/h6-herhalingen-herhalingen-herhalingen/a_practicasamen) · [Quizlet flashcards](https://quizlet.com/be/918622385/zie-scherp-scherper-hoofdstuk-06-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: do-while bestaat niet overal
+
+De `do while` ken je terug in **C**, **C++**, **Java** en **JavaScript**. **Python** heeft hem niet. Iets dat minstens één keer draait, bootst men er na met `while True` + `break`:
+
+```python
+while True:
+    keuze = input("Geef uw keuze: a, b of c ")
+    if keuze in ("a", "b", "c"):
+        break
+```
+
+In Python ben je dus vaak verplicht om `break` te gebruiken waar C# een nette stopconditie achteraan de `do while` toelaat.
+
+---
+
+## Zie verder: de for-loop elders
+
+De drie-delige for komt uit **C** en is bijna letterlijk overgenomen door **C++**, **Java** en **JavaScript**:
+
+```java
+for (int i = 0; i < 11; i += 2) {
+    System.out.println(i);
+}
+```
+
+**Python** breekt ermee: geen teller-met-conditie, je loopt altijd *over* iets. Tellen doe je met `range`:
+
+```python
+for i in range(0, 11, 2):
+    print(i)
+```

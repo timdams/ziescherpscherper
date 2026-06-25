@@ -409,3 +409,49 @@ Volgende halte: **gevorderde overerving**: `System.Object`, `abstract` en eigen 
 * [base keyword](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e2d99cbf-1c11-42fa-96c2-acb000d96cac)
 
 [Oefeningen H13](https://apwt.gitbook.io/ziescherp-oefeningen/h13-overerving/a_practicasimpel) · [Quizlet flashcards](https://quizlet.com/be/934406099/zie-scherp-scherper-hoofdstuk-13-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: overervings-syntax
+
+Hetzelfde idee, andere notatie. In **Python** zet je de parent tussen haakjes:
+
+```python
+class Paard(Dier):
+    pass
+```
+
+**Java** gebruikt ``extends`` (``class Paard extends Dier``), **C++** schrijft ``class Paard : public Dier``.
+
+---
+
+## Zie verder: virtual en override
+
+C# vereist expliciet ``virtual`` op de parent én ``override`` op de child. In **Python** is élke methode automatisch overschrijfbaar, zonder keywords:
+
+```python
+class Raket(Vliegtuig):
+    def vlieg(self):
+        print("De raket verdwijnt in de ruimte.")
+```
+
+Ook **Java** maakt elke (niet-``final``) methode standaard overschrijfbaar. C# kiest bewust het omgekeerde.
+
+---
+
+## Zie verder: base versus super
+
+Wat C# ``base`` noemt, heet in **Python** en **Java** net ``super``:
+
+```python
+class Frituur(Restaurant):
+    def poets_alles(self):
+        super().poets_alles()   # in C#: base.PoetsAlles()
+        self.kosten += 500
+```

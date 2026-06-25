@@ -374,3 +374,70 @@ Volgende halte: **arrays en collecties van objecten** (`List`, `foreach`, `Dicti
 * [Eigen class library maken](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=01ff79ae-bf94-4a9e-93f4-ae2f00c6684c)
 
 [Oefeningen H11](https://apwt.gitbook.io/ziescherp-oefeningen/h11-gevorderde-klasseconcepten/a_practica3) · [Quizlet flashcards](https://quizlet.com/be/918632354/zie-scherp-scherper-hoofdstuk-11-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: constructor in andere talen
+
+In **Python** heet de constructor altijd `__init__` (eerste parameter `self`):
+
+```python
+class Auto:
+    def __init__(self, merk):
+        self.merk = merk
+```
+
+In **JavaScript** heet hij gewoon `constructor`:
+
+```javascript
+class Auto {
+    constructor(merk) { this.merk = merk; }
+}
+```
+
+---
+
+## Zie verder: meerdere constructors
+
+C#, **Java** en **C++** laten meerdere constructors toe (overloading). **Python** kent dat niet: één `__init__`, en je lost het op met default-parameterwaarden:
+
+```python
+class Student:
+    def __init__(self, bijnaam, is_werkstudent=False):
+        self.bijnaam = bijnaam
+        self.is_werkstudent = is_werkstudent
+```
+
+Zowel `Student("Jos")` als `Student("Jos", True)` werkt: één constructor die zich als meerdere gedraagt.
+
+---
+
+## Zie verder: static in andere talen
+
+In **Java** werkt `static` zo goed als identiek aan C#:
+
+```java
+class Fiets {
+    static int aantalFietsen = 0;
+    static int getAantal() { return aantalFietsen; }
+}
+// Fiets.getAantal();
+```
+
+In **Python** is een variabele rechtstreeks in de klasse (zonder `self`) gedeeld, en `@staticmethod` maakt een methode die je op de klasse aanroept:
+
+```python
+class Fiets:
+    aantal_fietsen = 0
+    @staticmethod
+    def beschrijf(): print("Een fiets")
+# Fiets.beschrijf()
+```
+
+In alle gevallen hoort dit bij de *klasse*, niet bij een los object.

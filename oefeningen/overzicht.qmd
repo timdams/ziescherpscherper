@@ -4,6 +4,51 @@ title: "Oefeningen overzicht"
 
 # Oefeningen
 
-Hier komt een overzicht van alle oefeningen per hoofdstuk.
+Hieronder vind je alle oefeningen per hoofdstuk, gegroepeerd per module. Klik je hoofdstuk aan om naar de practica te springen. De vaardigheidsproeven en gecombineerde opgaven staan onderaan elke module.
 
-[Hoofdstuk 1: Introductie](1_intro/A_Practica.md
+## H1 tot en met H5
+
+- [Oefeningen H1: Introductie](1_intro/A_Practica.md)
+- [Oefeningen H2: C#-basis](2_csharpbasics/A_practica.md)
+- [Oefeningen H3: Tekst](3_tekst/a_practica.md)
+- [Oefeningen H4: Werken met data](4_data/A_Practica.md)
+- [Oefeningen H5: Beslissingen](5_beslissingen/a_practica.md)
+
+Gecombineerde oefeningen: [Opgave 1](EindeTests/Mod1/Opgave.md), [Opgave 2](EindeTests/Mod1/Opgave_1920.md), [Opgave 3](EindeTests/Mod1/Opgave_1819.md), [Opgave 4](EindeTests/Mod1/Opgave_1920sim.md), [Opgave 5](EindeTests/Mod1/Opgave_2021.md).
+
+## H6 tot en met H8
+
+- [Oefeningen H6: Herhalingen, week 1](6_herhalingen/A_practicasamen.md)
+- [Oefeningen H6: Herhalingen, week 2](6_herhalingen/A_practicasamen2.md)
+- [Oefeningen H7: Methoden, week 1](7_methoden/b_practicasamen.md)
+- [Oefeningen H7: Methoden, week 2](7_methoden/b_practicasamenb.md)
+- [Oefeningen H8: Arrays, week 1](8_arrays/A_practicasamen.md)
+- [Oefeningen H8: Arrays, week 2](8_arrays/A_practicasamenb.md)
+
+Voorbeeld vaardigheidsproeven: [2022](EindeTests/Mod2/Opgave_2122.md), [2019](EindeTests/Mod2/Opgave_1819.md), [2019 (2e zit)](EindeTests/Mod2/Opgave_1819_2ezit.md), [2020](EindeTests/Mod2/Opgave_1920.md), [2020b](EindeTests/Mod2/Opgave_1920b.md), [2021](EindeTests/Mod2/Opgave_2021.md), [2022b](EindeTests/Mod2/Opgave_2122b.md), [2022c](EindeTests/Mod2/Opgave_2122c.md), [2023](EindeTests/Mod2/Opgave_2223.md), [2024](EindeTests/Mod2/Opgave_2324.md), [2024b](EindeTests/Mod2/Opgave_2324b.md), [2025](EindeTests/Mod2/Opgave_2425.md), [2026](EindeTests/Mod2/Opgave_2526.md).
+
+Gecombineerde opgaven: [Console Matrix](EindeTests/A_DEEL1_AllInOne/1_ConsoleMatrix.md), [Unicode filmpjes met loops](EindeTests/A_DEEL1_AllInOne/3_AsciiMovieWithLoops.md), [Unicode filmpjes met methoden](EindeTests/A_DEEL1_AllInOne/2_AsciiMoviesWithMethods.md), [Music Maestro](EindeTests/Mod2/Opgave.md), [Verhaalgenerator](EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md), [Maze game](EindeTests/A_DEEL1_AllInOne/4_MazeGame.md), [Conway game of life](EindeTests/A_DEEL1_AllInOne/5_conway.md), [Cool console app](EindeTests/A_DEEL1_AllInOne/coolconsole.md).
+
+## H9 tot en met H12
+
+- [Oefeningen H9: Klassen, intermezzo](9_klassen/intermezzoh9.md)
+- [Oefeningen H9: Klassen, week 2](9_klassen/A_practica.md)
+- [Oefeningen H9: Klassen, week 3](9_klassen/B_practica.md)
+- [Oefeningen H10: Members in OOP](10_meminoop/A_poke1.md)
+- [Oefeningen H11: Advanced klassen](11_advancedklassen/A_practica3.md)
+- [Oefeningen H12: Arrays van klassen](12_arraysvanklassen/A_practicaMem.md)
+
+Gecombineerde oefeningen: [Opgave 1](EindeTests/Mod3/Opgave.md), [Opgave 2](EindeTests/Mod3/Opgave2.md), [Opgave 3](EindeTests/Mod3/Opgave_1819.md), [Opgave 4](EindeTests/Mod3/Opgave_1920.md), [Opgave 5](EindeTests/Mod3/Opgave_2021.md).
+
+## H13 tot en met H18
+
+- [Oefeningen H13: Overerving](13_overerving/A_PracticaSimpel.md)
+- [Oefeningen H14: Advanced overerving](14_advancedovererving/A_Practica.md)
+- [Oefeningen H15: Compositie](15_compositie/A_PracticaComp.md)
+- [Oefeningen H16: Polymorfisme](16_polymorfisme/A_Practica.md)
+- [Oefeningen H17: Interfaces](17_interfaces/A_practica.md)
+- [Oefeningen H18: Bestandsverwerken](18_bestandsverwerken/A_practica.md)
+
+Voorbeeld vaardigheidsproeven: [2019](EindeTests/Mod4/Opgave.md), [2019 (2e zit)](EindeTests/Mod4/Opgave_1819_2ezit.md), [2020](EindeTests/Mod4/Opgave_1920.md), [2021](EindeTests/Mod4/Opgave_2021.md), [2021b](EindeTests/Mod4/Opgave_2021b.md), [2022](EindeTests/Mod4/Opgave_2122.md), [2022b](EindeTests/Mod4/Opgave_2122b.md), [2023](EindeTests/Mod4/Opgave_2223.md), [2024](EindeTests/Mod4/Opgave_2324.md), [2025](EindeTests/Mod4/Opgave_2425.md).
+
+Gecombineerde oefeningen: [OO Textbased Game](EindeTests/A_DEEL2_AllInOne/2_OOTextGame.md), [Map Maker](EindeTests/A_DEEL2_AllInOne/1_MapMapker.md), [Mapmaker & WPF](EindeTests/A_DEEL2_AllInOne/1_MapMapkerWPF.md), [Magic The Gathering API](EindeTests/A_DEEL2_AllInOne/mtgapi.md), [C# game remakes](EindeTests/A_DEEL2_AllInOne/remakes.md).

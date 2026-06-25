@@ -544,3 +544,46 @@ Volgende halte: **variabelen en datatypes**. Daar gaan we het woord "variabele" 
 * [Kleuren in console](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a0446be7-b8f2-4ce7-ba76-abe30094107e)
 
 [Oefeningen H1](https://apwt.gitbook.io/ziescherp-oefeningen/h1-de-eerste-stappen/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918617842/zie-scherp-scherper-hoofdstuk-01-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: tekst tonen in Python
+
+**Python** doet dit zo:
+
+```python
+print("Hello World!")
+```
+
+Geen ``namespace``, ``class`` of ``Main`` en geen puntkomma: Python heeft veel minder ceremonie nodig. Die extra structuur in C# krijgt verderop stuk voor stuk betekenis.
+
+---
+
+## Zie verder: input in Python
+
+**Python** doet dit zo:
+
+```python
+naam = input("Geef je naam?")
+```
+
+De vraag staat meteen in ``input``, dus geen aparte ``WriteLine`` nodig. En je geeft geen type op: Python leidt dat zelf af, terwijl C# vooraf ``string`` vastlegt en dat laat controleren.
+
+---
+
+## Zie verder: compiled vs interpreted
+
+**JavaScript** wordt geinterpreteerd: het draait tot het op een fout botst.
+
+```javascript
+console.log("Dit verschijnt nog wel");
+consle.log("Pas hier crasht het");
+```
+
+De eerste lijn loopt, pas bij de typfout (``consle``) crasht het. C# compileert vooraf en weigert te starten zolang er een fout is: je vangt fouten dus vroeger.

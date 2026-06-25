@@ -302,3 +302,40 @@ Volgende halte: **polymorfisme**, waar één naam vele vormen aanneemt.
 * [this keyword](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ea597dce-a279-44bb-881d-acb100b55d85)
 
 [Oefeningen H15](https://apwt.gitbook.io/ziescherp-oefeningen/h15-compositie-en-aggregatie/a_practicacomp) · [Quizlet flashcards](https://quizlet.com/be/918808522/zie-scherp-scherper-hoofdstuk-15-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: compositie in Python
+
+In **Python** werkt de "heeft een"-relatie quasi identiek: gewoon een object als instantievariabele.
+
+```python
+class HardeSchijf:
+    pass
+
+class PC:
+    def __init__(self):
+        self.harde_schijf = HardeSchijf()   # PC heeft een HardeSchijf
+```
+
+"Een object in een ander object" is geen C#-eigenaardigheid, maar geldt in elke OO-taal. Net als *favor composition over inheritance*.
+
+---
+
+## Zie verder: this in Python en JavaScript
+
+In **Python** bestaat er geen impliciet `this`: je geeft het huidige object expliciet mee als eerste parameter, traditioneel `self`.
+
+```python
+class Auto:
+    def start(self):
+        print(self.merk)
+```
+
+C# regelt `this` verborgen via de compiler; Python toont datzelfde object gewoon als eerste parameter. **JavaScript** heeft wél `this`, maar met beruchte binding-regels: waarnaar het verwijst hangt af van *hoe* je een functie aanroept.

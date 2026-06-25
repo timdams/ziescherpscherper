@@ -359,3 +359,65 @@ Volgende halte: **compositie en aggregatie**: de "heeft-een"-relatie.
 * [Class diagram en de class designer in Visual Studio](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4d0a4b76-eed7-45e3-ba3f-ae8500fd94e9)
 
 [Oefeningen H14](https://apwt.gitbook.io/ziescherp-oefeningen/h14-gevorderde-overervingsconcepten/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918808297/zie-scherp-scherper-hoofdstuk-14-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: één oer-klasse
+
+Ook **Java** kent dezelfde oer-klasse, daar gewoon `Object` genoemd. Elke klasse erft er impliciet van, met methoden als `toString()`, `equals()` en `hashCode()`:
+
+```java
+class Student {
+    // erft automatisch van java.lang.Object
+}
+
+Student stud = new Student();
+System.out.println(stud.getClass().getName()); // Student
+```
+
+Heel gelijkaardig dus. Ook **Python** doet dit met `object`.
+
+---
+
+## Zie verder: abstract zonder keyword
+
+**C++** kent het keyword `abstract` niet, maar wel exact hetzelfde idee: een "pure virtual" methode. Je zet `= 0` achter de signatuur, en zo'n klasse kan je niet instantiëren:
+
+```cpp
+class Dier {
+public:
+    virtual std::string MaakGeluid() = 0; // pure virtual
+};
+
+class Paard : public Dier {
+public:
+    std::string MaakGeluid() override { return "Hinnikhinnik"; }
+};
+```
+
+**Python** doet dit met de `ABC`-module en `@abstractmethod`.
+
+---
+
+## Zie verder: eigen exceptions in Python
+
+In **Python** werkt dit verrassend gelijkaardig: erf over van `Exception` en gooi op met `raise` (het equivalent van `throw`):
+
+```python
+class Timception(Exception):
+    pass
+
+def tims_methode():
+    raise Timception("Een wilde exception verschijnt!")
+
+try:
+    tims_methode()
+except Timception as e:
+    print(e)
+```

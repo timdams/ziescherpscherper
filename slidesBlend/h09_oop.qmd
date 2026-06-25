@@ -601,3 +601,35 @@ Volgende halte: **geheugenmanagement** en **uitzonderingen** (exceptions).
 * [De DateTime klasse](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=bab1597f-4907-40ae-8723-acb00095e421)
 
 [Oefeningen H9](https://apwt.gitbook.io/ziescherp-oefeningen/h9-object-oriented-programming/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918631776/zie-scherp-scherper-hoofdstuk-09-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: moet alles in een klasse?
+
+Dat *alle* code in een klasse moet, deelt C# met **Java**. **Python** en **JavaScript** zijn losser: daar mag je gewoon losse code en functies schrijven.
+
+```python
+# een volledig geldig programma, geen klasse in zicht
+print("Hallo wereld")
+```
+
+OOP is daar een keuze, geen verplichting. In **C** bestaat het begrip klasse zelfs niet. C# zit aan het strenge eind.
+
+---
+
+## Zie verder: properties elders
+
+**Java** kent geen properties: daar schrijf je met de hand een aparte *getter* en *setter*:
+
+```java
+sith.setEnergie(20);
+System.out.println(sith.getEnergie());
+```
+
+**Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.

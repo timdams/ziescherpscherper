@@ -567,3 +567,74 @@ Volgende halte: **herhalingen** met `while`, `do-while` en `for`.
 * [Demo: Enums gebruiken](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9273e56b-1bfa-4393-a14a-aaed00bd4eaf)
 
 [Oefeningen H5](https://apwt.gitbook.io/ziescherp-oefeningen/h5-beslissingen/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918620856/zie-scherp-scherper-hoofdstuk-05-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: logische operators in Python
+
+**Python** gebruikt woorden in plaats van symbolen:
+
+```python
+if leeftijd > 18 and heeft_kaart:
+    print("Welkom")
+
+resultaat = not (0 == 2)
+```
+
+Waar C# `&&`, `||` en `!` schrijft, leest Python bijna als een gewone zin (`and`, `or`, `not`). De werking is identiek.
+
+---
+
+## Zie verder: if/else in Python
+
+**Python** kent geen accolades. De **inspringing** bepaalt het blok, en het tussenstuk heet `elif`:
+
+```python
+if leeftijd >= 18:
+    print("meerderjarig")
+elif leeftijd > 12:
+    print("tiener")
+else:
+    print("kind")
+```
+
+In C# telt enkel de accolade en is inspringen louter cosmetisch. In Python is het net omgekeerd: de inspringing is verplicht en bepaalt de structuur.
+
+---
+
+## Zie verder: switch in JavaScript
+
+In **JavaScript** valt de uitvoer wél door naar de volgende case als je `break` vergeet:
+
+```javascript
+switch (option) {
+    case 1:
+        console.log("Afbreken gekozen");
+        // GEEN break: valt door naar case 2!
+    case 2:
+        console.log("Opslaan gekozen");
+        break;
+}
+```
+
+Bij `option` gelijk aan `1` verschijnen hier **beide** lijnen. Een beruchte bron van bugs. C# weigert net daarom code zonder `break` bij een case met inhoud.
+
+---
+
+## Zie verder: enum in TypeScript
+
+**JavaScript** kent geen `enum`. Maar **TypeScript** (JavaScript met types) wel, en die lijkt sterk op die van C#:
+
+```typescript
+enum Weekdag { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag }
+
+let keuze: Weekdag = Weekdag.Woensdag;
+```
+
+Net als in C# worden de waarden vanaf `0` genummerd en blijft een variabele beperkt tot deze waarden.

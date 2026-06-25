@@ -421,3 +421,53 @@ En dat was het laatste hoofdstuk. Je bent van "Hello World!" tot serialisatie ge
 * [FileInfo](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=fa02d630-a851-4f70-9b8a-b45300afe62d)
 
 [Oefeningen H18](https://apwt.gitbook.io/ziescherp-oefeningen/h18-bestandsverwerking/a_practica) · [Quizlet flashcards](https://quizlet.com/be/934448214/zie-scherp-scherper-hoofdstuk-18-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: een bestand lezen
+
+In **Python** doet `with open` exact wat ons `using`-blok doet: het bestand gaat automatisch dicht aan het einde van het blok, ook bij een fout.
+
+```python
+with open("dagboek.txt") as f:
+    inhoud = f.read()
+# f is hier al netjes gesloten
+```
+
+Waar C# een `StreamReader` plus `using` nodig heeft, vangt Python beide in één korte regel.
+
+---
+
+## Zie verder: JSON in JavaScript
+
+JSON staat voor *JavaScript Object Notation* en komt dus letterlijk uit **JavaScript**. Geen aparte `JsonSerializer` nodig: serialiseren zit ingebouwd.
+
+```javascript
+const student = { naam: "Barry", leeftijd: 25 };
+const jsonString = JSON.stringify(student);
+// {"naam":"Barry","leeftijd":25}
+```
+
+Nóg directer dan C#: omdat JSON uit JavaScript stamt, is een object en zijn JSON-voorstelling bijna hetzelfde ding.
+
+---
+
+## Zie verder: JSON in Python
+
+**Python** gebruikt zijn ingebouwde `json`-module: `json.dumps` serialiseert, `json.loads` deserialiseert.
+
+```python
+import json
+
+student = {"naam": "Barry", "leeftijd": 25}
+json_string = json.dumps(student)   # object -> JSON-tekst
+terug = json.loads(json_string)     # JSON-tekst -> dict
+```
+
+Verschil met C#: je hoeft geen type mee te geven. Python geeft een `dict` terug, waar C# via `Deserialize<Student>` weet bij welke klasse de data hoort.

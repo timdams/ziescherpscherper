@@ -554,6 +554,21 @@ Volgende halte: **geheugenmanagement** en **uitzonderingen** (exceptions).
 
 ---
 
+## Meer weten
+
+**Kennisclips**
+
+* [OOP, klassen en objecten: what's it all about?](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=628acdda-bcc3-4de5-8b0e-acc200a98688)
+* [Klassen en objecten in C#](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6d91d9e1-9c8e-4b7a-a9a0-accd00b0ff32)
+* [Methoden en access modifiers](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=59d6fbe6-a779-45d8-bb95-ae2700b22623)
+* [Properties: nut en full properties](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=20d5c36f-7a4b-447b-a5c9-b11d00b18e93)
+* [Auto-properties](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=024fbb15-cb1b-446b-a12c-b11d00f38c52)
+* [De DateTime klasse](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=bab1597f-4907-40ae-8723-acb00095e421)
+
+[Oefeningen H9](https://apwt.gitbook.io/ziescherp-oefeningen/h9-object-oriented-programming/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918631776/zie-scherp-scherper-hoofdstuk-09-flash-cards/)
+
+---
+
 ## Zie verder: andere talen
 
 Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
@@ -583,18 +598,3 @@ System.out.println(sith.getEnergie());
 ```
 
 **Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.
-
----
-
-## Meer weten
-
-**Kennisclips**
-
-* [OOP, klassen en objecten: what's it all about?](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=628acdda-bcc3-4de5-8b0e-acc200a98688)
-* [Klassen en objecten in C#](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6d91d9e1-9c8e-4b7a-a9a0-accd00b0ff32)
-* [Methoden en access modifiers](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=59d6fbe6-a779-45d8-bb95-ae2700b22623)
-* [Properties: nut en full properties](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=20d5c36f-7a4b-447b-a5c9-b11d00b18e93)
-* [Auto-properties](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=024fbb15-cb1b-446b-a12c-b11d00f38c52)
-* [De DateTime klasse](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=bab1597f-4907-40ae-8723-acb00095e421)
-
-[Oefeningen H9](https://apwt.gitbook.io/ziescherp-oefeningen/h9-object-oriented-programming/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918631776/zie-scherp-scherper-hoofdstuk-09-flash-cards/)

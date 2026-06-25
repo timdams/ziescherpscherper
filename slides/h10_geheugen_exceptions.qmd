@@ -395,6 +395,21 @@ Volgende halte: **gevorderde klasseconcepten**, met constructors en `static`.
 
 ---
 
+## Meer weten
+
+**Kennisclips**
+
+* [Stack vs heap](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4774ee4d-a695-4b3c-8adf-aeae008a1229)
+* [Referenties en null](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d9117b52-7306-4e92-bf24-acb100b10697)
+* [Objecten in methoden als parameter of returnwaarde](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39c455a9-d24e-4783-8507-ae2a0094a93f)
+* [Namespaces en using](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2acbe0e2-4850-442c-a002-acb000a923b1)
+* [Werken met exception](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f0d75032-e9bc-46e8-9a36-acb400b24318)
+* [Stack Overflow Exception](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=640a52f0-9ea0-42fc-b1f6-ab7a0093eda6)
+
+[Oefeningen H10](https://apwt.gitbook.io/ziescherp-oefeningen/h10-geheugenmanagement-uitzonderingen-en-namespaces/a_poke1) · [Quizlet flashcards](https://quizlet.com/be/918632155/zie-scherp-scherper-hoofdstuk-10-flash-cards/)
+
+---
+
 ## Zie verder: andere talen
 
 Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
@@ -452,18 +467,3 @@ if (scanf("%d", &getal) != 1) {   // 1 = gelukt
     printf("Verkeerde invoer!\n");
 }
 ```
-
----
-
-## Meer weten
-
-**Kennisclips**
-
-* [Stack vs heap](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4774ee4d-a695-4b3c-8adf-aeae008a1229)
-* [Referenties en null](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d9117b52-7306-4e92-bf24-acb100b10697)
-* [Objecten in methoden als parameter of returnwaarde](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39c455a9-d24e-4783-8507-ae2a0094a93f)
-* [Namespaces en using](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2acbe0e2-4850-442c-a002-acb000a923b1)
-* [Werken met exception](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f0d75032-e9bc-46e8-9a36-acb400b24318)
-* [Stack Overflow Exception](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=640a52f0-9ea0-42fc-b1f6-ab7a0093eda6)
-
-[Oefeningen H10](https://apwt.gitbook.io/ziescherp-oefeningen/h10-geheugenmanagement-uitzonderingen-en-namespaces/a_poke1) · [Quizlet flashcards](https://quizlet.com/be/918632155/zie-scherp-scherper-hoofdstuk-10-flash-cards/)

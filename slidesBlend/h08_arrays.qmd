@@ -518,3 +518,51 @@ Volgende halte: **object-georiënteerd programmeren**, met klassen en objecten.
 * [Meer-dimensionale arrays](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9dea3f48-d5b9-4469-823c-ac590085d881)
 
 [Oefeningen H8](https://apwt.gitbook.io/ziescherp-oefeningen/alles-samen-h1-tot-h8/readme2) · [Quizlet flashcards](https://quizlet.com/be/918628060/zie-scherp-scherper-hoofdstuk-08-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: vaste vs dynamische lengte
+
+In **Python** bestaat geen array met vaste grootte, wel een dynamische `list`:
+
+```python
+getallen = [1, 2, 3]
+getallen.append(4)       # groeit gewoon mee
+getallen.append("vier")  # mag zelfs een ander type zijn
+```
+
+Totaal anders dan een C#-array (vaste lengte, 1 type). Lijkt eerder op de `List` uit hoofdstuk 12.
+
+---
+
+## Zie verder: geen bounds-checking in C
+
+C# gooit netjes een `IndexOutOfRangeException`. In **C** is er geen enkele grenscontrole:
+
+```c
+int getallen[3] = {1, 2, 3};
+printf("%d", getallen[5]); // geen foutmelding!
+```
+
+Je leest dan zomaar willekeurige geheugeninhoud of je programma crasht. Net dat maakt buffer overflow attacks mogelijk.
+
+---
+
+## Zie verder: dezelfde val in JavaScript
+
+Ook **JavaScript**-arrays werken by reference, dus `=` maakt een alias, geen kopie:
+
+```javascript
+let ploegen = ["Beerschot", "Antwerp"];
+let nieuwe = ploegen;     // zelfde array!
+nieuwe[1] = "Brugge";
+console.log(ploegen[1]);  // "Brugge"
+```
+
+Heel gelijkaardig aan C#. Een echte kopie: `let kopie = [...ploegen];`.

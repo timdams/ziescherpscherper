@@ -365,3 +365,64 @@ Volgende halte: **interfaces**, contracten die klassen beloven na te komen.
 * [Objecten vergelijken met Equals: polymorfisme in actie](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=b705422d-db2d-420a-bcda-aba700fd9336)
 
 [Oefeningen H16](https://apwt.gitbook.io/ziescherp-oefeningen/h16-polymorfisme/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918808929/zie-scherp-scherper-hoofdstuk-16-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: polymorfisme in Python
+
+C# heeft een gemeenschappelijke parent plus `virtual`/`override` nodig. **Python** doet het via *duck typing*: heeft het object de methode, dan werkt het gewoon, zonder gedeelde basisklasse.
+
+```python
+def laat_spreken(dier):
+    print(dier.maak_geluid())   # elk object met die methode werkt
+
+laat_spreken(Paard())   # Hinnikhinnik
+laat_spreken(Varken())  # Oinkoink
+```
+
+Bij Python merk je pas tijdens het uitvoeren of een object de methode echt heeft; C# controleert dat al bij het compileren.
+
+---
+
+## Zie verder: type-check in andere talen
+
+Dezelfde vraag, andere notatie. In **Python** is het een functie:
+
+```python
+if isinstance(mijn_auto, Voertuig):
+    print("mijn_auto is een Voertuig")
+```
+
+In **JavaScript** een operator:
+
+```javascript
+if (mijnAuto instanceof Voertuig) {
+    console.log("mijnAuto is een Voertuig");
+}
+```
+
+---
+
+## Zie verder: gelijkheid in andere talen
+
+Zelf bepalen wanneer objecten gelijk zijn, doe je via een vaste methode. **Python** override `__eq__` (zit achter `==`):
+
+```python
+def __eq__(self, other):
+    return self.voornaam == other.voornaam
+```
+
+**Java** lijkt op C#: override `equals` (en `hashCode`):
+
+```java
+@Override
+public boolean equals(Object o) { ... }
+```
+
+In **JavaScript** kan `===` niet overschreven worden: daar schrijf je zelf een functie `zijnGelijk(a, b)`.

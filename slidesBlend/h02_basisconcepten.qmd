@@ -598,3 +598,67 @@ Volgende halte: alles over **tekst**: `char`, `string` en hun trucjes.
 * [VS Howto: meerdere projecten in 1 solution](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=52e6f50e-d90e-4210-8cb0-af2300a6bbbf)
 
 [Oefeningen H2](https://apwt.gitbook.io/ziescherp-oefeningen/h2-de-basisconcepten-van-c/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918618272/zie-scherp-scherper-hoofdstuk-02-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: types in Python
+
+In **Python** geef je nooit een type op. Diezelfde variabele mag later zelfs een ander soort data bevatten:
+
+```python
+x = 5        # x is een geheel getal
+x = "hallo"  # nu tekst, Python klaagt niet
+```
+
+In C# blijft een `int` een `int`: regel twee zou hier een compilatiefout geven.
+
+::: {.fragment}
+Handig om te weten: zo'n stukje Python kan je nu al grotendeels lezen, ook al schrijf je het zelf nog niet.
+:::
+
+---
+
+## Zie verder: getaltypes elders
+
+Die hele waaier integer-types deelt C# met **C** en **C++**: ook daar kies je tussen `short`, `int`, `long`, ... omdat geheugen telt.
+
+**JavaScript** doet het omgekeerde: één enkel getaltype `number`, altijd een 64-bit kommagetal.
+
+```javascript
+let leeftijd = 25;   // intern een kommagetal
+let prijs = 19.99;   // exact hetzelfde type
+```
+
+Handig, maar het verklaart waarom JS onnauwkeurig wordt bij heel grote gehele getallen.
+
+---
+
+## Zie verder: bestaat `bool` overal?
+
+Niet vanzelfsprekend. De oude **C**-standaard had geen booleantype: men gebruikte een `int`, met `0` als false en al de rest als true.
+
+```c
+int klaar = 0;        /* false */
+if (klaar) { /* ... */ }   /* draait niet */
+```
+
+C# (net als Java en Python) maakt van `true` en `false` echte, aparte waarden, zodat je geen getal per ongeluk als conditie gebruikt.
+
+---
+
+## Zie verder: `const` in Python
+
+**Python** kent geen echt `const`-keyword. Een naam in ALLCAPS is er enkel een *afspraak*, geen regel die de taal afdwingt.
+
+```python
+G_AARDE = 9.81   # afspraak: niet wijzigen
+G_AARDE = 10.48  # Python staat dit gewoon toe
+```
+
+In C# vangt de compiler die tweede regel meteen op: de taal dwingt de belofte af.

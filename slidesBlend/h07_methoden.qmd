@@ -577,3 +577,51 @@ Volgende halte: **arrays**, om vele waarden samen in één variabele bij te houd
 * [Fun with methods](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ab62fdcd-94f3-4028-bee1-ac3600ca414b)
 
 [Oefeningen H7](https://apwt.gitbook.io/ziescherp-oefeningen/h7-methoden/b_practicasamen) · [Quizlet flashcards](https://quizlet.com/be/918627932/zie-scherp-scherper-hoofdstuk-07-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: methode-signatuur
+
+**Python** doet dit zo:
+
+```python
+def tel_op(a, b):
+    return a + b
+```
+
+Geen returntype, geen types voor parameters. Dat scheelt typewerk, maar Python merkt een verkeerd type pas tijdens het uitvoeren.
+
+---
+
+## Zie verder: bibliotheken importeren
+
+In C# haal je bibliotheken binnen met `using`. **Python** doet dit met `import`:
+
+```python
+import math
+
+print(math.sqrt(16))
+```
+
+Hetzelfde idee als bij C#: je geeft aan welke bibliotheek je wilt en spreekt de methoden aan via de naam (`math.sqrt`, zoals `Math.Sqrt`).
+
+---
+
+## Zie verder: overloading
+
+**Python** kent geen overloading: een tweede functie met dezelfde naam overschrijft de eerste. Pythonisten gebruiken default-parameters:
+
+```python
+def bereken_opp(lengte, breedte=None):
+    if breedte is None:
+        return int(3.14159 * lengte * lengte)  # cirkel
+    return lengte * breedte                     # rechthoek
+```
+
+C# laat de compiler op voorhand de juiste versie kiezen. In Python schrijf je die keuze zelf met een `if`.

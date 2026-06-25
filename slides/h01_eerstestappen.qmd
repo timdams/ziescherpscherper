@@ -455,6 +455,21 @@ Volgende halte: **variabelen en datatypes**. Daar gaan we het woord "variabele" 
 
 ---
 
+## Meer weten
+
+**Kennisclips**
+
+* [Introductie tot C#](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f517d032-35b9-4c9f-ba91-ac33007cd2a6)
+* [Werken met VS](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=49110395-048c-4792-810b-af030090a520)
+* [Je eerste programma](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=3b85ae06-384c-4c3b-958d-af0300961b14)
+* [WriteLine, Write en ReadLine](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=645c1bae-c84d-47c4-89d6-abe3009410c3)
+* [Fouten oplossen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1dd4ec60-8782-4bc5-8522-ac3200d629cd)
+* [Kleuren in console](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a0446be7-b8f2-4ce7-ba76-abe30094107e)
+
+[Oefeningen H1](https://apwt.gitbook.io/ziescherp-oefeningen/h1-de-eerste-stappen/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918617842/zie-scherp-scherper-hoofdstuk-01-flash-cards/)
+
+---
+
 ## Zie verder: andere talen
 
 Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
@@ -495,18 +510,3 @@ consle.log("Pas hier crasht het");
 ```
 
 De eerste lijn loopt, pas bij de typfout (``consle``) crasht het. C# compileert vooraf en weigert te starten zolang er een fout is: je vangt fouten dus vroeger.
-
----
-
-## Meer weten
-
-**Kennisclips**
-
-* [Introductie tot C#](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f517d032-35b9-4c9f-ba91-ac33007cd2a6)
-* [Werken met VS](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=49110395-048c-4792-810b-af030090a520)
-* [Je eerste programma](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=3b85ae06-384c-4c3b-958d-af0300961b14)
-* [WriteLine, Write en ReadLine](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=645c1bae-c84d-47c4-89d6-abe3009410c3)
-* [Fouten oplossen](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1dd4ec60-8782-4bc5-8522-ac3200d629cd)
-* [Kleuren in console](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a0446be7-b8f2-4ce7-ba76-abe30094107e)
-
-[Oefeningen H1](https://apwt.gitbook.io/ziescherp-oefeningen/h1-de-eerste-stappen/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918617842/zie-scherp-scherper-hoofdstuk-01-flash-cards/)

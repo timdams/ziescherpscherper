@@ -410,3 +410,48 @@ Volgende halte: **werken met data**: converteren, casten en rekenen.
 * [Environment bibliotheek](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=72cdbd18-2533-4106-aac5-af0f00809b06)
 
 [Oefeningen H3](https://apwt.gitbook.io/ziescherp-oefeningen/h3-tekst-gebruiken-in-code/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918618502/zie-scherp-scherper-hoofdstuk-03-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: string als char-array
+
+In **C** bestaat er geen echt string-type. Tekst is daar letterlijk een array van `char`, afgesloten met een null-karakter `\0`:
+
+```c
+char woord[] = "Tim";   // {'T', 'i', 'm', '\0'}
+printf("%s\n", woord);
+```
+
+In C# is `string` een volwaardig type met handige methodes. Het idee "een string is een reeks chars" zie je in C dus heel letterlijk terug.
+
+---
+
+## Zie verder: het verbatim-idee elders
+
+**Python** kent net hetzelfde, daar heet het een *raw string*. Je plaatst een `r` voor de string in plaats van een `@`:
+
+```python
+met_r = r"C:\Temp\Myfile.txt"
+```
+
+Backslashes worden gewoon als tekst behandeld, niet als escape character. Handig voor bestandspaden en reguliere expressies.
+
+---
+
+## Zie verder: interpolatie elders
+
+**Python** (f-string) en **JavaScript** (template literal) doen exact hetzelfde, met een ander tekentje vooraan:
+
+```python
+zin = f"Ik ben {naam} en ik ben {leeftijd} jaar."
+```
+
+```javascript
+const zin = `Ik ben ${naam} en ik ben ${leeftijd} jaar.`;
+```

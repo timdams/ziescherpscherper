@@ -357,3 +357,36 @@ Volgende halte: **bestandsverwerking**: lezen van en schrijven naar bestanden.
 * [Interfaces en polymorfisme: fuifsimulator](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f40f6bd4-83cf-4ad1-8cb8-adf000d4cd5f)
 
 [Oefeningen H17](https://apwt.gitbook.io/ziescherp-oefeningen/h17-interfaces-1/a_practica) · [Quizlet flashcards](https://quizlet.com/be/918809130/zie-scherp-scherper-hoofdstuk-17-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: interfaces elders
+
+**Java** en **TypeScript** hebben net als C# een echt `interface`-keyword:
+
+```typescript
+interface ISuperHeld {
+    schietLasers(): void;
+    power: number;
+}
+```
+
+**Python** doet aan *duck typing*: geen verplichte interface, zolang een object toevallig de juiste methoden heeft, mag je het gebruiken. C# laat de compiler je belofte hard controleren.
+
+---
+
+## Zie verder: waarom maar één parent?
+
+Dat je meerdere interfaces maar één klasse mag erven, koos **Java** ook bewust. **C++** laat wél meervoudige overerving van klassen toe:
+
+```cpp
+class Zorro : public Man, public SuperHeld { };  // mag in C++
+```
+
+Krachtig, maar het leidt tot het *diamond problem*: erven twee parents dezelfde methode, dan weet de compiler niet meer welke. Door enkel meervoudige *interfaces* (zonder eigen code) toe te laten, ontwijken C# en Java dat volledig.

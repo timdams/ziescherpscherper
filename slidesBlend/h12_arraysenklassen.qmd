@@ -377,3 +377,60 @@ Volgende halte: **overerving**, waar klassen eigenschappen en gedrag van elkaar 
 * [Werken met Dictionary<>](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=43e5eb65-6b40-4539-892e-ab9f0093b774)
 
 [Oefeningen H12](https://apwt.gitbook.io/ziescherp-oefeningen/h12-arrays-en-klassen/a_practicamem) · [Quizlet flashcards](https://quizlet.com/be/918632520/zie-scherp-scherper-hoofdstuk-12-flash-cards/)
+
+---
+
+## Zie verder: andere talen
+
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+
+---
+
+## Zie verder: List in andere talen
+
+In **Python** is een ``list`` ingebouwd en typeloos:
+
+```python
+namen = ["Tim", "An"]
+namen.append("Jan")
+```
+
+In **Java** lijkt het sterk op C#: ``ArrayList<String>`` met ``.add(...)``.
+
+---
+
+## Zie verder: foreach in andere talen
+
+In **Python** schrijf je net hetzelfde idee, zonder type en accolades:
+
+```python
+for meting in metingen:
+    print(meting)
+```
+
+In **JavaScript** heet dit ``for...of``:
+
+```javascript
+for (const meting of metingen) {
+    console.log(meting);
+}
+```
+
+---
+
+## Zie verder: Dictionary in andere talen
+
+In **Python** heet dit een ``dict``, ingebouwd met een handige ``{}``-syntax:
+
+```python
+klanten = {123: "Tim Dams", 6463: "James Bond"}
+print(klanten[123])
+```
+
+In **JavaScript** gebruik je een ``Map`` met ``set`` en ``get``:
+
+```javascript
+const klanten = new Map();
+klanten.set(123, "Tim Dams");
+console.log(klanten.get(123));
+```

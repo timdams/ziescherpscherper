@@ -344,6 +344,18 @@ En dat was het laatste hoofdstuk. Je bent van "Hello World!" tot serialisatie ge
 
 ---
 
+## Meer weten
+
+**Kennisclips**
+
+* [Bestandsverwerking intro](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4abb4fd1-d8e8-4bf9-9069-b45300951d91)
+* [Lezen en schrijven](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=245ee4d1-8a4f-4d7a-8b23-b4530103b293)
+* [FileInfo](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=fa02d630-a851-4f70-9b8a-b45300afe62d)
+
+[Oefeningen H18](https://apwt.gitbook.io/ziescherp-oefeningen/h18-bestandsverwerking/a_practica) · [Quizlet flashcards](https://quizlet.com/be/934448214/zie-scherp-scherper-hoofdstuk-18-flash-cards/)
+
+---
+
 ## Zie verder: andere talen
 
 Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
@@ -391,15 +403,3 @@ terug = json.loads(json_string)     # JSON-tekst -> dict
 ```
 
 Verschil met C#: je hoeft geen type mee te geven. Python geeft een `dict` terug, waar C# via `Deserialize<Student>` weet bij welke klasse de data hoort.
-
----
-
-## Meer weten
-
-**Kennisclips**
-
-* [Bestandsverwerking intro](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4abb4fd1-d8e8-4bf9-9069-b45300951d91)
-* [Lezen en schrijven](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=245ee4d1-8a4f-4d7a-8b23-b4530103b293)
-* [FileInfo](https://ap.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=fa02d630-a851-4f70-9b8a-b45300afe62d)
-
-[Oefeningen H18](https://apwt.gitbook.io/ziescherp-oefeningen/h18-bestandsverwerking/a_practica) · [Quizlet flashcards](https://quizlet.com/be/934448214/zie-scherp-scherper-hoofdstuk-18-flash-cards/)

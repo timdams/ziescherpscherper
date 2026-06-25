@@ -14,9 +14,9 @@ website:
     pinned: true
     left:
       - text: "Handboek"
-        href: https://www.ziescherp.be/index.html
+        href: ../index.html
       - text: "Slides"
-        href: https://www.ziescherp.be/slides/overzicht.html
+        href: ../slides/overzicht.html
       - text: "Oefeningen"
         href: overzicht.qmd
   sidebar:
@@ -49,24 +49,18 @@ website:
 
       - section: "H6 tot en met H8"
         contents:
-          - section: "Oefeningen H6"
-            contents:
-              - text: "Week 1"
-                href: 6_herhalingen/A_practicasamen.md
-              - text: "Week 2"
-                href: 6_herhalingen/A_practicasamen2.md
-          - section: "Oefeningen H7"
-            contents:
-              - text: "Week 1"
-                href: 7_methoden/b_practicasamen.md
-              - text: "Week 2"
-                href: 7_methoden/b_practicasamenb.md
-          - section: "Oefeningen H8"
-            contents:
-              - text: "Week 1"
-                href: 8_arrays/A_practicasamen.md
-              - text: "Week 2"
-                href: 8_arrays/A_practicasamenb.md
+          - text: "Oefeningen H6 (week 1)"
+            href: 6_herhalingen/A_practicasamen.md
+          - text: "Oefeningen H6 (week 2)"
+            href: 6_herhalingen/A_practicasamen2.md
+          - text: "Oefeningen H7 (week 1)"
+            href: 7_methoden/b_practicasamen.md
+          - text: "Oefeningen H7 (week 2)"
+            href: 7_methoden/b_practicasamenb.md
+          - text: "Oefeningen H8 (week 1)"
+            href: 8_arrays/A_practicasamen.md
+          - text: "Oefeningen H8 (week 2)"
+            href: 8_arrays/A_practicasamenb.md
           - section: "Voorbeeld vaardigheidsproeven"
             contents:
               - text: "Opgave 1 (2022)"
@@ -116,14 +110,12 @@ website:
 
       - section: "H9 tot en met H12"
         contents:
-          - section: "Oefeningen H9"
-            contents:
-              - text: "Week 1 \"Intermezzo\""
-                href: 9_klassen/intermezzoh9.md
-              - text: "Week 2"
-                href: 9_klassen/A_practica.md
-              - text: "Week 3"
-                href: 9_klassen/B_practica.md
+          - text: "Oefeningen H9 (intermezzo)"
+            href: 9_klassen/intermezzoh9.md
+          - text: "Oefeningen H9 (week 2)"
+            href: 9_klassen/A_practica.md
+          - text: "Oefeningen H9 (week 3)"
+            href: 9_klassen/B_practica.md
           - text: "Oefeningen H10"
             href: 10_meminoop/A_poke1.md
           - text: "Oefeningen H11"
