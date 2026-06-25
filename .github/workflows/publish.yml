@@ -59,6 +59,7 @@ jobs:
           for f in build/slides/*.html; do
             name=$(basename "$f" .html)
             [ "$name" = "index" ] && continue
+            [ "$name" = "overzicht" ] && continue
             pdf="build/slides/${name}.pdf"
             if [ "$REBUILD_ALL" = "true" ] || [ ! -f "$pdf" ] || echo "$CHANGED" | grep -qw "$name"; then
               TO_CONVERT="$TO_CONVERT $name"

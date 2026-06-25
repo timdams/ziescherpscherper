@@ -1,8 +1,32 @@
-## Zie verder: andere talen
+## Zie verder
 
-### Polymorfisme in Python
+### Even terugblikken
 
-In C# heb je voor polymorfisme een gemeenschappelijke parent-klasse nodig (hier ``Dier``) plus ``virtual``/``override``. In **Python** krijg je hetzelfde resultaat zomaar via *duck typing*: "als het loopt als een eend en kwaakt als een eend, dan is het een eend". Er is geen gedeelde basisklasse nodig; als het object de juiste methode heeft, werkt het gewoon:
+In dit hoofdstuk zag je de vierde pijler van OOP: polymorfisme, letterlijk "meerdere vormen". Een object van een child-type kan je bewaren in een variabele van het parent-type, en toch zijn eigen gedrag uitvoeren. Daardoor kan je een bonte verzameling objecten als één geheel behandelen, bijvoorbeeld in een ``List<Dier>`` of ``List<Minister>``.
+
+De kern op een rij:
+
+- Een referentie naar een child mag je toewijzen aan een variabele van het parent-type (upcasting). Dat gebeurt automatisch.
+- De variabele bepaalt wat je mag aanroepen; het echte object in de heap bepaalt welke ``override`` draait (late binding).
+- Late binding werkt enkel als de methode ``virtual`` of ``abstract`` is. Bij een gewone methode kijkt C# enkel naar het type van de variabele.
+- Dankzij polymorfisme kan je lijsten van het basistype vullen met objecten van child-klassen en die in één lus verwerken.
+
+:::{.callout-warning}
+## Valkuilen
+- Een variabele van het type ``Dier`` (of ``System.Object``) kan enkel wat in dat type beschreven staat, ook al zit er een ``Varken`` in de heap. Wil je terug bij de child-specifieke zaken, dan moet je downcasten (hoofdstuk 18).
+- Vergeet je ``virtual``/``abstract`` op de parent-methode, dan werkt polymorfisme niet zoals verwacht en draait gewoon de parent-versie.
+:::
+
+:::{.callout-tip}
+## Tijd om te oefenen
+De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h16-polymorfisme/a_practica).
+:::
+
+### In andere talen
+
+#### Polymorfisme in Python
+
+In C# heb je voor polymorfisme een gemeenschappelijke parent-klasse nodig (hier ``Dier``) plus ``virtual``/``override``. In **Python** krijg je hetzelfde resultaat via *duck typing*: "als het loopt als een eend en kwaakt als een eend, dan is het een eend". Er is geen gedeelde basisklasse nodig; als het object de juiste methode heeft, werkt het gewoon:
 
 ```python
 class Paard:
@@ -22,9 +46,9 @@ laat_spreken(Varken())  # Oinkoink
 
 C# controleert de types al bij het compileren; Python kijkt pas tijdens de uitvoer of de methode bestaat.
 
-### Type-check in andere talen
+#### Type-check in andere talen
 
-Het idee "is dit object van dat type?" bestaat in zowat elke OOP-taal, maar elke taal heeft er een eigen woord voor. Waar C# ``obj is Voertuig`` schrijft, doe je in **Python** dit met de functie ``isinstance``:
+Het idee "is dit object van dat type?" bestaat in zowat elke OOP-taal, maar elke taal heeft er een eigen woord voor. Waar C# ``obj is Voertuig`` schrijft, doe je dit in Python met de functie ``isinstance``:
 
 ```python
 if isinstance(mijn_auto, Voertuig):
@@ -39,11 +63,11 @@ if (mijnAuto instanceof Voertuig) {
 }
 ```
 
-Drie keer dezelfde vraag, drie keer een andere notatie: een keyword (``is``), een functie (``isinstance``) of een operator (``instanceof``).
+C# gebruikt dus een keyword (``is``), Python een functie (``isinstance``) en JavaScript een operator (``instanceof``).
 
-### Gelijkheid in andere talen
+#### Gelijkheid in andere talen
 
-Zelf bepalen wanneer twee objecten "gelijk" zijn doe je in andere talen via een vaste, speciale methode. In **Python** override je daarvoor de magische methode ``__eq__``, die meteen achter de gewone ``==`` zit:
+Zelf bepalen wanneer twee objecten "gelijk" zijn doe je in andere talen via een vaste, speciale methode. In Python override je daarvoor de magische methode ``__eq__``, die meteen achter de gewone ``==`` zit:
 
 ```python
 class Student:
@@ -64,4 +88,30 @@ public boolean equals(Object o) {
 }
 ```
 
-Net als in C# geldt in Java: wie ``equals`` overridet, override ook ``hashCode``. In **JavaScript** bestaat zoiets niet: ``===`` blijft altijd op referentie vergelijken en valt niet te overriden. Daar schrijf je gewoon zelf een functie ``zijnGelijk(a, b)``.
+Net als in C# geldt in Java: wie ``equals`` overridet, override ook ``hashCode``. In JavaScript bestaat zoiets niet: ``===`` blijft altijd op referentie vergelijken en valt niet te overriden. Daar schrijf je gewoon zelf een functie ``zijnGelijk(a, b)``.
+
+### Zoek de fout
+
+Onderstaande C#-code wil dat elk dier zijn eigen geluid maakt, maar bij de uitvoer roept élk dier "Een dier maakt geluid". Wat loopt er mis?
+
+```csharp
+internal class Dier
+{
+    public string MaakGeluid()
+    {
+        return "Een dier maakt geluid";
+    }
+}
+internal class Varken : Dier
+{
+    public override string MaakGeluid()
+    {
+        return "Oinkoink";
+    }
+}
+```
+
+:::{.callout-note collapse="true"}
+## Antwoord
+De methode ``MaakGeluid`` in ``Dier`` is niet ``virtual`` (of ``abstract``), dus de ``override`` in ``Varken`` kan niet kicken in. Eigenlijk zou deze code zelfs niet compileren: zonder ``virtual`` mag je niet ``override``'n. Maak ``MaakGeluid`` in de parent ``public virtual string MaakGeluid()`` (of ``abstract``), dan zorgt late binding ervoor dat de ``Varken``-versie draait.
+:::

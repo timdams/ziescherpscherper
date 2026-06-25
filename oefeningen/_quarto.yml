@@ -8,7 +8,7 @@ project:
     - "!README.md"
 
 website:
-  title: "Zie Scherp – Oefeningen"
+  title: "Zie Scherp Scherper"
   navbar:
     background: light
     pinned: true

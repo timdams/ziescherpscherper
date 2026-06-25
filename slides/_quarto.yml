@@ -3,10 +3,19 @@ project:
   output-dir: ../build/slides
   render:
     - "*.qmd"
-    - "!overzicht.qmd"
 
 website:
-  title: "Zie Scherp – Slides"
+  title: "Zie Scherp Scherper"
+  navbar:
+    background: light
+    pinned: true
+    left:
+      - text: "Handboek"
+        href: ../index.html
+      - text: "Slides"
+        href: overzicht.qmd
+      - text: "Oefeningen"
+        href: ../oefeningen/overzicht.html
 
 format:
   revealjs:

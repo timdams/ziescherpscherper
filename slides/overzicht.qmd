@@ -1,5 +1,10 @@
 ---
 title: "Slides"
+format:
+  html:
+    theme: [cosmo, brand, ../custom.scss]
+    lang: nl
+    toc: false
 ---
 
 Hieronder vind je een overzicht van de lesslides bij het handboek. Elke presentatie opent in een nieuw tabblad, of je downloadt ze als PDF.
@@ -32,5 +37,3 @@ Hieronder vind je een overzicht van de lesslides bij het handboek. Elke presenta
 * ❌: Slides nog niet beschikbaar
 * ✅: Slides beschikbaar
 * 🕒: Slides in ontwikkeling (mogen niet als leerstof gebruikt worden)
-</content>
-</invoke>
