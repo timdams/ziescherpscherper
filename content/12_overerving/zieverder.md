@@ -18,10 +18,6 @@ De kern op een rij:
 - Heeft de parent enkel een overloaded constructor, dan bestaat er geen impliciete `base()` meer. Roep je `new VeldArts()` aan zonder zelf een `base(...)` te voorzien, dan compileert je code niet.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h13-overerving/a_practicasimpel).
-:::
 
 ### In andere talen
 

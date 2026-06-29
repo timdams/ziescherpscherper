@@ -18,10 +18,7 @@ De kern op een rij:
 - Bij geldformaten (`:C`) hangt de uitvoer af van de regio-instellingen van de machine: op een Belgisch systeem krijg je `€ 12,34`, op een Engels `$12.34`.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h3-tekst-gebruiken-in-code/a_practica).
-:::
+
 
 ### In andere talen
 

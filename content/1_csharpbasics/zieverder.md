@@ -18,10 +18,7 @@ De kern op een rij:
 - `getal++` en `++getal` doen allebei één optellen, maar het resultaat van de expressie verschilt. Bij twijfel schrijf je gewoon `getal = getal + 1`.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h2-de-basisconcepten-van-c/a_practica).
-:::
+
 
 ### In andere talen
 

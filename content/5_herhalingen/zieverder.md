@@ -18,10 +18,11 @@ De kern op een rij:
 - Bij geneste loops moet je de teller van de inner loop bij elke ronde van de outer loop terug op de beginwaarde zetten. Vergeet je dat, dan loopt de binnenste loop in totaal maar één keer.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h6-herhalingen-herhalingen-herhalingen/a_practicasamen).
-:::
+Volgende vereenvoudiging kan je helpen te bepalen welke loop  vermoedelijk de beste optie is. Merk op dat je uiteraard steeds kritisch moet zijn over de opgave en de vereisten voor je beslist wat voor loop je gaat gebruiken:
+
+![Welke loop kiezen we?](../assets/3_loops/loopflow.png)
+
+
 
 ### In andere talen
 

@@ -18,10 +18,7 @@ De kern op een rij:
 - Geef je een array mee aan een methode, dan werk je op het origineel. Aanpassingen in de methode blijven ook na de aanroep bestaan.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h7-methoden/b_practicasamen).
-:::
+
 
 ### In andere talen
 

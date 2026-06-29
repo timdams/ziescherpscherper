@@ -95,6 +95,10 @@ De raket verdwijnt in de ruimte.
 ```
 :::
 
+![Dezelfde aanroep ``Vlieg()`` geeft een ander resultaat: de ``override`` van ``Raket`` vervangt de ``virtual`` versie van ``Vliegtuig``.](../assets/7_overerving/virtualoverrideNEW.png)<!--{width=75%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (virtualoverride), nakijken en goedkeuren -->
+
 :::{.callout-tip}
 Indien je iets ``override`` moet de signatuur van je methode of property  identiek zijn aan deze van de parent-klasse. Het enige verschil is dat je het keyword ``virtual`` vervangt door ``override``.
 

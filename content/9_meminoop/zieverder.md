@@ -18,10 +18,6 @@ De kern op een rij:
 - Roep `GC.Collect()` niet zelf aan. De GC kiest zelf het beste moment; zelf ingrijpen onderbreekt je programma op een slecht ogenblik en maakt het meestal trager.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h10-geheugenmanagement-uitzonderingen-en-namespaces/a_poke1).
-:::
 
 ### In andere talen
 

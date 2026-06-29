@@ -18,10 +18,7 @@ De kern op een rij:
 - Een abstracte property zoals `public abstract int MaxLeeftijd { get; }` is géén auto-property: er zit geen verborgen instantievariabele achter, de child moet de implementatie zelf voorzien.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h14-gevorderde-overervingsconcepten/a_practica).
-:::
+
 
 ### In andere talen
 

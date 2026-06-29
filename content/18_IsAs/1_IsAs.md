@@ -109,6 +109,10 @@ if(jos != null)
 **Wanneer ``is`` en wanneer ``as``?** Vuistregel: wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
 :::
 
+![``is`` geeft een ``bool`` terug; ``as`` geeft de referentie terug als het type klopt, anders ``null``.](../assets/12_isas/isastypecheckNEW.png)<!--{width=70%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (isastypecheck), nakijken en goedkeuren -->
+
 ### Pattern matching: ``is`` met een variabele
 
 Moderne C# (sinds C# 7) laat toe om de ``is``-controle en het omzetten in **één** stap te doen. Je plaatst gewoon een variabelenaam achter het type. Slaagt de ``is``-check, dan zit het omgezette object meteen in die variabele klaar voor gebruik. Dit heet *pattern matching*.

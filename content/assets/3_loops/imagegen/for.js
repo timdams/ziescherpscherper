@@ -1,0 +1,30 @@
+// H5 - for: setup, finish test, for code + update als lus
+const { createCanvas, C } = require('./excal');
+const { terminal, proc, decision } = require('./flow');
+const c = createCanvas(860, 680);
+
+const X = 250;
+terminal(c, X, 40);
+c.arrow(X, 60, X, 88, { strokeWidth: 2.6, head: 15 });
+
+proc(c, X, 130, 340, 80, 'setup');
+c.arrow(X, 170, X, 298, { strokeWidth: 2.6, head: 15 });
+
+decision(c, X, 400, 280, 200, 'finish test');
+
+// false -> omlaag naar einde
+c.arrow(X, 500, X, 580, { strokeWidth: 2.6, head: 15 });
+c.txt(55, 535, 'Conditie is false', 27, C.GRAY, 600, 'start');
+terminal(c, X, 603);
+
+// true -> for code, dan update, terug naar de test
+c.line(390, 400, 650, 400, { strokeWidth: 2.6 });
+c.txt(500, 470, 'Conditie is true', 27, C.GRAY, 600);
+c.arrow(650, 400, 650, 422, { strokeWidth: 2.6, head: 14 });
+proc(c, 650, 380, 260, 80, 'for code');
+c.line(650, 340, 650, 312, { strokeWidth: 2.6 });
+proc(c, 650, 270, 260, 80, 'update');
+c.line(650, 230, 650, 200, { strokeWidth: 2.6 });
+c.arrow(650, 200, 266, 200, { strokeWidth: 2.6, head: 15 });
+
+c.save('.', 'for', 'NEW');

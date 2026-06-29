@@ -34,6 +34,8 @@ Console.WriteLine("Geef je gewicht:");
 double gewicht = double.Parse(Console.ReadLine());
 ```
 
+![Van ReadLine 'getal' naar een effectief getaldatatype .](../assets/1_csharpbasics/readline.png)
+
 ### Foutloze input
 
 Voorgaande code veronderstelt dat de gebruiker géén fouten invoert[^geenfouten]. De conversie zal namelijk mislukken indien de gebruiker bijvoorbeeld ``Ik weeg 10kg`` invoert in plaats van ``10,3``.

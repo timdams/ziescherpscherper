@@ -18,10 +18,7 @@ De kern op een rij:
 - Object initializer syntax werkt enkel op properties met een ``set`` die van buitenaf bereikbaar is. Een ``private set`` kan je er niet mee instellen.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h11-gevorderde-klasseconcepten/a_practica3).
-:::
+
 
 ### In andere talen
 

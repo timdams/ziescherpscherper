@@ -17,10 +17,7 @@ De kern op een rij:
 - Vergeet je ``virtual``/``abstract`` op de parent-methode, dan werkt polymorfisme niet zoals verwacht en draait gewoon de parent-versie.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h16-polymorfisme/a_practica).
-:::
+
 
 ### In andere talen
 

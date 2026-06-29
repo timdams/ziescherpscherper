@@ -1,0 +1,14 @@
+const { createCanvas, clsbox, treeBus } = require('./over');
+const c = createCanvas(900, 480);
+clsbox(c, 360, 20, 180, 72, 'Animal', 'white', 38);
+clsbox(c, 120, 190, 180, 72, 'Mammal', 'white', 38);
+clsbox(c, 580, 190, 180, 72, 'Reptile', 'white', 38);
+clsbox(c, 20, 370, 160, 72, 'Rabbit', 'white', 36);
+clsbox(c, 200, 370, 160, 72, 'Cow', 'white', 36);
+clsbox(c, 380, 370, 160, 72, 'Dog', 'white', 36);
+clsbox(c, 560, 370, 160, 72, 'Snake', 'white', 36);
+clsbox(c, 730, 370, 160, 72, 'Iguana', 'white', 36);
+treeBus(c, 92, 450, 145, [[210, 190], [670, 190]]);
+treeBus(c, 262, 210, 320, [[100, 370], [280, 370], [460, 370]]);
+treeBus(c, 262, 670, 320, [[640, 370], [810, 370]]);
+c.save(__dirname, 'animals', 'NEW');

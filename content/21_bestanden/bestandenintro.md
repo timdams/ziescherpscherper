@@ -52,6 +52,10 @@ c:\temp\
 
 In C# zullen deze paths altijd als ``string``  worden verwerkt. 
 
+![Een full path beschrijft de volledige weg doorheen de folders tot bij het bestand.](../assets/21files/folderpadNEW.png)<!--{width=60%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (folderpad), nakijken en goedkeuren -->
+
 :::{.callout-important}
 
 Let er op dat een path **niet hoofdlettergevoelig** is. Je kan dus geen 2 bestanden met de naam "mijnData.txt" en "MijnData.TXT" in dezelfde folder hebben. Zowel Windows als Mac OS hebben een niet hoofdlettergevoelige bestandsstructuur.

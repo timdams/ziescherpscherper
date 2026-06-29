@@ -229,6 +229,11 @@ finally
 
 Het ``finally``-blok loopt dus zowel wanneer alles goed ging als wanneer er een exception werd opgevangen. Zo vormen ``try``, ``catch`` en ``finally`` samen de drie-eenheid van exception handling.
 
+![De flow van try/catch/finally: het ``finally``-blok wordt altijd uitgevoerd, met of zonder fout.](../assets/20_exceptions/exceptionflowNEW.png)<!--{width=45%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (exceptionflow), nakijken en goedkeuren -->
+
+
 :::{.callout-tip}
 Voor het specifieke geval van "iets openen en daarna gegarandeerd weer sluiten" bestaat een nettere, kortere schrijfwijze: het ``using``-statement. Dat zie je later bij het hoofdstuk over bestandsverwerking.
 :::

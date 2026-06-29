@@ -9,7 +9,12 @@
       "WebFetch(domain:quarto.org)",
       "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/cyberboswachters/slides/**)",
       "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/.github/workflows/**)",
-      "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/**)"
+      "Read(//c/Users/damst/Koofr/PROGPROJECTS/cursus/NWSecBook/**)",
+      "Bash(node compileAlternatief.js)",
+      "Bash(find content/assets -name \"node_modules\" -type d -maxdepth 4)",
+      "Bash(ls content/assets/5_arrays/imagegen/)",
+      "Bash(NODE_PATH=\"C:/Users/damst/.imagegen-deps/node_modules\" node compileAlternatief.js)",
+      "PowerShell($env:NODE_PATH = \"$env:USERPROFILE\\\\.imagegen-deps\\\\node_modules\"; node content\\\\assets\\\\1_csharpbasics\\\\imagegen\\\\compileSimpelAlternatief.js)"
     ]
   }
 }

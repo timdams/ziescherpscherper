@@ -4,6 +4,10 @@ De locaties en paths van bestanden kennen is...interessant. Het wordt natuurlijk
 
 Er is geen vaste manier om dit te doen. Alles hangt af van je specifieke probleem. We zullen daarom enkele veel gebruikte *use-cases* bekijken.
 
+![Een ``StreamWriter`` schrijft data naar het bestand; een ``StreamReader`` leest ze terug uit.](../assets/21files/streamdiagramNEW.png)<!--{width=70%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (streamdiagram), nakijken en goedkeuren -->
+
 ### StreamWriter en StreamReader 
 
 #### StreamWriter

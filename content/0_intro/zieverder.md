@@ -1,5 +1,16 @@
 ## Zie verder
 
+:::{.callout-warning}
+In deze nieuwe sectie gaan we altijd 2 zaken doen:
+
+1. We vatten de belangrijkste zaken samen van het voorbije hoofdstuk.
+2. We bekijken hoe bepaalde concepten van dit hoodstuk in andere programmeertalen gebeuren.
+
+Dit tweede deel wordt steeds belangrijker voor de ontwikkelaar van de 21e eeuw. In een wereld waarin steeds meer code door generatieve A.I. wordt geschreven is het essentieel dat je als ontwikkelaar zo snel mogelijk een heel brede kijk hebt op het *programmeerveld*. Je zal vanaf dag 1 geconfronteerd worden met andere talen die problemen oplossen, en je zal ontdekken dat iedere taal z'n eigen stertkes, zwaktes en *speciallekes* heeft.
+
+
+:::
+
 ### Even terugblikken
 
 In dit hoofdstuk zette je je eerste stappen in C#. Je maakte een console-applicatie in Visual Studio, leerde wat het `namespace`/`class`/`Main`-skelet doet (en dat je dat voorlopig gewoon mag negeren) en je schreef code binnen de `Main`-accolades. Je toonde tekst met `Console.WriteLine` en `Console.Write`, las invoer van de gebruiker met `Console.ReadLine()` en je leerde hoe je in Visual Studio fouten opspoort.
@@ -19,10 +30,6 @@ De kern op een rij:
 - Spaties buiten de aanhalingstekens worden genegeerd. Wil je een spatie in je uitvoer, zet ze dan binnen de `"  "`.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h1-de-eerste-stappen/a_practica).
-:::
 
 ### In andere talen
 

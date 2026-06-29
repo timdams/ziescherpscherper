@@ -18,10 +18,7 @@ De kern op een rij:
 - ``File.Create`` geeft een open ``FileStream`` terug: sluit die meteen met een ``using``, anders blijft het bestand gelockt.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h18-bestandsverwerking/a_practica).
-:::
+
 
 ### In andere talen
 

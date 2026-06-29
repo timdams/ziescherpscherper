@@ -15,6 +15,10 @@ List<string[]> listOfStringarrays = new List<string[]>();
 
 **Zoals je ziet hoeven we bij het aanmaken van een ``List`` geen begingrootte mee te geven, wat we wel bij arrays moeten doen. Dit is één van de voordelen van ``List``: ze groeien mee.**
 
+![Een array heeft een vaste lengte; een ``List`` groeit mee telkens je ``Add()`` aanroept.](../assets/10_generics/listgroeitNEW.png)<!--{width=70%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (listgroeit), nakijken en goedkeuren -->
+
 :::{.callout-tip}
 In dit boek behandel ik het concept generieke klassen enkel in de appendix. 
 

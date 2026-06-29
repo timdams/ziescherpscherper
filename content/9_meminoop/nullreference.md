@@ -32,6 +32,10 @@ Console.WriteLine(stud1.Name);
 
 Dit zal resulteren in een foutboodschap in VS bij de lijn die de uitzondering detecteert: "System.NullReferenceException: 'Object reference not set to an instance of an object'. stud1 was null".
 
+![``stud1`` bevat ``null``: er staat geen object op de heap om te benaderen, vandaar de ``NullReferenceException``.](../assets/6_klassen/nullreferentieNEW.png)<!--{width=65%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (nullreferentie), nakijken en goedkeuren -->
+
 :::{.callout-tip}
 We moeten in dit voorbeeld expliciet ``= null`` plaatsen daar Visual Studio slim genoeg is om je te waarschuwen voor eenvoudige potentiële NullReference fouten.
 

@@ -18,10 +18,7 @@ De kern op een rij:
 - Een methode die zichzelf aanroept zonder stopconditie geeft een oneindige aanroep en crasht je programma wanneer het geheugen op is.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h7-methoden/b_practicasamen).
-:::
+
 
 ### In andere talen
 

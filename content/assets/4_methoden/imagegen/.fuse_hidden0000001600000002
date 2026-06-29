@@ -1,0 +1,30 @@
+// H6 - fac: faculteit-loop roept BerekenFaculteit; argument heen, resultaat terug
+const { createCanvas, C } = require('./excal');
+const { codebox } = require('./mhelpers');
+const c = createCanvas(2400, 1580);
+
+const code = [
+  'for (int i = 1; i < 11; i++)',
+  '{',
+  '    Console.WriteLine($"Faculteit van {i} is {BerekenFaculteit(i)}" );',
+  '}',
+];
+
+function panel(yo, iLabel, argNum, resNum) {
+  c.txt(90, yo + 72, iLabel, 56, C.GRAY, 700, 'start');
+  codebox(c, 40, yo + 110, 1480, 330, null, code, { codeSize: 44, lh: 1.45, pad: 34 });
+  codebox(c, 1880, yo + 90, 470, 150, 'BerekenFaculteit', [], { titleSize: 50 });
+  // aanroep met argument
+  c.carrow(1080, yo + 248, 1330, yo + 120, 1860, yo + 150, { strokeWidth: 2.6, head: 16, roughness: 1 });
+  c.txt(1660, yo + 90, argNum, 54, C.GRAY, 700);
+  // resultaat terug
+  c.carrow(1900, yo + 245, 1480, yo + 400, 1090, yo + 345, { strokeWidth: 2.6, head: 16, roughness: 1 });
+  c.txt(1770, yo + 388, resNum, 50, C.GRAY, 700);
+}
+
+panel(0, 'i == 1', '1', '1');
+panel(500, 'i == 2', '2', '2');
+c.txt(760, 1010, '. . .', 80, C.GRAY, 700);
+panel(1080, 'i == 10', '10', '3628800');
+
+c.save(__dirname, 'fac', 'NEW');

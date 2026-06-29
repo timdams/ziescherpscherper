@@ -19,10 +19,7 @@ De kern op een rij:
 - `this` werkt enkel in een instance-context. In een `static` methode bestaat er geen huidig object, dus kan je `this` daar niet gebruiken.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h15-compositie-en-aggregatie/a_practicacomp).
-:::
+
 
 ### In andere talen
 

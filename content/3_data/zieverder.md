@@ -18,11 +18,6 @@ De kern op een rij:
 - Een `double` casten naar `int` kapt de cijfers na de komma af (er wordt niet afgerond): `(int)2.9` is `2`.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h4-werken-met-data/a_practica).
-:::
-
 ### In andere talen
 
 #### Type-coercion

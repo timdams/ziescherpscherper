@@ -19,10 +19,6 @@ De kern op een rij:
 - Bij een `bool`-variabele schrijf je gewoon `if (heeftKaart)`, niet `if (heeftKaart == true)`. Dat `== true` voegt niets toe.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h5-beslissingen/a_practica).
-:::
 
 ### In andere talen
 

@@ -18,10 +18,6 @@ De kern op een rij:
 - Pas je in de klasse zelf een instantievariabele rechtstreeks aan, dan omzeil je de controle in de ``set``. Ga ook intern via de property.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h9-object-oriented-programming/a_practica).
-:::
 
 ### In andere talen
 

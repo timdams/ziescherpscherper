@@ -19,6 +19,10 @@ Het belangrijkste nieuwe concept is de **iteration variable** die we hier defini
 
 De eerste keer dat we in de loop gaan, zal het element ``metingen[0]`` aan ``meting`` toegewezen worden voor gebruik in de loop-body. Vervolgens wordt ``metingen[1]`` toegewezen, enz. 
 
+![Elke iteratie komt het volgende element in de iteration variable ``meting`` terecht.](../assets/10_generics/foreachloopNEW.png)<!--{width=65%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (foreachloop), nakijken en goedkeuren -->
+
 De output zal dan zijn:
 
 ```text

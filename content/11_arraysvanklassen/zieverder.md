@@ -18,10 +18,7 @@ De kern op een rij:
 - ``IndexOf`` en ``Contains`` vergelijken op referentie: twee aparte objecten met dezelfde inhoud gelden als verschillend.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h12-arrays-en-klassen/a_practicamem).
-:::
+
 
 ### In andere talen
 

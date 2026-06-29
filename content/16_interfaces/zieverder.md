@@ -17,10 +17,7 @@ De kern op een rij:
 - Implementeer je een ingebouwde interface zoals ``IComparable``, schrijf die dan niet zelf opnieuw. Ze bestaat al in .NET; jij levert enkel de ``CompareTo``-implementatie.
 :::
 
-:::{.callout-tip}
-## Tijd om te oefenen
-De practica bij dit hoofdstuk staan [hier](https://apwt.gitbook.io/ziescherp-oefeningen/h17-interfaces-1/a_practica).
-:::
+
 
 ### In andere talen
 

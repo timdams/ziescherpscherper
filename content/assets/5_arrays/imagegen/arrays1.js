@@ -1,0 +1,11 @@
+const { createCanvas, C, cellRow } = require('./arr');
+const c = createCanvas(1240, 840);
+c.rect(110, 320, 770, 200, { fill: C.RED_LIGHT, fillStyle: 'solid', stroke: C.RED_DARK, strokeWidth: 3, roughness: 1.05 });
+cellRow(c, 145, 340, 140, 160, [0,1,2,3,4], { size: 52 });
+c.bubble(990, 70, 250, 120, 'myColors', 875, 325, 46);
+c.txt(340, 80, 'element met index 2', 38, C.GRAY, 600);
+c.arrow(430, 105, 495, 330, { strokeWidth: 2.6, head: 16 });
+c.arrow(150, 580, 845, 580, { strokeWidth: 3.2, head: 22 });
+c.arrow(845, 580, 150, 580, { strokeWidth: 3.2, head: 22 });
+c.txt(500, 645, 'array lengte is 5', 42, C.GRAY, 600);
+c.save('.', 'arrays1', 'NEW');

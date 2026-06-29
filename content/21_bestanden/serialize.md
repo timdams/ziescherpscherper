@@ -4,6 +4,10 @@ Uiteraard weet je nu genoeg om informatie uit je klassen naar een bestand te sch
 
 Telkens een introductie begint zoals de vorige paragraaf, dan weet je dat er een betere oplossing is. Inderdaad, er zit in C# een ingebakken manier om objecten te **serialiseren** naar een bestand. Het woord serialiseren dekt de lading: we gaan de inhoud van een object in serie, achter elkaar bewaren en wegschrijven.  Uiteraard zullen we ook het omgekeerde proces bekijken, namelijk **deserialiseren**. 
 
+![Serialiseren zet een object om naar tekst (bv. JSON); deserialiseren bouwt het object terug op.](../assets/21files/serialiserenNEW.png)<!--{width=70%}-->
+
+<!-- TODO: nieuwe AI-gegenereerde afbeelding (serialiseren), nakijken en goedkeuren -->
+
 :::{.callout-tip}
 Waarom wil je objecten kunnen serialiseren naar een bestand? Eenvoudig: het laat je toe om de huidige staat van je programma naar een bestand weg te schrijven en later terug op te halen. Je maakt letterlijk een *savepoint* van je programma en geeft je gebruiker de mogelijkheid om op een later moment vanaf dat punt verder te werken.
 :::
