@@ -202,9 +202,9 @@ internal class Microfoon
 }
 ```
 
-![Met ``this()`` laten alle constructors hun werk over aan één hoofdconstructor, zo vermijd je dubbele code.](../assets/6_klassen/constructorchainingNEW.png)<!--{width=85%}-->
+![Met ``this()`` laten alle constructors hun werk over aan één hoofdconstructor, zo vermijd je dubbele code.](../assets/6_klassen/constructorchaining.png)<!--{width=85%}-->
 
-<!-- TODO: nieuwe AI-gegenereerde afbeelding (constructorchaining), nakijken en goedkeuren -->
+
 
 Bij de tweede overloaded constructor geven we de binnenkomende parameter ``merkIn`` gewoon door naar de ``this()`` aanroep. Voorts voegen we er nog een tweede literal  (``false``) aan toe. De compiler zal nu via **method overload resolution** op zoek gaan naar de best passende constructor, wat in dit geval de bovenste overloaded constructor zal zijn.
 

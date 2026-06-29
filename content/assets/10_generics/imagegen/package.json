@@ -1,0 +1,19 @@
+{
+  "name": "imagegen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "arr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fontsource/caveat": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
+    "jsdom": "^29.1.1",
+    "roughjs": "^4.6.6"
+  }
+}

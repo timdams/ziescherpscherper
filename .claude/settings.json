@@ -14,7 +14,10 @@
       "Bash(find content/assets -name \"node_modules\" -type d -maxdepth 4)",
       "Bash(ls content/assets/5_arrays/imagegen/)",
       "Bash(NODE_PATH=\"C:/Users/damst/.imagegen-deps/node_modules\" node compileAlternatief.js)",
-      "PowerShell($env:NODE_PATH = \"$env:USERPROFILE\\\\.imagegen-deps\\\\node_modules\"; node content\\\\assets\\\\1_csharpbasics\\\\imagegen\\\\compileSimpelAlternatief.js)"
+      "PowerShell($env:NODE_PATH = \"$env:USERPROFILE\\\\.imagegen-deps\\\\node_modules\"; node content\\\\assets\\\\1_csharpbasics\\\\imagegen\\\\compileSimpelAlternatief.js)",
+      "PowerShell(node \"c:\\\\Users\\\\damst\\\\Koofr\\\\PROGPROJECTS\\\\cursus\\\\ziescherpscherper\\\\content\\\\assets\\\\7_overerving\\\\imagegen\\\\privscope.js\")",
+      "Bash(node systemroot.js)",
+      "Bash(node stack.js)"
     ]
   }
 }

@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(# Copy the assets directory\ncp -r \"c:/Users/p008465/Koofr/PROGPROJECTS/cursus/csharpbook_oefeningen/assets\" \"C:/temp/ziescherpste/oefeningen/assets\"\necho \"Assets directory copied\")",
-      "Bash(grep -l '\\\\.\\\\./assets' \"c:/Users/damst/Koofr/PROGPROJECTS/cursus/ziescherpste/content/\"*.md)"
+      "Bash(grep -l '\\\\.\\\\./assets' \"c:/Users/damst/Koofr/PROGPROJECTS/cursus/ziescherpste/content/\"*.md)",
+      "Bash(node abstracttemplate.js)",
+      "Bash(node -e \"const r = require\\('roughjs'\\); console.log\\(Object.keys\\(r\\)\\)\")",
+      "Bash(node -e \"const pkg = require\\('./node_modules/roughjs/package.json'\\); console.log\\(pkg.version\\)\")",
+      "Bash(node abstracttemplateAlternatief.js)"
     ]
   }
 }

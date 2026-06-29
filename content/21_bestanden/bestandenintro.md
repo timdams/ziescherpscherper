@@ -52,9 +52,9 @@ c:\temp\
 
 In C# zullen deze paths altijd als ``string``  worden verwerkt. 
 
-![Een full path beschrijft de volledige weg doorheen de folders tot bij het bestand.](../assets/21files/folderpadNEW.png)<!--{width=60%}-->
+![Een full path beschrijft de volledige weg doorheen de folders tot bij het bestand.](../assets/21files/folderpad.png)<!--{width=60%}-->
 
-<!-- TODO: nieuwe AI-gegenereerde afbeelding (folderpad), nakijken en goedkeuren -->
+
 
 :::{.callout-important}
 

@@ -6,7 +6,7 @@
 /build/
 slidesOld/
 site_libs/
-
+node_modules/
 # Single-file render output: Quarto rendert .html (+ _files/) naast de bron.
 # Niets HTML hoort in de repo — alle echte output gaat naar build/.
 *.html

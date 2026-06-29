@@ -109,9 +109,9 @@ if(jos != null)
 **Wanneer ``is`` en wanneer ``as``?** Vuistregel: wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
 :::
 
-![``is`` geeft een ``bool`` terug; ``as`` geeft de referentie terug als het type klopt, anders ``null``.](../assets/12_isas/isastypecheckNEW.png)<!--{width=70%}-->
+![``is`` geeft een ``bool`` terug; ``as`` geeft de referentie terug als het type klopt, anders ``null``.](../assets/12_isas/isastypecheck.png)<!--{width=70%}-->
 
-<!-- TODO: nieuwe AI-gegenereerde afbeelding (isastypecheck), nakijken en goedkeuren -->
+
 
 ### Pattern matching: ``is`` met een variabele
 

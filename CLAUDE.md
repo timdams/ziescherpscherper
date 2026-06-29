@@ -111,6 +111,7 @@ Lopend project: de bestaande schematische afbeeldingen omzetten naar een hand-dr
 - **Geen "titel" boven de afbeelding.** Geen gecentreerde kop die de figuur benoemt; de bijschrift-tekst staat al onder de afbeelding in de cursus. Bestaande labels die in het origineel deel uitmaken van het schema (bv. een notitie rechtsboven) mogen blijven, maar plaats ze waar ze in het origineel staan, niet als kop bovenaan.
 - **Tekst mag nooit overlappen** met de lijnen van een omliggende box of met een pijl. Houd labels buiten de pijllijn en laat pijlpunten kort voor het label stoppen.
 - **Verzin niets extra.** Zet enkel om wat in het origineel staat; geen extra elementen, iconen of tekst toevoegen.
+- **Code binnen accolades altijd inspringen.** In een `codebox`: regels die binnen `{` en `}` staan krijgen een extra `indent` (gebruik de `indent`-eigenschap op het regelobject, bv. `{ t: 'Merk = merk;', indent: 30 }`). Dit geldt voor alle toekomstige afbeeldingen met codeblokken.
 
 **De stijl (vastgelegd, niet meer wijzigen zonder Tim):**
 
