@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-In dit hoofdstuk keek je achter de schermen van het geheugen. Je zag het verschil tussen value types (in de stack) en reference types (in de heap), en hoe objecten en arrays als referentie worden bewaard. De Garbage Collector ruimt onbereikbare objecten op, je leerde wat `null` betekent en hoe je een `NullReferenceException` voorkomt. Tot slot kwamen `namespace` en `using` aan bod.
+![](../assets/zieverder.png) In dit hoofdstuk keek je achter de schermen van het geheugen. Je zag het verschil tussen value types (in de stack) en reference types (in de heap), en hoe objecten en arrays als referentie worden bewaard. De Garbage Collector ruimt onbereikbare objecten op, je leerde wat `null` betekent en hoe je een `NullReferenceException` voorkomt. Tot slot kwamen `namespace` en `using` aan bod.
 
 De kern op een rij:
 

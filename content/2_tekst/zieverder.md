@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-In dit hoofdstuk draaide alles om tekst. Je leerde het verschil tussen een `char` (één teken) en een `string` (een reeks tekens), en hoe Unicode achter de schermen elk teken een nummer geeft. Je zag escape characters zoals `\n` en `\t`, het verbatim-apenstaartje `@` voor onder andere bestandspaden, en string interpolation met `$` om variabelen netjes middenin tekst te zetten. Tot slot leerde je tekst mooier formatteren.
+![](../assets/zieverder.png)  In dit hoofdstuk draaide alles om tekst. Je leerde het verschil tussen een `char` (één teken) en een `string` (een reeks tekens), en hoe Unicode achter de schermen elk teken een nummer geeft. Je zag escape characters zoals `\n` en `\t`, het verbatim-apenstaartje `@` voor onder andere bestandspaden, en string interpolation met `$` om variabelen netjes middenin tekst te zetten. Tot slot leerde je tekst mooier formatteren.
 
 De kern op een rij:
 

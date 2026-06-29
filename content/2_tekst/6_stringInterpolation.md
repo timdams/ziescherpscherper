@@ -43,7 +43,7 @@ Kijken we dus naar ``"1"+1+1`` dan wordt dit eerst ``"11"+1`` en vervolgens dit 
 
 Bij ``1+1+"1"`` krijgen we eerst ``2+"1"``. Dit geeft vervolgens ``21``. Aangezien C# niet kan bepalen dat de string iets bevat wat een getal kan zijn, en dus besluit om beide operanden als een ``string`` te zien wat altijd de veiligste oplossing is.
 
-### String interpolation met $-notatie
+### String interpolation met `$`-notatie
 
 Het nadeel van de +-operator is dat je strings soms erg lang en onleesbaar worden. 
 

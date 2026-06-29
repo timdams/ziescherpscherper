@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-In dit hoofdstuk leerde je de bouwstenen van C# kennen. Je zag dat een taal bestaat uit grammatica (syntax, statements, keywords) en woordenschat, en je maakte kennis met de datatypes: gehele getallen (`byte`, `short`, `int`, `long`), kommagetallen (`float`, `double`, `decimal`), tekst (`char`, `string`) en `bool`. Je leerde variabelen declareren en een waarde geven, expressies opbouwen met operators, en constanten vastleggen met `const`.
+![](../assets/zieverder.png) In dit hoofdstuk leerde je de bouwstenen van C# kennen. Je zag dat een taal bestaat uit grammatica (syntax, statements, keywords) en woordenschat, en je maakte kennis met de datatypes: gehele getallen (`byte`, `short`, `int`, `long`), kommagetallen (`float`, `double`, `decimal`), tekst (`char`, `string`) en `bool`. Je leerde variabelen declareren en een waarde geven, expressies opbouwen met operators, en constanten vastleggen met `const`.
 
 De kern op een rij:
 

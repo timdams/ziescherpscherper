@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-Een interface is een belofte: ze beschrijft welke publieke methoden en properties een klasse moet hebben, maar zegt niets over de code erachter. Zo kunnen ongerelateerde klassen toch met elkaar "praten", en kan een klasse meerdere interfaces tegelijk dragen, ook al mag ze maar van één klasse overerven. Je zag ook hoe .NET zelf interfaces gebruikt, bijvoorbeeld ``IComparable`` zodat ``Array.Sort`` jouw objecten kan sorteren.
+![](../assets/zieverder.png) Een interface is een belofte: ze beschrijft welke publieke methoden en properties een klasse moet hebben, maar zegt niets over de code erachter. Zo kunnen ongerelateerde klassen toch met elkaar "praten", en kan een klasse meerdere interfaces tegelijk dragen, ook al mag ze maar van één klasse overerven. Je zag ook hoe .NET zelf interfaces gebruikt, bijvoorbeeld ``IComparable`` zodat ``Array.Sort`` jouw objecten kan sorteren.
 
 De kern op een rij:
 

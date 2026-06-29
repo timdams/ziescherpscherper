@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-In dit hoofdstuk maakte je voor het eerst eigen klassen en objecten. Je zag hoe een object z'n eigen interne staat bijhoudt in instantievariabelen, hoe je gedrag toevoegt met methoden, en hoe je de toegang tot die interne staat afschermt met access modifiers en properties.
+![](../assets/zieverder.png) In dit hoofdstuk maakte je voor het eerst eigen klassen en objecten. Je zag hoe een object z'n eigen interne staat bijhoudt in instantievariabelen, hoe je gedrag toevoegt met methoden, en hoe je de toegang tot die interne staat afschermt met access modifiers en properties.
 
 De kern op een rij:
 

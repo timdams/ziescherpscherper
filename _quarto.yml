@@ -100,6 +100,7 @@ book:
         - content/7_arrays/kennisclips.md
     - part: "H9: Object Oriented Programming"
       chapters:
+        - content/8_klassen/00_oop_pong.md
         - content/8_klassen/0_oop_intro.md
         - content/8_klassen/0b_oopincs.md
         - content/8_klassen/0c_simpleobjects.md

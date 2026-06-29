@@ -75,7 +75,7 @@ Console.WriteLine(myname);
 ```
 
 :::{.callout-tip}
-Zowel de $-notatie (voor string interpolatie) als het @-teken kan je gecombineerd gebruiken bij een string. De volgorde maakt niet uit: zowel ``$@"..."`` als ``@$"..."`` is toegelaten en doet exact hetzelfde.
+Zowel de `$`-notatie (voor string interpolatie) als het @-teken kan je gecombineerd gebruiken bij een string. De volgorde maakt niet uit: zowel ``$@"..."`` als ``@$"..."`` is toegelaten en doet exact hetzelfde.
 
 
 ```java
