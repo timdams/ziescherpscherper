@@ -111,3 +111,33 @@ Als je in VS override begint te typen in een child-klassen dan kan je met behulp
 
 <!-- TODO ed.5 (review): overweeg een korte aparte sectie "hiding (new) vs. overriding (override)" met een uitgewerkt voorbeeld van het verschil in gedrag via een parent-referentie. -->
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven breidt de ``Vliegtuig``-hiërarchie uit met een ``Helikopter``. De A.I. gaf hem deze child-klasse en hij ziet er niets mis mee:
+>
+>```csharp
+>internal class Helikopter : Vliegtuig
+>{
+>    public void Vlieg()
+>    {
+>        Console.WriteLine("De helikopter hangt stil in de lucht.");
+>    }
+>}
+>```
+>
+>Hij test het zo en is tevreden:
+>
+>```csharp
+>Vliegtuig heli = new Helikopter();
+>heli.Vlieg();
+>```
+>
+>"Ik heb ``Vlieg`` herschreven, dus dit toont mijn helikopter-versie", zegt hij.
+
+Waarom verschijnt toch de oude vliegtuig-zin?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Op het scherm komt ``Het vliegtuig vliegt door de wolken.``, niet de helikopter-versie. Steven schreef ``public void Vlieg()`` zonder ``override``. Daardoor *overschrijft* hij de parent-methode niet, maar *verbergt* hij ze (*hiding*). Roep je de methode aan via een ``Vliegtuig``-referentie, zoals hier, dan draait nog steeds de parent-versie. C# gaf hem hierover zelfs een waarschuwing met het ``new``-keyword, maar die las Steven niet: hij vertrouwde op wat de A.I. opleverde. De fix is simpel: ``public override void Vlieg()``.
+:::
+

@@ -89,6 +89,24 @@ Console.WriteLine($"3 maal 9 is {3*9}");
 ```
 :::
 
+#### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven wil de gebruiker begroeten en kreeg van de A.I. deze regel. Hij is tevreden en commit ze meteen:
+>
+>```csharp
+>string naam = "Finkelstein";
+>Console.WriteLine("Hallo {naam}, welkom!");
+>```
+>
+>"Met die accolades plak ik de naam er gewoon tussen, net zoals jij liet zien", zegt hij.
+
+Wat krijgt de gebruiker te zien? En waarom niet wat Steven verwacht?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Op het scherm verschijnt letterlijk ``Hallo {naam}, welkom!``, mét de accolades. Steven vergat het ``$``-teken vooraan de string. Zonder dat teken is het een gewone string en blijft ``{naam}`` gewoon staan zoals je het typte. Correct is ``$"Hallo {naam}, welkom!"``. De A.I. liet het ``$`` vallen en Steven testte zijn programma niet eens voor hij het inleverde.
+:::
+
 ## Strings mooier formatteren
 
 Bij string interpolation kan je ook extra informatie meegeven hoe het resultaat juist weergegeven moet worden. Dit noemen we *formatteren*. Je geeft dit aan door na de expressie, binnen de accolades, een dubbelpunt te plaatsen gevolgd door de manier waarop moet geformatteerd worden.

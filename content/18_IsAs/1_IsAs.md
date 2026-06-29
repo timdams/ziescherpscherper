@@ -109,6 +109,25 @@ if(jos != null)
 **Wanneer ``is`` en wanneer ``as``?** Vuistregel: wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven heeft een lijst met allerlei objecten en wil van het eerste object de naam van een ``Student`` tonen. De A.I. stelde ``as`` voor en hij gebruikt het zo:
+>
+>```csharp
+>object iets = alleObjecten[0];
+>Student student = iets as Student;
+>Console.WriteLine(student.Naam);
+>```
+>
+>"``as`` zet het netjes om naar een ``Student``, dus dit werkt altijd", zegt hij.
+
+Soms werkt het, soms crasht het met een ``NullReferenceException``. Hoe kan dat?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+``as`` werpt geen uitzondering op als de omzetting mislukt: het zet ``student`` dan gewoon op ``null``. Is ``iets`` toevallig een ``Student``, dan gaat alles goed. Maar zit er een ander type in (bv. een ``Boek``), dan is ``student`` ``null`` en crasht ``student.Naam`` met een ``NullReferenceException``. Net dáárom hoort er na een ``as`` altijd een null-controle: ``if (student != null) { ... }``. Steven gebruikte het halve patroon dat de A.I. hem gaf en liet de controle weg die ``as`` net nuttig maakt.
+:::
+
 ![``is`` geeft een ``bool`` terug; ``as`` geeft de referentie terug als het type klopt, anders ``null``.](../assets/12_isas/isastypecheck.png)<!--{width=70%}-->
 
 

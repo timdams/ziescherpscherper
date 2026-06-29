@@ -282,6 +282,32 @@ zieScherper.InsertPagina(new Pagina(), 5);
 Begrijp je nu waarom het  geen goed idee is om een interne lijst gewoonweg via een property naar buiten beschikbaar te maken? Stel je voor dat het essentiëel is dat de ``AllePaginas`` lijst NOOIT leeggemaakt wordt. Jij als ontwikkelaar weet dit. Maar andere gebruikers van je klasse misschien niet. Zij kunnen echter zonder problemen ``Clear()`` via de property  aanroepen, wat dus onverwachte gevolgen kan hebben!
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven bouwt een ``Boek``-klasse. De A.I. gaf hem een lijst van pagina's met een gewone ``public`` getter én setter, en hij ziet er geen kwaad in:
+>
+>```csharp
+>internal class Boek
+>{
+>    public List<Pagina> AllePaginas {get; set;} = new List<Pagina>();
+>}
+>```
+>
+>Verderop wil hij een vers boek beginnen en schrijft hij, half verstrooid:
+>
+>```csharp
+>zieScherper.AllePaginas = new List<Pagina>();
+>```
+>
+>"Gewoon een nieuwe lijst, handig", denkt hij. De 300 pagina's die er al in zaten, zijn weg.
+
+Wat liep hier mis, en hoe voorkom je het?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Door de ``set`` van ``AllePaginas`` ``public`` te laten kan de buitenwereld (of Steven zelf) de hele lijst in één klap vervangen, met alle pagina's erin. De ``Boek``-klasse kan haar eigen inhoud niet beschermen. Beter hou je de container binnen de klasse en geef je enkel gecontroleerde toegang, bijvoorbeeld met ``{get; private set;}`` en een ``InsertPagina``-methode. Dan kan niemand van buiten de lijst zomaar weggooien. Steven plakte de eerste klare oplossing van de A.I. erin zonder zich af te vragen wie die lijst allemaal kon overschrijven.
+:::
+
 ## Associatie of overerving?
 
 Ik vertelde in het begin van dit hoofdstuk dat compositie en aggregatie een "heeft een"-relatie aanduiden, terwijl overerving een "is een"-relatie behelst. In de praktijk zal je véél vaker compositie en aggregatie moeten gebruiken dan overerving. Dit principe is zo bekend dat het in de OOP-literatuur een eigen naam heeft: ***favor composition over inheritance***. Een handige vuistregel: twijfel je of een "is een"-relatie wel echt klopt, kies dan voor een "heeft een"-relatie (associatie).

@@ -132,3 +132,30 @@ Kan je voorspellen wat de uitvoer zal zijn? Test het eens!
 Ik toon niet telkens de volledige broncode. Als ik dat zou blijven doen dan wordt dit boek dubbel zo dik. Ik toon daarom (meestal) enkel de code die binnen de ``Main`` (of later ook elders) moet komen.
 :::
 
+### Stagiair Steven
+
+Tijd om iemand voor te stellen die je doorheen dit boek nog vaak zal tegenkomen: **Stagiair Steven**.
+
+>![](../assets/aistagiar.png) Steven is onze stagiair. Hij is slim genoeg, maar hij laat zijn code tegenwoordig volledig door A.I. schrijven en kijkt zelf amper nog na wat er staat. Daardoor levert hij geregeld code in die er op het eerste gezicht prima uitziet, maar net niet werkt. Aan jou om telkens te spotten waar het misloopt.
+>
+>Voor zijn allereerste programma moest Steven gewoon "Hallo" op het scherm tonen. Hij kreeg dit van de A.I. en leverde het meteen in:
+>
+>```csharp
+>Console.Writeline(Hallo)
+>```
+>
+>"Eén lijntje, klaar", zegt hij trots.
+
+Er zitten drie fouten in dat ene regeltje. Vind jij ze?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Drie klassieke beginnersfouten:
+
+1. ``Writeline`` met een kleine ``l`` bestaat niet. C# is hoofdlettergevoelig, het moet ``WriteLine`` zijn.
+2. ``Hallo`` staat zonder aanhalingstekens, waardoor C# het niet als tekst herkent. Het moet ``"Hallo"`` zijn.
+3. Er ontbreekt een puntkomma op het einde van de lijn.
+
+Correct wordt het ``Console.WriteLine("Hallo");``. Steven zag het niet omdat hij blind op de A.I. vertrouwde en de rode kringeltjes in Visual Studio negeerde. Hou jij hem de komende hoofdstukken mee in het oog?
+:::
+

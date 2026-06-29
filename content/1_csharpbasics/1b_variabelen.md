@@ -198,6 +198,24 @@ Verderop in dit boek leer je **instantievariabelen** kennen (variabelen die bij 
 :::
 
 
+#### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven is onze stagiair. Hij laat zijn code tegenwoordig volledig door A.I. schrijven en kijkt zelf amper nog na wat er staat. Hij levert dit fragment in en is er rotsvast van overtuigd dat het netjes ``0`` toont:
+>
+>```csharp
+>int score;
+>Console.WriteLine(score);
+>```
+>
+>"Een ``int`` krijgt in C# toch automatisch ``0`` als beginwaarde? Dus dit werkt", verzekert hij je.
+
+Steven heeft het mis. Zie jij waarom?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Deze code compileert niet eens. Een **lokale variabele** zoals ``score`` krijgt géén automatische beginwaarde: lees je ze uit voor je er een waarde aan gaf, dan weigert de compiler met de fout *"use of unassigned local variable 'score'"*. Steven verwart dit met de **instantievariabelen** uit de callout hierboven, die wél automatisch op ``0`` starten. Hij had gewoon ``int score = 0;`` moeten schrijven. Had hij de foutboodschap van Visual Studio gelezen in plaats van blind op de A.I. te vertrouwen, dan was het hem meteen opgevallen.
+:::
+
 
 ### Nieuwe waarden overschrijven oude waarden
 

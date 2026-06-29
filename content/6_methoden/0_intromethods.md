@@ -472,6 +472,33 @@ Je bent 40 jaar.
 ```
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet een getal verdubbelen met een methode. De A.I. schreef de methode netjes, en Steven roept ze als volgt aan:
+>
+>```csharp
+>static int Verdubbel(int getal)
+>{
+>    return getal * 2;
+>}
+>
+>static void Main(string[] args)
+>{
+>    int punten = 5;
+>    Verdubbel(punten);
+>    Console.WriteLine($"Punten: {punten}");
+>}
+>```
+>
+>"Ik roep ``Verdubbel`` op, dus ``punten`` is nu 10", zegt hij zelfzeker.
+
+Wat verschijnt er op het scherm, en wat ging er mis in Stevens denken?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnt ``Punten: 5``. Twee dingen lopen mis. Ten eerste werkt ``Verdubbel`` *by value*: de methode krijgt een kopie van ``punten`` en kan de originele variabele niet wijzigen. Ten tweede, en dat is de echte fout, vangt Steven het resultaat van de methode nergens op. ``Verdubbel(punten);`` berekent wel ``10``, maar dat getal wordt niet bewaard en gaat verloren. Hij had ``punten = Verdubbel(punten);`` moeten schrijven. De methode compileert en draait zonder klacht, dus kreeg Steven geen waarschuwing en nam hij aan dat het wel goed zat.
+:::
+
 ### Methoden nesten
 
 In het begin ga je vooral vanuit je ``Main`` methoden aanroepen, maar dat is geen verplichting. Je kan ook vanuit methoden andere methoden aanroepen. Je kan zelfs vanuit die aangeroepen methode weer andere aanroepen, enz. 

@@ -74,6 +74,26 @@ Als je in Visual Studio ``for`` typt en dan tweemaal op [tab] duwt krijg je een 
 Telkens je vervolgens op [tab] duwt verspringt je cursor tussen ``i`` en ``length``. Op die manier kan je dus snel een for schrijven.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet de getallen 1 tot en met 10 op het scherm tonen. De A.I. gaf hem deze loop en hij plakt ze er meteen in:
+>
+>```csharp
+>for (int i = 1; i < 10; i++)
+>{
+>    Console.WriteLine(i);
+>}
+>```
+>
+>"Van 1 tot 10, dat staat er toch?", zegt hij.
+
+Tel even mee: welke getallen verschijnen er echt?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnen de getallen ``1`` tot en met ``9``. De *finish test* ``i < 10`` blijft waar zolang ``i`` kleiner is dan 10, dus bij ``i`` gelijk aan 10 stopt de loop nog net voor hij die laatste waarde toont. Wil Steven de 10 er ook bij, dan moet de test ``i <= 10`` worden (of ``i < 11``). Dat soort vergissing van precies één te veel of één te weinig heet een *off-by-one*-fout, en het is dé klassieker bij loops. Steven liet de A.I. de grens kiezen en telde zelf niet na.
+:::
+
 <!-- \newpage -->
 
 ### continue en break

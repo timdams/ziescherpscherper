@@ -125,6 +125,41 @@ Gebruik static niet te pas en te onpas: vaak druist het in tegen de concepten va
 <!-- TODO ed.5 (review): overweeg dit geboorteJaar-voorbeeld te vervangen door een neutrale teller (bv. aantalMensenAangemaakt) zodat het mentale model meteen klopt. Nu opgelost met een waarschuwing-callout. -->
 <!-- TODO ed.5 (review): verschil static field vs static property vs const expliciet maken (studenten gebruiken public static readonly zonder de varianten te begrijpen). -->
 
+#### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven maakt een spel met meerdere spelers. De A.I. gaf hem deze ``Speler``-klasse en zette ``score`` ``static`` "omdat dat efficiënter is". Steven knikt en gebruikt ze:
+>
+>```csharp
+>internal class Speler
+>{
+>    public static int score = 0;
+>    public void ScoorPunt()
+>    {
+>        score++;
+>    }
+>}
+>```
+>
+>En in zijn ``Main``:
+>
+>```csharp
+>Speler mario = new Speler();
+>Speler luigi = new Speler();
+>mario.ScoorPunt();
+>mario.ScoorPunt();
+>luigi.ScoorPunt();
+>Console.WriteLine($"Mario: {Speler.score}, Luigi: {Speler.score}");
+>```
+>
+>"Mario heeft 2, Luigi 1", verwacht hij.
+
+Wat verschijnt er, en waarom klopt Stevens model niet?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnt ``Mario: 3, Luigi: 3``. Door ``score`` ``static`` te maken bestaat er nog maar één gedeelde ``score`` voor *alle* spelers samen, geen aparte per object. Elke ``ScoorPunt()`` verhoogt diezelfde teller, dus de drie punten belanden op één hoop. Een score hoort net per speler, en dus bij de instantie, niet bij de klasse. Steven had de ``static`` moeten weglaten. "Efficiënter" was het excuus van de A.I., en Steven controleerde niet of het concept wel klopte.
+:::
+
 Ga je dit soort ``static`` variabelen -ook wel static fields genoemd - vaak nodig hebben? Niet zo vaak. Het volgende concept daarentegen wel!
 
 ### Static methoden en klassen

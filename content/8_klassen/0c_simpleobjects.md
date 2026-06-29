@@ -285,6 +285,32 @@ internal class Mens
 Mooi he. Zo voorkomen we dus dat de buitenwereld illegale waarden aan een variabele kan geven. In dit voorbeeld  kunnen mensen dus niet voor het jaar 1900 geboren zijn. **Objecten zijn verantwoordelijk voor zichzelf** en moeten zichzelf dus ook beschermen zodat de buitenwereld niets met hen doet dat hun eigen werking om zeep helpt.
 
 
+#### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven leerde objecten kennen in Python, waar alles van buitenaf bereikbaar is. De A.I. gaf hem deze ``Mens``-klasse en hij vindt al die methoden maar omslachtig:
+>
+>```csharp
+>internal class Mens
+>{
+>    public int geboorteJaar = 1970;
+>}
+>```
+>
+>"Veel makkelijker zo, dan zet ik het geboortejaar gewoon rechtstreeks", zegt hij, en elders schrijft hij:
+>
+>```csharp
+>Mens adil = new Mens();
+>adil.geboorteJaar = -12000;
+>```
+
+Wat heeft Steven hier stukgemaakt?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Door de instantievariabele ``public`` te maken kan de buitenwereld er om het even welke waarde in zetten, ook een onmogelijke zoals ``-12000``. De klasse kan zichzelf niet meer beschermen. Net dat wil je vermijden: instantievariabelen horen ``private`` te zijn, en de buitenwereld krijgt enkel gecontroleerde toegang via methoden of properties (waar je bijvoorbeeld ``geboorteJaarIn >= 1900`` afdwingt). Dat Python het lakser aanpakt, maakt het in C# nog geen goed idee. Steven nam de kortste weg die de A.I. hem toonde, zonder zich af te vragen waarom encapsulatie er net is.
+:::
+
+
 <!-- \newpage -->
 
 

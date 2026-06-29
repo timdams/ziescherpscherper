@@ -199,6 +199,27 @@ public override int GetHashCode()
 
 Het zelf uitschrijven van hash-algoritmes ligt buiten de scope van dit boek, maar dankzij ``HashCode.Combine`` heb je dat ook niet nodig.
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven heeft de ``Equals`` van zijn ``Student``-klasse netjes overschreven zodat twee studenten met dezelfde voornaam en geboortejaar gelijk zijn. De A.I. zei dat dat volstond, dus stopt hij daar. Even later gebruikt hij ``Student`` als sleutel in een ``Dictionary``:
+>
+>```csharp
+>var punten = new Dictionary<Student, int>();
+>punten.Add(new Student { Voornaam = "Tim", Geboortejaar = 1981 }, 18);
+>
+>Student zelfde = new Student { Voornaam = "Tim", Geboortejaar = 1981 };
+>Console.WriteLine(punten[zelfde]);
+>```
+>
+>"Zelfde voornaam en geboortejaar, dus dit toont 18", zegt hij.
+
+In plaats van ``18`` crasht de code met een ``KeyNotFoundException``. Wat vergat Steven?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Steven overschreef wel ``Equals``, maar niet ``GetHashCode``. Een ``Dictionary`` zoekt een sleutel eerst op via haar hashcode en pas daarna met ``Equals``. Omdat zijn twee "gelijke" studenten nog de standaard-hashcode van ``System.Object`` krijgen (gebaseerd op de referentie), belanden ze in verschillende emmertjes en vindt de ``Dictionary`` de sleutel niet terug. De regel is: override je ``Equals``, dan override je ook ``GetHashCode`` (bv. met ``HashCode.Combine(Voornaam, Geboortejaar)``). De A.I. liet de helft weg en Steven controleerde het niet.
+:::
+
 ### ``ReferenceEquals()``
 
 Als je nog wat dieper zou graven in de documentatie van ``System.Object`` zou je ontdekken dat er ook een ``static`` methode met als signatuur ``static bool ReferenceEquals(object obj1, object obj2)`` bestaat. Deze handige methode laat je toe om te controleren of 2 variabelen dezelfde referentie hebben. Je kan hiermee dus kijken of 2 variabelen naar hetzelfde object in de heap verwijzen. Het gebruik ervan is eenvoudig:

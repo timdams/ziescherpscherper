@@ -88,6 +88,27 @@ De laatste regel, *"een interface mag géén code bevatten"*, is deels onwaar. S
 Vuistregel: gaat het om gedeelde code en een echte "is een"-relatie, kies een abstracte klasse. Wil je enkel afdwingen dat verschillende, ongerelateerde klassen "iets kunnen" (bv. ``IVliegt`` voor zowel een ``Vogel`` als een ``Vliegtuig``), kies een interface.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet een interface ``IVoertuig`` schrijven waaraan auto's en moto's voldoen. De A.I. gaf hem dit en hij plakt het in een bestand:
+>
+>```csharp
+>interface IVoertuig
+>{
+>    int aantalWielen = 4;
+>    void Rijd();
+>}
+>```
+>
+>"Een voertuig heeft toch een aantal wielen? Dat zet ik er meteen bij", redeneert hij.
+
+Waarom is dit geen geldige interface?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Steven stopte een instantievariabele (``int aantalWielen = 4;``) in een interface, en dat mag niet (de code compileert zelfs niet). Een interface beschrijft enkel *wat* een klasse moet kunnen, namelijk de signaturen van methoden en properties, en niet welke data ze bewaart of met welke waarde. State hoort bij de implementatie, dus in de klasse zelf. Wil Steven dat elke ``IVoertuig`` een aantal wielen heeft, dan zet hij dat als property in de interface (``int AantalWielen { get; set; }``) en geeft elke klasse er zelf een waarde aan. De A.I. mengde interface en klasse door elkaar, en Steven zag het verschil niet.
+:::
+
 ## Interfaces en klassen
 
 We kunnen nu aan klassen de stempel ``ISuperHeld`` geven zodat programmeurs weten dat die klasse gegarandeerd de methoden ``SchietLasers``, ``VerlaagKracht`` en de property ``Power`` zal hebben.

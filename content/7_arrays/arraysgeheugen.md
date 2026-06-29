@@ -93,3 +93,23 @@ Er is een ingebouwde methode in de ``Array``-bibliotheek (deze bibliotheek zien 
 Wanneer je met arrays van objecten (zie hoofdstuk 12) werkt dan zal bovenstaande mogelijk niet het gewenste resultaat geven daar we nu ook de individuele referenties van een object kopiëren!
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet de scores van vorig seizoen bewaren voor hij ze overschrijft. Hij maakt snel een kopie en gaat tevreden verder:
+>
+>```csharp
+>int[] scores = {10, 25, 3};
+>int[] vorigeScores = scores;
+>scores[0] = 99;
+>Console.WriteLine(vorigeScores[0]);
+>```
+>
+>"Ik zet ``scores`` gewoon in ``vorigeScores``, dan heb ik mijn kopie", zegt hij. Hij verwacht dat er ``10`` verschijnt.
+
+Wat verschijnt er echt op het scherm?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnt ``99``, niet ``10``. Een array is een **reference type**: ``vorigeScores = scores;`` kopieert niet de inhoud maar enkel het geheugenadres, dus beide variabelen wijzen naar dezelfde array. Wijzigt Steven ``scores[0]``, dan verandert ``vorigeScores[0]`` mee. Zijn "kopie" bestaat niet. Wil hij echt een aparte array, dan moet hij elk element één voor één overzetten (of ``Array.Copy`` gebruiken). De A.I. gaf hem code die compileert en lijkt te werken, en net daardoor zag Steven de bug niet.
+:::
+

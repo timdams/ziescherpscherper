@@ -245,6 +245,26 @@ De GC werkt niet continue daar dit te veel overhead van je computer zou vereisen
 Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Collect()`` maar dit is ten stelligste af te raden! De GC is geoptimaliseerd om zelf het beste moment te kiezen. Roep je hem zelf op, dan onderbreek je je programma op een ongelegen moment en maak je het meestal net *trager* in plaats van sneller. Laat de GC dus gewoon z'n werk doen.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven heeft online gelezen dat geheugen "opkuisen" goed is. De A.I. bevestigde dat, dus strooit hij nu overal in zijn code deze regel:
+>
+>```csharp
+>Student stud = new Student("Abba");
+>GC.Collect();
+>// ... en verderop telkens weer ...
+>GC.Collect();
+>```
+>
+>"Zo blijft mijn geheugen netjes en draait alles sneller", zegt hij tevreden.
+
+Doet Steven hier iets nuttigs?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Nee, integendeel. De Garbage Collector kiest zelf het beste moment om op te kuisen en is daar zwaar voor geoptimaliseerd. Door telkens zelf ``GC.Collect()`` aan te roepen onderbreekt Steven zijn programma op ongelegen momenten en maakt hij het meestal net *trager*, niet sneller. Dat "voor de zekerheid" overal toevoegen is precies het soort code dat je beter weglaat. Steven nam de A.I. op haar woord en mat nooit na of zijn programma er echt sneller van werd.
+:::
+
 ### Wat met ``string``?
 
 ``string`` is een buitenbeentje. Het is een **reference type** (een string-variabele bevat dus een referentie naar tekst op de heap), maar in de praktijk gedraagt het zich vaak als een value type. Dat komt omdat ``string`` **immutable** is: eens een stuk tekst is aangemaakt, kan je het niet meer wijzigen.

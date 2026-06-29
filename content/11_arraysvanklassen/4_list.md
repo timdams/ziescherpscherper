@@ -185,3 +185,26 @@ Als leuke extra bij C# is dat het een erg levende taal is. Jaarlijks komen er no
 :::
 
 <!-- TODO ed.5 (review): bovenstaande LINQ-vooruitwijzing eventueel uitbreiden/concretiseren in latere editie. -->
+
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet alle balletjes verwijderen die buiten het scherm vliegen. De A.I. stelde deze ``foreach`` voor en hij plakt ze erin:
+>
+>```csharp
+>foreach (Balletje bal in veelBalletjes)
+>{
+>    if (bal.X < 0)
+>    {
+>        veelBalletjes.Remove(bal);
+>    }
+>}
+>```
+>
+>"Ik loop gewoon over de lijst en gooi eruit wat weg moet", zegt hij.
+
+Deze code compileert. Toch crasht ze zodra er echt een balletje verwijderd wordt. Waarom?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Je mag een lijst niet wijzigen terwijl je er met een ``foreach`` overheen loopt. Zodra Steven ``Remove`` aanroept verandert de lijst onder de ``foreach``, en C# gooit een ``InvalidOperationException``: *"Collection was modified; enumeration operation may not execute."* Wil je tijdens het doorlopen elementen verwijderen, gebruik dan een ``for``-lus die van achter naar voor telt, of verzamel eerst wat weg moet en verwijder het pas daarna. De code zag er voor Steven logisch uit, en omdat ze compileert vertrouwde hij erop tot ze in zijn gezicht ontplofte.
+:::

@@ -248,6 +248,31 @@ x > 100 && a != "stop"
 Omdat beide operanden van de EN-operatie ``true`` moeten zijn om een juiste test te krijgen, zal de computer de test automatisch stoppen indien reeds de linkse operand (``x > 100``) niet waar is. Bij dit soort tests probeer je dus ervoor te zorgen dat de tests die het minste kans op slagen hebben (of beter: het vaakst niét zal slagen) eerst te laten testen, zodat de computer geen onnodige extra tests doet.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven schrijft een programma dat een examenscore omzet in een beoordeling. De A.I. leverde dit en hij vindt het er logisch uitzien:
+>
+>```csharp
+>int score = 95;
+>if (score > 50)
+>{
+>    Console.WriteLine("Geslaagd");
+>}
+>else if (score > 90)
+>{
+>    Console.WriteLine("Met onderscheiding");
+>}
+>```
+>
+>"Wie meer dan 90 haalt, krijgt onderscheiding. Dat staat er toch?", zegt hij.
+
+Waarom krijgt een student met 95 hier toch geen onderscheiding te zien?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Bij een score van 95 is de eerste test ``score > 50`` al ``true``, dus verschijnt "Geslaagd" en slaat C# de rest van de keten over. De tak ``score > 90`` wordt nooit bereikt, hoe hoog de score ook is. De volgorde klopt niet: de strengste test hoort bovenaan. Steven had eerst ``score > 90`` moeten testen en pas daarna ``score > 50``. Hij liet de A.I. de structuur kiezen en controleerde de volgorde van de takken niet.
+:::
+
 <!-- \newpage -->
 
 ### Nesting

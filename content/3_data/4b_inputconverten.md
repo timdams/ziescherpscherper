@@ -44,6 +44,25 @@ Voorgaande code veronderstelt dat de gebruiker géén fouten invoert[^geenfouten
 
 <!-- TODO ed.5 (review): korte intro van int.TryParse(input, out int x) hier toevoegen (zelfs zonder meteen te oefenen), als kapstok voor foutgevoelige user input. Staat nu enkel in de appendix-voetnoot. -->
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet de leeftijd van de gebruiker inlezen. De A.I. gaf hem dit en hij noemt het zelf "robuust":
+>
+>```csharp
+>Console.WriteLine("Geef je leeftijd:");
+>int leeftijd = int.Parse(Console.ReadLine());
+>Console.WriteLine($"Volgend jaar word je {leeftijd + 1}.");
+>```
+>
+>"Werkt perfect, ik heb het getest met ``25``", zegt hij trots.
+
+Steven heeft het maar half getest. Wat gebeurt er als de gebruiker ``vijfentwintig`` typt, of gewoon op enter duwt zonder iets in te tikken?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Dan crasht zijn programma. ``int.Parse`` verwacht tekst die echt een geheel getal voorstelt; krijgt het ``vijfentwintig`` of een lege invoer, dan gooit het een fout en valt het programma stil. "Robuust" is het dus allerminst: het werkt enkel zolang de gebruiker exact doet wat Steven verwacht. Wil je foute invoer netjes opvangen, dan bestaat daar ``int.TryParse`` voor (zie de appendix). Steven testte enkel de invoer die hij zelf in gedachten had, en de A.I. waarschuwde hem nergens voor de rest.
+:::
+
 ### Kommagetallen in C\#
 
 Goed opletten nu.

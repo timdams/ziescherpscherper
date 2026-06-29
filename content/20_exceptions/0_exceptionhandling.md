@@ -165,6 +165,31 @@ catch { }
 Schrijf je het exception-object niet uit (``catch (Exception e)`` zonder ``e`` ergens te gebruiken), dan geeft VS trouwens een waarschuwing. Je mag dan gewoon ``catch (Exception)`` schrijven zonder naam.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven kreeg klachten dat zijn programma af en toe crasht. De A.I. stelde voor om "alles in een try-catch te zetten", en zo loste hij het op:
+>
+>```csharp
+>try
+>{
+>    int noemer = Convert.ToInt32(Console.ReadLine());
+>    double resultaat = 100 / noemer;
+>    Console.WriteLine(resultaat);
+>}
+>catch (Exception)
+>{
+>}
+>```
+>
+>"Geen crashes meer, alle bugs opgelost", meldt hij trots.
+
+Heeft Steven zijn bugs opgelost?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Nee, hij heeft ze enkel onzichtbaar gemaakt. Zijn lege ``catch`` vangt élke fout op en doet er niets mee. Geeft de gebruiker een nul in, dan klopt het resultaat niet, maar Steven (en de gebruiker) ziet nooit dat er iets misliep. Dat is precies het anti-pattern uit de tip hierboven: je verbergt bugs in plaats van ze op te lossen, en ze komen later dubbel zo hard terug. Vang enkel exceptions op waar je ook echt iets zinnig mee doet. Steven nam het advies van de A.I. letterlijk en dacht niet na over wat "opgelost" hier betekent.
+:::
+
 ### Welke exceptions worden gegooid?
 
 De online .NET documentatie is de manier om te weten te komen welke exceptions een methode mogelijk kan opgooien. Gaan we bijvoorbeeld naar de documentatie van de ``Int32.Parse``-methode[^intparsedoc] dan zien we daar een sectie "Exceptions" waar klaar en duidelijk wordt beschreven wanneer welke exception wanneer wordt opgeworpen.

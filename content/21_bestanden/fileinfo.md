@@ -180,3 +180,21 @@ Pas wel op: als je deze methode uitvoert op bijvoorbeeld "c:", zal er waarschijn
 
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven schrijft een programma dat een logbestand opent. De A.I. vulde een pad in en bij Steven werkt het, dus hij is tevreden:
+>
+>```csharp
+>FileInfo info = new FileInfo(@"C:\Users\Steven\Documents\log.txt");
+>Console.WriteLine(info.Exists);
+>```
+>
+>Hij stuurt het door naar een collega. Bij haar geeft ``Exists`` altijd ``false``, terwijl het bestand er wél staat.
+
+Waarom werkt Steven z'n code enkel op zijn eigen pc?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Steven hardcodeerde een absoluut pad met zijn eigen gebruikersnaam erin (``C:\Users\Steven\...``). Op de pc van zijn collega bestaat die map natuurlijk niet, dus vindt het programma niets. Zo'n pad maakt je code onverplaatsbaar. Beter werk je met een relatief pad (gewoon ``"log.txt"``, naast je programma) of bouw je paden machine-onafhankelijk op met ``Path.Combine`` en ``Environment.GetFolderPath``, zodat de juiste map automatisch wordt ingevuld op elke computer. Bij Steven werkte het toevallig, en omdat de A.I. een pad invulde dat compileerde vroeg hij zich niet af wat er op een andere machine zou gebeuren.
+:::
+

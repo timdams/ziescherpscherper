@@ -154,6 +154,37 @@ En wie zei dat het regeren moeilijk was?!
 Merk op dat dit voorbeeld ook goed gebruik maakt van **compositie**.
 :::
 
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven moet de ministers laten adviseren. Polymorfisme vond hij maar vaag, dus vroeg hij de A.I. om "iets dat zeker werkt". Hij kreeg dit en plakt het in ``Regeer``:
+>
+>```csharp
+>foreach (Minister minister in AlleMinisters)
+>{
+>    if (minister is MinisterVanMilieu)
+>    {
+>        ((MinisterVanMilieu)minister).Adviseer();
+>    }
+>    else if (minister is MinisterBZ)
+>    {
+>        ((MinisterBZ)minister).Adviseer();
+>    }
+>    else if (minister is MinisterVanEconomie)
+>    {
+>        ((MinisterVanEconomie)minister).Adviseer();
+>    }
+>}
+>```
+>
+>"Zo weet ik zeker dat elke minister z'n juiste ``Adviseer`` krijgt", zegt hij tevreden.
+
+Steven z'n code werkt. Toch is dit precies wat je met polymorfisme wilt vermijden. Waarom?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Steven heeft met de hand nagebouwd wat polymorfisme gratis voor hem doet. Omdat élke ``Minister`` de methode ``Adviseer`` heeft, volstaat één regel: ``minister.Adviseer();``. C# kiest dan zelf de juiste versie op basis van het echte type van het object. Steven z'n type-checks zijn niet enkel overbodig, ze zijn ook broos: voeg je morgen een ``MinisterVanDigitalisering`` toe, dan vergeet je gegarandeerd ergens een ``else if`` en valt die minister stilletjes weg. Net die afhankelijkheid wilde de hele les wegwerken. Steven liet de A.I. "iets dat werkt" maken in plaats van het concept te gebruiken dat hij zonet had gezien.
+:::
+
 
 
 
