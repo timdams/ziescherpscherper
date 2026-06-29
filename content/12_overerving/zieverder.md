@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk leerde je hoe je met overerving een child-klasse maakt die alles van z'n parent-klasse erft en daar bovenop z'n eigen specialisatie krijgt. Je herkent overerving aan de "is een"-relatie, en je zag hoe je de werking van een parent kan aanpassen met `virtual` en `override`, en hoe een constructor-keten van boven naar beneden wordt afgewerkt.
+>![](../assets/zieverder.png)In dit hoofdstuk leerde je hoe je met overerving een child-klasse maakt die alles van z'n parent-klasse erft en daar bovenop z'n eigen specialisatie krijgt. Je herkent overerving aan de "is een"-relatie, en je zag hoe je de werking van een parent kan aanpassen met `virtual` en `override`, en hoe een constructor-keten van boven naar beneden wordt afgewerkt.
 
 De kern op een rij:
 

@@ -1,17 +1,13 @@
 ## Zie verder
 
-![](../assets/zieverder.png)
-
-:::{.callout-warning}
-In deze nieuwe sectie gaan we altijd 2 zaken doen:
-
-1. We vatten de belangrijkste zaken samen van het voorbije hoofdstuk.
-2. We bekijken hoe bepaalde concepten van dit hoodstuk in andere programmeertalen gebeuren.
-
-![](../assets/zieverder.png)Dit tweede deel wordt steeds belangrijker voor de ontwikkelaar van de 21e eeuw. In een wereld waarin steeds meer code door generatieve A.I. wordt geschreven is het essentieel dat je als ontwikkelaar zo snel mogelijk een heel brede kijk hebt op het *programmeerveld*. Je zal vanaf dag 1 geconfronteerd worden met andere talen die problemen oplossen, en je zal ontdekken dat iedere taal z'n eigen stertkes, zwaktes en *speciallekes* heeft.
 
 
-:::
+>![](../assets/zieverder.png) In deze nieuwe sectie gaan we altijd 2 zaken doen:
+>
+>1. We vatten de belangrijkste zaken samen van het voorbije hoofdstuk.
+>2. We bekijken hoe bepaalde concepten van dit hoodstuk in andere programmeertalen gebeuren.
+>
+>Dit tweede deel wordt steeds belangrijker voor de ontwikkelaar van de 21e eeuw. In een wereld waarin steeds meer code door generatieve A.I. wordt geschreven is het essentieel dat je als ontwikkelaar zo snel mogelijk een heel brede kijk hebt op het *programmeerveld*. Je zal vanaf dag 1 geconfronteerd worden met andere talen die problemen oplossen, en je zal ontdekken dat iedere taal z'n eigen stertkes, zwaktes en *speciallekes* heeft.
 
 ### Even terugblikken
 

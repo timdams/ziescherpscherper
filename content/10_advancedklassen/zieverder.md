@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk leerde je objecten netjes initialiseren met constructors, en ontdekte je dat een deel van een klasse ook bij de klasse zelf kan horen via ``static``. Daarnaast zag je object initializer syntax als snelle manier om properties beginwaarden te geven.
+>![](../assets/zieverder.png)In dit hoofdstuk leerde je objecten netjes initialiseren met constructors, en ontdekte je dat een deel van een klasse ook bij de klasse zelf kan horen via ``static``. Daarnaast zag je object initializer syntax als snelle manier om properties beginwaarden te geven.
 
 De kern op een rij:
 

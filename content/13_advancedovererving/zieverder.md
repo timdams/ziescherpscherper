@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk ontdekte je dat elke klasse in C# uiteindelijk overerft van `System.Object`. Daardoor heeft elk object al vier ingebouwde methoden, waarvan er drie `virtual` zijn en dus door jou aangepast kunnen worden. Daarnaast leerde je abstracte klassen kennen: parent-klassen waarvan je geen instanties kan maken, maar die wel gedeelde code en verplichte "gaten" voor de child-klassen kunnen bevatten.
+>![](../assets/zieverder.png)In dit hoofdstuk ontdekte je dat elke klasse in C# uiteindelijk overerft van `System.Object`. Daardoor heeft elk object al vier ingebouwde methoden, waarvan er drie `virtual` zijn en dus door jou aangepast kunnen worden. Daarnaast leerde je abstracte klassen kennen: parent-klassen waarvan je geen instanties kan maken, maar die wel gedeelde code en verplichte "gaten" voor de child-klassen kunnen bevatten.
 
 De kern op een rij:
 

@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk draaide alles om data van het juiste type krijgen en ermee rekenen. Je zag het verschil tussen impliciete en expliciete conversie, hoe je met casting en de `Convert`-klasse types omzet, en hoe je tekst van de gebruiker via `Parse` (en het veiligere `TryParse`) naar een getal brengt. Daarnaast kwamen de `Math`-klasse, afronden en `Random` aan bod, en zette je je eerste stappen in de debugger.
+>![](../assets/zieverder.png)In dit hoofdstuk draaide alles om data van het juiste type krijgen en ermee rekenen. Je zag het verschil tussen impliciete en expliciete conversie, hoe je met casting en de `Convert`-klasse types omzet, en hoe je tekst van de gebruiker via `Parse` (en het veiligere `TryParse`) naar een getal brengt. Daarnaast kwamen de `Math`-klasse, afronden en `Random` aan bod, en zette je je eerste stappen in de debugger.
 
 De kern op een rij:
 

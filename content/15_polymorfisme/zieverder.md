@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk zag je de vierde pijler van OOP: polymorfisme, letterlijk "meerdere vormen". Een object van een child-type kan je bewaren in een variabele van het parent-type, en toch zijn eigen gedrag uitvoeren. Daardoor kan je een bonte verzameling objecten als één geheel behandelen, bijvoorbeeld in een ``List<Dier>`` of ``List<Minister>``.
+>![](../assets/zieverder.png)In dit hoofdstuk zag je de vierde pijler van OOP: polymorfisme, letterlijk "meerdere vormen". Een object van een child-type kan je bewaren in een variabele van het parent-type, en toch zijn eigen gedrag uitvoeren. Daardoor kan je een bonte verzameling objecten als één geheel behandelen, bijvoorbeeld in een ``List<Dier>`` of ``List<Minister>``.
 
 De kern op een rij:
 

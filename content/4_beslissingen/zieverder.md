@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk leerde je je programma keuzes laten maken. Je zag de `if`, `else if` en `else`, hoe je voorwaarden opbouwt met de vergelijkingsoperators (`==`, `!=`, `<`, `>`, ...) en de logische operators (`&&`, `||`, `!`). Je leerde over de scope van variabelen (waar een variabele "leeft"), de `switch` als alternatief voor lange `if`-kettingen, en de `enum` om een vaste set keuzes een eigen naam te geven.
+>![](../assets/zieverder.png)In dit hoofdstuk leerde je je programma keuzes laten maken. Je zag de `if`, `else if` en `else`, hoe je voorwaarden opbouwt met de vergelijkingsoperators (`==`, `!=`, `<`, `>`, ...) en de logische operators (`&&`, `||`, `!`). Je leerde over de scope van variabelen (waar een variabele "leeft"), de `switch` als alternatief voor lange `if`-kettingen, en de `enum` om een vaste set keuzes een eigen naam te geven.
 
 De kern op een rij:
 

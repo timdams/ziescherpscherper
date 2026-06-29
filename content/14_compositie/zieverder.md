@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png)In dit hoofdstuk leerde je associaties kennen: compositie en aggregatie, allebei een "heeft een"-relatie tussen twee objecten. Het verschil zit in de levensduur van het innerlijke object. Je zag drie manieren om zo'n object aan te maken (rechtstreeks, via de constructor, via een property) en je leerde het `this` keyword om een object naar zichzelf te laten verwijzen.
+>![](../assets/zieverder.png)In dit hoofdstuk leerde je associaties kennen: compositie en aggregatie, allebei een "heeft een"-relatie tussen twee objecten. Het verschil zit in de levensduur van het innerlijke object. Je zag drie manieren om zo'n object aan te maken (rechtstreeks, via de constructor, via een property) en je leerde het `this` keyword om een object naar zichzelf te laten verwijzen.
 
 De kern op een rij:
 
