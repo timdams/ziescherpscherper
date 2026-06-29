@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png) In dit hoofdstuk leerde je code herhalen zonder ze telkens opnieuw te schrijven. Je zag de drie soorten loops (`while`, `do while` en `for`) en wanneer je welke kiest. Daarnaast kwamen geneste loops aan bod en hoe je foutieve invoer van de gebruiker met een loop blijft opvragen tot ze klopt.
+![](../assets/zieverder.png)In dit hoofdstuk leerde je code herhalen zonder ze telkens opnieuw te schrijven. Je zag de drie soorten loops (`while`, `do while` en `for`) en wanneer je welke kiest. Daarnaast kwamen geneste loops aan bod en hoe je foutieve invoer van de gebruiker met een loop blijft opvragen tot ze klopt.
 
 De kern op een rij:
 

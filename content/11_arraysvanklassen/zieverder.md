@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png) In dit hoofdstuk leerde je niet langer met losse objecten werken, maar met hele verzamelingen ervan. Je zag arrays van objecten, de handigere ``List``, de ``foreach``-loop om over een collectie te gaan, en de collectie-klassen ``Queue``, ``Stack`` en ``Dictionary``.
+![](../assets/zieverder.png)In dit hoofdstuk leerde je niet langer met losse objecten werken, maar met hele verzamelingen ervan. Je zag arrays van objecten, de handigere ``List``, de ``foreach``-loop om over een collectie te gaan, en de collectie-klassen ``Queue``, ``Stack`` en ``Dictionary``.
 
 De kern op een rij:
 

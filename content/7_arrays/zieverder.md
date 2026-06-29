@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png) In dit hoofdstuk leerde je werken met arrays: één variabele die een hele reeks waarden van hetzelfde type bewaart. Je zag hoe je ze declareert, hoe je via een index een element leest of schrijft en hoe je met een loop over de hele array gaat. Belangrijk was ook dat arrays *by reference* werken, met alle gevolgen van dien voor kopiëren en voor methoden.
+![](../assets/zieverder.png)In dit hoofdstuk leerde je werken met arrays: één variabele die een hele reeks waarden van hetzelfde type bewaart. Je zag hoe je ze declareert, hoe je via een index een element leest of schrijft en hoe je met een loop over de hele array gaat. Belangrijk was ook dat arrays *by reference* werken, met alle gevolgen van dien voor kopiëren en voor methoden.
 
 De kern op een rij:
 

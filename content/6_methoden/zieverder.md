@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png) In dit hoofdstuk leerde je je code opdelen in methoden: herbruikbare blokken die je één keer schrijft en overal kan aanroepen. Je zag hoe een methode-signatuur eruitziet, hoe je met `return` een resultaat teruggeeft en hoe je parameters meegeeft. Verder kwamen bestaande bibliotheken (via IntelliSense), named en optionele parameters en method overloading aan bod.
+![](../assets/zieverder.png)In dit hoofdstuk leerde je je code opdelen in methoden: herbruikbare blokken die je één keer schrijft en overal kan aanroepen. Je zag hoe een methode-signatuur eruitziet, hoe je met `return` een resultaat teruggeeft en hoe je parameters meegeeft. Verder kwamen bestaande bibliotheken (via IntelliSense), named en optionele parameters en method overloading aan bod.
 
 De kern op een rij:
 

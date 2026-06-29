@@ -2,7 +2,7 @@
 
 ### Even terugblikken
 
-![](../assets/zieverder.png) In dit hoofdstuk dook je in ``System.IO``: paths samenstellen met ``Path.Combine``, controleren of een bestand bestaat, en tekst of binaire data lezen en schrijven. Je leerde ook objecten serialiseren naar JSON en terug, zodat je de staat van je programma kan bewaren. Omdat je nu buiten je programma werkt, werd exception handling plots essentieel.
+![](../assets/zieverder.png)In dit hoofdstuk dook je in ``System.IO``: paths samenstellen met ``Path.Combine``, controleren of een bestand bestaat, en tekst of binaire data lezen en schrijven. Je leerde ook objecten serialiseren naar JSON en terug, zodat je de staat van je programma kan bewaren. Omdat je nu buiten je programma werkt, werd exception handling plots essentieel.
 
 De kern op een rij:
 
