@@ -95,21 +95,25 @@ Wanneer je met arrays van objecten (zie hoofdstuk 12) werkt dan zal bovenstaande
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven moet de scores van vorig seizoen bewaren voor hij ze overschrijft. Hij maakt snel een kopie en gaat tevreden verder:
+>![](../assets/aistagiar.png) Steven wil een methode schrijven die de scores herstelt naar een verse, lege array. De A.I. gaf hem dit en hij is opgetogen:
 >
 >```csharp
+>void Reset(int[] scores)
+>{
+>    scores = new int[scores.Length];
+>}
+>
 >int[] scores = {10, 25, 3};
->int[] vorigeScores = scores;
->scores[0] = 99;
->Console.WriteLine(vorigeScores[0]);
+>Reset(scores);
+>Console.WriteLine(scores[0]);
 >```
 >
->"Ik zet ``scores`` gewoon in ``vorigeScores``, dan heb ik mijn kopie", zegt hij. Hij verwacht dat er ``10`` verschijnt.
+>"``Reset`` zet er een nieuwe, lege array in de plaats. Dus dit toont ``0``", zegt hij.
 
-Wat verschijnt er echt op het scherm?
+Wat toont dit echt?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Er verschijnt ``99``, niet ``10``. Een array is een **reference type**: ``vorigeScores = scores;`` kopieert niet de inhoud maar enkel het geheugenadres, dus beide variabelen wijzen naar dezelfde array. Wijzigt Steven ``scores[0]``, dan verandert ``vorigeScores[0]`` mee. Zijn "kopie" bestaat niet. Wil hij echt een aparte array, dan moet hij elk element één voor één overzetten (of ``Array.Copy`` gebruiken). De A.I. gaf hem code die compileert en lijkt te werken, en net daardoor zag Steven de bug niet.
+Er verschijnt nog steeds ``10``, niet ``0``. Binnen ``Reset`` krijgt de parameter ``scores`` wel een nieuwe array toegewezen, maar dat verandert enkel waar die lokale parameter-variabele naar wijst. De variabele ``scores`` in ``Main`` is een aparte variabele die nog steeds naar de originele array wijst, en die blijft gewoon bestaan. Dit is het omgekeerde van het aliasing-probleem van daarnet: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, maar de hele array *vervangen* binnen een methode (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
 :::
 

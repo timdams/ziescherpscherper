@@ -390,3 +390,11 @@ const klanten = new Map();
 klanten.set(123, "Tim Dams");
 console.log(klanten.get(123));
 ```
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H12_arrays_en_klassen.png){width=55%}

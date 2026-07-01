@@ -403,3 +403,11 @@ terug = json.loads(json_string)     # JSON-tekst -> dict
 ```
 
 Verschil met C#: je hoeft geen type mee te geven. Python geeft een `dict` terug, waar C# via `Deserialize<Student>` weet bij welke klasse de data hoort.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/h18_bestandsverwerking.png){width=55%}

@@ -28,3 +28,7 @@
 ### Quizlet flashcards
 
 [Quizlet](https://quizlet.com/be/918631776/zie-scherp-scherper-hoofdstuk-09-flash-cards/)
+
+### Samenvattende poster
+
+![Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2)](../assets/posters/H9_oop.png)

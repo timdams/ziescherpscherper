@@ -90,23 +90,28 @@ Vuistregel: gaat het om gedeelde code en een echte "is een"-relatie, kies een ab
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven moet een interface ``IVoertuig`` schrijven waaraan auto's en moto's voldoen. De A.I. gaf hem dit en hij plakt het in een bestand:
+>![](../assets/aistagiar.png) Steven laat een klasse ``Fiets`` de interface ``IVoertuig`` implementeren:
 >
 >```csharp
 >interface IVoertuig
 >{
->    int aantalWielen = 4;
+>    int AantalWielen { get; set; }
 >    void Rijd();
+>}
+>
+>internal class Fiets : IVoertuig
+>{
+>    public int AantalWielen { get; set; } = 2;
 >}
 >```
 >
->"Een voertuig heeft toch een aantal wielen? Dat zet ik er meteen bij", redeneert hij.
+>"Een abstracte klasse liet me toch ook methoden ongemoeid als ik er geen zin in had? Interfaces zullen wel hetzelfde werken", denkt hij, en compileert.
 
-Waarom is dit geen geldige interface?
+Waarom weigert de compiler hier?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Steven stopte een instantievariabele (``int aantalWielen = 4;``) in een interface, en dat mag niet (de code compileert zelfs niet). Een interface beschrijft enkel *wat* een klasse moet kunnen, namelijk de signaturen van methoden en properties, en niet welke data ze bewaart of met welke waarde. State hoort bij de implementatie, dus in de klasse zelf. Wil Steven dat elke ``IVoertuig`` een aantal wielen heeft, dan zet hij dat als property in de interface (``int AantalWielen { get; set; }``) en geeft elke klasse er zelf een waarde aan. De A.I. mengde interface en klasse door elkaar, en Steven zag het verschil niet.
+De compiler klaagt dat ``Fiets`` "does not implement interface member ``IVoertuig.Rijd()``". Een interface is, in tegenstelling tot een abstracte klasse, altijd een **volledige** belofte: implementeer je een interface, dan moet je stuk voor stuk alle methoden en properties ervan voorzien, of je klasse compileert niet. Bij een abstracte klasse kan je gedeelde, niet-abstracte code gewoon overnemen en enkel de abstracte leden zelf invullen, maar een interface heeft (op *default interface methods* na, die we hier niet behandelen) geen eigen code om op terug te vallen. Steven verwarde de twee: een interface geeft je nooit gratis gedrag cadeau, je moet alles zelf schrijven. Hij had een implementatie van ``Rijd()`` moeten toevoegen.
 :::
 
 ## Interfaces en klassen

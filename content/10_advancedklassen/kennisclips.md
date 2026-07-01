@@ -17,3 +17,7 @@
 
 
 [Quizlet](https://quizlet.com/be/918632354/zie-scherp-scherper-hoofdstuk-11-flash-cards/)
+
+### Samenvattende poster
+
+![Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2)](../assets/posters/h11_gevorderde_oop.png)

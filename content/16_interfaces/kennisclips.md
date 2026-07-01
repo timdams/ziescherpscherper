@@ -17,3 +17,7 @@
 ### Quizlet flashcards
 
 [Quizlet](https://quizlet.com/be/918809130/zie-scherp-scherper-hoofdstuk-17-flash-cards/)
+
+### Samenvattende poster
+
+![Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2)](../assets/posters/h17_interfaces.png)

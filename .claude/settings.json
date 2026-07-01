@@ -19,7 +19,12 @@
       "Bash(node systemroot.js)",
       "Bash(node stack.js)",
       "Read(//c/Users/damst/AppData/Local/Temp/claude/**)",
-      "Bash(cat > *)"
+      "Bash(cat > *)",
+      "Bash(mv \"H1_eerste stappen.png\" \"H1_eerste_stappen.png\")",
+      "Bash(mv \"H3_tekst gebruken.png\" \"H3_tekst_gebruken.png\")",
+      "Bash(mv \"H12_arrays en klassen.png\" \"H12_arrays_en_klassen.png\")",
+      "Bash(mv \"H14_gevorderde overering.png\" \"H14_gevorderde_overering.png\")",
+      "Bash(mv \"h11_gevorderde oop.png\" \"h11_gevorderde_oop.png\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\0_intro",

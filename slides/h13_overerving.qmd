@@ -391,3 +391,11 @@ class Frituur(Restaurant):
         super().poets_alles()   # in C#: base.PoetsAlles()
         self.kosten += 500
 ```
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H13_overerving.png){width=55%}

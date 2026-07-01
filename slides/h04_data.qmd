@@ -513,3 +513,11 @@ wortel = math.sqrt(144)   # 12.0
 ```
 
 `math.` ervoor is de modulenaam. In C# hoort `Math` standaard bij de taal: niets importeren.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/h4_werkenmetdata.png){width=55%}

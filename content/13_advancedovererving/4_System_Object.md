@@ -201,23 +201,30 @@ Het zelf uitschrijven van hash-algoritmes ligt buiten de scope van dit boek, maa
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven heeft de ``Equals`` van zijn ``Student``-klasse netjes overschreven zodat twee studenten met dezelfde voornaam en geboortejaar gelijk zijn. De A.I. zei dat dat volstond, dus stopt hij daar. Even later gebruikt hij ``Student`` als sleutel in een ``Dictionary``:
+>![](../assets/aistagiar.png) Steven overschrijft de ``Equals`` van zijn ``Student``-klasse zodat twee studenten met dezelfde voornaam en geboortejaar gelijk zijn. Hij overschreef ook meteen ``GetHashCode`` correct met ``HashCode.Combine``. Voor de vergelijking zelf gaf de A.I. dit:
 >
 >```csharp
->var punten = new Dictionary<Student, int>();
->punten.Add(new Student { Voornaam = "Tim", Geboortejaar = 1981 }, 18);
->
->Student zelfde = new Student { Voornaam = "Tim", Geboortejaar = 1981 };
->Console.WriteLine(punten[zelfde]);
+>public override bool Equals(object o)
+>{
+>    if (o is not Student temp)
+>        return false;
+>    return this == temp;
+>}
 >```
 >
->"Zelfde voornaam en geboortejaar, dus dit toont 18", zegt hij.
+>```csharp
+>Student tim1 = new Student { Voornaam = "Tim", Geboortejaar = 1981 };
+>Student tim2 = new Student { Voornaam = "Tim", Geboortejaar = 1981 };
+>Console.WriteLine(tim1.Equals(tim2));
+>```
+>
+>"Zelfde voornaam en geboortejaar, dus ``Equals`` geeft ``true``", verwacht hij.
 
-In plaats van ``18`` crasht de code met een ``KeyNotFoundException``. Wat vergat Steven?
+Wat toont deze code echt?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Steven overschreef wel ``Equals``, maar niet ``GetHashCode``. Een ``Dictionary`` zoekt een sleutel eerst op via haar hashcode en pas daarna met ``Equals``. Omdat zijn twee "gelijke" studenten nog de standaard-hashcode van ``System.Object`` krijgen (gebaseerd op de referentie), belanden ze in verschillende emmertjes en vindt de ``Dictionary`` de sleutel niet terug. De regel is: override je ``Equals``, dan override je ook ``GetHashCode`` (bv. met ``HashCode.Combine(Voornaam, Geboortejaar)``). De A.I. liet de helft weg en Steven controleerde het niet.
+Er verschijnt ``False``. Steven overschreef ``Equals`` wel, en de ``is not Student temp``-controle klopt, maar de eigenlijke vergelijking (``this == temp``) bekijkt nooit de instantievariabelen. ``Student`` is een **reference type** zonder eigen ``==``-operator, dus valt ``==`` hier terug op de standaard referentie-vergelijking: ``tim1`` en ``tim2`` zijn twee aparte objecten in het geheugen, dus ``this == temp`` is altijd ``false``, ongeacht wat erin zit. Zijn ``Equals`` doet met andere woorden nog exact hetzelfde als de standaardversie die hij net overschreef. Hij had ``Geboortejaar == temp.Geboortejaar && Voornaam == temp.Voornaam`` moeten schrijven, zoals in het voorbeeld hierboven. Steven zag het ``override``-keyword en de juiste type-check staan, en nam aan dat de rest dan ook wel goed zou zijn.
 :::
 
 ### ``ReferenceEquals()``

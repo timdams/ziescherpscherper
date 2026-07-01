@@ -287,27 +287,33 @@ Mooi he. Zo voorkomen we dus dat de buitenwereld illegale waarden aan een variab
 
 #### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven leerde objecten kennen in Python, waar alles van buitenaf bereikbaar is. De A.I. gaf hem deze ``Mens``-klasse en hij vindt al die methoden maar omslachtig:
+>![](../assets/aistagiar.png) Steven bouwt verder op ``Mens``. Hij hield de instantievariabele netjes ``private`` en zijn ``VeranderGeboortejaar``-methode controleert nog steeds op ``>= 1900``. Voor de constructor vroeg hij de A.I. om iets snels, en kreeg dit:
 >
 >```csharp
 >internal class Mens
 >{
->    public int geboorteJaar = 1970;
+>    private int geboorteJaar;
+>
+>    public Mens(int geboorteJaarIn)
+>    {
+>        geboorteJaar = geboorteJaarIn;
+>    }
+>
+>    public void VeranderGeboortejaar(int geboorteJaarIn)
+>    {
+>        if(geboorteJaarIn >= 1900)
+>            geboorteJaar = geboorteJaarIn;
+>    }
 >}
 >```
 >
->"Veel makkelijker zo, dan zet ik het geboortejaar gewoon rechtstreeks", zegt hij, en elders schrijft hij:
->
->```csharp
->Mens adil = new Mens();
->adil.geboorteJaar = -12000;
->```
+>"De variabele is nog altijd ``private``, en ``VeranderGeboortejaar`` controleert nog steeds. Encapsulatie zit dus nog snor", denkt hij. Hij maakt vervolgens: ``Mens adil = new Mens(-12000);``
 
-Wat heeft Steven hier stukgemaakt?
+Is ``adil`` hier veilig?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Door de instantievariabele ``public`` te maken kan de buitenwereld er om het even welke waarde in zetten, ook een onmogelijke zoals ``-12000``. De klasse kan zichzelf niet meer beschermen. Net dat wil je vermijden: instantievariabelen horen ``private`` te zijn, en de buitenwereld krijgt enkel gecontroleerde toegang via methoden of properties (waar je bijvoorbeeld ``geboorteJaarIn >= 1900`` afdwingt). Dat Python het lakser aanpakt, maakt het in C# nog geen goed idee. Steven nam de kortste weg die de A.I. hem toonde, zonder zich af te vragen waarom encapsulatie er net is.
+Nee. De instantievariabele is inderdaad nog ``private`` en ``VeranderGeboortejaar`` controleert nog altijd, maar de **constructor** kent ``geboorteJaar`` rechtstreeks toe, zonder ooit langs die controle te passeren. ``new Mens(-12000)`` maakt dus gewoon een mens met geboortejaar ``-12000``: niets houdt de constructor tegen. ``private`` maken is niet genoeg als er nog een andere weg naar binnen is die de regels niet volgt. Elke plek waar de instantievariabele een waarde krijgt, moet dezelfde controle toepassen (bijvoorbeeld door de constructor zelf ``VeranderGeboortejaar`` te laten aanroepen). Steven keek enkel of het woord ``private`` er nog stond, niet of alle wegen naar de variabele ook echt gecontroleerd werden.
 :::
 
 

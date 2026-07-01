@@ -532,3 +532,11 @@ def bereken_opp(lengte, breedte=None):
 ```
 
 C# laat de compiler op voorhand de juiste versie kiezen. In Python schrijf je die keuze zelf met een `if`.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H7_methoden.png){width=55%}

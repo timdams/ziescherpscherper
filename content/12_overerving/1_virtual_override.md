@@ -113,14 +113,21 @@ Als je in VS override begint te typen in een child-klassen dan kan je met behulp
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven breidt de ``Vliegtuig``-hiërarchie uit met een ``Helikopter``. De A.I. gaf hem deze child-klasse en hij ziet er niets mis mee:
+>![](../assets/aistagiar.png) Steven breidt de hiërarchie verder uit. ``Helikopter`` overschrijft ``Vlieg`` intussen keurig met ``override``. Nu moet er ook een ``ReddingsHelikopter`` komen die nog net iets anders vliegt. De A.I. gaf hem dit:
 >
 >```csharp
 >internal class Helikopter : Vliegtuig
 >{
->    public void Vlieg()
+>    public override void Vlieg()
 >    {
 >        Console.WriteLine("De helikopter hangt stil in de lucht.");
+>    }
+>}
+>internal class ReddingsHelikopter : Helikopter
+>{
+>    public new void Vlieg()
+>    {
+>        Console.WriteLine("De reddingshelikopter scheert laag over het water.");
 >    }
 >}
 >```
@@ -128,16 +135,16 @@ Als je in VS override begint te typen in een child-klassen dan kan je met behulp
 >Hij test het zo en is tevreden:
 >
 >```csharp
->Vliegtuig heli = new Helikopter();
->heli.Vlieg();
+>Helikopter redder = new ReddingsHelikopter();
+>redder.Vlieg();
 >```
 >
->"Ik heb ``Vlieg`` herschreven, dus dit toont mijn helikopter-versie", zegt hij.
+>"``Helikopter`` gebruikt netjes ``override``, en ``ReddingsHelikopter`` erft daarvan. Dit moet dus mijn reddingshelikopter-versie tonen", zegt hij.
 
-Waarom verschijnt toch de oude vliegtuig-zin?
+Waarom verschijnt toch de gewone helikopter-zin?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Op het scherm komt ``Het vliegtuig vliegt door de wolken.``, niet de helikopter-versie. Steven schreef ``public void Vlieg()`` zonder ``override``. Daardoor *overschrijft* hij de parent-methode niet, maar *verbergt* hij ze (*hiding*). Roep je de methode aan via een ``Vliegtuig``-referentie, zoals hier, dan draait nog steeds de parent-versie. C# gaf hem hierover zelfs een waarschuwing met het ``new``-keyword, maar die las Steven niet: hij vertrouwde op wat de A.I. opleverde. De fix is simpel: ``public override void Vlieg()``.
+Op het scherm komt ``De helikopter hangt stil in de lucht.``, niet de reddingshelikopter-versie. In ``ReddingsHelikopter`` gebruikte Steven ``new`` in plaats van ``override``. Daardoor verbergt hij de methode van ``Helikopter`` opnieuw, net zoals eerder met ``Vliegtuig``: hij overschrijft ze niet. Omdat hier via een ``Helikopter``-referentie wordt aangeroepen (niet via ``Vliegtuig`` of ``ReddingsHelikopter``), draait de versie van ``Helikopter``, niet die van ``ReddingsHelikopter``. Dat ``Helikopter`` zelf verderop in de keten wél correct ``override`` gebruikt, verandert daar niets aan: elke stap in de hiërarchie moet zijn eigen ``override`` correct zetten. Steven zag dat de bovenste stap klopte en nam aan dat de rest ook wel in orde was.
 :::
 

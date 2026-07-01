@@ -200,20 +200,21 @@ Verderop in dit boek leer je **instantievariabelen** kennen (variabelen die bij 
 
 #### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven is onze stagiair. Hij laat zijn code tegenwoordig volledig door A.I. schrijven en kijkt zelf amper nog na wat er staat. Hij levert dit fragment in en is er rotsvast van overtuigd dat het netjes ``0`` toont:
+>![](../assets/aistagiar.png) Steven is onze stagiair. Hij laat zijn code tegenwoordig volledig door A.I. schrijven en kijkt zelf amper nog na wat er staat. Hij moet de lengte en breedte van een kamer bijhouden, allebei voorlopig ``5`` meter, en krijgt dit ene regeltje:
 >
 >```csharp
->int score;
->Console.WriteLine(score);
+>int lengte, breedte = 5;
+>Console.WriteLine(lengte);
+>Console.WriteLine(breedte);
 >```
 >
->"Een ``int`` krijgt in C# toch automatisch ``0`` als beginwaarde? Dus dit werkt", verzekert hij je.
+>"Eén regel voor twee variabelen, allebei ``5``. Lekker compact", denkt hij.
 
-Steven heeft het mis. Zie jij waarom?
+Wat toont deze code echt?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Deze code compileert niet eens. Een **lokale variabele** zoals ``score`` krijgt géén automatische beginwaarde: lees je ze uit voor je er een waarde aan gaf, dan weigert de compiler met de fout *"use of unassigned local variable 'score'"*. Steven verwart dit met de **instantievariabelen** uit de callout hierboven, die wél automatisch op ``0`` starten. Hij had gewoon ``int score = 0;`` moeten schrijven. Had hij de foutboodschap van Visual Studio gelezen in plaats van blind op de A.I. te vertrouwen, dan was het hem meteen opgevallen.
+Deze code compileert niet eens: ``lengte`` krijgt hier helemaal geen waarde, en ``Console.WriteLine(lengte)`` geeft de fout *"use of unassigned local variable 'lengte'"*. Bij ``int lengte, breedte = 5;`` declareer je twee variabelen op één regel, maar het ``= 5`` hoort enkel bij ``breedte``, de laatste van het rijtje. Wil je allebei ``5``, dan moet je dat ook allebei apart zeggen: ``int lengte = 5, breedte = 5;``. Steven las de komma als "en dus ook", en de A.I. liet hem in die veronderstelling.
 :::
 
 

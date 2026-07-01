@@ -247,22 +247,29 @@ Je kan de GC manueel de opdracht geven om een opkuisbeurt te starten met ``GC.Co
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven heeft online gelezen dat geheugen "opkuisen" goed is. De A.I. bevestigde dat, dus strooit hij nu overal in zijn code deze regel:
+>![](../assets/aistagiar.png) Steven wil tussentijdse resultaten bijhouden voor snel hergebruik. De A.I. gaf hem een ``static`` lijst die alles bewaart:
 >
 >```csharp
->Student stud = new Student("Abba");
->GC.Collect();
->// ... en verderop telkens weer ...
->GC.Collect();
+>internal class Logger
+>{
+>    public static List<Student> Cache = new List<Student>();
+>}
+>
+>void VerwerkStudent()
+>{
+>    Student tijdelijk = new Student("Abba");
+>    Logger.Cache.Add(tijdelijk);
+>    // ... studenten verwerken ...
+>}
 >```
 >
->"Zo blijft mijn geheugen netjes en draait alles sneller", zegt hij tevreden.
+>Steven roept ``VerwerkStudent`` duizenden keren aan in een lus. "Zodra de methode stopt, is ``tijdelijk`` toch weg en ruimt de GC dat netjes op", denkt hij.
 
-Doet Steven hier iets nuttigs?
+Waarom loopt het geheugengebruik van zijn programma toch alsmaar op?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Nee, integendeel. De Garbage Collector kiest zelf het beste moment om op te kuisen en is daar zwaar voor geoptimaliseerd. Door telkens zelf ``GC.Collect()`` aan te roepen onderbreekt Steven zijn programma op ongelegen momenten en maakt hij het meestal net *trager*, niet sneller. Dat "voor de zekerheid" overal toevoegen is precies het soort code dat je beter weglaat. Steven nam de A.I. op haar woord en mat nooit na of zijn programma er echt sneller van werd.
+De GC ruimt een object maar op zodra het **onbereikbaar** is: geen enkele levende variabele of referentie wijst er nog naar. ``tijdelijk`` zelf verdwijnt inderdaad zodra ``VerwerkStudent`` stopt, maar Steven voegde het object óók toe aan ``Logger.Cache``, een ``static`` lijst. Die lijst blijft bestaan zolang het programma draait, en houdt dus een referentie naar élke ``Student`` die er ooit in belandde. Voor de GC blijven al die objecten dus bereikbaar, en dus onaanraakbaar. Duizenden aanroepen later zit ``Cache`` vol objecten die niemand nog gebruikt, maar die de GC niet mag weggooien. Steven vergat dat "de lokale variabele is weg" niet hetzelfde is als "er is nergens anders meer een referentie naar".
 :::
 
 ### Wat met ``string``?

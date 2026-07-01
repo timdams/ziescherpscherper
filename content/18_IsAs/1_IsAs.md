@@ -111,21 +111,26 @@ if(jos != null)
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven heeft een lijst met allerlei objecten en wil van het eerste object de naam van een ``Student`` tonen. De A.I. stelde ``as`` voor en hij gebruikt het zo:
+>![](../assets/aistagiar.png) Steven heeft een lijst met allerlei objecten en wil, als het eerste object een ``Student`` is, de naam ervan tonen. De A.I. gaf hem dit:
 >
 >```csharp
->object iets = alleObjecten[0];
->Student student = iets as Student;
->Console.WriteLine(student.Naam);
+>object eersteObject = alleObjecten[0];
+>object tweedeObject = alleObjecten[1];
+>
+>if (eersteObject is Student)
+>{
+>    Student student = tweedeObject as Student;
+>    Console.WriteLine(student.Naam);
+>}
 >```
 >
->"``as`` zet het netjes om naar een ``Student``, dus dit werkt altijd", zegt hij.
+>"Ik controleer met ``is`` of het een ``Student`` is, en gebruik daarna netjes ``as`` om te casten. Dat zou toch veilig moeten zijn?", zegt hij.
 
-Soms werkt het, soms crasht het met een ``NullReferenceException``. Hoe kan dat?
+Deze code compileert en draait soms prima, maar crasht soms met een ``NullReferenceException``. Hoe kan dat, als Steven toch netjes controleert?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-``as`` werpt geen uitzondering op als de omzetting mislukt: het zet ``student`` dan gewoon op ``null``. Is ``iets`` toevallig een ``Student``, dan gaat alles goed. Maar zit er een ander type in (bv. een ``Boek``), dan is ``student`` ``null`` en crasht ``student.Naam`` met een ``NullReferenceException``. Net dáárom hoort er na een ``as`` altijd een null-controle: ``if (student != null) { ... }``. Steven gebruikte het halve patroon dat de A.I. hem gaf en liet de controle weg die ``as`` net nuttig maakt.
+Steven controleert inderdaad netjes met ``is``, maar op de verkeerde variabele: hij test ``eersteObject``, maar cast en gebruikt vervolgens ``tweedeObject``. Is ``eersteObject`` toevallig een ``Student``, maar ``tweedeObject`` niet, dan is de ``if`` wel ``true``, maar wordt ``student`` via ``as`` alsnog ``null``, en crasht ``student.Naam``. De ``is``-check zegt dus niets over ``tweedeObject``: die twee variabelen hebben niets met elkaar te maken. Zoiets ontstaat typisch door onzorgvuldig kopiëren en aanpassen van code: de controle en het gebruik moeten over **dezelfde** variabele gaan. Steven las zijn eigen code niet nauwkeurig genoeg om dat op te merken.
 :::
 
 ![``is`` geeft een ``bool`` terug; ``as`` geeft de referentie terug als het type klopt, anders ``null``.](../assets/12_isas/isastypecheck.png)<!--{width=70%}-->

@@ -250,27 +250,29 @@ Omdat beide operanden van de EN-operatie ``true`` moeten zijn om een juiste test
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven schrijft een programma dat een examenscore omzet in een beoordeling. De A.I. leverde dit en hij vindt het er logisch uitzien:
+>![](../assets/aistagiar.png) Steven schrijft een kortingsprogramma: wie voor meer dan 100 euro koopt, krijgt 10% korting, wie voor meer dan 50 euro koopt 5%. De A.I. leverde dit en hij vindt het er logisch uitzien:
 >
 >```csharp
->int score = 95;
->if (score > 50)
+>int bedrag = 120;
+>int korting = 0;
+>if (bedrag > 100)
 >{
->    Console.WriteLine("Geslaagd");
+>    korting = 10;
 >}
->else if (score > 90)
+>if (bedrag > 50)
 >{
->    Console.WriteLine("Met onderscheiding");
+>    korting = 5;
 >}
+>Console.WriteLine(korting);
 >```
 >
->"Wie meer dan 90 haalt, krijgt onderscheiding. Dat staat er toch?", zegt hij.
+>"Bij 120 euro is dat toch meer dan 100, dus 10% korting", verwacht hij.
 
-Waarom krijgt een student met 95 hier toch geen onderscheiding te zien?
+Waarom toont dit toch ``5`` in plaats van ``10``?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Bij een score van 95 is de eerste test ``score > 50`` al ``true``, dus verschijnt "Geslaagd" en slaat C# de rest van de keten over. De tak ``score > 90`` wordt nooit bereikt, hoe hoog de score ook is. De volgorde klopt niet: de strengste test hoort bovenaan. Steven had eerst ``score > 90`` moeten testen en pas daarna ``score > 50``. Hij liet de A.I. de structuur kiezen en controleerde de volgorde van de takken niet.
+Bij ``bedrag = 120`` is de eerste test ``bedrag > 100`` inderdaad ``true`` en wordt ``korting`` even op ``10`` gezet. Maar het zijn twee **losse** ``if``'s, geen ``if``/``else if``-keten: C# test de tweede ``if (bedrag > 50)`` gewoon ook, en die is voor 120 euro ook ``true``. Die tweede ``if`` overschrijft ``korting`` dus alsnog naar ``5``. Had Steven een ``else if`` gebruikt in plaats van een tweede losse ``if``, dan was de tweede test overgeslagen zodra de eerste al ``true`` was. Hij testte enkel met 120 euro, zag een getal verschijnen, en keek niet na of het wel het júiste getal was.
 :::
 
 <!-- \newpage -->

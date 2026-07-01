@@ -167,7 +167,7 @@ Schrijf je het exception-object niet uit (``catch (Exception e)`` zonder ``e`` e
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven kreeg klachten dat zijn programma af en toe crasht. De A.I. stelde voor om "alles in een try-catch te zetten", en zo loste hij het op:
+>![](../assets/aistagiar.png) Steven wil zowel foute invoer als andere fouten apart afhandelen. De A.I. gaf hem dit:
 >
 >```csharp
 >try
@@ -176,18 +176,23 @@ Schrijf je het exception-object niet uit (``catch (Exception e)`` zonder ``e`` e
 >    double resultaat = 100 / noemer;
 >    Console.WriteLine(resultaat);
 >}
->catch (Exception)
+>catch (Exception e)
 >{
+>    Console.WriteLine("Er ging iets mis.");
+>}
+>catch (FormatException e)
+>{
+>    Console.WriteLine("Verkeerd invoerformaat.");
 >}
 >```
 >
->"Geen crashes meer, alle bugs opgelost", meldt hij trots.
+>"Eerst de algemene opvang, en daaronder nog een specifiekere voor de zekerheid. Dubbel beveiligd", denkt hij.
 
-Heeft Steven zijn bugs opgelost?
+Waarom weigert dit te compileren?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Nee, hij heeft ze enkel onzichtbaar gemaakt. Zijn lege ``catch`` vangt élke fout op en doet er niets mee. Geeft de gebruiker een nul in, dan klopt het resultaat niet, maar Steven (en de gebruiker) ziet nooit dat er iets misliep. Dat is precies het anti-pattern uit de tip hierboven: je verbergt bugs in plaats van ze op te lossen, en ze komen later dubbel zo hard terug. Vang enkel exceptions op waar je ook echt iets zinnig mee doet. Steven nam het advies van de A.I. letterlijk en dacht niet na over wat "opgelost" hier betekent.
+De compiler klaagt met *"A previous catch clause already catches all exceptions of this or of a super type"*. Steven zette het algemene ``catch (Exception e)`` bovenaan en het specifieke ``catch (FormatException e)`` eronder, maar de volgorde moet net omgekeerd: specifiek eerst, algemeen laatst. Het bovenste blok zou toch al élke uitzondering opvangen (een ``FormatException`` is namelijk ook een ``Exception``), waardoor het onderste blok nooit bereikt kan worden. "Dubbel beveiligd" was dus een misvatting: het tweede blok is dode code, en C# laat dat niet eens compileren. Steven had de twee blokken moeten omwisselen.
 :::
 
 ### Welke exceptions worden gegooid?

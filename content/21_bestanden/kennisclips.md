@@ -16,3 +16,7 @@ Opgelet, de volgende kennisclip(s) zijn een experiment waarbij ik een combinatie
 ### Quizlet flashcards
 
 [Quizlet](https://quizlet.com/be/934448214/zie-scherp-scherper-hoofdstuk-18-flash-cards/)
+
+### Samenvattende poster
+
+![Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2)](../assets/posters/h18_bestandsverwerking.png)

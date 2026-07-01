@@ -598,3 +598,11 @@ System.out.println(sith.getEnergie());
 ```
 
 **Python** zit dichter bij C# met de `@property`-decorator: methoden die je van buiten gebruikt alsof het een gewone variabele is. In beide gevallen verberg je de instantievariabele en regel je de toegang.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H9_oop.png){width=55%}

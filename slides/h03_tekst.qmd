@@ -455,3 +455,11 @@ zin = f"Ik ben {naam} en ik ben {leeftijd} jaar."
 ```javascript
 const zin = `Ik ben ${naam} en ik ben ${leeftijd} jaar.`;
 ```
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H3_tekst_gebruken.png){width=55%}

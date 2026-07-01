@@ -510,3 +510,11 @@ consle.log("Pas hier crasht het");
 ```
 
 De eerste lijn loopt, pas bij de typfout (``consle``) crasht het. C# compileert vooraf en weigert te starten zolang er een fout is: je vangt fouten dus vroeger.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H1_eerste_stappen.png){width=55%}

@@ -16,3 +16,7 @@
 ### Quizlet flashcards
 
 [Quizlet](https://quizlet.com/be/918621177/zie-scherp-scherper-hoofdstuk-04-flash-cards/)
+
+### Samenvattende poster
+
+![Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2)](../assets/posters/h4_werkenmetdata.png)

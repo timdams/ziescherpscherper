@@ -389,3 +389,11 @@ try:
 except Timception as e:
     print(e)
 ```
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H14_gevorderde_overering.png){width=55%}

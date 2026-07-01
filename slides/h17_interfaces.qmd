@@ -348,3 +348,11 @@ class Zorro : public Man, public SuperHeld { };  // mag in C++
 ```
 
 Krachtig, maar het leidt tot het *diamond problem*: erven twee parents dezelfde methode, dan weet de compiler niet meer welke. Door enkel meervoudige *interfaces* (zonder eigen code) toe te laten, ontwijken C# en Java dat volledig.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/h17_interfaces.png){width=55%}

@@ -372,3 +372,11 @@ public boolean equals(Object o) { ... }
 ```
 
 In **JavaScript** kan `===` niet overschreven worden: daar schrijf je zelf een functie `zijnGelijk(a, b)`.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/h16_polymorf.png){width=55%}

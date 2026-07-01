@@ -284,28 +284,31 @@ Begrijp je nu waarom het  geen goed idee is om een interne lijst gewoonweg via e
 
 ### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven bouwt een ``Boek``-klasse. De A.I. gaf hem een lijst van pagina's met een gewone ``public`` getter én setter, en hij ziet er geen kwaad in:
+>![](../assets/aistagiar.png) Steven paste de tip toe en zette de setter van ``AllePaginas`` op ``private``, met een ``InsertPagina``-methode erbij:
 >
 >```csharp
 >internal class Boek
 >{
->    public List<Pagina> AllePaginas {get; set;} = new List<Pagina>();
+>    public List<Pagina> AllePaginas {get; private set;} = new List<Pagina>();
+>
+>    public void InsertPagina(Pagina paginaIn, int positie)
+>    {
+>        AllePaginas.Insert(positie, paginaIn);
+>    }
 >}
 >```
 >
->Verderop wil hij een vers boek beginnen en schrijft hij, half verstrooid:
+>"``private set`` erop, dus niemand kan ``AllePaginas`` nog van buitenaf stukmaken", zegt hij zelfverzekerd. Elders in de code staat echter:
 >
 >```csharp
->zieScherper.AllePaginas = new List<Pagina>();
+>zieScherper.AllePaginas.Clear();
 >```
->
->"Gewoon een nieuwe lijst, handig", denkt hij. De 300 pagina's die er al in zaten, zijn weg.
 
-Wat liep hier mis, en hoe voorkom je het?
+Werkt deze regel, ondanks de ``private set``?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Door de ``set`` van ``AllePaginas`` ``public`` te laten kan de buitenwereld (of Steven zelf) de hele lijst in één klap vervangen, met alle pagina's erin. De ``Boek``-klasse kan haar eigen inhoud niet beschermen. Beter hou je de container binnen de klasse en geef je enkel gecontroleerde toegang, bijvoorbeeld met ``{get; private set;}`` en een ``InsertPagina``-methode. Dan kan niemand van buiten de lijst zomaar weggooien. Steven plakte de eerste klare oplossing van de A.I. erin zonder zich af te vragen wie die lijst allemaal kon overschrijven.
+Ja, deze regel werkt gewoon en maakt het boek leeg. ``private set`` verbiedt enkel dat iemand van buitenaf de hele property ``AllePaginas`` een **nieuwe** lijst geeft (``zieScherper.AllePaginas = ...`` zou nu wel een compilerfout geven). Maar de ``get`` bleef ``public``, en die geeft nog steeds de échte, originele lijst terug, geen kopie. Wie die lijst opvraagt, kan er nog altijd ``Clear()``, ``Add()`` of ``Remove()`` op aanroepen, want dat zijn geen toekenningen aan de property maar methodes op de lijst zelf. ``private set`` beschermt dus enkel tegen het *vervangen* van de lijst, niet tegen het *muteren* ervan. Wil je dat ook afdichten, dan mag de getter de echte lijst niet zomaar teruggeven (bijvoorbeeld door enkel gerichte methodes zoals ``InsertPagina`` bloot te stellen en géén rechtstreekse toegang tot ``AllePaginas``). Steven zag het woord ``private`` staan en veronderstelde dat daarmee alles was afgedicht.
 :::
 
 ## Associatie of overerving?

@@ -580,3 +580,11 @@ let keuze: Weekdag = Weekdag.Woensdag;
 ```
 
 Net als in C# worden de waarden vanaf `0` genummerd en blijft een variabele beperkt tot deze waarden.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/H5_beslissinge.png){width=55%}

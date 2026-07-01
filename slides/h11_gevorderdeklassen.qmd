@@ -399,3 +399,11 @@ class Fiets:
 ```
 
 In alle gevallen hoort dit bij de *klasse*, niet bij een los object.
+
+---
+
+## Samenvattende poster
+
+Een handige samenvattende poster (Opgelet: gemaakt m.b.v. ChatGPT Image Gen 2).
+
+![](../content/assets/posters/h11_gevorderde_oop.png){width=55%}
