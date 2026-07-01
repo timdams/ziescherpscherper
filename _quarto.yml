@@ -14,7 +14,7 @@ book:
       - text: "Handboek"
         href: index.qmd
       - text: "Slides"
-        href: slides/overzicht.qmd
+        href: slides/overzicht.html
       - text: "Oefeningen"
         href: oefeningen/overzicht.qmd
   chapters:

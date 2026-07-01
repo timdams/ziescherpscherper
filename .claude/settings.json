@@ -17,7 +17,19 @@
       "PowerShell($env:NODE_PATH = \"$env:USERPROFILE\\\\.imagegen-deps\\\\node_modules\"; node content\\\\assets\\\\1_csharpbasics\\\\imagegen\\\\compileSimpelAlternatief.js)",
       "PowerShell(node \"c:\\\\Users\\\\damst\\\\Koofr\\\\PROGPROJECTS\\\\cursus\\\\ziescherpscherper\\\\content\\\\assets\\\\7_overerving\\\\imagegen\\\\privscope.js\")",
       "Bash(node systemroot.js)",
-      "Bash(node stack.js)"
+      "Bash(node stack.js)",
+      "Read(//c/Users/damst/AppData/Local/Temp/claude/**)",
+      "Bash(cat > *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\0_intro",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\5_herhalingen",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\6_methoden",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\9_meminoop",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\8_klassen",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\12_overerving",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\14_compositie",
+      "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\16_interfaces"
     ]
   }
 }
