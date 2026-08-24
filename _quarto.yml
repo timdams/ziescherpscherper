@@ -7,6 +7,8 @@ lang: nl
 book:
   title: "Zie Scherp Scherper"
   author: "Tim Dams"
+  sidebar:
+    collapse-level: 1
   navbar:
     background: light
     pinned: true
