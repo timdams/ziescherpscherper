@@ -18,7 +18,20 @@ De kern op een rij:
 - `getal++` en `++getal` doen allebei één optellen, maar het resultaat van de expressie verschilt. Bij twijfel schrijf je gewoon `getal = getal + 1`.
 :::
 
+### Zoek de fout
 
+Onderstaande C#-code wil de helft van een prijs berekenen, maar toont altijd `0`. Wat loopt er mis?
+
+```csharp
+int prijs = 5;
+double helft = prijs * (1 / 2);
+Console.WriteLine(helft);
+```
+
+:::{.callout-note collapse="true"}
+## Antwoord
+`1 / 2` is een deling van twee gehele getallen, en die geeft opnieuw een geheel getal: `0`, niet `0.5`. De vermenigvuldiging wordt dan `5 * 0`, dus `0`. Dat `helft` een `double` is, helpt niet: de fout zit al in de int-deling die ervoor gebeurt. Maak minstens één kant een kommagetal, bijvoorbeeld `prijs * (1.0 / 2)`.
+:::
 
 ### In andere talen
 
@@ -68,17 +81,4 @@ G_AARDE = 10.48  # Python staat dit gewoon toe, geen fout
 
 In C# vangt de compiler die tweede regel meteen op.
 
-### Zoek de fout
 
-Onderstaande C#-code wil de helft van een prijs berekenen, maar toont altijd `0`. Wat loopt er mis?
-
-```csharp
-int prijs = 5;
-double helft = prijs * (1 / 2);
-Console.WriteLine(helft);
-```
-
-:::{.callout-note collapse="true"}
-## Antwoord
-`1 / 2` is een deling van twee gehele getallen, en die geeft opnieuw een geheel getal: `0`, niet `0.5`. De vermenigvuldiging wordt dan `5 * 0`, dus `0`. Dat `helft` een `double` is, helpt niet: de fout zit al in de int-deling die ervoor gebeurt. Maak minstens één kant een kommagetal, bijvoorbeeld `prijs * (1.0 / 2)`.
-:::

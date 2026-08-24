@@ -31,6 +31,10 @@ In dit boek leren we werken met datatypes voor:
 * Booleans: `bool`
 * Enums (een speciaal soort datatype dat een beetje een combinatie van meerdere datatypes is én dat je zelf deels kan definiëren.)
 
+Onderstaande figuur zet de types die je het vaakst zal gebruiken alvast naast elkaar.
+
+![Elk datatype is een doosje waar maar één soort data in past.](../assets/1_csharpbasics/datatypedoosjes.png)
+
 Ieder datatype wordt gedefinieerd door minstens volgende eigenschappen:
 
 * **Soort data** dat in de variabele van dit type kan bewaard worden (tekst, geheel getal, enz.)
@@ -90,6 +94,10 @@ Enkele opmerkingen bij voorgaande tabel:
 * `char` bewaart karakters. We zullen verderop dit datatype uitspitten en ontdekken dat karakters (alle tekens op het toetsenbord, inclusief getallen, leesteken, enz.) als gehele, binaire getallen worden bewaard. Daarom staat `char` in deze lijst.
 * Het grootste getal bij `long` is 2^63^-1 (*negen triljoen tweehonderddrieëntwintig biljard driehonderd tweeënzeventig biljoen zesendertig miljard achthonderdvierenvijftig miljoen zevenhonderdvijfenzeventigduizend achthonderd en zeven*). Dit zijn maar 63 bits?! Inderaad, de laatste bit wordt wederom gebruikt om het teken te bewaren.
 
+De vier belangrijkste types staan hieronder op schaal naast elkaar. Merk op dat een verdubbeling van het aantal bits het bereik niet verdubbelt maar kwadrateert: van 256 waarden bij een `byte` naar 65 536 waarden bij een `short`.
+
+![Het aantal bits bepaalt hoeveel verschillende waarden een type kan bewaren. Onderaan een `short` van dichtbij: het eerste bitje gaat naar het teken.](../assets/1_csharpbasics/bitliniaal.png)
+
 <!-- \newpage -->
 
 >![](../assets/care.png)"Wow. Moet je al die datatypes uit het hoofd kennen? Ik was al blij dat ik tekst op het scherm kon tonen."
@@ -105,7 +113,9 @@ Voor de kommagetallen zijn er maar 3 mogelijkheden. Ieder datatype heeft een 'vo
 | `double` | 64 bits | **meeste** | ~15-17 digits |
 | `decimal` | 128 bits | minste | **28-29 digits** |
 
-Zoals je ziet moet je bij kommagetallen een afweging maken tussen 3 even belangrijke criteria. Heb je ongelooflijk grote precisie nodig dan ga je voor een ``decimal``. Wil je vooral erg grote of erg kleine getallen kies je voor ``double``. Zoals je merkt zal je dus zelden ``decimal`` nodig hebben, deze zal vooral nuttig zijn in financiële en wetenschappelijke programma's waar met erg exacte cijfers moet gewerkt worden. 
+![Elk type wint op precies één van de drie criteria. Het rode balkje toont welk.](../assets/1_csharpbasics/kommagetallen.png)
+
+Zoals je in de figuur hierboven ziet, moet je bij kommagetallen een afweging maken tussen 3 even belangrijke criteria. Heb je ongelooflijk grote precisie nodig dan ga je voor een ``decimal``. Wil je vooral erg grote of erg kleine getallen kies je voor ``double``. Zoals je merkt zal je dus zelden ``decimal`` nodig hebben, deze zal vooral nuttig zijn in financiële en wetenschappelijke programma's waar met erg exacte cijfers moet gewerkt worden. 
 
 :::{.callout-tip}
 Bij twijfel opteren we meestal voor kommagetallen om het **``double``** datatype te gebruiken. Bij gehele getallen kiezen we meestal voor **``int``**.

@@ -45,6 +45,8 @@ Er bestaan ook **unaire operators** die maar 1 operand hebben. Denk bijvoorbeeld
 In hoofdstuk 5 zullen we nog een derde type operator ontdekken: de **ternaire operator** die met 3 operanden werkt!
 :::
 
+![In ``3 + 2`` zijn ``3`` en ``2`` de operanden en is ``+`` de operator: twee operanden, dus een binaire operator. Het resultaat van de expressie belandt van rechts naar links in de variabele.](../assets/1_csharpbasics/expressieontleding.png)<!--{width=70%}-->
+
 
 
 Net zoals in de wiskunde kan je in C# met behulp van de haakjes verplichten het deel tussen de haakjes eerst te berekenen, ongeacht de andere operators en hun volgorde van berekeningen:
@@ -53,6 +55,8 @@ Net zoals in de wiskunde kan je in C# met behulp van de haakjes verplichten het 
 3+5*2 // zal 13 (type int) als resultaat geven
 (3+5)*2 // zal 16 (type int) geven
 ``` 
+
+![Zonder haakjes gaat ``*`` voor ``+``. Met haakjes wordt eerst berekend wat tussen de haakjes staat.](../assets/1_csharpbasics/volgorde.png)<!--{width=85%}-->
 
 Je kan nu complexe berekeningen doen door literals, operators en variabelen samen te voegen. Bijvoorbeeld om te weten hoeveel je op Mars zou wegen:
 ```java
@@ -119,6 +123,8 @@ int som2 = ++som; //som2 wordt 2, som wordt 2
 ```
 
 Als je de operator achter de operand zet (``som++``) dan zal eerst de waarde van de operand worden teruggegeven, vervolgens wordt deze verhoogd. Bij de andere (``++som``) is dat omgekeerd: eerst wordt de operand aangepast, vervolgens wordt nieuwe waarde als resultaat van de expressie teruggegeven.
+
+![Bij ``getal++`` wordt eerst de waarde afgegeven en pas daarna verhoogd. Bij ``++getal`` gebeurt het omgekeerd.](../assets/1_csharpbasics/increment.png)<!--{width=90%}-->
 :::
 
 <!-- \newpage -->
@@ -168,6 +174,8 @@ int result = getal1/getal2;
 Console.WriteLine(result);
 ```
 **Er zal ``4`` op het scherm verschijnen!** (niet ``4.5`` daar dat geen ``int`` is). Let goed op: C# **kapt het cijfergedeelte na de komma gewoon af** (dat heet *truncatie*), het rondt dus niet af. ``4.5`` wordt zo ``4``, en ook ``4.9`` zou ``4`` worden, niet ``5``.
+
+![``9 / 2`` komt uit op ``4.5``, maar omdat een ``int`` door een ``int`` gedeeld wordt gaat alles na de komma verloren.](../assets/1_csharpbasics/truncatie.png)<!--{width=95%}-->
 
 <!-- TODO ed.5 (review): Math.Round, Math.Floor en Math.Ceiling vermelden, relevant net na deze int/double-deling-val. -->
 
@@ -238,6 +246,8 @@ double helft = 10000.0 * (1.0 / 2);
 ```
 
 Nu krijgt het gedeelte tussen de haakjes een ``double`` als resultaat, namelijk ``0.5`` dat we dan kunnen vermenigvuldigen met het salaris om ``5000.0`` te krijgen, wat jij vermoedelijk een fijner resultaat vindt.
+
+![Links loopt het mis binnen de haakjes: ``1 / 2`` is een deling van twee ``int``-waarden en geeft ``0``. Rechts zorgt de ``1.0`` ervoor dat er een ``double`` uit de haakjes komt.](../assets/1_csharpbasics/salarisval.png)<!--{width=90%}-->
 
 
 [^kirsref]: Voorgaande voorbeeld is gebaseerd op een oefening uit het handboek "Programmeren in C#" van Douglas Bell en Mike Parr, een boek dat werd vertaald door collega lector Kris Hermans bij de Hogeschool PXL. Als je de console-applicaties beu bent en liever leert programmeren door direct grafische Windows-applicatie te maken, dan raad ik je dit boek ten stelligste aan!

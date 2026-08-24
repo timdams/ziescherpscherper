@@ -7,6 +7,8 @@ De data die we in een programma gebruiken bewaren we in een **variabele van een 
 
 Een variabele heeft een geheugenadres, namelijk de plek waar de data in het geheugen staat. Maar het zou lastig programmeren zijn indien je steeds dit adres moest gebruiken. Daarom moeten we ook steeds een naam oftewel **identifier** aan de variabele geven. Op die manier kunnen we eenvoudig de geheugenplek aanduiden en hoeven we niet te werken met een lang hexadecimaal geheugen adres (bv. 0x4234FE13EF1).
 
+![Een variabele is een gereserveerd plekje in het geheugen. Jij spreekt dat plekje aan met de identifier, de computer met het geheugenadres.](../assets/1_csharpbasics/geheugenNEW.png)<!--{width=85%}-->
+
 :::{.callout-tip}
 De identifier van de variabele moet uiteraard voldoen aan de *identifier regels* zoals eerder besproken.
 :::
@@ -126,6 +128,8 @@ sbyte y = x; //FOUT: een int past niet zomaar in een sbyte
 ```
 
 De compiler kan dan immers niet garanderen dat de waarde van ``x`` binnen het bereik van een ``sbyte`` blijft. Hoe je dat soort omzettingen wél forceert (een *cast*) zie je verderop.
+
+![Bij ``sbyte start = 127;`` staat de waarde zwart op wit in de code en kan de compiler ze nakijken. Bij ``sbyte y = x;`` moet hij afgaan op het type ``int``, en dat past niet in een ``sbyte``.](../assets/1_csharpbasics/compilercheckNEW.png)<!--{width=65%}-->
 :::
 
 
@@ -195,12 +199,14 @@ Verderop in dit boek leer je **instantievariabelen** kennen (variabelen die bij 
 * Bij variabelen van het type ``bool`` is dat ``false``.
 * Bij ``char`` is dat de literal ``\0`` (in het volgende hoofdstuk leggen we die vreemde backslash uit).
 * En bij tekst is dat de lege ``string``-literal ``""`` (maar je mag ook ``String.Empty`` gebruiken).
+
+![Een lokale variabele blijft leeg tot jij er zelf een waarde in stopt. Een instantievariabele krijgt meteen de standaardwaarde van haar type.](../assets/1_csharpbasics/beginwaardenNEW.png)<!--{width=90%}-->
 :::
 
 
 #### Stagiair Steven
 
->![](../assets/aistagiar.png) Steven is onze stagiair. Hij laat zijn code tegenwoordig volledig door A.I. schrijven en kijkt zelf amper nog na wat er staat. Hij moet de lengte en breedte van een kamer bijhouden, allebei voorlopig ``5`` meter, en krijgt dit ene regeltje:
+>![](../assets/aistagiar.png) Stagiair Steven is weer lui geweest. Hij moet de lengte en breedte van een kamer bijhouden, allebei voorlopig ``5`` meter en heeft volgende code gekregen van de A.I.:
 >
 >```csharp
 >int lengte, breedte = 5;
@@ -210,11 +216,15 @@ Verderop in dit boek leer je **instantievariabelen** kennen (variabelen die bij 
 >
 >"Eén regel voor twee variabelen, allebei ``5``. Lekker compact", denkt hij.
 
-Wat toont deze code echt?
+Wat toont deze code echt? Zal deze code werken?
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-Deze code compileert niet eens: ``lengte`` krijgt hier helemaal geen waarde, en ``Console.WriteLine(lengte)`` geeft de fout *"use of unassigned local variable 'lengte'"*. Bij ``int lengte, breedte = 5;`` declareer je twee variabelen op één regel, maar het ``= 5`` hoort enkel bij ``breedte``, de laatste van het rijtje. Wil je allebei ``5``, dan moet je dat ook allebei apart zeggen: ``int lengte = 5, breedte = 5;``. Steven las de komma als "en dus ook", en de A.I. liet hem in die veronderstelling.
+Deze code compileert niet eens: ``lengte`` krijgt hier helemaal geen waarde, en ``Console.WriteLine(lengte)`` geeft de fout *"use of unassigned local variable 'lengte'"*. 
+
+Bij ``int lengte, breedte = 5;`` declareer je twee variabelen op één regel, maar het ``= 5`` hoort enkel bij ``breedte``, de laatste van het rijtje. Wil je allebei ``5``, dan moet je dat ook allebei apart zeggen: ``int lengte = 5, breedte = 5;``. 
+
+Steven las de komma als "en dus ook", en de A.I. liet hem in die veronderstelling.
 :::
 
 
@@ -242,6 +252,8 @@ temperatuurGisteren = 25;
 ```
 
 We hebben aan het einde van het programma zowel de temperatuur van eergisteren (``20``), als die van gisteren (``25``).
+
+![Links verdwijnt de ``20`` op het moment dat je ``25`` toekent. Rechts staat de ``20`` eerst in een tweede variabele en blijft ze dus bewaard.](../assets/1_csharpbasics/overschrijvenNEW.png)<!--{width=90%}-->
 
 
 :::{.callout-important}

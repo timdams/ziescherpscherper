@@ -95,35 +95,25 @@ De tekst moet klinken als Tim die het uitlegt, niet als een chatbot die een verg
 
 ## Afbeeldingen moderniseren (Excalidraw-stijl)
 
-Lopend project: de bestaande schematische afbeeldingen omzetten naar een hand-drawn, speelse stijl in de huisstijlkleuren. We doen dit **hoofdstuk per hoofdstuk**.
+Lopend project: de bestaande schematische afbeeldingen omzetten naar een hand-drawn,
+speelse stijl in de huisstijlkleuren. We doen dit **hoofdstuk per hoofdstuk**.
 
-**Werkwijze (vast):**
+**De volledige werkwijze, de API en de checklist staan in de skill
+[`afbeelding`](.claude/skills/afbeelding/SKILL.md).** Gebruik die skill telkens er een
+figuur getekend of hertekend moet worden. De harde regels, ook als de skill niet geladen is:
 
 1. Per hoofdstuk **eerst aan Tim vragen** welke afbeelding(en) we aanpakken. Niet zelf kiezen.
 2. De nieuwe afbeelding **niet** in het boek verwerken. Tim bekijkt eerst alles zelf.
-3. Per nieuwe afbeelding worden **drie** bestanden bewaard:
-   - de PNG-preview **naast het origineel** met suffix `NEW` (bv. `intro.png` -> `introNEW.png`);
-   - de **SVG** en het **generatorscript** in een subfolder `imagegen/` naast het origineel (bv. `content/assets/5_arrays/imagegen/`).
-   Het script blijft bewaard zodat we snel kunnen bijsturen zonder van nul te beginnen.
+3. Per afbeelding blijven **drie** bestanden bewaard: de PNG naast het origineel (suffix
+   `NEW` als ze een bestaande figuur vervangt, `Alternatief` voor een vrijere variant), en
+   de SVG plus het generatorscript in de submap `imagegen/`.
+4. **Geen titel** boven de afbeelding, **tekst overlapt nooit** met lijnen of pijlen, en
+   **verzin niets** dat niet in het origineel staat.
+5. De stijl zelf (rough.js, font Caveat, de kleuren uit [_brand.yml](_brand.yml)) ligt vast
+   en wijzigt niet zonder Tim.
 
-**Inhoudsregels (vast):**
-
-- **Geen "titel" boven de afbeelding.** Geen gecentreerde kop die de figuur benoemt; de bijschrift-tekst staat al onder de afbeelding in de cursus. Bestaande labels die in het origineel deel uitmaken van het schema (bv. een notitie rechtsboven) mogen blijven, maar plaats ze waar ze in het origineel staan, niet als kop bovenaan.
-- **Tekst mag nooit overlappen** met de lijnen van een omliggende box of met een pijl. Houd labels buiten de pijllijn en laat pijlpunten kort voor het label stoppen.
-- **Verzin niets extra.** Zet enkel om wat in het origineel staat; geen extra elementen, iconen of tekst toevoegen.
-- **Code binnen accolades altijd inspringen.** In een `codebox`: regels die binnen `{` en `}` staan krijgen een extra `indent` (gebruik de `indent`-eigenschap op het regelobject, bv. `{ t: 'Merk = merk;', indent: 30 }`). Dit geldt voor alle toekomstige afbeeldingen met codeblokken.
-
-**De stijl (vastgelegd, niet meer wijzigen zonder Tim):**
-
-- Hand-drawn via **rough.js** (`roughjs` + `jsdom` voor SVG-output).
-- Handgeschreven font **Caveat** (`@fontsource/caveat`), ingebed als base64-woff2 in de SVG zodat ze zelfstandig rendert.
-- Kleuren uit [_brand.yml](_brand.yml): `ap-red #FF0000` voor accentranden, `ap-red-dark #B30000` voor zwaardere randen/labeltekst, `ap-red-light #FFE5E5` als vulkleur voor accentvlakken, `gray #4D4D4D` voor gewone tekst, `offwhite #f8f9fa` als achtergrond.
-- rough.js-instellingen: `roughness` ~1.4-1.6, `bowing` ~1-1.5, `strokeWidth` 2-3, `hachure`-vulling voor de accentvakjes, `solid` voor witte/lichte vlakken.
-- Render-controle van de SVG naar PNG via `@resvg/resvg-js` (font meegeven als TTF; woff2 omzetten met `fonttools`).
-
-Referentie-implementatie: [content/assets/5_arrays/imagegen/](content/assets/5_arrays/imagegen/). De gedeelde stijl-helpers staan in `imagegen/excal.js` (balonnen, accentvakjes, 3D-doosjes, pijlen, gebogen pijlen).
-
-**Alternatieve visualisaties:** naast een 1-op-1 omzetting maken we soms een vrijere, conceptuele variant (een sterkere metafoor i.p.v. het originele schema). Die krijgen het suffix `Alternatief` (bv. `stackAlternatief.png`, met script + svg in `imagegen/`). Ze vervangen niets; Tim bekijkt ze los.
+Referentie-implementatie: [content/assets/5_arrays/imagegen/](content/assets/5_arrays/imagegen/).
+De nieuwste gedeelde stijl-helpers staan in `content/assets/6_klassen/imagegen/excal.js`.
 
 ## Toekomst ideeen
 

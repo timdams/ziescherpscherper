@@ -33,11 +33,15 @@ Je kan eender welk UNICODE-teken in een `char` bewaren, namelijk een letter, een
 
 Merk dus op dat volgende lijn: ``char eenGetal = '7';`` weliswaar een getal als teken opslaat, maar dat intern de compiler deze variabele steeds als een ``char`` zal gebruiken. **Als je dit cijfer zou willen gebruiken als effectief cijfer om wiskundige bewerkingen op uit te voeren, dan zal je dit eerst moeten converteren naar een getal** (we zullen dit in hoofdstuk 4 uitleggen).
 
+![Een ``char`` bewaart de UNICODE-waarde van het teken, niet het cijfer zelf.](../assets/1_csharpbasics/charalsgetal.png)<!--{width=90%}-->
+
 ### String
 
 **Een ``string`` is een reeks van 0, 1 of meerdere `char`-elementen.**
 
 We gebruiken het ``string`` datatype om tekst voor te stellen. Je begrijpt waarschijnlijk zelf wel waarom het ``string`` datatype een belangrijk en veelgebruikt type is in eender welke programmeertaal: er zijn maar weinig applicaties die niet minstens enkele lijnen tekst tonen aan de gebruiker.
+
+![De ``string`` ``"Hallo"`` bestaat uit vijf ``char``-elementen na elkaar.](../assets/1_csharpbasics/stringketting.png)<!--{width=90%}-->
 
 :::{.callout-tip}
 In hoofdstuk 8 zullen we ontdekken dat strings eigenlijk zogenaamde arrays zijn. 
@@ -58,7 +62,19 @@ Console.WriteLine(eenString);
 Console.WriteLine(eenGetal);
 ```
 
-Het programma zal driemaal een ``1`` onder elkaar tonen. Boeiend programma, hoor.
+Dit geeft het volgende "boeiende" resultaat:
+
+::: {.console}
+```text
+1
+1
+1
+```
+:::
+
+![Drie datatypes met elk hun eigen notatie voor de literal, en toch driemaal dezelfde output.](../assets/1_csharpbasics/charstringint.png)<!--{width=80%}-->
+
+
 
 <!-- TODO ed.5 (review): korte tabel veelgebruikte string-methodes toevoegen: .ToUpper()/.ToLower(), .Trim(), .Length, .Contains(), .Replace(), .Split(). Dagdagelijkse kost. -->
 <!-- TODO ed.5 (review): indexing naam[0] om de eerste letter te krijgen vermelden (sluit aan bij "strings zijn arrays"). -->

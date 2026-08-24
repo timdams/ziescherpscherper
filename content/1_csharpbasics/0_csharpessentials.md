@@ -87,6 +87,7 @@ Wanneer we een variabele aanmaken, zal deze moeten voldoen aan enkele afspraken.
 * De **identifier** waarmee we snel aan de variabele-waarde kunnen. Dit is de gebruiksvriendelijke naam die we geven aan een geheugenplek.
 * Het **datatype** dat aangeeft wat voor soort data we wensen op te slaan. Enkel en alleen dat soort type data zal in deze variabele kunnen bewaard worden. 
 
+![Statements in een boek, zijn zoals zinnen in code.](../assets/1_csharpbasics/zinsontledingNEW.png)
 
 ### Regels voor identifiers
 

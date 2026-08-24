@@ -51,6 +51,8 @@ Het algoritme van een programma moet je zelf verzinnen. De volgorde waarin de in
 
 Eender welke andere volgorde van bovenstaande algoritme zal vreemde - en soms fatale - fouten geven.
 
+![Ook in het echte leven is de volgorde van de stappen belangrijk](../assets/0_intro/fietspomp.png)
+
 Wil je dus leren programmeren, dan zal je logisch moeten leren denken en een analytische geest hebben. Als je eerst tegen een bal trapt voor je kijkt waar de goal staat dan zal de edele kunst van het programmeren voor jou een...speciale aangelegenheid worden.[^logr] 
 
 
