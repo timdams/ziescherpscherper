@@ -13,7 +13,7 @@ status: canon
 
 Je gaat in dit boek leren programmeren met Microsoft Visual Studio 2026, een softwarepakket waar ook een gratis community versie voor bestaat. Microsoft Visual Studio (vanaf nu **VS**) is een pakket dat een groot deel van de tools samenvoegt die een programmeur nodig heeft. Zo zit er een onder andere een debugger, code editor en compiler in.
 
-VS is een zogenaamde **IDE ("Integrated Development Environment")** en is op maat gemaakt om in C# geschreven applicaties te ontwikkelen. Je bent echter verre van verplicht om enkel C# applicaties in VS te ontwikkelen. Je kan gerust VB.NET, TypeScript, Python en andere talen gebruiken. Ook vice versa ben je niet verplicht om VS te gebruiken om te ontwikkelen. Je kan zelfs in notepad code schrijven en vervolgens compileren. Er bestaan zelfs online C# programmeer omgevingen, zoals **dotnetfiddle.net**.
+VS is een zogenaamde **IDE ("Integrated Development Environment")** en is op maat gemaakt om in C# geschreven applicaties te ontwikkelen. Je bent echter verre van verplicht om enkel C# applicaties in VS te ontwikkelen. Je kan gerust VB.NET, TypeScript, Python en andere talen gebruiken. Ook vice versa ben je niet verplicht om VS te gebruiken om te ontwikkelen. Je kan zelfs in notepad code schrijven en vervolgens compileren. Er bestaan zelfs online C# programmeer omgevingen, zoals [**dotnetfiddle.net**](https://dotnetfiddle.net).
 
 
 ### De compiler en Visual Studio

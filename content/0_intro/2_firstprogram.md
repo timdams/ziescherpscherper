@@ -37,7 +37,7 @@ Console.WriteLine("Hoi, ik ben het!");
 
 Zodat je dus volgende code krijgt:
 
-```java
+```{.java .numberLines}
 namespace Demo1
 {
     internal class Program
@@ -67,7 +67,7 @@ Laat je niet afschrikken door wat er nu volgt. Ik gooi je even in het diepe gede
 
 #### Analyse van de code
 
-:::{.callout-important}
+:::{.callout-tip}
 **Voorlopig negeren!**
 
 De keywords ``namespace``, ``class`` en ``static void Main`` lijken nu nog mysterieus. Dat geeft niet: **negeer ze gewoon even**. Het enige wat jij momenteel moet doen is code schrijven *binnen* de accolades van ``Main``. We pluizen deze keywords vanaf hoofdstuk 7 helemaal uit.
@@ -146,7 +146,7 @@ Tijd om iemand voor te stellen die je doorheen dit boek nog vaak zal tegenkomen:
 >
 >"Eén lijntje, klaar", zegt hij trots.
 
-Er zitten drie fouten in dat ene regeltje. Vind jij ze?
+**Er zitten drie fouten in dat ene regeltje. Vind jij ze?** (klik op antwoord om de oplossing te zien)
 
 :::{.callout-note collapse="true"}
 ## Antwoord
@@ -156,6 +156,8 @@ Drie klassieke beginnersfouten:
 2. ``Hallo`` staat zonder aanhalingstekens, waardoor C# het niet als tekst herkent. Het moet ``"Hallo"`` zijn.
 3. Er ontbreekt een puntkomma op het einde van de lijn.
 
-Correct wordt het ``Console.WriteLine("Hallo");``. Steven zag het niet omdat hij blind op de A.I. vertrouwde en de rode kringeltjes in Visual Studio negeerde. Hou jij hem de komende hoofdstukken mee in het oog?
+De juiste oplossing was: ``Console.WriteLine("Hallo");`` 
+
+Steven zag het niet omdat hij blind op de A.I. vertrouwde en de rode kringeltjes in Visual Studio negeerde. Hou jij hem de komende hoofdstukken mee in het oog?
 :::
 

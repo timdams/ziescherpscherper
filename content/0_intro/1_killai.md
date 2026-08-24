@@ -10,7 +10,7 @@ status: canon
 
 ## A.I. even parkeren
 
-Sinds enkele jaren wordt de wereld overspoeld door ChatGPT & friends. De impact hiervan op de wereld valt niet weg te steken, en zeker ook niet op het beroep van ontwikkelaars. Het is dan ook logisch dat Visual Studio A.I. gestuurde tools heeft ingebouwd om het leven te vereenvoudigen. **MAAR: als beginnende programmeur zijn deze tools niet altijd aanbevolen.** Mijn advies is daarom om, zeker in de eerste hoofdstukken van dit boek, te leren programmeren ZONDER deze hulpmiddelen. 
+Sinds enkele jaren wordt de wereld overspoeld door ChatGPT, Claude, Gemini & friends. De impact hiervan op de wereld valt niet weg te steken, en zeker ook niet op het beroep van ontwikkelaars. Het is dan ook logisch dat Visual Studio A.I. gestuurde tools heeft ingebouwd om het leven te vereenvoudigen. **MAAR: als beginnende programmeur zijn deze tools niet altijd aanbevolen.** Mijn advies is daarom om, zeker in de eerste hoofdstukken van dit boek, te leren programmeren ZONDER deze hulpmiddelen. 
 
 In deze nieuwe sectie gaan we daarom twee zaken doen:
 
@@ -19,7 +19,7 @@ In deze nieuwe sectie gaan we daarom twee zaken doen:
 
 
 
-Voor we in IntelliCode en Copilot duiken willen we toch nog één keer waarschuwen omtrent A.I. nu al omarmen: je leert ook niet hoofdrekenen door vanaf dag 1 met een zakrekenmachine aan de slag te gaan.
+Voor we in IntelliCode en Copilot duiken willen we toch nog één keer waarschuwen omtrent A.I. nu al omarmen: **je leert ook niet hoofdrekenen door vanaf dag 1 met een zakrekenmachine aan de slag te gaan.**
 
 In hoofdstuk 4 zullen we uitleggen hoe je wél op een verantwoorde manier A.I. kan gebruiken om je code te verbeteren, maar dan wel nadat je de basis onder de knie hebt.
 
@@ -53,7 +53,7 @@ IntelliCode werkt verrassend goed, maar is niet erg interactief. Je kan weliswaa
 
 Bij het opstarten van VS zal je mogelijk aan de rechterzijde direct gebombardeerd worden met een venster dat Copilot vooruit duwt. Via de knop er boven kan je inloggen en vervolgens Copilot aan de tand voelen. Copilot werkt soms verbluffend goed. Misschien té goed. Het is griezelig hoe snel en juist het eenvoudige (en zelfs complexe) problemen voor je kan oplossen. Speel er gerust eens mee **en verban het dan van je computer**. 
 
-De programmeur van de toekomst zal béter moeten zijn dan Copilot, ChatGPT *and friends* (Gemini, Claude, Cursor, etc). Wie enkel op AI vertrouwt, riskeert minder kansen in de sector. Het is dus cruciaal dat je zelf de basis onder de knie hebt.
+De programmeur van de toekomst zal béter moeten zijn dan Copilot, ChatGPT and friends. Wie enkel op A.I. vertrouwt, riskeert minder kansen in de sector...want waarom zou de sector jouw taak dan niet gewoon door A.I. laten doen? Het is dus cruciaal dat je zelf de basis onder de knie hebt.
 
 #### Copilot afsluiten
 
@@ -63,3 +63,7 @@ Indien je niet ingelogd bent rechtsboven dan zal Copilot niets doen. Da's eenvou
 2. Doorklikken op Options... en vervolgens ook daar alle opties uitschakelen.
 
 ![Probeer aan de verleiding te weerstaan en schakel CoPiot voorlopig gewoon uit. Simpel!](../assets/0_intro/copaf.png)
+
+:::{.callout-warning}
+Vanaf hier gaan we ervan uit dat alles uit staat. Zie je tijdens het typen toch nog lichtgrijze tekst opduiken die je zelf niet getypt hebt, of springt er een suggestievenster open dat je niet gevraagd hebt, dan is er na een update ergens een optie terug aangesprongen. Loop in dat geval nog eens door de instellingen van hierboven.
+:::

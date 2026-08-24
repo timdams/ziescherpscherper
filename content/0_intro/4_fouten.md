@@ -12,6 +12,8 @@ status: canon
 
 Je code zal pas compileren indien deze foutloos is geschreven. Herinner je dat computers uiterst dom zijn en dus vereisen dat je code 100% foutloos is qua woordenschat en grammatica.
 
+![Vereenvoudigd compiler overzicht.](../assets/0_intro/compilereenvoudig.png)
+
 Zolang er dus fouten in je code staan moet je deze eerst oplossen voor je verder kan. Gelukkig helpt VS je daarmee op 2 manieren:
 
 * Fouten in code worden met een rode squiggly onderlijnd.
@@ -22,7 +24,7 @@ Zolang er dus fouten in je code staan moet je deze eerst oplossen voor je verder
 Laat je trouwens niet afschrikken door de gigantische reeks fouten die soms plots op je scherm verschijnen. VS begint al enthousiast fouten te zoeken terwijl je mogelijk nog volop aan het typen bent. 
 
 :::{.callout-tip}
-Als je plots veel fouten krijgt, kijk dan altijd vlak boven de plek waar de fouten verschijnen. Heel vaak zit daar de echte fout:en meestal is dat gewoon het ontbreken van een kommapunt aan het einde van een statement.
+Als je plots veel fouten krijgt, kijk dan altijd vlak boven de plek waar de fouten verschijnen. Heel vaak zit daar de echte fout:  **meestal is dat gewoon het ontbreken van een kommapunt aan het einde van een statement.**
 :::
 
 <!-- \newpage -->
@@ -41,11 +43,14 @@ In de error list kan je nu op iedere foutboodscap klikken om ogenblikkelijk naar
 
 Zou je toch willen compileren en je hebt nog fouten dan zal VS je proberen tegen te houden. **Lees nu onmiddellijk wat de voorman hierover te vertellen heeft.**
 
-![OPLETTEN!](../assets/0_intro/errorwarning.PNG)<!--{width=60%}-->
+
 
 :::{.callout-warning}
 
-Opletten aub : Indien je op de groene start knop duwt en bovenstaande waarschuwing krijgt **KLIK DAN NOOIT OP YES EN DUID NOOIT DE CHECKBOX AAN!**
+>![](../assets/attention.png) Opletten aub : Indien je op de groene start knop duwt en volgende waarschuwing krijgt **KLIK DAN NOOIT OP YES EN DUID NOOIT DE CHECKBOX AAN!**
+
+
+![OPLETTEN!](../assets/0_intro/errorwarning.PNG)<!--{width=60%}-->
 
 Lees de boodschap eens goed na: wat denk je dat er gebeurt als je op 'yes' duwt? Inderdaad, VS zal de laatste werkende versie uitvoeren en dus niet de code die je nu hebt staan waarin nog fouten staan.
 :::

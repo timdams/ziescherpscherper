@@ -13,9 +13,6 @@ status: canon
 
 # De eerste stappen <!--\label{ch:1}-->
 
-> First, solve the problem. Then, write the code.
-
-
 Wel, wel, wie we hier hebben?! Iemand die de edele kunst van het programmeren wil leren? Dan ben je op de juiste plaats gekomen. Je gelooft het misschien niet, maar reeds aan het einde van dit hoofdstuk zal je je eerste eigen computerapplicaties kunnen maken. De weg naar eeuwige roem, glorie, véél vloeken en code herbruiken ligt voor je. Ben je er klaar voor? 
 
 
@@ -38,7 +35,7 @@ Het probleem van computers is dat het in essentie ongelooflijk domme dingen zijn
 
 ### Het algoritme
 
-
+> First, solve the problem. Then, write the code.
 
 Deze quote van John Johnson wordt door veel beginnende programmeurs soms met een scheef hoofd aanhoort. "Ik wil gewoon code schrijven!" Het is een mythe dat programmeurs constant code schrijven. Integendeel, een goed programmeur zal veel meer tijd in de "voorbereiding" tot code schrijven steken: het maken van een goed **algoritme** na een grondige **analyse van het probleem** . 
 
@@ -47,9 +44,9 @@ Het algoritme is de essentie van een computerprogramma en kan je beschouwen als 
 Het algoritme van een programma moet je zelf verzinnen. De volgorde waarin de instructies worden uitgevoerd zijn echter zeer belangrijk. Dit is exact hetzelfde als in het echte leven: een algoritme om je fiets op te pompen kan zijn:
 
 ```text
-Haal dop van het ventiel.
-Plaats pomp op ventiel.
-Begin te pompen.
+1. Haal dop van het ventiel.
+2. Plaats pomp op ventiel.
+3. Begin te pompen.
 ```
 
 Eender welke andere volgorde van bovenstaande algoritme zal vreemde - en soms fatale - fouten geven.
@@ -71,9 +68,9 @@ Om een algoritme te schrijven dat onze computer begrijpt dienen we een programme
 
 ### siesjarp
 
-Net zoals er ontelbare spreektalen in de wereld zijn, zijn er ook vele programmeertalen. **C#** - spreek uit *'siesjarp'*, soms ook *cs* geschreven - is er één van de vele. C#  is een taal die deel uitmaakt van de .NET (spreek uit *'dotnet'*) . De .NET omgeving werd meer dan 20 jaar geleden door Microsoft ontwikkeld. Het fijne van C# is dat deze een zogenaamde **hogere programmeertaal** is. Hoe "hoger" de programmeertaal, hoe leesbaarder deze wordt voor leken omdat hogere programmeertalen dichter bij onze eigen taal aanleunen. 
+Net zoals er ontelbare spreektalen in de wereld zijn, zijn er ook vele programmeertalen. **C#** - spreek uit *'siesjarp'*, soms ook *cs* geschreven - is er één van de vele. C#  is een taal die deel uitmaakt van de .NET (spreek uit *'dotnet'*) . De .NET omgeving werd meer dan 25 jaar geleden door Microsoft ontwikkeld. Het fijne van C# is dat deze een zogenaamde **hogere programmeertaal** is. Hoe "hoger" de programmeertaal, hoe leesbaarder deze wordt voor leken omdat hogere programmeertalen dichter bij onze eigen taal aanleunen. Andere bekende, moderne hogere programmeertalen zijn bijvoorbeeld Java, Python en JavaScript.
 
-De geschiedenis van de hele .NET-wereld vertellen zou een boek op zich betekenen en gaan ik hier niet doen. Het is nuttig om weten dat er een gigantische bron aan informatie over .NET en C# online te vinden is[^startcs].
+De geschiedenis van de hele .NET-wereld vertellen zou een boek op zichzelf betekenen en ga ik hier niet doen. Het is nuttig om weten dat er een gigantische bron aan informatie over .NET en C# online te vinden is[^startcs].
 
 [^startcs]: Zie [learn.microsoft.com/dotnet/csharp](https://learn.microsoft.com/dotnet/csharp).
 

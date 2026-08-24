@@ -3,7 +3,7 @@ id: id_console
 bron: handboek
 type: theorie
 module:
-onderwerpen: [write, writeline, readline, console, input,witregels, concatenatie]
+onderwerpen: [write, writeline, readline, console, input, witregels, concatenatie]
 niveau: basis
 status: canon
 ---
@@ -12,9 +12,9 @@ status: canon
 
 In de Console kan je met een handvol methoden reeds een aantal interessante dingen doen.
 
-Zo kan je bijvoorbeeld input van de gebruiker inlezen en bewaren in een variabele als volgt:
+Zo kan je bijvoorbeeld input van de gebruiker inlezen en bewaren in een variabele (een zogenaamd 'geheugenplekje', wat we later zullen uitleggen) als volgt:
 
-```java
+```{.java .numberLines}
 Console.WriteLine("Geef je naam?");
 string result = Console.ReadLine();
 ```
@@ -23,28 +23,27 @@ Wat gebeurt er hier juist?
 
 De tweede lijn code doet eigenlijk twee dingen tegelijk:
 
-* Met ``string result`` zeggen we aan de compiler: maak in het geheugen een plekje vrij waar enkel data van het type string in mag bewaard worden, en noem die geheugenplek ``result`` zodat we ze later makkelijk kunnen in- en uitlezen (wat deze zin exact betekent komt later. Onthoud nu dat geheugen van het type ``string`` enkel "tekst" kan bevatten).
+* Met ``string result`` zeggen we aan de compiler: maak in het geheugen een plekje vrij waar enkel data van het type ``string`` in mag bewaard worden, en noem die geheugenplek ``result`` zodat we ze later makkelijk kunnen in- en uitlezen (wat deze zin exact betekent komt later. Onthoud nu dat geheugen van het type ``string`` enkel "tekst" kan bevatten).
 * Met ``= Console.ReadLine()`` roepen we vervolgens de ``ReadLine``-methode aan. Deze leest de invoer van de gebruiker van het toetsenbord uit tot de gebruiker op enter drukt, en het resultaat van die ingevoerde tekst wordt bewaard in ``result``.
 
-:::{.callout-tip}
+:::{.callout-warning}
 **Merk op dat de toekenning in C# van rechts naar links gebeurt.** Vandaar dat ``result`` dus links van de toekenning (``=``) staat en de waarde krijgt van het gedeelte rechts ervan.
 :::
 
 :::{.callout-tip}
-In het voorbeeld bewaren we het resultaat in ``result``, maar dat moet niet zo noemen. In dit voorbeeld vragen we 2 zaken en bewaren deze in 2 aparte variabelen:
+In het voorbeeld bewaren we het resultaat in ``result``, maar dat moet niet zo noemen. In dit voorbeeld vragen we 2 zaken en bewaren deze in 2 aparte variabelen (elk met een eigen naam). Je kan de variabelen dus ook een naam geven die beter bij de inhoud past, zoals ``naamIk`` en ``naamMama``. Bijvoorbeeld:
 
 ```java
 Console.WriteLine("Geef je naam?");
-string naam = Console.ReadLine();
+string naamIk = Console.ReadLine();
 Console.WriteLine("Geef de naam van je mama?");
 string naamMama = Console.ReadLine();
 ```
-
 :::
 
 Je programma zou nu moeten zijn:
 
-```java
+```java{.java .numberLines}
 Console.WriteLine("Hello World!");
 Console.WriteLine("Hoi, ik ben het!");
 Console.WriteLine("Wie ben jij?!");
@@ -144,7 +143,7 @@ tim [enter]
 Dagtimhoe gaat het met je?
 ```
 
-Wat is er hier "verkeerd" gelopen? Al je tekst van de laatste lijn plakt zo dicht bij elkaar? 
+Wat is er hier *verkeerd* gelopen? Al je tekst van de laatste lijn plakt zo dicht bij elkaar? 
 
 <!-- \newpage -->
 
@@ -177,14 +176,13 @@ C# trekt zich niets aan van **witregels die niét binnen aanhalingstekens staan*
 
 :::{.callout-important}
 
-**Opletten met spaties**
+### Opletten met spaties
 
 Let goed op hoe je spaties gebruikt bij ``WriteLine``. **Indien je spaties buiten de aanhalingstekens plaatst dan heeft dit geen effect.**
 
 Hier een fout gebruik van spaties (de code zal werken maar je spaties worden genegeerd). **Let op: de liggende streepjes (``_``) hieronder stellen enkel _visueel_ een spatie voor. Typ ze dus niet over!**
 
 ```java
-//we visualiseren de spaties even als liggende streepjes in volgende voorbeeld
 Console.Write("Dag"_);  
 Console.Write(result_);
 Console.Write("hoe gaat het met je?");
@@ -197,7 +195,7 @@ Console.Write("Dag_");
 Console.Write(result);
 Console.Write("_hoe gaat het met je?");
 ```
-:::
+
 
 ### Zinnen aan elkaar plakken
 
