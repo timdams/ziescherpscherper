@@ -96,8 +96,12 @@ secundaireMeting = (int)hoofdMeting;
 ```
 Het resultaat in `secundaireMeting` zal `20` zijn (alles na de komma wordt weggegooid bij casting van een ``double`` naar een ``int`` ).
 
+![Casting naar `int` gooit alles na de komma weg, ook bij `20.9`. Er wordt niet afgerond.](../assets/1_csharpbasics/narrowingzaag.png)<!--{width=70%}-->
+
 :::{.callout-tip}
 Merk op dat `hoofdMeting` nooit van datatype is veranderd; enkel de inhoud ervan (`20.4`) werd eruit gehaald, omgezet ("gecast") naar `20` en dan aan ``secundaireMeting`` toegewezen dat enkel `int` aanvaardt.
+
+![`hoofdMeting` blijft onaangeroerd: enkel een kopie van de waarde passeert de cast en belandt in `secundaireMeting`.](../assets/1_csharpbasics/castblijft.png)<!--{width=70%}-->
 :::
 
 <!-- \newpage -->
@@ -129,6 +133,8 @@ double tempGemiddeld = ((double)tempGisteren + (double)tempVandaag) / 2;
 ```
 
 Nu zal ``tempGemiddeld`` wel de waarde ``22.5`` bevatten.
+
+![Links is elk tussenresultaat een `int`, dus komt `22.0` in `tempGemiddeld` terecht. Rechts rekent de hele expressie als `double` doordat de operanden gecast worden.](../assets/1_csharpbasics/tempboom.png)<!--{width=80%}-->
 
 :::{.callout-warning}
 Er zijn ook andere oplossingen die het gewenste resultaat geven, namelijk:
@@ -174,6 +180,8 @@ secundaireMeting = hoofdMeting; //secundaireMeting krijgt 20.0
 Deze code zal zonder problemen werken: `secundaireMeting` zal de waarde `20.0` bevatten. De inhoud van `hoofdMeting` wordt *verbreed* naar een `double`, eenvoudigweg door er een kommagetal van te maken. 
 
 Er gaat **geen** inhoud verloren echter. Je hoeft dus niet expliciet de casting-notatie zoals ``(double)hoofdMeting`` te doen, de computer ziet zelf dat hij de inhoud van ``hoofdMeting`` zonder dataverlies kan toekennen aan ``secundaireMeting`` en is dus niet bang dat hij later aangeklaagd zal worden.
+
+![Widening: een `int` past zonder verlies in een `double`. Narrowing: een `double` past niet in een `int` en loopt over, tenzij je met een cast aangeeft dat je dat aanvaardt.](../assets/1_csharpbasics/widening.png)<!--{width=70%}-->
 
 Merk op dat je perfect casting hier mag gebruiken, maar daar de conversie impliciet zonder problemen kan plaatsvinden hoeft dit dus niet. Deze code is echter even juist (en soms een veilige gewoonte om te doen, better safe than sorry):
 
