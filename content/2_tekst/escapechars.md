@@ -115,6 +115,8 @@ Console.WriteLine("01234567890123456789012345678901234567890");
 Console.WriteLine("\t1\t2\t3\t4\t5");
 ```
 
+![Elke `\t` laat de cursor naar de volgende vaste tabstop springen.](../assets/1_csharpbasics/tabstops.png)<!--{width=100%}-->
+
 Tabstops zijn nuttig om je data mooi uitgelijnd in een tabel te plaatsen. Als je dat dan nog eens combineert met de UNICODE karakters om tabellen te tekenen kan je toffe dingen maken. Deze karakters, de zogenaamde "Box Drawing" subset, staan in UNICODE gedefinieerd als de tekens met hexadecimale code 0x2500 en verder. Bekijk zeker eens een datasheet met alle tekens.[^ascitekenen].
 
 [^ascitekenen]:www.unicode.org/charts/PDF/U2500.pdf
@@ -125,6 +127,8 @@ Als je op je toetsenbord op **Enter** duwt, gebeuren er historisch eigenlijk twe
 
 - `\n` (line feed): ga naar een nieuwe regel.
 - `\r` (carriage return): ga terug naar het begin van de huidige regel.
+
+![De entertoets bundelt twee bewegingen: `\r` brengt de cursor terug naar links, `\n` schuift een regel op.](../assets/1_csharpbasics/newline.png)<!--{width=90%}-->
 
 Hier zit een addertje onder het gras, want niet elk besturingssysteem doet dit op dezelfde manier:
 
@@ -163,4 +167,8 @@ Wat zal resulteren in volgende uitvoer:
 Om een tab te tonen gebruik je \t in C#.
 ```
 :::
+
+### Backslash en klaar
+
+Escape characters zijn geen materie om vanbuiten te leren. In de praktijk grijp je vooral naar `\n`, `\t`, `\"` en `\\`; die zitten na wat oefenen vanzelf in je vingers. De rest zoek je gewoon op wanneer je ze nodig hebt, daar dient de tabel hierboven voor.
 
