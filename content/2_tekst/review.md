@@ -16,7 +16,7 @@
 
 ## Zwaktes
 
-- `[c]` **Geen woord over raw string literals** (C# 11, `"""..."""`). Sinds 2022 is dit dé manier om multiline strings, JSON, regex, etc. mooi te schrijven. Voor multiline ASCII-art ([7_unicode.md:58-73](7_unicode.md)) is `"""..."""` zelfs eleganter dan `@"..."` (geen probleem met indentatie). Dit hoort er minstens bij vermeld te worden. **(TODO-comment geplaatst in 7_unicode.md; nieuwe sectie nog niet geschreven.)**
+- `[v]` **Geen woord over raw string literals** (C# 11, `"""..."""`). Sinds 2022 is dit dé manier om multiline strings, JSON, regex, etc. mooi te schrijven. Voor multiline ASCII-art ([7_unicode.md:58-73](7_unicode.md)) is `"""..."""` zelfs eleganter dan `@"..."` (geen probleem met indentatie). Dit hoort er minstens bij vermeld te worden. **(sectie "Raw string literals" toegevoegd in 7_unicode.md, na de `@`-uitleg; `@` blijft staan.)**
 - `[c]` **Geen mention van `string.IsNullOrEmpty` of `string.IsNullOrWhiteSpace`**. Dit is dagelijkse kost zodra je `Console.ReadLine()` gebruikt, en past perfect in dit hoofdstuk. **(TODO-comment geplaatst; afstemmen op de no-nullables-keuze van deze editie.)**
 - `[v]` [escapechars.md:45](escapechars.md): de regel `\\\\    //twee backslashes.` is verwarrend - in markdown rendering kan dit verschillend ogen dan in C# zelf. In een C# string-literal zijn `\\\\` vier karakters die voor twee `\\`-tekens staan. Klopt, maar het is uitleg over uitleg over uitleg. Eenvoudiger: laat dit weg. **(regel verwijderd.)**
 - `[v]` [escapechars.md:83-90](escapechars.md) "Biep biep" met `\a` is een leuke easter egg, maar werkt **niet meer** in moderne Windows Terminal en op Linux/Mac standaard ook niet. Studenten testen dit en concluderen dat hun code stuk is. Voeg een waarschuwing toe of haal weg. **(waarschuwing-callout toegevoegd: code is niet stuk, moderne terminals negeren \a.)**
@@ -29,7 +29,7 @@
 - `[v]` [5_chars_strings.md:6-9](5_chars_strings.md) zegt "UNICODE die een 16-bit (UTF-16) voorstelling gebruikt". Dit is half waar - UTF-16 is **één** encoding van Unicode (niet de enige), en .NET gebruikt UTF-16 intern voor `string`. Maar Unicode zelf gaat tot 21 bits per codepoint (vandaar surrogate pairs voor emoji). Door dit te versimpelen krijg je later een probleem: één emoji telt als 2 chars in `string.Length`. Dit hoort minstens als voetnoot vermeld. **(voetnoot toegevoegd over surrogate pairs / emoji die als 2 telt in .Length; tekst aangepast naar "intern UTF-16".)**
 - `[v]` [escapechars.md:107-109](escapechars.md): "Een zin.         na een tab" - de visuele uitlijning in markdown is onbetrouwbaar. Toon dit liever in een fenced code block met spaties die exact overeenkomen, of gebruik een screenshot. **(stond al in een fenced block; taal-tag gecorrigeerd naar text zodat het als monospace uitvoer rendert.)**
 - `[v]` [6_stringInterpolation.md:85-92](6_stringInterpolation.md): "Eender welke expressie is toegelaten, dus je kan ook complexe berekeningen of zelfs andere methoden aanroepen". Maar er is geen voorbeeld met method-call. Voeg `$"De lengte is {naam.Length}"` toe. **(voorbeeld met naam.Length toegevoegd.)**
-- `[v]` [7_unicode.md:75-89](7_unicode.md): de combinatie `$@"..."` werkt, maar in C# 8+ is `@$"..."` ook toegelaten en de moderne aanbeveling is `$"""..."""` (raw interpolated). Dit is verwarrend zonder een woordje uitleg over volgorde. **(note toegevoegd: volgorde maakt niet uit; raw interpolated als TODO bij raw string literals.)**
+- `[v]` [7_unicode.md:75-89](7_unicode.md): de combinatie `$@"..."` werkt, maar in C# 8+ is `@$"..."` ook toegelaten en de moderne aanbeveling is `$"""..."""` (raw interpolated). Dit is verwarrend zonder een woordje uitleg over volgorde. **(note toegevoegd: volgorde maakt niet uit; `$"""..."""` vermeld in de sectie Raw string literals.)**
 - `[>]` [8_environment.md](8_environment.md) komt aan het einde van H3 maar gaat niet over tekst. Voelt als een vreemde toevoeging - waarom zit dit in dit hoofdstuk? **(uitgesteld: verplaatsing vereist _quarto.yml-aanpassing; TODO-flag in 8_environment.md, beslissing aan Tim.)**
 
 ## Gemissen
@@ -43,7 +43,7 @@
 
 ## Concrete suggesties
 
-1. `[c]` Voeg in [escapechars.md](escapechars.md) of [7_unicode.md](7_unicode.md) een aparte subsectie **Raw string literals** toe:
+1. `[v]` Voeg in [escapechars.md](escapechars.md) of [7_unicode.md](7_unicode.md) een aparte subsectie **Raw string literals** toe:
    ```java
    string json = """
        {
@@ -52,7 +52,7 @@
        }
        """;
    ```
-   Toon dat dit de moderne opvolger is van `@"..."` voor multiline, zeker handig voor JSON / SQL / regex. **(TODO-comment geplaatst in 7_unicode.md.)**
+   Toon dat dit de moderne opvolger is van `@"..."` voor multiline, zeker handig voor JSON / SQL / regex. **(sectie toegevoegd in 7_unicode.md met de ASCII-art als voorbeeld; JSON-voorbeeld niet gebruikt.)**
 2. `[>]` Verplaats [8_environment.md](8_environment.md) naar een andere plek (H1 of een appendix). Het past inhoudelijk niet bij "tekst gebruiken in code". **(uitgesteld: TODO-flag in 8_environment.md; vereist _quarto.yml-aanpassing.)**
 3. `[v]` Voeg in [6_stringInterpolation.md](6_stringInterpolation.md) een waarschuwing toe over **culture-afhankelijkheid** bij `:C` en `:N` formats. Eventueel met expliciete `CultureInfo.InvariantCulture` voor reproduceerbare oefening-output. **(waarschuwing-callout toegevoegd, met verwijzing naar CultureInfo.)**
 4. `[v]` Vervang in [escapechars.md](escapechars.md) de `\a`-sectie door een waarschuwing dat dit op moderne terminals meestal niet meer hoorbaar is. **(gedaan.)**
