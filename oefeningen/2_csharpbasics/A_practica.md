@@ -44,7 +44,7 @@ int september = 224;
 int oktober = 177;
 int november = 210;
 double gemiddelde = (september + oktober + november) / 3.0;
-Console.WriteLine("Je sliep gemiddeld:"+gemiddelde + " uren per maand.");     
+Console.WriteLine($"Je sliep gemiddeld: {gemiddelde} uren per maand.");
 ```
 
 
@@ -91,7 +91,7 @@ Stel dat je later in deze code ook op een andere plek nog de koers nodig hebt, d
 double bedragInEuro = 78.65;
 double koers = 1.03;
 double bedragInDollar = bedragInEuro * koers;
-Console.WriteLine(bedragInEuro + " EUR is gelijk aan "+bedragInDollar + " USD.");
+Console.WriteLine($"{bedragInEuro} EUR is gelijk aan {bedragInDollar} USD.");
 ```
 
 
@@ -134,7 +134,7 @@ Het is belangrijk dat minstens 1 van je 2 variabelen een ``double`` is. Anders z
 double kills=44;
 double deaths = 9.0;
 
-Console.WriteLine("Je k/d-ratio is "+(kills/deaths));
+Console.WriteLine($"Je k/d-ratio is {kills / deaths}");
 ```
 
 
@@ -179,7 +179,7 @@ const double BTW = 21.0;
 
 double berekening = prijs + (prijs / 100) * BTW;
 
-Console.WriteLine("Prijs "+prijs + " euro zonder btw. Met BTW: " + berekening + " euro.");    
+Console.WriteLine($"Prijs {prijs} euro zonder btw. Met BTW: {berekening} euro.");
 ```
 
 
@@ -226,8 +226,8 @@ const double gMerc = 0.38;
 const double gVenus = 0.91;
 //enzovoort
 
-Console.WriteLine("Je weegt op Mercurius "+ (gewichtOpAarde*gMerc)+ " N.");
-Console.WriteLine("Je weegt op Venus " + (gewichtOpAarde * gVenus) + " N.");
+Console.WriteLine($"Je weegt op Mercurius {gewichtOpAarde * gMerc} N.");
+Console.WriteLine($"Je weegt op Venus {gewichtOpAarde * gVenus} N.");
 //enzovoort
 ```
 
@@ -287,41 +287,41 @@ We misbruiken ``ReadLine`` eigenlijk door invoer aan de gebruiker te vragen, maa
 int tafel = 411;
 int getal = 1;
 
-Console.WriteLine(tafel+"x"+getal+"="+ (tafel*getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
-getal++;
-Console.ReadLine();
-Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
 getal++;
 Console.ReadLine();
 Console.Clear();
-Console.WriteLine(tafel + "x" + getal + "=" + (tafel * getal));
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
+getal++;
+Console.ReadLine();
+Console.Clear();
+Console.WriteLine($"{getal} x {tafel} = {tafel * getal}");
       
 ```
 
@@ -371,10 +371,10 @@ int resultaat2 = ( 35 + 5 ) % 7;
 double resultaat3 = 14 + -4 * 6 / 11.0; // begrijp je waarom je het stuk na de komma niet ziet?
 double resultaat4 =  2 + 15 / 6.0 * 1 - 7 % 2;
 
-Console.WriteLine("-1 + 4 * 6 geeft " + resultaat1);
-Console.WriteLine("( 35 + 5 ) % 7 geeft" + resultaat2);
-Console.WriteLine(" 14 + -4 * 6 / 11 geeft " + resultaat3);
-Console.WriteLine("2 + 15 / 6 * 1 - 7 % 2 geeft "+resultaat4);
+Console.WriteLine($"-1 + 4 * 6 geeft {resultaat1}");
+Console.WriteLine($"( 35 + 5 ) % 7 geeft {resultaat2}");
+Console.WriteLine($"14 + -4 * 6 / 11 geeft {resultaat3}");
+Console.WriteLine($"2 + 15 / 6 * 1 - 7 % 2 geeft {resultaat4}");
 ```
 
 :::: 

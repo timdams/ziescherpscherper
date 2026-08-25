@@ -205,25 +205,9 @@ Aanhalingstekens moet je nog steeds escapen. Heb je een `"` in je tekst, dan kan
 
 ---
 
-## Strings samenvoegen met +
-
-De `+`-operator plakt tekst aan elkaar (**concatenatie**), van links naar rechts:
-
-```csharp
-Console.WriteLine("1" + 1 + 1);     // 111
-Console.WriteLine(1 + 1 + "1");     // 21
-Console.WriteLine("1" + (1 + 1));   // 12
-```
-
-::: {.callout-warning .fragment}
-De **linkse operand** bepaalt het resultaat bij twijfel. Bij `"1" + 1 + 1` wordt eerst `"11"`, dan `"111"`. Bij `1 + 1 + "1"` wordt eerst `2`, dan `"21"`.
-:::
-
----
-
 ## String interpolation met $
 
-Lange `+`-zinnen worden onleesbaar. Zet een **`$`** voor de string en alles tussen `{ }` wordt als code uitgevoerd:
+Zet een **`$`** voor de string en alles tussen `{ }` wordt als code uitgevoerd:
 
 ```csharp
 int leeftijd = 13;
@@ -231,11 +215,7 @@ string naam = "Finkelstein";
 string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
 ```
 
-Veel leesbaarder dan de `+`-variant.
-
-::: {.callout-tip .fragment}
-Vanaf nu gebruik ik bijna altijd string interpolation. Het is de moderne aanpak en 99% van de tijd leesbaarder.
-:::
+Je kende dit al uit hoofdstuk 1: op de plek van `{naam}` komt de inhoud van de variabele.
 
 ---
 
@@ -278,6 +258,54 @@ Console.WriteLine($"{number:000.00}");  // 012,30
 
 ::: {.callout-warning}
 **Komma of punt hangt van de computer af.** Op een Belgisch systeem zie je `12,30`, op een Engels `12.30`. Dat maakt je uitvoer **machine-afhankelijk**. Wil je dat vastzetten, dan leer je later `CultureInfo` kennen.
+:::
+
+---
+
+## De +-operator op strings
+
+`+` plakt strings aan elkaar (**concatenatie**):
+
+```csharp
+string zin = "Ik ben " + naam + " en ik ben " + leeftijd + " jaar.";
+```
+
+Zelfde resultaat, maar je let zelf op de spaties en de zin valt in stukken. Voor zulke zinnen: interpolatie.
+
+---
+
+## Wanneer wél +?
+
+**Lange tekst over meerdere lijnen**, met `+` op het lijneinde:
+
+```csharp
+Console.WriteLine("Je wordt wakker in een donkere kamer. " +
+                  $"Het enige licht komt van een scherm, {naam}. " +
+                  "Typ START om te beginnen.");
+```
+
+::: {.callout-important .fragment}
+Elk stuk met accolades heeft zijn **eigen `$`** nodig. Een `$` op de eerste lijn geldt niet voor de rest.
+:::
+
+::: {.fragment}
+**Tekst stap voor stap opbouwen** met `tekst += stuk;` (komt terug bij herhalingen, H6).
+:::
+
+---
+
+## Opletten met de volgorde bij +
+
+Bij `+` met strings en getallen door elkaar, van links naar rechts:
+
+```csharp
+Console.WriteLine("1" + 1 + 1);     // 111
+Console.WriteLine(1 + 1 + "1");     // 21
+Console.WriteLine("1" + (1 + 1));   // 12
+```
+
+::: {.callout-warning .fragment}
+De **linkse operand** bepaalt het resultaat bij twijfel. Bij `"1" + 1 + 1` wordt eerst `"11"`, dan `"111"`. Bij `1 + 1 + "1"` wordt eerst `2`, dan `"21"`.
 :::
 
 ---
@@ -390,7 +418,7 @@ C# leren lijkt in het begin soms saai, daarom strooi ik er af en toe iets geavan
 * Een **`char`** is één teken (een 16-bit getal), een **`string`** is een reeks chars
 * **UNICODE** (UTF-16 in .NET) volgt ASCII op en bevat meer dan een miljoen tekens
 * **Escape characters** (`\n`, `\t`, `\"`) en **`@`** sturen hoe tekst geïnterpreteerd wordt
-* **String interpolation** (`$"...{expressie}..."`) is de leesbare, moderne manier om tekst op te bouwen
+* **String interpolation** (`$"...{expressie}..."`) is de standaardmanier om variabelen in tekst te plaatsen; `+` vooral om lange tekst over meerdere lijnen te splitsen
 * Let op de **char-val** (`'A' + 'B'` = 131) en op **machine-afhankelijke** formattering
 
 ::: {.callout-tip}

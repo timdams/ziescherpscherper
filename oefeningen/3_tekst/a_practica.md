@@ -1,7 +1,7 @@
 <!--# Hoofdstuk 3-->
 
 :::{.callout-warning}
-Vanaf dit hoofdstuk wordt verwacht dat je steeds  **string interpolatie** gebruikt om strings samen te voegen, en dus niet meer met  ``+`` werkt!
+Gebruik in alle oefeningen **string interpolatie** (``$``) om variabelen en berekeningen in tekst te plaatsen. De ``+``-operator gebruik je enkel om een lange tekst over meerdere codelijnen te splitsen.
 :::
 
 <!--# Hoofdstuk 3-->

@@ -1,53 +1,15 @@
 ## Strings samenvoegen
 
-Tot nogtoe gebruikten we de +-operator om strings aan elkaar te plakken. We gaan deze manier meer in detail bekijken, gevolgd door een moderner alternatief: door middel van string interpolatie met de ``$``-notatie.
+Tot nog toe zette je variabelen in een zin met string interpolation: een ``$`` voor de string en de variabele tussen accolades. In deze sectie bekijken we die techniek in detail. Daarna komt de ``+``-operator aan bod, die je ook op strings kan gebruiken, en de gevallen waarin je die nog nodig hebt.
 
 In de volgende sectie gaan we van volgende informatie uit:
 
 * Stel dat je 2 variabelen hebt ``int leeftijd = 13`` en ``string naam = "Finkelstein"``.
 * We willen de inhoud van deze variabelen samenvoegen in een nieuwe ``string zin`` die zal bestaan uit de tekst: ``Ik ben Finkelstein en ik ben 13 jaar.``
 
-### String samenvoegen met de +-operator
-
-Je kan strings en variabelen eenvoudig bij elkaar 'optellen' zoals we in het begin van dit boek hebben gezien. Ze worden dan achter elkaar geplakt (**geconcateneerd**). 
-
-```java
-string zin = "Ik ben " + naam + " en ik ben " + leeftijd+ " jaar.";
-```
-
-Let er op dat je tussen de aanhalingsteken (binnen de strings) spaties zet indien je het volgende deel niet tegen het vorige deel wilt *plakken*. Is hiermee alles gezegd?! Neen, toch even goed opletten hier. **De volgorde van strings met andere types samenvoegen bepaalt wat de uitvoer zal zijn.** 
-
-Kijk zelf:
-
-```java
-Console.WriteLine("1"+1+1);
-Console.WriteLine(1+1+"1");
-Console.WriteLine("1" + (1 + 1));
-```
-
-Geeft als uitvoer:
-
-::: {.console}
-```text
-111
-21
-12
-```
-:::
-
-Was dit de uitvoer die je voorspeld had?
-
-Ook in dit soort code wordt de volgorde van bewerkingen gerespecteerd. De **concatenatie gebeurt van links naar rechts en de linkse operand zal steeds bepalen wat het resultaat van de bewerking zal zijn indien er twijfel is**. Dit nieuw samengevoegde deel wordt dan de linkse operand voor het volgende deel.
-
-Kijken we dus naar ``"1"+1+1`` dan wordt dit eerst ``"11"+1`` en vervolgens dit ``"111"``.
-
-Bij ``1+1+"1"`` krijgen we eerst ``2+"1"``. Dit geeft vervolgens ``21``. Aangezien C# niet kan bepalen dat de string iets bevat wat een getal kan zijn, en dus besluit om beide operanden als een ``string`` te zien wat altijd de veiligste oplossing is.
-
 ### String interpolation met `$`-notatie
 
-Het nadeel van de +-operator is dat je strings soms erg lang en onleesbaar worden. 
-
-Dankzij *string interpolation* kan dit wel **waarbij we het ``$``-teken gebruiken vooraan de ``string`` om aan te geven dat specifieke delen van de zin geïnterpoleerd moeten worden**
+Bij *string interpolation* **gebruiken we het ``$``-teken vooraan de ``string`` om aan te geven dat specifieke delen van de zin geïnterpoleerd moeten worden**.
 
 Door het $-teken **VOOR** de string te plaatsen geef je aan dat alle delen in de string die *tussen accolades staan* als code mogen beschouwd worden. Een voorbeeld maakt dit duidelijk:
 
@@ -56,9 +18,10 @@ string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
 ```
 
 In dit geval zal de inhoud van de variabele ``naam`` tussen de string op de plek waar nu ``{naam}`` staat geplaatst worden. Idem voor ``leeftijd``.
-Zoals je kan zien is dit veel meer leesbare code dan de eerste manier.
 
 Het resultaat zal dan worden: ``Ik ben Finkelstein en ik ben 13 jaar.``
+
+![De accolades zijn lege vakjes in de zin. De waarde van ``naam`` en ``leeftijd`` wordt op die plek ingevuld.](../assets/2_tekst/interpolatie.png)<!--{width=80%}-->
 
 #### Berekeningen doen bij string interpolatie
 
@@ -105,6 +68,8 @@ Wat krijgt de gebruiker te zien? En waarom niet wat Steven verwacht?
 :::{.callout-note collapse="true"}
 ## Antwoord
 Op het scherm verschijnt letterlijk ``Hallo {naam}, welkom!``, mét de accolades. Steven vergat het ``$``-teken vooraan de string. Zonder dat teken is het een gewone string en blijft ``{naam}`` gewoon staan zoals je het typte. Correct is ``$"Hallo {naam}, welkom!"``. De A.I. liet het ``$`` vallen en Steven testte zijn programma niet eens voor hij het inleverde.
+
+![Dezelfde regel zonder en met ``$``. Enkel met het ``$`` ervoor wordt ``{naam}`` vervangen door de inhoud van de variabele.](../assets/2_tekst/metzonderdollar.png)<!--{width=90%}-->
 :::
 
 ## Strings mooier formatteren
@@ -121,6 +86,8 @@ Console.WriteLine($"{number:F2}");
 Er zal ``12.35`` op het scherm verschijnen. ``F2`` na het dubbelpunt geeft aan dat je een *float* wilt met 2 beduidende cijfers na de komma. 
 
 Merk op dat bij string formattering er **afgerond** wordt, en dus niet *afgekapt*. 
+
+![``{number:F2}`` ontleed: voor de dubbelpunt staat de expressie, erna de format specifier. ``12.345`` wordt afgerond naar ``12.35``.](../assets/2_tekst/formatspec.png)<!--{width=80%}-->
 
 Nog enkele nuttige vormen:
 
@@ -162,12 +129,15 @@ Console.WriteLine($"{number2:000.00}");
 ```
 
 Geeft als uitvoer:
+
 ::: {.console}
 ```text
 012.30
 99999.30
 ```
 :::
+
+![Het masker ``000.00`` als sjabloon: ``12.3`` wordt vooraan en achteraan aangevuld met een ``0``. ``99999.3`` past er niet in, maar er wordt niets afgekapt.](../assets/2_tekst/masker.png)<!--{width=90%}-->
 
 :::{.callout-warning}
 **Komma of punt? Dat hangt van je computer af.**
@@ -178,10 +148,74 @@ Dat is meestal net wat je wilt, maar het maakt je uitvoer wel *machine-afhankeli
 :::
 
 :::{.callout-tip}
-Vanaf nu zal ik bijna altijd string interpolatie gebruiken doorheen het boek. Dit is de meest moderne aanpak en zal 99% van de tijd meer leesbare code geven.
-
 In de appendix leg ik uit hoe je vroeger met behulp van ``String.Format()`` strings moest samenvoegen (daar je dit soms nog in *legacy* code zal tegenkomen).
 :::
+
+<!-- \newpage -->
+
+## De `+`-operator op strings
+
+Je kan strings ook aan elkaar plakken met de ``+``-operator. Ze worden dan achter elkaar gezet (**geconcateneerd**). Dezelfde zin als daarnet ziet er dan zo uit:
+
+```java
+string zin = "Ik ben " + naam + " en ik ben " + leeftijd + " jaar.";
+```
+
+Het resultaat is identiek. Je moet nu wel zelf opletten dat je binnen de aanhalingstekens spaties zet, anders plakt het volgende deel tegen het vorige. En de zin valt uiteen in vijf stukken, wat het lezen niet makkelijker maakt. Voor dit soort zinnen gebruik je daarom string interpolation.
+
+### Wanneer gebruik je `+` wel?
+
+**Lange tekst over meerdere lijnen.** Een string die niet op één lijn code past, splits je op in stukken. Ieder stuk komt op een eigen lijn, met een ``+`` op het einde van de vorige:
+
+```java
+Console.WriteLine("Je wordt wakker in een donkere kamer. Het enige licht komt van " +
+                  "een flikkerend scherm in de hoek. Er staat één zin op: " +
+                  "typ START om te beginnen.");
+```
+
+Bevat een van die stukken een variabele, dan krijgt dat stuk zijn eigen ``$``:
+
+```java
+Console.WriteLine($"Je wordt wakker in een donkere kamer, {naam}. Het enige licht komt van " +
+                  "een flikkerend scherm in de hoek. Er staat één zin op: " +
+                  $"je bent {leeftijd} jaar en hebt 3 levens. Typ START om te beginnen.");
+```
+
+Een ``$`` op de eerste lijn geldt niet voor de volgende stukken. Ieder stuk tussen aanhalingstekens is een aparte string, en enkel de stukken met een ``$`` ervoor worden geïnterpoleerd. Vergeet je het bij een stuk, dan staat ``{leeftijd}`` letterlijk op het scherm.
+
+**Tekst stap voor stap opbouwen.** Soms ken je de volledige tekst nog niet op voorhand, bijvoorbeeld een kassabon die regel per regel groeit. Je plakt dan telkens een nieuw stuk bij een bestaande string met ``tekst += stuk;`` (de verkorte notatie uit hoofdstuk 2). Dat komt pas goed van pas bij herhalingen in hoofdstuk 6, dus daar kom ik op terug.
+
+### Opletten met de volgorde
+
+Gebruik je ``+`` met strings en getallen door elkaar, dan is het even goed opletten. **De volgorde van strings met andere types samenvoegen bepaalt wat de uitvoer zal zijn.**
+
+Kijk zelf:
+
+```java
+Console.WriteLine("1"+1+1);
+Console.WriteLine(1+1+"1");
+Console.WriteLine("1" + (1 + 1));
+```
+
+Geeft als uitvoer:
+
+::: {.console}
+```text
+111
+21
+12
+```
+:::
+
+Was dit de uitvoer die je voorspeld had?
+
+Ook in dit soort code wordt de volgorde van bewerkingen gerespecteerd. De **concatenatie gebeurt van links naar rechts en de linkse operand zal steeds bepalen wat het resultaat van de bewerking zal zijn indien er twijfel is**. Dit nieuw samengevoegde deel wordt dan de linkse operand voor het volgende deel.
+
+Kijken we dus naar ``"1"+1+1`` dan wordt dit eerst ``"11"+1`` en vervolgens dit ``"111"``.
+
+Bij ``1+1+"1"`` krijgen we eerst ``2+"1"``. Dit geeft vervolgens ``21``. Aangezien C# niet kan bepalen dat de string iets bevat wat een getal kan zijn, en dus besluit om beide operanden als een ``string`` te zien wat altijd de veiligste oplossing is.
+
+![De drie regels stap voor stap, telkens van links naar rechts. Zodra een ``string`` meedoet, is het resultaat een ``string``. Haakjes gaan voor.](../assets/2_tekst/volgorde.png)<!--{width=85%}-->
 
 <!-- \newpage -->
 
@@ -211,6 +245,8 @@ dan zal de compiler deze twee waarden letterlijk optellen en het nieuw verkregen
 * De UNICODE-voorstelling van `A` is 0x041 oftewel **`65`**. In het geheugen staat dus het geheel getal ``65``.
 * `B` wordt voorgesteld door **`66`**.
 * Als we dus de variabelen ``letter1`` en ``letter2`` optellen geeft dit **131**. 
+
+![Onder elke ``char`` zit een getal. ``+`` telt die getallen op en het resultaat is een ``int``, geen letter.](../assets/2_tekst/charplus.png)<!--{width=75%}-->
 
 :::{.callout-tip}
 Je zou misschien verwachten dat C# vervolgens het element op plaats 131 in de UNICODE tabel zou tonen. 

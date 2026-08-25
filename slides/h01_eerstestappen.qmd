@@ -303,13 +303,14 @@ Toekenning gebeurt **van rechts naar links**: `naam` (links) krijgt de waarde va
 ## Aanhalingsteken of niet?
 
 ```csharp
-Console.WriteLine("Dag " + naam + ", hoe gaat het?");
+Console.WriteLine(naam);
+Console.WriteLine("naam");
 ```
 
-* **Mét** aanhalingstekens (`"Dag "`): letterlijk die tekst
 * **Zonder** aanhalingstekens (`naam`): de **inhoud** van de variabele
+* **Mét** aanhalingstekens (`"naam"`): letterlijk die tekst
 
-`Console.WriteLine("naam");` toont dus letterlijk het woord *naam*, niet wat de gebruiker typte.
+De tweede lijn toont dus letterlijk het woord *naam*, niet wat de gebruiker typte.
 
 ---
 
@@ -341,16 +342,20 @@ Spaties zijn ook tekens. Zet ze **binnen** de aanhalingstekens: `"Dag "`. Spatie
 
 ---
 
-## Zinnen aan elkaar plakken
+## Variabelen in een zin plaatsen
 
-De **`+`-operator** plakt tekst aan elkaar:
+Zet een **`$`** vóór de string en de variabele tussen **accolades**:
 
 ```csharp
-Console.WriteLine("Dag " + naam + ", hoe gaat het?");
+Console.WriteLine($"Dag {naam}, hoe gaat het?");
 ```
 
-::: {.callout-tip .fragment}
-`+` werkt prima, maar is niet de modernste manier. In het volgende hoofdstuk leer je **string interpolation**: veel leesbaarder.
+* `$` zegt: wat tussen `{ }` staat is **code**, geen tekst
+* Op de plek van `{naam}` komt de **inhoud** van de variabele
+* Dit heet **string interpolation**; in hoofdstuk 3 leer je er meer over
+
+::: {.callout-important .fragment}
+Vergeet je de `$`, dan staat `{naam}` letterlijk op het scherm, mét accolades.
 :::
 
 ---

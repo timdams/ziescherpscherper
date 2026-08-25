@@ -64,12 +64,8 @@ double gewichtOpAarde = 80.3; //kg
 double gAarde = 9.81;  
 double gMars = 3.711; 
 double gewichtOpMars = (gewichtOpAarde/gAarde) * gMars; //kg
-Console.WriteLine("Je weegt op Mars " + gewichtOpMars + " kg");
+Console.WriteLine($"Je weegt op Mars {gewichtOpMars} kg");
 ```
-
-:::{.callout-tip}
-We plakken hier tekst en variabelen aan elkaar met de ``+``-operator. Dat werkt, maar in hoofdstuk 3 leer je **string interpolation**, een leesbaardere manier om variabelen middenin tekst te zetten. Voor nu houden we het bij deze eenvoudige aanpak.
-:::
 
 #### Modulo operator ``%``
 De modulo operator die we in C# aanduiden met ``%`` verdient wat meer uitleg. Deze operator zal als resultaat de gehele rest teruggeven wanneer we het linkse getal door het rechtse getal delen:
@@ -89,7 +85,7 @@ Bijvoorbeeld om te testen of getal even is gebruiken we **``%2``**:
 int getal = 1234234;
 int rest = getal%2;
 Console.WriteLine("Indien het getal als rest 0 geeft is deze even."); 
-Console.WriteLine("De rest is: " + rest);
+Console.WriteLine($"De rest is: {rest}");
 ```
 
 

@@ -39,7 +39,7 @@ Onderstaand C#-programma wil de gebruiker begroeten, maar het compileert niet. W
 ```csharp
 Console.WriteLine("Geef je naam?");
 string naam = Console.Readline()
-Console.WriteLine("Dag " + naam);
+Console.WriteLine($"Dag {naam}");
 ```
 
 :::{.callout-note collapse="true"}

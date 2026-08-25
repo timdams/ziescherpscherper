@@ -93,7 +93,7 @@ string hobby = Console.ReadLine();
 Console.WriteLine("Goed. Hier volgt je visitekaartje");
 
 Console.Write("Naam: ");
-Console.WriteLine(voornaam + " " + achternaam);
+Console.WriteLine($"{voornaam} {achternaam}");
 Console.Write("Adres: ");
 Console.WriteLine(adres);
 Console.Write("Hobby: ");
@@ -187,7 +187,7 @@ string favBoek = Console.ReadLine();
 Console.WriteLine("Geef je favoriete boek:");
 string favAuto = Console.ReadLine();
 
-Console.WriteLine("Je favoriete kleur is "+ favEten +". Je eet graag "+ favAuto +". Je lievelingsfilm is"+ favBoek +" en je favoriete boek is "+ favKleur +".");
+Console.WriteLine($"Je favoriete kleur is {favEten}. Je eet graag {favAuto}. Je lievelingsfilm is {favBoek} en je favoriete boek is {favKleur}.");
 ```
 :::: 
 

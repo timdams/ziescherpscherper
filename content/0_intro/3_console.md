@@ -3,7 +3,7 @@ id: id_console
 bron: handboek
 type: theorie
 module:
-onderwerpen: [write, writeline, readline, console, input, witregels, concatenatie]
+onderwerpen: [write, writeline, readline, console, input, witregels, string interpolation]
 niveau: basis
 status: canon
 ---
@@ -195,28 +195,28 @@ Console.Write("Dag_");
 Console.Write(result);
 Console.Write("_hoe gaat het met je?");
 ```
+:::
 
+### Variabelen in een zin plaatsen
 
-### Zinnen aan elkaar plakken
-
-We kunnen dit allemaal nog een pak korter tonen zonder dat de code onleesbaar wordt. De plus-operator (``+``) in C# kan je namelijk gebruiken om tekst achter elkaar te *plakken*. De laatste 3 lijnen code kunnen dan korter geschreven worden als volgt:
+We kunnen dit allemaal nog een pak korter tonen zonder dat de code onleesbaar wordt. Je kan de inhoud van een variabele namelijk rechtstreeks in een stuk tekst plaatsen. Daarvoor zet je een dollarteken (``$``) vóór de openende aanhalingstekens en plaats je de naam van de variabele tussen accolades (``{`` en ``}``). De laatste 3 lijnen code kunnen dan korter geschreven worden als volgt:
 
 ```java
-Console.WriteLine("Dag " + result + " hoe gaat het met je?");
+Console.WriteLine($"Dag {result} hoe gaat het met je?");
 ```
 
-Merk op dat ``result`` dus NIET tussen aanhalingstekens staat, in tegenstelling tot de andere stukken van de zin. Waarom is dit? Aanhalingstekens in C# duiden aan dat een stuk tekst moet beschouwd worden als tekst van het type ``string``. Als je geen aanhalingsteken gebruikt dan zal C# de tekst beschouwen als een variabele met die naam.
+Het ``$``-teken zegt tegen C#: alles wat in deze tekst tussen accolades staat, is geen tekst maar code. Op de plek van ``{result}`` komt dus de inhoud van de variabele ``result``. Deze techniek heet **string interpolation**. In hoofdstuk 3 leer je er meer over, zo kan je bijvoorbeeld ook berekeningen tussen de accolades zetten.
 
 Bekijk zelf eens wat het verschil wordt wanneer je volgende lijn code:
 
 ```java
-Console.WriteLine("Dag "+ result + " hoe gaat het met je?");
+Console.WriteLine($"Dag {result} hoe gaat het met je?");
 ```
 
 Vervangt door: 
 
 ```java
-Console.WriteLine("Dag "+ "result" + " hoe gaat het met je?");
+Console.WriteLine($"Dag result hoe gaat het met je?");
 ```
 
 We krijgen dan altijd dezelfde output, namelijk:
@@ -227,10 +227,10 @@ Dag result hoe gaat het met je?
 ```
 :::
 
-We tonen dus niet de inhoud van ``result``, maar gewoon de tekst "result".
+Zonder accolades is ``result`` gewoon een stuk van de tekst, en toont C# dus niet de inhoud van de variabele.
 
-:::{.callout-tip}
-Tekst aan elkaar plakken met ``+`` werkt prima, maar het is niet de meest moderne manier. In het volgende hoofdstuk leer je **string interpolation** kennen, een veel leesbaardere techniek om variabelen middenin tekst te verwerken. Voor nu volstaat de ``+``-operator.
+:::{.callout-important}
+Vergeet je het ``$``-teken vooraan, dan blijft ``{result}`` letterlijk op het scherm staan, mét accolades. C# ziet dan een gewone string waar toevallig accolades in staan.
 :::
 
 <!-- TODO ed.5 (review): comments (//) worden hier al gebruikt maar nog nergens uitgelegd. Uitleg staat pas in 1_csharpbasics. Overweeg korte mention. -->
