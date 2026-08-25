@@ -1,0 +1,13 @@
+/*-- scss:rules --*/
+
+// ---------- Escape-tekens niet laten opvallen ----------
+// Zelfde ingreep als in de root ../custom.scss, maar voor de revealjs-slides.
+// De highlighter kleurt escape-tekens (\\, \n, \t, \" ...) apart en markeert
+// in verbatim strings (@"C:\Temp\Myfile.txt") de \T, \M enz. zelfs als "fout"
+// (rood). Die tekens horen gewoon bij de string, dus we geven ze de string-
+// kleur van het reveal-highlightthema (#20794D) en halen de onderlijning weg.
+code span.sc,   // SpecialChar: geldige escapes zoals \\ \n \t
+code span.er {  // Error: valse foutmarkering op verbatim-string-escapes
+  color: #20794D !important;
+  text-decoration: none !important;
+}

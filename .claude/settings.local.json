@@ -6,7 +6,8 @@
       "Bash(node abstracttemplate.js)",
       "Bash(node -e \"const r = require\\('roughjs'\\); console.log\\(Object.keys\\(r\\)\\)\")",
       "Bash(node -e \"const pkg = require\\('./node_modules/roughjs/package.json'\\); console.log\\(pkg.version\\)\")",
-      "Bash(node abstracttemplateAlternatief.js)"
+      "Bash(node abstracttemplateAlternatief.js)",
+      "Bash(grep -roE 'span\\\\.sc,?[^{]*span\\\\.er\\\\{[^}]*20794D[^}]*\\\\}' build/slides/h03_tekst.html build/slides/site_libs)"
     ]
   }
 }

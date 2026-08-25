@@ -12,7 +12,7 @@ Het project bouwt **vier afzonderlijke Quarto-outputs** die samen op één GitHu
 |--------|------|------|------|
 | Hoofdboek | root + [content/](content/) | Quarto **book** (HTML + Typst/PDF) | Het eigenlijke handboek (18 hoofdstukken + appendix) |
 | Oefeningen | [oefeningen/](oefeningen/) | Quarto website | Practica per hoofdstuk + vaardigheidsproeven |
-| Slides | [slides/](slides/) | Quarto website (revealjs) | Lesslides — momenteel zo goed als leeg (alleen [overzicht.qmd](slides/overzicht.qmd)) |
+| Slides | [slides/](slides/) | Quarto website (revealjs) | Lesslides via slides/overzicht.qmd |
 | Corona Files | [coronafiles/](coronafiles/) | Quarto website | Missie-gebaseerde OOP-oefeningen (overerving → interfaces) |
 
 Er is ook een [odysseyfiles/](odysseyfiles/) map met dezelfde structuur als coronafiles: dit is een probeersel, dat voorlopig mag genegeerd worden. Het is een AI generated alternatief op de coronafiles.

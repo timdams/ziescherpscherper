@@ -231,6 +231,17 @@ pre code {
   font-size: 0.86em;
   font-weight: 500;
 }
+// ---------- Escape-tekens niet laten opvallen ----------
+// De highlighter kleurt escape-tekens (\\, \n, \t, \" ...) apart en markeert
+// in verbatim strings (@"C:\Temp\Myfile.txt") de \T, \M enz. zelfs als "fout"
+// (rood + onderlijnd). Dat leidt af: die tekens horen gewoon bij de string.
+// We geven ze daarom de string-kleur (#032f62 uit het github-highlightthema)
+// en halen de onderlijning weg.
+code span.sc,   // SpecialChar: geldige escapes zoals \\ \n \t
+code span.er {  // Error: valse foutmarkering op verbatim-string-escapes
+  color: #032f62 !important;
+  text-decoration: none !important;
+}
 // ---------- Copy-knop (bewust zichtbaarder) ----------
 // Standaard verschijnt de copy-knop pas bij hover en is ze flets.
 // We tonen ze altijd, met een subtiel kadertje, zodat studenten weten

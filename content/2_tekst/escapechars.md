@@ -61,7 +61,7 @@ Console.WriteLine(inceptionCode);
 
 Merk op dat we voorgaande code nog meer Inception-like kunnen maken door de string ineens in de WriteLine methode te plaatsen:
 
-```java
+```java/
 Console.WriteLine("Console.WriteLine(\"Cool he\");");
 ```
 
@@ -118,6 +118,24 @@ Console.WriteLine("\t1\t2\t3\t4\t5");
 Tabstops zijn nuttig om je data mooi uitgelijnd in een tabel te plaatsen. Als je dat dan nog eens combineert met de UNICODE karakters om tabellen te tekenen kan je toffe dingen maken. Deze karakters, de zogenaamde "Box Drawing" subset, staan in UNICODE gedefinieerd als de tekens met hexadecimale code 0x2500 en verder. Bekijk zeker eens een datasheet met alle tekens.[^ascitekenen].
 
 [^ascitekenen]:www.unicode.org/charts/PDF/U2500.pdf
+
+### Over de nieuwe regel: `\n`, `\r` en de entertoets
+
+Als je op je toetsenbord op **Enter** duwt, gebeuren er historisch eigenlijk twee dingen. De termen komen van de oude typemachines: de wagen (met het papier) ging terug naar links (een *carriage return*) én het papier schoof één lijn naar boven (een *line feed*). Computers hebben die twee bewegingen overgenomen als twee aparte tekens:
+
+- `\n` (line feed): ga naar een nieuwe regel.
+- `\r` (carriage return): ga terug naar het begin van de huidige regel.
+
+Hier zit een addertje onder het gras, want niet elk besturingssysteem doet dit op dezelfde manier:
+
+- Windows schrijft een nieuwe regel als `\r\n` (allebei de tekens na elkaar).
+- Linux en macOS gebruiken enkel `\n`.
+
+Daarom zie je soms dat een tekstbestand dat op Windows gemaakt is er op een ander systeem raar uitziet: bijvoorbeeld alles op één lange lijn, of met vreemde `^M`-tekens ertussen.
+
+Voor gewone uitvoer in je console hoef je je hier weinig zorgen over te maken: `\n` werkt zo goed als altijd prima. Zodra je tekst naar een bestand schrijft of over het netwerk verstuurt, kan dat verschil wel beginnen tellen.
+
+C# heeft daarom een nettere oplossing: `Environment.NewLine`. Dat geeft je automatisch het juiste teken (of de juiste combinatie) voor het besturingssysteem waarop je code draait. Het `Environment`-object bekijken we in de volgende sectie.
 
 ### Het verbatim karakter ``@``
 
