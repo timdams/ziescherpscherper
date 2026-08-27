@@ -34,9 +34,9 @@
 ## Gemissen
 
 - `[c]` **`TryParse`** wordt enkel als footnote vermeld in [4b_inputconverten.md](4b_inputconverten.md). Voor eerstejaars die foutgevoelige user input verwerken is dit een gemiste kans - zelfs zonder het meteen te oefenen, een korte introductie in dit hoofdstuk hoort hier thuis. **(TODO-comment geplaatst.)**
-- `[c]` **String interpolation met format specifiers** (`$"{getal:F2}"` voor 2 cijfers na komma) komt nergens voor, terwijl het thematisch perfect past bij afronden. **(TODO-comment geplaatst in 4d_afronden.md; format specifiers zijn al in H3 behandeld, hier dus een cross-ref.)**
+- `[v]` **String interpolation met format specifiers** (`$"{getal:F2}"` voor 2 cijfers na komma) komt nergens voor, terwijl het thematisch perfect past bij afronden. **(sectie "Afronden of enkel mooi tonen?" toegevoegd in 4d_afronden.md, met cross-ref naar H3 en de regel: rond pas af op het laatste moment.)**
 - `[c]` **Implicit numeric conversions tabel** (welke types kunnen impliciet omgezet worden naar welke?) ontbreekt - leerlingen moeten dit nu zelf afleiden uit voorbeelden. **(TODO-comment geplaatst.)**
-- `[c]` **`decimal` type** voor financiële berekeningen wordt niet vermeld. Past thematisch bij afronden en bankers rounding. **(TODO-comment geplaatst.)**
+- `[v]` **`decimal` type** voor financiële berekeningen wordt niet vermeld. Past thematisch bij afronden en bankers rounding. **(sectie "Geld: reken niet met double" toegevoegd in 4d_afronden.md, met 0.1+0.2 en het cent-voorbeeld (int)(4.35*100).)**
 - `[>]` Geen oefeningen of *test-jezelf* aan het einde van de individuele subsecties (in tegenstelling tot bv. H5 dat wel een mini-test heeft). De link naar gitbook-oefeningen volstaat niet als didactische sluitsteen. **(uitgesteld: oefeningen later.)**
 - `[c]` **Concrete kennisclip voor AI-prompts** ontbreekt in [kennisclips.md](kennisclips.md) - terwijl je AI prominent introduceert in dit hoofdstuk. **(TODO-comment geplaatst.)**
 
@@ -58,7 +58,7 @@
 
 4. `[~]` Werk [ai.md](ai.md) af of haal de "in opbouw"-disclaimer en de DUMP-comment weg vooraleer dit publiek gaat. De inhoud is bruikbaar; het cosmetische omhulsel niet. **(zichtbare disclaimer verborgen; DUMP-comment behouden als jouw notities, want onzichtbaar in de output. Afwerken blijft aan Tim.)**
 
-5. `[c]` Voeg in [4d_afronden.md](4d_afronden.md) een tabelletje toe dat de drie afrondingsmethodes naast elkaar zet voor `4.5`, `5.5`, `-2.5` (zo zien studenten meteen het verschil tussen casting/`Math.Round`/`Convert`). **(TODO-comment geplaatst.)**
+5. `[v]` Voeg in [4d_afronden.md](4d_afronden.md) een tabelletje toe dat de drie afrondingsmethodes naast elkaar zet voor `4.5`, `5.5`, `-2.5` (zo zien studenten meteen het verschil tussen casting/`Math.Round`/`Convert`). **(tabel toegevoegd onder "De drie manieren naast elkaar", met vier kolommen: cast, Math.Round, Math.Round+AwayFromZero, Convert.ToInt32.)**
 
 6. `[c]` Aan het einde van [5_debuggen.md](5_debuggen.md) een uitgewerkt voorbeeld toevoegen: een buggy programma (bv. de gemiddelde-temperatuur uit de casting-sectie hergebruiken!) dat de student met breakpoints moet oplossen. Cross-link naar de sectie zou heel mooi zijn. **(TODO-comment geplaatst.)**
 
