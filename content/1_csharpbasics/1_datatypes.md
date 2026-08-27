@@ -144,7 +144,7 @@ Het gebeurt vaak dat beginnende programmeurs een ``int`` variabele gebruiken ter
 Het ``bool`` datatype is uiteraard het kleinst mogelijke datatype. Hoeveel geheugen zal een variabele van dit type innemen denk je? Eén bit zou logisch lijken (true of false, 0 of 1), maar in de praktijk neemt een ``bool`` in C# **1 byte** in. Dat komt omdat een computer geen losse bits adresseert, maar werkt per byte.
 :::
 
-<!-- TODO ed.5 (review): integer overflow ontbreekt (int.MaxValue + 1 = int.MinValue). Past goed bij dit datatypes-hoofdstuk. -->
+<!-- TODO ed.5 (review): integer overflow ontbreekt (int.MaxValue + 1 = int.MinValue). Past goed bij dit datatypes-hoofdstuk. Ondertussen wel kort uitgelegd in 3_data/4c_math.md (sectie "Over de grens gaan"); beslis of het hier ook nog moet of enkel een vooruitwijzing. -->
 <!-- TODO ed.5 (review): geen woord over var (type inference, sinds C# 3). Studenten zien het overal; hoort in dit deel thuis (zie ook 1b_variabelen.md). -->
 
 ### Tekst/String datatype
