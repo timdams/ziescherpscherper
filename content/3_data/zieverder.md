@@ -29,7 +29,9 @@ console.log("5" + 3);  // "53"  (de 3 wordt een string)
 console.log("5" * 3);  // 15    (de "5" wordt een getal)
 ```
 
-Bij `+` wint de string en plak je teksten aan elkaar, bij `*` wint het getal. JavaScript raadt zelf wat je bedoelt; in C# zou dit gewoon een compileerfout geven.
+Bij `+` wint de string en plak je teksten aan elkaar, bij `*` wint het getal.
+
+Die eerste regel is geen exclusief JavaScript-probleem: ook in C# levert `"5" + 3` de tekst `"53"` op. Dat is dezelfde string-concatenatie die je zag toen je twee keer `Console.ReadLine()` bij elkaar optelde. Het verschil zit in de tweede regel: `"5" * 3` weigert de C#-compiler, terwijl JavaScript daar zelf beslist dat de tekst wel een getal zal zijn en de vermenigvuldiging gewoon uitvoert.
 
 #### Input parsen
 
@@ -56,15 +58,17 @@ Zie je `math.` voor elke methode? Dat is de naam van de module. Je moet hem dus 
 
 ### Zoek de fout
 
-Onderstaande **Python**-code wil het gemiddelde van twee ingegeven cijfers tonen, maar geeft altijd een raar resultaat. Wat loopt er mis?
+Onderstaande **Python**-code rondt twee examencijfers af. Eén van de twee studenten gaat klagen. Waarom?
 
 ```python
-cijfer1 = input("Eerste cijfer: ")
-cijfer2 = input("Tweede cijfer: ")
-print((cijfer1 + cijfer2) / 2)
+cijfer1 = 4.5
+cijfer2 = 5.5
+
+print(round(cijfer1))  # 4
+print(round(cijfer2))  # 6
 ```
 
 :::{.callout-note collapse="true"}
 ## Antwoord
-`input()` geeft in Python altijd tekst terug. `cijfer1 + cijfer2` plakt dus de twee teksten aan elkaar ("8" en "6" worden "86") in plaats van ze op te tellen, en daarna probeert Python die tekst te delen door 2. Je moet eerst omzetten naar een getal, bijvoorbeeld met `int(cijfer1)`. Net als in C# is invoer altijd eerst tekst die je zelf naar het juiste type brengt.
+Er is niets stuk: `round()` in Python doet aan bankers rounding, net zoals `Math.Round` in C#. Ligt een getal exact op de helft, dan gaat het naar het dichtstbijzijnde **even** getal. 4.5 wordt dus 4 (4 is even) en 5.5 wordt 6 (6 is even). Bankers rounding is met andere woorden geen eigenaardigheid van C#, Python 3 maakt exact dezelfde keuze. Wat Python niet heeft is de `MidpointRounding`-parameter: wil je daar bij een halfje altijd naar boven, dan schrijf je dat zelf uit of gebruik je de `decimal`-module.
 :::

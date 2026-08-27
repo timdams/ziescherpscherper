@@ -29,7 +29,20 @@ Bakker toe? Stop dan hier, anders: ga verder
 Vraag om een brood
 Krijg het brood
 Betaal het geld aan de bakker
-Als je honger hebt, sla dan volgende lijn over, anders: ga verder
-Keer huiswaarts
+Regent het? Neem de bus naar huis, anders: wandel naar huis
 Smullen maar
 ```
+
+![De eerste twee tests uit dit algoritme, uitgezet op de weg naar de bakker.](../assets/2_beslissingen/bakkerroute.png)<!--{width=90%}-->
+
+De code die je tot nu toe schreef bestond enkel uit **sequentie**: de ene opdracht na de andere, in de volgorde waarin je ze neerschreef. In dit hoofdstuk komt daar **selectie** bij: op basis van een test beslist je programma welk stuk code het uitvoert en welk stuk het overslaat. Later komt er nog **iteratie** bij (hetzelfde stuk code meermaals herhalen), maar dat is voor het hoofdstuk over lussen. Veel meer smaken zijn er niet: elk algoritme dat je ooit zal schrijven is een combinatie van die drie.[^bohmjacopini]
+
+[^bohmjacopini]: Dat is geen boute bewering van mij, maar een bewezen stelling uit 1966 van de Italiaanse informatici Corrado Böhm en Giuseppe Jacopini.
+
+Zulke tests zitten in elk programma dat je dagelijks gebruikt. Netflix test of je een aflevering half bekeken hebt voor het je de knop *verder kijken* toont. De betaalterminal in de winkel test of er genoeg geld op je rekening staat. Je game test na iedere botsing of je nog levens over hebt.
+
+Doorheen dit hoofdstuk teken ik zulke keuzes ook regelmatig uit als een **flowchart**: een schema dat toont welke weg je programma door de code kan afleggen. Veel vormen heb je daar niet voor nodig:
+
+![De vormen die in de flowcharts van dit hoofdstuk terugkomen.](../assets/2_beslissingen/flowchartlegende.png)<!--{width=55%}-->
+
+Een ruit heeft altijd precies twee uitgangen. De test die erin staat kan immers maar twee antwoorden opleveren: waar of niet waar.
