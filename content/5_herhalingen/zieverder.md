@@ -10,11 +10,13 @@ De kern op een rij:
 - Een `for` is de compacte keuze wanneer je vooraf weet hoe vaak je moet herhalen: setup, finish test en update staan netjes op één lijn.
 - Wijzig in de loop altijd de variabele uit je testconditie, anders krijg je een oneindige loop.
 - Een variabele die je binnen de accolades aanmaakt, wordt elke iteratie opnieuw aangemaakt. Wil je iets optellen of onthouden, declareer die variabele dan vóór de loop.
+- Bij geneste loops vermenigvuldig je het aantal rondes van beide loops om te weten hoe vaak de binnenste code draait. Dat geldt niet meer zodra de inner loop de teller van de outer loop in zijn header gebruikt.
 
 :::{.callout-warning}
 ## Valkuilen
 - Bij een `do while` staat er een puntkomma achter de testconditie (`} while(...);`). Die vergeten is een veelgemaakte fout. Bij een `while` staat die puntkomma er net niet.
 - Een teller die je in de loop niet aanpast, geeft een oneindige loop. Zit je vast, stop dan met de rode stop-knop in Visual Studio.
+- Eén iteratie te veel of te weinig (`i < 10` waar `i <= 10` moest staan) is dé klassieker bij loops. Tel bij twijfel de eerste en de laatste ronde na.
 - Bij geneste loops moet je de teller van de inner loop bij elke ronde van de outer loop terug op de beginwaarde zetten. Vergeet je dat, dan loopt de binnenste loop in totaal maar één keer.
 :::
 
@@ -50,6 +52,8 @@ for (int i = 0; i < 11; i += 2) {
 ```
 
 Op de manier van afdrukken na is dit identiek aan C#. Ken je de for-loop hier, dan kan je ze in al die talen meteen lezen.
+
+In C-code duikt soms ook `for(;;)` op: alle drie de delen mogen leeg blijven, wat een oneindige loop oplevert. Dat mag in C# evengoed, al schrijft zowat iedereen daar `while(true)`.
 
 Python breekt met die traditie. Daar bestaat geen teller-met-conditie-for; je loopt altijd *over* iets. Wil je tellen, dan vraag je een reeks getallen op met `range`:
 

@@ -21,8 +21,8 @@
 - `[v]` De `foreach`-vermelding in [0_loops_intro.md](0_loops_intro.md) regel 35 is misschien voorbarig - de student ziet "een speciale loop" die in H9 komt, zonder context. Misschien beter pas in H8/9 introduceren. **(voetnoot toegevoegd bij Foreach in de tabel dat het pas in H9 komt; de lopende tekst gaf al context.)**
 - `[v]` [2_for.md](2_for.md) gebruikt `i = i + 2` op regel 12 en `i += 2` op regel 42. Compound assignment-operators (`+=`, `-=`, `++`) worden nergens expliciet uitgelegd. Voor eerstejaars zonder programmeerervaring zijn die niet vanzelfsprekend. **(callout-tip toegevoegd die i += 2 / i++ uitlegt en terugverwijst naar H2.)**
 - `[v]` In [1_while_dowhile.md](1_while_dowhile.md) regel 122 staat een typo: *"de stopconditie gecontroleerd wordt na iedere iteratie getest"* - dubbel werkwoord. **(gefixt.)**
-- `[>]` **Geen `Test jezelf` of expressie-voorspelvragen** zoals in H5. Loops verdienen die net zo goed (of meer): hoe vaak loopt deze code, wat is de eindwaarde van `i`, etc. **(uitgesteld: oefeningen later; TODO-comment in 3_nesting.md.)**
-- `[c]` De flowcharts (`while.png`, `dowhile.png`, `for.png`) bevestigen wat al gezegd is, maar er is geen flowchart voor *nesting* in [3_nesting.md](3_nesting.md), terwijl daar de visualisatie net het meeste verschil zou maken. **(TODO-comment geplaatst; afbeelding maken is aan Tim.)**
+- `[v]` **Geen `Test jezelf` of expressie-voorspelvragen** zoals in H5. Loops verdienen die net zo goed (of meer): hoe vaak loopt deze code, wat is de eindwaarde van `i`, etc. **(Test jezelf met 5 vragen in 2_for.md en 5 nesting-trace-vragen in 3_nesting.md.)**
+- `[v]` De flowcharts (`while.png`, `dowhile.png`, `for.png`) bevestigen wat al gezegd is, maar er is geen flowchart voor *nesting* in [3_nesting.md](3_nesting.md), terwijl daar de visualisatie net het meeste verschil zou maken. **(`nesting.png` was er al; daarnaast `nestvolgorde.png` (de zeven stukken genummerd met de twee terugsprongen) en `rijkolom.png` (het rij/kolom-model met de maaltafels) toegevoegd.)**
 
 ## Onduidelijkheden
 
@@ -34,14 +34,14 @@
 
 ## Gemissen
 
-- `[~]` **`break` met legitieme usecase** (zoek-en-stop-pattern). Zelfs als je het ontmoedigt, een eerstejaars zal dit *wel* nodig hebben in vaardigheidsproef-oefeningen. Toon één goed voorbeeld. **(zoek-en-stop als concept toegevoegd in de break-nuance-callout in 2_for; uitgewerkt code-voorbeeld blijft een TODO.)**
+- `[~]` **`break` met legitieme usecase** (zoek-en-stop-pattern). Zelfs als je het ontmoedigt, een eerstejaars zal dit *wel* nodig hebben in vaardigheidsproef-oefeningen. Toon één goed voorbeeld. **(zoek-en-stop als concept toegevoegd in de break-nuance-callout in 2_for. Beslissing Tim: bewust GEEN uitgewerkt break-voorbeeld in H6. De student moet hier eerst deftige exit-condities leren schrijven; een werkend voorbeeld nodigt uit tot valsspelen. Hoort thuis in H8 bij het zoeken in arrays.)**
 - `[v]` **Increment/decrement-operators** (`++`, `--`, prefix vs. postfix) worden gebruikt zonder uitleg. Verdient een mini-callout, vooral het verschil tussen `i++` en `++i` in expressies. **(callout in 2_for verwijst naar H2, waar i++/++i al behandeld zijn.)**
 - `[v]` **Compound assignment** (`+=`, `-=`, `*=`, `/=`, `%=`) - ze duiken op zonder introductie. **(callout-tip in 2_for toegevoegd, met terugverwijzing naar H2.)**
-- `[c]` **Loop tellen / off-by-one bugs** zijn bij eerstejaars *de* nummer 1 fout. Een sectie *"Hoeveel keer loopt deze loop"* met expliciete voorbeelden (`i<10`, `i<=10`, `i=1`, etc.) zou enorm helpen. **(TODO-comment geplaatst in 2_for.md.)**
+- `[v]` **Loop tellen / off-by-one bugs** zijn bij eerstejaars *de* nummer 1 fout. Een sectie *"Hoeveel keer loopt deze loop"* met expliciete voorbeelden (`i<10`, `i<=10`, `i=1`, etc.) zou enorm helpen. **(sectie "Hoeveel keer loopt deze loop?" met tabel toegevoegd in 2_for, aansluitend op Stagiair Steven.)**
 - `[v]` **Concrete debug-tip voor oneindige loops in VS** (Pause-knop, Ctrl+Alt+Break). Wordt in H4 (debuggen) niet behandeld. Hoort hier thuis als praktische redding. **(callout-tip toegevoegd in 1_while_dowhile.md.)**
-- `[c]` **De `for(;;)`-variant** als alternatief voor `while(true)` ontbreekt - niet kritisch maar handig om te kennen voor wie ooit in C/Java terechtkomt. **(TODO-comment geplaatst in 2_for.md.)**
-- `[c]` **Geen sectie over `break` uit nested loops** met labels of helper-flags. [3_nesting.md](3_nesting.md) zegt enkel dat `break` *uit de huidige loop* haalt - maar geeft geen oplossing voor wie *wel* uit alle loops wil. **(callout in 3_nesting noemt nu de booleaanse-vlag-aanpak; uitgewerkt voorbeeld als TODO geplaatst.)**
-- `[>]` **Geen `Test jezelf`** met loop-trace oefeningen. **(uitgesteld: oefeningen later; TODO-comment in 3_nesting.md.)**
+- `[v]` **De `for(;;)`-variant** als alternatief voor `while(true)` ontbreekt - niet kritisch maar handig om te kennen voor wie ooit in C/Java terechtkomt. **(één zin toegevoegd in zieverder.md bij "De for-loop elders", bewust niet in de lopende tekst.)**
+- `[v]` **Geen sectie over `break` uit nested loops** met labels of helper-flags. [3_nesting.md](3_nesting.md) zegt enkel dat `break` *uit de huidige loop* haalt - maar geeft geen oplossing voor wie *wel* uit alle loops wil. **(sectie "break in geneste loops" met uitgewerkt booleaanse-vlag-voorbeeld (zoek i\*j==12). Bewust de vlag en niet `break`: dat is net de deftige stopconditie die het boek elders vraagt.)**
+- `[v]` **Geen `Test jezelf`** met loop-trace oefeningen. **(5 trace-vragen in 2_for.md en 5 in 3_nesting.md.)**
 
 ## Concrete suggesties
 
@@ -67,13 +67,13 @@
 4. `[v]` Voeg in [3_nesting.md](3_nesting.md) een korte uitleg toe waarom `tellerB = 0` herzet moet worden - de meest verwarrende lijn voor beginners:
    *"Bij elke nieuwe iteratie van de outer loop willen we dat de inner loop opnieuw vanaf 0 begint. Vergeet je deze reset, dan loopt de inner loop maar 1 keer (in totaal)."* **(callout-important toegevoegd in die geest.)**
 
-5. `[>]` Voeg een *Test jezelf* sectie toe aan het einde van [3_nesting.md](3_nesting.md) of als nieuw bestand:
+5. `[v]` Voeg een *Test jezelf* sectie toe aan het einde van [3_nesting.md](3_nesting.md) of als nieuw bestand:
    ```markdown
    ### Test jezelf
    Hoeveel keer wordt 'X' geprint?
    * `for(int i=0;i<5;i++) for(int j=i;j<5;j++) Console.Write('X');`
    ```
-   **(uitgesteld: oefeningen later; TODO-comment geplaatst.)**
+   **(gedaan; die exacte vraag staat er als nummer 2.)**
 
 6. `[v]` Update [0_loops_intro.md](0_loops_intro.md) tabel: schrap `Foreach` of voeg een voetnoot toe dat dit pas in H9 aan bod komt - anders zien studenten een onbekend looptype zonder context. **(voetnoot toegevoegd.)**
 
