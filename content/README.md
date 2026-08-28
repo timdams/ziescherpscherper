@@ -2,18 +2,7 @@
 
 # Welkom
 
-## Over deze editie
-
-Welkom op de allernieuwste versie van mijn baby'tje: een handboek dat ondertussen aan z'n 4e versie is, en deze keer enkel nog digitaal door het leven zal gaan. Onze wereld, en dan zeker de IT-wereld, verandert momenteel razendsnel en tegen dat een papieren versie bij de drukker ligt zijn de helft van m'n screenshots al weer out-dated.
-
-Deze editie wordt gekenmerkt door enkele fundamentele wijzigingen:
-
-* Ieder hoofdstuk eindigt met een *Zie verder* sectie waarin we de geleerde concepten bekijken hoe ze in andere talen worden toegepast (of net niet). Door de opkomst van de zeer krachtige *agentic coding* modellen (denk aan Claude Opus) is er een fundamentele shift begonnen in het beroep van *softwareontwikkelaar*. Code schrijven is nog steeds een horde waar je door moet, want het is de enige manier om ten gronde te begrijpen hoe software gemaakt wordt. Maar het is niet meer realistisch dat je een expert in 1 taal wordt. Je zal vanaf dag 1 *over het muurtje* moeten kijken opdat je snel in eender welke technologie-stack oplossingen kunt ontwikkelen. 
-
-
-
-
-## Voorwoord
+## Introductie
 
 Zo, je hebt besloten om C# te leren? Je bent hier aan het juiste adres. Dit boek is ontstaan als handboek voor de opleidingen professionele bachelor elektronica-ict en toegepaste informatica van de AP Hogeschool. Ondertussen wordt het ook in tal van andere hogescholen en middelbare scholen gebruikt. Ik ga je op een laagdrempelige manier leren programmeren in C#, waarbij geen voorkennis vereist is.
 
