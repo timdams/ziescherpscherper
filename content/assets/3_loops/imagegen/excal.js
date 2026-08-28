@@ -39,6 +39,22 @@ function createCanvas(W, H) {
     t.setAttribute('text-anchor', anchor); t.setAttribute('font-family', 'Caveat, cursive');
     t.textContent = s; svg.appendChild(t); return t;
   };
+  // mixed-color inline text via tspan (array of {t, color, weight} segments)
+  api.txtSegs = (x, y, segs, size = 32, anchor = 'start') => {
+    const el = document.createElementNS(SVGNS, 'text');
+    el.setAttribute('x', x); el.setAttribute('y', y);
+    el.setAttribute('font-size', size);
+    el.setAttribute('text-anchor', anchor);
+    el.setAttribute('font-family', 'Caveat, cursive');
+    segs.forEach(seg => {
+      const ts = document.createElementNS(SVGNS, 'tspan');
+      ts.setAttribute('fill', seg.color || C.GRAY);
+      ts.setAttribute('font-weight', seg.weight || 500);
+      ts.textContent = seg.t;
+      el.appendChild(ts);
+    });
+    svg.appendChild(el); return el;
+  };
   api.lines = (x, y, arr, size = 32, color = C.GRAY, weight = 400, anchor = 'middle', lh = 1.05) => {
     arr.forEach((s, i) => api.txt(x, y + i * size * lh, s, size, color, weight, anchor));
   };
