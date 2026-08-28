@@ -19,6 +19,23 @@ De kern op een rij:
 - Bij een `bool`-variabele schrijf je gewoon `if (heeftKaart)`, niet `if (heeftKaart == true)`. Dat `== true` voegt niets toe.
 :::
 
+### Zoek de fout
+
+Onderstaande C#-code zou "volwassen" enkel mogen tonen als de leeftijd 18 of meer is, maar ze toont het altijd. Wat loopt er mis?
+
+```csharp
+int leeftijd = 12;
+if (leeftijd >= 18);
+{
+    Console.WriteLine("volwassen");
+}
+```
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Achter de `if`-voorwaarde staat een puntkomma. Die sluit de `if` meteen af met een leeg blok. De accolades eronder vormen dan een gewoon blok dat los van de `if` altijd uitgevoerd wordt, ongeacht de leeftijd. Haal de puntkomma na de `if` weg.
+:::
+
 
 ### In andere talen
 
@@ -81,19 +98,3 @@ let keuze: Weekdag = Weekdag.Woensdag;
 
 Net als in C# worden de waarden intern vanaf `0` genummerd en kan je een variabele beperken tot enkel deze waarden.
 
-### Zoek de fout
-
-Onderstaande C#-code zou "volwassen" enkel mogen tonen als de leeftijd 18 of meer is, maar ze toont het altijd. Wat loopt er mis?
-
-```csharp
-int leeftijd = 12;
-if (leeftijd >= 18);
-{
-    Console.WriteLine("volwassen");
-}
-```
-
-:::{.callout-note collapse="true"}
-## Antwoord
-Achter de `if`-voorwaarde staat een puntkomma. Die sluit de `if` meteen af met een leeg blok. De accolades eronder vormen dan een gewoon blok dat los van de `if` altijd uitgevoerd wordt, ongeacht de leeftijd. Haal de puntkomma na de `if` weg.
-:::
