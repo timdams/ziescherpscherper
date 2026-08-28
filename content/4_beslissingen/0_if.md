@@ -34,7 +34,7 @@ Nee
 ```
 :::
 
-Indien `` nummer`` groter of gelijk aan 5 was dan zou er enkel ``Nee`` op het scherm zijn verschenen. De lijn ``Console.WriteLine("Nee");`` zal sowieso uitgevoerd worden zoals je ook kan zien in de flowchart op de volgende pagina.[^code2]
+Indien ``nummer`` groter of gelijk aan 5 was dan zou er enkel ``Nee`` op het scherm zijn verschenen. De lijn ``Console.WriteLine("Nee");`` zal sowieso uitgevoerd worden zoals je ook kan zien in onderstaande flowchart.[^code2]
 
 [^code2]: [Code2flow.com](https://code2flow.com) is een handige tool om je reeds geschreven C# code om te zetten naar een flowchart. Het kan je helpen om vreemde bugs te ontdekken. Uiteraard is de eerste stap debuggen en door je code *steppen*: vaak zal je ogenblikkelijk zien waar je code verkeerd loopt.
 
@@ -67,19 +67,21 @@ De types in je booleaanse expressie moeten steeds vergelijkbaar zijn. Volgende c
 ```java
 if( "4" > 3)
 ```
-daar we hier een ``string`` met een ``int`` vergelijken. Meestal moeten dus beide operanden bij een relationele operator van het zelfde type zijn (of er moet een implicietie, automatische casting kunnen gebeuren). 
+daar we hier een ``string`` met een ``int`` vergelijken. Meestal moeten dus beide operanden bij een relationele operator van het zelfde type zijn (of er moet een impliciete, automatische casting kunnen gebeuren). 
 
 #### Accolades vergeten
 
 Accolades vergeten plaatsen om een codeblock aan te duiden is een typische fout. Wanneer je bijvoorbeeld Python hebt geleerd, dan zou je verwachten dat je code zodanig kan uitlijnen (met tabs of spaties) om code bij een ``if`` te groeperen in een block. Wat dus niet zo is. **Je code uitlijnen heeft in C# géén invloed op de programflow**. 
 
-Gebruik je dus geen accolades dan zal enkel de eerste lijn na de ``if`` zal uitgevoerd worden indien ``true``. Gebruiken we de ``if`` met block van daarnet maar zonder accolades dan zal de laatste lijn altijd uitgevoerd worden ongeacht de ``if``:
+Je zag hierboven al dat zonder accolades enkel de eerste lijn na de ``if`` bij de ``if`` hoort. Nemen we het blokvoorbeeld van daarnet en laten we de accolades weg, dan wordt de laatste lijn altijd uitgevoerd, ongeacht de ``if``:
 
 ```java
 if ( tijd < 20 )
     Console.WriteLine ("Doe zo voort.");
     Console.WriteLine ("Je bent er bijna!"); //verschijnt altijd op scherm
 ```
+
+![Enkel de eerste boodschap hangt aan de test. De tweede staat na het samenkomen en verschijnt dus altijd.](../assets/2_beslissingen/ifflownobrace.png)<!--{width=45%}-->
 
 Deze code zal dus 2 mogelijke outputs op het scherm geven. Indien de *``tijd`` groter of gelijk is aan 20* dan krijgen we volgende output:
 
@@ -122,6 +124,8 @@ if ( naam == "neo" );
 }
 ```
 
+![Beide takken komen samen vóór het blok, dus verschijnen de twee boodschappen hoe dan ook.](../assets/2_beslissingen/ifflowsemicolon.png)<!--{width=45%}-->
+
 De uitvoer van voorgaande zal altijd de volgende zijn, ongeacht of de gebruikersnaam gelijk is aan "neo":
 
 ::: {.console}
@@ -135,25 +139,23 @@ Indien de naam gelijk is aan "neo" dan zal de code *tussen de if en het kommapun
 
 <!-- \newpage -->
 
-<!-- TODO ed.5 (review): sectie 'ternary operator' (? :) toevoegen na If/else. Bv. string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong"; Korte sectie, één voorbeeld. -->
-<!-- TODO ed.5 (review): pattern matching met 'is' (if (input is int x)) overwegen, modern C#, past thematisch. -->
-<!-- TODO ed.5 (review): short-circuit evaluation verdient een eigen mini-sectie i.p.v. enkel de callout-tip verderop. Concreet voorbeeld: eerst een check doen voor je iets gebruikt dat anders zou crashen. -->
+<!-- TODO ed.5 (review): pattern matching met 'is' (if (input is int x)) hier NIET toegevoegd: vereist klassen en objecten, en staat al uitgewerkt in H18 (18_IsAs/1_IsAs.md). Enkel te overwegen als er ooit een variant zonder objecten nodig is. -->
 
 ### If/else
 
 Met "if - else" kunnen we niet enkel zeggen welke code moet uitgevoerd worden als de conditie waar is **maar ook welke specifieke code moet uitgevoerd indien de conditie niet waar is**. Volgend voorbeeld geeft een typisch gebruik van een "if - else" structuur om 2 waarden met elkaar te vergelijken:
 
 ```java
-const int waterpeil = 10;
-int MAX = 5;
+int waterpeil = 10;
+const int MAX = 5;
  
 if ( waterpeil > MAX )
 {
-         Console.WriteLine ($"Waterpeil staat te hoog!");
+         Console.WriteLine ("Waterpeil staat te hoog!");
 }
 else
 {
-         Console.WriteLine ($"Waterpeil is in orde.");
+         Console.WriteLine ("Waterpeil is in orde.");
 }
 ```
 
@@ -169,6 +171,38 @@ else (a <= b) //<FOUT!
 {...}
 ```
 
+:::
+
+### De ternaire operator
+
+Soms is een volledige ``if - else`` veel typwerk voor iets heel kleins: één variabele die de ene of de andere waarde moet krijgen. Daarvoor bestaat er een verkorte schrijfwijze, de **ternaire operator**. Ze werkt met een vraagteken en een dubbelpunt:
+
+```java
+string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong";
+```
+
+Lees die lijn als een vraag: *is ``leeftijd >= 18`` waar?* Zo ja, dan krijgt ``boodschap`` de waarde die vlak na het vraagteken staat, zo niet die na de dubbelpunt. Vóór het vraagteken staat dus de booleaanse expressie, erna de twee mogelijke uitkomsten.
+
+![De drie operanden van de ternaire operator, en welke van de twee waarden in ``boodschap`` belandt.](../assets/2_beslissingen/ternairontleed.png)<!--{width=90%}-->
+
+Met een gewone ``if - else`` schrijf je exact hetzelfde als:
+
+```java
+string boodschap;
+if (leeftijd >= 18)
+{
+    boodschap = "Welkom";
+}
+else
+{
+    boodschap = "Te jong";
+}
+```
+
+Het is de enige operator in C# die drie operanden nodig heeft (de test en de twee uitkomsten), vandaar de naam *ternair*.
+
+:::{.callout-warning}
+De ternaire operator levert enkel een **waarde** op, ze voert geen codeblok uit. Wil je bij ``true`` of bij ``false`` meerdere lijnen code laten lopen, dan heb je een gewone ``if - else`` nodig.
 :::
 
 <!-- \newpage -->
@@ -215,6 +249,8 @@ else
 
 ```
 
+![Elke ``false`` zakt door naar de volgende test, elke ``true`` verlaat de keten meteen langs onder.](../assets/2_beslissingen/elseifketen.png)<!--{width=100%}-->
+
 :::{.callout-important}
 De volgorde van opeenvolgende "if - else if - else" tests is uiterst belangrijk. Als we in de voorgaande code de volgorde van de twee tests omdraaien, zal het tweede blok (``x > 100``) nooit worden bereikt. 
 
@@ -234,18 +270,14 @@ else
 //...
 ```
 
+![Links staat de strengste test eerst, rechts de brede. Rechts wordt ``x > 100`` daardoor nooit nog bereikt.](../assets/2_beslissingen/volgordeval.png)<!--{width=100%}-->
+
 :::
 
 :::{.callout-tip}
 Hoe minder tests de computer moet doen, hoe meer performant de code zal uitgevoerd worden. Voor complexe applicaties die bijvoorbeeld in realtime veel berekeningen moeten doen kan het dus een gigantische invloed hebben of een reeks "if - else if else" testen vlot wordt doorlopen. Het is dan ook een goede gewoonte - indien de logica van het algoritme het toelaat - om de meest voorkomende test bovenaan te plaatsen. 
 
-Dit zelfde geldt ook binnen een test zelf wanneer we met logische operators werken. Deze worden altijd volgens de regels van de volgorde van berekeningen uitgevoerd. Volgende test wordt van links naar rechts uitgevoerd:
-
-```java
-x > 100 && a != "stop"
-```
-
-Omdat beide operanden van de EN-operatie ``true`` moeten zijn om een juiste test te krijgen, zal de computer de test automatisch stoppen indien reeds de linkse operand (``x > 100``) niet waar is. Bij dit soort tests probeer je dus ervoor te zorgen dat de tests die het minste kans op slagen hebben (of beter: het vaakst niét zal slagen) eerst te laten testen, zodat de computer geen onnodige extra tests doet.
+Hetzelfde geldt binnen één test wanneer je met logische operators werkt. Je zag eerder al dat C# **kortsluit**: bij ``x > 100 && a != "stop"`` stopt de computer meteen wanneer ``x > 100`` al ``false`` is, en wordt de rechtse test niet meer uitgevoerd. Zet bij zo'n samengestelde test dus de voorwaarde die het vaakst zal falen vooraan, dan doet de computer geen onnodig werk.
 :::
 
 ### Stagiair Steven
@@ -281,7 +313,7 @@ Bij ``bedrag = 120`` is de eerste test ``bedrag > 100`` inderdaad ``true`` en wo
 
 We kunnen met behulp van *nesting*  ook complexere programma flows maken. Nesting wil zeggen dat we meerdere codeblocken in elkaar plaatsen. Hierbij gebruiken we de accolades om het blok code aan te duiden dat bij een "if - else if - else" hoort. Binnen dit blok kunnen nu echter opnieuw beslissingsstructuren worden aangemaakt.
 
-Volgende voorbeeld toont dit aan. We zien hoe nesting wordt toegepast in het else gedeelte ``else``. Bekijk wat er gebeurt als je ``dokterVanWacht`` aan iets anders gelijkstelt dan een lege string:
+Volgende voorbeeld toont dit aan. In het ``else``-gedeelte zit opnieuw een volledige ``if - else``. Die binnenste test wordt enkel bereikt wanneer de temperatuur te hoog is:
 
 ```java
 const double MAX_TEMP = 40;
@@ -306,6 +338,18 @@ else
 }
 ```
 
+![De binnenste ``if - else`` zit volledig in het ``else``-blok en wordt enkel bereikt als de temperatuur te hoog is.](../assets/2_beslissingen/nestedif.png)<!--{width=85%}-->
+
+Met deze waarden verschijnt er maar één lijn:
+
+::: {.console}
+```text
+Temperatuur normaal
+```
+:::
+
+``huidigeTemperatuur`` is immers kleiner dan ``MAX_TEMP``, dus wordt het volledige ``else``-blok overgeslagen en komt de binnenste ``if`` niet aan bod. Zet ``huidigeTemperatuur`` eens op ``41`` en ``dokterVanWacht`` op een naam, dan zie je welke twee lijnen er dan wél verschijnen.
+
 ### Gebruik relationele en logische operators
 
 We kunnen ook meerdere booleaanse expressie combineren zodat we complexere uitdrukkingen kunnen maken. Stel dat we een if nodig hebben waar enkel *ingegaan* mag worden indien de leeftijd van een gebruiker hoger is dan 18 EN hij heeft een identiteitskaart bij. We kunnen dergelijke samengestelde expressies schrijven gebruik makend van de **logische operators**.
@@ -325,6 +369,73 @@ else
 
 :::{.callout-tip}
 Merk op dat we ``heeftIdentiteitskaart`` rechtstreeks in de test gebruiken en dus niet ``heeftIdentiteitskaart == true`` schrijven. Die ``== true`` is overbodig: ``heeftIdentiteitskaart`` is zelf al een ``bool`` en dus al een volwaardige booleaanse expressie. Wil je testen op ``false``, schrijf dan ``!heeftIdentiteitskaart``.
+:::
+
+### Test jezelf
+
+Wat verschijnt er op het scherm bij elk van deze drie stukjes code?
+
+**1.**
+
+```java
+int punten = 150;
+
+if (punten > 10)
+{
+    Console.WriteLine("Goed bezig");
+}
+else if (punten > 100)
+{
+    Console.WriteLine("Uitstekend");
+}
+else
+{
+    Console.WriteLine("Blijven oefenen");
+}
+```
+
+**2.**
+
+```java
+int leeftijd = 12;
+
+if (leeftijd >= 18)
+    Console.WriteLine("Je mag binnen.");
+    Console.WriteLine("Veel plezier!");
+```
+
+**3.**
+
+```java
+int temperatuur = 45;
+string dokter = "Dr. House";
+
+if (temperatuur < 40)
+{
+    Console.WriteLine("Alles ok");
+}
+else
+{
+    Console.WriteLine("Alarm!");
+    if (dokter == "")
+    {
+        Console.WriteLine("Niemand van wacht");
+    }
+    else
+    {
+        Console.WriteLine($"{dokter} gebeld");
+    }
+}
+```
+
+:::{.callout-tip collapse="true"}
+## Antwoorden
+
+**1.** Enkel ``Goed bezig``. De eerste test (``punten > 10``) is voor 150 al ``true``, dus wordt de rest van de keten overgeslagen. De tak ``punten > 100`` wordt nooit bereikt, hoe groot ``punten`` ook is.
+
+**2.** Enkel ``Veel plezier!``. Zonder accolades hoort alleen de eerste ``Console.WriteLine`` bij de ``if``, en die wordt bij 12 jaar niet uitgevoerd. De tweede lijn staat gewoon ónder de ``if`` en verschijnt dus altijd.
+
+**3.** Eerst ``Alarm!``, daarna ``Dr. House gebeld``. 45 is niet kleiner dan 40, dus draait de ``else``. Daarbinnen volgt een tweede test: ``dokter`` is niet leeg, dus komt de boodschap uit de geneste ``else``.
 :::
 
 <!-- \newpage -->

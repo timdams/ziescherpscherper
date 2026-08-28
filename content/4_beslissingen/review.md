@@ -34,21 +34,25 @@
 
 ## Gemissen
 
-- `[c]` **Ternary operator** (`? :`) ontbreekt volledig. Past hier perfect, vooral voor compacte assignments zoals `string status = age >= 18 ? "volwassen" : "minderjarig";`. Eerstejaars hebben hier echt iets aan. **(TODO-comment geplaatst in 0_if.md.)**
-- `[c]` **Pattern matching met `is`** (`if (input is int x)`) - modern C# en past thematisch in dit hoofdstuk. **(TODO-comment geplaatst in 0_if.md.)**
+- `[v]` **Ternary operator** (`? :`) ontbreekt volledig. Past hier perfect, vooral voor compacte assignments zoals `string status = age >= 18 ? "volwassen" : "minderjarig";`. Eerstejaars hebben hier echt iets aan. **(sectie "De ternaire operator" toegevoegd in [0_if.md](0_if.md), na If/else, met callout-warning dat ze enkel een waarde oplevert.)**
+- `[>]` **Pattern matching met `is`** (`if (input is int x)`) - modern C# en past thematisch in dit hoofdstuk. **(uitgesteld: vereist klassen en objecten, en staat al uitgewerkt in H18 ([../18_IsAs/1_IsAs.md](../18_IsAs/1_IsAs.md)). TODO-comment in 0_if.md houdt de reden bij.)**
 - `[c]` **Switch expression** (`var result = day switch { ... };`) - sinds C# 8 standaard. Je verwijst nu via een footnote naar een externe blogpost - dat is te weinig in 2026. **(TODO-comment geplaatst in 2_switch.md.)**
-- `[c]` **Short-circuit evaluation** wordt enkel zijdelings genoemd in een callout-tip in [0_if.md](0_if.md). Verdient een eigen mini-sectie met een concreet voorbeeld waarom volgorde belangrijk is (bv. null-check voor dereferentie). **(TODO-comment geplaatst in 0_if.md.)**
+- `[v]` **Short-circuit evaluation** wordt enkel zijdelings genoemd in een callout-tip in [0_if.md](0_if.md). Verdient een eigen mini-sectie met een concreet voorbeeld waarom volgorde belangrijk is (bv. null-check voor dereferentie). **(sectie «Kortsluiten» toegevoegd in [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md), met een `Console.ReadLine()` die niet uitgevoerd wordt; de callout in 0_if.md houdt enkel nog het performantie-advies over en verwijst terug.)**
 - `[c]` **`switch` op strings** wordt niet expliciet getoond, terwijl menustructuren met letterkeuze typische beginner-oefeningen zijn. **(TODO-comment geplaatst in 2_switch.md.)**
 - `[c]` **Geen kennisclip voor de logische operators afzonderlijk** - er is er één voor "logische operators en expressies" maar niets specifiek over volgorde van bewerkingen of De Morgan. **(TODO-comment geplaatst in kennisclips.md.)**
-- `[c]` **De Morgan-wetten** worden pas in H6 (loops) geïntroduceerd in een tip. Hadden hier al kunnen verschijnen. **(TODO-comment geplaatst in 1_logic_and_relationsoperator.md.)**
+- `[v]` **De Morgan-wetten** worden pas in H6 (loops) geïntroduceerd in een tip. Hadden hier al kunnen verschijnen. **(compacte callout-tip toegevoegd bij de niet-operator; de uitgebreide, gemotiveerde versie blijft in H6 staan en verwijst nu terug naar H5.)**
+
+- `[v]` **Geen *Test jezelf* in [0_if.md](0_if.md)**, terwijl het het langste bestand van het hoofdstuk is en [1_logic_and_relationsoperator.md](1_logic_and_relationsoperator.md) er wel een heeft. **(sectie *Test jezelf* toegevoegd met drie "wat verschijnt er op het scherm?"-snippets (else-if-volgorde, ontbrekende accolades, nesting) en een collapse-callout met de antwoorden.)**
+- `[v]` De nesting-uitleg vroeg om ``dokterVanWacht`` een waarde te geven, maar met ``huidigeTemperatuur = 36.5`` wordt het ``else``-blok nooit bereikt en verandert dat niets. **(uitvoer van het basisgeval toegevoegd; de student wordt nu gevraagd óók de temperatuur op 41 te zetten.)**
+- `[v]` In het if/else-voorbeeld stond ``const`` op ``waterpeil`` en niet op ``MAX``, net omgekeerd aan wat het voorbeeld wil tonen. **(omgedraaid; ook de overbodige ``$`` voor de niet-geïnterpoleerde strings weggehaald.)**
 
 ## Concrete suggesties
 
-1. `[c]` Voeg een sectie *Ternary operator* toe in [0_if.md](0_if.md) na *If/else*:
+1. `[v]` Voeg een sectie *Ternary operator* toe in [0_if.md](0_if.md) na *If/else*:
    ```java
    string boodschap = leeftijd >= 18 ? "Welkom" : "Te jong";
    ```
-   Korte sectie, één voorbeeld, klaar. **(TODO-comment geplaatst.)**
+   Korte sectie, één voorbeeld, klaar. **(toegevoegd.)**
 
 2. `[~]` Update [enum.md](enum.md) regel 87 om de top-level-statement realiteit te erkennen:
    *"In een klassieke console-applicatie definieer je dit binnen `class Program` (zie hoofdstuk X over project structuur). Bij top-level statements plaats je de enum bovenaan of onderaan je file."* **(niet van toepassing: boek gebruikt klassieke Main, huidige tekst klopt voor onze setup.)**

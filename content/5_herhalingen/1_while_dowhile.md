@@ -194,7 +194,7 @@ Sommige mensen prefereren deze tweede vorm. Maar dat is persoonlijke smaak.
 
 :::{.callout-tip}
 
-Voorgaande logica is een gevolg van de **Wetten van De Morgan** (ook wel *dualiteit van De Morgan* genoemd) die het verband leggen tussen de logische operatoren EN, OF en de negatie. 
+Voorgaande logica is een gevolg van de **Wetten van De Morgan** (ook wel *dualiteit van De Morgan* genoemd) die het verband leggen tussen de logische operatoren EN, OF en de negatie. Je zag ze al kort in hoofdstuk 5 bij de logische operators, hier zie je waarvoor ze dienen. 
 
 Deze wetten zeggen dat (uitgedrukt even in C# voor de duidelijkheid):
 
