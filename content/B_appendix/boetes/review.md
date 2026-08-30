@@ -2,6 +2,8 @@
 
 > Interne didactische review — niet bedoeld voor publicatie.
 
+> **Status (2026-08-30).** De negen aparte boete-pagina's zijn samengevoegd tot één pagina: [../boete.md](../boete.md). De links naar `linq.md`, `toplevel.md` enz. hieronder verwijzen dus naar bestanden die niet meer bestaan; lees ze als secties van die ene pagina (anchors `#boete-linq`, `#boete-toplevel`, ...). Wat uit deze review al uitgevoerd is: vast sjabloon per boete (punt 6), codeblokken i.p.v. screenshots bij de methode-boete (punt 4), overzichtstabel met fasering (punt 1, als tabel bovenaan). Nog open: strafhoogtes herzien (punt 2 en 3), nieuwe boetes toevoegen (punt 5), de "code in commentaar"-tip (punt 7) en de vraag of boetes stapelen (punt 8).
+
 ## Sterktes
 
 - **Pedagogisch principe is sterk.** Concrete regels gekoppeld aan concrete strafpunten werken beter dan vage "schrijf nette code"-aanmaningen. Studenten weten waaraan ze zich te houden hebben en docenten hebben een objectief referentiekader bij verbetering.

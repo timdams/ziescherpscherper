@@ -197,7 +197,47 @@ public static void Main()
 Daar de methode nu werkt met een kopie, zal de aanpassing in de methode dus geen invloed hebben op de origineel meegegeven ``int`` (ongeacht dat die deel uitmaakt van een array).
 
 
+### Een onbepaald aantal parameters met ``params``
 
+In het vorige hoofdstuk zag je dat ``Console.WriteLine`` in zijn signatuur ``params object[] arg`` heeft staan, en dat je zoiets pas zelf kan schrijven als je arrays kent. Dat moment is nu.
 
+Zet je het keyword ``params`` voor een array-parameter, dan mag de aanroeper zoveel losse waarden meegeven als hij wil. C# steekt die waarden zelf in een array voor je:
 
+```java
+static int Som(params int[] getallen)
+{
+    int totaal = 0;
+    for (int i = 0; i < getallen.Length; i++)
+    {
+        totaal += getallen[i];
+    }
+    return totaal;
+}
+```
 
+Al deze aanroepen werken nu:
+
+```java
+Console.WriteLine(Som(1, 2, 3));  //6
+Console.WriteLine(Som(5, 10));    //15
+Console.WriteLine(Som());         //0
+```
+
+Je mag ook nog steeds gewoon een bestaande array meegeven:
+
+```java
+int[] cijfers = { 4, 8, 15 };
+Console.WriteLine(Som(cijfers));  //27
+```
+
+Let op: er mag maar één ``params``-parameter zijn en die staat altijd achteraan in de parameterlijst. Deze signatuur mag dus wel:
+
+```java
+static void Log(string titel, params string[] regels)
+```
+
+Maar deze niet:
+
+```java
+static void Log(params string[] regels, string titel) //MAG NIET!
+```

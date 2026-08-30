@@ -8,7 +8,7 @@ Meer uitleg over Projecten en Solutions en hoe je bovenstaande doet kan je [hier
 :::
 
 :::{.callout-warning}
-Het is een goede gewoonte om ogenblikkelijk de juiste  *coding guidelines* te volgen. Deze staan in het handboek [hier opgelijst](https://apwt.gitbook.io/zie-scherp-scherper/coding-guidelines/boete).
+Het is een goede gewoonte om ogenblikkelijk de juiste  *coding guidelines* te volgen. Deze staan in het handboek [hier opgelijst](https://www.ziescherp.be/content/B_appendix/boete.html).
 :::
 
 

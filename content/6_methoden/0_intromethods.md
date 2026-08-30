@@ -53,7 +53,9 @@ static returntype MethodeNaam(optioneel_parameters)
 Vergeet ``static`` voorlopig even: beschouw het als een verplicht **toverwoord** dat nu eenmaal voor je methoden moet staan. Waarom het er staat en wat het juist doet, leg ik uit in hoofdstuk 11. Tot dan: gewoon meeschrijven en er niet van wakker liggen.
 :::
 
-De eerste lijn noemen we de **methode-signatuur**. Deze lijn verteld alles dat je moet weten om met de methode te werken (returntype, naam en eventuele parameters).
+De eerste lijn noemen we de **methode-signatuur**. Deze lijn vertelt alles wat je moet weten om met de methode te werken (returntype, naam en eventuele parameters).
+
+![De onderdelen van een methode-signatuur.](../assets/4_methoden/signatuur.png)
 
 Vervolgens kan je deze methode elders oproepen als volgt, indien de methode geen parameters vereist:
 
@@ -119,16 +121,20 @@ Volgende afbeelding toont hoe je programma doorheen de code loopt. De pijlen gev
 
 Zoals je misschien al begint te vermoeden is dus de ``Main`` waar we steeds onze code schrijven ook een methode. Een console-applicatie heeft een startpunt nodig en daarom begint ieder programma in deze methode, maar in principe kan je even goed je programma op een andere plek laten starten.
 
-Wat denk je trouwens dat je dit doet?
+Wat denk je trouwens dat dit doet?
 
 ```java
 static void Main(string[] args)
 {
     Console.WriteLine("Ik zit vast!");
-    Main(); //Endless loop incoming!
+    Main(args); //Endless loop incoming!
 }
-
 ```
+
+:::{.callout-note collapse="true"}
+## Antwoord
+``Main`` roept zichzelf op, en die aanroep doet exact hetzelfde. Je krijgt dus eindeloos "Ik zit vast!" op je scherm tot het programma crasht. Verderop in dit hoofdstuk, bij "Oneindige methode-lussen", lees je waarom zo'n eindeloze aanroep crasht.
+:::
 
 :::{.callout-tip}
 ``string[] args`` is een verhaal apart en zullen we in het volgende hoofdstuk bekijken. Ik verklap alvast dat je via deze ``args`` opstartparameters aan je programma kan meegeven tijdens het opstarten (bijvoorbeeld ``explorer.exe google.com``) zodat je code hier iets mee kan doen.
@@ -142,7 +148,7 @@ Voorgaande methode gaf niets terug. Dat kon je zien aan het keyword **``void``**
 
 Vaak willen we echter wel dat de methode iets teruggeeft. Bijvoorbeeld het resultaat van een berekening.
 
-Het returntype van een methode geeft aan wat het type is van de data die de methode als resultaat teruggeeft bij het beëindigen ervan. Eender welk datatype kan hiervoor gebruikt worden (``int``, ``string``, ``char``, ``float``, enz.). Ook ``enum`` datatypes kunnen als returntype in methoden gebruikt worden (en later ook objecten, wat we in hoofdstuk 10 zullen ontdekken).
+Het returntype van een methode geeft aan wat het type is van de data die de methode als resultaat teruggeeft bij het beëindigen ervan. Eender welk datatype kan hiervoor gebruikt worden (``int``, ``string``, ``char``, ``float``, enz.). Ook ``enum`` datatypes kunnen als returntype in methoden gebruikt worden (en later ook objecten, wat we in hoofdstuk 9 zullen ontdekken).
 
 ### ``return`` keyword
 
@@ -280,5 +286,7 @@ Merk op dat de onderste lijn (``return "onbekend";``) nooit zal bereikt worden. 
 Die ga je nog vaak tegenkomen!
 
 Bovenstaande foutboodschap zal je vaak krijgen en geeft altijd aan dat er bepaalde delen binnen je methode zijn waar je kan komen zonder dat er een ``return`` optreedt. Het einde van de methode wordt met andere woorden bereikt zonder dat er iets uit de methoden terug komt (wat enkel bij ``void`` mag).
+
+![Bij ``punten`` kleiner dan 10 loopt de methode ten einde zonder ``return``.](../assets/4_methoden/paden.png)
 
 Foutboodschappen hebben de neiging om gecompliceerder te klinken dan de effectieve fout die ze beschrijven. Een beetje zoals een lector die lesgeeft over iets waar hij zelf niets van begrijpt.

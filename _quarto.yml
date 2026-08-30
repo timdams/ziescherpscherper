@@ -85,6 +85,7 @@ book:
       chapters:
         - content/6_methoden/0_intromethods.md
         - content/6_methoden/0b_parameters.md
+        - content/6_methoden/0c_methodencombineren.md
         - content/6_methoden/1_bibliotheken.md
         - content/6_methoden/3_advancedmethod.md
         - content/6_methoden/zieverder.md
@@ -207,15 +208,6 @@ book:
     - part: "Coding guidelines"
       chapters:
         - content/B_appendix/boete.md
-        - content/B_appendix/boetes/compileertniet.md
-        - content/B_appendix/boetes/klassenfile.md
-        - content/B_appendix/boetes/redundant.md
-        - content/B_appendix/boetes/bladspiegel.md
-        - content/B_appendix/boetes/naamgeving.md
-        - content/B_appendix/boetes/goto.md
-        - content/B_appendix/boetes/linq.md
-        - content/B_appendix/boetes/method.md
-        - content/B_appendix/boetes/toplevel.md
   appendices:
     - oefeningen/overzicht.qmd
 
