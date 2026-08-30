@@ -24,7 +24,7 @@
 
 ## Onduidelijkheden
 
-- `[c]` "Lokale functies en waarom je ze beter niet gebruikt" in [0_intromethods.md](0_intromethods.md): de student leest hier dat C# 7.0 dit toelaat *en* dat ze het niet mogen doen. Maar Visual Studio's auto-suggestions zetten beginners soms ongemerkt in een lokale functie. Een screenshot van *hoe je per ongeluk in deze situatie belandt* zou helpen. **(TODO-comment geplaatst voor de screenshot.)**
+- `[c]` "Lokale functies en waarom je ze beter niet gebruikt" in [0b_parameters.md](0b_parameters.md): de student leest hier dat C# 7.0 dit toelaat *en* dat ze het niet mogen doen. Maar Visual Studio's auto-suggestions zetten beginners soms ongemerkt in een lokale functie. Een screenshot van *hoe je per ongeluk in deze situatie belandt* zou helpen. **(TODO-comment geplaatst voor de screenshot.)**
 - `[~]` Het verschil tussen "formele parameter" en "actuele parameter" wordt geïntroduceerd maar niet altijd consequent gebruikt. In een latere paragraaf staat *"...een actuele parameter aan elke formele parameter..."* - voor een Vlaamse eerstejaars is dat jargon dat heractivering verdient. **(genoteerd; bewust niet overal herschreven om de consistente terminologie te bewaren. Eventueel later een mini-herhaling toevoegen.)**
 - `[~]` Bij de tip *"parameters worden by value meegegeven (zie het hoofdstuk over Arrays hierna)"*: de student weet op dit punt niet wat *by value* écht betekent, en de verwijzing naar arrays is een vooruitwijzing zonder anker. De callout had nu al een klein schemaatje (kopie vs. origineel) verdiend. **(de bestaande callout legt "kopie van de waarde" al uit; de by-reference-tekst is verduidelijkt. Een echt schema/figuur blijft aan Tim.)**
 
@@ -33,8 +33,8 @@
 - `[c]` **``out`` en ``ref``**: zit in de appendix maar wordt hier niet vermeld. Een eenregelige verwijzing in de "doorgeven van parameters"-sectie is de moeite. Studenten zien dit in IntelliSense (``int.TryParse``) en hebben geen idee wat er gebeurt. **(TODO-comment geplaatst in 3_advancedmethod.md.)**
 - `[c]` **Expression-bodied methoden** (``=> ...``): wordt wel even genoemd in de OOP-properties-sectie maar nergens hier. Eerstejaars zien deze syntax in nieuwere VS-templates en raken in paniek. **(TODO-comment geplaatst in 3_advancedmethod.md.)**
 - `[c]` **Tuples als returntype** (``(int, string) Method()``): mag zelfs in een "extra"-callout. Vandaag is dit een gangbaar alternatief voor ``out``-parameters. **(TODO-comment geplaatst in 3_advancedmethod.md.)**
-- `[c]` **``params`` keyword**: ontbreekt volledig. ``Console.WriteLine`` zelf gebruikt het, en ze zien dit in oefeningen. **(TODO-comment geplaatst in 0_intromethods.md.)**
-- `[c]` **Discussie over methode-grootte** ("een methode mag maar X regels zijn"): dit raakt de "Goede methoden schrijven"-kennisclip aan, maar het boek zelf zegt niets over hoe lang of hoe kort een methode mag zijn, of over single-responsibility-achtige tips. Hier ligt een mooie didactische winst. **(TODO-comment geplaatst in 0_intromethods.md.)**
+- `[c]` **``params`` keyword**: ontbreekt volledig. ``Console.WriteLine`` zelf gebruikt het, en ze zien dit in oefeningen. **(TODO-comment geplaatst in 0b_parameters.md.)**
+- `[c]` **Discussie over methode-grootte** ("een methode mag maar X regels zijn"): dit raakt de "Goede methoden schrijven"-kennisclip aan, maar het boek zelf zegt niets over hoe lang of hoe kort een methode mag zijn, of over single-responsibility-achtige tips. Hier ligt een mooie didactische winst. **(TODO-comment geplaatst in 0b_parameters.md.)**
 
 ## Concrete suggesties
 
@@ -42,7 +42,7 @@
 2. `[v]` In de ``WindRichting``-switch in [0_intromethods.md](0_intromethods.md): verwijder de ``break``-statements na de ``return``s. Dode code in een handboek geeft de verkeerde gewoonte. **(gedaan.)**
 3. `[v]` In [3_advancedmethod.md](3_advancedmethod.md), zet de **betterness rule**-tabel in een ``callout-note`` met header *"Voor de gevorderden"* - eerstejaars hebben dit niet nodig om named/optional params te gebruiken. **(callout-note toegevoegd onder de heading.)**
 4. `[c]` Voeg in [3_advancedmethod.md](3_advancedmethod.md) een korte sectie *"Wat met `out` en `ref`?"* toe met één voorbeeld via ``int.TryParse``, en een verwijzing naar de appendix. Studenten zien ``TryParse`` continu in IntelliSense. **(TODO-comment geplaatst.)**
-5. `[~]` In [0_intromethods.md](0_intromethods.md), de "Doorgeven van parameters"-sectie: vervang de footnote-disclaimer door een echte mini-figuur van *value* vs. *reference* (zelfs handgetekend). Het concept komt 2 hoofdstukken later cruciaal terug en een eerste blik nu helpt enorm. **(footnote-disclaimer geschrapt en tekst verduidelijkt; de figuur zelf maken is aan Tim.)**
+5. `[~]` In [0b_parameters.md](0b_parameters.md), de "Doorgeven van parameters"-sectie: vervang de footnote-disclaimer door een echte mini-figuur van *value* vs. *reference* (zelfs handgetekend). Het concept komt 2 hoofdstukken later cruciaal terug en een eerste blik nu helpt enorm. **(footnote-disclaimer geschrapt en tekst verduidelijkt; de figuur zelf maken is aan Tim.)**
 6. `[v]` Overweeg de ``Macht``-methode te corrigeren naar ``int result = 1; for (int i = 0; i < exponent; i++) result *= grondtal;`` zodat ``Macht(5,0)`` netjes 1 teruggeeft. **(gedaan, exact zo.)**
 
 ---
@@ -63,7 +63,7 @@
 - Steven schrijft een 80-regel-monster-methode `BerekenAlles()` — natuurlijke aanleiding voor de gemiste discussie over methode-grootte / single responsibility.
 
 ### Hall of Shame
-- AI die recursieve methoden zonder base case genereert (StackOverflow). Sluit perfect aan bij de "flow van de recursie"-uitleg in [0_intromethods.md](0_intromethods.md).
+- AI die recursieve methoden zonder base case genereert (StackOverflow). Sluit perfect aan bij de "flow van de recursie"-uitleg in [0b_parameters.md](0b_parameters.md).
 - AI die named parameters door elkaar haalt (positie vs. naam) — zie de bestaande callout daarover.
 
 ### Interview-suggestie
@@ -73,7 +73,7 @@
 - Tijdlijn parameter-doorgave: `out` parameter (klassiek) → `Tuple<int,string>` (C# 4) → tuples `(int, string)` (C# 7) → records (C# 9). Sluit naadloos aan bij het gemis over tuples als returntype. Maakt expliciet waarom oude AI-output nog `out` gebruikt waar tuples eleganter zijn.
 
 ### Lees-volgorde-pijlen
-- De recursieve methode (Timsoft XP / faculteit) in [0_intromethods.md](0_intromethods.md): genummerde pijlen die *eerst* de afdaling tonen, *dan* het terugkeren via de stack. Recursie is het canonieke "oog volgt niet de leesvolgorde"-fragment.
+- De recursieve methode (Timsoft XP / faculteit) in [0b_parameters.md](0b_parameters.md): genummerde pijlen die *eerst* de afdaling tonen, *dan* het terugkeren via de stack. Recursie is het canonieke "oog volgt niet de leesvolgorde"-fragment.
 
 ### Taalkeuze-callout
 - *"Python: positional + keyword arguments standaard, geen overloads. JavaScript: alle parameters optioneel, `undefined` als ontbrekende waarde. Rust: geen optional params — gebruik builder-pattern."* Past in [3_advancedmethod.md](3_advancedmethod.md) bij named/optional.
