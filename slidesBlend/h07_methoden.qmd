@@ -389,16 +389,22 @@ Je `Main` blijft net en leesbaar.
 
 ## Named parameters
 
-Geef expliciet aan welke waarde bij welke parameter hoort:
+Twee parameters van hetzelfde type verwisselen? Dat compileert gewoon:
 
 ```csharp
-static void PrintDetails(string seller, int orderNum, string product) { }
+static void ToonPunten(string vak, int score, string student) { }
 
-PrintDetails(orderNum: 31, product: "Red Mug", seller: "Gift Shop");
+ToonPunten("Steven", 14, "Programmeren");  // stille bug
 ```
 
-* Met **named parameters** maakt de volgorde niet uit
-* Meng je named en gewone parameters, dan **moet** je wél de signatuur-volgorde respecteren
+Geef daarom expliciet aan welke waarde bij welke parameter hoort:
+
+```csharp
+ToonPunten(student: "Steven", score: 14, vak: "Programmeren");
+```
+
+* Geef je **alle** parameters een naam, dan maakt de volgorde niet uit
+* Meng je named en gewone parameters, dan **moet** elke named parameter op zijn eigen plaats blijven
 
 ---
 
@@ -407,43 +413,47 @@ PrintDetails(orderNum: 31, product: "Red Mug", seller: "Gift Shop");
 Geef een **default waarde** mee; die parameters staan **achteraan**:
 
 ```csharp
-static void BookFile(int required, string optName = "unknown", int age = 10)
+static void ToonFactuur(string klant, int korting = 0, int btw = 21)
 ```
 
 ```csharp
-BookFile(15, "tim", 25);
-BookFile(20, "dams");  // age = 10
-BookFile(35);          // optName = "unknown", age = 10
+ToonFactuur("Tim", 10, 6);
+ToonFactuur("Tim", 10);   // btw = 21
+ToonFactuur("Tim");       // korting = 0, btw = 21
 ```
 
 ::: {.callout-tip .fragment}
-Wil je enkel `age` zetten en `optName` overslaan? Gebruik dan een named parameter: `BookFile(3, age: 4)`.
+Wil je enkel `btw` zetten en `korting` overslaan? `ToonFactuur("Tim", 6)` compileert, maar die 6 belandt in `korting`. Gebruik een named parameter: `ToonFactuur("Tim", btw: 6)`.
 :::
 
 ---
 
 ## Method overloading
 
-Dezelfde naam en returntype, maar **andere parameters**. De compiler kiest de juiste:
+Dezelfde naam, maar een **andere parameterlijst**. De compiler kiest de juiste:
 
 ```csharp
-static int BerekenOpp(int lengte, int breedte)
+static int Verdubbel(int getal)
 {
-    return lengte * breedte;
+    return getal * 2;
 }
-static int BerekenOpp(int straal)
+static string Verdubbel(string tekst)
 {
-    return (int)(Math.PI * straal * straal);
+    return tekst + tekst;
 }
 ```
 
 ```csharp
-BerekenOpp(5, 6);  // rechthoek
-BerekenOpp(7);     // cirkel
+Verdubbel(21);    // 42
+Verdubbel("ha");  // haha
 ```
+
+::: {.callout-important .fragment}
+Het returntype mág verschillen, maar telt niet mee. Twee versies die enkel in returntype verschillen compileren niet.
+:::
 
 ::: {.callout-note .fragment}
-Twijfelt de compiler tussen types, dan kiest hij via de **betterness rule** de best passende. Dat is verdiepingsstof voor de gevorderden.
+Passen twee versies even goed, dan kiest de compiler niet: *the call is ambiguous*. Hoe hij bij twijfel tussen types wél kiest (de **betterness rule**) is verdiepingsstof.
 :::
 
 ---
@@ -615,13 +625,14 @@ Hetzelfde idee als bij C#: je geeft aan welke bibliotheek je wilt en spreekt de 
 
 ## Zie verder: overloading
 
-**Python** kent geen overloading: een tweede functie met dezelfde naam overschrijft de eerste. Pythonisten gebruiken default-parameters:
+**Python** kent geen overloading: een tweede functie met dezelfde naam overschrijft de eerste. Meestal is dat niet nodig, want `*` werkt er op getallen én op strings:
 
 ```python
-def bereken_opp(lengte, breedte=None):
-    if breedte is None:
-        return int(3.14159 * lengte * lengte)  # cirkel
-    return lengte * breedte                     # rechthoek
+def verdubbel(waarde):
+    return waarde * 2
+
+print(verdubbel(21))    # 42
+print(verdubbel("ha"))  # haha
 ```
 
-C# laat de compiler op voorhand de juiste versie kiezen. In Python schrijf je die keuze zelf met een `if`.
+Wil je per type toch iets anders doen, dan schrijf je die keuze zelf met een `if isinstance(...)`.

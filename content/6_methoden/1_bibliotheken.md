@@ -1,14 +1,40 @@
-## Bestaande methoden en bibliotheken
+## Bestaande bibliotheken verkennen
 
 Laten we eens kijken naar de vele methoden die reeds ingebouwd zitten in .NET en hoe we ze nu beter kunnen gebruiken.
 
-Sommige methoden vereisen dat je een aantal parameters meegeeft. De parameters dien je tussen de ronde haakjes te zetten. Hierbij weten we nu dat het uiterst belangrijk dat je de volgorde respecteert die de ontwikkelaar van de methode heeft gebruikt. 
+### IntelliSense
 
-Maar wat als je niet weet in welke volgorde je arguementen moet meegeven? **Intellisense** is dan de oplossing! Typ de methode in je code en stop met typen na het eerste ronde haakje. Vervolgens zal Intellisense alle mogelijke manieren tonen waarop je deze methoden kan oproepen. Met de omhoog- en omlaagpijltjes van het toetsenbord kan je alle mogelijke manieren bekijken.
+*Wat kan deze .NET bibliotheek eigenlijk?* is een veelgestelde vraag. Zeker wanneer je de basis van C# onder de knie hebt en je stilletjes aan met bestaande .NET bibliotheken wilt gaan werken. Wat volgt is een essentieel onderdeel van VS dat veel gevloek en tandengeknars zal voorkomen.
+
+De online documentatie van .NET is zeer uitgebreid en dankzij **IntelliSense** krijg je ook aardig wat informatie tijdens het typen van de code zelf. IntelliSense is de achterliggende technologie in VS die ervoor zorgt dat je minder moet typen. Als een soort assistent probeert IntelliSense een beetje te voorspellen wat je gaat typen en zal je daarmee helpen. 
+
+Bij ``Math`` heb je dit in hoofdstuk 4 al gebruikt, maar het werkt bij elke bibliotheek. Typ eens het volgende in:
+
+```java
+System.Console.
+```
+
+Wacht nu even en er zal na het punt (``.``) een lijst komen van methoden en eigenschappen die beschikbaar zijn. Als er niets verschijnt of iets dat je niet had verwacht, dan is de kans groot dat je een schrijffout hebt gemaakt. Klik je de lijst per ongeluk weg, of duw je op Escape, dan is er niets kapot: met ``Ctrl+Spatie`` roep je ze gewoon terug op. 
+
+Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden allemaal bij de ``Console`` bibliotheek horen. Indien gewenst kan je vervolgens de gewenste methode selecteren en op spatie duwen zodat deze in je code verschijnt.
+
+![De icoontjes geven aan of het om een methode (kubus), een eigenschap (Engelse sleutel) of een "event" (bliksem) gaat. Events behandel ik niet in dit handboek.](../assets/4_methoden/methoden4.png)
+
+:::{.callout-tip}
+Dat ``System.`` vooraan is de naam van de bibliotheek waarin ``Console`` zit. Je mag het weglaten (en dat doe je normaal ook), maar zo zie je dat IntelliSense op ieder niveau meehelpt. Waarom dit werkt lees je in hoofdstuk 10 bij *namespaces*.
+:::
+
+<!-- \newpage -->
+
+#### De parameters van een methode zien
+
+Sommige methoden vereisen dat je een aantal parameters meegeeft. De parameters dien je tussen de ronde haakjes te zetten. Hierbij weten we nu dat het uiterst belangrijk is dat je de volgorde respecteert die de ontwikkelaar van de methode heeft gebruikt. 
+
+Maar wat als je niet weet in welke volgorde je argumenten moet meegeven? Typ de methode in je code en stop met typen na het eerste ronde haakje. Vervolgens zal IntelliSense alle mogelijke manieren tonen waarop je deze methoden kan oproepen. Met de omhoog- en omlaagpijltjes van het toetsenbord kan je alle mogelijke manieren bekijken.
 
 ![Dit soort popups bevat een schat aan informatie.](../assets/4_methoden/methoden1.png)<!--{width=60%}-->
 
-In de voorgaande screenshot zien we dat Intellisense telkens duidelijke de methode-signatuur beschrijft: 
+In de voorgaande screenshot zien we dat IntelliSense telkens duidelijk de methode-signatuur beschrijft: 
 
 * Het return type (in dit geval ``void``).
 * Gevolgd door de naam van de methode.
@@ -16,31 +42,21 @@ In de voorgaande screenshot zien we dat Intellisense telkens duidelijke de metho
 
 Merk trouwens op dat je de ``WriteLine``-methode ook mag aanroepen zonder parameters, dit zal resulteren in een lege lijn in de console.
 
-Met behulp van de F1-toets kunnen we meer info over de methode in kwestie tonen. Hiervoor dien je je cursor op de Methode in je code te plaatsen, en vervolgens op F1 te drukken. Je komt dan op de online documentatie van de methode waar erg veel informatie terug te vinden is over het gebruik ervan. Scroll naar de *overload list*, daar zien we de verschillende manieren waarop je de methode in kwestie kan aanroepen (het concept *overloaden* bespreek ik in de volgende sectie). Je kan vervolgens op iedere methode klikken voor meer informatie en een codevoorbeeld.
+Ook deze popup verdwijnt zodra je ernaast klikt. Zolang je cursor tussen de ronde haakjes staat, haal je ze terug met ``Ctrl+Shift+Spatie``.
+
+#### Meer info met F1
+
+Met behulp van de F1-toets kunnen we meer info over de methode in kwestie tonen. Hiervoor dien je je cursor op de methode in je code te plaatsen, en vervolgens op F1 te drukken. Je komt dan op de online documentatie van de methode waar erg veel informatie terug te vinden is over het gebruik ervan. Scroll naar de *overload list*, daar zien we de verschillende manieren waarop je de methode in kwestie kan aanroepen (het concept *overloaden* bespreek ik verderop in dit hoofdstuk). Je kan vervolgens op iedere methode klikken voor meer informatie en een codevoorbeeld.
+
+#### Ook voor je eigen methoden
+
+IntelliSense werkt niet enkel voor .NET-bibliotheken. Schreef je zelf een methode ``BerekenFaculteit``, dan verschijnt die in dezelfde lijst zodra je begint te typen, en na het ronde haakje toont VS jouw eigen signatuur met ``int grens`` erin.
+
+Heb je boven je methode ``///``-commentaar geschreven (zie [Commentaar aan methoden toevoegen](0c_methodencombineren.md#commentaar-aan-methoden-toevoegen)), dan staat jouw uitleg mee in die popup. Dat is meteen de beste reden om die commentaar te schrijven: je krijgt ze zelf te zien op het moment dat je de methode aanroept.
 
 <!-- \newpage -->
 
-### Intellisense
-
-*Wat kan deze .NET bibliotheek eigenlijk?* is een veelgestelde vraag. Zeker wanneer je de basis van C# onder de knie hebt en je stilletjes aan met bestaande .NET bibliotheken wilt gaan werken. Wat volgt is een essentieel onderdeel van VS dat veel gevloek en tandengeknars zal voorkomen.
-
-De online documentatie van VS is zeer uitgebreid en dankzij **IntelliSense** krijg je ook aardig wat informatie tijdens het typen van de code zelf. IntelliSense is de achterliggende technologie in VS die ervoor zorgt dat je minder moet typen. Als een soort assistent probeert IntelliSense een beetje te voorspellen wat je gaat typen en zal je daarmee helpen. 
-
-Type eens het volgende in:
-
-```java
-System.Console.
-```
-
-Wacht nu even en er zal na het punt (``.``) een lijst komen van methoden en fields die beschikbaar zijn. Dit is IntelliSense in actie. Als er niets verschijnt of iets dat je niet had verwacht, dan is de kans groot dat er je een schrijffout hebt gemaakt. 
-
-Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden allemaal bij de ``Console`` bibliotheek horen. Indien gewenst kan je vervolgens de gewenste methode selecteren en op spatie duwen zodat deze in je code verschijnt.
-
-![De icoontjes geven aan of het om een methode (kubus), een eigenschap (Engelse sleutel) of een "event" (bliksem) gaat. Events behandel ik niet in dit handboek.](../assets/4_methoden/methoden4.png)
-
-<!-- \newpage -->
-
-#### Herbruikbare gebruikersinvoer vragen
+### Herbruikbare gebruikersinvoer vragen
 
 Vaak moet je code schrijven waarin je een getal aan de gebruiker vraagt:
 
@@ -55,7 +71,7 @@ Als deze constructie op meerdere plekken in een project voorkomt dan is het nutt
 static int VraagInt(string zin)
 {
     Console.WriteLine(zin);
-    return  int.Parse(Console.ReadLine());
+    return int.Parse(Console.ReadLine());
 }
 ```
 
@@ -65,7 +81,6 @@ De code van zonet kan je dan nu herschrijven naar:
 int leeftijd = VraagInt("Geef leeftijd");
 ```
 
-Het voorgaande voorbeeld toont ook ineens aan waarom methoden helpen om je code leesbaarder en onderhoudbaarder te maken. Je ``Main`` blijft gevrijwaard van veel repeterende lijnen code en heeft aanroepen naar methoden met een duidelijke naam die ieder een specifiek ding doen. Dit maakt het debuggen ook eenvoudiger: je ziet in één oogopslag wat een methode doet.
+Het voorgaande voorbeeld toont ook ineens aan waarom methoden helpen om je code leesbaarder en onderhoudbaarder te maken. Je ``Main`` blijft gevrijwaard van veel repeterende lijnen code en heeft aanroepen naar methoden met een duidelijke naam die ieder een specifiek ding doen.
 
 <!-- \newpage -->
-

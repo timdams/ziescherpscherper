@@ -11,9 +11,9 @@ De poster moet inhoudelijk kloppen en deze kernpunten tonen:
 - Het returntype bepaalt wat een methode teruggeeft; `void` betekent dat er niets wordt teruggegeven, elk ander type (int, string, ...) vereist een `return`-statement
 - Zodra `return` wordt bereikt stopt de methode onmiddellijk, ook als er nog code na die lijn staat
 - Formele parameters (bv. `static int BerekenFaculteit(int grens)`) worden "by value" doorgegeven: de methode krijgt een kopie, aanpassingen binnen de methode laten de originele variabele buiten de methode ongewijzigd
-- Named parameters laten je actuele parameters bij naam meegeven (bv. `PrintDetails(orderNum: 31, product: "Red Mug", seller: "Gift Shop")`), waardoor de volgorde er niet meer toe doet
-- Optionele parameters krijgen een standaardwaarde in de signatuur (bv. `string optName = "unknown"`) en staan altijd achteraan de parameterlijst
-- Method overloading laat je meerdere methoden met dezelfde naam en returntype maar andere parameters definiëren; de compiler kiest zelf de juiste versie op basis van de meegegeven argumenten
+- Named parameters laten je actuele parameters bij naam meegeven (bv. `ToonPunten(student: "Steven", score: 14, vak: "Programmeren")`); geef je ze allemaal een naam, dan doet de volgorde er niet meer toe
+- Optionele parameters krijgen een standaardwaarde in de signatuur (bv. `int btw = 21`) en staan altijd achteraan de parameterlijst
+- Method overloading laat je meerdere methoden met dezelfde naam maar een andere parameterlijst definiëren; de compiler kiest zelf de juiste versie op basis van de meegegeven argumenten, en het returntype speelt daarbij geen rol
 - IntelliSense toont bij het typen van een methode de methode-signatuur (returntype, naam, formele parameters) zodat je weet welke parameters in welke volgorde nodig zijn
 - Een methode kan een andere methode aanroepen (methoden nesten), maar zonder stopconditie ontstaat een oneindige lus die het programma doet crashen
 

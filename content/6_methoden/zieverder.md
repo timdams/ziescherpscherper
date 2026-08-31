@@ -47,16 +47,24 @@ Je geeft aan welke bibliotheek je wilt gebruiken en spreekt nadien de methoden a
 
 #### Overloading
 
-**Python** kent geen overloading. Je kan er geen twee functies met dezelfde naam definiëren: de tweede overschrijft gewoon de eerste. Pythonisten lossen dit op met default-parameters:
+**Python** kent geen overloading. Je kan er geen twee functies met dezelfde naam definiëren: de tweede overschrijft gewoon de eerste. Meestal is dat ook niet nodig, want `*` werkt in Python zowel op getallen als op strings:
 
 ```python
-def bereken_opp(lengte, breedte=None):
-    if breedte is None:
-        return int(3.14159 * lengte * lengte)  # cirkel
-    return lengte * breedte                     # rechthoek
+def verdubbel(waarde):
+    return waarde * 2
+
+print(verdubbel(21))     # 42
+print(verdubbel("ha"))   # haha
 ```
 
-In C# kiest de compiler op voorhand de juiste versie op basis van het aantal en type parameters. In Python schrijf je die keuze zelf binnenin je functie met een `if`.
+Wil je per type toch iets anders doen, dan schrijf je die keuze zelf binnenin je functie:
+
+```python
+def verdubbel(waarde):
+    if isinstance(waarde, str):
+        return waarde + waarde
+    return waarde * 2
+```
 
 ### Zoek de fout
 
