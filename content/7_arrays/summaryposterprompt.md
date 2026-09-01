@@ -17,6 +17,7 @@ De poster moet inhoudelijk kloppen en deze kernpunten tonen:
 - Meerdimensionale arrays (bv. int[,] regen = new int[4,7]) stellen een rechthoekig rooster voor; .GetLength(n) geeft de lengte van dimensie n en .Rank het aantal dimensies
 - Jagged arrays (bv. double[][] tickets) zijn arrays van arrays met elk een eigen lengte, geïndexeerd met tickets[0][1] in plaats van een komma
 - Een array meegeven aan een methode gebeurt by reference: aanpassingen aan de array in de methode veranderen ook de originele array buiten de methode
+- Met het keyword params voor een array-parameter (bv. static int Som(params int[] getallen)) mag je de methode aanroepen met zoveel losse waarden als je wil; er is maar 1 params-parameter en die staat altijd achteraan
 
 Vormgeving:
 - Titel bovenaan: "Arrays"

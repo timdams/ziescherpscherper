@@ -137,6 +137,8 @@ Factuur voor Tim: 0% korting, 6% btw
 ```
 :::
 
+![Zonder naam landt de ``6`` in ``korting``. Met ``btw: 6`` blijft ``korting`` op zijn default waarde staan.](../assets/4_methoden/optioneel.png)
+
 :::{.callout-warning}
 Fouten met optionele parameters zijn zelden compilerfouten. Je code draait, en je merkt het pas wanneer de output niet klopt. Heeft een methode meerdere optionele parameters van hetzelfde type, gebruik dan hun naam.
 :::
@@ -181,6 +183,8 @@ Console.WriteLine(Verdubbel("ha"));
 haha
 ```
 :::
+
+![Het type van je actuele parameter bepaalt welke versie van ``Verdubbel`` uitgevoerd wordt.](../assets/4_methoden/overloading.png)
 
 :::{.callout-important}
 Merk op dat de drie versies een **verschillend returntype** hebben. Dat mag. Wat niet mag is twee methoden die enkel in returntype verschillen:
@@ -312,5 +316,7 @@ Herinner je je dat ik in hoofdstuk 4 debuggen uitlegde en zei dat we één knopj
 ![Je vindt deze knop bovenaan in je menu wanneer je in debug-modus bent](../assets/4_methoden/stepin.png)
 
 Wanneer je een breakpoint zet in je code en in debugmodus komt dan kan je doorheen je code *stappen*, wat je hopelijk al geregeld hebt gedaan. Het nadeel was dat je niet **in** een methode ging wanneer je daar *over stapte*. Wel, met de "step in" knop kan je dat nu wel. Wanneer je aan een lijn met een **eigen geschreven** methode komt dan zorgt deze knop ervoor dat je in de methode gaat en vervolgens daar verder kunt stappen over de verschillende lijnen code.
+
+![Met *step over* draait ``Verdubbel`` wel, maar spring je naar de volgende lijn van ``Main``. Met *step in* kom je in de methode zelf terecht.](../assets/4_methoden/stepinvsover.png)
 
 Het klinkt simpel, maar oefen het toch best een paar keer!

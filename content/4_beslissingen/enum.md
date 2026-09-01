@@ -269,6 +269,8 @@ enum WeekDagen
 
 In dit geval zullen Maandag tot Vrijdag intern als 1 tot en met 5 bewaard worden, Zaterdag als 50, en Zondag als 60. De "gaten" tussen 5 en 50 zijn geen probleem: de interne waarden van een enum hoeven niet aaneensluitend te zijn. Geef je een waarde geen expliciet getal, dan krijgt ze gewoon het getal van de vorige waarde plus één.
 
+![Bovenaan de standaardnummering vanaf 0, onderaan de zelfgekozen nummers met de gaten ertussen.](../assets/2_beslissingen/enumnummers.png)<!--{width=100%}-->
+
 :::{.callout-tip}
 De individuele enum waarden moeten steeds met een hoofdletter starten. 
 :::
@@ -484,6 +486,8 @@ switch(playerGameState)
         break;
     //enz.
 ```
+
+![De vijf toegelaten waarden en hoe een spel ertussen springt. ``playerGameState`` bevat er altijd precies één van.](../assets/2_beslissingen/enumgamestate.png)<!--{width=90%}-->
 
 Een ander typisch voorbeeld is schaken. We maken een enum om de speelstukken voor te stellen (``Pion, Koning, Toren`` enz.) en kunnen hen dan laten bewegen en vechten in uiterst leesbare code:
 

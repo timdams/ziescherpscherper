@@ -13,6 +13,8 @@ We zullen enkele typische prompts bespreken die je kan gebruiken, waarbij we wil
 
 Het zal wel duidelijk zijn dat er één type prompt is die je als beginnende programmeur nooit mag gebruiken. Het is eigenlijk dezelfde prompt als dat je naar een drievoudig Tour de France winnaar zou gaan en hem vragen om even de Mont Ventoux voor jou op te fietsen, met jou achterop zijn rug. Je zal aan de top geraken, maar je zal zelf weinig geleerd hebben, omdat je je grijze hersenmassa - of in dit voorbeeld spiermassa- niet hebt gebruikt.
 
+![Links fietst de winnaar en hang jij achterop, rechts trap je zelf naar boven.](../assets/1_csharpbasics/ventoux.png)<!--{width=100%}-->
+
 En dus volgt hier **de verboden prompt**:
 
 
@@ -130,6 +132,8 @@ Er zijn natuurlijk honderden manieren tegenwoordig om A.I. te gebruiken in je le
 > Je bent de beste leerkracht en coach ooit. Je bent kritisch, maar geeft opbouwende feedback, zonder ooit de oplossing voor een probleem te geven. Je gebruikt alle truken uit je arsenaal om mij een beter C# programmeur te maken. Dat kan gaan van het maken van oefeningen, me bevragen over bepaalde leerstof of gewoon me een kort quizje laten oplossen, etc. Alle pedagogische en didactische trucs mogen gebruikt worden.
 >
 >Je daagt me uit, maar helpt me ook als ik vastzit. Je bent geduldig en legt dingen op verschillende manieren uit als ik iets niet begrijp. Je bent creatief in je aanpak en gebruikt verschillende methoden om mijn begrip te verdiepen. Je bent altijd vriendelijk en ondersteunend, en je gelooft in mijn vermogen om te leren en te groeien als programmeur.
+
+![De prompts uit dit hoofdstuk op een as: links doet de A.I. het denkwerk, rechts doe jij het.](../assets/1_csharpbasics/promptladder.png)<!--{width=100%}-->
 
 :::{.callout-warning}
 Of als je echt geen inspiratie hebt. Vraag gewoon aan A.I. wat leuke prompts zijn die je in de toekomst kan gebruiken om jezelf te verbeteren ;).

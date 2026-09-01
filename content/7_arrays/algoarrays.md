@@ -139,6 +139,8 @@ string[] producten = { "appelen", "peren", "meloenen" };
 double[] prijzen = { 3.3, 6.2, 2.9 };
 ```
 
+![Links staan naam en prijs op dezelfde index. Rechts verhuisden de namen wel, de prijzen niet.](../assets/5_arrays/synchroon.png)<!--{width=100%}-->
+
 We vragen nu aan de gebruiker van welk product de prijs getoond moet worden:
 
 ```java
@@ -204,6 +206,8 @@ else
     Console.WriteLine("Niet gevonden");
 }
 ```
+
+![Elke vergelijking gooit de helft van de array overboord.](../assets/5_arrays/binarysearch.png)<!--{width=90%}-->
 
 :::{.callout-important}
 **``BinarySearch`` werkt enkel indien de elementen in de array gesorteerd staan!** Op een ongesorteerde array krijg je geen foutmelding: je code compileert, draait, en geeft af en toe zelfs het juiste antwoord. Dat maakt het een vervelende bug om terug te vinden. Werk je met een ongesorteerde array, gebruik dan ``Array.IndexOf`` of een eigen loop.

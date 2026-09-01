@@ -38,7 +38,7 @@ Indien ``nummer`` groter of gelijk aan 5 was dan zou er enkel ``Einde`` op het s
 
 [^code2]: [Code2flow.com](https://code2flow.com) is een handige tool om je reeds geschreven C# code om te zetten naar een flowchart. Het kan je helpen om vreemde bugs te ontdekken. Uiteraard is de eerste stap debuggen en door je code *steppen*: vaak zal je ogenblikkelijk zien waar je code verkeerd loopt.
 
-![De flowchart van het eerste voorbeeld](../assets/2_beslissingen/ifflow.png)<!--{width=20%}-->
+![De flowchart van het eerste voorbeeld](../assets/2_beslissingen/ifflowNEW.png)<!--{width=20%}-->
 
 ### if met een blok
 
@@ -53,7 +53,7 @@ if (nummer < 5)
 }
 ```
 
-![Accolades zijn duidelijk belangrijk.](../assets/2_beslissingen/iffflowblock.png)<!--{width=25%}-->
+![Accolades zijn duidelijk belangrijk.](../assets/2_beslissingen/iffflowblockNEW.png)<!--{width=25%}-->
 
 <!-- \newpage -->
 

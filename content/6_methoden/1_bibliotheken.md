@@ -81,6 +81,8 @@ De code van zonet kan je dan nu herschrijven naar:
 int leeftijd = VraagInt("Geef leeftijd");
 ```
 
+![Dezelfde twee lijnen drie keer overtypen, of ze één keer in ``VraagInt`` zetten en drie keer aanroepen.](../assets/4_methoden/vraagint.png)
+
 Het voorgaande voorbeeld toont ook ineens aan waarom methoden helpen om je code leesbaarder en onderhoudbaarder te maken. Je ``Main`` blijft gevrijwaard van veel repeterende lijnen code en heeft aanroepen naar methoden met een duidelijke naam die ieder een specifiek ding doen.
 
 <!-- \newpage -->

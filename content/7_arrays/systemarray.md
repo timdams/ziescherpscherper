@@ -113,6 +113,8 @@ Array.Copy(myColors, 1, copyColors, 3, 2);
 ```
 :::
 
+![``Clear`` en ``Copy`` werken allebei met een startindex en een aantal elementen.](../assets/5_arrays/indexaantal.png)<!--{width=80%}-->
+
 ### IndexOf: waar staat een element?
 
 De vorige methoden veranderden jouw array. ``Array.IndexOf`` laat de array met rust en geeft je een getal terug: de index van het element dat je zoekt. Je krijgt de index van het eerste voorkomen, of ``-1`` als het element er niet in zit:

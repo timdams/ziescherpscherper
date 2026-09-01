@@ -1,6 +1,6 @@
 ## Methoden en arrays
 
-Zoals alle datatypes kan je ook arrays van eender welk datatype als parameter gebruiken bij het schrijven van een methode. **Lees nu volgende waarschuwing extra aandachtig, a.u.b:"**
+Zoals alle datatypes kan je ook arrays van eender welk datatype als parameter gebruiken bij het schrijven van een methode. **Lees nu volgende waarschuwing extra aandachtig, a.u.b:**
 
 :::{.callout-important}
 Herinner je dat arrays *by reference* werken. Je werkt dus steeds met de origineel meegegeven array (of beter, de referentie er naar), ook in de methode. Als je dus aanpassingen aan de array aanbrengt in de methode, dan zal dit ook gevolgen hebben op de array van waaruit we de methode aanriepen.
@@ -181,56 +181,22 @@ Dankzij het feit dat we aan ``PasAan`` een array meegeven *by reference* zal de 
 Vergelijk dit met volgende voorbeeld waar we een ``int`` als parameter meegeven die *by value* en niét *by reference* wordt meegegeven:
 
 ```java
-static void PasAan(int inArray)
+static void PasAan(int inGetal)
 {
-    inArray = 0; //inArray wordt 0
+    inGetal = 0; //inGetal wordt 0
 }
 
 public static void Main()
 {
     int[] getallen = {1,2,3};
     PasAan(getallen[0]);
-    Console.WriteLine(getallen[0]); // NA:1
+    Console.WriteLine($"NA:{getallen[0]}"); // NA:1
 }
 ```
 
 Daar de methode nu werkt met een kopie, zal de aanpassing in de methode dus geen invloed hebben op de origineel meegegeven ``int`` (ongeacht dat die deel uitmaakt van een array).
 
 ![Links wijzen ``verdiepnummers`` en ``inarr`` naar dezelfde array. Rechts krijgt de methode een kopie van de waarde.](../assets/5_arrays/byrefmethode.png)
-
-
-### Stagiair Steven
-
->![](../assets/aistagiar.png) Steven wil een methode schrijven die de scores herstelt naar een verse, lege array. De A.I. gaf hem dit en hij is opgetogen:
->
->```csharp
->static void Reset(int[] scores)
->{
->    scores = new int[scores.Length];
->}
->
->public static void Main()
->{
->    int[] scores = {10, 25, 3};
->    Reset(scores);
->    Console.WriteLine(scores[0]);
->}
->```
->
->"``Reset`` zet er een nieuwe, lege array in de plaats. Dus dit toont ``0``", zegt hij.
-
-Wat toont dit echt?
-
-:::{.callout-note collapse="true"}
-## Antwoord
-Er verschijnt nog steeds ``10``, niet ``0``. Binnen ``Reset`` krijgt de parameter ``scores`` wel een nieuwe array toegewezen, maar dat verandert enkel waar die lokale parameter-variabele naar wijst. De variabele ``scores`` in ``Main`` is een aparte variabele die nog steeds naar de originele array wijst, en die blijft gewoon bestaan.
-
-Wat je aan een methode meegeeft is namelijk een *kopie van de wegwijzer*, niet de wegwijzer zelf. Die kopie kan je in de methode naar iets anders laten wijzen zonder dat de aanroeper daar iets van merkt.
-
-![``Reset`` verlegt enkel zijn eigen kopie van het adres.](../assets/5_arrays/stevenreset.png)
-
-Vergelijk het met ``PasAan`` hierboven: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, want dan volg je de wegwijzer en pas je de array zelf aan. De hele array *vervangen* (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
-:::
 
 
 ### Een onbepaald aantal parameters met ``params``
@@ -277,3 +243,37 @@ Maar deze niet:
 ```java
 static void Log(params string[] regels, string titel) //MAG NIET!
 ```
+
+
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven wil een methode schrijven die de scores herstelt naar een verse, lege array. De A.I. gaf hem dit en hij is opgetogen:
+>
+>```csharp
+>static void Reset(int[] scores)
+>{
+>    scores = new int[scores.Length];
+>}
+>
+>public static void Main()
+>{
+>    int[] scores = {10, 25, 3};
+>    Reset(scores);
+>    Console.WriteLine(scores[0]);
+>}
+>```
+>
+>"``Reset`` zet er een nieuwe, lege array in de plaats. Dus dit toont ``0``", zegt hij.
+
+Wat toont dit echt?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnt nog steeds ``10``, niet ``0``. Binnen ``Reset`` krijgt de parameter ``scores`` wel een nieuwe array toegewezen, maar dat verandert enkel waar die lokale parameter-variabele naar wijst. De variabele ``scores`` in ``Main`` is een aparte variabele die nog steeds naar de originele array wijst, en die blijft gewoon bestaan.
+
+Wat je aan een methode meegeeft is namelijk een *kopie van de wegwijzer*, niet de wegwijzer zelf. Die kopie kan je in de methode naar iets anders laten wijzen zonder dat de aanroeper daar iets van merkt.
+
+![``Reset`` verlegt enkel zijn eigen kopie van het adres.](../assets/5_arrays/stevenreset.png)
+
+Vergelijk het met ``PasAan`` hierboven: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, want dan volg je de wegwijzer en pas je de array zelf aan. De hele array *vervangen* (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
+:::

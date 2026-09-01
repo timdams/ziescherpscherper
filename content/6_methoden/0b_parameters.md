@@ -154,6 +154,8 @@ Op het scherm verschijnt:
 ```
 :::
 
+![De eerste waarde komt in ``teller`` terecht, de tweede in ``noemer``. Draai je de aanroep om, dan draait de deling mee om.](../assets/4_methoden/paramvolgorde.png)
+
 Zeker wanneer je met verschillende types als formele parameters werkt is de volgorde belangrijk. Het verschil met de vorige methode is hier wel dat VS jou zal helpen wanneer je volgorde niet klopt. 
 
 Stel dat we volgende methode hebben gemaakt:

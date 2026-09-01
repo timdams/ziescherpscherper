@@ -14,7 +14,7 @@ int[,] regen =
 ```
 
 
-![Een tweedimensionale array.](../assets/5_arrays/2d.png)<!--{width=60%}-->
+![Een tweedimensionale array.](../assets/5_arrays/2dNEW.png)<!--{width=60%}-->
 
 
 

@@ -42,8 +42,8 @@ memframe(c, 1330, 140, 580, 350, 'Main');
 c.bubble(1620, 215, 320, 95, 'getallen', 1620, 330, 38);
 varbox(1450, 330, 340, 120, '0x33B10');
 
-memframe(c, 1330, 620, 580, 350, 'PasAan(int inArray)');
-c.bubble(1620, 695, 260, 95, 'inArray', 1620, 810, 38);
+memframe(c, 1330, 620, 580, 350, 'PasAan(int inGetal)');
+c.bubble(1620, 695, 260, 95, 'inGetal', 1620, 810, 38);
 c.cell(1520, 810, 200, 120, '0', { size: 48 });
 
 cellRow(c, 2070, 545, 130, 130, [1, 2, 3], { size: 48, weight: 700 });
