@@ -93,6 +93,8 @@ book:
     - part: "H8: Arrays"
       chapters:
         - content/7_arrays/1_ArraysBasics.md
+        - content/7_arrays/2_ArraysGebruiken.md
+        - content/7_arrays/argsopstart.md
         - content/7_arrays/arraysgeheugen.md
         - content/7_arrays/systemarray.md
         - content/7_arrays/algoarrays.md
