@@ -186,7 +186,7 @@ website:
 
 format:
   html:
-    theme: [cosmo, brand, ../custom.scss]
+    theme: [cosmo, brand, ../custom.scss, oefeningen.scss]
     lang: nl
     toc: true
     toc-title: "Op deze pagina"

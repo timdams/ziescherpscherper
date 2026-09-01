@@ -1,0 +1,13 @@
+/*-- scss:rules --*/
+
+// De drop cap (grote rode beginletter) uit custom.scss hoort bij het handboek.
+// Bij de oefeningen leidt die af van de opgave, dus hier zetten we hem af.
+main .level1 > p:first-of-type::first-letter {
+  float: none;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+}
