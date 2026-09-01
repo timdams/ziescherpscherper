@@ -12,7 +12,8 @@ De poster moet inhoudelijk kloppen en deze kernpunten tonen:
 - Arrays zijn reference types: myArray2 = myArray1 kopieert enkel het geheugenadres, niet de inhoud, dus beide variabelen wijzen naar dezelfde array in het geheugen
 - Om een array echt te kopiëren moet je elk element individueel overzetten met een loop, of Array.Copy gebruiken
 - De System.Array-bibliotheek biedt kant-en-klare methoden zoals Array.Sort, Array.Reverse, Array.IndexOf en Array.BinarySearch (dat laatste enkel op gesorteerde arrays)
-- Manueel zoeken in een array (bv. met een do-while of while-lus die elk element vergelijkt) vindt een waarde ook zonder dat de array gesorteerd is
+- Zelf zoeken met een loop (zoek-en-stop: stoppen zodra het element gevonden is) werkt ook op een ongesorteerde array; -1 is de gangbare afspraak voor "niet gevonden"
+- Terugkerende loop-patronen: een som of teller die je vóór de loop aanmaakt, en het grootste element zoeken door het eerste element als startwaarde te nemen
 - Meerdimensionale arrays (bv. int[,] regen = new int[4,7]) stellen een rechthoekig rooster voor; .GetLength(n) geeft de lengte van dimensie n en .Rank het aantal dimensies
 - Jagged arrays (bv. double[][] tickets) zijn arrays van arrays met elk een eigen lengte, geïndexeerd met tickets[0][1] in plaats van een komma
 - Een array meegeven aan een methode gebeurt by reference: aanpassingen aan de array in de methode veranderen ook de originele array buiten de methode

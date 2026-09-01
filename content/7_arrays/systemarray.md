@@ -1,123 +1,128 @@
 ## System.Array
 
-Je kan de ``System.Array`` bibliotheek gebruiken om je array-code te vereenvoudigen. Deze bibliotheek bevat naast de ``.Length`` eigenschap, ook enkele nuttige methoden zoals ``BinarySearch()``, ``Sort()``, ``Copy`` en ``Reverse()``. Het gebruik hiervan is bijna steeds hetzelfde zoals volgende voorbeelden tonen.
+Tot nu schreef je alles zelf: een loop om je array te tonen, en daarnet nog een loop om een array te kopiëren. Voor de klassiekers hoeft dat niet meer. C# levert met ``System.Array`` een reeks kant-en-klare methoden die je op eender welke array kan loslaten.
 
-
-### Sort: Arrays sorteren
-
-Om arrays te sorteren roep je de ``Sort()``-methode op en geef je als parameter de array mee die gesorteerd moet worden. Volgend voorbeeld toont hier het gebruik van:
+Let goed op hoe je ze oproept:
 
 ```java
-string[] myColors = {"red", "green", "yellow", "orange", "blue"};
-Array.Sort(myColors); //Sorteren maar
-//Toon resultaat van sorteren
+Array.Sort(myColors);   //zo dus
+//myColors.Sort();      //dit bestaat niet
+```
+
+Je roept de methode op ``Array`` op en geeft je eigen array als argument mee. En daar zit meteen de link met wat je net leerde over referenties: ``Array.Sort`` geeft niets terug. De methode krijgt de referentie naar jouw array en herschikt die array ter plekke. Na die ene regel is ``myColors`` zelf veranderd.
+
+In wat volgt gebruik ik steeds dezelfde array:
+
+```java
+string[] myColors = { "red", "green", "yellow", "orange", "blue" };
+```
+
+### Sort: arrays sorteren
+
+Om te sorteren roep je ``Sort()`` op en geef je de array mee die gesorteerd moet worden:
+
+```java
+Array.Sort(myColors);
+
 for (int i = 0; i < myColors.Length; i++)
 {
     Console.WriteLine(myColors[i]);
 }
 ```
 
-Wanneer je de Sort-methode toepast op een array van strings dan zullen de elementen alfabetisch gerangschikt worden. Uiteraard werkt dit ook op arrays van andere datatypes. Zolang C# maar weet hoe dit type gesorteerd moet worden, zal dit werken. Het zal getallen van klein naar groot sorteren, tekst volgens de regels van het alfabet, enums volgens hun interne voorstelling, enz.
+Op het scherm verschijnt:
 
-### Reverse: Arrays omkeren
+```text
+blue
+green
+orange
+red
+yellow
+```
 
-Met de ``Array.Reverse()``-methode kunnen we dan weer de volgorde van de elementen van de array omkeren (dus het laatste element vooraan zetten en zo verder):
+Bij een array van strings worden de elementen alfabetisch gerangschikt. Uiteraard werkt dit ook op arrays van andere datatypes. Zolang C# maar weet hoe dat type gesorteerd moet worden, zal dit werken. Getallen gaan van klein naar groot, tekst volgt de regels van het alfabet, enums volgen hun interne voorstelling, enz.
+
+### Reverse: de volgorde omkeren
+
+Met ``Array.Reverse()`` keer je de volgorde van de elementen om (het laatste element komt dus vooraan):
 
 ```java
 Array.Reverse(myColors);
 ```
 
+Onze array was net gesorteerd, dus nu staat er:
 
-
-### Clear: Arrays leegmaken
-
-Een array volledig leegmaken waarbij alle elementen op hun standaard waarde zetten (bv. ``0`` bij ``int``, enz.) doe je met de ``Array.Clear()``-methode, als volgt:
-
-
-```java
-Array.Clear(myColors,0, myColors.Length);
+```text
+yellow
+red
+orange
+green
+blue
 ```
 
-Hierbij geeft de tweede parameter aan vanaf welke index moet leeggemaakt worden, en de derde hoeveel elementen vanaf die index.
+Ook hier krijg je niets terug: de array zelf is aangepast. Wil je van groot naar klein sorteren, dan doe je dus een ``Sort()`` gevolgd door een ``Reverse()``.
 
-### Copy : array by value kopiëren
+### Clear: arrays leegmaken
 
-De ``.Copy()`` behelst iets meer werk, daar deze methode:
-
-* een reeds aangemaakte, nieuwe array nodig heeft, waar naar gekopiëerd moet worden.
-* moet meekrijgen hoe lang de bronarray (*source*) is, of hoeveel elementen uit de bronarray moeten gekopiëerd worden.
-
-Volgend voorbeeld toont hoe we alle elementen uit ``myColors`` kunnen kopiëren naar een nieuwe array ``copyColors``. De eerste parameter is de bron-array, dan de doel-array en finaal het aantal elementen dat moet gekopiëerd worden:
+``Array.Clear()`` zet elementen terug op hun standaardwaarde. Ik neem er even een array van getallen bij, want daar zie je het resultaat het duidelijkst:
 
 ```java
-string[] myColors = { "red", "green", "yellow", "orange", "blue" };
+int[] scores = { 12, 8, 20, 15, 3 };
+Array.Clear(scores, 0, scores.Length);
+//scores bevat nu: 0 0 0 0 0
+```
+
+De tweede parameter geeft aan vanaf welke index moet leeggemaakt worden, de derde hoeveel elementen vanaf die index. Wil je enkel de eerste twee wissen:
+
+```java
+Array.Clear(scores, 0, 2);
+//scores bevat nu: 0 0 20 15 3
+```
+
+De lengte van de array verandert niet, enkel de inhoud: ``scores.Length`` blijft 5. Op een array van strings werkt ``Clear`` ook, maar dan blijven de elementen helemaal leeg achter en verschijnt er gewoon niets op het scherm als je ze toont.
+
+<!-- \newpage -->
+
+### Copy: een echte kopie maken
+
+In de vorige sectie kopieerde je een array met een eigen lus. Dat kan korter met ``Array.Copy()``, al vraagt die methode iets meer werk dan de vorige:
+
+* er moet al een nieuwe array bestaan waar naartoe gekopieerd wordt
+* je moet meegeven hoeveel elementen er gekopieerd moeten worden
+
+Zo kopieer je alle elementen van ``myColors`` naar een nieuwe array ``copyColors``. Eerst de bron-array, dan de doel-array, dan het aantal elementen:
+
+```java
 string[] copyColors = new string[myColors.Length];
 Array.Copy(myColors, copyColors, myColors.Length);
 ```
 
-Willen we enkel de eerste twee elementen kopiëren dan zou dat er als volgt uitzien:
-
+Willen we enkel de eerste twee elementen kopiëren, dan wordt dat:
 
 ```java
 Array.Copy(myColors, copyColors, 2);
 ```
 
+De overige plekken in ``copyColors`` blijven dan onaangeroerd. En let op het verschil met ``copyColors = myColors``: dat kopieert enkel de referentie, terwijl je hier twee aparte arrays in het geheugen krijgt. Pas je nadien ``copyColors[0]`` aan, dan blijft ``myColors`` ongemoeid.
+
 :::{.callout-tip}
-Bekijk zeker ook de overloaded versies die de ``.Copy()`` methode heeft. Zo kan je ook een bepaald stuk van een array kopiëren en ook bepalen waar in de doel-array dit stuk moet komen.
-:::
-
-<!-- \newpage -->
-
-
-
-### IndexOf: het element zoeken (ongesorteerd)
-
-In de meeste gevallen wil je gewoon weten op welke index een bepaald element staat, *zonder* dat je array gesorteerd is. Daarvoor gebruik je ``Array.IndexOf``. Deze methode geeft de index van het eerste voorkomen terug, of ``-1`` als het element niet gevonden wordt:
+Er bestaan overloads waarmee je ook kiest *waar* je begint en waar het stuk in de doel-array terechtkomt. Volgende regel kopieert 2 elementen vanaf index 1 uit ``myColors`` naar index 3 van ``copyColors``:
 
 ```java
-string[] myColors = { "red", "green", "yellow", "orange", "blue" };
-int indexGreen = Array.IndexOf(myColors, "green"); //geeft 1
+Array.Copy(myColors, 1, copyColors, 3, 2);
+```
+:::
+
+### IndexOf: waar staat een element?
+
+De vorige methoden veranderden jouw array. ``Array.IndexOf`` laat de array met rust en geeft je een getal terug: de index van het element dat je zoekt. Je krijgt de index van het eerste voorkomen, of ``-1`` als het element er niet in zit:
+
+```java
+//myColors staat nu: yellow red orange green blue
+int indexGreen = Array.IndexOf(myColors, "green"); //geeft 3
 int indexZwart = Array.IndexOf(myColors, "black"); //geeft -1 (niet gevonden)
 ```
 
-Dit is voor beginners bijna altijd de juiste keuze om iets in een array te zoeken.
+Die ``-1`` is een afspraak die je in heel wat code zal terugzien: een index kan nooit negatief zijn, dus is dat een veilige manier om "niet gevonden" te melden. Vergeet dus niet op ``-1`` te testen vooraleer je het resultaat als index gebruikt, anders vlieg je met ``myColors[-1]`` tegen een ``IndexOutOfRangeException`` aan.
 
-### BinarySearch: Zoeken in arrays
-
-De ``BinarySearch``-methode maakt het mogelijk om te zoeken naar de index van een gegeven element in een array. 
-
-:::{.callout-important}
-**De ``BinarySearch``-methode werkt enkel indien de elementen in de array gesorteerd staan!** Werk je met een ongesorteerde array, gebruik dan ``Array.IndexOf`` (of een eigen loop). ``BinarySearch`` is vooral nuttig bij erg grote, gesorteerde arrays waar snelheid telt: gebruik het pas als je het echt nodig hebt.
-:::
-
-
-Je geeft aan de methode 2 parameters mee: enerzijds de array in kwestie en anderzijds het element dat we zoeken. Als resultaat wordt de 
-index van het gevonden element teruggegeven. Indien niets wordt gevonden zal het resultaat **negatief** zijn.
-
-
-
-Volgende code zal bijvoorbeeld de index teruggeven van de kleur "red" indien deze in de array ``myColors`` staat:
-
-
-```java
-int indexRed = Array.BinarySearch(myColors, "red");
-```
-
-Volgend voorbeeld toont het gebruik van deze methode:
-
-```java
-int[] metingen = {224, 34, 156, 1023, -6};
-Array.Sort(metingen); //anders zal BinarySearch niet werken
-
-Console.WriteLine("Welke meting zoekt u?");
-int keuze = int.Parse(Console.ReadLine());
-
-int index = Array.BinarySearch(metingen, keuze);
-if(index >= 0)
-    Console.WriteLine($"{keuze} gevonden op {index}");
-else
-    Console.WriteLine("Niet gevonden");
-```
-
-
-
+``IndexOf`` is voor beginners bijna altijd de juiste keuze om iets in een array te zoeken. Intern overloopt de methode je array element per element, precies zoals je het zelf zou schrijven met een loop. En dat is meteen het onderwerp van de volgende sectie: zodra je niet naar één exacte waarde zoekt (het grootste getal, de eerste meting boven de 100) helpt geen enkele kant-en-klare methode je nog verder en schrijf je die loop zelf. Daar zie je ook hoe het zoeken sneller kan wanneer je array gesorteerd staat.

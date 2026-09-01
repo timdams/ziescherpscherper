@@ -196,6 +196,42 @@ public static void Main()
 
 Daar de methode nu werkt met een kopie, zal de aanpassing in de methode dus geen invloed hebben op de origineel meegegeven ``int`` (ongeacht dat die deel uitmaakt van een array).
 
+![Links wijzen ``verdiepnummers`` en ``inarr`` naar dezelfde array. Rechts krijgt de methode een kopie van de waarde.](../assets/5_arrays/byrefmethode.png)
+
+
+### Stagiair Steven
+
+>![](../assets/aistagiar.png) Steven wil een methode schrijven die de scores herstelt naar een verse, lege array. De A.I. gaf hem dit en hij is opgetogen:
+>
+>```csharp
+>static void Reset(int[] scores)
+>{
+>    scores = new int[scores.Length];
+>}
+>
+>public static void Main()
+>{
+>    int[] scores = {10, 25, 3};
+>    Reset(scores);
+>    Console.WriteLine(scores[0]);
+>}
+>```
+>
+>"``Reset`` zet er een nieuwe, lege array in de plaats. Dus dit toont ``0``", zegt hij.
+
+Wat toont dit echt?
+
+:::{.callout-note collapse="true"}
+## Antwoord
+Er verschijnt nog steeds ``10``, niet ``0``. Binnen ``Reset`` krijgt de parameter ``scores`` wel een nieuwe array toegewezen, maar dat verandert enkel waar die lokale parameter-variabele naar wijst. De variabele ``scores`` in ``Main`` is een aparte variabele die nog steeds naar de originele array wijst, en die blijft gewoon bestaan.
+
+Wat je aan een methode meegeeft is namelijk een *kopie van de wegwijzer*, niet de wegwijzer zelf. Die kopie kan je in de methode naar iets anders laten wijzen zonder dat de aanroeper daar iets van merkt.
+
+![``Reset`` verlegt enkel zijn eigen kopie van het adres.](../assets/5_arrays/stevenreset.png)
+
+Vergelijk het met ``PasAan`` hierboven: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, want dan volg je de wegwijzer en pas je de array zelf aan. De hele array *vervangen* (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
+:::
+
 
 ### Een onbepaald aantal parameters met ``params``
 

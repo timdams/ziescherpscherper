@@ -24,7 +24,7 @@
 
 ## Onduidelijkheden
 
-- `[c]` In de ``algoarrays.md`` "manueel zoeken"-sectie wordt ``index`` uiteindelijk verhoogd voorbij de gevonden positie (``index++`` na de ``if``, ook als gevonden). De student print dan ``index`` terwijl ``index - 1`` de juiste positie is. (...) Dit is fragiel en lastig te volgen. Een voorbeeld met een ``foreach``-vergelijking of een nettere ``for``-loop zou helderder zijn. **(TODO-comment geplaatst; de werkende code is gelaten, maar een nettere variant is gewenst.)**
+- `[v]` In de ``algoarrays.md`` "manueel zoeken"-sectie wordt ``index`` uiteindelijk verhoogd voorbij de gevonden positie (``index++`` na de ``if``, ook als gevonden). De student print dan ``index`` terwijl ``index - 1`` de juiste positie is. (...) Dit is fragiel en lastig te volgen. Een voorbeeld met een ``foreach``-vergelijking of een nettere ``for``-loop zou helderder zijn. **(sectie herschreven: de ``while``-versie verhoogt ``index`` nu in de ``else``, zodat hij op de match blijft staan; daarnaast een ``for``+``break``-variant met ``-1`` als "niet gevonden".)**
 - `[~]` Bij multi-dimensionale arrays in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) staat *"de derde dimensie bestaat uit drie 2-dimensionale 2 bij 2 arrays"*. Voor een eerstejaars die nog moeite heeft met index 0 te starten, zijn 3D-arrays vermoedelijk een overload. Alles in één callout "voor wie ervan houdt" zou helpen. **(bestaande tip raadt al aan dimensies te beperken; bewust niet verder herstructureerd.)**
 - `[v]` ``Length`` op multidim arrays geeft in [4_ndimensionalArrays.md](4_ndimensionalArrays.md) het totaal aantal elementen - *niet* de som. De tekst zegt "de som van iedere lengte van iedere dimensie" maar bedoelt het product. Studenten lezen "som" letterlijk. **(gecorrigeerd naar "totaal aantal elementen (...) vermenigvuldigd, dus niet opgeteld".)**
 
@@ -46,7 +46,7 @@
 3. `[c]` Voeg in [1_ArraysBasics.md](1_ArraysBasics.md), na de "Lezen"-sectie met de manuele ``for``-loop, een korte ``foreach``-vergelijking toe in een callout. Liever nu dan dat het later "zomaar opduikt". **(TODO-comment geplaatst.)**
 4. `[v]` In [systemarray.md](systemarray.md): voeg ``Array.IndexOf`` als methode toe vóór ``BinarySearch``, en wees explicieter dat ``BinarySearch`` zelden de juiste keuze is voor beginners ("gebruik dit pas als profiling het vraagt"). **(IndexOf-sectie + caveat toegevoegd.)**
 5. `[v]` In [4_ndimensionalArrays.md](4_ndimensionalArrays.md): vervang *"de som van iedere lengte"* door *"het totaal aantal elementen (lengte van iedere dimensie vermenigvuldigd)"*. Eén woord, groot effect. **(gedaan.)**
-6. `[~]` In [algoarrays.md](algoarrays.md): herschrijf het tweede ``while``-voorbeeld zonder typo en overweeg een eenvoudigere ``for``-variant ernaast - *"hier is dezelfde code, maar met een for"*. Eerstejaars vinden ``while``-zoeken met dubbele conditie zwaar. **(typo gefixt; de for-variant is als TODO gemarkeerd.)**
+6. `[v]` In [algoarrays.md](algoarrays.md): herschrijf het tweede ``while``-voorbeeld zonder typo en overweeg een eenvoudigere ``for``-variant ernaast - *"hier is dezelfde code, maar met een for"*. Eerstejaars vinden ``while``-zoeken met dubbele conditie zwaar. **(sectie volledig herschreven rond loop-patronen: optellen/tellen, grootste zoeken, zoek-en-stop (``while`` met stopconditie + ``for`` met ``break``) en parallelle arrays via ``Array.IndexOf``.)**
 
 ---
 
