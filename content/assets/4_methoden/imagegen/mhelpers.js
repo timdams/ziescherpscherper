@@ -15,9 +15,15 @@ function codebox(c, x, y, w, h, title, lines, o = {}) {
   if (title) { c.txt(x + w / 2, y + tSize + 8, title, tSize, C.GRAY, 700); cy = y + tSize + 30; }
   const cSize = o.codeSize || 30, lh = o.lh || 1.18, pad = o.pad || 28;
   (lines || []).forEach((ln, i) => {
-    const t = typeof ln === 'string' ? ln : ln.t;
-    const col = typeof ln === 'string' ? C.GRAY : (ln.color || C.GRAY);
-    c.txt(x + pad, cy + cSize + i * cSize * lh, t, cSize, col, ln.weight || 500, 'start');
+    const yPos = cy + cSize + i * cSize * lh;
+    if (Array.isArray(ln)) {
+      c.txtSegs(x + pad, yPos, ln, cSize);
+    } else {
+      const t = typeof ln === 'string' ? ln : ln.t;
+      const col = typeof ln === 'string' ? C.GRAY : (ln.color || C.GRAY);
+      const xOff = (typeof ln === 'object' && ln.indent) ? ln.indent : 0;
+      c.txt(x + pad + xOff, yPos, t, cSize, col, ln.weight || 500, 'start');
+    }
   });
   return { fx: x, fy: y, fw: w, fh: h };
 }

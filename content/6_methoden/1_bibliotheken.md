@@ -11,7 +11,7 @@ De online documentatie van .NET is zeer uitgebreid en dankzij **IntelliSense** k
 Bij ``Math`` heb je dit in hoofdstuk 4 al gebruikt, maar het werkt bij elke bibliotheek. Typ eens het volgende in:
 
 ```java
-System.Console.
+Console.
 ```
 
 Wacht nu even en er zal na het punt (``.``) een lijst komen van methoden en eigenschappen die beschikbaar zijn. Als er niets verschijnt of iets dat je niet had verwacht, dan is de kans groot dat je een schrijffout hebt gemaakt. Klik je de lijst per ongeluk weg, of duw je op Escape, dan is er niets kapot: met ``Ctrl+Spatie`` roep je ze gewoon terug op. 
@@ -21,7 +21,7 @@ Je kan door deze lijst met de muis doorheen scrollen en zo zien welke methoden a
 ![De icoontjes geven aan of het om een methode (kubus), een eigenschap (Engelse sleutel) of een "event" (bliksem) gaat. Events behandel ik niet in dit handboek.](../assets/4_methoden/methoden4.png)
 
 :::{.callout-tip}
-Dat ``System.`` vooraan is de naam van de bibliotheek waarin ``Console`` zit. Je mag het weglaten (en dat doe je normaal ook), maar zo zie je dat IntelliSense op ieder niveau meehelpt. Waarom dit werkt lees je in hoofdstuk 10 bij *namespaces*.
+Je mag er ook ``System.`` voor zetten en dus ``System.Console.`` typen. ``System`` is de naam van de bibliotheek waarin ``Console`` zit. Je krijgt dan een niveau vroeger al een lijst, want IntelliSense helpt op ieder niveau mee. Normaal laat je die ``System.`` gewoon weg. Waarom dat mag lees je in hoofdstuk 10 bij *namespaces*.
 :::
 
 <!-- \newpage -->
@@ -52,7 +52,7 @@ Met behulp van de F1-toets kunnen we meer info over de methode in kwestie tonen.
 
 IntelliSense werkt niet enkel voor .NET-bibliotheken. Schreef je zelf een methode ``BerekenFaculteit``, dan verschijnt die in dezelfde lijst zodra je begint te typen, en na het ronde haakje toont VS jouw eigen signatuur met ``int grens`` erin.
 
-Heb je boven je methode ``///``-commentaar geschreven (zie [Commentaar aan methoden toevoegen](0c_methodencombineren.md#commentaar-aan-methoden-toevoegen)), dan staat jouw uitleg mee in die popup. Dat is meteen de beste reden om die commentaar te schrijven: je krijgt ze zelf te zien op het moment dat je de methode aanroept.
+Heb je boven je methode ``///``-commentaar geschreven (zie [Commentaar aan methoden toevoegen](0c_methodencombineren.md#commentaar-aan-methoden-toevoegen)), dan staat jouw uitleg mee in die popup. De afbeelding bij de ``Macht``-methode in die sectie is precies zo'n popup: de zin "Berekent de macht van een getal" en de uitleg bij ``grondtal`` staan daar omdat iemand ze zelf achter ``<summary>`` en ``<param>`` heeft getypt. Dat is meteen de beste reden om die commentaar te schrijven: je krijgt ze zelf te zien op het moment dat je de methode aanroept.
 
 <!-- \newpage -->
 
