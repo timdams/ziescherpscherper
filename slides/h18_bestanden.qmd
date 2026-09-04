@@ -221,6 +221,43 @@ De **volgorde** is cruciaal: lees in exact dezelfde volgorde als je schreef. Wis
 
 ---
 
+## De ruwe bytes bekijken
+
+Elk bestand is uiteindelijk gewoon een rij **bytes**. Toon ze als hexadecimaal:
+
+```csharp
+byte[] bytes = File.ReadAllBytes("bond.dat");
+foreach (byte b in bytes)
+{
+    Console.Write($"{b:X2} "); // bv. 04 42 6F 6E 64 07 ...
+}
+```
+
+::: {.callout-tip .fragment}
+`{b:X2}` toont elke byte als twee hexadecimale tekens. Zo zie je letterlijk wat een `BinaryWriter` op schijf zette.
+:::
+
+---
+
+## Oefening: hoeveel bytes neemt een type in?
+
+Schrijf een waarde weg en kijk hoe groot het bestand wordt:
+
+```csharp
+using (BinaryWriter writer = new BinaryWriter(File.Open("test.bin", FileMode.Create)))
+{
+    writer.Write(true);   // hoeveel bytes?
+}
+long grootte = new FileInfo("test.bin").Length;
+Console.WriteLine($"{grootte} byte(s)");
+```
+
+::: {.callout-tip .fragment}
+Probeer het met een `bool`, een `int`, een `double`, een `char`. Herken je de groottes uit hoofdstuk 2?
+:::
+
+---
+
 ## FileInfo
 
 Een **`FileInfo`**-object geeft info over een bestand én bewerkingsmethoden:
@@ -254,6 +291,37 @@ foreach (var bestand in dir.GetFiles("*.txt"))
 
 * `GetFiles` en `GetDirectories` geven de inhoud terug
 * Een **searchPattern** (`*.txt`, `Tim?.*`) filtert; `SearchOption.AllDirectories` zoekt ook in subfolders
+
+---
+
+## Zippen en unzippen
+
+Met `System.IO.Compression` pak je hele mappen in of uit:
+
+```csharp
+ZipFile.CreateFromDirectory(@"c:\temp\data", "backup.zip");
+ZipFile.ExtractToDirectory("backup.zip", @"c:\temp\hersteld");
+```
+
+::: {.callout-tip .fragment}
+Handig voor back-ups of om veel bestanden in een keer te versturen. Voeg `using System.IO.Compression;` toe.
+:::
+
+---
+
+## Bonus: downloaden van het web
+
+Een bestand of API-antwoord ophalen doe je met **`HttpClient`**:
+
+```csharp
+HttpClient client = new HttpClient();
+string inhoud = await client.GetStringAsync("https://example.com/data.txt");
+Console.WriteLine(inhoud);
+```
+
+::: {.callout-note .fragment}
+`HttpClient` is de moderne opvolger van het oudere `WebClient`. Het `await` hoort bij asynchroon programmeren (verdiepingsstof voor later).
+:::
 
 ---
 

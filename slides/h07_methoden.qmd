@@ -753,6 +753,99 @@ Simpel, maar oefen het toch een paar keer.
 
 ---
 
+## Methoden in actie: verdeel en heers
+
+Een groot probleem splits je op in **kleine methoden**, elk met een duidelijke taak: een **IN** (parameters), een **ACTIE** en een **UIT** (returntype).
+
+> Teken eerst een flowchart. **Elk blokje wordt een methode.** Daarna rijg je ze aan elkaar in een hoofdmethode.
+
+::: {.callout-tip .fragment}
+Zo blijft je `Main` kort en lees je je programma als een inhoudstafel.
+:::
+
+---
+
+## Showcase: Avenger Mission Planner
+
+Nick Fury managet de Avengers. Elke fase van een missie is een methode:
+
+| Methode | IN | UIT |
+|---|---|---|
+| `Alarm` | niets | moeilijkheidsgraad (`int`, 0 = geen alarm) |
+| `MissieVoorbereiden` | graad | naam held (`string`) |
+| `MissieUitvoeren` | graad + held | missiepercentage (`int`) |
+| `Evaluatie` | percentage + held | niets (`void`) |
+
+---
+
+## Avenger Mission Planner: de manager
+
+Een `MissieManager` rijgt de losse methoden aan elkaar:
+
+```csharp
+static void MissieManager(int moeilijkheidsgraad)
+{
+    string held = MissieVoorbereiden(moeilijkheidsgraad);
+    int percentage = MissieUitvoeren(moeilijkheidsgraad, held);
+    Evaluatie(percentage, held);
+}
+```
+
+::: {.callout-tip .fragment}
+**Uitbreiding**: bij een alarm waarschuw je ook DC via `DCWaarschuwer(moeilijkheidsgraad)`. Eén extra methode-aanroep, klaar.
+:::
+
+---
+
+## Showcase: verhaal-generator
+
+Bouw van **onder naar boven**, elke laag hergebruikt de vorige:
+
+* `GenereerKlinker()` / `GenereerMedeklinker()`: losse letters
+* `GenereerNaam(int lengte)`: een uitspreekbare naam (klinker na medeklinker)
+* `GenereerKorteZin()`: onderwerp + werkwoord + voorwerp
+* `GenereerVerhaal()`: meerdere zinnen aan elkaar
+
+::: {.callout-tip .fragment}
+`GenereerMedeklinker` **hergebruikt** `IsKlinker`: blijf letters trekken tot er een geen klinker is. Methoden die methoden gebruiken.
+:::
+
+---
+
+## Verhaal-generator: zinnen samenstellen
+
+```csharp
+static string GenereerKorteZin()
+{
+    string onderwerp = GenereerNaam(6);
+    string werkwoord = GenereerWerkwoord();   // "gooit", "trapt", ...
+    string voorwerp  = GenereerVoorwerp();    // "de bal", "de lepel", ...
+    return $"{onderwerp} {werkwoord} {voorwerp}";
+}
+```
+
+::: {.callout-tip .fragment}
+**Uitdaging**: schrijf zelf `GenereerVerhaal()` dat meerdere zinnen met voegwoorden (" en ", ", maar ", ", dus ") aan elkaar plakt. Ben jij de volgende Shakespeare?
+:::
+
+---
+
+## Showcase: Sinterklaas cadeau-generator
+
+De Sint verdeelt het werk over **drie hulp-elfen**, elk een methode:
+
+* `IsBraaf(...)`: braaf of stout? (`bool`)
+* `BerekenAantalCadeaus(...)`: hoeveel cadeaus (`int`)
+* `GenereerCadeau()`: een willekeurig cadeau (`string`)
+
+Een `TestenMaar()`-methode maakt met `Random` willekeurige kinderen en draait alles in een loop.
+
+::: {.callout-tip .fragment}
+Zelfde idee als de Avengers: splits het probleem op, laat elke methode één ding goed doen.
+:::
+
+---
+
 ## Conclusie
 
 * Een **methode** is een herbruikbaar codeblok: minder fouten, betere leesbaarheid, en ze doet **één ding**

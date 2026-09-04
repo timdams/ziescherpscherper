@@ -106,6 +106,16 @@ Vanaf nu werkt `new Student()` **niet** meer: *"Student does not contain a const
 
 ---
 
+## Dubbele code in constructors
+
+Stel: drie constructors die elk `Naam`, `Adres` en `Saldo` instellen. Splits je later `Adres` op in `Straat` + `Stad`, dan moet je **elke** constructor apart aanpassen.
+
+::: {.callout-warning .fragment}
+Code die je op meerdere plekken herhaalt, is vragen om problemen. Eén bron van waarheid is beter.
+:::
+
+---
+
 ## this(): constructors hergebruiken
 
 Vermijd dubbele code door één constructor de andere te laten aanroepen:
@@ -302,6 +312,34 @@ internal class Dobbelsteen
 
 ::: {.callout-tip .fragment}
 Eén gedeelde, `static` generator lost dat netjes op.
+:::
+
+---
+
+## Uitdaging: Crazy House
+
+Een tekst-avontuur waarin de speler van kamer naar kamer wandelt:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**`Room`**
+
+* deuren naar noord/oost/zuid/west, elk een **referentie** naar een andere `Room`
+* een `Describe()` die de kamer en de uitgangen toont
+:::
+
+::: {.column width="50%"}
+**`Player`**
+
+* houdt zijn `HuidigeKamer` bij
+* een `MoveTo(richting)` om (te proberen) verplaatsen
+:::
+
+::::
+
+::: {.callout-tip .fragment}
+Een object dat een ander object **als instantievariabele** bevat: de kern van grotere OOP-programma's. Uitbreiding: geef sommige kamers een **NPC** met een `Speak()`-tip.
 :::
 
 ---

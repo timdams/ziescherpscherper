@@ -37,6 +37,20 @@ Student[] mijnKlas = new Student[20];
 
 ---
 
+## Een array is een lege parking
+
+Denk aan een object-array als een **parkeerterrein**:
+
+* `new Student[20]` schildert de **witte vakken** (de 20 plekken)
+* maar er staat nog **geen enkele auto** (object): elke plek is `null`
+* met `new Student()` parkeer je telkens een auto in een vak
+
+::: {.callout-tip .fragment}
+Daarom moet je na het aanmaken van de array nog **elk object apart** met `new` maken.
+:::
+
+---
+
 ## Objecten in de array plaatsen
 
 ```csharp
@@ -304,6 +318,23 @@ Elk item heeft een **`.Key`** en een **`.Value`** van de types die je bij de dec
 
 ::: {.callout-important .fragment}
 Gebruik voorlopig een eenvoudig type (`int`, `string`) als key. Een eigen klasse als key vereist `Equals` en `GetHashCode` (hoofdstuk 13).
+:::
+
+---
+
+## Showcase: De Slimste Mens
+
+Een quizspel waarin elke collectie precies de juiste rol speelt:
+
+| Collectie | Rol in de quiz |
+|---|---|
+| `Queue` | de **vragenstapel** (eerst gesteld, eerst aan de beurt) |
+| `Stack` | de **foute vragen** (laatste fout bovenop) |
+| `Dictionary` | de **score per categorie** (key = categorie) |
+| `List` | **alle** gestelde vragen |
+
+::: {.callout-tip .fragment}
+De kunst is niet "ken alle collecties", maar **kies de juiste** voor het probleem. FIFO? `Queue`. Opzoeken via een sleutel? `Dictionary`.
 :::
 
 ---

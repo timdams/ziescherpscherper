@@ -35,6 +35,20 @@ We deden al **a**bstractie en **e**ncapsulatie. Nu: **i**nheritance.
 
 ---
 
+## Rule of three
+
+Een vuistregel tegen dubbele code:
+
+> Eén keer copy-pasten mag. Doe je het een **derde** keer, dan is het tijd om te **refactoren**.
+
+Overerving is daarbij vaak het gereedschap: gemeenschappelijke code verhuist naar een parent.
+
+::: {.callout-tip .fragment}
+Refactoren doe je in **babystapjes**: herstructureer beetje bij beetje, en test tussendoor.
+:::
+
+---
+
 ## De is-een relatie
 
 :::: {.columns}
@@ -60,7 +74,7 @@ Kom je in een opgave *is*, *was*, *zijn* tegen, dan is overerving wellicht mogel
 
 ---
 
-## Overerving in C#
+## Overerving in C\#
 
 ```csharp
 internal class Dier
@@ -133,6 +147,10 @@ In C# erft een klasse van **maximaal één** parent.
 
 * Dat vermijdt het **diamond problem**: erf je van twee parents met dezelfde methode, welke geldt dan?
 * Meerdere "rollen" combineren doe je later met **interfaces** (hoofdstuk 16)
+
+::: {.callout-tip .fragment}
+Denk aan een **vogelbekdier**: tegelijk vogel en zoogdier. Erfde het van allebei, met welke `LegEi()` of `GeefMelk()` moet de compiler dan werken? C# omzeilt die patstelling.
+:::
 
 ::: {.callout-note .fragment}
 Wil je net verhinderen dat iemand van je klasse erft? Zet er **`sealed`** voor.
@@ -249,6 +267,27 @@ Vergeet je `override` (en schrijf je gewoon `public void Vlieg()`), dan krijg je
 
 ---
 
+## Override in actie: De Mol
+
+In een spel is `Mol` een **specialisatie** van `Deelnemer`:
+
+```csharp
+internal class Deelnemer
+{
+    public virtual int Slaagkans() { return 80; }
+}
+internal class Mol : Deelnemer
+{
+    public override int Slaagkans() { return 30; } // de mol saboteert
+}
+```
+
+::: {.callout-tip .fragment}
+`Mol` is een `Deelnemer` (niet omgekeerd). Hij erft alles, maar past enkel zijn slaagkans aan.
+:::
+
+---
+
 ## base in een methode
 
 Wil je de parent-versie **hergebruiken** en uitbreiden? Roep ze aan met **`base`**:
@@ -318,6 +357,31 @@ internal class CentreerBalletje : Balletje
 ```
 
 `Balletje` blijft onaangeroerd; de nieuwe functionaliteit zit in de child.
+
+---
+
+## Showcase: RoomWalker
+
+Bouw voort op de Crazy House: elke kamer is nu een **specialisatie** van `Room`.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* `MonsterRoom`: toont een monster in de beschrijving
+* `TreasureRoom`: houdt bij hoeveel goud er ligt
+* `TrapRoom`: doet schade
+:::
+
+::: {.column width="50%"}
+* `BossRoom`: monsterkamer met veel meer levens
+* `VampireRoom`: enkel 's nachts actief
+:::
+
+::::
+
+::: {.callout-tip .fragment}
+Elke kamer **overridet** `Describe()`. Omdat `MonsterRoom` een `Room` is, past hij overal waar een `Room` past (polymorfisme, hoofdstuk 16). Startproject: [RoomWalkerDemo2025](https://github.com/timdams/RoomWalkerDemo2025).
+:::
 
 ---
 

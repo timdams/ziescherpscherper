@@ -51,6 +51,49 @@ Geef je hen de opdracht om te ontploffen, schrik dan niet dat je even later de 1
 
 ---
 
+## Computer = Domme Data Verwerker
+
+Onthoud dit letterwoord: een computer is een **DDV**, een *Domme Data Verwerker*.
+
+:::: {.columns}
+
+::: {.column width="30%"}
+### Invoer
+data erin
+
+*toetsenbord, bestand, ...*
+:::
+
+::: {.column width="5%"}
+**&rarr;**
+:::
+
+::: {.column width="30%"}
+### Verwerken
+jouw programma
+
+*exact wat jij zegt*
+:::
+
+::: {.column width="5%"}
+**&rarr;**
+:::
+
+::: {.column width="30%"}
+### Uitvoer
+data eruit
+
+*scherm, bestand, ...*
+:::
+
+::::
+
+::: {.callout-note .fragment}
+De computer bedenkt niets zelf: data in, jouw bewerking, data uit. Niet meer, niet minder.
+:::
+
+---
+
 ## Het algoritme
 
 > First, solve the problem. Then, write the code.
@@ -129,6 +172,26 @@ Als je één poster in je slaapkamer hangt, zou het die van Anders moeten zijn.
 
 ---
 
+## Games gemaakt met C\#
+
+::: {.gamegrid}
+![](assets/h01/fallguys.png)
+
+![](assets/h01/amongus.png)
+
+![](assets/h01/stardew.jpg)
+
+![](assets/h01/pokemongo.jpg)
+
+![](assets/h01/kerbal.jpg)
+
+![](assets/h01/cuphead.png)
+:::
+
+Allemaal gebouwd met **C#**, vaak via de **Unity**-engine.
+
+---
+
 ## De compiler
 
 * Machinetaal rechtstreeks schrijven is loodzwaar: tientallen lijnen voor één letter op het scherm
@@ -152,7 +215,7 @@ De kern: **C#-code omzetten naar een uitvoerbaar bestand in machinetaal**.
 
 ---
 
-## Naamgeving van .NET en C#
+## Naamgeving van .NET en C\#
 
 * Sinds 2020: gewoon **.NET gevolgd door een nummer** (.NET 5, 6, ... en intussen hoger)
 * Elk jaar in november een nieuwe versie; de **even** nummers zijn **LTS** (langer ondersteund)

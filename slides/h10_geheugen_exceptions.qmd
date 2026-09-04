@@ -121,6 +121,19 @@ Console.WriteLine(a.Naam); // Abba
 
 ---
 
+## Waarom referenties? De menhir
+
+Een object kan **groot** zijn, een echte "menhir" in het geheugen. Een referentie is maar een klein **adres** dat ernaar wijst.
+
+* Wil je objecten herschikken (bv. **sorteren**)? Dan verleg je enkel de **referenties**; de zware objecten blijven gewoon staan
+* Veel goedkoper dan telkens het hele object kopieren
+
+::: {.callout-tip .fragment}
+Obelix sleurt niet met elke menhir mee: hij verlegt gewoon het bordje dat ernaar wijst. Net zo werkt je computer met objecten.
+:::
+
+---
+
 ## De Garbage Collector
 
 :::: {.columns}
@@ -176,6 +189,25 @@ public void VoegMetingToeEnVerwijder(Meting inMeting)
 
 ::: {.callout-note .fragment}
 Een methode mag ook een object **teruggeven** (`return new Meting();`), bijvoorbeeld `PlantVoort()` die een nieuw `Mens`-object oplevert.
+:::
+
+---
+
+## Bevallen in C\#
+
+Een methode kan een **nieuw object** teruggeven, met je eigen regels:
+
+```csharp
+public Mens KrijgKind(Mens partner)
+{
+    Mens baby = new Mens();
+    baby.Lengte = Math.Max(Lengte, partner.Lengte); // nooit groter dan de grootste ouder
+    return baby;
+}
+```
+
+::: {.callout-tip .fragment}
+Jij bepaalt de regels van je objecten: een baby wordt nooit langer dan de grootste ouder, en enkel een `Mens` met de juiste eigenschappen kan `KrijgKind` aanroepen.
 :::
 
 ---
@@ -268,6 +300,32 @@ Uitzonderingen liggen vaak **buiten** je controle:
 
 ::: {.callout-tip .fragment}
 Een onafgehandelde exception toont een **joekel van een foutmelding** en sluit je programma af. Exception handling laat je netjes reageren, zonder een woud aan `if`-checks.
+:::
+
+---
+
+## Zonder exceptions: een wirwar
+
+Vroeger checkte je elke stap met `if`'s, diep genest:
+
+```csharp
+bool foutA = MethodeA();
+if (foutA)
+{
+    // handel probleem A af
+}
+else
+{
+    bool foutB = MethodeB();
+    if (foutB)
+    {
+        // handel probleem B af, enzovoort ...
+    }
+}
+```
+
+::: {.callout-warning .fragment}
+Onleesbaar en foutgevoelig. `try`/`catch` scheidt de **gewone flow** netjes van de **foutafhandeling**.
 :::
 
 ---

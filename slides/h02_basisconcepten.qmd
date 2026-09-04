@@ -386,6 +386,32 @@ Declareer een variabele **maar één keer**. `double kdRating = 2.1;` gevolgd do
 
 ---
 
+## Puzzel: wissel twee variabelen om
+
+Je hebt twee variabelen. Hoe wissel je hun waarden om?
+
+```csharp
+int a = 3;
+int b = 5;
+// gewenst: a wordt 5, b wordt 3
+```
+
+::: {.callout-important .fragment}
+`a = b; b = a;` werkt **niet**: na `a = b` is de oude waarde van `a` al weg.
+:::
+
+::: {.fragment}
+Oplossing met een **hulpvariabele**:
+
+```csharp
+int hulp = a; // bewaar 3
+a = b;        // a wordt 5
+b = hulp;     // b wordt 3
+```
+:::
+
+---
+
 ## Expressies en operators
 
 Een **expressie** is een reeks bewerkingen die uitkomt op één resultaat met een type. `3 + 2` geeft `5` (type `int`).

@@ -47,7 +47,7 @@ Het is als een sticker "USB 3.0 compatibel": je weet wat het apparaat kan, niet 
 
 ---
 
-## Een interface in C#
+## Een interface in C\#
 
 ```csharp
 interface ISuperHeld
@@ -224,6 +224,29 @@ Een CEO én een echte minister staan samen in één lijst. OOP benadert de reali
 
 ---
 
+## .NET-interface: IComparable
+
+Wil je `Array.Sort` of `List.Sort` op je eigen objecten? Dan moet je `IComparable` implementeren, anders krijg je *"At least one object must implement IComparable"*.
+
+```csharp
+internal class Land : IComparable
+{
+    public int Oppervlakte { get; set; }
+
+    public int CompareTo(object other)
+    {
+        Land ander = (Land)other;
+        return Oppervlakte.CompareTo(ander.Oppervlakte); // sorteer op oppervlakte
+    }
+}
+```
+
+::: {.callout-tip .fragment}
+Het **framework** roept jouw `CompareTo` aan. Zo zie je waarvoor interfaces echt dienen: een belofte die anderen (zelfs .NET zelf) kunnen gebruiken.
+:::
+
+---
+
 ## Alles samen: vloekende mensen
 
 :::: {.columns}
@@ -287,6 +310,21 @@ Dat is de kern van de **SOLID**-principes: abstractie en *separation of concerns
 :::
 
 ::::
+
+---
+
+## Interfaces overal in .NET
+
+Het .NET-framework zit er vol mee. Een paar die je nog vaak zal tegenkomen:
+
+* **`IEnumerable`**: laat `foreach` en LINQ over je collectie lopen
+* **`IDisposable`**: netjes opruimen, samen met `using`
+* **`IComparable`**: maakt je objecten sorteerbaar
+* **`ICloneable`**: laat een object zichzelf klonen
+
+::: {.callout-tip .fragment}
+Implementeer je zo'n interface, dan werkt je eigen klasse meteen samen met bestaande .NET-functionaliteit.
+:::
 
 ---
 

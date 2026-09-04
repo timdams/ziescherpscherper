@@ -169,6 +169,20 @@ myColors[0] = "indigo";         // eerste element overschrijven
 
 ---
 
+## Eentje is geentje
+
+Een Vlaamse ezelsbrug voor 0-gebaseerde indexering:
+
+* Een array met **lengte 6** heeft 6 elementen (6 pintjes op de toog)
+* Het eerste element zit op index **0**: *eentje is geentje*
+* Het **laatste** zit dus op index **5**, niet 6
+
+::: {.callout-warning .fragment}
+`array[array.Length]` valt er altijd net naast: dat is precies de `IndexOutOfRangeException`.
+:::
+
+---
+
 ## Overlopen met Length
 
 `array.Length` geeft het aantal elementen. Ideaal als grens van een loop:
@@ -747,6 +761,18 @@ tickets[1].Length;  // 2
 
 ::: {.callout-note .fragment}
 Je moet ze vooral kunnen **herkennen**. Zelf schrijf je liever een rechthoekige `[,]`-array, of een collectie uit hoofdstuk 12: iedere rij apart aanmaken en apart op zijn lengte controleren is omslachtig en foutgevoelig.
+:::
+
+---
+
+## Programmer's Point: hou je dimensies laag
+
+* Je hebt **zelden meer dan 2 of 3 dimensies** echt nodig
+* Heb je meer? **Herdenk je probleem.** Vaak lukt hetzelfde met twee 2D-arrays in plaats van een 4D-array
+* Hoe meer dimensies, hoe moeilijker voor te stellen en te debuggen
+
+::: {.callout-tip .fragment}
+En vanaf hoofdstuk 12 maken **collecties** veel van dit werk een stuk aangenamer.
 :::
 
 ---

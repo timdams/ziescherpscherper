@@ -32,6 +32,18 @@ Polymorfisme = *poly* (meerdere) + *morfisme* (vormen): **meerdere vormen**.
 
 ---
 
+## Polymorfisme in mensentaal
+
+Ik ben **Tim**. Maar ook: een `Docent` is een `Werknemer`, en een `Werknemer` is een `Mens`.
+
+* Bij de bakker ben ik gewoon een **mens**
+* Bij AP een **werknemer**
+* In de les een **docent**
+
+Steeds dezelfde Tim, maar in welke **rol** je me ziet, hangt af van de context. Dat is polymorfisme.
+
+---
+
 ## Is-een in actie
 
 ```csharp
@@ -95,6 +107,23 @@ System.Object mijnObject = new Varken();
 ::: {.callout-important .fragment}
 De compiler kijkt naar het **type van de variabele**, niet naar het echte object. Via `mijnObject` kan je dus enkel wat `System.Object` kent. Terug naar `Varken` (**downcasting**) doe je veilig met `is` en `as`.
 :::
+
+---
+
+## Upcasting over meerdere niveaus
+
+Een hierarchie kan diep gaan:
+
+```text
+Dennenboom -> Naaldboom -> Boom -> Plant -> LevendWezen
+```
+
+```csharp
+LevendWezen wezen = new Dennenboom(); // mag: een Dennenboom is een LevendWezen
+Boom boom = new Dennenboom();         // mag ook
+```
+
+Een `Dennenboom` kan je dus zien als een `Naaldboom`, een `Boom`, een `Plant` of een `LevendWezen`: upcasting werkt naar **elke** voorouder.
 
 ---
 
@@ -283,6 +312,31 @@ Wie `Equals` overridet, override **ook** `GetHashCode` (met `HashCode.Combine`),
 
 ::: {.callout-tip .fragment}
 Sinds C# 9 regelen **`record`**-types dit automatisch: `public record Student(string Voornaam, int Geboortejaar);` genereert zelf `Equals`, `GetHashCode` én `ToString`. We doen het hier met de hand om te begrijpen wat eronder zit.
+:::
+
+---
+
+## Heroes & Weapons, part 2
+
+De wapens uit H15 worden nu **polymorf**: elk type onderhoudt zich anders.
+
+```csharp
+internal abstract class Wapen
+{
+    public abstract void Maintain();
+}
+internal class Zwaard : Wapen
+{
+    public override void Maintain() { Sharpen(); } // scherper = meer schade
+}
+internal class Boog : Wapen
+{
+    public override void Maintain() { aantalPijlen += 10; }
+}
+```
+
+::: {.callout-tip .fragment}
+De `Held` roept gewoon `wapen.Maintain()` aan voor elk wapen in zijn handen. Late binding kiest de juiste versie (Zwaard, Boog of Staf die mana verdubbelt).
 :::
 
 ---

@@ -48,6 +48,20 @@ Een boek **is** geen pagina. Een boek **heeft** pagina's. Dat is dus associatie,
 
 ---
 
+## Is-een en heeft-een samen
+
+De twee relaties sluiten elkaar niet uit:
+
+* een `Auto` **heeft een** `Motor` (compositie)
+* een `Sportwagen` **is een** `Auto` (overerving)
+* dus een `Sportwagen` **heeft** via overerving **ook** een `Motor`
+
+::: {.callout-tip .fragment}
+Overerving en compositie werken samen: de child erft de associaties van zijn parent.
+:::
+
+---
+
 ## Compositie en aggregatie in UML
 
 :::: {.columns}
@@ -239,6 +253,28 @@ internal class Werknemer
 ```
 
 Het object geeft **zichzelf** (`this`) door aan een externe methode, zodat een werknemer zelf kan checken of die promoveerbaar is.
+
+---
+
+## Heroes & Weapons
+
+In een spel heeft een `Held` **twee handen**, elk met 0 of 1 `Wapen` dat schade doet:
+
+```csharp
+internal class Held
+{
+    public Wapen LinkerHand { get; set; }
+    public Wapen RechterHand { get; set; }
+}
+internal class Wapen
+{
+    public int Schade { get; set; }
+}
+```
+
+::: {.callout-tip .fragment}
+Een lege hand is gewoon `null`. Reik je het wapen door aan een andere held, dan is het **aggregatie**: het wapen leeft los van de held.
+:::
 
 ---
 

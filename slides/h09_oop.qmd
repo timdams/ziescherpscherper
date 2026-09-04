@@ -519,6 +519,20 @@ Optellen van twee datums kan niet, aftrekken wel.
 
 ---
 
+## Uitdaging: Personal Trainer
+
+Bouw een mini-fitness-app waarin een sporter zijn trainingen bijhoudt. Een klasse `Loper` met:
+
+* `Naam`
+* `AantalLopen`, `TotaleAfstand` en `TotaleTijd` (alleen leesbaar naar buiten)
+* een methode `RegistreerTraining(afstand, tijd)`
+
+::: {.callout-tip .fragment}
+Gebruik **properties met begrenzing** (clamping): een negatieve afstand of tijd weiger je in de `set`. Zo beschermt het object zichzelf, precies de kern van dit hoofdstuk.
+:::
+
+---
+
 ## Terugblik op een stevig hoofdstuk
 
 :::: {.columns}

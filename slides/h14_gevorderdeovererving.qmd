@@ -23,6 +23,14 @@ Na dit hoofdstuk kan je:
 
 ---
 
+## Hoe het allemaal begon
+
+Volgens Darwin stamt alle leven af van een gemeenschappelijke voorouder. En voor de niet-darwinisten onder ons: in den beginne schiep .NET **`System.Object`**.
+
+Hoe je het ook bekijkt: **elke** klasse in C# stamt af van `System.Object`. Het is de stamvader van alles.
+
+---
+
 ## De oer-klasse: System.Object
 
 :::: {.columns}
@@ -128,6 +136,26 @@ public override int GetHashCode()
 
 ::: {.callout-tip .fragment}
 Geef dezelfde properties mee die je in `Equals` vergelijkt. `HashCode.Combine` doet het rekenwerk voor je.
+:::
+
+---
+
+## Kopieren: shallow vs deep
+
+`System.Object` geeft ook `MemberwiseClone()`: een **shallow copy** (ondiepe kopie).
+
+```csharp
+public Student MaakKopie()
+{
+    return (Student)MemberwiseClone(); // shallow copy
+}
+```
+
+* **Shallow**: value-velden worden gekopieerd, maar geneste **objecten** worden **gedeeld** (enkel de referentie gaat mee)
+* **Deep**: ook de geneste objecten zelf kopieren, dat vraagt **handwerk**
+
+::: {.callout-warning .fragment}
+Pas je in de kopie een gedeeld nested object aan, dan verandert het origineel mee. Voor een echte, losse kopie heb je een **deep copy** nodig.
 :::
 
 ---
