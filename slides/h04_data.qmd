@@ -18,7 +18,8 @@ Na dit hoofdstuk kan je:
 * data omzetten via **casting**, **parsing** en de **`Convert`**-bibliotheek
 * het verschil tussen **narrowing** en **widening** uitleggen
 * gebruikersinvoer correct **inlezen en omzetten** naar een getal
-* rekenen met **`System.Math`** en bewust **afronden** (let op *bankers rounding*)
+* rekenen met **`System.Math`** en methoden in elkaar schuiven
+* bewust **afronden** (let op *bankers rounding*) en weten wanneer je `decimal` nodig hebt
 * **willekeurige getallen** genereren met `Random`
 * **debuggen** met breakpoints en je code stap voor stap doorlopen
 
@@ -59,15 +60,16 @@ Een variabele verandert **nooit** van type. Je zet enkel de **waarde** om en geb
 
 :::: {.columns}
 
-::: {.column width="60%"}
+::: {.column width="55%"}
 **Narrowing** = een type omzetten met **verlies aan data** (bv. `double` naar `int`).
 
 * Dit *vereist* een expliciete cast
 * Je zegt zo tegen de compiler: "ik weet dat er data verloren gaat, en ik draag de verantwoordelijkheid"
+* Casten **rondt niet af**: `(int)20.9` geeft `20`
 :::
 
-::: {.column width="40%"}
-![Casting tussen numerieke types.](../content/assets/1_csharpbasics/castingnum.png)
+::: {.column width="45%"}
+![Casting naar `int` gooit alles na de komma weg.](../content/assets/1_csharpbasics/narrowingzaag.png)
 :::
 
 ::::
@@ -76,47 +78,54 @@ Een variabele verandert **nooit** van type. Je zet enkel de **waarde** om en geb
 
 ## De klassieke valkuil
 
-`tempGisteren` en `tempVandaag` zijn `int` (20 en 25). Wat geeft dit?
+:::: {.columns}
+
+::: {.column width="58%"}
+`tempGisteren` en `tempVandaag` zijn `int` (20 en 25):
 
 ```csharp
-double gemiddeld = (tempGisteren + tempVandaag) / 2;
+double gem = (tempGisteren + tempVandaag) / 2;
 ```
 
-. . .
-
-**`22.0`, niet `22.5`.** De expressie bevat enkel `int`'s, dus de deling is een gehele deling. Pas daarna gaat het resultaat naar de `double`.
+Dit geeft **`22.0`, niet `22.5`**. De expressie bevat enkel `int`'s, dus de deling is een gehele deling. Casten lost het op:
 
 ```csharp
-double gemiddeld = ((double)tempGisteren + tempVandaag) / 2;  // 22.5
+double gem = ((double)tempGisteren + tempVandaag) / 2;
 ```
+:::
 
----
+::: {.column width="42%"}
+![Links blijft elk tussenresultaat een `int`, rechts rekent de hele expressie als `double`.](../content/assets/1_csharpbasics/tempboom.png)
+:::
 
-## Let op de volgorde
+::::
 
-De plaats van je cast maakt een verschil:
-
-```csharp
-(double)(tempGisteren + tempVandaag) / 2;   // 22.5
-(double)((tempGisteren + tempVandaag) / 2); // 22
-```
-
-In de tweede lijn dwingen de haakjes de **gehele deling eerst** af. Pas daarna cast je naar `double`, en dan is het kwaad al geschied.
+::: {.callout-important .fragment}
+De plaats van je cast telt: `(double)(a + b) / 2` geeft `22.5`, maar `(double)((a + b) / 2)` geeft `22`. Daar dwingen de haakjes de gehele deling eerst af.
+:::
 
 ---
 
 ## Widening
 
+:::: {.columns}
+
+::: {.column width="55%"}
 Een *klein* type in een *groter* type past zonder dataverlies, dus **geen cast nodig**:
 
 ```csharp
 int hoofdMeting = 20;
-double secundaire = hoofdMeting;  // 20.0, automatisch
+double secundaire = hoofdMeting;  // 20.0
 ```
 
-::: {.callout-tip .fragment}
-Casten mag hier wel (`(double)hoofdMeting`), maar het hoeft niet. *Better safe than sorry* als je twijfelt.
+Casten mag hier wel (`(double)hoofdMeting`), maar het hoeft niet.
 :::
+
+::: {.column width="45%"}
+![Widening past zonder verlies, narrowing loopt over tenzij je met een cast tekent voor dat verlies.](../content/assets/1_csharpbasics/widening.png)
+:::
+
+::::
 
 ---
 
@@ -141,19 +150,93 @@ Niet zeker dat de gebruiker een geldig getal invoert? Dan is `int.TryParse()` je
 
 ---
 
-## Invoer van de gebruiker
+## ReadLine geeft altijd een string
 
-> `Console.ReadLine()` geeft **altijd** een `string` terug.
+:::: {.columns}
 
-Wil je een getal, dan lees je eerst als tekst en **parse** je daarna:
+::: {.column width="55%"}
+De gebruiker typt `3` en daarna `4`. Wat toont dit?
+
+```csharp
+string a = Console.ReadLine();
+string b = Console.ReadLine();
+Console.WriteLine(a + b);
+```
+
+**`34`.** Geen crash: de `+` plakt twee strings aan elkaar. C# heeft geen idee dat jij met `"3"` en `"4"` wou rekenen.
+:::
+
+::: {.column width="45%"}
+![Zelfde invoer, ander resultaat.](../content/assets/1_csharpbasics/drieplusvier.png)
+:::
+
+::::
+
+::: {.callout-warning .fragment}
+`int getal = Console.ReadLine();` mag evenmin: de compiler weigert een `string` in een `int` te steken.
+:::
+
+---
+
+## Van string naar getal
+
+Uitlezen met `ReadLine`, bewaren in een `string`, en dan **parsen** naar het type dat je nodig hebt:
 
 ```csharp
 Console.WriteLine("Geef je gewicht:");
 double gewicht = double.Parse(Console.ReadLine());
 ```
 
+![Wat de gebruiker typt komt binnen als string, `Parse` maakt er een double van.](../content/assets/1_csharpbasics/readlineparse.png){width=80%}
+
+---
+
+## De regel die je honderden keren typt
+
+```csharp
+int getal = int.Parse(Console.ReadLine());
+```
+
+Enkel de Parse-methode verandert mee met het type dat je nodig hebt:
+
+| Gewenst type | Code |
+|---|---|
+| `int` | `int.Parse(Console.ReadLine())` |
+| `double` | `double.Parse(Console.ReadLine())` |
+| `bool` | `bool.Parse(Console.ReadLine())` |
+| `char` | `char.Parse(Console.ReadLine())` |
+| `string` | `Console.ReadLine()` (geen Parse nodig) |
+
 ::: {.callout-note .fragment}
 De komende hoofdstukken mag je ervan uitgaan dat de gebruiker **foutloze** invoer geeft.
+:::
+
+---
+
+## Stagiair Steven
+
+:::: {.columns}
+
+::: {.column width="20%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="80%"}
+Steven moet de leeftijd van de gebruiker inlezen. De A.I. gaf hem dit en hij noemt het zelf "robuust":
+
+```csharp
+Console.WriteLine("Geef je leeftijd:");
+int leeftijd = int.Parse(Console.ReadLine());
+Console.WriteLine($"Volgend jaar word je {leeftijd + 1}.");
+```
+
+"Werkt perfect, ik heb het getest met `25`", zegt hij trots. Wat als de gebruiker `vijfentwintig` typt, of gewoon op enter duwt?
+:::
+
+::::
+
+::: {.callout-note .fragment}
+Dan crasht zijn programma. `int.Parse` verwacht tekst die echt een geheel getal voorstelt. Steven testte enkel de invoer die hij zelf in gedachten had, en de A.I. waarschuwde hem nergens. Foute invoer opvangen doe je met `int.TryParse`.
 :::
 
 ---
@@ -162,6 +245,12 @@ De komende hoofdstukken mag je ervan uitgaan dat de gebruiker **foutloze** invoe
 
 * **In je code** schrijf je een kommagetal-literal altijd met een **punt**: `9.81` (onafhankelijk van je taalinstellingen)
 * **Als invoer** hangt het van de landinstellingen af: een Belgisch systeem verwacht `9,81`, een Engels `9.81`
+
+::: {.callout-warning .fragment}
+Het verkeerde scheidingsteken geeft **geen foutmelding**. Op een Belgische computer wordt `9.81` gelezen als **981**, want de punt geldt daar als scheiding voor duizendtallen. Je programma rekent vrolijk verder met een gewicht van 981 kilogram.
+:::
+
+Vreemde resultaten bij kommagetallen zonder dat er iets crasht? Kijk eerst welk teken je hebt getypt.
 
 ---
 
@@ -178,6 +267,7 @@ int l = Convert.ToInt32("19");
 ```
 
 * Naar `int` is `.ToInt32()`, naar `short` is `.ToInt16()`
+* Een **zwarte doos**: je ziet niet of er gecast of geparset wordt
 :::
 
 ::: {.column width="42%"}
@@ -186,19 +276,9 @@ int l = Convert.ToInt32("19");
 
 ::::
 
-::: {.callout-warning .fragment}
-Een **zwarte doos**: je ziet niet of er gecast of geparset wordt. Gebruik `Convert.To` pas als je het verschil goed snapt.
+::: {.callout-tip .fragment}
+`Convert.ToBoolean` geeft voor **elk** getal `True`, behalve voor `0` (of `0.0`). En een `bool` naar een `int` omzetten lukt **enkel** via `Convert`, niet via casting.
 :::
-
----
-
-## Convert en bool
-
-::: {.callout-tip}
-**`Convert.ToBoolean`** geeft voor **elk** getal `True`, behalve voor `0` (of `0.0`): dan `False`.
-:::
-
-Een `bool` omzetten naar een `int` (of omgekeerd) lukt **enkel** via `Convert`, niet via casting.
 
 ---
 
@@ -212,15 +292,17 @@ Casting en parsing zijn compact en werken ook in andere talen. Beheers ze dus, o
 
 ## Rekenen met System.Math
 
-De `Math`-bibliotheek bevat handige wiskunde:
-
 ```csharp
 double macht = Math.Pow(getal, 3);   // grondtal, exponent
 double wortel = Math.Sqrt(144);      // 12
 double omtrek = Math.PI * 2 * straal;
 ```
 
-Verder o.a. `Sin`, `Cos`, `Tan`, `Ceiling`, `Floor`, `Abs`.
+Verder o.a. `Sin`, `Cos`, `Tan`, `Ceiling`, `Floor`, `Abs`, `Max`, `Min` en `Clamp`. Voor `Math` schrijf je nooit `new`.
+
+::: {.callout-warning .fragment}
+`Sin`, `Cos` en `Tan` rekenen in **radialen**. `Math.Sin(90)` geeft `0.8939...` en niet `1`. Reken eerst om: `double hoek = graden * Math.PI / 180;`
+:::
 
 ::: {.callout-tip .fragment}
 Typ `Math.` en IntelliSense toont alles. Cursor op een methode + **`F1`** opent de documentatie.
@@ -228,42 +310,147 @@ Typ `Math.` en IntelliSense toont alles. Cursor op een methode + **`F1`** opent 
 
 ---
 
+## Math geeft kommagetallen terug
+
+```csharp
+int resultaat = Math.Pow(2, 10);  // compileert niet!
+```
+
+*Cannot implicitly convert type 'double' to 'int'.* Bijna alle rekenmethoden van `Math` geven een `double` terug, ook al stop je er gehele getallen in. Je lost het op zoals daarnet:
+
+```csharp
+double resultaat = Math.Pow(2, 10);          // 1024
+int resultaatAlsInt = (int)Math.Pow(2, 10);  // 1024
+```
+
+::: {.callout-tip .fragment}
+Uitzonderingen zijn `Abs`, `Max`, `Min` en `Clamp`: die geven terug wat je erin stopt. `Math.Abs(-42)` is dus een `int`.
+:::
+
+---
+
+## Methoden in elkaar schuiven
+
+Het resultaat van een methode mag de parameter van een andere methode zijn. Dat deed je al in `double.Parse(Console.ReadLine())`. De afstand tussen speler en monster, met Pythagoras:
+
+```csharp
+double afstand = Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
+```
+
+![C# werkt van binnen naar buiten: eerst de twee machten, dan de optelling, en pas dat totaal gaat in `Sqrt`.](../content/assets/1_csharpbasics/binnennaarbuiten.png){width=62%}
+
+---
+
+## Waarden begrenzen
+
+```csharp
+levens = Math.Max(levens - schade, 0);        // nooit onder 0
+volume = Math.Clamp(volume, 0, 100);          // 130 wordt 100
+int verschil = Math.Abs(vandaag - gisteren);  // 5, niet -5
+```
+
+* `Max` en `Min`: de grootste of de kleinste van twee getallen
+* `Clamp`: begrenzen langs twee kanten tegelijk (waarde, ondergrens, bovengrens)
+* `Abs`: het minteken verdwijnt, ideaal voor "hoe groot is het verschil?"
+
+::: {.callout-tip .fragment}
+Deze heb je in de praktijk vaker nodig dan alle sinussen samen.
+:::
+
+---
+
+## Als rekenen misloopt
+
+```csharp
+Console.WriteLine(a / b);          // int door 0: DivideByZeroException
+Console.WriteLine(x / y);          // double door 0.0: oneindig
+Console.WriteLine(Math.Sqrt(-1));  // NaN, Not a Number
+```
+
+`NaN` is besmettelijk: `NaN + 5` blijft `NaN`, `NaN * 1000` ook. Controleren doe je met `double.IsNaN(resultaat)`, dat geeft je een `bool`.
+
+::: {.callout-important .fragment}
+Oneindig en `NaN` laten je programma **niet** crashen. De foute berekening werkt stilletjes door, soms tot honderden regels verder waar je plots een onmogelijk resultaat ziet.
+:::
+
+---
+
 ## Het bereik in code
 
-Elk datatype kent z'n eigen grenzen:
+Elk datatype kent z'n eigen grenzen, en de compiler kent ze ook:
 
 ```csharp
 Console.WriteLine($"int gaat van {int.MinValue} tot {int.MaxValue}");
-Console.WriteLine($"{double.MaxValue}");
 ```
 
 Bij kommagetallen bestaat zelfs `double.PositiveInfinity` en `double.NegativeInfinity`.
 
----
-
-## Over afronden
-
-We hebben al drie manieren gezien om af te ronden: **casting**, **`Math.Round`** en **`Convert.ToX`**. Ze gedragen zich niet hetzelfde.
-
-* **Casting** kapt af richting nul (*truncatie*)
+```csharp
+int groot = int.MaxValue;
+Console.WriteLine(groot + 1);  // -2147483648
+```
 
 ::: {.callout-warning .fragment}
-Let op met negatieve getallen: `(int)-2.7` geeft **-2** (richting nul), maar `Math.Floor(-2.7)` geeft **-3** (richting min oneindig).
+**Overflow**: de teller loopt over zoals de kilometerteller van een oude auto. Geen crash, geen waarschuwing. Verwacht je grote getallen, kies dan meteen een `long`.
+:::
+
+---
+
+## Afkappen is niet afronden
+
+Casting kapt af, ongeacht of er een 1 of een 9 na de komma staat. Bij negatieve getallen zie je het verschil met echt afronden:
+
+```csharp
+Console.WriteLine((int)-2.7);        // -2, richting nul
+Console.WriteLine(Math.Floor(-2.7)); // -3, richting min oneindig
+```
+
+`Math.Truncate` doet exact wat een cast doet, maar geeft je een `double` terug.
+
+![`Floor` en `Ceiling` gaan altijd dezelfde kant uit, een cast schuift altijd naar de nul toe.](../content/assets/1_csharpbasics/afrondrichting.png){width=80%}
+
+---
+
+## Hoeveel bussen heb je nodig?
+
+47 studenten, 20 per bus:
+
+```csharp
+int aantalBussen = (int)Math.Ceiling(aantalStudenten / (double)perBus); // 3
+```
+
+Overal waar je iets moet *vullen* (bussen, dozen, pagina's) mag je niets laten liggen, en daar is `Math.Ceiling` voor.
+
+::: {.callout-warning .fragment}
+Vergeet je de cast naar `double`, dan deel je twee gehele getallen en krijg je `2` nog voor `Ceiling` iets kan doen. Er staan dan 7 studenten op de parking.
 :::
 
 ---
 
 ## Bankers rounding
 
+:::: {.columns}
+
+::: {.column width="52%"}
 ```csharp
-Console.WriteLine($"{Math.Round(4.5)} en {Math.Round(5.5)}");
+Math.Round(4.5);  // 4
+Math.Round(5.5);  // 6
 ```
 
-. . .
+`Math.Round` rondt standaard af naar het **dichtstbijzijnde even getal**.
 
-**Resultaat: 4 en 6?!**
+Rond je de reeks `0.5` tot `5.5` allemaal naar boven af, dan tel je er 3 bij. Met bankers rounding kom je exact op de echte som uit.
+:::
 
-`Math.Round` (en `Convert.ToInt32`) ronden standaard af naar het **dichtstbijzijnde even getal**. Dat heet *bankers rounding*: handig voor bankiers, verwarrend voor ons.
+::: {.column width="48%"}
+![Dezelfde reeks op twee manieren afgerond.](../content/assets/1_csharpbasics/bankersom.png)
+:::
+
+::::
+
+::: {.callout-warning .fragment}
+Handig voor bankiers, minder handig wanneer jouw quotering van 4.5 op 10 plots een 4 wordt.
+:::
 
 ---
 
@@ -272,12 +459,67 @@ Console.WriteLine($"{Math.Round(4.5)} en {Math.Round(5.5)}");
 Geef een **`MidpointRounding`** mee:
 
 ```csharp
-Math.Round(4.5, MidpointRounding.AwayFromZero); // 5
-Math.Round(5.5, MidpointRounding.AwayFromZero); // 6
+Math.Round(4.5, MidpointRounding.AwayFromZero);         // 5
+Math.Round(4.12343, 2, MidpointRounding.AwayFromZero);  // 4,12
 ```
 
-* `ToEven` (standaard): bankers rounding
-* `AwayFromZero`: het meest voorspelbare resultaat (onze voorkeur)
+De volgorde van de parameters ligt vast: eerst het getal, dan het aantal cijfers na de komma, en pas als laatste de `MidpointRounding`.
+
+::: {.callout-important .fragment}
+`Convert.ToInt32` doet **ook** aan bankers rounding, en daar kan je het niet afzetten. Rond dan eerst zelf af: `(int)Math.Round(4.5, MidpointRounding.AwayFromZero)`.
+:::
+
+---
+
+## De drie manieren naast elkaar
+
+| Waarde | `(int)` | `Math.Round` | met `AwayFromZero` | `Convert.ToInt32` |
+|---|---|---|---|---|
+| `4.5` | 4 | 4 | **5** | 4 |
+| `5.5` | 5 | 6 | 6 | 6 |
+| `-2.5` | -2 | -2 | **-3** | -2 |
+
+::: {.callout-important .fragment}
+Kies bewust. Wil je **afkappen**, gebruik een cast of `Math.Truncate`. Wil je **afronden**, gebruik `Math.Round` met `MidpointRounding.AwayFromZero`. Doe je niets, dan krijg je bankers rounding.
+:::
+
+---
+
+## Afronden of enkel mooi tonen?
+
+```csharp
+double gemiddelde = 7.0 / 3.0;
+
+Console.WriteLine(gemiddelde);          // 2,3333333333333335
+Console.WriteLine($"{gemiddelde:F2}");  // 2,33
+```
+
+Bij `F2` behoudt de variabele al haar cijfers, enkel de tekst op het scherm is ingekort. Bij `Math.Round` gooi je die cijfers echt weg.
+
+::: {.callout-tip .fragment}
+Rond pas af **op het laatste moment**, vlak voor je het resultaat toont. Rond je te vroeg af, dan sleep je die fout doorheen je hele berekening mee.
+:::
+
+---
+
+## Geld: reken niet met double
+
+```csharp
+Console.WriteLine(0.1 + 0.2);     // 0,30000000000000004
+
+double prijs = 4.35;
+int centen = (int)(prijs * 100);  // 434 in plaats van 435!
+```
+
+`4.35 * 100` levert `434.99999999999994` op en de cast kapt de rest af. Je klant is een cent kwijt, en bij duizend bestellingen merkt de boekhouding dat.
+
+```csharp
+decimal prijs = 4.35M;   // decimal bewaart de cijfers decimaal
+```
+
+::: {.callout-tip .fragment}
+Voor alles wat op een kassaticket zou staan kies je `decimal`. Voor wetenschappelijke berekeningen, coördinaten en snelheden blijft `double` de juiste keuze.
+:::
 
 ---
 
@@ -288,24 +530,16 @@ Maak **eenmalig** een generator en vraag dan getallen op:
 ```csharp
 Random generator = new Random();
 int getal1 = generator.Next();
-int getal2 = generator.Next();
+int a = generator.Next(0, 11);    // 0 tot en met 10
+int b = generator.Next(55, 100);  // 55 tot en met 99
 ```
+
+::: {.callout-important .fragment}
+**De ondergrens telt mee, de bovengrens niet.** Wil je een getal *tot en met* X, schrijf dan **X + 1** als tweede parameter.
+:::
 
 ::: {.callout-tip .fragment}
 De `new Random()`-syntax pluizen we vanaf hoofdstuk 9 uit. Lig er nu nog niet van wakker.
-:::
-
----
-
-## Een bereik kiezen
-
-```csharp
-int a = generator.Next(0, 11);   // 0 tot en met 10
-int b = generator.Next(55, 100); // 55 tot en met 99
-```
-
-::: {.callout-important}
-**De ondergrens telt mee, de bovengrens niet.** Wil je een getal *tot en met* X, schrijf dan **X + 1** als tweede parameter.
 :::
 
 ---
@@ -393,16 +627,6 @@ Perfecte "code", maar een **logische fout** (en een stevige explosie). Dat is ee
 
 ## Door je code steppen
 
-Eens gepauzeerd, gebruik je de debugknoppen:
-
-* **Continue**: verder tot het volgende breakpoint of het einde
-* **Step over** (het gebogen pijltje): één lijn verder, dan weer pauzeren
-* **Stop** (rode knop): stoppen om je code aan te passen
-
----
-
-## Debuggen is een essentiële skill
-
 :::: {.columns}
 
 ::: {.column width="22%"}
@@ -410,7 +634,9 @@ Eens gepauzeerd, gebruik je de debugknoppen:
 :::
 
 ::: {.column width="78%"}
-Een programmeur die niet kan debuggen is als een vis die niet kan zwemmen.
+* **Continue**: verder tot het volgende breakpoint of het einde
+* **Step over** (het gebogen pijltje): één lijn verder, dan weer pauzeren
+* **Stop** (rode knop): stoppen om je code aan te passen
 
 **Voorspel telkens eerst** wat er moet gebeuren: welke waarden, welke output? Klopt de werkelijkheid niet met je voorspelling, dan heb je waarschijnlijk een bug beet.
 :::
@@ -418,27 +644,20 @@ Een programmeur die niet kan debuggen is als een vis die niet kan zwemmen.
 ::::
 
 ::: {.callout-warning .fragment}
-Zomaar door je code steppen en hopen dat de bug magisch verschijnt, werkt niet. Wees kritisch.
+Zomaar door je code steppen en hopen dat de bug magisch verschijnt, werkt niet. Een programmeur die niet kan debuggen is als een vis die niet kan zwemmen.
 :::
 
 ---
 
 ## Programmeren met A.I.
 
-Tijd om dat krachtige beest in een omheind veldje te zetten, maar mét regels:
-
 ::: {.callout-important}
 **De verboden prompt**: *"Schrijf de C#-oplossing voor deze opgave."* Dat is als de Tour de France-winnaar de Mont Ventoux voor je laten opfietsen: je geraakt boven, maar leert niets.
 :::
 
-Beter zijn prompts die je **doen denken**:
+Beter zijn prompts die je **doen denken** en waarmee je in dialoog gaat: laat AI code met ingebouwde fouten maken (*zoek de fout*), je oplossing met de modeloplossing **vergelijken**, of je **ondervragen** over de output van een stukje code.
 
-* **Zoek-de-fout**: laat AI code met ingebouwde fouten maken en zoek ze zelf
-* **Vergelijk**: laat AI jouw oplossing met de modeloplossing vergelijken
-
-::: {.callout-tip .fragment}
-AI wordt pas krachtig in **dialoog**. Anders is het een searchengine *on steroids*.
-:::
+![Links doet de A.I. het denkwerk, rechts doe jij het.](../content/assets/1_csharpbasics/promptladder.png){width=80%}
 
 ---
 
@@ -447,7 +666,8 @@ AI wordt pas krachtig in **dialoog**. Anders is het een searchengine *on steroid
 * Omzetten kan via **casting**, **parsing** en **`Convert`**: ken het verschil
 * **Narrowing** (met dataverlies) vereist een cast, **widening** gaat vanzelf
 * `ReadLine` geeft altijd een `string`: parse naar het juiste type
-* **`Math`** helpt bij rekenen; let bij afronden op **bankers rounding**
+* **`Math`** rekent met kommagetallen en in radialen; oneindig en `NaN` crashen niet
+* Kies bewust tussen **afkappen** en **afronden**; voor geld gebruik je `decimal`
 * Eén **`Random`**-generator volstaat; **debuggen** doe je door te voorspellen
 
 ::: {.callout-tip}
@@ -486,25 +706,19 @@ console.log("5" + 3);  // "53"  (de 3 wordt een string)
 console.log("5" * 3);  // 15    (de "5" wordt een getal)
 ```
 
-Bij `+` wint de string, bij `*` het getal. In C# geeft dit een compileerfout.
+Die eerste regel doet C# ook: `"5" + 3` levert daar eveneens de tekst `"53"` op. Het verschil zit in de tweede regel: `"5" * 3` weigert de C#-compiler.
 
 ---
 
-## Zie verder: input parsen
+## Zie verder: omzetten in Python
 
-**Python** doet dit korter: de naam van het type is meteen de omzetfunctie:
+De naam van het type is er meteen de omzetfunctie:
 
 ```python
 gewicht = float(input("Geef je gewicht: "))
 ```
 
-C# heeft een aparte `Parse` per type (`int.Parse`, `double.Parse`).
-
----
-
-## Zie verder: een module importeren
-
-In **Python** zit wiskunde in een aparte *module* die je eerst moet importeren:
+Wiskunde zit in een aparte *module* die je eerst moet importeren:
 
 ```python
 import math
@@ -512,7 +726,25 @@ import math
 wortel = math.sqrt(144)   # 12.0
 ```
 
-`math.` ervoor is de modulenaam. In C# hoort `Math` standaard bij de taal: niets importeren.
+C# heeft een aparte `Parse` per type, en `Math` hoort standaard bij de taal.
+
+---
+
+## Zie verder: zoek de fout
+
+Deze **Python**-code rondt twee examencijfers af. Eén van de twee studenten gaat klagen. Waarom?
+
+```python
+cijfer1 = 4.5
+cijfer2 = 5.5
+
+print(round(cijfer1))  # 4
+print(round(cijfer2))  # 6
+```
+
+. . .
+
+`round()` doet in Python ook aan bankers rounding: ligt een getal op de helft, dan gaat het naar het dichtstbijzijnde **even** getal. Wat Python niet heeft is de `MidpointRounding`-parameter.
 
 ---
 
