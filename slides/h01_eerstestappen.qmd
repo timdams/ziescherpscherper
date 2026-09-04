@@ -17,20 +17,20 @@ Na dit hoofdstuk kan je:
 
 * uitleggen wat **programmeren** en een **algoritme** zijn
 * de rol van een **programmeertaal**, de **compiler** en **.NET** situeren
-* een **console-project** aanmaken in Visual Studio
+* een **console-project** aanmaken in Visual Studio en de **A.I.-hulp** uitschakelen
 * in- en uitvoer verwerken met **`WriteLine`**, **`Write`** en **`ReadLine`**
-* de meest voorkomende **beginnersfouten** herkennen en oplossen
+* een variabele in een zin zetten met **string interpolation** (`$"..."`)
+* de meest voorkomende **beginnersfouten** herkennen, ook in code die je niet zelf schreef
 * **kleur** gebruiken in de console
 
 ---
 
-## Eerst denken, dan typen
-
-> First, solve the problem. Then, write the code.
+## Blijf volhouden
 
 * Leren programmeren is als een berg beklimmen waarvan je nooit de top bereikt
   * en dat is net het mooie: er valt altijd iets nieuws te leren
-* De eerste stappen zijn nooit eenvoudig
+* De eerste stappen zijn nooit eenvoudig: je handen én je toetsenbord worden vuil
+* Waar je de komende pagina's op vloekt, lijkt over enkele hoofdstukken kinderspel
 
 ::: {.callout-tip .fragment}
 Blijf volhouden. Blijf oefenen. Vloek gerust af en toe. En vooral: geniet van het ontdekken van nieuwe dingen.
@@ -53,19 +53,27 @@ Geef je hen de opdracht om te ontploffen, schrik dan niet dat je even later de 1
 
 ## Het algoritme
 
+> First, solve the problem. Then, write the code.
+
 * Mythe: een programmeur schrijft de hele dag code
 * Echt werk = **analyse van het probleem** + een goed **algoritme**
 
 Een algoritme is het **recept** dat je aan de computer geeft: een **reeks instructies** in de juiste **volgorde**.
 
 ```text
-Haal dop van het ventiel.
-Plaats pomp op ventiel.
-Begin te pompen.
+1. Haal dop van het ventiel.
+2. Plaats pomp op ventiel.
+3. Begin te pompen.
 ```
 
+---
+
+## De volgorde doet ertoe
+
+![Ook in het echte leven is de volgorde van de stappen belangrijk.](../content/assets/0_intro/fietspomp.png){width=80%}
+
 ::: {.callout-warning .fragment}
-Een andere volgorde geeft vreemde, en soms fatale, fouten. Logisch en analytisch denken is dus de echte kern.
+Dezelfde drie stappen, andere volgorde: je band blijft plat. Logisch en analytisch leren denken is dus de echte kern.
 :::
 
 ---
@@ -86,8 +94,9 @@ Enkel Yoda mag woorden in de verkeerde volgorde gebruiken. "bal rood jongen is g
 
 ## C# (siesjarp)
 
-* Eén van de vele programmeertalen, deel van **.NET** ("dotnet")
+* Eén van de vele programmeertalen, deel van **.NET** ("dotnet"), ruim 25 jaar oud
 * Een **hogere programmeertaal**: leesbaarder, dichter bij onze eigen taal
+* Andere bekende hogere talen: Java, Python en JavaScript
 * C# lijkt als twee druppels water op **Java**, en stamt af van C en C++
 
 ::: {.callout-tip .fragment}
@@ -158,22 +167,14 @@ Waarom deze geschiedenisles? Online bots je vaak op oudere namen. Anders raak je
 
 ## Visual Studio: de IDE
 
-* We werken met **Visual Studio Community 2026** (gratis)
+* We werken met **Visual Studio Community 2026**, gratis via [visualstudio.microsoft.com/vs](https://visualstudio.microsoft.com/vs)
 * VS is een **IDE** (Integrated Development Environment): debugger, code-editor en compiler in één
+* Kies bij de installatie de workload **".NET desktop development"**, meer heb je niet nodig
 * **Niet** Visual Studio *Code*: dat is een lichtere, aparte editor
 
 ::: {.callout-warning .fragment}
 Sinds augustus 2024 bestaat VS Community niet meer voor **Mac**. Mac-gebruikers werken met VS Code of JetBrains Rider, of draaien Windows via een virtuele machine.
 :::
-
----
-
-## Installeren: één workload volstaat
-
-* Download de **Community**-editie via [visualstudio.microsoft.com/vs](https://visualstudio.microsoft.com/vs)
-* Kies bij de installatie zeker de workload **".NET desktop development"**
-
-Meer heb je voorlopig niet nodig.
 
 ---
 
@@ -215,14 +216,40 @@ Layout om zeep? "Window" - "Reset window layout" zet alles terug.
 
 ## A.I. even parkeren
 
-* VS heeft krachtige AI ingebouwd: **IntelliCode** en **Copilot**
+* ChatGPT, Claude, Gemini & friends: ook VS heeft die kracht ingebouwd (**IntelliCode** en **Copilot**)
 * Verbluffend goed, maar voor een beginner **af te raden**
 
 > Je leert ook niet hoofdrekenen door vanaf dag 1 met een zakrekenmachine te werken.
 
 ::: {.callout-important .fragment}
-De programmeur van de toekomst moet **béter** zijn dan Copilot en ChatGPT. Wie enkel op AI leunt, beperkt z'n kansen. Zet de tools dus voorlopig **uit**.
+De programmeur van de toekomst moet **béter** zijn dan Copilot en ChatGPT. Want waarom zou de sector jouw taak anders niet gewoon door A.I. laten doen? In hoofdstuk 4 kijken we hoe je A.I. wél verantwoord inzet.
 :::
+
+---
+
+## En hoe zet je die A.I. dan uit?
+
+IntelliCode vult tijdens het typen hele lijnen voor je aan. Knap, en soms gewoon fout:
+
+![Na een lijn commentaar tovert IntelliCode zelf een `WriteLine` tevoorschijn.](../content/assets/0_intro/intcode.png)
+
+* **IntelliCode**: Tools - Options - zoek "IntelliCode" en zet daar de Copilot Completions, de Whole-Line Completions en de C# suggestions uit
+* **Copilot**: niet inloggen volstaat. Ben je toch ingelogd, zet dan in de Copilot-settings alle opties uit
+
+::: {.callout-warning .fragment}
+Duikt er later toch lichtgrijze tekst op die je zelf niet typte? Dan sprong er na een update een optie terug aan. Loop die instellingen dan opnieuw door.
+:::
+
+---
+
+## Console-applicaties: in en uit
+
+Een console-applicatie toont alles in een klassiek shell-scherm: enkel tekst, geen afbeeldingen of geluid.
+
+![In het begin hebben al je applicaties deze opbouw.](../content/assets/1_csharpbasics/inuit.png){width=85%}
+
+* **`Console.ReadLine()`** leest invoer van de gebruiker in
+* **`Console.WriteLine()`** zet tekst op het scherm
 
 ---
 
@@ -283,6 +310,34 @@ De aanhalingstekens én de puntkomma achteraan zijn **cruciaal**.
 
 ---
 
+## Stagiair Steven
+
+:::: {.columns}
+
+::: {.column width="25%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="75%"}
+Steven laat zijn code volledig door A.I. schrijven en kijkt zelf amper na wat er staat. Zijn allereerste opdracht: toon "Hallo" op het scherm.
+
+```csharp
+Console.Writeline(Hallo)
+```
+
+"Eén lijntje, klaar", zegt hij trots. **Er zitten drie fouten in.**
+:::
+
+::::
+
+::: {.callout-note .fragment}
+1. `Writeline` bestaat niet: C# is hoofdlettergevoelig, het is `WriteLine`
+2. `Hallo` staat zonder aanhalingstekens, dus C# zoekt een variabele met die naam
+3. De puntkomma op het einde ontbreekt
+:::
+
+---
+
 ## ReadLine: input van de gebruiker
 
 * **`Console.ReadLine()`** leest wat de gebruiker typt tot die op enter drukt
@@ -292,9 +347,9 @@ Console.WriteLine("Geef je naam?");
 string naam = Console.ReadLine();
 ```
 
-We maken een geheugenplekje (**variabele**) `naam` van het type `string` en bewaren daarin wat de gebruiker invoert.
+We maken een geheugenplekje (**variabele**) `naam` van het type `string` en bewaren daarin wat de gebruiker invoert. `ReadLine` leest tot de gebruiker op enter drukt.
 
-::: {.callout-tip .fragment}
+::: {.callout-warning .fragment}
 Toekenning gebeurt **van rechts naar links**: `naam` (links) krijgt de waarde van het stuk rechts van de `=`.
 :::
 
@@ -372,10 +427,12 @@ En *automagisch* verschijnt er een verse lijn `Console.WriteLine();`.
 
 ## Fouten oplossen
 
-Je code compileert pas als ze **100% foutloos** is. VS helpt:
+Je code compileert pas als ze **100% foutloos** is: zolang er een fout in staat, komt er geen `.exe` uit de compiler.
+
+![](../content/assets/0_intro/compilereenvoudig.png){width=80%}
 
 * Fouten krijgen een **rode squiggly** onderlijning
-* De **statusbalk** en de **error list** tonen al je fouten
+* De **statusbalk** en de **error list** tonen al je fouten (laat die error list open staan)
 * Klik op een fout om meteen naar de juiste lijn te springen
 
 ::: {.callout-tip .fragment}
@@ -386,7 +443,17 @@ Veel fouten ineens? Kijk **net boven** de eerste fout. Vaak ontbreekt daar gewoo
 
 ## De gevaarlijke dialog
 
-![](../content/assets/0_intro/errorwarning.PNG){width=60%}
+:::: {.columns}
+
+::: {.column width="15%"}
+![](../content/assets/attention.png)
+:::
+
+::: {.column width="85%"}
+![](../content/assets/0_intro/errorwarning.PNG){width=90%}
+:::
+
+::::
 
 ::: {.callout-warning}
 Krijg je deze melding bij het starten? **Klik nooit op "Yes" en vink de checkbox nooit aan.**
@@ -451,7 +518,8 @@ Hou het leesbaar en denk aan **daltonisme**: rood op groen las voor sommigen onl
 * **Programmeren** = een dom maar gehoorzaam toestel exact vertellen wat het moet doen
 * Een goed **algoritme** (de juiste instructies in de juiste volgorde) komt vóór de code
 * De **compiler** vertaalt je C# naar machinetaal; **.NET** levert het framework
-* Met **`WriteLine`**, **`Write`** en **`ReadLine`** doe je in- en uitvoer
+* Met **`WriteLine`**, **`Write`** en **`ReadLine`** doe je in- en uitvoer, met `$"...{naam}..."` zet je een variabele middenin een zin
+* Kleur zet je met `ForegroundColor` en `BackgroundColor`, en zet je terug met `ResetColor()`
 * Lees je **fouten**, wees kritisch op het lampje, en klik **nooit** op "Yes" bij die dialog
 
 ::: {.callout-tip}
@@ -475,9 +543,33 @@ Volgende halte: **variabelen en datatypes**. Daar gaan we het woord "variabele" 
 
 ---
 
-## Zie verder: andere talen
+## Zie verder: zoek de fout
 
-Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+Dit programma wil de gebruiker begroeten, maar het compileert niet. Wat loopt er mis?
+
+```csharp
+Console.WriteLine("Geef je naam?");
+string naam = Console.Readline()
+Console.WriteLine($"Dag {naam}");
+```
+
+::: {.callout-note .fragment}
+Twee klassiekers. `Readline` moet `ReadLine` zijn, want C# is hoofdlettergevoelig. En op het einde van die lijn ontbreekt de puntkomma.
+:::
+
+---
+
+## Zie verder: wie komt er nog langs?
+
+| | Taal | Tekst op het scherm |
+|:--:|------|---------------------|
+| ![](../content/assets/0_intro/logos/python.png){width=40} | **Python** | `print("C# rules")` |
+| ![](../content/assets/0_intro/logos/javascript.png){width=40} | JavaScript | `console.log("C# rules");` |
+| ![](../content/assets/0_intro/logos/typescript.png){width=40} | TypeScript | `console.log("C# rules");` |
+| ![](../content/assets/0_intro/logos/java.png){width=40} | Java | `System.out.println("C# rules");` |
+| ![](../content/assets/0_intro/logos/cpp.png){width=40} | C++ | `std::cout << "C# rules";` |
+
+In een echt project bots je bijna nooit op één taal: een back-end in C#, een front-end in TypeScript, een scriptje in Python.
 
 ---
 
@@ -486,10 +578,10 @@ Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later 
 **Python** doet dit zo:
 
 ```python
-print("Hello World!")
+print("Wie ben jij?!")
 ```
 
-Geen ``namespace``, ``class`` of ``Main`` en geen puntkomma: Python heeft veel minder ceremonie nodig. Die extra structuur in C# krijgt verderop stuk voor stuk betekenis.
+Geen ``namespace``, ``class`` of ``Main``, geen accolades en geen puntkomma: één lijn volstaat. Die extra structuur in C# krijgt verderop stuk voor stuk betekenis.
 
 ---
 
@@ -498,23 +590,23 @@ Geen ``namespace``, ``class`` of ``Main`` en geen puntkomma: Python heeft veel m
 **Python** doet dit zo:
 
 ```python
-naam = input("Geef je naam?")
+result = input("Geef je naam?")
 ```
 
-De vraag staat meteen in ``input``, dus geen aparte ``WriteLine`` nodig. En je geeft geen type op: Python leidt dat zelf af, terwijl C# vooraf ``string`` vastlegt en dat laat controleren.
+De vraag staat meteen in ``input``, dus geen aparte ``print`` nodig. En je geeft geen type op: Python leidt dat zelf af. C# is sterk getypeerd, dus daar leg je met ``string result`` vooraf vast welk soort data erin mag en controleert de compiler dat voor je.
 
 ---
 
 ## Zie verder: compiled vs interpreted
 
-**JavaScript** wordt geinterpreteerd: het draait tot het op een fout botst.
+**JavaScript** wordt niet vooraf gecompileerd maar lijn per lijn geïnterpreteerd terwijl het programma draait.
 
 ```javascript
 console.log("Dit verschijnt nog wel");
 consle.log("Pas hier crasht het");
 ```
 
-De eerste lijn loopt, pas bij de typfout (``consle``) crasht het. C# compileert vooraf en weigert te starten zolang er een fout is: je vangt fouten dus vroeger.
+De eerste lijn wordt netjes uitgevoerd, pas bij de typfout (``consle``) loopt het mis. C# weigert je programma te starten zolang er ergens een fout staat, dus die fout zie je al voor er één lijn gedraaid heeft.
 
 ---
 
