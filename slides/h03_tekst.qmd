@@ -17,10 +17,11 @@ Na dit hoofdstuk kan je:
 
 * het verschil tussen **`char`** en **`string`** uitleggen
 * **ASCII** en **UNICODE** situeren en weten hoe .NET tekst bewaart
-* **escape characters** (`\n`, `\t`, `\"`, ...) en het **verbatim** teken `@` gebruiken
+* **escape characters** (`\n`, `\t`, `\"`, ...) gebruiken en weten waarom een Enter uit twee tekens bestaat
+* tekst letterlijk laten staan met het **verbatim** teken `@` of met een **raw string literal** (`"""`)
 * tekst samenvoegen en formatteren met **string interpolation** (`$`)
-* speciale **UNICODE-tekens** op het scherm tonen
-* info over de machine ophalen via de **`Environment`**-bibliotheek
+* speciale **UNICODE-tekens** en emoji op het scherm tonen
+* info over de machine ophalen via **`Environment`** en je programma afsluiten met een **exitcode**
 
 ---
 
@@ -78,6 +79,8 @@ Console.WriteLine(eenLetter);
 
 * Tekst staat tussen **dubbele aanhalingstekens** (`"`)
 * Een `char` gebruikt een apostrof, een `string` aanhalingstekens
+
+![De `string` `"Hallo"` bestaat uit vijf `char`-elementen na elkaar.](../content/assets/1_csharpbasics/stringketting.png){width=80%}
 
 ::: {.callout-tip .fragment}
 In hoofdstuk 8 ontdek je dat een `string` eigenlijk een **array** van chars is.
@@ -148,6 +151,12 @@ char weglatingsteken = '\'';
 \uxxxx  teken met hexadecimale UNICODE-waarde xxxx
 ```
 
+Niet vanbuiten leren: in de praktijk grijp je vooral naar `\n`, `\t`, `\"` en `\\`. De rest zoek je op.
+
+::: {.callout-note .fragment}
+`\a` laat de computer biepen. In Windows Terminal en standaard ook op Linux en Mac hoor je niets: het teken wordt genegeerd. Je code is dus niet stuk.
+:::
+
 ---
 
 ## Escape in strings
@@ -190,6 +199,34 @@ Dan een nieuwe regel
 
 ---
 
+## De entertoets: `\n` en `\r`
+
+Duw je op **Enter**, dan gebeuren er historisch twee dingen. De termen komen van de typemachine:
+
+* `\r` (*carriage return*): terug naar het begin van de regel
+* `\n` (*line feed*): één regel naar beneden
+
+![](../content/assets/1_csharpbasics/newline.png){width=70%}
+
+---
+
+## `\r\n` of `\n`?
+
+* **Windows** schrijft een nieuwe regel als `\r\n`
+* **Linux** en **macOS** gebruiken enkel `\n`
+
+Daarom staat een tekstbestand van Windows elders soms op één lange lijn, of vol `^M`-tekens.
+
+```csharp
+Console.Write("Eerste regel" + Environment.NewLine + "Tweede regel");
+```
+
+::: {.callout-tip .fragment}
+`Environment.NewLine` kiest zelf het juiste teken voor het systeem waarop je code draait. In je console volstaat `\n`; zodra je naar een bestand schrijft of over het netwerk verstuurt, begint het verschil te tellen.
+:::
+
+---
+
 ## Het verbatim teken @
 
 Het apenstaartje `@` voor een string zegt: **behandel alles letterlijk**, escape characters worden genegeerd.
@@ -217,6 +254,8 @@ string zin = $"Ik ben {naam} en ik ben {leeftijd} jaar.";
 
 Je kende dit al uit hoofdstuk 1: op de plek van `{naam}` komt de inhoud van de variabele.
 
+![De accolades zijn lege vakjes in de zin.](../content/assets/2_tekst/interpolatie.png){width=55%}
+
 ---
 
 ## Expressies in interpolatie
@@ -233,6 +272,33 @@ De expressie wordt eerst berekend, dan in de tekst geplaatst.
 
 ---
 
+## Stagiair Steven vergeet iets
+
+:::: {.columns}
+
+::: {.column width="20%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="80%"}
+Steven kreeg deze regel van de A.I., was tevreden en commit ze meteen:
+
+```csharp
+string naam = "Finkelstein";
+Console.WriteLine("Hallo {naam}, welkom!");
+```
+:::
+
+::::
+
+. . .
+
+Op het scherm staat letterlijk `Hallo {naam}, welkom!`, mét de accolades. Het **`$`** vooraan ontbreekt.
+
+![](../content/assets/2_tekst/metzonderdollar.png){width=70%}
+
+---
+
 ## Formatteren
 
 Plaats een dubbelpunt na de expressie om de weergave te sturen:
@@ -244,6 +310,7 @@ Console.WriteLine($"{number:F2}");   // 12,35  (afgerond, niet afgekapt)
 
 * `F2`: kommagetal met 2 cijfers na de komma
 * `D5`: geheel getal met minstens 5 cijfers (`123` wordt `00123`)
+* `E2`: wetenschappelijke notatie (`12000000` wordt `1,20E+007`)
 * `C`: geldbedrag volgens de landinstellingen
 
 ---
@@ -304,9 +371,9 @@ Console.WriteLine(1 + 1 + "1");     // 21
 Console.WriteLine("1" + (1 + 1));   // 12
 ```
 
-::: {.callout-warning .fragment}
-De **linkse operand** bepaalt het resultaat bij twijfel. Bij `"1" + 1 + 1` wordt eerst `"11"`, dan `"111"`. Bij `1 + 1 + "1"` wordt eerst `2`, dan `"21"`.
-:::
+De **linkse operand** bepaalt het resultaat bij twijfel: `"1" + 1` wordt `"11"`, en dat stuk is dan de linkse operand voor de volgende stap.
+
+![Zodra een `string` meedoet, is het resultaat een `string`. Haakjes gaan voor.](../content/assets/2_tekst/volgorde.png){width=48%}
 
 ---
 
@@ -324,6 +391,8 @@ Console.WriteLine(letter1 + letter2);
 
 Een `char` bewaart een getal: `A` = 65, `B` = 66. De `+`-operator bestaat niet voor `char`, dus C# rekent met `int`: 65 + 66 = **131**.
 
+![](../content/assets/2_tekst/charplus.png){width=62%}
+
 ---
 
 ## Speciale UNICODE-tekens tonen
@@ -331,19 +400,13 @@ Een `char` bewaart een getal: `A` = 65, `B` = 66. De `+`-operator bestaat niet v
 :::: {.columns}
 
 ::: {.column width="60%"}
-Eerst de juiste encoding instellen als **allereerste lijn** in `Main`:
+Zet als **allereerste lijn** in `Main`, nog voor je iets naar het scherm stuurt:
 
 ```csharp
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 ```
 
-Daarna, bv. het copyright-teken (UNICODE `0x00A9`):
-
-```csharp
-char copyright = (char)0x00A9;
-Console.WriteLine(copyright);
-Console.WriteLine("©");
-```
+Zet je die lijn later, dan kan tekst die je daarvoor al toonde verkeerd verschijnen.
 :::
 
 ::: {.column width="40%"}
@@ -351,6 +414,40 @@ Console.WriteLine("©");
 :::
 
 ::::
+
+::: {.callout-tip .fragment}
+Ook het euroteken bij `{bedrag:C}` heeft die lijn nodig. Een consolevenster op Windows werkt standaard met 256 tekens (*code page 850*, uit de MS-DOS-tijd) en daar zit de € niet in.
+:::
+
+---
+
+## Drie manieren, één teken
+
+Zoek de hexadecimale waarde op in een UNICODE-tabel ([symbl.cc](https://symbl.cc)), voor © is dat `00A9`:
+
+```csharp
+Console.WriteLine("©");         // 1. het teken zelf plakken
+char copyright = (char)0x00A9;  // 2. de code casten naar char
+Console.WriteLine(copyright);
+Console.WriteLine("\u00A9");    // 3. de \u-notatie in een string
+```
+
+![](../content/assets/2_tekst/drieweg.png){width=52%}
+
+---
+
+## En emoji?
+
+Een `char` gaat maar tot `0xFFFF`, en `\u` verwacht exact vier cijfers. Emoji zitten daarboven:
+
+```csharp
+char blij = (char)0x1F600;        // compileert niet
+Console.WriteLine("\U0001F600");  // wel: hoofdletter U, acht cijfers
+```
+
+::: {.callout-note .fragment}
+.NET bewaart zo'n teken als twee 16-bit stukjes (een *surrogate pair*). Eén emoji telt daardoor als 2 in `string.Length`. Die `.Length` is dus niet altijd het aantal zichtbare tekens.
+:::
 
 ---
 
@@ -374,30 +471,51 @@ Console.WriteLine(titel);
 
 ---
 
-## De Environment-bibliotheek
+## Raw string literals
 
-`Console` is maar één bibliotheek. **`Environment`** geeft info over de machine waarop je programma draait:
+Nadeel van `@`: ook de spaties waarmee je je code inspringt horen bij de string. Sinds C# 11 kan het netter, met drie aanhalingstekens:
 
 ```csharp
-string pcname = Environment.MachineName;
-int proccount = Environment.ProcessorCount;
-string username = Environment.UserName;
-Console.WriteLine($"Je computer heet {pcname} met {proccount} processoren.");
+string titel = """
+     _______ _____
+    |__   __|  __ \
+       | |  | |  | |
+       |_|  |_|__/
+    """;
 ```
 
-::: {.callout-important .fragment}
-Op een andere computer krijg je andere resultaten. Test zulke code dus op meerdere systemen.
+* De sluitende `"""` bepaalt welke inspringing weggeknipt wordt
+* Backslashes en `\t` blijven letterlijk, net als bij `@`
+* Een `$` ervoor mag ook: `$"""..."""`
+
+::: {.callout-note .fragment}
+`@"..."` blijft gewoon werken. Je ziet het nog volop in bestaande code en in wat AI-tools genereren.
 :::
 
 ---
 
-## Programma afsluiten
+## De Environment-bibliotheek
+
+`Console` is maar één bibliotheek. **`Environment`** vertelt iets over de machine waarop je programma nú draait:
 
 ```csharp
-Environment.Exit(0);
+string gebruiker = Environment.UserName;
+string pcnaam = Environment.MachineName;
+int aantalProcessoren = Environment.ProcessorCount;
+
+Console.WriteLine($"Hallo {gebruiker}, welkom op {pcnaam}.");
+Console.WriteLine($"Hallo {Environment.UserName}!");   // ook zonder tussenvariabele
 ```
 
-Het getal is de **exitcode**: handig om later in logbestanden te zien waarom een programma stopte.
+![](../content/assets/2_tekst/driepcs.png){width=85%}
+
+::: {.callout-important .fragment}
+Hetzelfde programma geeft op elke machine een andere uitvoer. Test zulke code op meer dan één systeem.
+:::
+
+---
+
+## Zelf op ontdekking
 
 :::: {.columns}
 
@@ -406,10 +524,53 @@ Het getal is de **exitcode**: handig om later in logbestanden te zien waarom een
 :::
 
 ::: {.column width="78%"}
-C# leren lijkt in het begin soms saai, daarom strooi ik er af en toe iets geavanceerds tussen. Niemand kent élke bibliotheek: het is aan jou om te ontdekken welke nuttig zijn voor jouw probleem.
+Typ in Visual Studio `Environment.` en kijk wat IntelliSense voorstelt: `OSVersion`, `CurrentDirectory`, ... Niemand kent élke bibliotheek: het is aan jou om te ontdekken welke nuttig zijn voor jouw probleem.
 :::
 
 ::::
+
+```csharp
+long geheugen = Environment.WorkingSet;
+Console.WriteLine($"Dit programma gebruikt {geheugen / 1024 / 1024} MB geheugen");
+```
+
+`WorkingSet` is het geheugen dat Windows aan je programma toewees. Dat getal verschilt per pc, en zelfs bij elke run.
+
+---
+
+## Programma afsluiten
+
+```csharp
+Environment.Exit(1);
+```
+
+Stopt je programma **onmiddellijk**. Alles wat erna staat, wordt niet meer uitgevoerd.
+
+![](../content/assets/2_tekst/exitcode.png){width=80%}
+
+* Het getal is de **exitcode**: 0 betekent "alles goed", elk ander getal "er ging iets mis"
+* Je zag ze al staan in Visual Studio: `exited with code 0`
+
+---
+
+## Zoek de fout
+
+Deze regel wil tonen waar een bestand bewaard werd, maar de uitvoer ziet er raar uit:
+
+```csharp
+Console.WriteLine("Bestand bewaard in C:\temp\notities.txt");
+```
+
+. . .
+
+`\t` is een tab en `\n` een nieuwe lijn:
+
+```text
+Bestand bewaard in C:    emp
+otities.txt
+```
+
+Zet er een `@` voor: `@"C:\temp\notities.txt"`. Of verdubbel elke backslash: `"C:\\temp\\notities.txt"`.
 
 ---
 
@@ -417,9 +578,10 @@ C# leren lijkt in het begin soms saai, daarom strooi ik er af en toe iets geavan
 
 * Een **`char`** is één teken (een 16-bit getal), een **`string`** is een reeks chars
 * **UNICODE** (UTF-16 in .NET) volgt ASCII op en bevat meer dan een miljoen tekens
-* **Escape characters** (`\n`, `\t`, `\"`) en **`@`** sturen hoe tekst geïnterpreteerd wordt
+* **Escape characters** (`\n`, `\t`, `\"`) sturen hoe tekst geïnterpreteerd wordt; `@` en `"""` schakelen ze uit
 * **String interpolation** (`$"...{expressie}..."`) is de standaardmanier om variabelen in tekst te plaatsen; `+` vooral om lange tekst over meerdere lijnen te splitsen
 * Let op de **char-val** (`'A' + 'B'` = 131) en op **machine-afhankelijke** formattering
+* **`Environment`** geeft info over de machine (`UserName`, `MachineName`, `NewLine`) en `Exit(0)` stopt je programma met een exitcode
 
 ::: {.callout-tip}
 Volgende halte: **werken met data**: converteren, casten en rekenen.
