@@ -152,6 +152,14 @@ main .level1 > p:first-of-type::first-letter {
 .navbar .navbar-nav .nav-link {
   font-weight: 500;
 }
+// Datum onder de pdf-downloadlink
+.navbar .nav-pdf-datum {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  line-height: 1.1;
+  opacity: 0.6;
+}
 
 // ---------- Sidebar (hoofdstukken, links) ----------
 #quarto-sidebar {

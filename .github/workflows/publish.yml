@@ -20,6 +20,17 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Zet versiedatum voor de pdf-link
+        run: |
+          DATUM=$(git log -1 --format=%cd --date=format:'%d/%m/%Y')
+          for d in . slides oefeningen; do
+            {
+              echo "# Wordt bij elke build overschreven door .github/workflows/publish.yml"
+              echo "pdfdatum: \"$DATUM\""
+            } > "$d/_variables.yml"
+          done
+          echo "Versiedatum: $DATUM"
+
       - name: Render Quarto book
         run: quarto render .
 

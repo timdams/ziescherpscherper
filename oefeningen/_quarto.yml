@@ -16,6 +16,8 @@ website:
     left:
       - text: "Handboek"
         href: ../index.html
+      - text: "Handboek in pdf<br><small class='nav-pdf-datum'>versie {{< var pdfdatum >}}</small>"
+        href: ../Zie-Scherp-Scherper.pdf
       - text: "Slides"
         href: ../slides/overzicht.html
       - text: "Oefeningen"
