@@ -18,8 +18,9 @@ Na dit hoofdstuk kan je:
 * uitleggen waarom **arrays** veel data van hetzelfde type bundelen
 * arrays **declareren**, **vullen** en met een loop **overlopen**
 * begrijpen dat arrays **by reference** werken (en hoe je ze correct kopieert)
-* de **`System.Array`**-methoden gebruiken (`Sort`, `Reverse`, `IndexOf`, ...)
-* arrays als **parameter** en **returntype** in methoden gebruiken
+* de **`System.Array`**-methoden gebruiken (`Sort`, `Copy`, `IndexOf`, ...)
+* de klassieke **loop-patronen** zelf schrijven: optellen, tellen, de grootste zoeken
+* arrays als **parameter** en **returntype** in methoden gebruiken, ook met `params`
 * **meerdimensionale** en **jagged** arrays herkennen
 
 ---
@@ -99,6 +100,50 @@ string[] namen = new string[5];
 Eens de lengte vastligt, kan een array **niet meer groeien of krimpen**. (Lists in hoofdstuk 12 lossen dat op.)
 :::
 
+::: {.callout-tip .fragment}
+Sinds C# 12 mag je in de plaats van de accolades ook vierkante haken schrijven: `string[] kleuren = ["red", "green", "blue"];`. Die vorm mag ook ná de declaratielijn, de accolades niet.
+:::
+
+---
+
+## Wat staat er in een verse array?
+
+:::: {.columns}
+
+::: {.column width="55%"}
+`new int[3]` maakt drie vakjes die meteen de **defaultwaarde** van hun type bevatten:
+
+* `int`, `double`: `0`
+* `bool`: `false`
+* `char`: `\0`
+* `string`: `null`
+:::
+
+::: {.column width="45%"}
+![Een verse array staat al vol met defaultwaarden.](../content/assets/5_arrays/defaults.png)
+:::
+
+::::
+
+::: {.callout-warning .fragment}
+`new string[5]` geeft je **geen vijf lege teksten**, maar vijf keer `null`. `myColors[0] == ""` is dus `false`, en `myColors[0].Length` crasht. Vul een string-array eerst zelf in.
+:::
+
+---
+
+## Een array of een `List`?
+
+* Ligt het aantal elementen **op voorhand vast** (12 maanden, 64 vakjes op een schaakbord), dan neem je een **array**
+* Kan er tijdens de uitvoer iets **bij komen of wegvallen** (een winkelmandje, spelers die zich aanmelden), dan heb je een **`List`** nodig (hoofdstuk 12)
+
+::: {.callout-warning .fragment}
+Een array heeft `Length`, een `List` heeft `Count`. Een array heeft geen `Count`, en de foutmelding die je dan krijgt zegt niet bepaald duidelijk wat er scheelt.
+:::
+
+::: {.callout-tip .fragment}
+`Array.Resize(ref cijfers, 5)` lijkt een uitweg, maar maakt achter de schermen een **nieuwe** array en kopieert alles over. Bij grote arrays neem je beter meteen een `List`.
+:::
+
 ---
 
 ## Index en accessor
@@ -161,15 +206,30 @@ Een **`IndexOutOfRangeException`**. We bouwen aan een gebouw met 3 verdiepingen;
 ::::
 
 ::: {.callout-important .fragment}
-De compiler vangt dit **niet**: je ontdekt het pas bij de uitvoer.
+De compiler vangt dit **niet**: je ontdekt het pas bij de uitvoer. Hackers misbruiken net dit soort fouten in *buffer overflow attacks*.
 :::
 
 ---
 
 ## Geheugen: value vs reference
 
+:::: {.columns}
+
+::: {.column width="52%"}
 * **Value types** (`int`, `double`, ...) bevatten de **waarde** zelf
 * **Reference types** bewaren een **adres** naar de data elders in het geheugen
+
+```csharp
+int[] getallen = { 5, 42, 2 };
+int age = 5;
+```
+:::
+
+::: {.column width="48%"}
+![De wolk stelt het werkgeheugen voor.](../content/assets/5_arrays/geheugen.png)
+:::
+
+::::
 
 ::: {.callout-important .fragment}
 **Arrays werken by reference.** Een array-variabele bevat dus niet de array zelf, maar een **verwijzing** ernaar.
@@ -201,14 +261,25 @@ Beide variabelen wijzen nu naar **dezelfde** array. `nieuwe[1] = "..."` past dus
 
 ## Een array echt kopiëren
 
-`=` maakt een alias, geen kopie. Kopieer dus **element per element**:
+:::: {.columns}
+
+::: {.column width="55%"}
+`=` maakt een alias. Kopieer dus **element per element**, in een array die even groot is:
 
 ```csharp
+string[] kopie = new string[ploegen.Length];
 for (int i = 0; i < ploegen.Length; i++)
 {
-    nieuwe[i] = ploegen[i];
+    kopie[i] = ploegen[i];
 }
 ```
+:::
+
+::: {.column width="45%"}
+![Twee aparte arrays, elk op een eigen adres.](../content/assets/5_arrays/kopie.png)
+:::
+
+::::
 
 ::: {.callout-tip .fragment}
 Of gebruik `Array.Copy(bron, doel, aantal)` uit de `System.Array`-bibliotheek.
@@ -218,79 +289,217 @@ Of gebruik `Array.Copy(bron, doel, aantal)` uit de `System.Array`-bibliotheek.
 
 ## System.Array
 
-Handige ingebouwde methoden:
+Je roept deze methoden op **`Array`** op en geeft jouw array als argument mee:
 
 ```csharp
 Array.Sort(myColors);     // alfabetisch / van klein naar groot
 Array.Reverse(myColors);  // volgorde omkeren
-Array.Clear(myColors, 0, myColors.Length); // alles op default
+// myColors.Sort();       // bestaat niet
 ```
 
----
-
-## Zoeken in een array
-
-```csharp
-int i = Array.IndexOf(myColors, "green"); // index, of -1
-```
-
-* **`IndexOf`** werkt op een **ongesorteerde** array: voor beginners bijna altijd de juiste keuze
-* **`BinarySearch`** is sneller, maar **enkel op een gesorteerde** array
-
-::: {.callout-important .fragment}
-`BinarySearch` op een ongesorteerde array geeft onzin. Sorteer eerst, of gebruik `IndexOf`.
-:::
-
----
-
-## Zelf zoeken met een loop
-
-Staat rugnummer 12 in de top 5?
-
-```csharp
-int teZoeken = 12;
-int[] top5 = { 5, 10, 12, 25, 16 };
-bool gevonden = false;
-int index = 0;
-do
-{
-    if (top5[index] == teZoeken) gevonden = true;
-    index++;
-} while (!gevonden && index < top5.Length);
-```
+Ze geven **niets** terug: ze krijgen de referentie naar jouw array en herschikken die **ter plekke**. Na die ene regel is `myColors` zelf veranderd.
 
 ::: {.callout-tip .fragment}
-Twee **synchrone** arrays (producten + prijzen op dezelfde index) doorzoek je op dezelfde manier.
+Van groot naar klein sorteren doe je met een `Sort()` gevolgd door een `Reverse()`.
 :::
 
 ---
 
-## Een string is een char-array
+## Clear en Copy
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Allebei werken ze met een **startindex** en een **aantal** elementen:
 
 ```csharp
-string zin = "Ik ben Tom";
-char[] karakters = zin.ToCharArray();
-karakters[8] = 'i';                 // "Ik ben Tim"
-string terug = new string(karakters);
+int[] scores = { 12, 8, 20, 15, 3 };
+Array.Clear(scores, 0, 2);
+// scores: 0 0 20 15 3
+
+string[] doel = new string[myColors.Length];
+Array.Copy(myColors, doel, myColors.Length);
+```
+:::
+
+::: {.column width="45%"}
+![Startindex en aantal elementen.](../content/assets/5_arrays/indexaantal.png)
+:::
+
+::::
+
+::: {.callout-note .fragment}
+`Clear` verandert enkel de inhoud, niet de lengte. Bij `Copy` moet de doel-array al bestaan, en krijg je wél twee aparte arrays in het geheugen.
+:::
+
+---
+
+## Zoeken met IndexOf
+
+`Array.IndexOf` laat je array met rust en geeft een **getal** terug:
+
+```csharp
+int indexGreen = Array.IndexOf(myColors, "green"); // 3
+int indexZwart = Array.IndexOf(myColors, "black"); // -1
 ```
 
-Een `string` is in feite een `char[]`, vandaar deze omzettingen.
+Die **`-1`** is de afspraak voor "niet gevonden": een index kan nooit negatief zijn. Intern overloopt de methode je array element per element, precies zoals je het zelf zou schrijven.
+
+::: {.callout-important .fragment}
+Test op `-1` vóór je het resultaat als index gebruikt, anders vlieg je met `myColors[-1]` tegen een `IndexOutOfRangeException` aan.
+:::
+
+---
+
+## Sneller zoeken: BinarySearch
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Staat je array **gesorteerd**, dan hoef je niet alles te overlopen:
+
+```csharp
+Array.Sort(metingen); // anders werkt het niet
+int index = Array.BinarySearch(metingen, keuze);
+if (index >= 0)
+    Console.WriteLine($"gevonden op {index}");
+```
+
+`BinarySearch` kijkt in het midden en weet na die ene vergelijking al in welke helft het element moet liggen.
+:::
+
+::: {.column width="45%"}
+![Elke vergelijking gooit de helft overboord.](../content/assets/5_arrays/binarysearch.png)
+:::
+
+::::
+
+::: {.callout-important .fragment}
+Op een **ongesorteerde** array krijg je geen foutmelding, wel af en toe een fout antwoord. Gebruik dan `IndexOf` of een eigen loop.
+:::
+
+---
+
+## Zelf een loop schrijven: optellen en tellen
+
+Zodra je iets wil optellen of tellen helpt geen enkele kant-en-klare methode je nog. Je resultaat-variabele maak je aan **vóór** de loop:
+
+```csharp
+int som = 0;
+for (int i = 0; i < punten.Length; i++)
+{
+    som += punten[i];
+}
+double gemiddelde = (double)som / punten.Length;
+```
+
+::: {.callout-warning .fragment}
+De cast naar `double` is nodig: `som` en `Length` zijn allebei `int`, dus zonder cast doe je een gehele deling. Wil je tellen in plaats van optellen, dan staat er enkel een `if` in de loop.
+:::
+
+---
+
+## De grootste zoeken
+
+Hiervoor bestaat geen kant-en-klare methode. Je houdt de beste kandidaat **tot nu toe** bij, en meteen ook zijn index:
+
+```csharp
+int hoogste = punten[0];
+int indexHoogste = 0;
+for (int i = 1; i < punten.Length; i++)
+{
+    if (punten[i] > hoogste)
+    {
+        hoogste = punten[i];
+        indexHoogste = i;
+    }
+}
+```
+
+::: {.callout-important .fragment}
+Start met **`punten[0]`**, niet met `0`. Met `int hoogste = 0;` krijg je een fout antwoord zodra alle waarden negatief zijn. Daarom start de loop ook bij index **1**.
+:::
+
+---
+
+## Zoeken en stoppen
+
+Staat rugnummer 12 in de top 5? Je loop heeft twee redenen om te stoppen: het einde van de array, of een geslaagde zoektocht.
+
+```csharp
+int index = 0;
+bool gevonden = false;
+while (index < top5.Length && !gevonden)
+{
+    if (top5[index] == teZoeken)
+        gevonden = true;
+    else
+        index++;
+}
+```
+
+::: {.callout-warning .fragment}
+`index++` staat in de **`else`**. Verhoog je de teller altijd, dan wijst `index` achteraf één positie te ver. Met een `for`-loop en een `break` mag ook: je bewaart de index dan in een variabele die op `-1` start.
+:::
+
+---
+
+## Twee synchrone arrays
+
+Naam en prijs staan op **dezelfde index** in twee aparte arrays:
+
+```csharp
+string[] producten = { "appelen", "peren", "meloenen" };
+double[] prijzen = { 3.3, 6.2, 2.9 };
+
+int i = Array.IndexOf(producten, keuzeGebruiker);
+if (i != -1) Console.WriteLine($"Prijs: {prijzen[i]}");
+```
+
+![Links staan naam en prijs op dezelfde index. Rechts verhuisden de namen wel, de prijzen niet.](../content/assets/5_arrays/synchroon.png){width=70%}
+
+::: {.callout-warning .fragment}
+`Array.Sort(producten)` breekt de link: de namen verhuizen, de prijzen blijven staan. In hoofdstuk 9 bewaart één object de naam én de prijs samen.
+:::
+
+---
+
+## Een string is (bijna) een array
+
+Lezen mag, met vierkante haken en `Length`, precies zoals bij een array:
+
+```csharp
+string zin = "Ik ben Tim";
+Console.WriteLine(zin[7]);      // T, en dat is een char
+Console.WriteLine(zin.Length);  // 10
+```
+
+. . .
+
+Schrijven mag **niet**: `zin[8] = 'i';` compileert niet. Een string ligt vast zodra hij bestaat. Wil je toch karakter per karakter werken, dan ga je langs een echte `char[]`:
+
+```csharp
+char[] karakters = zin.ToCharArray();
+karakters[8] = 'i';
+string terug = new string(karakters);
+```
 
 ---
 
 ## Nuttige string-methoden
 
 ```csharp
-"Tim".Length;                 // 3
-"Ik ben Reinhardt".IndexOf("ben"); // 3
-"  tekst  ".Trim();           // "tekst"
-"Tim".ToUpper();              // "TIM"
-"Ik ben Mercy".Replace("Mercy", "Reinhardt");
-"Ik ben Mercy".Remove(3, 4);  // "Ik Mercy"
+string boek = "Ik ben Mercy";
+boek.IndexOf("ben");                 // 3
+boek.Substring(3, 3);                // "ben"
+boek.Remove(3, 4);                   // "Ik Mercy"
+boek.ToUpper();                      // "IK BEN MERCY"
+boek.Replace("Mercy", "Reinhardt");  // "Ik ben Reinhardt"
+"  hey  ".Trim();                    // "hey"
 ```
 
-::: {.callout-note .fragment}
-Deze methoden geven een **nieuwe** string terug; de originele blijft ongewijzigd. Bewaar het resultaat.
+::: {.callout-important .fragment}
+Ze geven allemaal een **nieuwe** string terug en laten het origineel ongemoeid. `boek.Trim();` op zichzelf doet dus niets: je gooit het resultaat weg. Schrijf `boek = boek.Trim();`. Merk het verschil met `Array.Sort`, die jouw array wél ter plekke aanpast.
 :::
 
 ---
@@ -301,10 +510,14 @@ Deze methoden geven een **nieuwe** string terug; de originele blijft ongewijzigd
 string data = "12,13,20";
 string[] delen = data.Split(',');        // {"12","13","20"}
 
-string samen = String.Join(";", delen);  // "12;13;20"
+string samen = string.Join(";", delen);  // "12;13;20"
 ```
 
-`Split` levert een **array** op, `Join` voegt een array terug samen tot één string.
+`Split` levert een **array** op, `Join` voegt er terug één string van. Hoeveel elementen `Split` oplevert weet je op voorhand niet, dus gebruik ook hier `delen.Length` in je loop.
+
+::: {.callout-tip .fragment}
+`Console.WriteLine(string.Join(", ", myColors));` is meteen de kortste manier om een hele array op één lijn te tonen.
+:::
 
 ---
 
@@ -330,6 +543,10 @@ Console.WriteLine(nrs[0]); // 0, niet 1
 
 ::::
 
+::: {.callout-tip .fragment}
+Wil je dat een methode je origineel niet aanraakt, geef dan een kopie mee die je zelf element per element hebt gevuld.
+:::
+
 ---
 
 ## Array-grootte en returntype
@@ -350,6 +567,65 @@ int[] nieuw = MaakArray(4, 666);
 
 ::: {.callout-warning .fragment}
 `static void LeesData(int[6] arr)` is **fout**: een grootte in de parameterlijst mag niet.
+:::
+
+---
+
+## params: zoveel argumenten als je wil
+
+Nu snap je de `params object[] arg` in de signatuur van `Console.WriteLine`. Zet je `params` voor een array-parameter, dan steekt C# de losse waarden zelf in een array:
+
+```csharp
+static int Som(params int[] getallen)
+{
+    int totaal = 0;
+    for (int i = 0; i < getallen.Length; i++)
+        totaal += getallen[i];
+    return totaal;
+}
+```
+
+```csharp
+Som(1, 2, 3);   // 6
+Som();          // 0
+Som(cijfers);   // een bestaande array mag ook
+```
+
+::: {.callout-warning .fragment}
+Er mag maar **één** `params`-parameter zijn, en die staat **achteraan**: `static void Log(string titel, params string[] regels)`.
+:::
+
+---
+
+## Stagiair Steven
+
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="78%"}
+Steven wil de scores herstellen naar een verse, lege array. De A.I. gaf hem dit:
+
+```csharp
+static void Reset(int[] scores)
+{
+    scores = new int[scores.Length];
+}
+
+int[] scores = { 10, 25, 3 };
+Reset(scores);
+Console.WriteLine(scores[0]);
+```
+
+"`Reset` zet er een nieuwe, lege array in de plaats, dus dit toont `0`", zegt hij.
+:::
+
+::::
+
+::: {.callout-note .fragment}
+Er verschijnt gewoon `10`. Wat je meegeeft is een **kopie van de wegwijzer**: die kopie mag je in de methode naar iets anders laten wijzen, de variabele in `Main` blijft naar de originele array kijken. Een *element* aanpassen (`scores[0] = 99`) werkt wél door, de hele array *vervangen* niet.
 :::
 
 ---
@@ -377,28 +653,68 @@ Test **eerst** `args.Length >= 3`, dan pas `args[2]`. De `&&` stopt links bij `f
 :::: {.columns}
 
 ::: {.column width="55%"}
-Met een komma in de haken maak je een **rechthoekige** array:
+Met een komma in de haken maak je een **rechthoekig rooster**:
 
 ```csharp
-int[,] matrix = new int[5, 10];
+int[,] regen = new int[4, 7]; // 4 rijen, 7 kolommen
 
-string[,] boeken =
-{
-    { "Macbeth", "Shakespeare" },
-    { "Zie scherp", "Tim Dams" }
-};
-Console.WriteLine(boeken[1, 1]); // Tim Dams
+regen[0, 3] = 12;             // week 1, dag 4
+Console.WriteLine(regen[0, 3]);
 ```
+
+Eerst de **rij**, dan de **kolom**. Beide starten bij 0.
 :::
 
 ::: {.column width="45%"}
-![Een 2D-array.](../content/assets/5_arrays/2d.png)
+![Een 2D-array.](../content/assets/5_arrays/2dNEW.png)
 :::
 
 ::::
 
 ::: {.callout-tip .fragment}
-`.Length` geeft het **totaal**; `GetLength(0)` en `GetLength(1)` de afzonderlijke dimensies, `.Rank` het aantal dimensies.
+`.Length` geeft het **totaal** (hier 28); `GetLength(0)` en `GetLength(1)` de afzonderlijke dimensies, `.Rank` het aantal dimensies.
+:::
+
+---
+
+## Alle vakjes overlopen
+
+Twee geneste loops: de buitenste over de **rijen**, de binnenste over de **kolommen** van die rij.
+
+```csharp
+for (int week = 0; week < regen.GetLength(0); week++)
+{
+    for (int dag = 0; dag < regen.GetLength(1); dag++)
+        Console.Write($"{regen[week, dag]} ");
+
+    Console.WriteLine(); // nieuwe lijn na iedere week
+}
+```
+
+Ook een rooster gaat **by reference** naar een methode; in de parameter herhaal je de komma: `static void ToonRooster(int[,] rooster)`.
+
+::: {.callout-warning .fragment}
+Gebruik `GetLength(...)` en geen harde getallen. En verwissel de indices niet: `regen[dag, week]` compileert perfect, maar crasht bij de uitvoer.
+:::
+
+---
+
+## Rooster of klasse?
+
+Een 2D-array werkt zolang **ieder vakje hetzelfde betekent**: een spelbord, een doolhof, pixels, regen per dag.
+
+```csharp
+string[,] boeken =
+{
+    { "Macbeth", "Shakespeare", "ID12341" },
+    { "Zie scherp", "Tim Dams", "ID007" }
+};
+```
+
+Hier betekent elke kolom iets anders: alles moet `string` zijn, en `boeken[1, 1]` zegt nergens dat kolom 1 de auteur is.
+
+::: {.callout-tip .fragment}
+Vanaf hoofdstuk 9 wordt dit een klasse `Boek`, in hoofdstuk 12 bewaard in een gewone 1D-array. De tweede dimensie verdwijnt.
 :::
 
 ---
@@ -417,18 +733,20 @@ double[][] tickets =
     new double[] { 123, 31.3 },
     new double[] { 2.1 }
 };
-Console.WriteLine(tickets[0][1]); // 40
+tickets[0][1];      // 40
+tickets.Length;     // 3 sub-arrays
+tickets[1].Length;  // 2
 ```
 :::
 
 ::: {.column width="45%"}
-![Een jagged array.](../content/assets/5_arrays/jaggedt.png)
+![Iedere rij is een aparte array met een eigen lengte.](../content/assets/5_arrays/jagged.png)
 :::
 
 ::::
 
 ::: {.callout-note .fragment}
-Vaak omslachtig en foutgevoelig. De collecties uit hoofdstuk 12 zijn meestal een gezonder alternatief.
+Je moet ze vooral kunnen **herkennen**. Zelf schrijf je liever een rechthoekige `[,]`-array, of een collectie uit hoofdstuk 12: iedere rij apart aanmaken en apart op zijn lengte controleren is omslachtig en foutgevoelig.
 :::
 
 ---
@@ -438,8 +756,8 @@ Vaak omslachtig en foutgevoelig. De collecties uit hoofdstuk 12 zijn meestal een
 * Een **array** bundelt veel waarden van hetzelfde type onder één naam; index start bij **0**
 * Overloop arrays met een **loop** en `.Length`; let op de **`IndexOutOfRangeException`**
 * Arrays werken **by reference**: `=` maakt een alias, kopieer dus element per element
-* **`System.Array`** en string-methoden (`Split`, `Replace`, ...) besparen veel werk
-* Arrays gaan **by reference** naar methoden; **meerdimensionale** en **jagged** arrays voor speciale gevallen
+* **`System.Array`** en de string-methoden besparen werk; optellen, tellen en de grootste zoeken schrijf je zelf
+* Arrays gaan **by reference** naar methoden (`params` voor een los aantal argumenten); een **2D-array** dient voor een rooster, **jagged** moet je enkel herkennen
 
 ::: {.callout-tip}
 Volgende halte: **object-georiënteerd programmeren**, met klassen en objecten.
