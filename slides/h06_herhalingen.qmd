@@ -18,36 +18,104 @@ Na dit hoofdstuk kan je:
 * uitleggen wat een **loop** en een **iteratie** zijn
 * de drie soorten loops onderscheiden: **definite**, **indefinite** en **oneindig**
 * loops schrijven met **`while`**, **`do while`** en **`for`**
+* een loop **tracen** en het juiste aantal iteraties tellen (**off-by-one**)
 * een **oneindige loop** herkennen en de **scope** in loops correct hanteren
-* **geneste loops** schrijven en het aantal iteraties berekenen
+* **geneste loops** schrijven, in rijen en kolommen denken en het aantal iteraties berekenen
 * bewust omgaan met **`break`** en **`continue`**
 
 ---
 
 ## Van branching naar herhalen
 
+:::: {.columns}
+
+::: {.column width="48%"}
 Met `if` konden we **vertakken**, maar niet **teruggaan** in ons algoritme.
 
-> Soms moet een stuk code meerdere keren draaien tot aan een conditie voldaan is: *"Vraag input tot de gebruiker 666 ingeeft."*
+```text
+Neem geld uit spaarpot
+Wandel naar de dichtstbijzijnde bakker
+Zolang de bakker toe is:
+    Wandel naar de volgende bakker
+Vraag om een brood
+Betaal en keer huiswaarts
+```
+:::
 
-Elke ronde door een loop heet een **iteratie**.
+::: {.column width="52%"}
+![De test stuurt je nu terug naar een vorige plek in plaats van naar een stopbord.](../content/assets/3_loops/bakkerroutelus.png)
+:::
+
+::::
+
+Hoe vaak die *zolang*-stap draait weet je niet vooraf. Toch schrijf je ze maar één keer op.
+
+---
+
+## Zonder loop typ je alles uit
+
+```csharp
+Console.WriteLine("Ik zal niet spieken");
+Console.WriteLine("Ik zal niet spieken");
+Console.WriteLine("Ik zal niet spieken");
+//...en zo nog 97 keer
+```
+
+Wil je die zin achteraf aanpassen, dan mag je honderd lijnen bijwerken en vergeet je er gegarandeerd eentje. Elke ronde door een loop heet een **iteratie**.
 
 ::: {.callout-tip .fragment}
-Herhalende code in een loop is **korter**, **minder foutgevoelig** en beter onderhoudbaar.
+Loops zitten in zowat elk programma dat je dagelijks gebruikt: je game tekent 60 keer per seconde een beeld, je mailprogramma overloopt alle nieuwe berichten, de zelfscankassa blijft scannen tot jij op *afsluiten* duwt.
+:::
+
+---
+
+## Elke loop heeft drie zaken
+
+1. Een **startsituatie**: een teller op 0, een variabele die nog leeg is
+2. Een **conditie** die getest wordt om te weten of er nog een iteratie volgt
+3. Iets in het codeblok dat die conditie kan **doen veranderen**: de teller verhogen, nieuwe invoer vragen
+
+::: {.callout-important .fragment}
+Vergeet je punt 3, dan blijft de conditie eeuwig waar en loopt je programma vast.
 :::
 
 ---
 
 ## Soorten loops
 
+:::: {.columns}
+
+::: {.column width="50%"}
 * **Definite** (counted): aantal herhalingen vooraf gekend (getallen 0 tot 100)
-* **Indefinite** (sentinel): input of een test bepaalt wanneer het stopt
+* **Indefinite** (sentinel): input of een interne test bepaalt wanneer het stopt
 * **Oneindig**: stopt nooit (soms gewenst, zoals de game loop, vaak een bug)
+:::
+
+::: {.column width="50%"}
+![De drie soorten loops.](../content/assets/3_loops/soortenloops.png)
+:::
+
+::::
+
+Het bakkersalgoritme is een indefinite loop: het aantal gesloten bakkers ken je pas terwijl je aan het wandelen bent.
+
+---
+
+## Loops in C\#
+
+* **`while`**: draait 0 of meer keer
+* **`do while`**: draait minstens 1 keer
+* **`for`**: compacter wanneer je weet hoe vaak je moet herhalen
+* **`foreach`**: pas in hoofdstuk 12, wanneer we met objecten werken
 
 | Looptype | Definite | Indefinite | Oneindig |
 |---|:---:|:---:|:---:|
 | while / do while | x | x | x |
 | for | x | | |
+
+::: {.callout-tip .fragment}
+Met `while` kan je meer, en toch val je vaak terug op een `for`: die is compacter, en heel wat problemen zijn nu eenmaal definite loops.
+:::
 
 ---
 
@@ -57,11 +125,11 @@ Herhalende code in een loop is **korter**, **minder foutgevoelig** en beter onde
 
 ::: {.column width="55%"}
 ```csharp
-int tellertje = 0;
-while (tellertje < 100)
+int teller = 0;
+while (teller < 100)
 {
-    tellertje++;
-    Console.WriteLine(tellertje);
+    teller++;
+    Console.WriteLine(teller);
 }
 ```
 
@@ -74,8 +142,50 @@ Zolang de conditie **`true`** is, draait het blok. Is ze meteen `false`, dan dra
 
 ::::
 
+::: {.callout-important .fragment}
+De conditie zegt wanneer je **doorgaat**, niet wanneer je stopt. Onthoud dat, want straks bij de invoercontrole loopt het net daar mis.
+:::
+
+---
+
+## Tracen: waarom staat 100 er nog bij?
+
+De loop hiervoor toont 1 tot en met 100. Schrijf de rondes uit:
+
+| `teller` bij de test | `teller < 100` | In de loop | Op het scherm |
+|:---:|:---:|:---:|:---:|
+| 0 | `true` | wordt 1 | 1 |
+| ... | ... | ... | ... |
+| 99 | `true` | wordt 100 | 100 |
+| 100 | `false` | loop stopt | niets |
+
 ::: {.callout-tip .fragment}
-Zie je dezelfde lijnen meermaals onder elkaar (copy-paste)? Grote kans dat een loop beter is.
+Zo'n tabel uitschrijven heet een loop **tracen**. Loop je vast op een loop, teken dan met pen en papier de eerste twee en de laatste twee rondes uit. Dat gaat sneller dan gokken.
+:::
+
+---
+
+## Niet enkel tellen: de sentinel
+
+Een `while` mag evengoed een *indefinite loop* zijn. Geen teller te bespeuren:
+
+```csharp
+int getal = 0;
+while (getal != 666)
+{
+    Console.WriteLine("Geef een getal in (666 stopt):");
+    getal = int.Parse(Console.ReadLine());
+}
+```
+
+Zo'n stopwaarde heet een **sentinel**. De conditie mag ook complexer, met de logische operators uit hoofdstuk 5:
+
+```csharp
+while (getal != 666 && pogingen < 10)
+```
+
+::: {.callout-important .fragment}
+`getal` krijgt een waarde **vóór** de loop. De test staat bovenaan en draait nog voor de gebruiker iets kon intikken. Die 0 dient enkel om de eerste test te laten slagen.
 :::
 
 ---
@@ -100,15 +210,16 @@ while (teller < 10)
 ```
 
 ::: {.callout-tip .fragment}
-Zorg dat de variabele uit je conditie **effectief verandert** in de loop. Vastgelopen? Stop met de **rode knop** in VS.
+Zorg dat de variabele uit je conditie **effectief verandert**, en in de juiste richting. Vastgelopen? Stop met de **rode knop** in Visual Studio, of pauzeer met **Pause/Break**.
 :::
 
 ---
 
 ## Scope in loops
 
-Een variabele die je **in** de loop declareert, wordt elke iteratie **opnieuw** aangemaakt:
+:::: {.columns}
 
+::: {.column width="52%"}
 ```csharp
 int teller = 1;
 while (teller <= 10)
@@ -120,8 +231,17 @@ while (teller <= 10)
 Console.WriteLine(som); // bestaat hier niet eens
 ```
 
+Je verwacht 1, 3, 6, 10 en krijgt 1, 2, 3, 4. En buiten de accolades bestaat `som` gewoon niet: *The name 'som' does not exist in the current context*.
+:::
+
+::: {.column width="48%"}
+![Links de declaratie binnen de accolades, rechts ervoor. De balk toont hoe ver de scope reikt.](../content/assets/3_loops/scopeloop.png)
+:::
+
+::::
+
 ::: {.callout-important .fragment}
-Wil je een som **bijhouden** over de iteraties heen? Declareer `som` dan **vóór** de loop.
+Wil je een som **bijhouden** over de iteraties heen? Declareer `som` dan **vóór** de loop. En wat bevat `teller` na afloop? Niet 10, maar 11.
 :::
 
 ---
@@ -130,7 +250,7 @@ Wil je een som **bijhouden** over de iteraties heen? Declareer `som` dan **vóó
 
 :::: {.columns}
 
-::: {.column width="55%"}
+::: {.column width="50%"}
 ```csharp
 int i = 10;
 do
@@ -140,11 +260,11 @@ do
 } while (i > 0);
 ```
 
-Een `do while` draait **minstens één keer**: de conditie wordt pas **na** elke iteratie getest.
+Een `do while` draait **minstens één keer**: de conditie wordt pas **na** elke iteratie getest. Op de flowchart is de ruit van plaats gewisseld.
 :::
 
-::: {.column width="45%"}
-![Do-while-flowchart.](../content/assets/3_loops/dowhile.png)
+::: {.column width="50%"}
+![De `while` en de `do while` naast elkaar.](../content/assets/3_loops/whilevsdowhile.png)
 :::
 
 ::::
@@ -155,9 +275,40 @@ Let op de **puntkomma** na `while (conditie);`. Vergeten is een klassieke fout (
 
 ---
 
+## Tel even mee
+
+Welke getallen toont dit aftelprogramma precies?
+
+```csharp
+int i = 10;
+do
+{
+    i--;
+    Console.WriteLine(i);
+} while (i > 0);
+```
+
+. . .
+
+**9 tot en met 0.** Dus niet 10 tot en met 1, en ook niet 10 tot en met 0.
+
+::: {.callout-note .fragment}
+Dezelfde val als bij de eerste `while`: we passen `i` aan **vóór** we hem tonen. Wil je 10 tot en met 1 zien, zet dan `Console.WriteLine(i);` vóór `i--;`.
+:::
+
+---
+
 ## Foute input opvangen
 
-`do while` is ideaal om te blijven vragen tot de input klopt:
+Blijven vragen tot de gebruiker a, b of c intikt. Denk in twee stappen.
+
+**Stap 1: wanneer is de invoer goed?**
+
+```csharp
+input == "a" || input == "b" || input == "c"
+```
+
+**Stap 2: draai het om.** De conditie zegt wanneer je *doorgaat*, dus zet er een `!` voor:
 
 ```csharp
 string input;
@@ -165,12 +316,8 @@ do
 {
     Console.WriteLine("Geef uw keuze: a, b of c");
     input = Console.ReadLine();
-} while (input != "a" && input != "b" && input != "c");
+} while (!(input == "a" || input == "b" || input == "c"));
 ```
-
-::: {.callout-important .fragment}
-Declareer `input` **vóór** de loop: de test achteraan ligt **buiten** de accolades, dus in een andere scope.
-:::
 
 ---
 
@@ -179,8 +326,8 @@ Declareer `input` **vóór** de loop: de test achteraan ligt **buiten** de accol
 Dezelfde logica, anders geschreven:
 
 ```csharp
-input != "a" && input != "b" && input != "c"
 !(input == "a" || input == "b" || input == "c")
+input != "a" && input != "b" && input != "c"
 ```
 
 ::: {.callout-tip}
@@ -190,14 +337,60 @@ De **Wetten van De Morgan**:
 * `!(A || B)` is hetzelfde als `!A && !B`
 :::
 
+Welke van beide vormen je schrijft is persoonlijke smaak.
+
 ---
 
-## For
+## Waarom hier een `do while`?
+
+Met een gewone `while` staat de test vooraan, en dan heeft `input` nog geen zinnige waarde. Twee omwegen, geen van beide fraai:
+
+```csharp
+Console.WriteLine("Geef uw keuze: a, b of c");   // de vraag twee keer in je code
+string input = Console.ReadLine();
+while (input != "a" && input != "b" && input != "c") { /* ... */ }
+```
+
+```csharp
+string input = "";   // kunstmatige beginwaarde, enkel voor die eerste test
+while (input != "a" && input != "b" && input != "c") { /* ... */ }
+```
+
+::: {.callout-important .fragment}
+Declareer `input` **vóór** de loop: de test achteraan ligt **buiten** de accolades, dus in een andere scope.
+:::
+
+---
+
+## Van while naar for
+
+Deze constructie komt zo vaak voor dat er een kortere schrijfwijze voor bestaat:
+
+```csharp
+int i = 0;                 // startsituatie
+while (i < 11)             // conditie
+{
+    Console.WriteLine(i);
+    i = i + 2;             // dit doet de conditie veranderen
+}
+```
+
+![Dezelfde loop twee keer. Bij de `while` liggen de drie stukken verspreid over de code, bij de `for` staan ze naast elkaar in de kop.](../content/assets/3_loops/whilevsfor.png){width=70%}
+
+---
+
+## For: de drie delen
 
 :::: {.columns}
 
 ::: {.column width="55%"}
-Een compacte loop wanneer je een teller bijhoudt:
+```csharp
+for (setup; finish test; update)
+```
+
+* **setup** (*initializer*): zet de teller op zijn beginwaarde (`int i = 0`)
+* **finish test** (*condition*): de booleaanse test (`i < 11`)
+* **update** (*iterator*): wat na elke iteratie gebeurt (`i += 2`)
 
 ```csharp
 for (int i = 0; i < 11; i += 2)
@@ -205,30 +398,148 @@ for (int i = 0; i < 11; i += 2)
     Console.WriteLine(i);
 }
 ```
-
-Toont 0, 2, 4, 6, 8, 10.
 :::
 
 ::: {.column width="45%"}
-![For-flowchart.](../content/assets/3_loops/for.png)
+![De `for`-flowchart met de code erbij.](../content/assets/3_loops/for.png)
 :::
 
 ::::
 
+::: {.callout-tip .fragment}
+Typ `for` + tweemaal **[tab]** in Visual Studio voor een kant-en-klare for-loop.
+:::
+
 ---
 
-## For: de drie delen
+## De volgorde van de drie delen
+
+1. De **setup** loopt exact één keer, bij de start van de loop
+2. De **finish test** loopt vóór élke iteratie, dus ook vóór de allereerste
+3. De **update** loopt telkens ná het codeblok, niet ervoor
+
+Omdat de test vooraan staat draait een `for` net als een `while` 0 of meer keer:
 
 ```csharp
-for (setup; finish test; update)
+for (int i = 5; i < 3; i++)
+{
+    Console.WriteLine("Deze lijn zie je nooit.");
+}
 ```
 
-* **setup** (*initializer*): zet de wachter-variabele op de beginwaarde (`int i = 0`)
-* **finish test** (*condition*): de booleaanse test (`i < 11`)
-* **update** (*iterator*): wat na elke iteratie gebeurt (`i += 2`)
+::: {.callout-tip .fragment}
+De teller heet meestal `i`, van *index*. Heb je er meerdere nodig, dan volgen `j` en `k`. Overloop je effectief rijen, noem hem dan gerust `rij`.
+:::
+
+---
+
+## Stagiair Steven
+
+:::: {.columns}
+
+::: {.column width="20%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="80%"}
+Steven moet de getallen 1 tot en met 10 tonen. De A.I. gaf hem deze loop en hij plakt ze er meteen in:
+
+```csharp
+for (int i = 1; i < 10; i++)
+{
+    Console.WriteLine(i);
+}
+```
+
+"Van 1 tot 10, dat staat er toch?", zegt hij. Tel even mee: welke getallen verschijnen er echt?
+:::
+
+::::
+
+::: {.callout-note .fragment}
+`1` tot en met `9`. De finish test `i < 10` blijft waar zolang `i` kleiner is dan 10, dus bij `i` gelijk aan 10 stopt de loop nog net voor die laatste waarde. Wil Steven de 10 erbij, dan moet er `i <= 10` staan (of `i < 11`). Zo'n vergissing van precies één te veel of te weinig heet een **off-by-one**-fout. Steven liet de A.I. de grens kiezen en telde zelf niet na.
+:::
+
+---
+
+## Hoeveel keer loopt deze loop?
+
+| Header | `i` neemt de waarden aan | Aantal iteraties |
+| --- | :---: | :---: |
+| `for (int i = 0; i < 10; i++)` | 0 tot en met 9 | 10 |
+| `for (int i = 1; i < 10; i++)` | 1 tot en met 9 | 9 |
+| `for (int i = 1; i <= 10; i++)` | 1 tot en met 10 | 10 |
+| `for (int i = 0; i <= 10; i++)` | 0 tot en met 10 | 11 |
+| `for (int i = 10; i > 0; i--)` | 10 tot en met 1 | 10 |
+
+Start je bij 0 en test je met `<`, dan staat het aantal iteraties letterlijk in de test. Start je bij 1, dan heb je `<=` nodig om even vaak te lopen.
 
 ::: {.callout-tip .fragment}
-Typ `for` + tweemaal **[tab]** in VS voor een kant-en-klare for-loop.
+De laatste rij telt af: de teller start op zijn hoogste waarde en de test draait mee om naar `>`. Met `i < 10` zou daar niets gebeuren.
+:::
+
+---
+
+## Scope van de teller
+
+Schrijf je `int i = 0` in de setup, dan hoort `i` bij de loop en verdwijnt hij erna:
+
+```csharp
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(i);
+}
+Console.WriteLine(i); // fout: 'i' does not exist in the current context
+```
+
+Heb je die eindwaarde nadien wél nodig, maak de variabele dan vóór de loop aan en laat de `int` weg:
+
+```csharp
+int i;
+for (i = 0; i < 10; i++) { /* ... */ }
+Console.WriteLine(i); // toont 10
+```
+
+::: {.callout-tip .fragment}
+Kom je in die situatie terecht, vraag je dan eerst af of een `while` niet de duidelijkere keuze is.
+:::
+
+---
+
+## Valkuil: een puntkomma achter de header
+
+```csharp
+for (int i = 0; i < 10; i++);
+{
+    Console.WriteLine(i);
+}
+```
+
+De loop krijgt een **leeg codeblok**: hij draait tien keer en doet tien keer niets. Het blok eronder hoort niet meer bij de loop.
+
+| Constructie | Puntkomma achteraan? |
+| --- | --- |
+| `if (conditie)` | nee, fout |
+| `while (conditie)` | nee, fout |
+| `} while (conditie)` | **ja, verplicht** |
+| `for (setup; test; update)` | nee, fout |
+
+---
+
+## Valkuil: de teller twee keer aanpassen
+
+```csharp
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(i);
+    i++; // oeps, i gaat nu twee keer per ronde omhoog
+}
+```
+
+Dit toont 0, 2, 4, 6 en 8. Wil je stappen van 2, schrijf dan `i += 2` in de header en laat de teller in het codeblok met rust.
+
+::: {.callout-warning .fragment}
+Een `for` is bedoeld voor een **definite** loop. Wring je er een sentinel-loop in, dan blijft de update leeg (`for (int getal = 0; getal != 666; )`) en houd je enkel de omslachtige syntax over. Zulke code hoort in een `while`.
 :::
 
 ---
@@ -246,6 +557,14 @@ for (int i = 1; i <= 10; i++)
 * **`continue`**: stop de huidige iteratie, ga naar de volgende
 * **`break`**: stap meteen volledig uit de loop
 
+. . .
+
+Wat hier eigenlijk staat is "toon niets wanneer `i` gelijk is aan 5", en dat schrijf je even goed zo:
+
+```csharp
+if (i != 5) { Console.WriteLine(i); }
+```
+
 ---
 
 ## De goto-politie, deel 2
@@ -259,7 +578,7 @@ for (int i = 1; i <= 10; i++)
 ::: {.column width="70%"}
 **Olla!? Wat denken we dat we aan het doen zijn?**
 
-`break` en `continue` zijn de subtiele vrienden van `goto`. Probeer eerst je loop netjes te stoppen via een goede **stopconditie**.
+`break` en `continue` zijn de subtiele vrienden van `goto`. Probeer eerst je loop netjes te stoppen via een goede **stopconditie**. Met een `continue` in een `while` spring je bovendien zo over de verhoging van je teller heen, waarna je programma blijft hangen.
 :::
 
 ::::
@@ -287,6 +606,8 @@ while (tellerA < 3)        // outer
     }
 }
 ```
+
+Denk in **rijen en kolommen**: de outer loop overloopt de rijen, de inner de kolommen binnen zo'n rij.
 :::
 
 ::: {.column width="48%"}
@@ -297,6 +618,81 @@ while (tellerA < 3)        // outer
 
 ::: {.callout-important .fragment}
 `tellerB = 0` moet elke ronde **gereset** worden, anders blijft hij op 5 staan en draait de inner loop maar één keer.
+:::
+
+---
+
+## Nesting met een for
+
+```csharp
+for (int i = 1; i <= 3; i++)         // outer loop
+{
+    for (int j = 1; j <= 5; j++)     // inner loop
+    {
+        Console.WriteLine($"A:{i}, B: {j}");
+    }
+}
+```
+
+Dezelfde uitvoer, minder in de weg. Belangrijker: **de reset zit gratis in de setup**. Start de outer loop een nieuwe ronde, dan komt de volledige inner loop opnieuw aan de beurt, `int j = 1` incluis.
+
+::: {.callout-tip .fragment}
+Daarom worden geneste loops in de praktijk bijna altijd met een `for` geschreven: de vergeten reset kan je hier niet maken.
+:::
+
+---
+
+## De volgorde van uitvoering
+
+:::: {.columns}
+
+::: {.column width="45%"}
+1. Setup outer: `i` wordt 1 (één keer)
+2. Test outer: `i <= 3`
+3. Setup inner: `j` wordt 1 (elke ronde opnieuw)
+4. Test inner: `j <= 5`
+5. Codeblok van de inner loop
+6. Update inner: `j++`, terug naar 4
+7. Faalt de inner-test, dan pas `i++`, terug naar 2
+:::
+
+::: {.column width="55%"}
+![De zeven stukken, genummerd in de volgorde waarin ze uitgevoerd worden.](../content/assets/3_loops/nestvolgorde.png)
+:::
+
+::::
+
+Stappen 4, 5 en 6 draaien vijf keer voor er ook maar één keer aan stap 7 wordt toegekomen.
+
+---
+
+## Rijen en kolommen op het scherm
+
+:::: {.columns}
+
+::: {.column width="52%"}
+```csharp
+for (int rij = 1; rij <= 5; rij++)
+{
+    for (int kolom = 1; kolom <= 5; kolom++)
+    {
+        Console.Write(rij * kolom + "\t");
+    }
+    Console.WriteLine();
+}
+```
+
+`Console.Write` springt niet naar de volgende lijn, `\t` is een tab.
+:::
+
+::: {.column width="48%"}
+![De outer loop gaat rij per rij naar beneden, de inner loop van links naar rechts.](../content/assets/3_loops/rijkolom.png)
+:::
+
+::::
+
+::: {.callout-important .fragment}
+Die laatste `Console.WriteLine();` staat binnen de outer loop, buiten de inner. Zet je ze in de inner loop, dan krijg je 25 lijnen met één getal. Zet je ze buiten de outer loop, dan komt alles op één lange lijn.
 :::
 
 ---
@@ -317,9 +713,75 @@ for (int i = 0; i < 10; i++)
 
 Outer 10 keer, inner telkens 5 keer: **10 x 5 = 50** keer "Hallo".
 
-::: {.callout-important .fragment}
-`break` haalt je enkel uit de **huidige** loop. Uit alle geneste loops springen vraagt een andere aanpak (bv. een booleaanse vlag).
+::: {.callout-warning .fragment}
+Elke extra laag **vermenigvuldigt** het werk. Twee loops van elk 1000 rondes leveren een miljoen uitvoeringen op, en met een derde erbij zit je aan een miljard.
 :::
+
+---
+
+## Als de inner loop van de outer afhangt
+
+:::: {.columns}
+
+::: {.column width="62%"}
+```csharp
+for (int rij = 1; rij <= 5; rij++)
+{
+    for (int kolom = 1; kolom <= rij; kolom++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
+```
+:::
+
+::: {.column width="38%"}
+```text
+*
+**
+***
+****
+*****
+```
+:::
+
+::::
+
+::: {.callout-warning .fragment}
+De test van de inner loop gebruikt hier `rij`. De inner loop draait dus 1, 2, 3, 4 en 5 keer: samen 15 sterretjes, en niet 5 x 5 = 25. Zodra de teller van de outer loop in de header van de inner opduikt, mag je niet meer zomaar vermenigvuldigen.
+:::
+
+---
+
+## break in geneste loops
+
+`break` haalt je enkel uit de **huidige** loop. Uit beide springen doe je met een **booleaanse vlag** in de condities:
+
+```csharp
+bool gevonden = false;
+for (int i = 1; i <= 10 && !gevonden; i++)
+{
+    for (int j = 1; j <= 10 && !gevonden; j++)
+    {
+        if (i * j == 12)
+        {
+            Console.WriteLine($"Gevonden: {i} x {j}");
+            gevonden = true;
+        }
+    }
+}
+```
+
+Zodra `gevonden` op `true` staat falen beide tests. De reden om te stoppen staat in de conditie zelf, waar een lezer ze verwacht.
+
+---
+
+## Welke loop kies je?
+
+![Welke loop kiezen we?](../content/assets/3_loops/loopflow.png){width=60%}
+
+Blijf wel kritisch over de opgave: de vereisten bepalen uiteindelijk je keuze.
 
 ---
 
@@ -328,8 +790,9 @@ Outer 10 keer, inner telkens 5 keer: **10 x 5 = 50** keer "Hallo".
 * Een **loop** herhaalt code; elke ronde is een **iteratie**
 * **`while`** (0 of meer keer) en **`do while`** (minstens 1 keer; let op de `;`)
 * **`for`** is compact wanneer je een teller bijhoudt: *setup, finish test, update*
-* Let op **oneindige loops** en op de **scope** van variabelen in een loop
-* Tel geneste loops door de iteraties te **vermenigvuldigen**; spaarzaam met `break`
+* Let op **oneindige loops**, op **off-by-one** en op de **scope** van variabelen
+* Tel geneste loops door de iteraties te **vermenigvuldigen**, behalve wanneer de inner loop de teller van de outer gebruikt
+* Spaarzaam met `break`: schrijf liever een deftige stopconditie
 
 ::: {.callout-tip}
 Volgende halte: **methoden**, om je code op te delen in herbruikbare blokken.
@@ -359,7 +822,7 @@ Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later 
 
 ## Zie verder: do-while bestaat niet overal
 
-De `do while` ken je terug in **C**, **C++**, **Java** en **JavaScript**. **Python** heeft hem niet. Iets dat minstens één keer draait, bootst men er na met `while True` + `break`:
+De `do while` ken je terug in **C**, C++, Java en JavaScript. Python heeft hem niet. Iets dat minstens één keer draait, bootst men er na met `while True` + `break`:
 
 ```python
 while True:
@@ -374,7 +837,7 @@ In Python ben je dus vaak verplicht om `break` te gebruiken waar C# een nette st
 
 ## Zie verder: de for-loop elders
 
-De drie-delige for komt uit **C** en is bijna letterlijk overgenomen door **C++**, **Java** en **JavaScript**:
+De drie-delige for komt uit **C** en is bijna letterlijk overgenomen door C++, Java en JavaScript:
 
 ```java
 for (int i = 0; i < 11; i += 2) {
@@ -382,12 +845,20 @@ for (int i = 0; i < 11; i += 2) {
 }
 ```
 
-**Python** breekt ermee: geen teller-met-conditie, je loopt altijd *over* iets. Tellen doe je met `range`:
+In C-code duikt ook `for(;;)` op: alle drie de delen mogen leeg blijven, wat een oneindige loop oplevert. Dat mag in C# evengoed, al schrijft zowat iedereen daar `while(true)`.
+
+---
+
+## Zie verder: tellen in Python
+
+**Python** kent geen teller-met-conditie: je loopt er altijd *over* iets. Tellen doe je met `range`:
 
 ```python
-for i in range(0, 11, 2):
+for i in range(0, 11, 2):   # van 0 tot (niet incl.) 11, stap 2
     print(i)
 ```
+
+Losse setup, conditie en update zijn er dus niet, die zitten verstopt in `range`. Dat werkt enkel als je vooraf weet over welke reeks je loopt.
 
 ---
 
