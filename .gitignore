@@ -12,3 +12,6 @@ node_modules/
 *.html
 
 /.quarto/
+
+# Python-caches van de covergenerator
+__pycache__/

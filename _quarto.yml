@@ -243,6 +243,8 @@ format:
         });
         </script>
   typst:
+    template-partials:
+      - typst-show.typ      # zet cover/cover.svg als volle-bladzijde cover
     mainfont: "Arial"
     papersize: a4
     section-numbering: "1.1"
