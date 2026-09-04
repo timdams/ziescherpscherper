@@ -98,7 +98,7 @@ Bij het aanmaken geef je minstens twee zaken mee:
 * een **identifier**: de gebruiksvriendelijke naam voor die geheugenplek
 * een **datatype**: wat voor soort data erin mag
 
-Zo hoef je niet te werken met een lang geheugenadres als `0x4234FE13EF1`.
+![Jij spreekt dat plekje aan met de identifier, de computer met het geheugenadres (`0x4234FE13EF1`).](../content/assets/1_csharpbasics/geheugenNEW.png){width=62%}
 
 ---
 
@@ -176,12 +176,22 @@ Console.WriteLine(result); //resultaat: 15
 
 C# is een **strongly typed language**: je legt van bij de start vast welk **soort data** een variabele bevat.
 
+:::: {.columns}
+
+::: {.column width="48%"}
 In dit boek gebruiken we types voor:
 
 * **gehele getallen**: `sbyte, byte, short, ushort, int, uint, long, ulong`
 * **kommagetallen**: `double, float, decimal`
 * **tekst**: `char, string`
 * **booleans**: `bool`
+:::
+
+::: {.column width="52%"}
+![Elk datatype is een doosje waar maar één soort data in past.](../content/assets/1_csharpbasics/datatypedoosjes.png)
+:::
+
+::::
 
 ::: {.callout-tip .fragment}
 Anders dan in JavaScript kan data hier niet zomaar van vorm veranderen. Dat is soms strenger, maar bespaart je veel gevloek.
@@ -191,6 +201,9 @@ Anders dan in JavaScript kan data hier niet zomaar van vorm veranderen. Dat is s
 
 ## Gehele getallen
 
+:::: {.columns}
+
+::: {.column width="45%"}
 | Type | Geheugen | Bereik |
 |---|---|---|
 | `byte` | 8 bits | 0 tot 255 |
@@ -198,11 +211,17 @@ Anders dan in JavaScript kan data hier niet zomaar van vorm veranderen. Dat is s
 | `int` | 32 bits | ca. -2,1 tot +2,1 miljard |
 | `long` | 64 bits | ca. -9,2 tot +9,2 triljoen |
 
-* `s` = **signed** (1 bit voor het teken), `u` = **unsigned** (altijd positief)
-* Het bereik volgt rechtstreeks uit het aantal bits
+`s` = **signed** (1 bit voor het teken), `u` = **unsigned** (altijd positief)
+:::
+
+::: {.column width="55%"}
+![Bij een `short` gaat het eerste bitje naar het teken.](../content/assets/1_csharpbasics/bitliniaal.png)
+:::
+
+::::
 
 ::: {.callout-tip .fragment}
-Bij twijfel kies je voor gehele getallen gewoon **`int`**.
+Dubbel zoveel bits verdubbelt het bereik niet, het **kwadrateert** het: 256 waarden bij een `byte`, 65 536 bij een `short`. Bij twijfel kies je gewoon **`int`**.
 :::
 
 ---
@@ -232,6 +251,8 @@ Nee. Onthoud de belangrijkste, en door **veel te programmeren** ontdek je vanzel
 | `float` | 32 bits | kleinst |
 | `double` | 64 bits | grootste bereik |
 | `decimal` | 128 bits | hoogste precisie (28-29 cijfers) |
+
+![Elk type wint op precies één van de drie criteria. Het rode balkje toont welk.](../content/assets/1_csharpbasics/kommagetallen.png){width=88%}
 
 * `decimal` vooral voor **financiële** en **wetenschappelijke** code
 * **Precisie** = aantal beduidende cijfers (`2.2345` heeft precisie 5)
@@ -272,6 +293,10 @@ int mijnLeeftijd = 37;
 
 Toekenning gaat **van rechts naar links**: het deel rechts van `=` gaat naar links.
 
+::: {.callout-tip .fragment}
+Meerdere variabelen van **hetzelfde type** mogen op één lijn: `string voornaam, achternaam, adres;`
+:::
+
 ---
 
 ## Literals
@@ -302,14 +327,43 @@ int getal;
 Console.WriteLine(getal); //FOUT: use of unassigned local variable
 ```
 
-::: {.callout-tip .fragment}
-**Instantievariabelen** (bij een object, zie het hoofdstuk klassen) krijgen *wel* automatisch een standaardwaarde: `0` voor getallen, `false` voor `bool`, `""` voor tekst.
+![Een **instantievariabele** (bij een object, zie het hoofdstuk klassen) krijgt *wel* automatisch de standaardwaarde van haar type.](../content/assets/1_csharpbasics/beginwaardenNEW.png){width=80%}
+
+---
+
+## Stagiair Steven
+
+:::: {.columns}
+
+::: {.column width="20%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="80%"}
+Steven laat zijn code door A.I. schrijven. Lengte en breedte zijn allebei `5` meter:
+
+```csharp
+int lengte, breedte = 5;
+Console.WriteLine(lengte);
+Console.WriteLine(breedte);
+```
+
+"Eén regel voor twee variabelen, allebei `5`. Lekker compact", denkt hij.
+:::
+
+::::
+
+::: {.callout-important .fragment}
+Dit compileert niet eens. Het `= 5` hoort **enkel** bij `breedte`, de laatste van het rijtje. `lengte` blijft zonder waarde: *use of unassigned local variable*. Wil je allebei `5`, schrijf dan `int lengte = 5, breedte = 5;`
 :::
 
 ---
 
 ## Waarden overschrijven
 
+:::: {.columns}
+
+::: {.column width="45%"}
 Een nieuwe waarde wist de oude **onherroepelijk**:
 
 ```csharp
@@ -317,13 +371,17 @@ int temperatuurGisteren = 20;
 temperatuurGisteren = 25; //20 is weg
 ```
 
-::: {.callout-important .fragment}
-Declareer een variabele **maar één keer**. Dit geeft een fout:
+Heb je de oude waarde nog nodig, zet ze dan eerst in een **tweede variabele**.
+:::
 
-```csharp
-double kdRating = 2.1;
-double kdRating = 3.4; //al gedefinieerd in deze scope
-```
+::: {.column width="55%"}
+![](../content/assets/1_csharpbasics/overschrijvenNEW.png)
+:::
+
+::::
+
+::: {.callout-important .fragment}
+Declareer een variabele **maar één keer**. `double kdRating = 2.1;` gevolgd door `double kdRating = 3.4;` geeft *already defined in this scope*.
 :::
 
 ---
@@ -332,6 +390,9 @@ double kdRating = 3.4; //al gedefinieerd in deze scope
 
 Een **expressie** is een reeks bewerkingen die uitkomt op één resultaat met een type. `3 + 2` geeft `5` (type `int`).
 
+:::: {.columns}
+
+::: {.column width="52%"}
 Volgorde van berekeningen, net als in de wiskunde:
 
 1. **Haakjes**
@@ -342,10 +403,13 @@ Volgorde van berekeningen, net als in de wiskunde:
 3 + 5 * 2     // 13
 (3 + 5) * 2   // 16
 ```
-
-::: {.callout-tip .fragment}
-In `3 + 2` zijn `3` en `2` de **operanden** en `+` de **operator**.
 :::
+
+::: {.column width="48%"}
+![In `3 + 2` zijn `3` en `2` de **operanden** en is `+` de **operator**.](../content/assets/1_csharpbasics/expressieontleding.png)
+:::
+
+::::
 
 ---
 
@@ -382,6 +446,9 @@ int rest2 = 10 % 5; // 0
 
 ## Verkorte notaties
 
+:::: {.columns}
+
+::: {.column width="52%"}
 ```csharp
 getal++;    // getal = getal + 1
 getal--;    // getal = getal - 1
@@ -389,20 +456,22 @@ getal += 3; // getal = getal + 3
 getal *= 7; // getal = getal * 7
 ```
 
-* Compacter om te lezen, niet sneller
-* `getal++` zie je overal (zeker in lussen), dus je moet het vlot kunnen **lezen**
-
----
-
-## Pre- vs post-increment
+Compacter om te lezen, niet sneller. `getal++` zie je overal (zeker in lussen), dus je moet het vlot kunnen **lezen**.
 
 ```csharp
 int getal = 1;
 int som = getal++;  // som wordt 1, getal wordt 2
 int som2 = ++som;   // som2 wordt 2, som wordt 2
 ```
+:::
 
-::: {.callout-important}
+::: {.column width="48%"}
+![](../content/assets/1_csharpbasics/increment.png)
+:::
+
+::::
+
+::: {.callout-important .fragment}
 * `som++` (achteraan): geef **eerst** de waarde terug, **dan** verhogen
 * `++som` (vooraan): **eerst** verhogen, **dan** de nieuwe waarde teruggeven
 :::
@@ -442,12 +511,22 @@ int fout = 3.1 / 45.2;    // FOUT: double past niet in int
 
 ## De val: gehele deling
 
+:::: {.columns}
+
+::: {.column width="45%"}
 ```csharp
 int getal1 = 9;
 int getal2 = 2;
 int result = getal1 / getal2;
 Console.WriteLine(result);
 ```
+:::
+
+::: {.column width="55%"}
+![](../content/assets/1_csharpbasics/truncatie.png)
+:::
+
+::::
 
 ::: {.callout-warning .fragment}
 Op het scherm verschijnt **`4`**, niet `4.5`.
@@ -487,11 +566,21 @@ double helft = 10000.0 * (1 / 2);
 
 **Hoeveel krijg je? 0.0 euro. MUHAHAHA.**
 
+:::: {.columns}
+
+::: {.column width="50%"}
 `1 / 2` is een gehele deling en geeft `0`. Pas dit aan:
 
 ```csharp
 double helft = 10000.0 * (1.0 / 2); // 5000.0
 ```
+:::
+
+::: {.column width="50%"}
+![](../content/assets/1_csharpbasics/salarisval.png)
+:::
+
+::::
 
 ---
 
@@ -564,7 +653,11 @@ Volgende halte: alles over **tekst**: `char`, `string` en hun trucjes.
 
 ## Zie verder: andere talen
 
-Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Handig om later code in Python of JavaScript te leren lezen.
+Dezelfde concepten uit dit hoofdstuk, maar dan in andere talen. Je hoeft die talen niet te kennen: het gaat om het **herkennen** van het patroon, ook al ziet de syntax er anders uit.
+
+::: {.callout-important .fragment}
+Steeds vaker laat je een A.I. een eerste versie schrijven en moet je die daarna lezen, beoordelen en bijsturen. Zo'n A.I. spuwt even vlot **Python**, JavaScript of C++ uit als C#.
+:::
 
 ---
 
