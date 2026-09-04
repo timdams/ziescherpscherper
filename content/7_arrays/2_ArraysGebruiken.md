@@ -50,7 +50,7 @@ if(myColors[1] == "pink")
 
 Kortom, alles wat je al kon, kan ook met arrays. Je kan ze zelfs als parameters aan methoden meegeven of terugkrijgen (zie verder). **De individuele elementen in een array zijn gewone variabelen** (enkel hun naamgeving is gekoppeld aan die van de array en de index van het element in de array).
 
-<!-- TODO ed.5 (review): foreach hier introduceren/vergelijken als idiomatische manier om alle elementen te overlopen (nu enkel de for-loop met i < arr.Length). Ook: foreach-iteratorvariabele is read-only (valkuil). -->
+<!-- BESLIST (Tim): foreach komt bewust pas in H12 (11_arraysvanklassen/3_foreach.md), niet in dit hoofdstuk. Ook niet vermelden als vooruitblik. -->
 <!-- TODO ed.5 (review): LINQ-vooruitblik (.Sum(), .Average()) kort noemen bij het gemiddelde-voorbeeld; lost de "ziet er nog niet beter uit"-opmerking op. -->
 
 :::{.callout-warning}

@@ -11,6 +11,7 @@ De kern op een rij:
 - Met `.Length` ken je het aantal elementen; gebruik dat als grenscontrole in je loops.
 - Arrays werken by reference: `=` kopieert de referentie, niet de inhoud, en wijzigingen in een methode raken de originele array.
 - Zet je `params` voor een array-parameter, dan mag de aanroeper zoveel losse waarden meegeven als hij wil; C# stopt ze zelf in een array.
+- Werk je met een rooster waarin ieder vakje hetzelfde betekent (een spelbord, een doolhof), dan neem je een 2D-array `int[,]`. Overlopen doe je met twee geneste loops, met `GetLength(0)` voor de rijen en `GetLength(1)` voor de kolommen.
 
 :::{.callout-warning}
 ## Valkuilen

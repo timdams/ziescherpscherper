@@ -68,7 +68,7 @@ Er zijn 3 standaard manieren om loops te maken in C#:
 * **`` do while``**: zal minimaal 1 keer uitgevoerd worden.
 * **``for``**: een alternatieve, iets compactere manier om loops te beschrijven wanneer je exact weet hoe vaak de loop zal moeten herhalen.
 
-Daarnaast zullen we in hoofdstuk 8 een speciale loopvariant leren kennen wanneer we arrays bespreken:
+Daarnaast bestaat er nog een vierde loopvariant, die pas later in het boek aan bod komt:
 
 * **``foreach``**: een leesbaardere manier van loopen, die vooral nuttig is wanneer je met objecten werkt.
 
@@ -80,7 +80,7 @@ De 3 categorieën loops die we net bespraken kunnen in principe met eender welk 
 | For               | x             |                 |                |
 | Foreach[^foreachlater] | x        |                 |                |
 
-[^foreachlater]: De ``foreach`` nemen we hier enkel voor de volledigheid al even op in de tabel. We leren deze pas echt gebruiken in hoofdstuk 8, wanneer we met arrays werken. Trek je er voorlopig dus nog niets van aan.
+[^foreachlater]: De ``foreach`` nemen we hier enkel voor de volledigheid al even op in de tabel. We leren deze pas echt gebruiken in hoofdstuk 12, wanneer we met arrays van objecten werken. Trek je er voorlopig dus nog niets van aan.
 
 Deze tabel suggereert dat we met ``while`` en ``do while`` meer kunnen, wat ook zo is. Je zal echter gauw ontdekken dat je vaak terugvalt op een ``for`` omdat:
 

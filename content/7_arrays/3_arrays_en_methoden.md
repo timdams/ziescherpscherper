@@ -6,6 +6,10 @@ Zoals alle datatypes kan je ook arrays van eender welk datatype als parameter ge
 Herinner je dat arrays *by reference* werken. Je werkt dus steeds met de origineel meegegeven array (of beter, de referentie er naar), ook in de methode. Als je dus aanpassingen aan de array aanbrengt in de methode, dan zal dit ook gevolgen hebben op de array van waaruit we de methode aanriepen.
 :::
 
+:::{.callout-tip}
+Wil je dat een methode je originele array *niet* aanpast, geef dan een kopie mee. Die maak je zoals je zag bij *Arrays kopiëren* ([arraysgeheugen.md](arraysgeheugen.md)): een nieuwe array van dezelfde lengte, en daarna element per element overzetten met een loop.
+:::
+
 
 Stel dat je bijvoorbeeld een methode hebt die als parameter 1 array van ints meekrijgt. De methode zou er dan als volgt uitzien:
 
@@ -123,12 +127,17 @@ static void Main(string[] args)
 } 
 ```
 
+:::{.callout-note collapse="true"}
+## Antwoord
+``VulArray`` zet in elk vakje zijn eigen index: 0, 1, 2 tot en met 99. ``VermenigvuldigArray`` maakt daar 0, 3, 6 tot en met 297 van. ``ToonVeelvouden`` toont vervolgens enkel wat deelbaar is door 4. Omdat alle waarden al veelvouden van 3 zijn, blijven de veelvouden van 12 over: 0, 12, 24, tot en met 288.
+:::
+
 <!-- \newpage -->
 
 
 ### Array als return-type bij een methode
 
-Een array kan ook gebruikt worden als het returntype van een methode. Hiervoor zet je gewoon het type array als returntype in de methodesignatuur. Ook hier mag geen grootte aangeven.
+Een array kan ook gebruikt worden als het returntype van een methode. Hiervoor zet je gewoon het type array als returntype in de methodesignatuur. Ook hier mag je geen grootte aangeven.
 
 Stel bijvoorbeeld dat je een methode hebt die een int-array aanmaakt van een gegeven grootte waarbij ieder element van de array reeds een beginwaarde heeft die je ook als parameter meegeeft:
 
@@ -183,12 +192,13 @@ Vergelijk dit met volgende voorbeeld waar we een ``int`` als parameter meegeven 
 ```java
 static void PasAan(int inGetal)
 {
-    inGetal = 0; //inGetal wordt 0
+    inGetal = 0; //enkel de kopie wordt 0
 }
 
 public static void Main()
 {
     int[] getallen = {1,2,3};
+    Console.WriteLine($"VOOR:{getallen[0]}"); // VOOR:1
     PasAan(getallen[0]);
     Console.WriteLine($"NA:{getallen[0]}"); // NA:1
 }
@@ -275,5 +285,5 @@ Wat je aan een methode meegeeft is namelijk een *kopie van de wegwijzer*, niet d
 
 ![``Reset`` verlegt enkel zijn eigen kopie van het adres.](../assets/5_arrays/stevenreset.png)
 
-Vergelijk het met ``PasAan`` hierboven: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, want dan volg je de wegwijzer en pas je de array zelf aan. De hele array *vervangen* (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
+Vergelijk het met ``PasAan`` hierboven: een *element* aanpassen (``scores[0] = 99``) werkt wél door naar de aanroeper, want dan volg je de wegwijzer en pas je de array zelf aan. De hele array *vervangen* (``scores = new int[...]``) werkt niet door. Wil je de array van de aanroeper echt vervangen, dan moet je de nieuwe array ``return``en en in ``Main`` opnieuw toekennen. Het kan ook door de parameter met het keyword ``ref`` mee te geven (zie [de appendix](../B_appendix/2_outenref.md)), maar returnen is hier de eenvoudigste weg. Steven verwarde "de array aanpassen" met "de variabele van de aanroeper aanpassen".
 :::

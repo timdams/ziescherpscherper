@@ -423,18 +423,16 @@ Test **eerst** `args.Length >= 3`, dan pas `args[2]`. De `&&` stopt links bij `f
 :::: {.columns}
 
 ::: {.column width="55%"}
-Met een komma in de haken maak je een **rechthoekige** array:
+Met een komma in de haken maak je een **rechthoekig rooster**:
 
 ```csharp
-int[,] matrix = new int[5, 10];
+int[,] regen = new int[4, 7]; // 4 rijen, 7 kolommen
 
-string[,] boeken =
-{
-    { "Macbeth", "Shakespeare" },
-    { "Zie scherp", "Tim Dams" }
-};
-Console.WriteLine(boeken[1, 1]); // Tim Dams
+regen[0, 3] = 12;             // week 1, dag 4
+Console.WriteLine(regen[0, 3]);
 ```
+
+Eerst de **rij**, dan de **kolom**. Beide starten bij 0.
 :::
 
 ::: {.column width="45%"}
@@ -444,7 +442,47 @@ Console.WriteLine(boeken[1, 1]); // Tim Dams
 ::::
 
 ::: {.callout-tip .fragment}
-`.Length` geeft het **totaal**; `GetLength(0)` en `GetLength(1)` de afzonderlijke dimensies, `.Rank` het aantal dimensies.
+`.Length` geeft het **totaal** (hier 28); `GetLength(0)` en `GetLength(1)` de afzonderlijke dimensies, `.Rank` het aantal dimensies.
+:::
+
+---
+
+## Alle vakjes overlopen
+
+Twee geneste loops: de buitenste over de **rijen**, de binnenste over de **kolommen** van die rij.
+
+```csharp
+for (int week = 0; week < regen.GetLength(0); week++)
+{
+    for (int dag = 0; dag < regen.GetLength(1); dag++)
+        Console.Write($"{regen[week, dag]} ");
+
+    Console.WriteLine(); // nieuwe lijn na iedere week
+}
+```
+
+::: {.callout-warning .fragment}
+Gebruik `GetLength(...)` en geen harde getallen. En verwissel de indices niet: `regen[dag, week]` compileert perfect, maar crasht bij de uitvoer.
+:::
+
+---
+
+## Rooster of klasse?
+
+Een 2D-array werkt zolang **ieder vakje hetzelfde betekent**: een spelbord, een doolhof, pixels, regen per dag.
+
+```csharp
+string[,] boeken =
+{
+    { "Macbeth", "Shakespeare", "ID12341" },
+    { "Zie scherp", "Tim Dams", "ID007" }
+};
+```
+
+Hier betekent elke kolom iets anders: alles moet `string` zijn, en `boeken[1, 1]` zegt nergens dat kolom 1 de auteur is.
+
+::: {.callout-tip .fragment}
+Vanaf hoofdstuk 9 wordt dit een klasse `Boek`, in hoofdstuk 12 bewaard in een gewone 1D-array. De tweede dimensie verdwijnt.
 :::
 
 ---
@@ -474,7 +512,7 @@ Console.WriteLine(tickets[0][1]); // 40
 ::::
 
 ::: {.callout-note .fragment}
-Vaak omslachtig en foutgevoelig. De collecties uit hoofdstuk 12 zijn meestal een gezonder alternatief.
+Je moet ze vooral kunnen **herkennen**. Zelf schrijf je liever een rechthoekige `[,]`-array, of een collectie uit hoofdstuk 12: iedere rij apart aanmaken en apart op zijn lengte controleren is omslachtig en foutgevoelig.
 :::
 
 ---
@@ -497,7 +535,7 @@ En vanaf hoofdstuk 12 maken **collecties** veel van dit werk een stuk aangenamer
 * Overloop arrays met een **loop** en `.Length`; let op de **`IndexOutOfRangeException`**
 * Arrays werken **by reference**: `=` maakt een alias, kopieer dus element per element
 * **`System.Array`** en string-methoden (`Split`, `Replace`, ...) besparen veel werk
-* Arrays gaan **by reference** naar methoden; **meerdimensionale** en **jagged** arrays voor speciale gevallen
+* Arrays gaan **by reference** naar methoden; een **2D-array** dient voor een rooster, **jagged** moet je enkel herkennen
 
 ::: {.callout-tip}
 Volgende halte: **object-georiënteerd programmeren**, met klassen en objecten.

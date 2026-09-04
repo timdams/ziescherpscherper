@@ -101,7 +101,6 @@ book:
         - content/7_arrays/stringarray.md
         - content/7_arrays/3_arrays_en_methoden.md
         - content/7_arrays/4_ndimensionalArrays.md
-        - content/7_arrays/5_jaggedArrays.md
         - content/7_arrays/zieverder.md
         - content/7_arrays/kennisclips.md
     - part: "H9: Object Oriented Programming"

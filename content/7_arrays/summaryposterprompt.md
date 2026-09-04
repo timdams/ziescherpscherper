@@ -14,8 +14,9 @@ De poster moet inhoudelijk kloppen en deze kernpunten tonen:
 - De System.Array-bibliotheek biedt kant-en-klare methoden zoals Array.Sort, Array.Reverse, Array.IndexOf en Array.BinarySearch (dat laatste enkel op gesorteerde arrays)
 - Zelf zoeken met een loop (zoek-en-stop: stoppen zodra het element gevonden is) werkt ook op een ongesorteerde array; -1 is de gangbare afspraak voor "niet gevonden"
 - Terugkerende loop-patronen: een som of teller die je vóór de loop aanmaakt, en het grootste element zoeken door het eerste element als startwaarde te nemen
-- Meerdimensionale arrays (bv. int[,] regen = new int[4,7]) stellen een rechthoekig rooster voor; .GetLength(n) geeft de lengte van dimensie n en .Rank het aantal dimensies
-- Jagged arrays (bv. double[][] tickets) zijn arrays van arrays met elk een eigen lengte, geïndexeerd met tickets[0][1] in plaats van een komma
+- Meerdimensionale arrays (bv. int[,] regen = new int[4,7]) stellen een rechthoekig rooster voor waarin ieder vakje hetzelfde betekent; .GetLength(0) geeft het aantal rijen, .GetLength(1) het aantal kolommen en .Rank het aantal dimensies
+- Een 2D-array overloop je met twee geneste for-loops: de buitenste over de rijen, de binnenste over de kolommen
+- Betekent elke kolom iets anders (titel, auteur, ID), dan neem je geen 2D-array maar later een klasse; jagged arrays (double[][] tickets, rijen met elk een eigen lengte, geïndexeerd met tickets[0][1]) moet je vooral kunnen herkennen
 - Een array meegeven aan een methode gebeurt by reference: aanpassingen aan de array in de methode veranderen ook de originele array buiten de methode
 - Met het keyword params voor een array-parameter (bv. static int Som(params int[] getallen)) mag je de methode aanroepen met zoveel losse waarden als je wil; er is maar 1 params-parameter en die staat altijd achteraan
 
