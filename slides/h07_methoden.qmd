@@ -19,6 +19,7 @@ Na dit hoofdstuk kan je:
 * zelf een methode schrijven met een **returntype** en **`return`**
 * **parameters** doorgeven en het verschil met *by value* begrijpen
 * methoden **nesten** en oneindige methode-lussen herkennen
+* inschatten hoe **groot** een methode mag zijn
 * **named** en **optionele** parameters en **overloading** gebruiken
 * met **`///`**-commentaar en **IntelliSense** efficiënter werken
 
@@ -48,14 +49,24 @@ Bestond `Console.WriteLine` niet, dan moest je telkens tientallen lijnen interne
 
 ## Methode-syntax
 
+:::: {.columns}
+
+::: {.column width="52%"}
 ```csharp
-static returntype MethodeNaam(optioneel_parameters)
+static returntype MethodeNaam(parameters)
 {
     //code van de methode
 }
 ```
 
-De eerste lijn is de **methode-signatuur**: returntype, naam en parameters.
+De eerste lijn is de **methode-signatuur**. Die vertelt alles wat je moet weten om met de methode te werken: returntype, naam en eventuele parameters.
+:::
+
+::: {.column width="48%"}
+![De onderdelen van een methode-signatuur.](../content/assets/4_methoden/signatuur.png)
+:::
+
+::::
 
 ::: {.callout-tip .fragment}
 Vergeet `static` voorlopig: beschouw het als een verplicht **toverwoord**. Waarom het er staat, zie je in hoofdstuk 11.
@@ -90,8 +101,26 @@ Verandert de titel ooit? Eén plek aanpassen volstaat.
 
 ::::
 
+---
+
+## Main is ook een methode
+
+Een console-applicatie heeft een startpunt nodig, en dat is `Main`. Verder is het een methode zoals alle andere. Wat doet dit?
+
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Ik zit vast!");
+    Main(args);
+}
+```
+
 ::: {.callout-note .fragment}
-Ook **`Main`** is gewoon een methode: het startpunt van je programma.
+`Main` roept zichzelf op, en die aanroep doet exact hetzelfde. Eindeloos "Ik zit vast!" tot het programma crasht. Waarom precies zie je straks bij de oneindige methode-lussen.
+:::
+
+::: {.callout-tip .fragment}
+Via `string[] args` geef je opstartparameters mee aan je programma (denk aan `explorer.exe google.com`). Meer daarover in hoofdstuk 8.
 :::
 
 ---
@@ -159,12 +188,8 @@ Console.WriteLine(ToonVersie());   // FOUT
 
 :::: {.columns}
 
-::: {.column width="22%"}
-![](../content/assets/attention.png)
-:::
-
-::: {.column width="78%"}
-`return` mag overal, en sluit de methode meteen af. Maar elke weg door je methode moet wél iets teruggeven:
+::: {.column width="52%"}
+`return` mag overal staan en sluit de methode meteen af (in een `switch` heb je dan geen `break` meer nodig):
 
 ```csharp
 switch (r.Next(0, 4))
@@ -176,17 +201,21 @@ return "onbekend"; // nooit bereikt, tóch vereist
 ```
 :::
 
+::: {.column width="48%"}
+![Bij `punten` kleiner dan 10 loopt de methode ten einde zonder `return`.](../content/assets/4_methoden/paden.png)
+:::
+
 ::::
 
 ::: {.callout-warning .fragment}
-*"Not all code paths return a value"*: ergens kan je het einde bereiken zonder `return`.
+Deze foutboodschap krijg je vaak: er is een weg door je methode waar het einde bereikt wordt zonder `return`. Dat mag enkel bij `void`.
 :::
 
 ---
 
 ## Parameters doorgeven
 
-Veralgemeen `FaculteitVan5` met een **parameter**:
+Veralgemeen `FaculteitVan5` met een **formele parameter**:
 
 ```csharp
 static int BerekenFaculteit(int grens)
@@ -203,13 +232,73 @@ int resultaat = BerekenFaculteit(5);  // 120
 ```
 
 ::: {.callout-tip .fragment}
-De parameternaam (`grens`) hoeft niet gelijk te zijn aan de meegegeven variabele. Enkel de **waarde** telt.
+De parameternaam (`grens`) hoeft niet gelijk te zijn aan de meegegeven variabele. Enkel de **waarde** reist mee.
+:::
+
+---
+
+## Wat zit er in `grens`?
+
+```csharp
+for (int i = 1; i < 11; i++)
+{
+    Console.WriteLine($"Faculteit van {i} is {BerekenFaculteit(i)}");
+}
+```
+
+Vul zelf in:
+
+| aanroep | `grens` | resultaat |
+|---|---|---|
+| `BerekenFaculteit(4)` | ? | ? |
+| `BerekenFaculteit(getal)`, met `getal` gelijk aan 3 | ? | ? |
+| `BerekenFaculteit(i)` in de lus hierboven, als `i` 5 is | ? | ? |
+
+::: {.callout-note .fragment}
+4 en 24, 3 en 6, 5 en 120. De naam links speelt geen rol.
+:::
+
+---
+
+## Volgorde van parameters
+
+:::: {.columns}
+
+::: {.column width="55%"}
+De eerste waarde gaat naar de eerste parameter, de tweede naar de tweede.
+
+```csharp
+static void ToonDeling(double teller, double noemer)
+{
+    Console.WriteLine(teller / noemer);
+}
+```
+
+```csharp
+ToonDeling(3.5, 2.1);   // 1,6666666666666665
+ToonDeling(2.1, 3.5);   // 0,6
+```
+
+Bij verschillende types helpt VS je wel: `ToonInfo(37, "Tim")` compileert gewoon niet.
+:::
+
+::: {.column width="45%"}
+![Draai je de aanroep om, dan draait de deling mee om.](../content/assets/4_methoden/paramvolgorde.png)
+:::
+
+::::
+
+::: {.callout-note .fragment}
+Zie je bij `Console.WriteLine` de versie met `params object[] arg` staan? `params` betekent: geef zoveel parameters mee als je wil. Zelf zoiets schrijven kan pas met arrays, in hoofdstuk 8.
 :::
 
 ---
 
 ## By value
 
+:::: {.columns}
+
+::: {.column width="55%"}
 Parameters gaan standaard **by value**: de methode krijgt een **kopie**.
 
 ```csharp
@@ -225,28 +314,50 @@ Je bent 40 jaar.
 Je bent 41 jaar geworden.
 Je bent 40 jaar.   <- origineel ongewijzigd
 ```
+:::
+
+::: {.column width="45%"}
+![De methode werkt op een kopie, dus `mijnLeeftijd` blijft 40.](../content/assets/4_methoden/byvalue.png)
+:::
+
+::::
 
 ::: {.callout-note .fragment}
-*By reference* (de echte variabele aanpassen) komt aan bod vanaf het hoofdstuk over arrays.
+*By reference* geeft het adres van de originele variabele mee, en komt aan bod vanaf het hoofdstuk over arrays. Je zag het al bij `int.TryParse(Console.ReadLine(), out int leeftijd)`: die methode zet zelf een waarde in `leeftijd`.
 :::
 
 ---
 
-## Volgorde van parameters
+## Stagiair Steven
 
-De eerste meegegeven waarde gaat naar de eerste parameter, enz.
+:::: {.columns}
+
+::: {.column width="22%"}
+![](../content/assets/aistagiar.png)
+:::
+
+::: {.column width="78%"}
+Steven laat de A.I. een methode schrijven die een getal verdubbelt:
 
 ```csharp
-static void ToonInfo(string name, int age)
+static int Verdubbel(int getal)
 {
-    Console.WriteLine($"{name} is {age} jaar");
+    return getal * 2;
 }
+
+int punten = 5;
+Verdubbel(punten);
+Console.WriteLine($"Punten: {punten}");
 ```
 
-```csharp
-ToonInfo("Tim", 37);   // ok
-ToonInfo(37, "Tim");   // FOUT: compileert niet
-```
+"Ik roep `Verdubbel` op, dus `punten` is nu 10", zegt hij zelfzeker. Wat verschijnt er op het scherm?
+:::
+
+::::
+
+::: {.callout-note .fragment}
+Er verschijnt `Punten: 5`. De methode werkt op een kopie, maar de echte fout is dat Steven het resultaat nergens opvangt. `Verdubbel(punten);` berekent wel 10, maar dat getal gaat verloren. Het moest `punten = Verdubbel(punten);` zijn. De code compileert zonder klacht, dus kreeg hij geen enkele waarschuwing.
+:::
 
 ---
 
@@ -275,8 +386,49 @@ Resultaat: "Tim".
 
 ::::
 
-::: {.callout-warning .fragment}
-Een methode die **zichzelf** ongecontroleerd aanroept, loopt oneindig en crasht als het geheugen op is.
+::: {.callout-tip .fragment}
+De volgorde waarin je je methoden in je bestand schrijft, maakt niets uit. Bij variabelen is dat wél anders: die declareer je voor je ze gebruikt.
+:::
+
+---
+
+## Hoe groot mag een methode zijn?
+
+Er bestaat geen regel over het aantal lijnen, wel een goede vuistregel: **een methode doet één ding**.
+
+* Kan je in één zin uitleggen wat ze doet? Goed bezig.
+* Krijg je de naam niet bedacht zonder er "En" in te stoppen (`LeesInEnBerekenEnToon`), dan zitten er eigenlijk drie methoden in.
+
+::: {.callout-tip .fragment}
+Lukt die ene zin niet, dan splits je best op. In de kennisclip "Goede methoden schrijven" ga ik hier dieper op in.
+:::
+
+---
+
+## Oneindige methode-lussen
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```csharp
+static void SchrijfNaam()
+{
+    SchrijfNaam();
+    Console.WriteLine("Klaar?");
+}
+```
+
+Je krijgt een leeg scherm ("Klaar?" wordt nooit bereikt) en daarna een crash met een **`StackOverflowException`**.
+:::
+
+::: {.column width="45%"}
+![Elke aanroep legt er een frame bij op de stack, en er komt er nooit een af.](../content/assets/4_methoden/oneindig.png)
+:::
+
+::::
+
+::: {.callout-note .fragment}
+Iedere aanroep neemt een stukje geheugen in op de zogenaamde *stack*, en die raakt vol. Wat die stack precies is, lees je in hoofdstuk 10.
 :::
 
 ---
@@ -289,14 +441,19 @@ Een methode die **zichzelf** ongecontroleerd aanroept, loopt oneindig en crasht 
 **Recursie** = een methode die zichzelf aanroept, maar **wel stopt**:
 
 ```csharp
-static int BerekenSom(int start, int stop)
+static int BerekenSomRecursief(int start, int stop)
 {
     int som = start;
     if (start < stop)
-        return som += BerekenSom(start + 1, stop);
+    {
+        start++;
+        return som + BerekenSomRecursief(start, stop);
+    }
     return som;
 }
 ```
+
+`BerekenSomRecursief(1, 3)` geeft 6.
 :::
 
 ::: {.column width="45%"}
@@ -325,40 +482,81 @@ static void Main(string[] args)
 }
 ```
 
-Je kan zo'n lokale functie nergens anders aanroepen. Zet je methoden gewoon **naast** `Main`.
+Zo'n lokale functie kan je nergens anders aanroepen. Zet je methoden gewoon **naast** `Main`.
+
+::: {.callout-important .fragment}
+Niet enkel een kwestie van smaak: op een vaardigheidsproef kost een methode in een methode je 3 punten.
+:::
 
 ---
 
 ## Documentatie met ///
 
+:::: {.columns}
+
+::: {.column width="55%"}
 ```csharp
 /// <summary>
 /// Berekent de macht van een getal.
 /// </summary>
 /// <param name="grondtal">Het getal dat je verheft</param>
 /// <param name="exponent">De exponent</param>
-static int Macht(int grondtal, int exponent) { /* ... */ }
+static int Macht(int grondtal, int exponent)
+{
+    //...
+}
 ```
 
-Typ `///` boven een methode en VS maakt het skelet. Bij elke aanroep krijg je dan **tooltips** met uitleg.
-
----
-
-## Bestaande methoden en IntelliSense
-
-:::: {.columns}
-
-::: {.column width="55%"}
-* Typ een methode en stop na het **eerste haakje**: IntelliSense toont alle manieren (de *overloads*)
-* Cursor op een methode + **`F1`** opent de online documentatie
-* Typ `Console.` en zie alles wat die bibliotheek kan
+Typ `///` boven een methode en VS maakt het skelet. Jij vult enkel de uitleg per parameter in.
 :::
 
 ::: {.column width="45%"}
-![IntelliSense bevat een schat aan info.](../content/assets/4_methoden/methoden1.png)
+![Schrijf je documentatie best in het Engels, niet zoals in dit voorbeeld dus.](../content/assets/4_methoden/comment.png)
 :::
 
 ::::
+
+---
+
+## Wat kan die bibliotheek eigenlijk?
+
+:::: {.columns}
+
+::: {.column width="52%"}
+Typ `Console.` en wacht even: **IntelliSense** toont alles wat die bibliotheek kan.
+
+* De icoontjes: kubus = methode, Engelse sleutel = eigenschap, bliksem = event
+* Lijst per ongeluk weggeklikt? `Ctrl+Spatie` roept ze terug
+* Verschijnt er niets, dan heb je waarschijnlijk een schrijffout gemaakt
+:::
+
+::: {.column width="48%"}
+![](../content/assets/4_methoden/methoden4.png)
+:::
+
+::::
+
+---
+
+## De parameters van een methode zien
+
+:::: {.columns}
+
+::: {.column width="52%"}
+* Stop met typen na het **eerste ronde haakje**: IntelliSense toont alle manieren om de methode aan te roepen (de *overloads*), doorbladeren doe je met de pijltjes
+* Popup weg? `Ctrl+Shift+Spatie`
+* Cursor op de methode en **`F1`** opent de online documentatie
+:::
+
+::: {.column width="48%"}
+![Dit soort popups bevat een schat aan informatie.](../content/assets/4_methoden/methoden1.png)
+:::
+
+::::
+
+::: {.callout-tip .fragment}
+Dit werkt ook voor je **eigen** methoden. Schreef je er `///`-commentaar boven, dan staat jouw uitleg mee in die popup.
+:::
 
 ---
 
@@ -403,13 +601,35 @@ Geef daarom expliciet aan welke waarde bij welke parameter hoort:
 ToonPunten(student: "Steven", score: 14, vak: "Programmeren");
 ```
 
-* Geef je **alle** parameters een naam, dan maakt de volgorde niet uit
-* Meng je named en gewone parameters, dan **moet** elke named parameter op zijn eigen plaats blijven
+Geef je **alle** parameters een naam, dan maakt de volgorde niets meer uit.
+
+---
+
+## Named en gewoon mengen
+
+Mengen mag, maar dan **moet elke named parameter op zijn eigen plaats blijven staan**:
+
+```csharp
+ToonPunten("Programmeren", 14, student: "Steven");       // ok
+ToonPunten(vak: "Programmeren", 14, student: "Steven");  // ok
+```
+
+```csharp
+ToonPunten(student: "Steven", "Programmeren", 14);       // fout
+ToonPunten("Programmeren", student: "Steven", 14);       // fout
+```
+
+::: {.callout-warning .fragment}
+*Named argument 'student' is used out-of-position but is followed by an unnamed argument.* In beide foute lijnen staat `student` niet op de derde plaats, terwijl er daarna nog naamloze parameters volgen.
+:::
 
 ---
 
 ## Optionele parameters
 
+:::: {.columns}
+
+::: {.column width="55%"}
 Geef een **default waarde** mee; die parameters staan **achteraan**:
 
 ```csharp
@@ -422,8 +642,17 @@ ToonFactuur("Tim", 10);   // btw = 21
 ToonFactuur("Tim");       // korting = 0, btw = 21
 ```
 
-::: {.callout-tip .fragment}
-Wil je enkel `btw` zetten en `korting` overslaan? `ToonFactuur("Tim", 6)` compileert, maar die 6 belandt in `korting`. Gebruik een named parameter: `ToonFactuur("Tim", btw: 6)`.
+Weglaten mag enkel **van achter naar voor**.
+:::
+
+::: {.column width="45%"}
+![Zonder naam landt de 6 in `korting`. Met `btw: 6` blijft `korting` op zijn default.](../content/assets/4_methoden/optioneel.png)
+:::
+
+::::
+
+::: {.callout-warning .fragment}
+`ToonFactuur("Tim", 6)` compileert zonder klacht, maar die 6 belandt in `korting`. Fouten met optionele parameters zijn zelden compilerfouten: je merkt ze pas aan de output. Schrijf `ToonFactuur("Tim", btw: 6)`.
 :::
 
 ---
@@ -437,6 +666,10 @@ static int Verdubbel(int getal)
 {
     return getal * 2;
 }
+static double Verdubbel(double getal)
+{
+    return getal * 2;
+}
 static string Verdubbel(string tekst)
 {
     return tekst + tekst;
@@ -445,34 +678,85 @@ static string Verdubbel(string tekst)
 
 ```csharp
 Verdubbel(21);    // 42
+Verdubbel(2.5);   // 5
 Verdubbel("ha");  // haha
 ```
 
 ::: {.callout-important .fragment}
-Het returntype mág verschillen, maar telt niet mee. Twee versies die enkel in returntype verschillen compileren niet.
+Het returntype mág verschillen, maar telt niet mee. Twee versies die enkel in returntype verschillen geven *already defines a member called 'Verdubbel' with the same parameter types*.
 :::
 
-::: {.callout-note .fragment}
-Passen twee versies even goed, dan kiest de compiler niet: *the call is ambiguous*. Hoe hij bij twijfel tussen types wél kiest (de **betterness rule**) is verdiepingsstof.
+---
+
+## Overloaden op het aantal parameters
+
+Naast `ToonTitel(string naam)` zetten we een versie zonder parameters, die gewoon de standaardtitel gebruikt:
+
+```csharp
+static void ToonTitel(string naam)
+{
+    Console.WriteLine($"*** {naam} ***");
+}
+
+static void ToonTitel()
+{
+    ToonTitel("Timsoft XP");
+}
+```
+
+Precies wat er bij `Console.WriteLine()` gebeurt: er bestaat een versie zonder parameters die een lege lijn toont.
+
+::: {.callout-tip .fragment}
+Overload enkel wanneer je versies **hetzelfde** doen met andere input. Een `BerekenOpp(lengte, breedte)` naast een `BerekenOpp(straal)` compileert netjes, maar wie je code leest moet raden welke van de twee berekeningen bedoeld wordt.
+:::
+
+---
+
+## Wanneer de compiler niet kan kiezen
+
+```csharp
+static void ToonPrijs(int bedrag, double korting) { }   // versie A
+static void ToonPrijs(double bedrag, int korting) { }   // versie B
+```
+
+| Aanroep | Resultaat |
+|---|---|
+| `ToonPrijs(100, 5.5)` | versie A wordt uitgevoerd |
+| `ToonPrijs(99.9, 5)` | versie B wordt uitgevoerd |
+| `ToonPrijs(100, 5)` | fout: *the call is ambiguous* |
+| `ToonPrijs(99.9, 5.5)` | fout: geen enkele versie past |
+
+::: {.callout-important .fragment}
+Bij `ToonPrijs(100, 5)` passen A en B even goed, en dan kiest de compiler niet. Jij maakt het duidelijk: `ToonPrijs(100, 5.0)` of `ToonPrijs(100.0, 5)`. Hoe hij bij twijfel tussen types wél kiest (de **betterness rule**) is verdiepingsstof.
 :::
 
 ---
 
 ## Methoden debuggen: step in
 
+:::: {.columns}
+
+::: {.column width="55%"}
 Herinner je de debugknoppen uit hoofdstuk 4? Eén lieten we toen liggen: **step in**.
 
-* **Step over** springt over een methode-aanroep heen
-* **Step in** gaat **in** je eigen methode en laat je daar lijn per lijn stappen
+* **Step over** voert de methode wel uit, maar springt naar de volgende lijn van `Main`
+* **Step in** brengt je **in** je eigen methode, waar je lijn per lijn verder stapt
 
 Simpel, maar oefen het toch een paar keer.
+:::
+
+::: {.column width="45%"}
+![Step over versus step in.](../content/assets/4_methoden/stepinvsover.png)
+:::
+
+::::
 
 ---
 
 ## Conclusie
 
-* Een **methode** is een herbruikbaar codeblok: minder fouten, betere leesbaarheid
-* **`void`** geeft niets terug; anders gebruik je **`return`** met het juiste type
+* Een **methode** is een herbruikbaar codeblok: minder fouten, betere leesbaarheid, en ze doet **één ding**
+* **`void`** geeft niets terug; anders gebruik je **`return`** met het juiste type, en vang je het resultaat ook op
 * Parameters gaan **by value** (een kopie); de **volgorde** telt
 * **Named** en **optionele** parameters en **overloading** maken je methoden flexibel
 * Met **`///`** en **IntelliSense** werk je sneller en met betere documentatie
