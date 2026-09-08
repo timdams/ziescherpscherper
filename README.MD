@@ -6,18 +6,19 @@ Deze repo bevat de broncode (Quarto) van het boek. Wil je gewoon lezen, dan moet
 
 ## Het boek lezen
 
-### 👉 [timdams.github.io/ziescherpscherper](https://timdams.github.io/ziescherpscherper/)
+### 👉 [www.ziescherp.be](https://www.ziescherp.be)
 
 Dat is de online versie, en meteen ook de meest recente. Daar vind je naast het handboek zelf ook:
 
-* [Oefeningen](https://timdams.github.io/ziescherpscherper/oefeningen/): practica per hoofdstuk en vaardigheidsproeven
-* [Slides](https://timdams.github.io/ziescherpscherper/slides/) voor in de les
+* [Oefeningen](https://www.ziescherp.be/oefeningen/overzicht.html): practica per hoofdstuk en vaardigheidsproeven
+* [Slides](https://www.ziescherp.be/slides/overzicht.html) voor in de les
+* [Het boek als pdf](https://www.ziescherp.be/Zie-Scherp-Scherper.pdf) om af te drukken of offline te lezen
 
 ## En het papieren boek dan?
 
 Er bestaat ook een gedrukte versie: [timdams.com/boeken/ziescherp](https://timdams.com/boeken/ziescherp/).
 
-Let wel: dat is een **oudere editie**. De online versie hierboven is grondig herwerkt (nieuwe inhoud met meer nadruk op onze nieuwe AI-wereld, nieuwe afbeeldingen, bijgewerkte screenshots) en gaat vanaf nu enkel nog digitaal door het leven. Wil je de actuele inhoud, lees dan online.
+Let wel: dat is een **oudere editie**. De online versie hierboven is grondig herwerkt (nieuwe inhoud met meer nadruk op onze nieuwe AI-wereld, nieuwe afbeeldingen, bijgewerkte screenshots) en is altijd de actuele. Van editie 4 is er voorlopig geen druk: wil je die op papier, dan neem je de [pdf](https://www.ziescherp.be/Zie-Scherp-Scherper.pdf).
 
 ## Licentie
 

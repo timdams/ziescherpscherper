@@ -24,6 +24,10 @@ BANNER = "Visual Studio 2026 editie"
 AUTEUR = "DOOR TIM DAMS"
 EDITIE = "Vierde editie"
 
+# Tijdelijke balk onderaan, zolang het boek in opbouw is. Zet OPBOUW op None
+# en draai het script opnieuw zodra de vermelding weg mag.
+OPBOUW = "WERK IN OPBOUW - VOORLOPIGE VERSIE"
+
 GRIJS = "#E6E6E6"
 ZWART = "#000000"
 WIT = "#FFFFFF"
@@ -45,6 +49,9 @@ B_AUTEUR = 0.386
 SP_AUTEUR = 0.18         # letterspatiering auteursregel, in em
 Y_EDITIE = 0.9390
 B_EDITIE = 0.111
+Y_OPBOUW = 0.9625        # bovenkant opbouwbalk, die loopt door tot de bladrand
+B_OPBOUW = 0.520
+SP_OPBOUW = 0.12         # letterspatiering opbouwbalk, in em
 
 
 def _grootte(font, tekst, doelbreedte, spatiering=0.0):
@@ -103,6 +110,15 @@ def bouw(accent, banner_kleur):
     gr = _grootte(arial_bold, EDITIE, B_EDITIE * W)
     d.append(f'<path fill="{ZWART}" d="'
              f'{arial_bold.pad(EDITIE, gr, W / 2, Y_EDITIE * H, anker="middle")}"/>')
+
+    # tijdelijke "werk in opbouw"-balk, tegen de onderrand
+    if OPBOUW:
+        oy = Y_OPBOUW * H
+        d.append(f'<rect y="{oy:.1f}" width="{W:.0f}" height="{H - oy:.1f}" fill="{ZWART}"/>')
+        gr = _grootte(arial_bold, OPBOUW, B_OPBOUW * W, SP_OPBOUW)
+        basis = oy + (H - oy) / 2 + 0.355 * gr    # optisch centreren op cap-hoogte
+        d.append(f'<path fill="{WIT}" d="'
+                 f'{arial_bold.pad(OPBOUW, gr, W / 2, basis, SP_OPBOUW, "middle")}"/>')
 
     d.append("</svg>")
     return "\n".join(d)

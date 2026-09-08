@@ -1,0 +1,46 @@
+# Kleine testopstelling om snel aan de PDF-vormgeving te werken.
+# Enkel de cover, het voorwoord en hoofdstuk 1. Zie README.md in deze map.
+project:
+  type: book
+  output-dir: pdf
+
+lang: nl
+
+book:
+  title: "Zie Scherp Scherper"
+  author: "Tim Dams"
+  chapters:
+    - index.qmd
+    - part: "H1: De eerste stappen"
+      chapters:
+        - content/0_intro/0_intrototcs.md
+        - content/0_intro/1_werkenmetvs.md
+        - content/0_intro/1_killai.md
+        - content/0_intro/2_firstprogram.md
+        - content/0_intro/3_console.md
+        - content/0_intro/4_fouten.md
+        - content/0_intro/5_kleuren.md
+        - content/0_intro/zieverder.md
+        - content/0_intro/kennisclips.md
+
+filters:
+  - console-typst.lua
+  - mascotte-typst.lua
+
+bibliography: references.bib
+
+format:
+  typst:
+    keep-typst: true
+    template-partials:
+      - typst-show.typ
+    font-paths:
+      - fonts
+    mainfont: "Inter"
+    monofont: "JetBrains Mono"
+    fontsize: 10pt
+    papersize: a4
+    section-numbering: "1.1"
+    margin:
+      x: 2.5cm
+      y: 3cm

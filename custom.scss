@@ -425,3 +425,56 @@ hr {
   border-top: 1px solid $border-color;
   margin: 2.5rem 0;
 }
+
+// ---------- "Werk in opbouw"-balk ----------
+// De tekst zelf staat als  website: announcement:  in de drie _quarto.yml's
+// (hoofdboek, oefeningen, slides). Quarto zet ze in #quarto-announcement,
+// binnen de header, dus ze scrollt mee weg.
+//
+// Het bouwvakkermannetje (content/assets/care.png) zit hier als data-URI in
+// plaats van als <img> in de aankondigingstekst: die tekst verschijnt op elke
+// pagina van zowel het boek als de oefeningen, en die staan op verschillende
+// dieptes in de site. Eenzelfde relatief pad klopt daar nooit voor allebei.
+// Het is pixelart van 2 kB, dus inbakken kost niets.
+#quarto-announcement.alert {
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.35rem 1.1rem;
+  border: 0;
+  border-bottom: 3px solid #f2b705;
+  border-radius: 0;
+  background-color: #fff6e0;
+  color: #4d3a00;
+  font-size: 0.85rem;
+  line-height: 1.35;
+
+  &::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 36px;
+    height: 48px;
+    background: url("data:image/png;base64,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") no-repeat center;
+    background-size: contain;
+    image-rendering: pixelated;   // pixelart mag niet uitgesmeerd worden
+  }
+
+  strong {
+    color: #7a4a00;
+  }
+
+  .quarto-announcement-content p {
+    margin-bottom: 0;
+  }
+}
+
+// Op een smal scherm neemt het mannetje te veel van de regel in.
+@media (max-width: 575.98px) {
+  #quarto-announcement.alert::before {
+    width: 24px;
+    height: 32px;
+  }
+  #quarto-announcement.alert {
+    font-size: 0.78rem;
+  }
+}

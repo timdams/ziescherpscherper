@@ -9,6 +9,14 @@ project:
 
 website:
   title: "Zie Scherp Scherper"
+  # Zelfde balk als in het hoofdboek, zie de opmerking in ../_quarto.yml.
+  announcement:
+    position: below-navbar
+    dismissable: false
+    type: warning
+    content: |
+      **Werk in opbouw.** Deze cursus wordt op dit moment volop herwerkt.
+      Hoofdstukken kunnen nog onaf zijn of morgen anders staan.
   navbar:
     logo-href: ../index.html
     background: light

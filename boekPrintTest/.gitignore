@@ -1,0 +1,11 @@
+# Kopieen van de echte bronnen: staan al in de repo, hier enkel om snel te testen.
+content/
+cover/
+# Renderoutput en de png-previews.
+pdf/
+build/
+build2/
+preview/
+
+/.quarto/
+**/*.quarto_ipynb

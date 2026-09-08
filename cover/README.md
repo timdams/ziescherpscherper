@@ -35,7 +35,12 @@ voorbeeld om naar te kijken, de PDF gebruikt de SVG.
 ## Iets aanpassen
 
 Teksten en verhoudingen staan bovenaan `maak_cover.py` als constanten:
-`TITEL`, `ONDERTITEL`, `BANNER`, `AUTEUR`, `EDITIE`, en daaronder de verticale
-opbouw (`Y_...`) en breedtes (`B_...`) als fractie van de pagina. Alles is
-A4-relatief, dus je kan gerust schuiven zonder iets anders te breken.
+`TITEL`, `ONDERTITEL`, `BANNER`, `AUTEUR`, `EDITIE`, `OPBOUW`, en daaronder de
+verticale opbouw (`Y_...`) en breedtes (`B_...`) als fractie van de pagina.
+
+`OPBOUW` is de zwarte balk tegen de onderrand die zegt dat het boek nog volop
+wijzigt. Zet die op `None` en draai het script opnieuw zodra de vermelding weg
+mag. Op de website doet de aankondigingsbalk in `_quarto.yml` hetzelfde.
+
+Alles is A4-relatief, dus je kan gerust schuiven zonder iets anders te breken.
 Na een wijziging: `python cover/maak_cover.py` en dan `quarto render . --to typst`.

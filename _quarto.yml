@@ -4,6 +4,22 @@ project:
 
 lang: nl
 
+# Tijdelijke balk bovenaan elke pagina. Weg ermee zodra het boek af is: dit blok
+# schrappen (ook in oefeningen/_quarto.yml) en in custom.scss de sectie
+# "Werk in opbouw"-balk. Vormgeving en het bouwvakkermannetje staan daar.
+#
+# Let op: dit hoort hier bij  website:  en niet bij  book: . Quarto kopieert maar
+# een vaste lijst sleutels van book naar de website-config, en announcement zit
+# daar niet bij. Onder book: wordt de balk gewoon genegeerd.
+website:
+  announcement:
+    position: below-navbar
+    dismissable: false
+    type: warning
+    content: |
+      **Werk in opbouw.** Deze cursus wordt op dit moment volop herwerkt.
+      Hoofdstukken kunnen nog onaf zijn of morgen anders staan.
+
 book:
   title: "Zie Scherp Scherper"
   author: "Tim Dams"
@@ -214,6 +230,10 @@ book:
   appendices:
     - oefeningen/overzicht.qmd
 
+filters:
+  - console-typst.lua
+  - mascotte-typst.lua
+
 bibliography: references.bib
 
 format:
@@ -247,7 +267,10 @@ format:
   typst:
     template-partials:
       - typst-show.typ      # zet cover/cover.svg als volle-bladzijde cover
-    mainfont: "Arial"
+    font-paths:
+      - fonts               # Inter en JetBrains Mono, zie fonts/ (niet geinstalleerd op de CI-runner)
+    mainfont: "Inter"
+    monofont: "JetBrains Mono"
     papersize: a4
     section-numbering: "1.1"
     margin:
