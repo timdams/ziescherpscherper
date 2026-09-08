@@ -61,6 +61,31 @@ CI: [.github/workflows/publish.yml](.github/workflows/publish.yml) doet bij elke
 
 Deploy-target: GitHub Pages van [github.com/timdams/ziescherpscherper](https://github.com/timdams/ziescherpscherper).
 
+De pdf van het hoofdboek (Typst, met eigen cover, fonts en lua-filters) heeft een eigen skill:
+[`handboekpdf`](.claude/skills/handboekpdf/SKILL.md). Gebruik die zodra er aan de pdf, de cover of
+de pdf-vormgeving gewerkt wordt. Snel itereren doe je in [boekPrintTest/](boekPrintTest/), niet op
+het volledige boek.
+
+## Oplossingen achter een sleutel
+
+De oplossingen bij de oefeningen staan online niet zomaar open. Ze worden **na** het renderen
+uit de HTML geknipt en versleuteld door [scripts/oplossingen-lock.mjs](scripts/oplossingen-lock.mjs),
+dat in de CI draait met de repo-secret `OPLOSSING_SLEUTEL`. Bezoekers met de sleutellink
+(`...?sleutel=<code>`) krijgen ze terug via [oefeningen/oplossingen.html](oefeningen/oplossingen.html);
+de browser onthoudt de sleutel, dus dat is eenmalig.
+
+- **De bronbestanden veranderen niet.** Blijf oplossingen gewoon schrijven als
+  `::::{.callout-caution collapse="true" title="Oplossing"}`, dat is waar het script op zoekt.
+- **Lokaal renderen blijft leesbaar**: het script draait enkel in de CI, of manueel met
+  `node scripts/oplossingen-lock.mjs build/oefeningen --code <code>`.
+- **Geen twee koppen van hetzelfde niveau in één oplossingscallout.** Quarto splitst de body
+  dan in zustersecties en de helft valt buiten het slot. Een pagina die integraal een
+  uitwerking is, krijgt in plaats daarvan `<meta name="zss-opl-pagina">` in haar frontmatter
+  (zie [oefeningen/corona/opl_h12corona.md](oefeningen/corona/opl_h12corona.md)).
+- Het script kuist ook `search.json` en de inhoudsopgave op, en waarschuwt als er nog
+  oplossingstekst op een pagina blijft staan. Testen doe je met
+  [scripts/oplossingen-test.mjs](scripts/oplossingen-test.mjs).
+
 ## Gotcha
 
 **`build/` is gitignored**, behalve `build/Zie-Scherp-Scherper.pdf` die wél gecommit lijkt te zijn — controleer dit eer je `build/` opruimt.

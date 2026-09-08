@@ -11,8 +11,7 @@ Meer uitleg: [wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 Kan je zelf een simulator maken die telkens generatie per generatie op het scherm toont?
 
-# Oplossing
-
+::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 static void Main(string[] args)
 {
@@ -117,4 +116,5 @@ static void ResetField(int[,] field, int randomcells = 100)
 
 
 }
-        ```
+```
+::::

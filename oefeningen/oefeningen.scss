@@ -11,3 +11,65 @@ main .level1 > p:first-of-type::first-letter {
   color: inherit;
   font-family: inherit;
 }
+
+// Afgeschermde oplossingen: zie scripts/oplossingen-lock.mjs en oplossingen.html.
+.opl-slot {
+  // Een pagina die van kop tot staart een uitwerking is, krijgt geen callout om zich heen.
+  &.opl-slot-pagina {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid #dee2e6;
+    border-left: 4px solid #b30000;
+    border-radius: 0.25rem;
+    background: #f8f9fa;
+  }
+
+  .opl-melding {
+    margin: 0;
+    color: #4d4d4d;
+  }
+
+  .opl-fout {
+    margin: 0.5rem 0 0;
+    font-weight: 600;
+    color: #b30000;
+  }
+}
+
+.opl-balk {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1030;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.35rem 0.5rem 0.35rem 0.85rem;
+  border: 1px solid #dee2e6;
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  font-size: 0.8rem;
+  color: #4d4d4d;
+
+  button {
+    border: 0;
+    border-radius: 1rem;
+    padding: 0.2rem 0.7rem;
+    background: #ffe5e5;
+    color: #b30000;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: #b30000;
+      color: #fff;
+    }
+  }
+}
+
+@media print {
+  .opl-balk {
+    display: none;
+  }
+}

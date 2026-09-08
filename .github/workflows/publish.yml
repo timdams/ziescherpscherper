@@ -40,6 +40,13 @@ jobs:
       - name: Render oefeningen
         run: quarto render oefeningen/
 
+      # Knipt de oplossingen uit de gerenderde HTML en versleutelt ze. Zonder de sleutel
+      # stopt het script, zodat een build nooit stilletjes alle oplossingen open publiceert.
+      - name: Oplossingen afschermen
+        env:
+          OPLOSSING_SLEUTEL: ${{ secrets.OPLOSSING_SLEUTEL }}
+        run: node scripts/oplossingen-lock.mjs build/oefeningen
+
 
       - name: Restore cached slide PDFs
         uses: actions/cache@v4

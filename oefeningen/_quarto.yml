@@ -208,3 +208,8 @@ format:
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    # Zet de afgeschermde oplossingen terug voor wie de sleutel heeft. Het afschermen zelf
+    # gebeurt na het renderen door scripts/oplossingen-lock.mjs; lokaal renderen blijft dus
+    # gewoon leesbaar en dit script doet dan niets.
+    include-after-body:
+      file: oplossingen.html

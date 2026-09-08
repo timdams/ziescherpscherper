@@ -1,3 +1,10 @@
+---
+title: "Oplossing Corona H14"
+# Deze pagina is integraal een uitwerking: scripts/oplossingen-lock.mjs zet ze
+# in de gepubliceerde build achter dezelfde sleutel als de gewone oplossingen.
+include-in-header:
+  text: '<meta name="zss-opl-pagina" content="1">'
+---
 # Code met uitleg
 ![](../assets/infoclip.png)
 
