@@ -25,6 +25,10 @@ const { subtle } = webcrypto;
 const ITERATIES = 210000;
 const CANARIE = "zss-ok";
 
+// Een stuk van oefeningen/oplossingen.html. Zit dat niet in een gerenderde pagina, dan is de
+// include niet meegekomen en zou vergrendelen de oplossingen definitief onbereikbaar maken.
+const SCRIPTMERK = "zss-oplossingen-sleutel";
+
 // De tekst die bezoekers zonder sleutel te zien krijgen. Pas dit aan naar wat je wil
 // meegeven over hoe men aan de sleutel geraakt.
 const MELDING = `<p class="opl-melding"><strong>Deze oplossing is afgeschermd.</strong><br>
@@ -362,8 +366,31 @@ async function main() {
   let oplossingen = 0;
   const perPagina = new Map();
   const restanten = [];
+  const bestandenLijst = htmlBestanden(map);
 
-  for (const pad of htmlBestanden(map)) {
+  // Vooraf, vóór er iets geschreven wordt: zit de ontgrendel-JS wel in de pagina's?
+  // Ontbreekt oefeningen/oplossingen.html (bijvoorbeeld omdat .gitignore ze wegfiltert),
+  // dan rendert Quarto zonder die include en zou vergrendelen de oplossingen definitief
+  // onbereikbaar maken. Dat mag nooit gepubliceerd raken.
+  const zonderScript = [];
+  for (const pad of bestandenLijst) {
+    const h = await readFile(pad, "utf8");
+    const heeftOplossing =
+      h.includes('title="Oplossing"') || h.includes('<meta name="zss-opl-pagina"');
+    if (heeftOplossing && !h.includes(SCRIPTMERK)) zonderScript.push(pad);
+  }
+  if (zonderScript.length > 0) {
+    console.error(
+      `De ontgrendel-JS ontbreekt in ${zonderScript.length} pagina's met oplossingen.\n` +
+        "Staat oefeningen/oplossingen.html op zijn plaats en is ze meegekomen in de repo?\n" +
+        "Controleer ook include-after-body in oefeningen/_quarto.yml.\n" +
+        "Er is niets vergrendeld: zo blijven de oplossingen bereikbaar.\n" +
+        zonderScript.slice(0, 5).map((p) => `  ${p}`).join("\n")
+    );
+    process.exit(1);
+  }
+
+  for (const pad of bestandenLijst) {
     const origineel = await readFile(pad, "utf8");
     const heelDeBladzijde = zoekVolledigePagina(origineel);
     const gevonden = heelDeBladzijde

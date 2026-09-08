@@ -10,6 +10,9 @@ node_modules/
 # Single-file render output: Quarto rendert .html (+ _files/) naast de bron.
 # Niets HTML hoort in de repo — alle echte output gaat naar build/.
 *.html
+# Uitzondering: dit is geen render-output maar een bron-include (include-after-body
+# in oefeningen/_quarto.yml). Zonder deze regel valt ze uit de repo en vindt de CI ze niet.
+!oefeningen/oplossingen.html
 
 /.quarto/
 

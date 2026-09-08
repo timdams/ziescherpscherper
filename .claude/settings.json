@@ -30,7 +30,11 @@
       "Bash(node thisinst.js)",
       "Bash(node thisme.js)",
       "Bash(quarto render *)",
-      "Bash(node -e \"const d=require\\('./build/oefeningen/search.json'\\); console.log\\('entries:',d.length\\); console.log\\(JSON.stringify\\(d.slice\\(0,2\\),null,1\\).slice\\(0,900\\)\\)\")"
+      "Bash(node -e \"const d=require\\('./build/oefeningen/search.json'\\); console.log\\('entries:',d.length\\); console.log\\(JSON.stringify\\(d.slice\\(0,2\\),null,1\\).slice\\(0,900\\)\\)\")",
+      "Bash(mv oefeningen/oplossingen.html oefeningen/_oplossingen.bewaard)",
+      "Bash(rm -rf build/oefeningen)",
+      "Bash(node scripts/oplossingen-lock.mjs build/oefeningen --code testsleutel123)",
+      "Bash(echo \"exitcode: $?\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\damst\\Koofr\\PROGPROJECTS\\cursus\\ziescherpscherper\\content\\0_intro",

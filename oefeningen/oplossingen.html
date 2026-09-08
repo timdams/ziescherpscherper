@@ -1,0 +1,148 @@
+<!--
+  Zet de oplossingen terug op de pagina voor wie de sleutel heeft.
+  De inhoud is er in de build uitgeknipt en versleuteld door scripts/oplossingen-lock.mjs.
+  Zonder sleutel valt er hier niets te ontgrendelen: de tekst staat niet in de pagina.
+-->
+<script>
+(function () {
+  "use strict";
+
+  var PARAM = "sleutel";
+  var OPSLAG = "zss-oplossingen-sleutel";
+  var ITERATIES = 210000;   // moet gelijklopen met scripts/oplossingen-lock.mjs
+  var CANARIE = "zss-ok";
+
+  var saltMeta = document.querySelector('meta[name="zss-opl-salt"]');
+  var checkMeta = document.querySelector('meta[name="zss-opl-check"]');
+  if (!saltMeta || !checkMeta || !window.crypto || !window.crypto.subtle) return;
+
+  var salt = saltMeta.getAttribute("content");
+  var slots = document.querySelectorAll("[data-opl]");
+
+  function bytes(b64) {
+    var bin = atob(b64);
+    var uit = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) uit[i] = bin.charCodeAt(i);
+    return uit;
+  }
+
+  function b64(buf) {
+    var u = new Uint8Array(buf), s = "";
+    for (var i = 0; i < u.length; i++) s += String.fromCharCode(u[i]);
+    return btoa(s);
+  }
+
+  function bewaar(waarde) {
+    try { localStorage.setItem(OPSLAG, waarde); } catch (e) {}
+  }
+
+  function lees() {
+    try { return localStorage.getItem(OPSLAG); } catch (e) { return null; }
+  }
+
+  function wis() {
+    try { localStorage.removeItem(OPSLAG); } catch (e) {}
+    try { sessionStorage.removeItem("zss-opl-key-" + salt); } catch (e) {}
+  }
+
+  // De sleutel afleiden duurt even. Eens per sessie volstaat: het salt is gelijk voor de
+  // hele build, dus de afgeleide sleutel geldt voor alle pagina's.
+  function sleutelUitCode(code) {
+    var cache = null;
+    try { cache = sessionStorage.getItem("zss-opl-key-" + salt); } catch (e) {}
+    if (cache) {
+      return crypto.subtle.importKey("raw", bytes(cache), "AES-GCM", true, ["decrypt"]);
+    }
+    return crypto.subtle
+      .importKey("raw", new TextEncoder().encode(code), "PBKDF2", false, ["deriveKey"])
+      .then(function (basis) {
+        return crypto.subtle.deriveKey(
+          { name: "PBKDF2", salt: bytes(salt), iterations: ITERATIES, hash: "SHA-256" },
+          basis,
+          { name: "AES-GCM", length: 256 },
+          true,
+          ["decrypt"]
+        );
+      })
+      .then(function (k) {
+        return crypto.subtle.exportKey("raw", k).then(function (raw) {
+          try { sessionStorage.setItem("zss-opl-key-" + salt, b64(raw)); } catch (e) {}
+          return k;
+        });
+      });
+  }
+
+  function ontsleutel(sleutel, payload) {
+    var rauw = bytes(payload);
+    return crypto.subtle
+      .decrypt({ name: "AES-GCM", iv: rauw.slice(0, 12) }, sleutel, rauw.slice(12))
+      .then(function (klaar) { return new TextDecoder().decode(klaar); });
+  }
+
+  function toonBalk() {
+    var balk = document.createElement("div");
+    balk.className = "opl-balk";
+    balk.innerHTML = '<span>Oplossingen zichtbaar</span> ' +
+                     '<button type="button">verbergen</button>';
+    balk.querySelector("button").addEventListener("click", function () {
+      wis();
+      location.reload();
+    });
+    document.body.appendChild(balk);
+  }
+
+  function meldFout() {
+    for (var i = 0; i < slots.length; i++) {
+      var p = slots[i].querySelector(".opl-melding");
+      if (p) p.insertAdjacentHTML("afterend",
+        '<p class="opl-fout">Die sleutel klopt niet.</p>');
+    }
+  }
+
+  var url = new URL(location.href);
+  var uitUrl = url.searchParams.get(PARAM);
+  var code = uitUrl || lees();
+  if (!code) return;
+
+  sleutelUitCode(code)
+    .then(function (sleutel) {
+      // Elke pagina draagt dezelfde controlewaarde, ook pagina's zonder oplossingen.
+      // Zo werkt de link naar het overzicht net zo goed als een link naar een practicum.
+      return ontsleutel(sleutel, checkMeta.getAttribute("content")).then(function (t) {
+        if (t !== CANARIE) throw new Error("fout");
+        return sleutel;
+      });
+    })
+    .then(function (sleutel) {
+      if (uitUrl) {
+        bewaar(uitUrl);
+        url.searchParams.delete(PARAM);
+        history.replaceState(null, "", url.pathname + url.search + url.hash);
+      }
+      var werk = [];
+      for (var i = 0; i < slots.length; i++) {
+        werk.push((function (slot) {
+          return ontsleutel(sleutel, slot.getAttribute("data-opl")).then(function (html) {
+            slot.outerHTML = html;
+          });
+        })(slots[i]));
+      }
+      return Promise.all(werk);
+    })
+    .then(function () {
+      if (window.ClipboardJS) {
+        new ClipboardJS(".code-copy-button", {
+          text: function (t) {
+            var pre = t.closest("pre");
+            return pre ? pre.textContent.replace(/\n$/, "") : "";
+          }
+        });
+      }
+      toonBalk();
+    })
+    .catch(function () {
+      wis();
+      if (uitUrl) meldFout();
+    });
+})();
+</script>
