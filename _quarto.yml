@@ -37,6 +37,14 @@ book:
         href: slides/overzicht.html
       - text: "Oefeningen"
         href: oefeningen/overzicht.qmd
+    # Subtiel steunknopje. Vormgeving staat in custom.scss (die mikt op de href,
+    # want via yaml kan je geen class meegeven aan een navbar-item).
+    right:
+      - text: "Trakteer op een fristi"
+        icon: cup-straw
+        href: https://www.buymeacoffee.com/timdams
+        target: _blank
+        aria-label: "Trakteer Tim op een fristi via Buy Me a Coffee"
   chapters:
     - index.qmd
     - content/README.md

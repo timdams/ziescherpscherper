@@ -30,6 +30,13 @@ website:
         href: ../slides/overzicht.html
       - text: "Oefeningen"
         href: overzicht.qmd
+    # Zelfde steunknopje als in het hoofdboek, zie ../_quarto.yml.
+    right:
+      - text: "Trakteer op een fristi"
+        icon: cup-straw
+        href: https://www.buymeacoffee.com/timdams
+        target: _blank
+        aria-label: "Trakteer Tim op een fristi via Buy Me a Coffee"
   sidebar:
     style: docked
     contents:

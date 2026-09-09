@@ -30,6 +30,14 @@ Alle tekst, afbeeldingen en oefeningen staan onder **[Creative Commons Naamsverm
 
 Dit is een leesbare samenvatting, geen vervanging van de [volledige licentietekst](https://creativecommons.org/licenses/by-nc/4.0/legalcode.nl).
 
+## Trakteer op een fristi
+
+Dit boek is gratis en dat blijft het. Gebruik je het als leerkracht in het middelbaar of aan een andere hogeschool, en scheelt het je een pak voorbereidingswerk? Dan mag je me gerust eens [trakteren op een fristi](https://www.buymeacoffee.com/timdams). Het moet niet, maar het houdt de goesting om dit te blijven onderhouden 😉.
+
+::: {.content-visible when-format="html"}
+<a class="zss-fristi" href="https://www.buymeacoffee.com/timdams" target="_blank" rel="noopener"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a fristi&emoji=🥤&slug=timdams&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a fristi"></a>
+:::
+
 ## Fouten gevonden?
 
 Alle feedback is welkom. Open een [issue](https://github.com/timdams/ziescherpscherper/issues) of contacteer me. Normaal gezien zijn alle tekst en afbeeldingen de mijne (en Claude's 😉), tenzij anders vermeld. Ontdek je toch iets dat niet correct geattribueerd is, laat het zeker weten.

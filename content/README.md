@@ -44,7 +44,7 @@ Uiteraard zijn alle fouten mijn eigen schuld en verantwoordelijkheid.
 ![](assets/aimod.png)
 
 
-:::
+
 
 ## Benodigdheden
 
