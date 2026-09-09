@@ -1,5 +1,9 @@
 # Loops <!--\label{ch:6}-->
 
+>![](../assets/verteller.png)Ik heb ooit twee uur zitten wachten op een tool die een lessenrooster voor me moest leggen. Na die twee uur crashte het ding, maar het rooster lag er wel. Ik ben er dan nog eens twee uur op gaan zoeken, en toen bleek dat rooster al na vier minuten klaar te zijn geweest. Het programma was gewoon nooit gestopt met zoeken, en bleef geheugen opvragen tot er niets meer vrij was.
+>
+>Dat was een loop die zijn stopconditie nooit haalde.
+
 In het vorige hoofdstuk leerden we onze code **vertakken** (*branching*): op basis van een test voert je programma het ene stuk code uit en slaat het het andere over. Sequentie en selectie heb je daarmee in de vingers. In dit hoofdstuk komt de derde en laatste bouwsteen erbij: **iteratie**, hetzelfde stuk code meerdere keren uitvoeren.
 
 Wat we tot nu toe immers niet konden is **teruggaan naar een vorige plek in het algoritme**. Onze programma's liepen steevast naar beneden, nooit terug naar boven. Soms wil je net dat een heel stuk code opnieuw en opnieuw uitgevoerd wordt, tot er aan een bepaalde conditie voldaan is: *"Blijf getallen vragen totdat de gebruiker 666 invoert."*
@@ -8,7 +12,7 @@ Herinner je het bakkersalgoritme uit het vorige hoofdstuk. Wanneer de bakker toe
 
 ```text
 Neem geld uit spaarpot
-Wandel naar de dichtstbijzijnde bakker
+Wandel naar Bakker Aldo
 Zolang de bakker toe is:
     Wandel naar de volgende bakker in de straat
 Vraag om een brood
@@ -35,7 +39,7 @@ Console.WriteLine("Ik zal niet spieken");
 
 Wil je die zin achteraf aanpassen, dan mag je honderd lijnen bijwerken en vergeet je er gegarandeerd eentje.
 
-Loops zitten trouwens in zowat elk programma dat je dagelijks gebruikt. Je game tekent 60 keer per seconde een nieuw beeld op je scherm. Je mailprogramma overloopt alle nieuwe berichten en zet ze onder elkaar. De zelfscankassa blijft artikels scannen tot jij op *afsluiten* duwt.
+Loops zitten trouwens in zowat elk programma dat je dagelijks gebruikt. Een game tekent 60 keer per seconde een volledig nieuw beeld op je scherm: dat is één loop die zijn codeblok 60 keer per seconde doorloopt, en dat blijft doen zolang jij niet afsluit.
 
 Welk type loop je straks ook schrijft, er zitten altijd drie zaken in:
 

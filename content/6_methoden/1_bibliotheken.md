@@ -2,6 +2,10 @@
 
 Laten we eens kijken naar de vele methoden die reeds ingebouwd zitten in .NET en hoe we ze nu beter kunnen gebruiken.
 
+>![](../assets/verteller.png)Bestaande bibliotheken gebruiken is bijna altijd de juiste keuze, maar je maakt je er wel afhankelijk van. In december 2021 dook er een lek op in Log4j, een Java-bibliotheek die zowat niemand bij naam kende en die ondertussen op een gigantisch deel van de servers op het internet meedraaide om logberichten weg te schrijven. Wie de juiste tekst in zo'n logberichtje geraakte, kon daarmee zijn eigen code laten uitvoeren op die server. Het lek kreeg de naam Log4Shell, en er is toen wereldwijd een paar weken bijzonder slecht geslapen.
+>
+>Vind je dit soort verhalen ook spannend (ik wel), neem dan eens een kijkje in [Cyberboswachters](https://timdams.github.io/cyberboswachters_boek/content/0_het_security_landschap/les1_wordtheterger.html#megaexploits-in-de-fundamenten), een ander handboek van mij dat voorlopig gratis online staat.
+
 ### IntelliSense
 
 *Wat kan deze .NET bibliotheek eigenlijk?* is een veelgestelde vraag. Zeker wanneer je de basis van C# onder de knie hebt en je stilletjes aan met bestaande .NET bibliotheken wilt gaan werken. Wat volgt is een essentieel onderdeel van VS dat veel gevloek en tandengeknars zal voorkomen.

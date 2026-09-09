@@ -120,6 +120,10 @@ De positie van de sluitende ``"""`` bepaalt wat er weggeknipt wordt: alle lijnen
 
 Je zal ``@"..."`` nog vaak tegenkomen in bestaande code en in code die AI-tools genereren. Beide manieren werken.
 
+>![](../assets/verteller.png)Het ultieme spel gemaakt uit niets dan tekens is nog altijd Dwarf Fortress. Tarn Adams begon eraan in 2002, het jaar van GTA Vice City en Morrowind, en bracht de eerste publieke versie uit in 2006. Terwijl de rest van de wereld in 3D speelde, bouwde je daar een dwergenkolonie in een raster van letters.
+>
+>En dat ding zat fenomenaal diep. Elke dwerg heeft een eigen humeur, een eigen geschiedenis en eigen voorkeuren, de wereld wordt laag per laag gesimuleerd en zelfs het water zoekt zijn weg door je gangen. Brakke graphics, en toch bleven mensen er jaren in hangen. Het bewijst nog maar eens dat een sexy frontend minder waard is dan een backend die gewoon werkt. En dat laatste is net waar jij nu voor aan het studeren bent.
+
 
 :::{.callout-tip}
 In de vorige sectie legde ik uit dat we tekst kunnen formateren als een geld bedrag m.b.v. ``Console.WriteLine($"{12.3456:C}");``. 

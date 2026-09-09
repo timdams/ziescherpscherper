@@ -1,13 +1,15 @@
 # Beslissingen <!--\label{ch:5}-->
 
-Nu we de elementaire zaken van C# en VS kennen is het tijd om onze programma's wat interessanter te maken. De programma's die we tot nu toe hebben ontwikkeld waren steevast lineair van opbouw.  Ze werden lijn per lijn uitgevoerd, van start tot einde, zonder de mogelijkheid om de **program flow** aan te passen. Het programma doorliep de lijnen code braaf na elkaar en wanneer deze aan het einde kwam sloot het zich af.
+Om de twee dagen wandel ik naar Bakker Aldo in Berchem. Artisanaal brood, met een korst waar je iets voor moet doen (mijn kinderen delen die goesting niet).
 
-Onze programma's waren met andere woorden niet meer dan een eenvoudige lijst van opdrachten. Je kan het vergelijken met een lijst die je over hoe je een brood moet kopen:
+De programma's die we tot nu toe hebben ontwikkeld waren steevast lineair van opbouw.  Ze werden lijn per lijn uitgevoerd, van start tot einde, zonder de mogelijkheid om de **program flow** aan te passen. Het programma doorliep de lijnen code braaf na elkaar en wanneer deze aan het einde kwam sloot het zich af.
+
+Onze programma's waren met andere woorden niet meer dan een eenvoudige lijst van opdrachten, zoals het lijstje dat beschrijft hoe ik aan dat brood geraak:
 
 
 ```text
 Neem geld uit spaarpot
-Wandel naar de bakker om de hoek
+Wandel naar Bakker Aldo
 Vraag om een brood
 Krijg het brood
 Betaal het geld aan de bakker
@@ -24,7 +26,7 @@ Een beter algoritme zal afhankelijk van de omstandigheden (bakker gesloten, geen
 ```text
 Neem geld uit spaarpot
 Geld op? Stop dan hier, anders: ga verder
-Wandel naar de bakker om de hoek
+Wandel naar Bakker Aldo
 Bakker toe? Stop dan hier, anders: ga verder
 Vraag om een brood
 Krijg het brood
@@ -39,7 +41,7 @@ De code die je tot nu toe schreef bestond enkel uit **sequentie**: de ene opdrac
 
 [^bohmjacopini]: Dat is geen boute bewering van mij, maar een bewezen stelling uit 1966 van de Italiaanse informatici Corrado Böhm en Giuseppe Jacopini.
 
-Zulke tests zitten in elk programma dat je dagelijks gebruikt. Netflix test of je een aflevering half bekeken hebt voor het je de knop *verder kijken* toont. De betaalterminal in de winkel test of er genoeg geld op je rekening staat. Je game test na iedere botsing of je nog levens over hebt.
+Zulke tests zitten in elk programma dat je dagelijks gebruikt. Netflix test bij elke titel of je die al voor een stuk bekeken hebt, en zet er op basis daarvan de knop om verder te kijken bij in plaats van de knop om te starten.
 
 Doorheen dit hoofdstuk teken ik zulke keuzes ook regelmatig uit als een **flowchart**: een schema dat toont welke weg je programma door de code kan afleggen. Veel vormen heb je daar niet voor nodig:
 

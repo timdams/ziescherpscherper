@@ -164,6 +164,12 @@ Merk op dat er een subtiel verschil is tussen volgende 2 lijnen code:
 In het eerste zullen we het resultaat van de som naar ``double`` omzetten. In het tweede, door de volgorde van berekeningen door de haakjes, zullen we de casting pas doen **na de deling** en zal dus 22 in plaats van 22.5 als resultaat geven.
 :::
 
+>![](../assets/verteller.png)In 1999 verloor NASA de Mars Climate Orbiter. Het toestel kwam veel te laag de atmosfeer van Mars binnen en is daar uit elkaar gevallen. Jaren werk en 125 miljoen dollar, poef, weg.
+>
+>De oorzaak was geen kapotte motor of een stukke sensor, maar twee stukken software die het niet eens waren over wat er nu eigenlijk in een variabele stond. De grondsoftware van Lockheed Martin gaf de stuwkracht door in pound-force seconden, de module van NASA zelf verwachtte newton-seconden. Allebei gewoon een getal, allebei perfect gecompileerd, geen enkele foutmelding. Alleen betekende dat getal aan de ene kant iets anders dan aan de andere.
+>
+>Een datatype zegt dus wel dat er een kommagetal in zit, maar niet waar dat getal voor staat. Dat moeten mensen onder elkaar afspreken.
+
 <!-- \newpage -->
 
 ### Widening

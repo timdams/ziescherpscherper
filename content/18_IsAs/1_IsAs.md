@@ -106,7 +106,7 @@ if(jos != null)
 :::
 
 :::{.callout-tip}
-**Wanneer ``is`` en wanneer ``as``?** Vuistregel: wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
+**Wanneer ``is`` en wanneer ``as``?** Wil je het object daarna meteen *gebruiken*, kies dan ``as`` (één keer omzetten, dan op ``null`` controleren). Wil je enkel *weten* of een object van een bepaald type is (een ja/nee-vraag, zonder het daarna te gebruiken), dan volstaat ``is``.
 :::
 
 ### Stagiair Steven

@@ -1,7 +1,15 @@
 
 ## Datatypes
 
-Een essentieel onderdeel van C# is kennis van datatypes. Binnen C# zijn een aantal types gedefinieerd die je kan gebruiken om data in op te slaan. Wanneer je data wenst te bewaren in je applicatie dan zal je je moeten afvragen wat voor soort data het is. Gaat het om een geheel getal, een kommagetal, een stuk tekst of misschien een binaire reeks? Ieder datatype in C# kan één welbepaald soort data bewaren en dit zal telkens een bepaalde hoeveelheid computergeheugen vereisen. 
+>![](../assets/verteller.png)Even iets tussendoor. Je zal me nog geregeld tegenkomen in dit boek, telkens er een verhaal is dat naast de leerstof staat. Je moet het niet kennen om een beter C#'r te worden, maar het zal je wel context geven, alsook leuke trivia om op café of Discord mee te pochen.
+>
+>In Zwitserland mag een trein niet exact 256 assen hebben. Dat staat zo in het spoorwegreglement.[^assen]
+>
+>De tellers langs het spoor houden bij hoeveel assen er passeren, zo weet het systeem of een stuk spoor nog bezet is. Dat aantal wordt in 8 bits bewaard, en 8 bits geraken tot 255. As nummer 256 zet de teller terug op 0. Het systeem besluit dan dat het spoor vrij is, terwijl er een trein op staat. De Zwitsers hebben dat opgelost met een regel in het reglement, niet met een groter datatype.
+
+[^assen]: Te vinden in de Zwitserse *Fahrdienstvorschriften*, rubriek *Zugbildung*: "...darf die effektive Gesamtachszahl eines Zuges nicht 256 Achsen betragen." Matt Parker verzamelde dit soort verhalen in *Humble Pi: A Comedy of Maths Errors* (2019).
+
+Binnen C# zijn een aantal types gedefinieerd die je kan gebruiken om data in op te slaan. Wanneer je data wenst te bewaren in je applicatie dan zal je je moeten afvragen wat voor soort data het is. Gaat het om een geheel getal, een kommagetal, een stuk tekst of misschien een binaire reeks? Ieder datatype in C# kan één welbepaald soort data bewaren en dit zal telkens een bepaalde hoeveelheid computergeheugen vereisen. 
 
 :::{.callout-tip}
 Datatypes zijn een belangrijk concept in C# omdat deze taal een zogenaamde **"strongly typed language"** is (in tegenstelling tot bijvoorbeeld JavaScript). Wanneer je in C# data wenst te bewaren (in een variabele) zal je van bij de start moeten aangeven wat voor data dit zal zijn. Vanaf dan zal de data op die geheugenplek op dezelfde manier verwerkt worden en niet zo maar van 'vorm' kunnen veranderen zonder extra input van de programmeur. 
@@ -67,6 +75,12 @@ Ieder type hierboven heeft een bepaald bereik en hoeveelheid geheugen nodig. Je 
 
 Of toch: wat met real-time first person shooters die miljoenen berekeningen per seconde moeten uitvoeren? Daar zal iedere bit en byte tellen. Op andere apparaten (smartphone, arduino, smart fridges, enz.) is iedere byte geheugen nog kostbaarder. **Kortom: kies steeds bewust het datatype dat het beste 'past' voor je probleem qua bereik, precisie en geheugengebruik.**
 :::
+
+>![](../assets/verteller.png)De computer die Armstrong en Aldrin op de maan zette, de Apollo Guidance Computer, had 4 kilobyte werkgeheugen en 72 kilobyte programma. De smartphone in je broekzak heeft daar miljoenen keren meer van, en een flink deel daarvan gaat op aan het openhouden van je snapchat en TikTok ;) .
+>
+>Dat relativeert. Code die je vandaag met veel moeite twee keer sneller krijgt, draait binnen een paar jaar op hardware waar die winst niet meer opvalt. Maar de sensor in een serre, de chip in je bankkaart en de slimme deurbel aan je voordeur zitten qua rekenkracht dichter bij de Apollo dan bij je laptop. Daar kies je dus best je datatypes nog wel met de hand.
+>
+>En bugs kon je er niet meer uit halen. Het programma van die maancomputer stond niet op een schijf, het was met de hand geweven: koperdraad door een magnetisch ringetje is een 1, er rond een 0. Dat weefwerk gebeurde maanden voor de lancering. Ja, zij hebben hun code veeeeeelvuldig getest voor ze het in productie namen.
 
 <!-- \newpage -->
 

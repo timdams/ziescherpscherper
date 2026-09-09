@@ -181,6 +181,8 @@ Console.WriteLine($"Duurste product: {producten[indexDuurste]} aan {prijzen[inde
 Zulke parallelle arrays zijn fragiel. Voeg je een product toe en vergeet je de prijs, dan lopen beide arrays uit de pas en toon je zonder enige foutmelding de verkeerde prijs. In hoofdstuk 9 leer je een betere aanpak: één object dat de naam én de prijs samen bewaart.
 :::
 
+>![](../assets/verteller.png)Ik ben daar bij het maken van dit boek zelf ingetrapt. De hoofdstukken zitten in mappen (``8_klassen``), de tekst draagt een eigen hoofdstuknummer (hoofdstuk 9), en de oefeningen staan in nog een andere map (``9_klassen``). Drie lijstjes die ik met de hand synchroon moet houden. Ze lopen ondertussen uit de pas: map 17 en map 19 bestaan niet meer, en de map ``20_exceptions`` wordt als elfde hoofdstuk gelezen. Hernummeren kan niet meer zonder de hele inhoudsopgave te breken, dus ik leef ermee. Elke keer dat ik een hoofdstuk verplaats, moet ik op drie plaatsen tegelijk nadenken.
+
 <!-- \newpage -->
 
 ### Sneller zoeken in een gesorteerde array

@@ -283,7 +283,7 @@ string naam = "tim";
 naam = naam.ToUpper();
 ```
 
-dan wijzigt ``ToUpper()`` de originele tekst niet, maar maakt het een *nieuw* stuk tekst (``"TIM"``) waar ``naam`` vervolgens naar verwijst. Vergeet je de toewijzing (``naam.ToUpper();`` zonder ``naam =``), dan verandert er niets aan ``naam``. Onthoud dus: methoden op een ``string`` geven steeds een *nieuwe* string terug, ze passen het origineel nooit aan.
+dan wijzigt ``ToUpper()`` de originele tekst niet, maar maakt het een *nieuw* stuk tekst (``"TIM"``) waar ``naam`` vervolgens naar verwijst. Vergeet je de toewijzing (``naam.ToUpper();`` zonder ``naam =``), dan verandert er niets aan ``naam``.
 
 <!-- TODO ed.5 (review): stackgrootte (typisch ~1 MB) en StackOverflowException kort vermelden; nu enkel in de kennisclips. -->
 <!-- TODO ed.5 (review): 'using' als statement (using (var stream = ...)) hoort bij resource management; overweeg korte vermelding. -->

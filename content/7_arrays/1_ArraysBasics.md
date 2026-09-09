@@ -1,16 +1,23 @@
 # Arrays <!--\label{ch:8}-->
 
+Mijn favoriete gebruik van een array is de kaart van een spel. Je legt een level vast als een raster van tekens, en zelfs iemand die nog nooit een lijn code schreef ziet waar de muren staan en waar de speler begint:
+
+```text
+##########
+#........#
+#.####.#.#
+#....#...#
+#.##...#@#
+##########
+```
+
+Verderop in dit hoofdstuk maken we zo'n raster echt, met een ``char[,] spelbord``. We beginnen bij één rij.
+
 Arrays zijn een veelgebruikt principe in vele programmeertalen. Het grote voordeel van arrays is dat je één enkele variabele kunt hebben die een grote groep waarden voorstelt van eenzelfde type. Hierdoor wordt je code leesbaarder en eenvoudiger in onderhoud. Arrays zijn een zeer krachtig hulpmiddel, maar er zitten wel enkele venijnige addertjes onder het gras.
 
 Op papier zijn arrays eenvoudig...helaas programmeren we zelden nog op papier. Eigenlijk is een array niets meer dan **een verzameling waarden van hetzelfde datatype**. Deze aparte waarden kunnen benaderd worden via 1 enkele variabele, de array zelf. Door middel van een **index** kan ieder afzonderlijk element uit de array aangepast of uitgelezen worden.
 
 Een nadeel van arrays is dat, eens we de lengte van een array hebben ingesteld, deze lengte niet meer kan veranderd worden. In het hoofdstuk 12 zullen we leren werken met lists en andere collections die dit nadeel niet meer hebben.
-
-:::{.callout-tip}
-Wanneer kies je nu een array en wanneer een ``List``? De vuistregel is simpel: ligt het aantal elementen op voorhand vast (12 maanden, 7 dagen, 64 vakjes op een schaakbord), dan neem je een array. Moet er tijdens de uitvoer van je programma iets bij kunnen komen of weg kunnen vallen (een winkelmandje, de spelers die zich aanmelden), dan heb je een ``List`` nodig.
-
-Let ook op de naamgeving zodra je beide door elkaar gebruikt: het aantal elementen van een array vraag je op met ``Length``, dat van een ``List`` met ``Count``. Bij een ``string`` is het dan weer ``Length`` (het aantal karakters). Verwar die twee niet, want een array heeft geen ``Count``-eigenschap en de foutmelding die je dan krijgt zegt niet bepaald duidelijk wat er scheelt.
-:::
 
 De nadelen zullen we echter met plezier erbij nemen wanneer we programma's beginnen schrijven die werken met véél data van dezelfde soort:  eenvoudigweg kan je stellen dat van zodra je 3 of meer variabelen hebt die dezelfde soort data bevatten (en dus van hetzelfde datatype zijn), een array bijna altijd de oplossing zal zijn.
 

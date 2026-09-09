@@ -13,6 +13,10 @@ Bij OOP draait alles rond **klassen en objecten** die intern nog steeds gestruct
 
 Dit geldt ook voor de technieken die je nog in dit boek gaat leren: ze zijn "een tool", niets meer. Jij zal ze nog steeds zo optimaal mogelijk moeten leren gebruiken. Uiteraard is het doel van dit boek je zo duidelijk mogelijk het verschil én de bruikbaarheid van de verschillende nieuwe technieken aan te leren.
 
+>![](../assets/verteller.png)Soms heb ik medelijden met de jeugd van tegenwoordig, jullie dus. Jij krijgt dit in je eerste jaar. Toen ik zelf voor het eerst OOP kreeg, in C++, was dat pas in het derde jaar bij de ingenieurs. Ik zag ze vliegen. En tegelijk was ik ongelooflijk onder de indruk, want plots kon ik dingen bouwen die daarvoor onbegonnen werk leken. MFC32, iemand?
+>
+>Ik heb er meteen van alles in gemaakt: een reboot van het DOS-spel Paratrooper, en een client-servertool om met mijn kameraden Dungeons & Dragons te spelen over "het internet". Good times.
+
 ## C# is OO in hart en nieren
 
 Toen C# werd ontwikkeld in 2001 was één van de hoofddoelen van de programmeertaal om *"een eenvoudige, moderne, objectgeoriënteerde programmeertaal voor algemene doeleinden"* te worden. **C# is van de grond af opgebouwd met het OOP paradigma  als primaire drijfveer.** Een paradigma is een algemeen geaccepteerde manier van denken en doen binnen een bepaald vakgebied, in dit geval binnen de programmeerwereld.

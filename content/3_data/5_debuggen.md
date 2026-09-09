@@ -19,6 +19,8 @@ Voeg beide samen
 
 Dit is dus een logische fout: oftewel een bug (in dit geval zal dit trouwens een stevige explosie veroorzaken).
 
+>![](../assets/verteller.png)Ieder jaar is er wel een student die me komt zeggen: *"Meneer, ik heb een bug in Visual Studio gevonden."* In 99% van de gevallen zit die bug in zijn eigen code. Visual Studio en de C#-compiler zijn al door miljoenen programmeurs gebruikt. Begin dus altijd bij je eigen code.
+
 
 
 ### Debuggen met Visual Studio
@@ -83,6 +85,14 @@ Zorg dus dat je vlot breakpoints kunt plaatsen om zo tijdens de uitvoer te pauze
 De grootste fout die je kunt doen is gewoon door je code te "steppen" en hopen dat de bug magisch zal tevoorschijn komen. Neen, zo werkt het dus niet. Je moet actief mee denken of dat je programma effectief werkt zoals je zelfs bedoeld had. 
 
 Dit geldt trouwens ook wanneer je niet aan het debuggen bent, maar gewoon je programma uitvoert om het te testen. Eigenlijk ben je dan ook aan het debuggen. Ook dan moet je voorspellen wat het eindresultaat zal zijn en of dit overeen komt met wat er op het scherm gebeurt. **Wees kritisch!**
+
+### Test tijdens het schrijven, niet erna
+
+Tijdens de vaardigheidsproef zie ik het elk jaar opnieuw: studenten die hun code pas in de laatste minuten voor het eerst uitvoeren. Dan blijkt het niet te werken, en zit de fout in lijn 2 of 3, die ze helemaal in het begin geschreven hebben. Alles wat daarna kwam is gebouwd op iets dat nooit gewerkt heeft.
+
+Voer je programma dus geregeld uit terwijl je het schrijft. Na elk stukje dat af is, niet als het geheel af is.
+
+Sinds je een AI kan laten meeschrijven is dat nog belangrijker geworden. Zo'n model spuwt in één keer dertig lijnen uit die er allemaal plausibel uitzien. Voer je die pas op het einde van de dag voor het eerst uit, dan mag je een bug gaan zoeken in dertig lijnen die je zelf niet geschreven hebt.
 
 <!-- TODO ed.5 (review): uitgewerkte mini-walkthrough toevoegen waarin de student stap voor stap met breakpoints een bug oplost. Idee: hergebruik de gemiddelde-temperatuur uit de casting-sectie (int-deling-val) en cross-link ernaar. -->
 

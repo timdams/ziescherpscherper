@@ -85,7 +85,7 @@ De laatste regel, *"een interface mag géén code bevatten"*, is deels onwaar. S
 | Hoeveel kan je er **combineren**? | maar 1 (single inheritance) | meerdere tegelijk |
 | Relatie | "**is een**" | "**kan iets**" / "gedraagt zich als" |
 
-Vuistregel: gaat het om gedeelde code en een echte "is een"-relatie, kies een abstracte klasse. Wil je enkel afdwingen dat verschillende, ongerelateerde klassen "iets kunnen" (bv. ``IVliegt`` voor zowel een ``Vogel`` als een ``Vliegtuig``), kies een interface.
+Een ``Vogel`` en een ``Vliegtuig`` kunnen allebei vliegen, maar ze delen geen enkele parent-klasse. Een gedeelde ``IVliegt`` kan dus enkel via een interface.
 :::
 
 ### Stagiair Steven

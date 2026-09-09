@@ -44,7 +44,7 @@ Het is niet omdat 2 klassen delen gelijkaardige (of dezelfde) code hebben dat hi
 :::
 
 :::{.callout-tip}
-Pas op: zelfs een taalkundig correcte "is een"-relatie leidt niet altijd tot goede overerving. Het klassieke voorbeeld: een vierkant *is een* rechthoek, en toch geeft een ``Vierkant : Rechthoek`` later vaak brokkelige code. In hoofdstuk 16 (polymorfisme) komen we hier op terug. Onthoud voorlopig: de "is een"-test is een goede eerste filter, maar geen absolute garantie.
+Pas op: zelfs een taalkundig correcte "is een"-relatie leidt niet altijd tot goede overerving. Het klassieke voorbeeld: een vierkant *is een* rechthoek, en toch geeft een ``Vierkant : Rechthoek`` later vaak brokkelige code. In hoofdstuk 16 (polymorfisme) komen we hier op terug.
 :::
 
 <!-- \newpage -->

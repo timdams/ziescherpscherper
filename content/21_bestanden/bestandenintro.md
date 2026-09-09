@@ -36,6 +36,10 @@ Om de voorgaande waarschuwing te benadrukken, nog 2 belangrijke tips:
 
 :::
 
+>![](../assets/verteller.png)Mijn eerste echte programma met bestanden scande mijn filmbibliotheek af op zoek naar films die nog geen ondertitels hadden. Het spuwde een lijst uit van alle ontbrekende srt-bestanden, en met dat lijstje ging ik ze dan online zoeken. Kort daarna maakte ik iets gelijkaardigs voor mijn mp3-collectie, van voor Spotify bestond: alle rare tekens en alle reclame die in de bestandsnamen was blijven plakken, eruit gestript.
+>
+>Djams, mijn alter ego dat af en toe nog op een fuif draait, heeft daar nog altijd plezier van. Die bibliotheek wordt door sommigen onder jullie een boomer-bib genoemd (IK BEN EEN EARLY MILLENNIAL) maar er zitten nog pareltjes in uit de hoogdagen van Napster en LimeWire. Darude Sandstorm for life.
+
 ## Bestands- en folderlocaties
 
 Ieder bestand en folder op je harde schijf wordt gedefinieerd door een unieke locatie, **path** genoemd. Als je een bestand genaamd ``mijnData.txt`` hebt in de "temp"-folder van je c-schijf, dan is het **full path** van dit bestand: 

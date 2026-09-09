@@ -119,7 +119,7 @@ Gebruik static niet te pas en te onpas: vaak druist het in tegen de concepten va
 :::
 
 :::{.callout-warning}
-**Let op: dit ``geboorteJaar``-voorbeeld is bewust artificieel.** Het toont enkel de *mechaniek* van ``static``. Inhoudelijk is het een slecht ontwerp: een geboortejaar hoort net wél per persoon, niet gedeeld. Verderop zie je met de teller ``aantalFietsen`` een voorbeeld waar ``static`` wél logisch is (iets bijhouden over alle objecten heen, bv. tellen hoeveel er werden aangemaakt). Onthoud dus: ``static`` is voor zaken die bij de *klasse* horen, niet bij een individueel object.
+**Let op: dit ``geboorteJaar``-voorbeeld is bewust artificieel.** Het toont enkel de *mechaniek* van ``static``. Inhoudelijk is het een slecht ontwerp: een geboortejaar hoort net wél per persoon, niet gedeeld. Verderop zie je met de teller ``aantalFietsen`` een voorbeeld waar ``static`` wél logisch is (iets bijhouden over alle objecten heen, bv. tellen hoeveel er werden aangemaakt).
 :::
 
 <!-- TODO ed.5 (review): overweeg dit geboorteJaar-voorbeeld te vervangen door een neutrale teller (bv. aantalMensenAangemaakt) zodat het mentale model meteen klopt. Nu opgelost met een waarschuwing-callout. -->

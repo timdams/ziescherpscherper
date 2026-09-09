@@ -94,6 +94,14 @@ for(int i = 0 ; i < mijnPersonages.Count; i++)
 }
 ```
 
+:::{.callout-tip}
+**Array of ``List``?** Ligt het aantal elementen op voorhand vast (12 maanden, 7 dagen, 64 vakjes op een schaakbord), dan neem je een array. Moet er tijdens de uitvoer van je programma iets bij kunnen komen of weg kunnen vallen (een winkelmandje, de spelers die zich aanmelden), dan heb je een ``List`` nodig.
+
+Nu je beide door elkaar gaat gebruiken, let op de naamgeving: het aantal elementen van een array vraag je op met ``Length``, dat van een ``List`` met ``Count``. Bij een ``string`` is het dan weer ``Length`` (het aantal karakters). Een array heeft geen ``Count``-eigenschap[^linqcount]. Schrijf je toch ``.Count`` op een array in de conditie van een for-lus, dan krijg je: *Operator '<' cannot be applied to operands of type 'int' and 'method group'*. Het woord ``Length`` komt daar nergens in voor, dus dat moet je zelf bedenken.
+:::
+
+[^linqcount]: Typ je er ronde haakjes achter, ``mijnArray.Count()``, dan compileert het wél. Dat is niet de ``Count`` van een ``List``, maar een methode die met LINQ meekomt. Visual Studio stelt ze voor in het autocomplete-lijstje, vandaar de verwarring. Gebruik ze niet: in jaar 1 staat er een boete op LINQ-methoden op arrays (zie de appendix). Op een array vraag je het aantal elementen op met ``Length``.
+
 ### Wat kan een List nog?
 
 Interessante methoden en properties voorts zijn:

@@ -126,4 +126,6 @@ Random a = new Random(666);
 Console.WriteLine(a.Next());
 ```
 
-
+>![](../assets/verteller.png)Balatro-spelers in the house? Minecrafters misschien? Die term *seed* kom je in games voortdurend tegen, en dat is letterlijk deze seed. Omdat de generator vanaf een bepaalde startwaarde altijd exact dezelfde reeks getallen uitspuwt, ligt met die ene waarde je hele wereld vast: elk dorp, elke grot, elke erts-ader.
+>
+>Vandaar dat je in Minecraft je seed aan iemand anders kan doorgeven, en die op zijn eigen pc precies jouw wereld terugkrijgt. Er zijn hele forums waar mensen niets anders doen dan goeie seeds uitwisselen.
