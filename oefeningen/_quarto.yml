@@ -219,4 +219,6 @@ format:
     # gebeurt na het renderen door scripts/oplossingen-lock.mjs; lokaal renderen blijft dus
     # gewoon leesbaar en dit script doet dan niets.
     include-after-body:
-      file: oplossingen.html
+      - file: oplossingen.html
+      # Coach-prompt achter de knop bij elke oefening, zie scripts/coach-prompt.mjs.
+      - file: coach.html

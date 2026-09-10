@@ -73,3 +73,117 @@ main .level1 > p:first-of-type::first-letter {
     display: none;
   }
 }
+
+// Coach-knop bij elke oefening: zie scripts/coach-prompt.mjs en coach.html.
+.coach-knop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  vertical-align: middle;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid #ffc9c9;
+  border-radius: 1rem;
+  background: #ffe5e5;
+  color: #b30000;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: #b30000;
+    border-color: #b30000;
+    color: #fff;
+  }
+}
+
+.coach-venster {
+  width: min(46rem, 92vw);
+  max-height: 86vh;
+  padding: 1.25rem 1.5rem 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #4d4d4d;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .coach-venster-kop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .coach-titel {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #b30000;
+  }
+
+  .coach-sluit {
+    border: 0;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #4d4d4d;
+    cursor: pointer;
+  }
+
+  .coach-uitleg {
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+  }
+
+  .coach-tekst {
+    width: 100%;
+    height: 20rem;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    background: #f8f9fa;
+    font-family: var(--bs-font-monospace, monospace);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .coach-acties {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .coach-kopieer {
+    border: 0;
+    border-radius: 1rem;
+    padding: 0.35rem 1rem;
+    background: #b30000;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: #ff0000;
+    }
+  }
+
+  .coach-status {
+    font-size: 0.8rem;
+  }
+}
+
+@media print {
+  .coach-knop {
+    display: none;
+  }
+}

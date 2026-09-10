@@ -31,6 +31,40 @@ for (int i = 0; i < tekst.Length; i++)
 Console.WriteLine($"Er staan {aantalE} e's in de zin");
 ```
 
+### Wat je aan één teken kan vragen
+
+Nu je per teken door een string kan lopen, wil je vaak weten wát voor teken je te pakken hebt. Is het een cijfer? Een hoofdletter? Daarvoor bestaan er een handvol methoden op het type ``char`` zelf:
+
+| Methode | Wat je terugkrijgt |
+|---------|--------------------|
+| ``char.IsDigit(teken)`` | ``true`` als het teken een cijfer van 0 tot 9 is |
+| ``char.IsLetter(teken)`` | ``true`` als het teken een letter is |
+| ``char.IsUpper(teken)`` | ``true`` als het een hoofdletter is |
+| ``char.IsLower(teken)`` | ``true`` als het een kleine letter is |
+| ``char.IsWhiteSpace(teken)`` | ``true`` bij een spatie, een tab of een nieuwe lijn |
+| ``char.ToUpper(teken)`` | hetzelfde teken als hoofdletter (een ``char``, geen ``bool``) |
+| ``char.ToLower(teken)`` | hetzelfde teken als kleine letter |
+
+Hetzelfde telpatroon als hierboven, maar nu tellen we de cijfers in een zin:
+
+```java
+string code = "AP2024x7";
+
+int aantalCijfers = 0;
+for (int i = 0; i < code.Length; i++)
+{
+    if (char.IsDigit(code[i]))
+    {
+        aantalCijfers++;
+    }
+}
+Console.WriteLine($"Er staan {aantalCijfers} cijfers in de code"); //5
+```
+
+:::{.callout-important}
+Let goed op waar je die methoden aanroept: op het type ``char`` zelf, met het teken tussen de haakjes. Dus ``char.IsDigit(teken)`` en **niet** ``teken.IsDigit()``. Bij de string-methoden verderop is het net omgekeerd (``zin.ToUpper()``), en die twee door elkaar halen is een van de vaakst gemaakte fouten in dit hoofdstuk.
+:::
+
 ### Wat je niet kan: een string wijzigen
 
 Lezen mag, schrijven niet. Volgende code compileert **niet**:

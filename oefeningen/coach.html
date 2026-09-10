@@ -1,0 +1,123 @@
+<!--
+  Bouwt de coach-prompt op wanneer een student op de coach-knop naast een oefening klikt.
+  De knoppen en de gegevens worden na het renderen in de pagina gezet door
+  scripts/coach-prompt.mjs. Draaide dat script niet, dan staat hier niets en doet dit niets.
+-->
+<script>
+(function () {
+  "use strict";
+
+  var data = null;
+
+  // De gegevens worden na het renderen onderaan de pagina gezet, dus na dit script.
+  // Daarom wachten we tot de pagina volledig ingelezen is.
+  function start() {
+    var bron = document.getElementById("zss-coach-data");
+    if (!bron) return;
+    try {
+      data = JSON.parse(bron.textContent);
+    } catch (e) {
+      data = null;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+
+  function bouwPrompt(oefening) {
+    return data.sjabloon
+      .replace("{{hoofdstuk}}", data.hoofdstuk)
+      .replace("{{kent}}", data.kent)
+      .replace("{{kentniet}}", data.kentniet)
+      .replace("{{titel}}", oefening.titel)
+      .replace("{{opgave}}", oefening.opgave)
+      .replace("{{achtergrond}}", oefening.achtergrond);
+  }
+
+  var venster = null;
+  var veld = null;
+  var kop = null;
+  var kopieerKnop = null;
+
+  function maakVenster() {
+    venster = document.createElement("dialog");
+    venster.className = "coach-venster";
+    venster.innerHTML =
+      '<form method="dialog" class="coach-venster-kop">' +
+      '<h2 class="coach-titel"></h2>' +
+      '<button class="coach-sluit" value="sluit" aria-label="Sluiten">&times;</button>' +
+      "</form>" +
+      '<p class="coach-uitleg">Plak deze prompt in ChatGPT, Copilot Chat of Claude. Je krijgt geen ' +
+      "oplossing en geen code: de coach stelt vragen tot je er zelf uit bent. Vraag je toch om code, " +
+      "dan leer je niets bij en dat merkt je lector op het examen.</p>" +
+      '<textarea class="coach-tekst" readonly spellcheck="false"></textarea>' +
+      '<div class="coach-acties"><button type="button" class="coach-kopieer">Kopieer prompt</button>' +
+      '<span class="coach-status" role="status"></span></div>';
+    document.body.appendChild(venster);
+
+    veld = venster.querySelector(".coach-tekst");
+    kop = venster.querySelector(".coach-titel");
+    kopieerKnop = venster.querySelector(".coach-kopieer");
+
+    kopieerKnop.addEventListener("click", function () {
+      kopieer(veld.value);
+    });
+    venster.addEventListener("click", function (e) {
+      if (e.target === venster) venster.close();
+    });
+  }
+
+  function melding(tekst) {
+    var status = venster.querySelector(".coach-status");
+    status.textContent = tekst;
+    window.setTimeout(function () {
+      status.textContent = "";
+    }, 2500);
+  }
+
+  function kopieer(tekst) {
+    function terugval() {
+      veld.removeAttribute("readonly");
+      veld.select();
+      var gelukt = false;
+      try {
+        gelukt = document.execCommand("copy");
+      } catch (e) {}
+      veld.setAttribute("readonly", "readonly");
+      melding(gelukt ? "Gekopieerd." : "Kopieer zelf met Ctrl+C.");
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(tekst).then(function () {
+        melding("Gekopieerd.");
+      }, terugval);
+    } else {
+      terugval();
+    }
+  }
+
+  function toon(id) {
+    var oefening = data.oefeningen[id];
+    if (!oefening) return;
+    if (!venster) maakVenster();
+
+    kop.textContent = "Coach-prompt: " + oefening.titel;
+    veld.value = bouwPrompt(oefening);
+
+    if (typeof venster.showModal === "function") venster.showModal();
+    else venster.setAttribute("open", "open");
+    kopieerKnop.focus();
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!data) return;
+    var knop = e.target.closest ? e.target.closest(".coach-knop") : null;
+    if (!knop) return;
+    e.preventDefault();
+    toon(knop.getAttribute("data-coach"));
+  });
+})();
+</script>

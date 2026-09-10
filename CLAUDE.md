@@ -86,9 +86,38 @@ de browser onthoudt de sleutel, dus dat is eenmalig.
   oplossingstekst op een pagina blijft staan. Testen doe je met
   [scripts/oplossingen-test.mjs](scripts/oplossingen-test.mjs).
 
+## Coach-prompt bij de oefeningen
+
+Naast elke oefeningstitel staat een knopje **Coach**. Dat geeft de student een prompt om in
+ChatGPT, Copilot Chat of Claude te plakken: een A.I. die hem door de oefening loodst zonder
+code of oplossing te geven, en die enkel leerstof gebruikt die op dat punt al gezien is.
+
+- Het sjabloon met de coachregels staat in [oefeningen/_coach/_prompt.md](oefeningen/_coach/_prompt.md).
+  Pas je daar iets aan, dan verandert het bij alle oefeningen.
+- Datzelfde sjabloon bevat een samenvatting van het boeteblad
+  ([content/B_appendix/boete.md](content/B_appendix/boete.md)): de coach beoordeelt de code van
+  de student daar even streng op als een lector. Verandert er iets aan de boetes of aan de
+  aftrek, pas het daar mee aan.
+- Per hoofdstukmap één databestand, bv. [oefeningen/_coach/8_arrays.md](oefeningen/_coach/8_arrays.md):
+  de leerstofgrens (wat de student al kent en wat nog niet) plus per oefening de bedoelde
+  aanpak en de valkuilen. De titels daarin moeten overeenkomen met de titels op de pagina;
+  de aanduiding `(*Essential*)` mag weg. Ontbreekt een oefening, dan krijgt ze geen knop en
+  waarschuwt het script.
+- De opgave zelf staat níét in dat bestand. [scripts/coach-prompt.mjs](scripts/coach-prompt.mjs)
+  haalt ze na het renderen uit de HTML, knipt de oplossings-callouts eruit en zet de knop
+  plus de gegevens in de pagina. De vormgeving zit in [oefeningen/oefeningen.scss](oefeningen/oefeningen.scss),
+  de knop zelf werkt via de include [oefeningen/coach.html](oefeningen/coach.html).
+- **De oplossing zit bewust niet in de prompt.** De student leest de tekst die hij plakt, dus
+  alles wat erin staat is meteen weggegeven. Daarom draait het script in de CI ná
+  [scripts/oplossingen-lock.mjs](scripts/oplossingen-lock.mjs): dan kan er geen oplossing meer in belanden.
+- Enkel hoofdstukmappen met een databestand krijgen knoppen. Vandaag zijn dat de mappen van H1 tot en met H18. EindeTests en corona hebben er nog geen. Ook `9_klassen/intermezzoh9.md` niet: daar staan de oefeningen als `###`, en het script zoekt naar `#`.
+
+Lokaal uitproberen: `quarto render oefeningen/` en daarna
+`node scripts/coach-prompt.mjs build/oefeningen`. Het script is idempotent.
+
 ## Gotcha
 
-**`build/` is gitignored**, behalve `build/Zie-Scherp-Scherper.pdf` die wél gecommit lijkt te zijn — controleer dit eer je `build/` opruimt.
+**`build/` is volledig gitignored.** Er zit niets van in de repo, ook de pdf van het handboek niet: `git ls-files build/` geeft niets terug. Let wel op iets anders: een `quarto render` op één hoofdstukbestand van het boek maakt `build/` eerst helemaal leeg en bouwt daarna het volledige boek opnieuw. Wil je snel iets nakijken, render dan het subproject (bv. `quarto render oefeningen/`) of werk in [boekPrintTest/](boekPrintTest/).
 
 ## Schrijfstijl & content-conventies
 

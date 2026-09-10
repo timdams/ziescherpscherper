@@ -47,6 +47,11 @@ jobs:
           OPLOSSING_SLEUTEL: ${{ secrets.OPLOSSING_SLEUTEL }}
         run: node scripts/oplossingen-lock.mjs build/oefeningen
 
+      # Zet de coach-knop bij elke oefening waarvoor er data in oefeningen/_coach/ staat.
+      # Draait na het afschermen, zodat er geen oplossing in een prompt kan belanden.
+      - name: Coach-prompts zetten
+        run: node scripts/coach-prompt.mjs build/oefeningen
+
 
       - name: Restore cached slide PDFs
         uses: actions/cache@v4

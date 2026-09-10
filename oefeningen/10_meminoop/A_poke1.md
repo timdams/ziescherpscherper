@@ -2,7 +2,6 @@
 Er zijn geen aparte Exception handling oefeningen. De bedoeling is dat je zelf steeds in je oefening naar een goede plek(ken) zoekt waar deze kan toegepast worden.
 :::
 
-:::{.callout-tip}
 
 
 

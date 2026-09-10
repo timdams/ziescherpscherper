@@ -13,6 +13,7 @@ node_modules/
 # Uitzondering: dit is geen render-output maar een bron-include (include-after-body
 # in oefeningen/_quarto.yml). Zonder deze regel valt ze uit de repo en vindt de CI ze niet.
 !oefeningen/oplossingen.html
+!oefeningen/coach.html
 
 /.quarto/
 

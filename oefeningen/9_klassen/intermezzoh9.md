@@ -34,7 +34,7 @@ Reflectie:
 * Wat als je nu een 4e score wilt toevoegen? Hoeveel code moet je aanpassen?
 * Wat als je methode per ongeluk `CalculateAverage(score1, score1, score3)` aanroept?
 
-# Deel 2: Structureren met Structs
+#### Deel 2: Structureren met Structs
 
 In plaats van losse variabelen, kunnen we gegevens groeperen in een **struct**. Zie dit als een container waar alle info van één student in zit.
 

@@ -259,6 +259,22 @@ Omgekeerd, een ``bool`` naar een ``int`` converteren zal enkel werken met de res
 
 :::
 
+### Een cijferteken is nog geen cijfer
+
+In hoofdstuk 3 beloofde ik je dit uit te leggen. Een ``char`` bewaart intern de UNICODE-waarde van het teken, en geen enkele omzetting trekt zich iets aan van wat jij op je scherm ziet staan:
+
+```java
+char eenGetal = '7';
+
+int a = eenGetal;                       //55, de UNICODE-waarde van het teken '7'
+int b = Convert.ToInt32(eenGetal);      //ook 55
+int c = int.Parse(eenGetal.ToString()); //7, dit is wat je wil
+```
+
+Widening en ``Convert`` kijken naar het getal dat in de ``char`` zit. Wil je het cijfer zelf, dan maak je van de ``char`` eerst een ``string`` en parse je die.
+
+Let ook op de richting: ``char.Parse("7")`` doet net het omgekeerde. Die zet een string van één teken om naar een ``char``, en dat is dus niet wat je hier nodig hebt.
+
 :::{.callout-warning}
 Lees zeker de volgende sectie omtrent afronden, want de ``Convert.ToX``-methoden zullen je soms verrassen wanneer je bijvoorbeeld een ``double`` naar een ``int`` omzet.
 
