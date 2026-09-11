@@ -422,24 +422,24 @@ static void Main(string[] args)
 
 ### ``static`` en ``Random``
 
->![](../assets/attention.png)Je zal ``static`` minder vaak nodig hebben dan non-static zaken. Alhoewel: wanneer je werkt met een klasse waarin je een ``Random``-number generator gebruikt, dan is het een goede gewoonte deze generator ``static`` te maken zodat alle objecten deze ene generator gebruiken. Anders bestaat de kans dat je objecten dezelfde random getallen zullen aanmaken wanneer ze toevallig op quasi hetzelfde moment werden geïnstantieerd of methoden in aanroept.
+>![](../assets/attention.png)Je zal ``static`` minder vaak nodig hebben dan non-static zaken. Alhoewel: wanneer je werkt met een klasse waarin je een ``Random``-number generator gebruikt, dan is het een goede gewoonte deze generator ``static`` te maken, zodat alle objecten deze ene generator gebruiken. Zo volg je de afspraak uit hoofdstuk 4: één generator voor je hele programma.
 
 <!-- \newpage -->
 
-Test maar eens wat er gebeurt als je volgende klasse hebt:
+Kijk eens naar volgende klasse:
 
 ```java
 internal class Dobbelsteen
 {
     public int Werp()
     {
-        Random gen = new Random();  //SLECHT IDEE!
+        Random gen = new Random(42);  //SLECHT IDEE: elke worp een nieuwe generator
         return gen.Next(1,7);
     }
 }
 ```
 
-Wanneer je nu dezelfde dobbelsteen 10 maal snel na elkaar rolt is de kans groot dat je geregeld dezelfde getallen gooit:
+Deze dobbelsteen maakt bij elke worp een nieuwe generator aan, hier met een vaste seed zodat je je spel kan testen (zie hoofdstuk 4). Rol je hem 10 keer na elkaar, dan gooit hij 10 keer hetzelfde getal:
 
 ```java
 Dobbelsteen testDobbel = new Dobbelsteen();
@@ -449,7 +449,7 @@ for(int i = 0 ; i < 10; i++)
 }
 ```
 
-De reden? Een nieuw aangemaakt ``Random``-object gebruikt de tijd waarop het wordt aangemaakt als een zogenaamde *seed*. Een seed zorgt ervoor dat je dezelfde reeks getallen kan genereren wanneer de seed dezelfde is -een concept dat nuttig is in cryptografie. Uiteraard willen we dat niet bij een dobbelsteen. Het is niet omdat een dobbelsteen snel na elkaar wordt geworpen (of aangemaakt) dat die dobbelsteen dan regelmatig dezelfde getallen na elkaar gooit.
+De reden? Elke worp begint met een verse generator met dezelfde seed en vraagt daar het eerste getal aan, en dat eerste getal is telkens hetzelfde. Zonder seed merk je in het huidige .NET niets, maar ook dan maak je bij elke worp een object aan dat je meteen weer weggooit. (In het oude .NET Framework gaf zelfs de versie zonder seed geregeld dezelfde getallen, zie het verhaal van de verteller in hoofdstuk 4.)
 
 **We lossen dit op door de generator ``static`` te maken zodat er maar één generator bestaat die alle dobbelstenen en hun methoden delen.** Dit is erg eenvoudig opgelost: je verhuist je generator naar buiten de methode en plaatst er ``static`` voor:
 

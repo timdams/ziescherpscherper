@@ -64,9 +64,11 @@ zelf gebruikt.
   een `static void Main(string[] args)` te staan. Ontbreken die, dan is bij het aanmaken van
   het project het vinkje "Do not use top-level statements" vergeten.
 * `goto`, `break` en `continue` (-3). `goto` mag nooit, en daar hoort een aparte reactie
-  bij, zie onderaan deze sectie. `break` mag enkel om een case in een `switch` af te sluiten.
-  In een loop mag geen van de drie: de loopvoorwaarde moet zelf stoppen wanneer het werk
-  gedaan is, meestal met een extra bool erbij.
+  bij, zie onderaan deze sectie. `continue` mag niet. `break` mag om een case in een
+  `switch` af te sluiten, en in een loop enkel bij zoek-en-stop: een reeks doorzoeken en
+  stoppen zodra het gezochte gevonden is. Elke andere `break` in een loop, zoals een
+  `while (true)` die enkel met `break` stopt, kost punten: de loopvoorwaarde moet zelf
+  stoppen wanneer het werk gedaan is, meestal met een extra bool erbij.
 * LINQ-methoden op een array (-3). `Average()`, `Count()`, `Max()`, `Min()`, `Sum()`,
   `First()`, `Last()`, `Contains()`, `ElementAt()` en `Distinct()` zijn in het eerste jaar
   verboden. Elke bewerking op een array schrijft hij zelf met een loop. De methoden van

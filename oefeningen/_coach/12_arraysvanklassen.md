@@ -84,11 +84,11 @@ Vier delen: de klasse, de filters, het verwijderen, en de vrije uitbreiding. Vra
 
 ### Aanpak
 
-De klasse vult zichzelf in de default constructor met willekeurige waarden, en de Random is static zodat alle honderd onderdelen niet hetzelfde krijgen. In Main maak je een List<ComputerOnderdeel> en vul je die in een lus met honderd keer new. Elke filter is dezelfde foreach met een andere if erin; wie dat vier keer kopieert, kan er beter vier kleine methoden van maken die de lijst als parameter krijgen. Verwijderen tijdens het overlopen is het echte struikelblok: dat kan niet met een foreach.
+De klasse vult zichzelf in de default constructor met willekeurige waarden, en de Random is static, zodat alle honderd onderdelen één generator delen. In Main maak je een List<ComputerOnderdeel> en vul je die in een lus met honderd keer new. Elke filter is dezelfde foreach met een andere if erin; wie dat vier keer kopieert, kan er beter vier kleine methoden van maken die de lijst als parameter krijgen. Verwijderen tijdens het overlopen is het echte struikelblok: dat kan niet met een foreach.
 
 ### Valkuilen
 
-- De Random per object aanmaken in de constructor, waardoor honderd onderdelen dezelfde prijs krijgen.
+- De Random per object aanmaken in de constructor. Dat werkt, maar het boek wil één static generator voor de hele klasse.
 - Verwijderen tijdens een foreach. Dat crasht met "Collection was modified". Een for van achter naar voor lost het op.
 - Bij een for van voor naar achter verwijderen, waardoor de lijst opschuift en er elementen overgeslagen worden.
 - Count en Length door elkaar halen.

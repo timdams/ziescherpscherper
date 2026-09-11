@@ -259,7 +259,7 @@ Met ``break`` kan je loops altijd vroegtijdig stopzetten. Je springt dan als het
 >Ik heb gemerkt dat beginnende C#-programmeurs vaak te lui zijn om een deftige stopconditie voor hun loop te schrijven. En dan maar ``break`` als oplossing hanteren.
 
 :::{.callout-tip}
-**Wanneer is ``break`` dan wél oké?** Niet álle ``break``-gebruik is fout. Een legitiem voorbeeld is het *zoek-en-stop*-patroon: je doorzoekt een reeks en zodra je het gezochte element gevonden hebt, heeft verder zoeken geen zin meer. In zo'n geval kan ``break`` net leesbaarder zijn dan een kunstmatige extra booleaanse vlag.
+**Wanneer is ``break`` dan wél oké?** Niet álle ``break``-gebruik is fout. Een legitiem voorbeeld is het *zoek-en-stop*-patroon: je doorzoekt een reeks en zodra je het gezochte element gevonden hebt, heeft verder zoeken geen zin meer. In zo'n geval kan ``break`` net leesbaarder zijn dan een kunstmatige extra booleaanse vlag. Het [boeteblad](../B_appendix/boete.md#boete-goto) laat ``break`` in het eerste jaar dan ook enkel daar toe, en in een ``switch``. ``continue`` blijft verboden.
 :::
 
 <!-- \newpage -->

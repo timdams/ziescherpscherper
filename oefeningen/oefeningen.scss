@@ -328,6 +328,46 @@ $oef-oranje-tekst: #8a5300;
   }
 }
 
+// Voorbeelduitvoer mét kleuren, voor oefeningen met ForegroundColor en BackgroundColor.
+// In de bron:
+//   ::: {.console .kleur}
+//   ```{=html}
+//   <pre><code>Film: <span class="k-rood">The Matrix</span></code></pre>
+//   ```
+//   :::
+// Gewone tekst is grijs zoals in een echte console (.console uit custom.scss is groen).
+// De kleuren benaderen die van ConsoleColor in de Windows-console.
+#quarto-document-content .console.kleur {
+  pre code {
+    color: #cccccc;
+  }
+
+  .k-rood {
+    color: #e74856;
+  }
+
+  .k-groen {
+    color: #16c60c;
+  }
+
+  .k-blauw {
+    color: #3b78ff;
+  }
+
+  .k-geel {
+    color: #f9f1a5;
+  }
+
+  .k-cyaan {
+    color: #61d6d6;
+  }
+
+  .k-wit-zwart {
+    background: #f2f2f2;
+    color: #0c0c0c;
+  }
+}
+
 // Tot opmaak.html klaar is, staan de oefeningen onzichtbaar. Zo zie je ze niet eerst allemaal
 // open staan. Loopt het script mis, dan verschijnen ze na een seconde toch.
 html.zss-opmaak-wacht #quarto-document-content > section.level1 {

@@ -146,7 +146,7 @@ Eén parameter, de lengte, en een string als returntype. Binnenin een lus die te
 
 - De string binnen de lus opnieuw beginnen.
 - De bovengrens van Next vergeten: die waarde zelf komt nooit voor, dus de z of de Z valt weg.
-- Het Random-object binnen de lus aanmaken, waardoor alle tekens gelijk worden.
+- Het Random-object binnen de lus aanmaken. Dat werkt, maar het boek wil één generator voor het hele programma.
 - Het paswoord tonen in de methode in plaats van het terug te geven.
 
 ## Netflix Essentials Oefening

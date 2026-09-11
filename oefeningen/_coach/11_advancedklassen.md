@@ -111,7 +111,7 @@ De echte code zit in een private instantievariabele, en de property Code beslist
 - Het aantal pogingen ook verhogen bij een juiste code of bij -666, terwijl de tabel zegt wanneer dat moet.
 - In BruteForce de echte code van de kluis uitlezen. Dat is geen brute force, en de property geeft daar toch -666 terug.
 - BruteForce als gewone methode schrijven en dan een object nodig hebben om hem op te roepen.
-- De Random binnen de lus aanmaken, waardoor je tien keer hetzelfde getal probeert.
+- De Random binnen de lus aanmaken. Dat werkt, maar het hoofdstuk leert net één static Random voor de hele klasse.
 - Blijven proberen nadat de code al gevonden is.
 
 ## Pokémon deel 2

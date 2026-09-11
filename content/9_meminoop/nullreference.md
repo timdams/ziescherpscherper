@@ -39,7 +39,7 @@ Dit zal resulteren in een foutboodschap in VS bij de lijn die de uitzondering de
 :::{.callout-tip}
 We moeten in dit voorbeeld expliciet ``= null`` plaatsen daar Visual Studio slim genoeg is om je te waarschuwen voor eenvoudige potentiële NullReference fouten.
 
-Krijg je in je eigen projecten plots groene kronkellijntjes bij code die met ``null`` werkt? Dat hoort bij een C#-functie genaamd **nullable reference types**. Die behandelen we in dit boek bewust nog niet; je mag die waarschuwingen voorlopig negeren (je code blijft gewoon compileren).
+Krijg je in je eigen projecten plots groene kronkellijntjes bij code die met ``null`` werkt? Dat hoort bij een C#-functie genaamd **nullable reference types**. Die behandelen we in dit boek bewust nog niet (zie ook de callout bij de properties in hoofdstuk 9); je mag die waarschuwingen voorlopig negeren (je code blijft gewoon compileren).
 :::
 
 <!-- TODO ed.5 (review): sectie ?? (null-coalescing) en ??= toevoegen direct na de ?.-uitleg. Bewust nog niet gedaan: leunt aan tegen het null-feature-gedeelte dat we voorlopig beperkt houden. Beslissing aan Tim. -->

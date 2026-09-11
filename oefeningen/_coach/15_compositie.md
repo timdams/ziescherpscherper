@@ -89,7 +89,7 @@ President erft van Minister, dat is de enige overerving hier. Land bevat de ande
 - De controle op een bestaande regering vergeten, of ze na het toekennen doen.
 - De teller van de president public laten. Die heeft een private set en verandert enkel via JaarVerder.
 - In JaarVerder de president aanspreken zonder te controleren of hij null is.
-- De Random in NaamGen aanmaken, waardoor alle ministers dezelfde naam krijgen.
+- De Random in NaamGen aanmaken. Dat werkt, maar het boek wil één static Random voor de hele klasse.
 - De ministerslijst op null zetten in plaats van hem leeg te maken, of omgekeerd. Laat hem uitleggen wat de opgave precies vraagt.
 
 ## Moederbord

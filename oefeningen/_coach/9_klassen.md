@@ -41,6 +41,7 @@ Hoofdstuk 9, object georiënteerd programmeren:
 - string.IsNullOrWhiteSpace om te controleren of een tekst leeg is
 - Uit het intermezzo: een struct als groepje samenhorende gegevens, en waarom een klasse daar een betere versie van is
 - Dat een object dat nog nergens naar wijst null is. Wat daarachter zit, komt in hoofdstuk 10
+- Groene kronkels met de waarschuwing CS8618 (een string-property of instantievariabele zonder beginwaarde) of CS8600 (bij ReadLine) mag hij laten staan. Het boek legt dat uit in een callout bij de properties. required en string? gebruikt hij niet
 
 ## Kent nog niet
 

@@ -20,7 +20,7 @@ De kern op een rij:
 - Je eigen code komt voorlopig enkel tussen de accolades van `Main`, en elke lijn eindigt op een puntkomma (`;`).
 - `Console.WriteLine` springt na de tekst naar een nieuwe lijn, `Console.Write` niet.
 - `Console.ReadLine()` leest wat de gebruiker intikt tot die op enter drukt en geeft die tekst terug.
-- Met `+` plak je stukken tekst aan elkaar; staat iets zonder aanhalingstekens, dan beschouwt C# het als een variabele.
+- Met een `$` voor de aanhalingstekens zet je de inhoud van een variabele in een zin: `$"Dag {naam}"`. Staat iets zonder aanhalingstekens, dan beschouwt C# het als een variabele.
 - VS onderlijnt fouten met een rode squiggly: zolang die er staan, compileert je programma niet.
 - Kleur gebruik in de console is beperkt tot de kleuren die je kan instellen met `Console.ForegroundColor` en `Console.BackgroundColor`. Vergeet niet om de kleuren terug te zetten naar de standaardwaarden met `Console.ResetColor()`.
 

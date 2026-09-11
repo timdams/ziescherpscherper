@@ -93,22 +93,13 @@ Je bereik is 7.5, namelijk ``12.5 - 5.0`` en vermenigvuldig je het resultaat van
 
 
 
->![](../assets/attention.png)**"Help! Ik krijg steeds dezelfde random getallen? Wat nu?"**
+Je hebt in je programma maar één ``Random``-generator nodig. Maak die één keer aan en vraag er daarna al je getallen aan. Een ``Random`` is een **pseudo-willekeurige getallengenerator**: hij rekent een reeks getallen uit die willekeurig lijkt, vertrekkend van een startwaarde, de zogenaamde *seed*.
 
-Wel wel, wie we hier hebben. Werkt je Random generator niet naar behoren? Wil je het ding in de vuilbak gooien omdat het niet zo willekeurig lijkt te werken als je hoopte? Gelukkig ben ik er! Zet je helm dus op en luister.
+>![](../assets/verteller.png)In vorige edities van dit boek stond hier een grote waarschuwing: maak nooit twee generators vlak na elkaar aan, want dan krijg je twee keer dezelfde getallen. In het oude .NET Framework was dat ook echt zo. Een nieuwe ``Random`` nam de klok van de computer als seed, en die klok verspringt maar om de zoveel milliseconden. Twee generators die in hetzelfde tikje aangemaakt werden, kregen dus dezelfde seed en spuwden exact dezelfde reeks uit. Een dobbelsteen die in een lus telkens een nieuwe ``Random`` maakte, gooide zo tien keer na elkaar hetzelfde getal.
+>
+>In het huidige .NET krijgt elke nieuwe ``Random`` een eigen, willekeurige seed. Die bug bestaat dus niet meer, maar in oudere code en op fora kom je de waarschuwing nog geregeld tegen. 
 
-Wanneer je twee ``Random`` objecten aanmaakt op quasi hetzelfde tijdstip in je code, dan zullen deze twee generators ook dezelfde getallen genereren:
-
-```java
-Random a = new Random();
-Random b = new Random(); //Slecht idee!
-Console.WriteLine(a.Next());
-Console.WriteLine(b.Next());
-```
-
-De ``Random`` bibliotheek gebruikt de tijd als een soort "willekeurig" startpunt (de tijd is de zogenaamde *seed*). Het is namelijk een **pseudo-willekeurige getal generator**. 
-
-Dit is de reden waarom je in je code steeds maar **1 Random generator** mag aanmaken! Er zijn weinig redenen om er meerdere aan te maken. Bovenstaande code is dus niet aan te raden. Je schrijft beter:
+Eén generator houdt je code eenvoudig, en je hebt het ook nodig zodra je met een vaste seed wil werken (zie verderop). Zo dus:
 
 ```java
 Random a = new Random();

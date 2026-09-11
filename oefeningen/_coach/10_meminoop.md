@@ -105,7 +105,7 @@ De kern is het onderscheid tussen wat je bewaart en wat je berekent. De zes base
 - Voor Average delen door 6 in plaats van door 6.0.
 - Level een public set geven, waardoor VerhoogLevel geen zin meer heeft.
 - In de klasse per property een aparte teller of hulpvariabele beginnen bijhouden. Alles volgt uit de zes base-stats en het level.
-- De Random in de generator elke aanroep opnieuw aanmaken, waardoor alle Pokémon dezelfde stats krijgen.
+- De Random in de generator bij elke aanroep opnieuw aanmaken. Dat werkt, maar het boek wil één generator voor het hele programma.
 - In Battle vergelijken op de base-stats. Die veranderen nooit, dus het level zou geen invloed hebben.
 - De null-controle in Battle vergeten, of ze pas doen nadat de stats al opgevraagd zijn. Dat is precies de NullReferenceException uit dit hoofdstuk.
 - ShowInfo in Program.cs zetten. Een Pokémon toont zichzelf.

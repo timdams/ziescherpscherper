@@ -325,6 +325,16 @@ internal class Persoon
 }
 ```
 
+:::{.callout-note title="Groene kronkels onder je properties?"}
+Een ``string``-property of -instantievariabele zonder beginwaarde krijgt in Visual Studio een groene kronkellijn, met een waarschuwing als:
+
+``CS8618: Non-nullable property 'Voornaam' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable.``
+
+Dat is geen fout: je code compileert en werkt gewoon. C# waarschuwt dat die ``string`` voorlopig nog ``null`` is: er zit nog geen tekst in, zelfs geen lege. Wat ``null`` precies is, zie je in hoofdstuk 10. De twee oplossingen die Visual Studio voorstelt, ``required`` en een ``?`` achter het type, gebruiken we in dit boek nog niet. Je mag deze waarschuwing dus laten staan.
+
+Dezelfde soort waarschuwing zag je misschien al vanaf hoofdstuk 1, bijvoorbeeld ``CS8600`` onder ``string invoer = Console.ReadLine();``. Ook die mag je negeren.
+:::
+
 We willen echter ook soms de volledige naam of emailadres krijgen, beide gebaseerd op de inhoud van de instantievariabelen ``voornaam`` en ``achternaam``. Via een read-only property die transformeert kan dit:
 
 ```java

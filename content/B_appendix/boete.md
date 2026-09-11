@@ -67,39 +67,55 @@ namespace Casino
 
 **-3 punten** · geldt in jaar 1
 
-Zonder in debat te gaan: `goto` willen we nooit zien. Simpel. `break` is enkel toegestaan in een `switch` om een case af te sluiten. Elders (bv. in loops) zijn `break` en `continue` niét toegestaan.
+Zonder in debat te gaan: `goto` willen we nooit zien. Simpel. Ook `continue` is in jaar 1 niet toegestaan.
 
-*Waarom:* je moet eerst zelf deftig uit een loop leren geraken, en dat wil zeggen: je loopvoorwaarde zo schrijven dat de loop vanzelf stopt wanneer je klaar bent. Vanaf het tweede jaar mag je `break` en `continue` in loops wél gebruiken.
+`break` mag op twee plaatsen:
+
+- in een `switch`, om een case af te sluiten;
+- in een loop die iets zoekt en stopt zodra hij het gevonden heeft: het *zoek-en-stop*-patroon.
+
+Elke andere `break` in een loop kost punten. Een `while (true)` waar je enkel met een `break` uit geraakt, is het klassieke voorbeeld.
+
+*Waarom:* je moet eerst zelf deftig uit een loop leren geraken, en dat wil zeggen: je loopvoorwaarde zo schrijven dat de loop vanzelf stopt wanneer je klaar bent. Vanaf het tweede jaar mag je `break` en `continue` in loops overal gebruiken.
 
 ```java
-// FOUT
-for (int i = 0; i < getallen.Length; i++)
+// FOUT: waarom de loop stopt, staat niet in de loopvoorwaarde
+int som = 0;
+while (true)
 {
-    if (getallen[i] == gezocht)
+    Console.WriteLine("Geef een getal (0 om te stoppen)");
+    int getal = int.Parse(Console.ReadLine());
+    if (getal == 0)
     {
-        Console.WriteLine("Gevonden!");
         break;
     }
+    som += getal;
 }
 ```
 
 ```java
 // JUIST
-bool gevonden = false;
-int i = 0;
+int som = 0;
+int getal;
+do
+{
+    Console.WriteLine("Geef een getal (0 om te stoppen)");
+    getal = int.Parse(Console.ReadLine());
+    som += getal;
+}
+while (getal != 0);
+```
 
-while (i < getallen.Length && !gevonden)
+```java
+// TOEGESTAAN: zoek-en-stop
+int gevondenIndex = -1;
+for (int i = 0; i < getallen.Length; i++)
 {
     if (getallen[i] == gezocht)
     {
-        gevonden = true;
+        gevondenIndex = i;
+        break;
     }
-    i++;
-}
-
-if (gevonden)
-{
-    Console.WriteLine("Gevonden!");
 }
 ```
 

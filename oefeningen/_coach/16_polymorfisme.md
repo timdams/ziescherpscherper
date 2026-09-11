@@ -156,7 +156,7 @@ Dobbelsteen is één static methode met één static Random. Speelvakje bepaalt 
 
 ### Valkuilen
 
-- In elk Speelvakje een eigen Random aanmaken, waardoor de tien vakjes dezelfde waarde krijgen.
+- In elk Speelvakje een eigen Random aanmaken. Dat werkt, maar het boek wil één static Random voor de hele klasse.
 - De kansen fout verdelen: 30 procent, 20 procent en 50 procent moeten samen 100 zijn, en binnen elke groep is er nog een keuze tussen twee waarden.
 - Bij het belanden op een vakje de beweging opnieuw toepassen op het nieuwe vakje. De opgave zegt uitdrukkelijk dat er daarna niets meer gebeurt.
 - De grenzen verwarren: de index loopt van 0 tot en met 9, en winnen gebeurt boven 9.
