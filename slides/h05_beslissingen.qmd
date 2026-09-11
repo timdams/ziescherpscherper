@@ -116,7 +116,11 @@ Voor samengestelde voorwaarden ("hongerig **EN** genoeg geld"):
 
 Logische operators verwachten **`bool`**-operanden en geven zelf ook een `bool` terug.
 
-::: {.callout-tip .fragment}
+---
+
+## De wetten van De Morgan
+
+::: {.callout-tip}
 De **wetten van De Morgan**: een `!` vóór een samengestelde expressie mag je naar binnen brengen, maar dan wisselt de EN met de OF. `!(A && B)` is hetzelfde als `!A || !B`, en `!(A || B)` is hetzelfde als `!A && !B`.
 :::
 
@@ -219,9 +223,6 @@ Het `if`-blok draait enkel als de booleaanse expressie **`true`** is. De lijn er
 
 ## Werk altijd met accolades
 
-:::: {.columns}
-
-::: {.column width="60%"}
 Zonder accolades hoort **enkel de eerste lijn** bij de `if`:
 
 ```csharp
@@ -230,6 +231,17 @@ if (tijd < 20)
     Console.WriteLine("Je bent er bijna!"); // ALTIJD
 ```
 
+::: {.callout-tip .fragment}
+Inspringen heeft in C# **geen** invloed op de programmaflow (anders dan in Python). De accolades bepalen het blok.
+:::
+
+---
+
+## Werk altijd met accolades (vervolg)
+
+:::: {.columns}
+
+::: {.column width="60%"}
 Met accolades hoort het hele blok bij de test:
 
 ```csharp
@@ -246,10 +258,6 @@ if (tijd < 20)
 :::
 
 ::::
-
-::: {.callout-tip .fragment}
-Inspringen heeft in C# **geen** invloed op de programmaflow (anders dan in Python). De accolades bepalen het blok.
-:::
 
 ---
 
@@ -276,6 +284,10 @@ Schrijf hier gewoon `if (gevonden)`. Een `bool` is zelf al een booleaanse expres
 :::
 
 ::::
+
+---
+
+## Toekennen in plaats van vergelijken (vervolg)
 
 ![`=` zet de rechtse waarde in de linkse variabele. `==` vergelijkt beide en geeft een `bool` terug.](../content/assets/2_beslissingen/toekennenvergelijken.png){width=55%}
 
@@ -401,7 +413,19 @@ Console.WriteLine(korting);
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+int bedrag = 120;
+int korting = 0;
+if (bedrag > 100) { korting = 10; }
+if (bedrag > 50)  { korting = 5; }
+Console.WriteLine(korting);
+```
+
+::: {.callout-note}
 Het zijn twee **losse** `if`'s, geen `if`/`else if`-keten. Bij 120 euro zijn beide tests waar, dus overschrijft de tweede `korting` alsnog naar 5. Met een `else if` was die tweede test overgeslagen. Steven zag een getal verschijnen en keek niet na of het wel het júiste getal was.
 :::
 
@@ -589,11 +613,15 @@ Helm op. Een dag van de week bijhouden zonder enum is foutgevoelig:
 
 * met een **`int`** (1 tot 7): wat bij waarde 9 of -4? En was `2` nu dinsdag?
 * met een **`string`** (`"maandag"`): één typefout (`"Maandag"`) en je test faalt
-
-Een `bool` heeft dat probleem niet: die kan maar twee waarden bevatten, `true` en `false`. Een `enum` laat je precies dat doen, maar dan met je eigen lijstje namen:
 :::
 
 ::::
+
+---
+
+## Waarom een enum? (vervolg)
+
+Een `bool` heeft dat probleem niet: die kan maar twee waarden bevatten, `true` en `false`. Een `enum` laat je precies dat doen, maar dan met je eigen lijstje namen:
 
 ```csharp
 enum Weekdagen { Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag, Zaterdag, Zondag };
@@ -745,6 +773,11 @@ Daarna een nette `switch` op `playerGameState`. Of denk aan schaken: `Schaakstuk
 * **Booleaanse expressies** combineren relationele en logische operators tot een `bool`
 * C# **kortsluit** en volgt een vaste volgorde van bewerkingen: `&&` komt vóór `||`
 * **`if`**, **`if/else`**, **`if/else if`** en de **ternaire operator**: let op accolades, puntkomma's en de **volgorde**
+
+---
+
+## Conclusie (vervolg)
+
 * De **scope** van een variabele wordt door de omliggende accolades bepaald
 * Een **`switch`** verkort een lange `if`-keten; elke case met code eindigt op **`break`**
 * Een **`enum`** maakt code leesbaarder en veiliger: een eigen type met vaste waarden

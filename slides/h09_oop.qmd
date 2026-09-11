@@ -408,6 +408,10 @@ public int Energie
 * **Read-only**: geen `set`
 * **Read-only met `private set`**: enkel intern aanpasbaar
 * **Transformerend**: berekent data in de `get`
+
+::: {.callout-tip .fragment}
+Pas, ook **binnen** de klasse, je instantievariabele aan via de property, zodat je controles niet omzeilt.
+:::
 :::
 
 ::: {.column width="50%"}
@@ -415,10 +419,6 @@ public int Energie
 :::
 
 ::::
-
-::: {.callout-tip .fragment}
-Pas, ook **binnen** de klasse, je instantievariabele aan via de property, zodat je controles niet omzeilt.
-:::
 
 ---
 

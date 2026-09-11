@@ -235,7 +235,17 @@ Console.WriteLine($"Volgend jaar word je {leeftijd + 1}.");
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+Console.WriteLine("Geef je leeftijd:");
+int leeftijd = int.Parse(Console.ReadLine());
+Console.WriteLine($"Volgend jaar word je {leeftijd + 1}.");
+```
+
+::: {.callout-note}
 Dan crasht zijn programma. `int.Parse` verwacht tekst die echt een geheel getal voorstelt. Steven testte enkel de invoer die hij zelf in gedachten had, en de A.I. waarschuwde hem nergens. Foute invoer opvangen doe je met `int.TryParse`.
 :::
 

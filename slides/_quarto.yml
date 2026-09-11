@@ -43,3 +43,5 @@ format:
     lang: nl
     slide-number: true
     transition: slide
+    # Zelfde codekleuren als in het handboek
+    highlight-style: github

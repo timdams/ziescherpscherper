@@ -176,6 +176,14 @@ Console.WriteLine(result); //resultaat: 15
 
 C# is een **strongly typed language**: je legt van bij de start vast welk **soort data** een variabele bevat.
 
+::: {.callout-tip .fragment}
+Anders dan in JavaScript kan data hier niet zomaar van vorm veranderen. Dat is soms strenger, maar bespaart je veel gevloek.
+:::
+
+---
+
+## Datatypes (vervolg)
+
 :::: {.columns}
 
 ::: {.column width="48%"}
@@ -192,10 +200,6 @@ In dit boek gebruiken we types voor:
 :::
 
 ::::
-
-::: {.callout-tip .fragment}
-Anders dan in JavaScript kan data hier niet zomaar van vorm veranderen. Dat is soms strenger, maar bespaart je veel gevloek.
-:::
 
 ---
 
@@ -633,8 +637,6 @@ Visual Studio organiseert je code in een hiërarchie:
 
 * een **solution** is een map met **één of meer projecten**
 * een **project** bundelt codebestanden tot één uitvoerbaar geheel
-
-Daarom raden we aan om *"Place solution and project in the same directory"* **niet** aan te vinken.
 :::
 
 ::: {.column width="40%"}
@@ -642,6 +644,12 @@ Daarom raden we aan om *"Place solution and project in the same directory"* **ni
 :::
 
 ::::
+
+---
+
+## Solutions en projecten (vervolg)
+
+Daarom raden we aan om *"Place solution and project in the same directory"* **niet** aan te vinken.
 
 ::: {.callout-warning .fragment}
 Een `.sln`-bestand bevat **geen code**. Wil je je werk delen, geef dan de **hele folderstructuur** mee.

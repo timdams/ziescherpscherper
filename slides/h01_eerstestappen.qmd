@@ -162,13 +162,13 @@ De Deen die C# boven de doopvont hield bij Microsoft.
 * Schreef eerder **Turbo Pascal**
 * Was *chief architect* van **Delphi**
 * Bedacht later ook **TypeScript**
-:::
-
-::::
 
 ::: {.callout-tip .fragment}
 Als je één poster in je slaapkamer hangt, zou het die van Anders moeten zijn.
 :::
+:::
+
+::::
 
 ---
 
@@ -393,7 +393,15 @@ Console.Writeline(Hallo)
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+Console.Writeline(Hallo)
+```
+
+::: {.callout-note}
 1. `Writeline` bestaat niet: C# is hoofdlettergevoelig, het is `WriteLine`
 2. `Hallo` staat zonder aanhalingstekens, dus C# zoekt een variabele met die naam
 3. De puntkomma op het einde ontbreekt
@@ -581,6 +589,11 @@ Hou het leesbaar en denk aan **daltonisme**: rood op groen las voor sommigen onl
 * **Programmeren** = een dom maar gehoorzaam toestel exact vertellen wat het moet doen
 * Een goed **algoritme** (de juiste instructies in de juiste volgorde) komt vóór de code
 * De **compiler** vertaalt je C# naar machinetaal; **.NET** levert het framework
+
+---
+
+## Conclusie (vervolg)
+
 * Met **`WriteLine`**, **`Write`** en **`ReadLine`** doe je in- en uitvoer, met `$"...{naam}..."` zet je een variabele middenin een zin
 * Kleur zet je met `ForegroundColor` en `BackgroundColor`, en zet je terug met `ResetColor()`
 * Lees je **fouten**, wees kritisch op het lampje, en klik **nooit** op "Yes" bij die dialog

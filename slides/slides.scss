@@ -1,15 +1,263 @@
+/*-- scss:defaults --*/
+
+// ============================================================
+//  Slides in de huisstijl van het handboek (../custom.scss):
+//  Inter en JetBrains Mono, AP-rood als accent, rode inline code
+//  en het github-codethema (zie highlight-style in _quarto.yml).
+//
+//  De basis blijft het clean-thema (_extensions/grantmcdermott/clean).
+//  Enkel wat clean met !default zet, kan je hier via een variabele
+//  overschrijven. Zijn andere keuzes ($accent, het lichte gewicht van
+//  tekst en koppen) liggen vast, die draaien we terug onder scss:rules.
+// ============================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-family-monospace: "JetBrains Mono", "Cascadia Code", "Fira Code", SFMono-Regular, Menlo, Consolas, monospace;
+$presentation-heading-font: $font-family-sans-serif;
+
+// Inter en JetBrains Mono zijn breder dan de Roboto Light en Consolas van
+// clean. Op 32px (de waarde van clean) lopen volle slides over; 30px geeft
+// ongeveer dezelfde regellengte. Code schaalt mee, want die staat in em.
+$revealjs-font-size-root: 30px;
+
+// Dezelfde kleuren als in ../custom.scss
+$zss-rood: #e11d2a;            // accent: streepjes, bolletjes
+$zss-rood-tekst: #c01622;      // rood voor tekst en links
+$zss-tekst: #2b2b33;
+$zss-kop: #1a1a22;
+$zss-grijs: #6b6b76;
+$zss-vaag: #9a9aa3;
+$zss-lijn: #e6e8eb;
+
+// Niet het warme #fafaf7 van het boek: de figuren hebben een ingebakken
+// achtergrond in offwhite uit _brand.yml en zouden anders als grijs vak
+// op de slide staan.
+$body-bg: #f8f9fa;
+$body-color: $zss-tekst;
+$presentation-heading-color: $zss-kop;
+$link-color: $zss-rood-tekst;
+$selection-bg: rgba($zss-rood, 0.15);
+$selection-color: $zss-kop;
+
+// Code
+$code-block-bg: #ffffff;
+$code-block-border-color: #e9ecef;
+$code-color: #b30000;
+$code-bg: #f1f3f5;
+
+$border-radius: 8px;
+
+
 /*-- scss:rules --*/
+
+// ---------- Tekst ----------
+// clean zet alles op font-weight: lighter. Met Inter is gewoon 400 al licht genoeg.
+.reveal p,
+.reveal ul,
+.reveal ol,
+.reveal table th,
+.reveal table td {
+  font-weight: 400;
+}
+
+.reveal {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ---------- Titelslide ----------
+#title-slide {
+  .title {
+    position: relative;
+    padding-bottom: 0.25em;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: $zss-kop;
+
+    // Zelfde rood streepje als onder een hoofdstuktitel in het boek
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 80px;
+      height: 6px;
+      border-radius: 3px;
+      background: $zss-rood;
+    }
+  }
+
+  .subtitle {
+    margin-top: 0.8em;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $zss-rood-tekst;
+  }
+
+  .author,
+  .quarto-title-author-name {
+    font-weight: 500;
+    color: $zss-grijs;
+  }
+}
+
+// ---------- Koppen ----------
+// Het streepje hangt in de marge onder de kop, zodat het geen hoogte kost:
+// veel slides staan tot onderaan vol.
+.reveal h2 {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: $zss-kop;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 48px;
+    height: 4px;
+    border-radius: 2px;
+    background: $zss-rood;
+  }
+}
+
+.reveal h3 {
+  font-style: normal;
+  font-weight: 600;
+  color: $zss-rood-tekst;
+}
+
+.reveal h4 {
+  font-weight: 600;
+  color: $zss-kop;
+}
+
+// ---------- Lijsten ----------
+.reveal ul li::marker {
+  color: $zss-rood;
+}
+
+.reveal ul ul li:before {
+  color: $zss-rood;
+}
+
+.reveal ol li::marker {
+  color: $zss-rood-tekst;
+  font-weight: 600;
+}
+
+// ---------- Links ----------
+.reveal .slides a {
+  text-decoration: underline;
+  text-decoration-color: rgba($zss-rood, 0.35);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+
+  &:hover {
+    text-decoration-color: $zss-rood;
+  }
+}
+
+// De regelnummers in een codeblok zijn ook links, die niet onderlijnen.
+.reveal .slides pre a {
+  text-decoration: none;
+}
+
+.reveal .button {
+  background-color: $zss-rood-tekst;
+  border-color: $zss-rood-tekst;
+
+  &:hover {
+    background-color: #8f0f1a;
+    border-color: #8f0f1a;
+  }
+}
+
+.alert {
+  color: $zss-rood-tekst;
+}
+
+// ---------- Code ----------
+.reveal div.sourceCode {
+  border-color: #e9ecef;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+// Geen ligaturen: anders staat == als één lang teken en != als ≠ op het
+// scherm, en dat typt een student niet over.
+.reveal code,
+.reveal pre {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+// Regelnummers grijs, niet in de rode inline-codekleur
+.reveal pre.numberSource code > span > a:first-child::before,
+.reveal pre.sourceCode code > span > a:first-child::before {
+  color: $zss-vaag !important;
+}
+
+// inline code: rood op een grijs vakje, zoals in het boek
+.reveal :not(pre) > code {
+  padding: 0 0.15em;
+  border-radius: 4px;
+  font-weight: 500;
+}
 
 // ---------- Escape-tekens niet laten opvallen ----------
 // Zelfde ingreep als in de root ../custom.scss, maar voor de revealjs-slides.
 // De highlighter kleurt escape-tekens (\\, \n, \t, \" ...) apart en markeert
 // in verbatim strings (@"C:\Temp\Myfile.txt") de \T, \M enz. zelfs als "fout"
 // (rood). Die tekens horen gewoon bij de string, dus we geven ze de string-
-// kleur van het reveal-highlightthema (#20794D) en halen de onderlijning weg.
+// kleur van het github-highlightthema (#032f62) en halen de onderlijning weg.
 code span.sc,   // SpecialChar: geldige escapes zoals \\ \n \t
 code span.er {  // Error: valse foutmarkering op verbatim-string-escapes
-  color: #20794D !important;
+  color: #032f62 !important;
   text-decoration: none !important;
+}
+
+// ---------- Callouts ----------
+.reveal div.callout {
+  border-radius: $border-radius;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+
+  &.callout-style-default,
+  &.callout-style-simple {
+    border-top-color: $zss-lijn;
+    border-right-color: $zss-lijn;
+    border-bottom-color: $zss-lijn;
+  }
+}
+
+// ---------- Tabellen ----------
+.reveal table thead th {
+  background: #f4f5f7;
+  color: $zss-kop;
+}
+
+.reveal table thead th,
+.reveal .slides table tr:last-child td,
+.reveal .slides table {
+  border-bottom-color: $zss-lijn;
+}
+
+// ---------- Onderschriften en slidenummer ----------
+.reveal figcaption,
+.reveal .figure-caption,
+.reveal p.caption {
+  color: $zss-grijs;
+}
+
+.reveal .slide-number {
+  color: $zss-vaag !important;
+  font-family: $font-family-sans-serif;
 }
 
 // ---------- Rasterje met game-covers (H1) ----------

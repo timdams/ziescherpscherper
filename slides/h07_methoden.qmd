@@ -355,7 +355,22 @@ Console.WriteLine($"Punten: {punten}");
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+static int Verdubbel(int getal)
+{
+    return getal * 2;
+}
+
+int punten = 5;
+Verdubbel(punten);
+Console.WriteLine($"Punten: {punten}");
+```
+
+::: {.callout-note}
 Er verschijnt `Punten: 5`. De methode werkt op een kopie, maar de echte fout is dat Steven het resultaat nergens opvangt. `Verdubbel(punten);` berekent wel 10, maar dat getal gaat verloren. Het moest `punten = Verdubbel(punten);` zijn. De code compileert zonder klacht, dus kreeg hij geen enkele waarschuwing.
 :::
 
@@ -682,7 +697,11 @@ Verdubbel(2.5);   // 5
 Verdubbel("ha");  // haha
 ```
 
-::: {.callout-important .fragment}
+---
+
+## Overloading en het returntype
+
+::: {.callout-important}
 Het returntype mág verschillen, maar telt niet mee. Twee versies die enkel in returntype verschillen geven *already defines a member called 'Verdubbel' with the same parameter types*.
 :::
 

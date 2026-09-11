@@ -291,7 +291,9 @@ Console.WriteLine("Hallo {naam}, welkom!");
 
 ::::
 
-. . .
+---
+
+## Stagiair Steven: wat liep er mis?
 
 Op het scherm staat letterlijk `Hallo {naam}, welkom!`, mét de accolades. Het **`$`** vooraan ontbreekt.
 
@@ -579,6 +581,11 @@ Zet er een `@` voor: `@"C:\temp\notities.txt"`. Of verdubbel elke backslash: `"C
 * Een **`char`** is één teken (een 16-bit getal), een **`string`** is een reeks chars
 * **UNICODE** (UTF-16 in .NET) volgt ASCII op en bevat meer dan een miljoen tekens
 * **Escape characters** (`\n`, `\t`, `\"`) sturen hoe tekst geïnterpreteerd wordt; `@` en `"""` schakelen ze uit
+
+---
+
+## Conclusie (vervolg)
+
 * **String interpolation** (`$"...{expressie}..."`) is de standaardmanier om variabelen in tekst te plaatsen; `+` vooral om lange tekst over meerdere lijnen te splitsen
 * Let op de **char-val** (`'A' + 'B'` = 131) en op **machine-afhankelijke** formattering
 * **`Environment`** geeft info over de machine (`UserName`, `MachineName`, `NewLine`) en `Exit(0)` stopt je programma met een exitcode

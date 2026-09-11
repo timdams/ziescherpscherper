@@ -456,7 +456,18 @@ for (int i = 1; i < 10; i++)
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+for (int i = 1; i < 10; i++)
+{
+    Console.WriteLine(i);
+}
+```
+
+::: {.callout-note}
 `1` tot en met `9`. De finish test `i < 10` blijft waar zolang `i` kleiner is dan 10, dus bij `i` gelijk aan 10 stopt de loop nog net voor die laatste waarde. Wil Steven de 10 erbij, dan moet er `i <= 10` staan (of `i < 11`). Zo'n vergissing van precies één te veel of te weinig heet een **off-by-one**-fout. Steven liet de A.I. de grens kiezen en telde zelf niet na.
 :::
 
@@ -658,11 +669,11 @@ Daarom worden geneste loops in de praktijk bijna altijd met een `for` geschreven
 
 ::: {.column width="55%"}
 ![De zeven stukken, genummerd in de volgorde waarin ze uitgevoerd worden.](../content/assets/3_loops/nestvolgorde.png)
+
+Stappen 4, 5 en 6 draaien vijf keer voor er ook maar één keer aan stap 7 wordt toegekomen.
 :::
 
 ::::
-
-Stappen 4, 5 en 6 draaien vijf keer voor er ook maar één keer aan stap 7 wordt toegekomen.
 
 ---
 

@@ -41,6 +41,10 @@ Eén **array** bundelt dezelfde soort data in één variabele:
 int[] regen = { 34, 45, 0, 34, 12, 0, 23 };
 ```
 
+---
+
+## Zonder en met arrays
+
 ![Losse variabelen versus een array.](../content/assets/5_arrays/intro.png){width=60%}
 
 ---
@@ -638,7 +642,22 @@ Console.WriteLine(scores[0]);
 
 ::::
 
-::: {.callout-note .fragment}
+---
+
+## Stagiair Steven: wat liep er mis?
+
+```csharp
+static void Reset(int[] scores)
+{
+    scores = new int[scores.Length];
+}
+
+int[] scores = { 10, 25, 3 };
+Reset(scores);
+Console.WriteLine(scores[0]);
+```
+
+::: {.callout-note}
 Er verschijnt gewoon `10`. Wat je meegeeft is een **kopie van de wegwijzer**: die kopie mag je in de methode naar iets anders laten wijzen, de variabele in `Main` blijft naar de originele array kijken. Een *element* aanpassen (`scores[0] = 99`) werkt wél door, de hele array *vervangen* niet.
 :::
 
