@@ -358,6 +358,14 @@ $oef-oranje-tekst: #8a5300;
     color: #f9f1a5;
   }
 
+  .k-donkergeel {
+    color: #c19c00;
+  }
+
+  .k-magenta {
+    color: #b4009e;
+  }
+
   .k-cyaan {
     color: #61d6d6;
   }
@@ -720,6 +728,206 @@ section.is-gedaan > details.oef:not([open]) .oef-titel {
       opacity: 1;
     }
   }
+}
+
+// ---------- Overzichtspagina (overzicht.qmd) ----------
+// Per module een raster met hoofdstuktegels. Proeven en grote opgaven zitten dichtgeklapt
+// eronder, zodat niet de hele pagina uit rode links bestaat.
+#quarto-document-content .ovz {
+  > p:first-child {
+    color: $oef-grijs;
+  }
+
+  h2 {
+    margin: 2.2rem 0 0.8rem;
+    padding: 0;
+    border: 0;
+    @include oef-kleinlabel;
+    font-size: 0.75rem;
+    color: $oef-vaag;
+  }
+
+  a {
+    border-bottom: 0;
+  }
+
+  // De tegels
+  section > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+    align-items: start;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  section > ul > li {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.55rem;
+    margin: 0;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid $oef-lijn;
+    border-radius: 8px;
+    background: #fff;
+    font-weight: 500;
+    color: $oef-kop;
+    transition: border-color 0.15s ease;
+  }
+
+  // Tegel met één pagina: de hele tegel is de link.
+  section > ul > li > a:only-child {
+    display: flex;
+    align-items: baseline;
+    column-gap: 0.55rem;
+    font-weight: inherit;
+    color: inherit;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      color: $oef-rood-tekst;
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid $oef-rood;
+      }
+    }
+  }
+
+  section > ul > li:has(> a:only-child:hover) {
+    border-color: $oef-rood;
+  }
+
+  .nr {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $oef-vaag;
+  }
+
+  // Tegel met meerdere pagina's (week 1, week 2, ...)
+  .delen {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.45rem;
+  }
+
+  .delen a,
+  details a {
+    display: inline-block;
+    padding: 0.12rem 0.55rem;
+    border: 1px solid $oef-lijn;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #4a4a55;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $oef-rood;
+      color: $oef-rood-tekst;
+    }
+  }
+
+  // Dichtgeklapte proeven en opgaven
+  details {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+
+    > p {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.3rem 0 0.6rem 1.35rem;
+    }
+  }
+
+  details + details {
+    margin-top: 0.1rem;
+  }
+
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0;
+    list-style: none;
+    color: $oef-grijs;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    // Zelfde pijltje als bij de oefeningen
+    &::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      margin: 0 0.25rem 0 0.15rem;
+      border-right: 1.6px solid $oef-vaag;
+      border-bottom: 1.6px solid $oef-vaag;
+      transform: rotate(-45deg);
+      transition: transform 0.15s ease;
+    }
+
+    &:hover {
+      color: $oef-rood-tekst;
+    }
+  }
+
+  details[open] > summary::before {
+    transform: rotate(45deg);
+    border-color: $oef-rood;
+  }
+
+  .aantal {
+    font-size: 0.75rem;
+    color: $oef-vaag;
+  }
+
+  // Melding dat de vinkjes "gedaan" enkel in deze browser staan, met een wisknop.
+  .ovz-voortgang {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0.4rem 0 0.6rem;
+    padding: 0.1rem 0 0.1rem 1rem;
+    border-left: 3px solid $oef-lijn-sterk;
+    font-size: 0.85rem;
+    color: $oef-grijs;
+
+    p {
+      flex: 1 1 22rem;
+      margin: 0;
+    }
+
+    .ovz-stand {
+      color: $oef-tekst;
+    }
+  }
+}
+
+// Een potloodtekening bij één oefening per hoofdstuk, zie assets/illustraties/.
+img.illustratie {
+  display: block;
+  max-width: min(100%, 36rem);
+  margin: 1rem auto 1.25rem;
 }
 
 @media print {

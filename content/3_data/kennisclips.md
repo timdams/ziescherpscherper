@@ -11,7 +11,7 @@
 <!-- TODO ed.5 (review): kennisclip over AI-prompts toevoegen (ai.md introduceert AI prominent maar heeft hier nog geen clip). -->
 
 ### Oefeningen
-[Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h4-werken-met-data/a_practica)
+[Oefeningen](https://www.ziescherp.be/oefeningen/4_data/A_Practica.html)
 
 ### Quizlet flashcards
 

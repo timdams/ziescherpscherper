@@ -330,6 +330,8 @@ public class Driehoek: GeometricFigure
 # Dierentuin
 Maak een console-applicatie waarin je een zelfverzonnen abstract klasse Dier in een List<Dier> kunt plaatsen. Ieder dier heeft een gewicht en een methode ``Zegt`` (die abstract is) die het geluid van het dier in kwestie op het scherm zal tonen. Maak enkele childklassen die overerven van Dier en uiteraard de ``Zegt`` methode overriden.
 
+![](../assets/illustraties/h14_dierentuin.jpg){.illustratie fig-alt="Potloodtekening: de robot als dierenverzorger wandelt langs een leeuw, een olifant, een eend en een aap die elk hun eigen geluid maken."}
+
 Plaats enkele dieren in de nieuw aangemaakt lijst.
 Vervolgens verschijnt er een menu Wanneer de gebruiker 'q' kiest stopt het programma.Het keuze menu heeft volgende opties:
 

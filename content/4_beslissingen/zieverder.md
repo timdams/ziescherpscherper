@@ -59,7 +59,7 @@ In C# heeft inspringen geen invloed op de programmaflow: enkel de accolades tell
 In Python gebruik je geen symbolen voor de logische operators, maar gewone Engelse woorden: `and`, `or` en `not`:
 
 ```python
-if leeftijd > 18 and heeft_kaart:
+if leeftijd >= 18 and heeft_kaart:
     print("Welkom")
 
 resultaat = not (0 == 2)

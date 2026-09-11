@@ -248,3 +248,65 @@ bijkomt (named, optioneel, overloading) en dat de huisregel van week 1 blijft ge
 - **Coach-titels:** elke titelwijziging hierboven (Netflix, Stel jezelf voor, Armstrong, de nieuwe
   oefeningen) moet mee in `oefeningen/_coach/7_methoden.md`, anders krijgt de oefening geen
   Coach-knop.
+
+---
+
+## Doorgevoerd (2026-09-11)
+
+- **Volgorde van sectie 5.** Week 1 (`b_practicasamen.md`): Stel jezelf voor → Opwarmers → Grootste
+  methode → Rekenmachine → Methodenpuzzel → Voorspel de uitvoer → Stevens methoden → Vraagmethoden →
+  Paswoord generator → Netflix → Armstrong (PRO) → A.I. assisted oefeningen generator. Week 2
+  (`b_practicasamenb.md`): Film Default → Opwarmers met geavanceerde methoden → Voorspel de uitvoer:
+  optioneel en overload → Roulette → Helm's Deep opgekuist → Havenbeheer (Final Essentials) → Hoe ver
+  geraak je? (bonus). 19 oefeningen, 12 Essential. Elke oefening heeft nu een anker `{#h07-...}`, en
+  elke week een `.vooraf`.
+- Nieuw: Methodenpuzzel, Voorspel de uitvoer, Stevens methoden en Vraagmethoden (week 1), Voorspel de
+  uitvoer: optioneel en overload en Helm's Deep opgekuist (week 2). Basic en Basic 2 werden Stel jezelf
+  voor (met `ToonIntro`, naar de huisregel). Pro Rekenmachine is deel 3 van Rekenmachine. Oude oefeningen
+  leesbaarder maken is weg (Helm's Deep opgekuist neemt de plaats in). Armstrong is een eigen
+  PRO-oefening met `TelCijfers`, `IsArmstrong` en `ToonArmstrongNummers`.
+- Sectie 1, alles weg. Keuzes daarbij:
+  - Havenbeheer: de code staat in een codeblok. De overload is nu `BerekenHavengeld(int aantalContainers)`
+    (45 euro per container) tegenover `BerekenHavengeld(double tonnage)` (15 euro per ton). Wie de
+    containers als `double` inleest, krijgt 3750 in plaats van 11250 euro (geverifieerd met dotnet), en
+    dat staat in een Les. De standaardwaarde van `kadeDiepte` wordt echt gebruikt: kade 1 (12,5 m,
+    standaard) en het Deurganckdok (14 m, named argument).
+  - Film Default: `ToonFilm`, de enum en een `Main` met 1, 2 en 3 argumenten en `filmgenre: Genre.Animatie`.
+  - Roulette: `SimuleerRoulette` en `ToonResultaat` (met kleur en `ResetColor`), een aanroep zonder
+    aantal rondes, 0 tot en met 59 (`Next(0, 60)`), en een echte uitvoer van de oplossing als voorbeeld
+    (-805,3 euro na 10000 rondes).
+  - `return;` zonder waarde: een korte alinea met `ToonWortel` in `content/6_methoden/0_intromethods.md`,
+    onder de bestaande uitleg bij `return` (geen deling door nul in het voorbeeld, want dan stond er `==`
+    op een double). Netflix en Havenbeheer verwijzen ernaar, met een Les.
+  - Typfouten en `##`-koppen weg, Netflix heeft het label `(*Essential*)`.
+- Sectie 2: Opwarmers met volledige signaturen, een geschreven oplossing (de kennisclip blijft als extra),
+  `BerekenOmtrek` en `BerekenOppervlakte` roepen `BerekenStraal` op. Grootste methode deel 2 met
+  `Grootste(Grootste(a, b), c)`; omdat overloading pas in week 2 komt, heet de versie voor drie getallen
+  in week 1 `GrootsteVanDrie`, en in week 2 wordt ze een overload. Rekenmachine: menu met `switch` en
+  melding bij delen door nul (deel 2), geheugen met `geheugen = TelOp(geheugen, getal);` (deel 3). Netflix
+  kreeg een deel 2 met de vraagmethoden (in plaats van deel 3 van Vraagmethoden, want Netflix komt daarna).
+  Opwarmers met geavanceerde methoden zoals voorgesteld (`Macht`, `ToonOnevenNummers(tot, vanaf)`,
+  `Grootste` overloaded). De A.I.-prompt vermeldt wat nog niet gekend is en de huisregel; het label
+  Essential is weg.
+- Coach-data `oefeningen/_coach/7_methoden.md` herschreven voor de 19 oefeningen, met de punten uit
+  sectie 6 (geheugen als variabele in Main, geen `return;`-advies zonder uitleg, TryParse enkel uit een tip).
+- Kennisclips: `content/6_methoden/kennisclips.md` linkt nu naar de eigen oefeningenpagina's. Bij het
+  doorvoeren van H5 en H6 was dat blijven staan; `content/4_beslissingen/kennisclips.md` en
+  `content/5_herhalingen/kennisclips.md` zijn meegenomen.
+- Bewust niet:
+  - Verhaalgenerator: staat als commentaar onderaan week 2, tot het project in
+    `oefeningen/EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md` hersteld is (EindeTests valt buiten deze
+    ronde).
+  - `JaartjeOuder` in `content/6_methoden/0b_parameters.md`: niet hernoemd, de figuur `byvalue.png` hoort
+    erbij.
+  - De opgave van Helm's Deep opgekuist toont de code van H6 niet: dat is de afgeschermde oplossing van
+    een Final Essentials. De student vertrekt van zijn eigen oplossing.
+  - In de opgaven van Vraagmethoden en Opwarmers met geavanceerde methoden staat de signatuur zonder
+    `static`: met `static` erbij was ze precies de 8 woorden die het slot-script als lek in de zoekindex
+    telt.
+- Gecontroleerd: elk codeblok apart gecompileerd met dotnet 10 (enkel de bewust foute stukken en de
+  losse delen zonder hun methoden falen), de stukken samengezet en uitgevoerd met de invoer uit de
+  voorbeelden. De foutmeldingen CS0161, CS0029, CS0120 en CS0121 zijn letterlijk van dotnet; de lokale
+  functie compileert en draait. Helm's Deep opgekuist geeft met dezelfde invoer exact dezelfde uitvoer
+  als de H6-oplossing. `quarto render oefeningen/`, het slot-script op een kopie (geen melding voor H7),
+  het coach-script (12 en 7 knoppen), en screenshots van beide weken en van Stevens methoden.

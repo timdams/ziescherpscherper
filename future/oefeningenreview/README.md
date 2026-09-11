@@ -16,13 +16,13 @@ van 2026-09-11, de bestanden hier blijven de bron).
 | H | Rapport | Oefeningen | Status |
 |---|---------|------------|--------|
 | 1 | [H01_intro.md](H01_intro.md) | `oefeningen/1_intro/` | doorgevoerd (2026-09-11) |
-| 2 | [H02_csharpbasics.md](H02_csharpbasics.md) | `oefeningen/2_csharpbasics/` | analyse |
-| 3 | [H03_tekst.md](H03_tekst.md) | `oefeningen/3_tekst/` | analyse |
-| 4 | [H04_data.md](H04_data.md) | `oefeningen/4_data/` | analyse |
-| 5 | [H05_beslissingen.md](H05_beslissingen.md) | `oefeningen/5_beslissingen/` | analyse |
-| 6 | [H06_herhalingen.md](H06_herhalingen.md) | `oefeningen/6_herhalingen/` | analyse |
-| 7 | [H07_methoden.md](H07_methoden.md) | `oefeningen/7_methoden/` | analyse |
-| 8 | [H08_arrays.md](H08_arrays.md) | `oefeningen/8_arrays/` | analyse |
+| 2 | [H02_csharpbasics.md](H02_csharpbasics.md) | `oefeningen/2_csharpbasics/` | doorgevoerd (2026-09-11) |
+| 3 | [H03_tekst.md](H03_tekst.md) | `oefeningen/3_tekst/` | doorgevoerd (2026-09-11) |
+| 4 | [H04_data.md](H04_data.md) | `oefeningen/4_data/` | doorgevoerd (2026-09-11) |
+| 5 | [H05_beslissingen.md](H05_beslissingen.md) | `oefeningen/5_beslissingen/` | doorgevoerd (2026-09-11) |
+| 6 | [H06_herhalingen.md](H06_herhalingen.md) | `oefeningen/6_herhalingen/` | doorgevoerd (2026-09-11) |
+| 7 | [H07_methoden.md](H07_methoden.md) | `oefeningen/7_methoden/` | doorgevoerd (2026-09-11) |
+| 8 | [H08_arrays.md](H08_arrays.md) | `oefeningen/8_arrays/` | doorgevoerd (2026-09-11) |
 | 9 | [H09_klassen.md](H09_klassen.md) | `oefeningen/9_klassen/` | analyse |
 | 10 | [H10_meminoop.md](H10_meminoop.md) | `oefeningen/10_meminoop/` | analyse |
 | 11 | [H11_advancedklassen.md](H11_advancedklassen.md) | `oefeningen/11_advancedklassen/` | analyse |
@@ -49,7 +49,8 @@ Deze gelden voor alle hoofdstukken. Zegt een rapport iets anders, dan wint wat h
   zodra het gezochte gevonden is). `continue` en elke andere `break` in een loop, zoals een
   `while (true)` die enkel met `break` stopt, blijven in jaar 1 een boete. Al doorgevoerd in
   `content/B_appendix/boete.md`, `oefeningen/_coach/_prompt.md` en `content/5_herhalingen/2_for.md`.
-  De oefeningen en coach-data van H6 en H8 volgen bij het doorvoeren van die hoofdstukken.
+  De oefeningen en coach-data van H6 en H8 volgen die regel sinds het doorvoeren van die hoofdstukken
+  (2026-09-11).
 - **`Random` in een lus**: de bewering dat twee generators kort na elkaar dezelfde getallen geven,
   is weg. `content/3_data/random.md` vertelt het nu als verhaal van de verteller (een bug uit het
   oude .NET Framework). `content/10_advancedklassen/5_static.md` onderbouwt de static generator nu
@@ -83,6 +84,9 @@ Deze gelden voor alle hoofdstukken. Zegt een rapport iets anders, dan wint wat h
 - **Unittest-repo's** (`ZIESCHERPER_TESTS_H1_...` enzovoort): omzetten naar `net10.0` en hernoemen
   naar de huidige hoofdstuknummers. Niet in deze ronde. De oefeningen blijven naar de huidige
   repo's linken, met de omweg van .NET 7 naar een nieuwere versie zoals nu.
+- **Afbeeldingen bij H2**: Tim laat voor één of twee oefeningen van H2 een afbeelding maken
+  (skill `afbeelding`). Welke oefeningen, kiest hij nog. Tot dan staat er in
+  `oefeningen/2_csharpbasics/A_practica.md` geen enkele afbeelding.
 
 ## Deel A: de analyse
 

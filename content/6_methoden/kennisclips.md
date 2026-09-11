@@ -11,7 +11,7 @@
 
 ### Oefeningen
 
-[Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h7-methoden/b_practicasamen)
+[Oefeningen week 1](https://www.ziescherp.be/oefeningen/7_methoden/b_practicasamen.html) en [week 2](https://www.ziescherp.be/oefeningen/7_methoden/b_practicasamenb.html)
 
 ### Quizlet flashcards
 

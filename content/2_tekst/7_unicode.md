@@ -31,7 +31,7 @@ Kopieer het karakter zelf en plaats het in je code waar je het nodig hebt, bijvo
 Console.WriteLine("<plak hier je speciale teken>"); 
 ```
 
-Merk op dat niet alle lettertypes dit karakter kennen en dus mogelijk als een vierkantje dit op je scherm zullen tonen. Dit hangt af van het lettertype dat jouw shell-venster gebruikt. In Windows Terminal (de standaard op Windows 11) is dat zelden een probleem, zelfs voor emoji. In het oudere zwarte consolevenster en in de Debug Console van Visual Studio gebeurt het wel nog.
+Merk op dat niet alle lettertypes dit karakter kennen en dus mogelijk als een vierkantje dit op je scherm zullen tonen. Dit hangt af van het lettertype dat jouw shell-venster gebruikt. In Windows Terminal (de standaard op Windows 11) is dat zelden een probleem, zelfs voor emoji. In het oudere zwarte consolevenster en in de Debug Console van Visual Studio gebeurt het wel nog. Dat gaat enkel over het lettertype: de UTF-8-lijn uit stap 2 heb je ook in Windows Terminal nodig. Zonder die lijn wordt een emoji op een Belgische pc twee vraagtekens.
 
 #### Manier 2: hexadecimale code casten naar char
 

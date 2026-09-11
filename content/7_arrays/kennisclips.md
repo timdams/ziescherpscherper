@@ -14,12 +14,12 @@
 
 ### Oefeningen
 
-* [Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h7-methoden/b_practicasamen)
-* [Quizlet](https://quizlet.com/be/918628060/zie-scherp-scherper-hoofdstuk-08-flash-cards/)
+* [Oefeningen week 1](https://www.ziescherp.be/oefeningen/8_arrays/A_practicasamen.html) en [week 2](https://www.ziescherp.be/oefeningen/8_arrays/A_practicasamenb.html)
+* [Gecombineerde oefeningen H1 tot H8](https://apwt.gitbook.io/ziescherp-oefeningen/alles-samen-h1-tot-h8/readme2)
 
 ### Quizlet flashcards
 
-[Gecombineerde oefeningen H1 tot H8](https://apwt.gitbook.io/ziescherp-oefeningen/alles-samen-h1-tot-h8/readme2)
+[Quizlet](https://quizlet.com/be/918628060/zie-scherp-scherper-hoofdstuk-08-flash-cards/)
 
 ### Samenvattende poster
 

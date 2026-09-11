@@ -131,6 +131,8 @@ catch(Exception ex)
 
 # Digitale kluis (*Essential*)
 
+![](../assets/illustraties/h11_kluis.jpg){.illustratie fig-alt="Potloodtekening: de robot probeert een kluis te kraken met een stethoscoop, het stokmannetje leunt ertegen met de sleutel."}
+
 
 ## Basiskluis
 

@@ -82,7 +82,10 @@ double gewicht = double.Parse(Console.ReadLine());
 
 Dit is wat er in ``gewicht`` terechtkomt, afhankelijk van wat de gebruiker typt en van de instellingen van de computer:
 
-
+| De gebruiker typt | Belgische/Nederlandse instellingen | Engelse instellingen |
+|---|---|---|
+| ``9,81`` | 9,81 | 981 |
+| ``9.81`` | 981 | 9,81 |
 
 :::{.callout-warning}
 Het verkeerde scheidingsteken geeft **geen foutmelding**. Op een Belgische computer wordt ``9.81`` gelezen als 981, want de punt geldt daar als scheiding voor duizendtallen. Je programma rekent dus vrolijk verder met een gewicht van 981 kilogram. Krijg je bij kommagetallen vreemde resultaten zonder dat er iets crasht, controleer dan eerst welk teken je hebt getypt.

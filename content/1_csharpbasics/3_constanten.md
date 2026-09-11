@@ -17,10 +17,10 @@ Merk op hoe we de ``const`` variabelen een identifier geven: deze zetten we in A
      - naming-keuze: Microsoft Guidelines raden PascalCase aan voor const, niet ALLCAPS. Beslis welke conventie we propageren en trek ze consistent door het boek. -->
 
 :::{.callout-tip}
-Constanten in code worden ook soms **magic numbers** genoemd. De reden hiervoor is dat ze vaak plotsklaps ergens in de code voorkomen, maar wel op een heel andere plek werden gedeclareerd. Hierdoor is het voor de ontwikkelaar niet altijd duidelijk wat de variabele juist doet.
-Het is daarom belangrijk dat je goed nadenkt over het gebruik van magic numbers én deze zeer duidelijke namen geeft. 
+Een los getal midden in je code, zonder naam, noemen programmeurs een **magic number**. Wie ``prijs * 1.21`` leest, moet zelf raden wat die ``1.21`` betekent. Staat datzelfde getal op tien plekken, dan moet je het ook op tien plekken aanpassen als het verandert.
+Een constante met een duidelijke naam lost dat op: bij ``prijs * BTW_FACTOR`` zie je meteen wat er gebeurt, en het getal staat maar op één plek.
 
-Er worden vele *filosofische oorlogen* gevoerd tussen ontwikkelaars over de plek van magic numbers in code. In de C/C++ tijden werden deze steeds  bovenaan aan de start van de code gegroepeerd. Op die manier zag de ontwikkelaar in één oogopslag alle belangrijke variabelen en konden deze ook snel aangepast worden. In C# prefereert men echter om variabelen zo dicht mogelijk bij de plek waar ze nodig zijn te schrijven, dit verhoogt de *modulariteit* van de code: je kan sneller een flard code kopiëren en op een andere plek herbruiken.
+Er worden vele *filosofische oorlogen* gevoerd tussen ontwikkelaars over de plek van constanten in code. In de C/C++ tijden werden deze steeds  bovenaan aan de start van de code gegroepeerd. Op die manier zag de ontwikkelaar in één oogopslag alle belangrijke variabelen en konden deze ook snel aangepast worden. In C# prefereert men echter om variabelen zo dicht mogelijk bij de plek waar ze nodig zijn te schrijven, dit verhoogt de *modulariteit* van de code: je kan sneller een flard code kopiëren en op een andere plek herbruiken.
 
-De applicaties die wij in dit boek ontwikkelen zijn niet groot genoeg om over te debatteren. Veel bedrijven hanteren hun eigen coding guidelines en het gebruik, naamgeving en plaatsing van magic numbers zal zeker daarin zijn opgenomen. 
+De applicaties die wij in dit boek ontwikkelen zijn niet groot genoeg om over te debatteren. Veel bedrijven hanteren hun eigen coding guidelines en het gebruik, naamgeving en plaatsing van constanten zal zeker daarin zijn opgenomen. 
 :::

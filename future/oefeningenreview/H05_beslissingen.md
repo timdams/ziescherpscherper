@@ -231,3 +231,73 @@ zoals in de opgave).
 - `oefeningen/6_herhalingen/A_practicasamen.md:3-5` zegt "Vanaf dit hoofdstuk zul je véél meer
   oefeningen voorgeschoteld krijgen", terwijl H5 er al 17 heeft. Die pagina heeft ook nog losse
   callouts bovenaan in plaats van een `.vooraf`-blok.
+
+---
+
+## Gezien bij het doorvoeren van H4 (2026-09-11)
+
+- De oplossing van BMI berekenaar in H4 gebruikt nu `double.Parse` in plaats van `Convert.ToDouble`,
+  eindigt op een punt, en houdt de variabelen `lengteInMeter`, `gewicht` en `bmi`. BMI met if
+  (`:52`) blijft dus kloppen. Enum bij BMI (`:923-929`) herhaalt nog de oude H4-code met
+  `Convert.ToDouble` en zonder punt: trek die gelijk.
+- Het Orakeltje in H4 is niet inhoudelijk veranderd (enkel de punt achter "leven").
+
+## Doorgevoerd (2026-09-11)
+
+- `oefeningen/5_beslissingen/a_practica.md` telt nu 18 oefeningen in de volgorde van sectie 5, waarvan
+  10 Essential. Nieuw: Voorspel de uitvoer en Stevens ticketprijs (allebei Essential) en Pretparkpoort.
+  Fifa ranking is weg, net als "De snelle manier" bij Schaakstuk. Casino 3 is deel 2 van Casino; het
+  oude anker `#h05-casino-3` staat op dat deel en klapt Casino open. Schaak-Elo heeft het label
+  `(PRO)`, Verkeerslicht `(*Essential*, GPT)`. Bovenaan staat één `.vooraf` met de drie meldingen.
+- Sectie 1, alles weg. Keuzes daarbij:
+  - Orakeltje: constanten 120 en 150, `Next(5, resterend + 1)`, "Het orakel zwijgt en kijkt je
+    medelijdend aan." als er geen 5 jaar meer resten, en "Het orakel begrijpt je antwoord niet."
+    voor alles wat geen `m` of `v` is (test met `&&`, uitgelegd in de oplossing).
+  - Schaakstuk: twee switches die een string vullen, daarna één `if`. `Enum.Parse(..., true)`.
+    Voorbeeld en oplossing tonen exact dezelfde zinnen.
+  - Quiz: vraag 3 is nu "Welke operator vergelijkt twee waarden in C#?". Een `default` telt als
+    fout, juist en fout zijn groen en rood, en de eindscore toont ook het aantal juist en fout.
+  - Ohm: keuzes in kleine letters, "ampère", `>` in het voorbeeld. Deel 2: `Kortsluiting!` bij
+    weerstand 0, met uitleg waarom `==` op een double hier wel mag.
+  - Schaak-Elo: foutboodschap met de nieuwe rating erin, "van 500 tot en met 3000", geen rode
+    achtergrond meer, een onbekende letter telt als gelijkspel. Namen zoals in H4 (`ratingA`,
+    `verwachtA`), met een voorbeelduitvoer.
+  - Oscars: genre via `Enum.Parse(..., true)` (past bij het voorbeeld), controle op de sterren
+    (buiten 1 tot en met 5 wordt het 1), `+` voor een positieve genrebonus via de ternaire operator,
+    en een Les over de cast-valkuil. Voorbeeld en oplossing zijn gelijk (geverifieerd met seed 27,
+    publieksscore 84, totaal 134).
+- Sectie 2: grensgevallen in BMI (tip: 100 cm, dan is de BMI het gewicht; het geval 180 cm en
+  80,99 kg in de Les), Oscars, Schaak-Elo en Schoenverkoper. BMI heeft een `.console .kleur`-blok
+  (nieuwe klassen `k-donkergeel` en `k-magenta` in `oefeningen/oefeningen.scss`). Enum seizoenen
+  deel 2 (`huidigSeizoen + 1`), Schrikkeljaar deel 2 (bool en ternaire operator), Schoenverkoper in
+  drie delen met de uitdaging via `Math.Min`/`Math.Max`, Les-callouts bij Orakeltje, BMI, Stevens
+  ticketprijs, Kleurcode en Oscars.
+- Stemwijzer: een eigen boom met verzonnen partijen (Frietfront, Knuffelpartij, Sintunie,
+  Waterpartij, Planningspartij, Gezelligheidspartij, twee keer Blanco). Nieuwe figuur
+  `oefeningen/assets/2_beslissingen/stemwijzerNEW.png`, met script en SVG in `imagegen/`; Tim heeft ze
+  goedgekeurd. De oefening heet nu "Stemwijzer" (anker behouden), het profiel is een `string`, de
+  antwoorden zijn `j`/`n`. **De opgave veranderde samen met de figuur.**
+- Kleurcode: de kleurentabel staat op de pagina zelf, de link naar Digikey is weg.
+- Coach-data `oefeningen/_coach/5_beslissingen.md` herschreven voor de 18 oefeningen. "Kent al" vult
+  aan wat sectie 6 miste (ternaire operator, nesting, kortsluiten, De Morgan, hoofdlettergevoelig,
+  Math.Min en Math.Max). De twee code-lees-oefeningen en de puzzel hebben een `### Nota`.
+- Leerstof: `content/4_beslissingen/0_if.md` laat nu "18 jaar of ouder" binnen (`>= 18`),
+  `1_logic_and_relationsoperator.md` volgt in het De Morgan-voorbeeld, en de Python-versie in
+  `zieverder.md` ook.
+- Bewust niet:
+  - `enum gamestate` in `content/4_beslissingen/enum.md:469` blijft staan: de figuur
+    `content/assets/2_beslissingen/enumgamestate.png` toont dezelfde naam. Beide samen aanpassen.
+  - Voorspel de uitvoer heeft geen `(Kleur)5`: dat vraagt een enum buiten `Main` in een oefening uit
+    het if-blok. De cast-valkuil zit nu in Enum seizoenen deel 2 en in de Les van Oscars.
+  - Ohm en Kleurcode blijven allebei (geen van beide is Essential).
+  - `oefeningen/6_herhalingen/A_practicasamen.md:3-5` niet aangeraakt: dat is voor H6.
+  - Een Les-callout wordt niet vergrendeld. De versie van Casino deel 2 met `bool nogInHetSpel` en
+    het haakjesvoorbeeld van Schrikkeljaar staan daarom in de Oplossing, niet in een Les.
+- Niet meer gebruikt: `oefeningen/assets/2_beslissingen/stemwijzer.png` en `fifa.png`.
+- Gecontroleerd: alle code met dotnet 10 in het `Main`-skelet (nl-BE), met de invoer uit de
+  voorbeelden en de grensgevallen, en daarna nog eens rechtstreeks uit de pagina gehaald. De
+  compilerfouten van Stevens ticketprijs (CS0103, CS0165), de waarschuwing CS0642 en de fout CS1002
+  van de Pretparkpoort zijn letterlijk van dotnet. `quarto render oefeningen/`, het slot-script op een
+  kopie (niets in de zoekindex; de 10 gemelde woordgroepen komen uit de code van Steven in de opgave
+  en uit het foute voorbeeld in de Les van BMI), het coach-script (18 knoppen, geen meldingen), en
+  screenshots van de pagina, de Stemwijzer, BMI met if en het anker `#h05-casino-3`.

@@ -12,7 +12,7 @@
 
 ### Oefeningen
 
-* [Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h5-beslissingen/a_practica)
+* [Oefeningen](https://www.ziescherp.be/oefeningen/5_beslissingen/a_practica.html)
 * [Gecombineerde oefeningen H1 tot H5](https://apwt.gitbook.io/ziescherp-oefeningen/alles-samen-h1-tot-h5/readme1)
 
 ### Quizlet flashcards

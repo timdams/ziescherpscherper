@@ -78,7 +78,7 @@ Ik bespreek hier de knoppen die je zeker zal nodig hebben:
 
 Even je oren open zetten aub, ik ga iets roepen:**"Debugging is een ESSENTIËLE SKILL!!!"**. Ik laat mijn metselaars ook geen huizen bouwen zonder dat ze ooit een truweel hebben vastgepakt. Een programmeur die niet kan debuggen...is als een vis die niet kan zwemmen!
  
-Zorg dus dat je vlot breakpoints kunt plaatsen om zo tijdens de uitvoer te pauzeren om de inhoud van je variabelen te bekijken (via het watch-venster). Gebruik vervolgens de "step"-buttons om door je code te 'stappen', lijn per lijn.
+Zorg dus dat je vlot breakpoints kunt plaatsen om zo tijdens de uitvoer te pauzeren om de inhoud van je variabelen te bekijken (via het *Locals*-venster). Gebruik vervolgens de "step"-buttons om door je code te 'stappen', lijn per lijn.
 
 *Is that all?!* NEEN! Een goede programmeur zal telkens **eerst voorspellen** wat er gaat gebeuren: welke waarden zullen de variabelen hebben als ik naar de volgende lijn ga? Wat gaat er op het scherm komen? enz. Als je dan vervolgens naar de volgende lijn of breakpoint gaat en er gebeuren dingen die je niet voorspeld had, dan is de kans groot dat je een bug hebt gevonden.
 

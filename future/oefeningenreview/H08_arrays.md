@@ -302,3 +302,70 @@ Levelkaart → Fraude Detectie (Final Essentials) → Zwerkbaltraining met metho
   Zwerkbaltraining) en het boek belooft dat H9 dat probleem oplost (`content/7_arrays/algoarrays.md:181`).
   Vertrekken van Havenbeheer maakt de brug sterker. Het intermezzo noemt de publieke
   instantievariabelen van de struct "properties" (`oefeningen/9_klassen/intermezzoh9.md:59`).
+
+---
+
+## Doorgevoerd (2026-09-11)
+
+- **Volgorde van sectie 5.** Week 1 (`A_practicasamen.md`): Opwarmers → Vraag Array → Array Zoeker →
+  LeveringsBedrijf → Podium → Stevens warmste stad → Puzzelen met arrays → Havenmanifest (Final
+  Essential) → Opstartparameters (bonus). Week 2 (`A_practicasamenb.md`): Snelle invoer → Bob → Hamming
+  distance → Caesar-encryptie → Array Viewer → Wegwijzers → Puzzelen met arrays deel 2 → Parkeergarage →
+  2D Array Viewer → Voetbalcoach → Levelkaart → Fraude Detectie (Final Essentials) → Zwerkbaltraining met
+  methoden (extra). 22 oefeningen, 15 Essential. Elke oefening heeft een anker `{#h08-...}`, elke week
+  een `.vooraf`, en de `---`-lijnen en dubbele commentaarregels zijn weg.
+- Nieuw: Podium, Stevens warmste stad en Opstartparameters (week 1), Snelle invoer (`VraagGetallen`,
+  naar de huisregel), Wegwijzers en Levelkaart (week 2). Havenbeheer heet Havenmanifest. Robot Simulator
+  is weg, Levelkaart neemt de plaats in. Determinant zit in 2D Array Viewer (deel 2, 3x3 als PRO in deel
+  3). Bob en Hamming distance staan in week 2. Zwerkbaltraining staat in week 2 als dezelfde oefening
+  met methoden: `VraagJagers` (niet `LeesIn`, naar de huisregel), `ToonOverzicht`, `BerekenTotaal` en
+  `ZoekIndex`.
+- Sectie 1, alles weg. Keuzes daarbij:
+  - Voetbalcoach: een echte oplossing met `int[12, 2]`, een `do while` tot 99 zonder `break`, `+=`, en
+    alle spelers die gelijk eindigen.
+  - Parkeergarage: voorbeeld met komma's, `{duur:F1}` en `{kost:F2}`, `BerekenKost` met `Math.Ceiling`
+    en `Math.Min`, en `ToonOverzicht` voor de tabel.
+  - Caesar-encryptie: enkel letters verschuiven, met `'A'` of `'a'` als basis. Ontcijferen is
+    versleutelen met `26 - sleutel`. Voorbeeld: `Hallo, wereld!` wordt `Kdoor, zhuhog!` en komt terug.
+  - Fraude Detectie: een `string[]` van N studenten, `BerekenScore` en `TelVerdachteGelijkenissen`,
+    paren met `j = i + 1`. Het tweede scenario geeft "Geen fraude gedetecteerd.". De opgave zegt dat
+    elke student evenveel antwoorden typt als de sleutel lang is.
+  - Array Zoeker: 10 getallen, een voorbeeld dat de eerste 8 verwijdert, echte invoer en de namen
+    `getallen` en `teVerwijderen`.
+  - Bob: de antwoorden in een `string[]`, `KiesAntwoord` geeft een index. Roepen is minstens één
+    hoofdletter en geen kleine letter, stilte is een lege string na `Trim()`.
+  - Array Viewer: werkt met een lege array, `Main` toont twee arrays en een lege.
+  - Vraag Array heeft een oplossing. LeveringsBedrijf heeft tien verschillende postcodes en
+    `prijsPerKg`. De tip van Puzzelen schrijft `Array.Sort`, puzzel 5 sorteert per rij met een
+    hulparray en `Array.Sort`.
+  - Kleinere dingen: `&&` in `IsGeldigDna`, `Schooltype` overal, geen "kruisproduct" meer, `java`- en
+    `text`-blokken, geen `PadLeft`, `GetUpperBound` of `ReadKey`, de labels `(*Final Essential*)` en
+    `(*Final Essentials*)`.
+- Sectie 2: Puzzelen deel 2 met methoden (een versie die een nieuwe array teruggeeft naast een
+  `void`-versie die het origineel aanpast) en een Les. Puzzels met 8 en 12 getallen, puzzel 6 met het
+  voorbeeld `1 3 2 / 4 5 2 / 6 5 7 / 7 8 8`. `Array.IndexOf` als tweede oplossing bij LeveringsBedrijf en
+  Havenmanifest. Array Zoeker deel 2 is de puzzel met de loopgrens. Array Viewer deel 2 met `params`.
+  Havenmanifest heeft een Les over synchrone arrays die naar H9 wijst. Opwarmers: de labels in een
+  tweede array, en een opwarmer over defaultwaarden. Week 2 in de je-vorm, voorbeelduitvoer bij elke
+  oefening.
+- Sectie 6:
+  - `break`: overal enkel nog in een `switch`. Zoeken gebeurt met een `while` die stopt op de
+    voorwaarde, of met `Array.IndexOf`.
+  - Het spelbord: `content/7_arrays/4_ndimensionalArrays.md` verwijst onder `char[,] spelbord` naar
+    Levelkaart. Levelkaart vertrekt van het level uit de intro.
+  - Coach-data `oefeningen/_coach/8_arrays.md` herschreven voor de 22 oefeningen, met een `### Nota`
+    bij Wegwijzers, Stevens warmste stad en de oefeningen met meerdere delen. "Kent al" volgt de regel
+    voor `break`; de ternaire operator staat niet meer onder "Kent nog niet".
+  - Kennisclips: `content/7_arrays/kennisclips.md` linkt naar de eigen oefeningenpagina's (het stond
+    op de oude gitbook, en dan nog naar H7). De gecombineerde oefeningen staan onder Oefeningen, de
+    Quizlet onder Quizlet.
+- Bewust niet:
+  - Het intermezzo van H9 (vertrekken van Havenmanifest, "properties"): hoort bij het doorvoeren van H9.
+  - De gecombineerde oefeningen H1 tot H8 linken nog naar gitbook: EindeTests valt buiten deze ronde.
+- Gecontroleerd: elk codeblok apart gecompileerd met dotnet 10 (enkel de bewust foute stukken en de
+  losse delen zonder hun methoden falen), en de oplossingen uitgevoerd met de invoer uit de voorbeelden:
+  Podium, Snelle invoer, Bob, Hamming, Caesar, Array Viewer, Wegwijzers, Parkeergarage, 2D Array Viewer
+  (-2 en 22), Voetbalcoach, Levelkaart (22 vrije vakjes, de muur bij Z), Fraude Detectie (beide
+  scenario's), Zwerkbaltraining en Opstartparameters. `quarto render oefeningen/`, het slot-script op
+  een kopie (geen melding voor H8, na een koplijn in Stevens code die een algemene 8-woordgroep brak),
+  het coach-script, en screenshots van beide weken (geen preview meer die met "Deel 1." begint).

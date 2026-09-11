@@ -225,3 +225,15 @@ Bitmap header analyzer → Back-up maker → De Digitale Klokkenluider
   (`oefeningen/17_interfaces/A_practica.md:295`), en vier van de zeven oplossingen zijn leeg.
 - `oefeningen/EindeTests/Mod3/Opgave_1819.md:161` bevat al een deel "CSV wegschrijven". Handig om naar te
   verwijzen vanuit Kasticket in csv.
+
+---
+
+## Verhuis al gedaan (2026-09-11, bij het doorvoeren van H3)
+
+- **Systeem informatie deel 2 (DriveInfo)** staat nu in `oefeningen/18_bestandsverwerken/A_practica.md`
+  als oefening "Schijfinformatie" (anker `h18-schijfinformatie`, geen label), net voor De Digitale
+  Klokkenluider. Met een oplossing (`IsReady`, controle op de keuze, `FormatException` opgevangen) en
+  coach-data in `oefeningen/_coach/18_bestandsverwerken.md`. De uitleg over `using System.IO` en de
+  screenshot `names.png` zijn niet meegekomen: in een project met ImplicitUsings is die lijn overbodig.
+  Uit H3 is de oefening weg. Plaats en vorm mag je bij het doorvoeren van H18 nog aanpassen; de rest van
+  H18 is niet aangeraakt. De Mac-kant (geen stationsletters maar mappen) is niet getest.

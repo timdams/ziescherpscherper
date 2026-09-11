@@ -215,6 +215,8 @@ public class Gang : Kamer
 
 Ontwerp een applicatie waarin diverse typen vliegende voertuigen meedoen aan een luchtvaartshow en hun unieke vlieg‑gedrag demonstreren. In deze opgave werk je met inheritance, polymorfisme, het base‑keyword, de Dictionary‑klasse en statische methoden.
 
+![](../assets/illustraties/h16_luchtvaartshow.jpg){.illustratie fig-alt="Potloodtekening: een dubbeldekker, een straaljager, een helikopter en een luchtballon vliegen elk op hun eigen manier, de robot kondigt aan met een megafoon."}
+
 **Vereisten**
 
 1. Basisklasse Vliegtuig:

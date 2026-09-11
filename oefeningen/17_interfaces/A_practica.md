@@ -292,6 +292,8 @@ En dus in je abstracte klasse MapElement zal iets krijgen in de trend van: ``pub
 
 *Tijd om in de digitale schaduwen te duiken. Je bouwt een systeem om verschillende soorten computersystemen te infiltreren. Elk systeem heeft zijn eigen zwaktes, maar dankzij een universele interface kan je hacker-tool ze allemaal aan.*
 
+![](../assets/illustraties/h17_hacker.jpg){.illustratie fig-alt="Potloodtekening: de robot in hoodie houdt één stekker omhoog die past op een bankautomaat, een server en een koelkast, het stokmannetje kijkt streng toe."}
+
 ## Stap 1: De Interface
 Maak een interface `IHackable`.
 

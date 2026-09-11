@@ -10,7 +10,7 @@
 
 ### Oefeningen
 
-[Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h6-herhalingen-herhalingen-herhalingen/a_practicasamen)
+[Oefeningen week 1](https://www.ziescherp.be/oefeningen/6_herhalingen/A_practicasamen.html) en [week 2](https://www.ziescherp.be/oefeningen/6_herhalingen/A_practicasamen2.html)
 
 ### Quizlet flashcards
 

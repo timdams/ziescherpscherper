@@ -3,6 +3,8 @@
 
 Maak een applicatie die een gebruiker in staat stelt om zijn/haar boekencollectie te beheren. De boekengegevens worden opgeslagen in een tekstbestand op de computer. De gebruiker moet boeken kunnen toevoegen, verwijderen, en de volledige lijst van boeken kunnen bekijken.
 
+![](../assets/illustraties/h18_boekencollectie.jpg){.illustratie fig-alt="Potloodtekening: de robot zet boeken in een kast terwijl er een lange papieren rol met tekst uit de kast rolt, het stokmannetje leest."}
+
 De applicatie moet de volgende menu-opties bieden:
 
 1. Een nieuw boek toevoegen
@@ -200,6 +202,67 @@ catch (Exception e)
 {
     Console.WriteLine("Er is een fout opgetreden bij het lezen van het bestand: " + e.Message);
             }
+```
+::::
+
+
+# Schijfinformatie {#h18-schijfinformatie}
+
+Met de klasse ``DriveInfo`` vraag je informatie op over de schijven van je computer. ``DriveInfo.GetDrives()`` geeft een array met alle schijven. Van elke schijf ken je onder andere:
+
+* ``Name``: de naam, bv. ``C:\``;
+* ``TotalSize``: de totale grootte, in bytes;
+* ``AvailableFreeSpace``: de vrije ruimte, in bytes;
+* ``IsReady``: of je de schijf op dit moment kan uitlezen.
+
+``DriveInfo`` zit in de namespace ``System.IO``, net als ``File`` en ``Directory``.
+
+Toon een genummerde lijst van alle schijven, te beginnen bij 1. Vraag de gebruiker over welke schijf hij meer wil weten, en toon van die schijf de vrije ruimte en de totale grootte in gigabytes, met twee cijfers na de komma.
+
+```text
+1. C:\
+2. Z:\
+Over welke schijf wil je meer weten?
+>1
+Schijf C:\: 659,66 GB vrij van 951,65 GB
+```
+
+De gebruiker typt 1 voor de eerste schijf, maar in de array heeft die index 0.
+
+Een schijf die niet klaar is, zoals een kaartlezer zonder kaart, geeft een ``IOException`` als je ``TotalSize`` opvraagt. Kijk dus eerst naar ``IsReady``.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+DriveInfo[] schijven = DriveInfo.GetDrives();
+for (int i = 0; i < schijven.Length; i++)
+{
+    Console.WriteLine($"{i + 1}. {schijven[i].Name}");
+}
+
+Console.WriteLine("Over welke schijf wil je meer weten?");
+try
+{
+    int keuze = int.Parse(Console.ReadLine()) - 1;
+    if (keuze < 0 || keuze >= schijven.Length)
+    {
+        Console.WriteLine("Die schijf bestaat niet.");
+    }
+    else if (!schijven[keuze].IsReady)
+    {
+        Console.WriteLine($"Schijf {schijven[keuze].Name} is niet klaar.");
+    }
+    else
+    {
+        DriveInfo schijf = schijven[keuze];
+        double vrijInGB = schijf.AvailableFreeSpace / (1024.0 * 1024 * 1024);
+        double totaalInGB = schijf.TotalSize / (1024.0 * 1024 * 1024);
+        Console.WriteLine($"Schijf {schijf.Name}: {vrijInGB:F2} GB vrij van {totaalInGB:F2} GB");
+    }
+}
+catch (FormatException)
+{
+    Console.WriteLine("Geef het nummer van een schijf.");
+}
 ```
 ::::
 

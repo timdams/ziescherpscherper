@@ -238,13 +238,15 @@ Hoe je vervolgens op die ``bool`` reageert en je programma een andere weg laat i
 Het bereik van datatypes ligt weliswaar vast (zie hoofdstuk 2). Maar het is nuttig om weten dat deze ook in de compiler gekend is.  Ieder datatype heeft een aantal ingebouwde zaken die je kan gebruiken om onder andere de maximum en minimum-waarde van een datatype te gebruiken. Volgend voorbeeld toont hoe dit kan:
 
 ```java
-Console.Write("Het bereik van het type double is:");
+Console.Write("Het bereik van het type double is: ");
 Console.WriteLine($"{double.MinValue} tot {double.MaxValue}.");
 ```
 
 Dit geeft op het scherm: 
 
-``Het bereik van het type double is: -1.7976931348623157*10^308 tot 1.7976931348623157E*10^308.``
+``Het bereik van het type double is: -1,7976931348623157E+308 tot 1,7976931348623157E+308.``
+
+``E+308`` betekent "maal 10 tot de 308ste macht".
 
 Je kan met andere woorden met `int.MaxValue` en `int.MinValue` het minimum- en maximumbereik van het type ``int`` verkrijgen. 
 

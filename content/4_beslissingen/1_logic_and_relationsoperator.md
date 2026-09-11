@@ -147,7 +147,7 @@ Een ``!`` die voor een samengestelde expressie staat kan je ook naar binnen bren
 * ``!(A && B)`` is hetzelfde als ``!A || !B``
 * ``!(A || B)`` is hetzelfde als ``!A && !B``
 
-Let op dat de EN daarbij in een OF verandert, en omgekeerd. De expressie ``!(leeftijd > 18 && heeftKaart)`` mag je dus herschrijven als ``leeftijd <= 18 || !heeftKaart``. In hoofdstuk 6 gebruiken we deze wetten om de test van een loop leesbaarder te maken.
+Let op dat de EN daarbij in een OF verandert, en omgekeerd. De expressie ``!(leeftijd >= 18 && heeftKaart)`` mag je dus herschrijven als ``leeftijd < 18 || !heeftKaart``. In hoofdstuk 6 gebruiken we deze wetten om de test van een loop leesbaarder te maken.
 :::
 
 #### Kortsluiten

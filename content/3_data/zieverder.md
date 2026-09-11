@@ -2,19 +2,19 @@
 
 ### Even terugblikken
 
->![](../assets/zieverder.png)In dit hoofdstuk draaide alles om data van het juiste type krijgen en ermee rekenen. Je zag het verschil tussen impliciete en expliciete conversie, hoe je met casting en de `Convert`-klasse types omzet, en hoe je tekst van de gebruiker via `Parse` (en het veiligere `TryParse`) naar een getal brengt. Daarnaast kwamen de `Math`-klasse, afronden en `Random` aan bod, en zette je je eerste stappen in de debugger.
+>![](../assets/zieverder.png)In dit hoofdstuk draaide alles om data van het juiste type krijgen en ermee rekenen. Je zag het verschil tussen impliciete en expliciete conversie, hoe je met casting en de `Convert`-klasse types omzet, en hoe je tekst van de gebruiker via `Parse` naar een getal brengt. Daarnaast kwamen de `Math`-klasse, afronden en `Random` aan bod, en zette je je eerste stappen in de debugger.
 
 De kern op een rij:
 
 - Impliciete conversie mag enkel als er geen data verloren gaat; voor de rest cast je expliciet of gebruik je `Convert`.
-- Input lees je als tekst en zet je daarna om; `int.TryParse` vangt foute invoer op zonder crash.
+- Input lees je als tekst en zet je daarna om met `Parse`. Voorlopig ga je ervan uit dat de gebruiker geen fouten maakt.
 - `Math` bevat de wiskunde-helpers (`Math.Pow`, `Math.Sqrt`, ...) en `Math.Round` rondt af.
 - Met de debugger zet je breakpoints en stap je lijn per lijn door je code.
 
 :::{.callout-warning}
 ## Valkuilen
 - Een deling van twee gehele getallen geeft opnieuw een geheel getal: `5 / 2` is `2`, niet `2.5`. Wil je decimalen, maak dan minstens één kant een `double`.
-- `int.Parse("abc")` doet je programma crashen. Bij invoer van de gebruiker gebruik je `int.TryParse`.
+- `int.Parse("abc")` doet je programma crashen. Hoe je dat opvangt, leer je later.
 - Een `double` casten naar `int` kapt de cijfers na de komma af (er wordt niet afgerond): `(int)2.9` is `2`.
 :::
 

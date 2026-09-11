@@ -221,3 +221,37 @@ fout mee maakt. Gewicht, Tafel en Kassa zijn de grotere programma's op het einde
   `++som` verhoogt de tweede lijn `som`, niet `getal`. De commentaar klopt, maar de tekst eronder
   (`:121`) wisselt tussen `som++` en `++som`, en de student die dit in Voorspel de uitvoer moet
   toepassen, heeft baat bij een voorbeeld met één variabele.
+
+---
+
+## Doorgevoerd (2026-09-11)
+
+- `oefeningen/2_csharpbasics/A_practica.md` telt nu 14 oefeningen in de volgorde van sectie 5.
+  Nieuw: Welk datatype? (Essential, met een deel 2 over vier compilerfouten), Voorspel de uitvoer
+  (Essential), Stevens gemiddelde (Essential) en Graden omzetten. Simple maths is Essential en een
+  voorspel-oefening in twee delen. Kill/Death-ratio, Gemiddelde en BTW kregen extra delen zoals in
+  sectie 2 voorgesteld.
+- Alle fouten uit sectie 1 zijn weg. Keuzes daarbij:
+  - Euro naar dollar: de koers blijft een gewone variabele; de Les spreekt nu van een vast getal en
+    noemt het begrip *magic number*. `const` komt pas bij BTW.
+  - De Kassa: cola aan 2.50 euro. De prijzen blijven `double`-variabelen zoals de opgave vroeg, enkel
+    de wisselkoers is een `const`. Het label `Koninginha` op het ticket is gebleven.
+  - Gewicht in space rekent nu echt in newton: `massa * G_AARDE * factor`, met volledige oplossing en
+    een `.console .kleur`-blok. De uitvoer bevat `838,1271600000001`, met een tip over waarom.
+  - Tafel gaat tot 5, de oplossing toont de boodschap en gebruikt `teller`.
+- Bovenaan één `::: {.vooraf}` met de wissel naar één solution per hoofdstuk, een link naar
+  "Meerdere projecten" in het boek en een waarschuwing over het startup project.
+- **Dertien in een dozijn** is verhuisd uit H3 (pagina en coach-data), met de fix uit het H3-rapport
+  en `DOOS_GROOTTE` in hoofdletters. Nieuw anker `h02-dertien-in-een-dozijn`. Genoteerd in `H03_tekst.md`.
+- `oefeningen/_coach/2_csharpbasics.md` herschreven voor de 14 oefeningen: "Kent al" vult de verkorte
+  notaties, `++getal` en de literals aan, `Console.Clear` staat apart als "uit de oefeningen", en de
+  Kassa-valkuil over de gehele deling klopt nu. Code-lees-oefeningen hebben een `### Nota`.
+- Leerstof: `3_constanten.md` legt *magic number* nu juist uit, `1_datatypes.md` kreeg een callout over
+  `0.1 + 0.2`, en in `2_expressies.md` gaat het voorbeeld van `getal++` en `++getal` over één variabele.
+- Bewust niet: de optionele `byte assen = 255; assen++;` bij Voorspel de uitvoer. Overflow komt pas in
+  H4 en het rapport liet het aan Tim over.
+- Nog te doen (zie README, Uitgesteld): Tim laat voor één of twee oefeningen een afbeelding maken.
+- Gecontroleerd: alle code met dotnet 10 in het `Main`-skelet (nl-BE), ook de letterlijke
+  compilermeldingen. `quarto render oefeningen/`, slot-script (geen lekken in de zoekindex; de gemelde
+  woordgroepen zijn de berekeningen uit de opgave van Simple maths) en coach-script (geen
+  waarschuwingen) op een kopie van de build, screenshots van Welk datatype?, Gewicht in space en De Kassa.

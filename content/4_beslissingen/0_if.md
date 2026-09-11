@@ -344,12 +344,12 @@ Bij ``bedrag = 120`` is de eerste test ``bedrag > 100`` inderdaad ``true`` en wo
 
 ### Gebruik relationele en logische operators
 
-We kunnen ook meerdere booleaanse expressie combineren zodat we complexere uitdrukkingen kunnen maken. Stel dat we een if nodig hebben waar enkel *ingegaan* mag worden indien de leeftijd van een gebruiker hoger is dan 18 EN hij heeft een identiteitskaart bij. We kunnen dergelijke samengestelde expressies schrijven gebruik makend van de **logische operators**.
+We kunnen ook meerdere booleaanse expressie combineren zodat we complexere uitdrukkingen kunnen maken. Stel dat we een if nodig hebben waar enkel *ingegaan* mag worden indien de gebruiker 18 jaar of ouder is EN hij heeft een identiteitskaart bij. We kunnen dergelijke samengestelde expressies schrijven gebruik makend van de **logische operators**.
 
 Volgende code toont het gebruik hiervan:
 
 ```java
-if (leeftijd > 18 && heeftIdentiteitskaart)
+if (leeftijd >= 18 && heeftIdentiteitskaart)
 {
     Console.WriteLine("Welkom");
 }

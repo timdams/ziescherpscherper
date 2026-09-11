@@ -144,6 +144,17 @@ De precisie van een getal is het aantal beduidende cijfers. Enkele voorbeelden:
 
 :::
 
+:::{.callout-warning}
+Kommagetallen worden binair bewaard, en veel kommagetallen kan je niet exact in binair schrijven. Een ``double`` bewaart dan een getal dat er heel dicht bij ligt. Meestal zie je daar niets van, maar niet altijd:
+
+```java
+Console.WriteLine(0.1 + 0.2);   //0,30000000000000004
+Console.WriteLine(0.1M + 0.2M); //0,3
+```
+
+Met ``decimal`` (de ``M``) krijg je wel ``0,3``. Verschijnt er in een oefening zo'n lang getal, dan heb je dus niets fout gedaan. Afronden leer je in hoofdstuk 4.
+:::
+
 ### Boolean datatype
 
 ``bool`` (**boolean**) is het eenvoudigste datatype van C#. Het kan maar 2 mogelijke waarden bevatten: ``true`` of ``false``. 0 of 1 met andere woorden. 

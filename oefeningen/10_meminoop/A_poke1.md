@@ -82,6 +82,8 @@ public class Meetlat
 **Doel:**
 Meng twee kleuren door het gemiddelde te nemen van hun RGB-waarden.
 
+![](../assets/illustraties/h10_kleurmixer.jpg){.illustratie fig-alt="Potloodtekening: de robot giet rode en witte verf samen in een emmer, het stokmannetje vergelijkt met een kleurstaal."}
+
 **Specificaties:**
 
 *   **Klassenaam:** `Kleur`

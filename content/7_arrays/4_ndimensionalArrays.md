@@ -35,6 +35,8 @@ Bijvoorbeeld om een 2D array te maken schrijven we:
 char[,] spelbord;
 ```
 
+Het level uit de inleiding van dit hoofdstuk past in zo'n ``char[,]``: een rij per lijn van het level, een kolom per teken. In de oefening [Levelkaart](https://www.ziescherp.be/oefeningen/8_arrays/A_practicasamenb.html#h08-levelkaart) bouw je het op en laat je de speler rondlopen.
+
 Een 3D-array:
 
 ```java

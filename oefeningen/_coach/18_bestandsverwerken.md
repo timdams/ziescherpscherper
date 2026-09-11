@@ -116,6 +116,19 @@ Het bestand open je binair en je leest de eerste 54 bytes in één keer in een b
 - Een bestand kiezen dat geen bmp is en zich afvragen waarom er onzin uitkomt.
 - De getallen zelf uit de bytes proberen te berekenen. BitConverter doet dat.
 
+## Schijfinformatie
+
+### Aanpak
+
+GetDrives geeft een array. Die overloop je met een for om een genummerde lijst te tonen, te beginnen bij 1. De keuze van de gebruiker min één is de index. Van die schijf lees je AvailableFreeSpace en TotalSize, allebei in bytes, en je deelt drie keer door 1024 met een kommagetal erin. Kijk eerst of de schijf klaar is met IsReady.
+
+### Valkuilen
+
+- De keuze van de gebruiker rechtstreeks als index gebruiken, waardoor hij de verkeerde schijf krijgt of een IndexOutOfRangeException.
+- Delen door 1024 * 1024 * 1024 met enkel gehele getallen, waardoor de komma verdwijnt.
+- TotalSize opvragen van een schijf die niet klaar is. Dat geeft een IOException.
+- Denken dat er bovenaan using System.IO moet staan. In een nieuw project zit System.IO al in de impliciete usings.
+
 ## De Digitale Klokkenluider
 
 ### Nota

@@ -150,7 +150,13 @@ string zonderAt = "C:\\Temp\\Myfile.txt";
 string metAt = @"C:\Temp\Myfile.txt";
 ```
 
-Merk op dat aanhalingstekens nog steeds *ge-escape'd* moeten worden. Heb je dus een stuk tekst met een aanhalingsteken in dan zal je zonder het apenstaartje moeten werken.
+Een aanhalingsteken schrijf je in een verbatim string niet als ``\"``. De backslash is daar een gewoon teken, dus het aanhalingsteken erna sluit de string af. Je schrijft het aanhalingsteken in de plaats daarvan twee keer na elkaar:
+
+```java
+Console.WriteLine(@"Hij zei ""hallo"" in C:\Temp");
+```
+
+Dit toont ``Hij zei "hallo" in C:\Temp``.
 
 <!-- \newpage -->
 

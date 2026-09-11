@@ -280,6 +280,24 @@ static string WindRichting()
 
 Merk op dat de onderste lijn (``return "onbekend";``) nooit zal bereikt worden. Toch vereist C# dit!
 
+#### ``return;`` in een ``void``-methode
+
+Ook een ``void``-methode mag ``return`` gebruiken, maar dan zonder waarde erachter: ``return;``. De methode stopt op die plek, en de rest van haar code wordt overgeslagen:
+
+```java
+static void ToonWortel(double getal)
+{
+    if (getal < 0)
+    {
+        Console.WriteLine("Van een negatief getal bestaat geen wortel.");
+        return;
+    }
+    Console.WriteLine(Math.Sqrt(getal));
+}
+```
+
+Bij ``ToonWortel(-4)`` verschijnt enkel de melding. ``Main`` is trouwens ook een ``void``-methode: een ``return;`` in ``Main`` stopt dus je hele programma.
+
 <!-- \newpage -->
 
 >![](../assets/attention.png)Dacht je nu echt dat ik weg was?! Het is me opgevallen dat je niet altijd de foutboodschappen in VS leest. Ik blijf alvast uit jouw buurt als je zo doorgaat. Doe jezelf (en mij) dus een plezier en probeer die foutboodschappen in de toekomst te begrijpen. Er zijn er maar een handvol en bijna altijd komen ze op hetzelfde neer. Neem nou de volgende:**Not all code paths return a value**

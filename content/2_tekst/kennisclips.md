@@ -13,7 +13,7 @@
 
 ### Oefeningen
 
-[Oefeningen](https://apwt.gitbook.io/ziescherp-oefeningen/h3-tekst-gebruiken-in-code/a_practica)
+[Oefeningen](https://www.ziescherp.be/oefeningen/3_tekst/a_practica.html)
 
 ### Quizlet flashcards
 

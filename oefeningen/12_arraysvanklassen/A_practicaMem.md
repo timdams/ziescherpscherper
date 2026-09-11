@@ -435,6 +435,8 @@ private static void VerwijderStudentVanLijst(List<Student> Lijst)
 
 Je gaat een bestelsysteem maken voor een fastfoodrestaurant. Klanten plaatsen bestellingen, de keuken verwerkt ze, en de bestellingen worden opgehaald. 
 
+![](../assets/illustraties/h12_fastfood.jpg){.illustratie fig-alt="Potloodtekening: klanten staan in een rij aan de toog van een fastfoodzaak, de robot neemt de bestelling op en het stokmannetje bakt burgers."}
+
 
 **Functionaliteiten:**
 

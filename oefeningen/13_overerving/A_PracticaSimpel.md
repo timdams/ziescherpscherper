@@ -88,6 +88,8 @@ public class Iguana : Reptile { }
 
 *In deze opdracht ontwerp je een systeem waarin dranken niet alleen dorst lessen, maar ook mysterieuze krachten bezitten. Van gewone drankjes tot zeldzame elixers — elke slok telt! 🧪✨*
 
+![](../assets/illustraties/h13_dranken.jpg){.illustratie fig-alt="Potloodtekening: het stokmannetje met tovenaarshoed brouwt een drankje, de robot drinkt een rood elixir en er springen vonken uit zijn antenne."}
+
 Ontwerp een systeem waarin verschillende dranken een *magische kracht*”* hebben.
 
 * Maak een basis‑klasse ``Drank`` met:

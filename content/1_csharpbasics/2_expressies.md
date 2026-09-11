@@ -115,10 +115,10 @@ De verkorte notaties hebben ook een variant waarbij de operator links en de oper
 ```java
 int getal = 1;
 int som = getal++; //som wordt 1, getal wordt 2
-int som2 = ++som; //som2 wordt 2, som wordt 2
+int som2 = ++getal; //getal wordt 3, som2 wordt 3
 ```
 
-Als je de operator achter de operand zet (``som++``) dan zal eerst de waarde van de operand worden teruggegeven, vervolgens wordt deze verhoogd. Bij de andere (``++som``) is dat omgekeerd: eerst wordt de operand aangepast, vervolgens wordt nieuwe waarde als resultaat van de expressie teruggegeven.
+Als je de operator achter de operand zet (``getal++``) dan zal eerst de waarde van de operand worden teruggegeven, vervolgens wordt deze verhoogd. Bij de andere (``++getal``) is dat omgekeerd: eerst wordt de operand aangepast, vervolgens wordt nieuwe waarde als resultaat van de expressie teruggegeven.
 
 ![Bij ``getal++`` wordt eerst de waarde afgegeven en pas daarna verhoogd. Bij ``++getal`` gebeurt het omgekeerd.](../assets/1_csharpbasics/increment.png)<!--{width=90%}-->
 :::

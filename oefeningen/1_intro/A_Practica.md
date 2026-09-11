@@ -267,6 +267,8 @@ Het antwoord op de vraag naar de auto bewaart hij in ``boek``, en het boek in ``
 
 Deze lijnen code horen bij een programma voor een frituur, maar ze zijn door elkaar geraakt. Bovendien is er één lijn bij geslopen die er niet in thuishoort.
 
+![](../assets/illustraties/h01_frituur.jpg){.illustratie fig-alt="Potloodtekening: de robot geeft achter de toog van een frituur een puntzak frieten met saus aan het stokmannetje."}
+
 ```java
 string saus = Console.ReadLine();
 Console.WriteLine($"Bedankt {naam}! Een {snack} met {saus} komt eraan.");

@@ -323,6 +323,8 @@ Je bent zojuist aangenomen als lead developer voor **Camping "Het Nullpointerke"
 
 Aan jou de taak om een digitaal boekingssysteem te bouwen dat deze problemen oplost.
 
+![](../assets/illustraties/h09_camping.jpg){.illustratie fig-alt="Potloodtekening: de robot zit aan de receptie van een camping met een stapel bierviltjes, het stokmannetje komt aan met een rugzak."}
+
 **Doel:**
 Ontwerp een klasse `Boeking` die fungeert als de digitale receptioniste. De klasse moet invoer streng valideren (Gerda houdt van orde), prijzen berekenen op basis van luxe-niveau, en controleren of de gast wel kan betalen *voordat* de boeking definitief wordt.
 

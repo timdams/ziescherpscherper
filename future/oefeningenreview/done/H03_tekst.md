@@ -180,3 +180,57 @@ Dertien in een dozijn verhuist naar H2. Blijft ze, dan meteen na Mad Libs.
 - Gezien in H2: in de oplossing van Tafel ontbreken `ReadLine` en `Clear` tussen de zesde en zevende
   vermenigvuldiging (`oefeningen/2_csharpbasics/A_practica.md:310-312`). In H4 toont het voorbeeld van
   Vierkant "18.4" met een punt en "21,16" met een komma (`oefeningen/4_data/A_Practica.md:55-56`).
+
+---
+
+## Verhuis al gedaan (2026-09-11, bij het doorvoeren van H2)
+
+- **Dertien in een dozijn** staat niet meer in `oefeningen/3_tekst/a_practica.md` en niet meer in
+  `oefeningen/_coach/3_tekst.md`. Ze staat nu in H2 (anker `h02-dertien-in-een-dozijn`), met de fix
+  uit sectie 1 (`aantalEieren % DOOS_GROOTTE`, één zin in opgave en oplossing, const in hoofdletters).
+  Het punt in sectie 1 en sectie 3 hoeft dus niet meer. De rest van H3 is niet aangeraakt.
+
+## Doorgevoerd (2026-09-11)
+
+- `oefeningen/3_tekst/a_practica.md` telt nu 11 oefeningen in de volgorde van sectie 5 (zonder Dertien).
+  Nieuw: Char of string? (Essential), Stevens bestandspad (Essential), Prijskaartje (Essential),
+  Tekens uit de tabel en Nooddeur. Mad Libs, Escape conversatie en Unicode Art kregen een deel 2.
+  Tekens uit de tabel is een aparte oefening geworden in plaats van deel 1 van Unicode Art, zoals in
+  sectie 5.
+- Alle fouten uit sectie 1 zijn weg. Keuzes daarbij:
+  - Mad Libs: de afbeelding (© WooJr.com) is weggelaten in plaats van de bron recht te zetten. De zin met
+    `[naam]` enzovoort staat er al. `oefeningen/assets/1_csharpbasics/madlibs.jpg` wordt nergens meer gebruikt.
+  - Systeem informatie: voorbeeld en oplossing gebruiken nu allebei `\t` en 45 streepjes, een komma,
+    `1024.0` en Nederlandse variabelenamen (`geheugenInBytes` enz.). Met een Les over de verschillende
+    uitvoer per pc en per run, en over de gehele deling.
+  - Boardingpass: oplossing geschreven, de tip gaat over tabstops met een link naar "Over tabstops", en een
+    Les legt uit waarom korte labels twee tabs nodig hebben. De prijs is `const double TICKETPRIJS = 249.99;`
+    met `:C`.
+  - Unicode Art: link naar patorjk.com/software/taag, de UTF-8-lijn in opgave en oplossing, deel 2 met een
+    raw string literal.
+  - Shell-starter blijft als bonus: titel `(PRO)`, "werkt enkel op Windows", oplossing bij deel 1, en een
+    deel 2 met `UseShellExecute = true` voor documenten en websites. `chrome.exe` en `notepad` staan niet
+    meer in de lijst.
+- Systeem informatie deel 2 is naar H18 verhuisd als "Schijfinformatie" (anker `h18-schijfinformatie`),
+  met oplossing en coach-data. Zonder de uitleg over `using System.IO` en zonder `names.png`, die nu
+  nergens meer gebruikt wordt. Genoteerd in `H18_bestandsverwerken.md`.
+- Bovenaan één `::: {.vooraf}`: interpolatie, de UTF-8-lijn, komma en euro. Eén `<!--# Hoofdstuk 3-->`.
+- `oefeningen/_coach/3_tekst.md` herschreven voor de 11 oefeningen. "Kent al" vult `OutputEncoding`,
+  `Environment.NewLine`, `Environment.Exit`, raw strings, `""` in een verbatim string, `\U` en `.Length`
+  bij emoji aan. De valkuilen uit sectie 6 zijn rechtgezet. Code-lees-oefeningen hebben een `### Nota`.
+- Leerstof: `escapechars.md` legt het aanhalingsteken in een verbatim string nu juist uit (`""`),
+  `6_stringInterpolation.md` toont `12,35`, `012,30` en `99999,30`, `7_unicode.md` zegt dat de UTF-8-lijn
+  ook in Windows Terminal nodig is, en `kennisclips.md` linkt naar de oefeningen op ziescherp.be.
+- Bewust niet:
+  - de figuren `content/assets/2_tekst/formatspec.png` (`12.35`) en `masker.png` (`012.30`, `99999.3`)
+    tonen nog een punt. Het onderschrift van formatspec volgt de figuur. Hertekenen kan met de skill
+    `afbeelding`, als Tim dat wil.
+  - de TODO in `content/2_tekst/8_environment.md:1` (beslissing van Tim).
+  - H4 Vierkant ("18.4" tegenover "21,16"): hoort bij het H4-rapport.
+  - de andere hoofdstukken linken in hun `kennisclips.md` nog naar apwt.gitbook.io.
+- Gecontroleerd: alle code met dotnet 10 in het `Main`-skelet (nl-BE, code page 850), ook de melding
+  `CS1009` bij Steven en de raw string. Het webadres bij Shell-starter deel 2 is niet getest (om geen
+  browser te openen); een document openen wel, met een `.cmd`-bestand. `quarto render oefeningen/`,
+  slot-script (niets in de zoekindex; de drie gemelde woordgroepen komen uit de code in de opgaven van
+  de code-lees-oefeningen) en coach-script op een kopie van de build, screenshots van de pagina,
+  Boardingpass, Unicode Art en Schijfinformatie.

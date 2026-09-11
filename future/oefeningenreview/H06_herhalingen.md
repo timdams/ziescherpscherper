@@ -233,3 +233,72 @@ Wiskunde-quizprogramma → Steen schaar papier → BeerSong → De slag om Helm'
 - **H7 sluit mooi aan** als Codemenu en Priem in H6 blijven: `oefeningen/7_methoden/b_practicasamen.md:34-35` vraagt
   `IsArmstrong` en `ToonArmstrongNummers`, en een Codemenu dat in methoden opgesplitst wordt, is een voor de hand
   liggende eerste oefening daar.
+
+---
+
+## Doorgevoerd (2026-09-11)
+
+- **Verdeling volgens sectie 5.** Week 1 (`A_practicasamen.md`) is één lus per oefening: Opwarmers 1 →
+  Trace de teller → Tafels van vermenigvuldigen 1 → Euler project → Kies de loop → Afsluitwaarden →
+  Lijnen in volgorde → Zonder break → Stevens menulus → Boekhouder → Loops-a-volonté → RNA Transcriptie →
+  De Casting Call (Final Essentials) → Schaak-elo met loop (bonus) → Armstrong nummer (PRO). Week 2
+  (`A_practicasamen2.md`) zijn geneste lussen en grotere programma's: Tafels van supervermenigvuldigen →
+  Sterrenpatronen → Tekenen → Priemgetallen → Hoger Lager → Wiskundequiz → Wiskundequiz met levels →
+  Codemenu → Wiskunde-quizprogramma → Steen schaar papier → BeerSong → De slag om Helm's Deep (Final
+  Essentials) → Become Neo (bonus). 28 oefeningen, 17 Essential.
+- Nieuw: Trace de teller, Zonder break en Stevens menulus (Essential), Sterrenpatronen (Essential, met
+  een PRO-deel), Kies de loop en Lijnen in volgorde. Loops-a-volonté en Priemgetallen zijn eigen
+  `#`-oefeningen met een anker. Cooldown is weg: veelvoud van 3 en oneven, 9+99+... en de harmonische
+  reeks gingen naar Loops-a-volonté, tafels horizontaal werd deel 2 van Tafels van supervermenigvuldigen,
+  "machten tot 5" en "gemiddelde tot -1" zijn geschrapt. De reeksen zijn één blok van vier (20 termen),
+  "100 getallen" werd 10 getallen.
+- Verhuisd tussen de weken: Boekhouder (naar week 1) en Tafels van supervermenigvuldigen (naar week 2).
+  Er linkt niets naar hun ankers. Opwarmers van opwarmers heet nu Afsluitwaarden, RNA Transscriptie heet
+  RNA Transcriptie; de ankers bleven.
+- Sectie 1, alles weg. Keuzes daarbij:
+  - Twee nullen: elke invoer telt, stop bij twee nullen na elkaar (`bool vorigeWasNul`), op het einde 2
+    van het aantal af. 5, 0, 3, 0, 0 geeft 2,67.
+  - RNA: een foute letter wordt opnieuw gevraagd en telt niet mee. De lus draait op `dna.Length`, een
+    aparte teller is niet nodig. Namen `dna`, `rna`, `letter`.
+  - Hoger Lager: drie delen (beurten tonen, maximaal 7 beurten met de denkvraag "waarom 7", opnieuw
+    spelen). Twee bools `geraden` en `opgegeven`, en na de lus een `if` die zegt waarom de lus stopte.
+    Opgeven telt niet als beurt. "beurt(en)" in de tekst, want 1 beurten klopt niet.
+  - Wiskundequiz: `Next(1, 11)`. Levels: start op level 1, bovengrens `5 * level`. De PRO-vraag is nu:
+    een level zakken bij een fout (nooit onder 1), stoppen na 3 fouten.
+  - Boekhouder: cast in het gemiddelde, `if` op nul, voorbeelduitvoer, test met meteen `q`.
+  - Steen schaar papier: 0 tot en met 2 met de uitleg over de enum, winst op 5 punten in opgave en
+    oplossing, "Ik koos" één keer per ronde, `gebruikerWint`. De enum heet `Keuze` en staat apart.
+  - BeerSong: "bottles of beer", een lege lijn na elke strofe (299 lijnen, zoals het voorbeeld).
+  - Casting Call en Helm's Deep: "blijft vragen tot". Casting Call telt de kandidaten en zegt het als er
+    niemand kwam; gelijke score: de eerste blijft de beste. Helm's Deep: F2 voor het percentage, het
+    rapport in de volgorde van de opgave, de streakregel (bonus bij 3, 6, 9) in de opgave, en een
+    `.console .kleur`-voorbeeld.
+  - Euler: 5 getallen, en de vermelding van 233168 voor "onder 1000".
+  - Harmonische reeks `{som:F6}` en 2,283333. Factoren heet nu delers, zonder de link.
+  - Schaak-elo met loop: geen `rng`, `eb` of `puntB` meer; een onbekende letter telt als gelijkspel,
+    zoals in H5.
+  - De meldingen bovenaan staan in één `.vooraf` per week.
+- Sectie 2: Tekenen (Essential) en de invoercontrole met `do while`, Tafels 1 met `for`, Priemgetallen
+  met de `bool` in de lusvoorwaarde en een Les die zegt dat `break` hier ook mag (zoek-en-stop, volgens
+  de beslissing van Tim), Codemenu met de tip over CS0128 (letterlijk van dotnet) en een Les die naar
+  methoden vooruitblikt, het quizprogramma met een studeermodus van 10 opgaven in een `for`, Armstrong
+  met `% 10` en `/ 10`, alle fragmenten los compileerbaar met gewone namen en accolades. Les-callouts bij
+  Opwarmers 1, Afsluitwaarden, Zonder break, Stevens menulus, Priemgetallen en Codemenu.
+- Coach-data `oefeningen/_coach/6_herhalingen.md` herschreven voor de 28 oefeningen, met de nieuwe
+  regel over `break`. De code-lees-oefeningen en de puzzels hebben een `### Nota`.
+- Bewust niet:
+  - Legolas en Gimli blijven in Helm's Deep staan: het rapport zegt er niets over.
+  - Become Neo houdt zijn `while (true)`: de lus is bewust oneindig en heeft geen `break`.
+  - De Wiskundequiz met levels is in opgave en oplossing veranderd (bovengrens `5 * level` in plaats
+    van 5, 10, 20). Wie een oude oplossing heeft, ziet een ander bereik.
+- Gevolg voor H7: `future/oefeningenreview/H07_methoden.md:193` verwijst met regelnummers naar de
+  oplossing van Helm's Deep. Die is herschreven (zelfde opbouw, andere namen: `puntenLegolas`, `streak`,
+  constanten `BONUS` en `STREAK`) en staat op andere regels.
+- Gecontroleerd: elk codeblok van beide pagina's apart gecompileerd met dotnet 10 (enkel de puzzel en
+  Stevens tweede versie falen, zoals bedoeld), en de oplossingen uitgevoerd met de invoer uit de
+  voorbeelden en de grensgevallen (meteen de afsluitwaarde, 0 als getal, een foute letter, elk pad van
+  Hoger Lager met een vaste seed, de level-ups). De foutmeldingen CS0103, CS0128 en de waarschuwing CS0642
+  zijn letterlijk van dotnet; dat Stevens eerste menulus stil blijft hangen, is getest met een time-out.
+  `quarto render oefeningen/`, het slot-script op een kopie (niets in de zoekindex; de 7 gemelde
+  woordgroepen komen uit de code in de opgaven van Zonder break, Stevens menulus en de puzzel), het
+  coach-script (15 en 13 knoppen, geen meldingen), en screenshots van beide weken en van Helm's Deep.

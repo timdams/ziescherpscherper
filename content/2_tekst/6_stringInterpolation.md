@@ -83,7 +83,7 @@ double number = 12.345;
 Console.WriteLine($"{number:F2}");
 ```
 
-Er zal ``12.35`` op het scherm verschijnen. ``F2`` na het dubbelpunt geeft aan dat je een *float* wilt met 2 beduidende cijfers na de komma. 
+Er zal ``12,35`` op het scherm verschijnen. ``F2`` na het dubbelpunt geeft aan dat je een *float* wilt met 2 beduidende cijfers na de komma. 
 
 Merk op dat bij string formattering er **afgerond** wordt, en dus niet *afgekapt*. 
 
@@ -132,8 +132,8 @@ Geeft als uitvoer:
 
 ::: {.console}
 ```text
-012.30
-99999.30
+012,30
+99999,30
 ```
 :::
 

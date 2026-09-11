@@ -230,3 +230,57 @@ en Random combineert.
 - H5: de meldingen bovenaan `oefeningen/5_beslissingen/a_practica.md:3-5` staan nog in een losse
   `callout-warning` in plaats van `.vooraf`, met "eerste de volledige opgave". BMI met if en
   Orakeltje part deux bouwen verder op de oplossingen van H4: wie die aanpast, kijkt H5 mee na.
+
+---
+
+## Doorgevoerd (2026-09-11)
+
+- `oefeningen/4_data/A_Practica.md` telt nu 17 oefeningen in de volgorde van sectie 5. Nieuw: Voorspel
+  de uitvoer, Breakpoint-detective, Wisselgeld in centen en Stevens busreis (alle vier Essential),
+  Weerbericht van morgen, Levensbalk en Zoek-de-fout-prompt. Supercomputer is Essential geworden,
+  Feestkassa niet meer. Balk blijft, als optionele oefening na Vierkant.
+- Sectie 1, alles weg. Keuzes daarbij:
+  - Vierkant toont de echte uitvoer (`18,4` en `21,159999999999997`), met een Les over waarom.
+  - Festivalganger: het budget wordt niet meer afgerond, enkel bij het tonen (`Math.Round(budget, 2)`
+    in de `WriteLine`). Het voorbeeld start met 180,45 euro, zodat er elke dag een staartje is
+    (`127,94999999999999` zonder afronden). "Van 5 tot en met 20", "4,50 euro". De onvoorziene kost
+    is een `int` geworden.
+  - Op-de-poef: "in hele euro", 25 sterretjes in voorbeeld en oplossing, `int weken = (int)Math.Ceiling(poef / 10.0)`.
+  - Schaak-ELO: `const double K`, een volledige oplossing met invoer, namen `ratingA`, `verwachtA`
+    enz., voorbeelduitvoer voor de drie scenario's, en deel 2 met eigen oplossing (K = 32).
+  - Geometric fun heet nu "Sinus, cosinus en tangens" (anker `h04-geometric-fun` behouden), met
+    voorbeelduitvoer bij 90 graden en een tip die de drie vreemde getallen uitlegt.
+- Sectie 2: Supercomputer deel 2 (punt en komma), Vierkant deel 2 (`Math.Round` tegenover `F2`),
+  een Les met een breakpoint bij BMI, Op-de-poef en Supercomputer, casting bij Op-de-poef, de tip
+  als vraag bij Op-de-poef. Festivalganger: een Les over afronden bij het tonen, en een deel 2 met
+  `decimal` (toont `52,50` in plaats van `52,5`, wat in de oplossing uitgelegd staat).
+- Stevens busreis: twee compileerfouten (CS0029 en CS0266, letterlijk van dotnet) en drie stille
+  fouten. Getest met 47 en met 40 studenten: bij 47 zie je de busfout, bij 40 de afronding.
+- Bovenaan een vierde melding in de `.vooraf`: komma bij het typen, punt in de code.
+- `oefeningen/_coach/4_data.md` herschreven voor de 17 oefeningen. "Kent al" vult de punten uit
+  sectie 6 aan (Max, Min, Clamp, Truncate, NaN, oneindig, overflow, decimal, F2 tegenover Round,
+  seed, Locals). Code-lees-oefeningen hebben een `### Nota`.
+- Leerstof (sectie 6): de ontbrekende tabel in `4b_inputconverten.md`, de passage over
+  `Math.Ceiling` zonder cast in `4d_afronden.md` (compileerfout, en de stille variant met cast na
+  de deling), TryParse weg uit `zieverder.md`, de uitvoer van `double.MinValue`/`MaxValue` en de
+  spatie in `4c_math.md`, "Locals-venster" in `5_debuggen.md`, en de link in `kennisclips.md`.
+- Bewust niet:
+  - **Het label `(GPT)`** bij Zoek-de-fout-prompt. Op de site betekent dat label "deze oefening werd
+    gemaakt met behulp van een GPT" (tooltip in `oefeningen/opmaak.html`, en zo gebruikt in H11 en
+    H12). De oefening heeft dus geen label.
+  - Deel 2 van Voorspel de uitvoer gebruikt geen `int.MaxValue + 1`: dat compileert niet
+    (`error CS0220: The operation overflows at compile time in checked mode`). Het gaat via een variabele.
+  - De TODO in `content/3_data/5_debuggen.md:97` blijft staan. De Breakpoint-detective doet wat
+    ze vraagt, maar in de oefeningen en niet in het boek.
+  - H5: niets aangeraakt. Een notitie over Enum bij BMI staat onderaan `H05_beslissingen.md`.
+- Nieuwe vondst, niet aangepast: `content/3_data/4c_math.md:203` belooft `∞` bij `x / y`. Zonder
+  `Console.OutputEncoding = System.Text.Encoding.UTF8;` gaf dotnet hier een `8` (getest met
+  omgeleide uitvoer op een nl-BE-pc met code page 850). Voorspel de uitvoer deel 2 zet de UTF-8-lijn
+  daarom in de code en vermeldt de 8.
+- Gecontroleerd: alle code met dotnet 10 in het `Main`-skelet (nl-BE), met de invoer uit de
+  voorbeelden. Ook de getallen in de Lessen en de tabel in `4b` (via `CultureInfo`, en-US
+  tegenover nl-BE), en seed 42 (twee keer 18,4). `quarto render oefeningen/`, het slot-script op een
+  kopie (niets in de zoekindex; de vijf gemelde woordgroepen komen uit de voorbeelduitvoer van
+  Supercomputer deel 2 en de code van Steven in de opgave), het coach-script (17 knoppen, geen
+  meldingen), en screenshots van de pagina, Stevens busreis, de Breakpoint-detective en de
+  Festivalganger.

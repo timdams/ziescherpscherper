@@ -47,7 +47,13 @@ int perBus = 20;
 int aantalBussen = (int)Math.Ceiling(aantalStudenten / (double)perBus); //3
 ```
 
-Merk op de cast naar ``double`` in die deling. Laat je ze weg, dan deel je twee gehele getallen door elkaar en krijg je ``2`` nog voor ``Ceiling`` iets kan doen. Er staan dan 7 studenten op de parking. Dit is exact de valkuil uit hoofdstuk 2.
+Merk op de cast naar ``double`` in die deling. Laat je ze weg, dan deel je twee gehele getallen door elkaar. De compiler weet dan niet eens welke versie van ``Math.Ceiling`` hij moet nemen (die voor een ``decimal`` of die voor een ``double``, want een ``int`` past in allebei) en weigert je code: *The call is ambiguous*. Geniepiger is deze versie, die wel compileert:
+
+```java
+int aantalBussen = (int)Math.Ceiling((double)(aantalStudenten / perBus)); //2
+```
+
+Door de haakjes gebeurt de deling eerst, met twee gehele getallen, en krijg je ``2`` nog voor ``Ceiling`` iets kan doen. Er staan dan 7 studenten op de parking. Dit is exact de valkuil uit hoofdstuk 2.
 
 De twee andere manieren van afronden hebben enkele venijnige kantjes die we hier even willen bespreken.
 
