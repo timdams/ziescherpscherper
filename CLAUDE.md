@@ -6,16 +6,15 @@
 
 **Zie Scherp Scherper** — een C#-cursus/handboek van Tim Dams (AP Hogeschool), gepubliceerd op [ziescherp.be](https://www.ziescherp.be) en gebruikt door meerdere hogescholen en middelbare scholen.
 
-Het project bouwt **vier afzonderlijke Quarto-outputs** die samen op één GitHub Pages-site terechtkomen:
+Het project bouwt **drie afzonderlijke Quarto-outputs** die samen op één GitHub Pages-site terechtkomen:
 
 | Output | Bron | Type | Doel |
 |--------|------|------|------|
 | Hoofdboek | root + [content/](content/) | Quarto **book** (HTML + Typst/PDF) | Het eigenlijke handboek (18 hoofdstukken + appendix) |
 | Oefeningen | [oefeningen/](oefeningen/) | Quarto website | Practica per hoofdstuk + vaardigheidsproeven |
 | Slides | [slides/](slides/) | Quarto website (revealjs) | Lesslides via slides/overzicht.qmd |
-| Corona Files | [coronafiles/](coronafiles/) | Quarto website | Missie-gebaseerde OOP-oefeningen (overerving → interfaces) Mag genegeerd worden |
 
-Er is ook een [odysseyfiles/](odysseyfiles/) map met dezelfde structuur als coronafiles: dit is een probeersel, dat voorlopig mag genegeerd worden. Het is een AI generated alternatief op de coronafiles.
+Oud of experimenteel materiaal (bv. `odysseyfiles`, `slidesOld`) staat in [_archive/](_archive/). Dat wordt niet gepubliceerd en mag genegeerd worden.
 
 ## Repo-layout
 
@@ -35,8 +34,7 @@ ziescherpste/
 │   ├── 1_intro/ ... 18_bestandsverwerken/
 │   └── EindeTests/          # vaardigheidsproeven per module + AllInOne-projecten
 ├── slides/                  # eigen Quarto-website (revealjs)
-├── coronafiles/             # missie-website OOP
-├── odysseyfiles/            # variant van corona — status onduidelijk
+├── _archive/                # oud/experimenteel materiaal (niet gepubliceerd)
 ├── build/                   # output (gitignored, behalve gecommitte PDF)
 ├── future/                  # werkmap voor toekomstige ideeën (niet gepubliceerd)
 └── .github/workflows/publish.yml
@@ -51,11 +49,10 @@ Lokaal:
 quarto render .              # hoofdboek → build/
 quarto render slides/        # → build/slides/
 quarto render oefeningen/    # → build/oefeningen/
-quarto render coronafiles/   # → build/coronafiles/
 ```
 
 CI: [.github/workflows/publish.yml](.github/workflows/publish.yml) doet bij elke push naar `main`:
-1. Render alle vier de Quarto-projecten naar `build/`.
+1. Render alle drie de Quarto-projecten naar `build/`.
 2. Voor slides: cache PDF's per slide; converteer enkel gewijzigde `.qmd`-slides via **decktape** naar PDF.
 3. Upload `build/` als GitHub Pages-artifact en deploy.
 
@@ -81,7 +78,7 @@ de browser onthoudt de sleutel, dus dat is eenmalig.
 - **Geen twee koppen van hetzelfde niveau in één oplossingscallout.** Quarto splitst de body
   dan in zustersecties en de helft valt buiten het slot. Een pagina die integraal een
   uitwerking is, krijgt in plaats daarvan `<meta name="zss-opl-pagina">` in haar frontmatter
-  (zie [oefeningen/corona/opl_h12corona.md](oefeningen/corona/opl_h12corona.md)).
+  (via `include-in-header`).
 - Het script kuist ook `search.json` en de inhoudsopgave op, en waarschuwt als er nog
   oplossingstekst op een pagina blijft staan. Testen doe je met
   [scripts/oplossingen-test.mjs](scripts/oplossingen-test.mjs).
@@ -110,7 +107,7 @@ code of oplossing te geven, en die enkel leerstof gebruikt die op dat punt al ge
 - **De oplossing zit bewust niet in de prompt.** De student leest de tekst die hij plakt, dus
   alles wat erin staat is meteen weggegeven. Daarom draait het script in de CI ná
   [scripts/oplossingen-lock.mjs](scripts/oplossingen-lock.mjs): dan kan er geen oplossing meer in belanden.
-- Enkel hoofdstukmappen met een databestand krijgen knoppen. Vandaag zijn dat de mappen van H1 tot en met H18. EindeTests en corona hebben er nog geen. Ook `9_klassen/intermezzoh9.md` niet: daar staan de oefeningen als `###`, en het script zoekt naar `#`.
+- Enkel hoofdstukmappen met een databestand krijgen knoppen. Vandaag zijn dat de mappen van H1 tot en met H18. EindeTests heeft er nog geen. Ook `9_klassen/intermezzoh9.md` niet: daar staan de oefeningen als `###`, en het script zoekt naar `#`.
 
 Lokaal uitproberen: `quarto render oefeningen/` en daarna
 `node scripts/coach-prompt.mjs build/oefeningen`. Het script is idempotent.

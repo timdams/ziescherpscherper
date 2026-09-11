@@ -263,7 +263,7 @@ $oef-oranje-tekst: #8a5300;
   }
 }
 
-// Inklapbare callouts die niet omgezet worden (vaardigheidsproeven, corona, ...): een
+// Inklapbare callouts die niet omgezet worden (vaardigheidsproeven, ...): een
 // neutraal kader met een kop waarop je klikt.
 #quarto-document-content div.callout:has(> .callout-header[data-bs-toggle="collapse"]) {
   padding: 0;

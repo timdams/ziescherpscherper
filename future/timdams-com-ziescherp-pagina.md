@@ -64,7 +64,6 @@ Allemaal gratis, allemaal op www.ziescherp.be:
 * **[Het boek als pdf](https://www.ziescherp.be/Zie-Scherp-Scherper.pdf)** om af te drukken of offline te lezen
 * **[Oefeningen](https://www.ziescherp.be/oefeningen/overzicht.html)** per hoofdstuk, plus vaardigheidsproeven
 * **[Lesslides](https://www.ziescherp.be/slides/overzicht.html)** (revealjs, ook als pdf) voor wie ermee lesgeeft
-* **[Corona Files](https://www.ziescherp.be/coronafiles/)**: een reeks missie-gebaseerde OOP-oefeningen, van overerving tot interfaces
 * Handige cheatsheets: [basis](https://timdams.com/wp-content/uploads/2023/11/cheat-sheet.pdf) en [OOP](https://timdams.com/wp-content/uploads/2023/12/cheatsheet-oop.pdf)
 * [Gratis Quizlet flashcards](https://quizlet.com/join/mqzQCGJCF) om je vakjargon te oefenen
 

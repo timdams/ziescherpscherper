@@ -149,7 +149,7 @@ De interfaces beschrijven wat sommige elementen extra kunnen, bijvoorbeeld teken
 
 ### Nota
 
-De grootste oefening van het hoofdstuk. Er staat een klasseschema onderaan de opgave: laat de student dat eerst in woorden voorlezen. Het advies bovenaan om eerst de kleinere coronamissie te maken, is niet gek.
+De grootste oefening van het hoofdstuk. Er staat een klasseschema onderaan de opgave: laat de student dat eerst in woorden voorlezen.
 
 ### Aanpak
 

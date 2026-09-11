@@ -45,13 +45,12 @@ Alle feedback is welkom. Open een [issue](https://github.com/timdams/ziescherpsc
 
 ## Zelf builden
 
-Vier afzonderlijke Quarto-projecten die samen in `build/` terechtkomen:
+Drie afzonderlijke Quarto-projecten die samen in `build/` terechtkomen:
 
 ```bash
 quarto render .              # het handboek
 quarto render oefeningen/
 quarto render slides/
-quarto render coronafiles/
 ```
 
 Bij elke push naar `main` doet [GitHub Actions](.github/workflows/publish.yml) hetzelfde en publiceert het resultaat op GitHub Pages.
