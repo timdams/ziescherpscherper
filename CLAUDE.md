@@ -115,6 +115,25 @@ code of oplossing te geven, en die enkel leerstof gebruikt die op dat punt al ge
 Lokaal uitproberen: `quarto render oefeningen/` en daarna
 `node scripts/coach-prompt.mjs build/oefeningen`. Het script is idempotent.
 
+## Opmaak van de oefeningenpagina's
+
+Op de hoofdstukpagina's (de mappen `1_intro` tot en met `18_bestandsverwerken`) staat elke
+oefening ingeklapt in een lijst, met een vinkje "gedaan" en een knoppenrij Coach / Les /
+Oplossing onder de opgave. Dat gebeurt in de browser door [oefeningen/opmaak.html](oefeningen/opmaak.html),
+dus lokaal renderen ziet er hetzelfde uit als online. De vormgeving zit in
+[oefeningen/oefeningen.scss](oefeningen/oefeningen.scss).
+
+- De bron blijft zoals ze was: `#` per oefening, en de callouts `Oplossing` en
+  `Les(sen) uit deze oefening`. Die twee worden op hun plaats knoppen met een paneel eronder.
+- `(*Essential*)`, `(*Final Essentials*)`, `(PRO)` en `(GPT)` achter een titel worden labels.
+  Andere haakjes, zoals `(Methoden)`, blijven in de titel.
+- Een pagina met minder dan twee `#`-koppen blijft zoals ze is (bv. `9_klassen/intermezzoh9.md`).
+  Een callout die niet gesloten wordt, slikt de rest van de pagina in en geeft hetzelfde effect.
+- Meldingen bovenaan een pagina horen samen in één blok `::: {.vooraf}` met een lijstje. Een
+  waarschuwing daarin begint met `[Let op]{.let-op}`. Voorbeeld: [oefeningen/4_data/A_Practica.md](oefeningen/4_data/A_Practica.md).
+- Callouts zijn op alle oefeningenpagina's rustig: geen gekleurde kopbalk, enkel een streepje
+  links. Oranje is voor `callout-warning`, `-important` en `-caution`; rood enkel voor wat klikbaar is.
+
 ## Gotcha
 
 **`build/` is volledig gitignored.** Er zit niets van in de repo, ook de pdf van het handboek niet: `git ls-files build/` geeft niets terug. Let wel op iets anders: een `quarto render` op één hoofdstukbestand van het boek maakt `build/` eerst helemaal leeg en bouwt daarna het volledige boek opnieuw. Wil je snel iets nakijken, render dan het subproject (bv. `quarto render oefeningen/`) of werk in [boekPrintTest/](boekPrintTest/).

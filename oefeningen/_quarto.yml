@@ -9,10 +9,11 @@ project:
 
 website:
   title: "Zie Scherp Scherper"
-  # Zelfde balk als in het hoofdboek, zie de opmerking in ../_quarto.yml.
+  # Zelfde balk als in het hoofdboek, zie de opmerking in ../_quarto.yml. Hier mag ze wel
+  # weggeklikt worden; Quarto onthoudt dat in de browser.
   announcement:
     position: below-navbar
-    dismissable: false
+    dismissable: true
     type: warning
     content: |
       **Werk in opbouw.** Deze cursus wordt op dit moment volop herwerkt.
@@ -210,11 +211,13 @@ format:
     toc-title: "Op deze pagina"
     highlight-style: github
     code-copy: true
+    # Het script met zss-opmaak-wacht verbergt de oefeningen tot opmaak.html ze omgezet heeft.
     include-in-header:
       text: |
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <script>if (/\/\d+_[^\/]+\/[^\/]*$/.test(location.pathname)) document.documentElement.classList.add("zss-opmaak-wacht");</script>
     # Zet de afgeschermde oplossingen terug voor wie de sleutel heeft. Het afschermen zelf
     # gebeurt na het renderen door scripts/oplossingen-lock.mjs; lokaal renderen blijft dus
     # gewoon leesbaar en dit script doet dan niets.
@@ -222,3 +225,5 @@ format:
       - file: oplossingen.html
       # Coach-prompt achter de knop bij elke oefening, zie scripts/coach-prompt.mjs.
       - file: coach.html
+      # Hoofdstukpagina's als lijst die je per oefening openklapt.
+      - file: opmaak.html

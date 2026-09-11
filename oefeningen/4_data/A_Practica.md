@@ -1,15 +1,9 @@
 <!-- Hoofdstuk 4-->
 
-:::{.callout-warning}
-**Gebruik je kennis van debuggen om vanaf dit hoofstuk problemen op te lossen. Gebruik niet ``Console.WriteLine()`` om de waarde van een variabele te controleren at-runtime, maar gebruik daarentegen breakpoints!**
-:::
-
-:::{.callout-tip}
-Vanaf dit punt zullen  de meeste oefeningen iets "vragen" aan de gebruiker. Hiermee wordt bedoeld dat je de gebruikersinput via ``ReadLine`` moet inlezen en indien nodig moet converteren naar het gewenste type.
-:::
-
-:::{.callout-tip}
-Gebruikersinvoer in de voorbeelden zullen met een liggend streepje voorafgegaan worden. Zo zie je duidelijk wat het verschil is tussen ``ReadLine`` en ``WriteLine`` in de voorbeelduitvoer.
+::: {.vooraf}
+- [Let op]{.let-op} Gebruik vanaf dit hoofdstuk je kennis van debuggen: controleer de waarde van een variabele met **breakpoints**, niet met ``Console.WriteLine()``.
+- Vanaf nu zullen de meeste oefeningen iets "vragen" aan de gebruiker: lees de invoer in met ``ReadLine`` en converteer indien nodig naar het gewenste type.
+- In de voorbeelduitvoer begint gebruikersinvoer met ``>``. Zo zie je het verschil tussen ``ReadLine`` en ``WriteLine``.
 :::
 
 <!-- Hoofdstuk 4-->
@@ -270,6 +264,7 @@ Het totaal te betalen bedrag is 126 EURO.
 ```
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
+```java
 const double PRIJS_FRIET = 20;
 const double PRIJS_KONINGINNE = 10;
 const double PRIJS_IJS = 3;
@@ -297,6 +292,7 @@ Console.WriteLine($"Tussenprijs= {totalFriet} euro + {totalKoninginne} euro + {t
 
 double totaal = totalFriet + totalKoninginne + totalIjs + totalDrank;
 Console.WriteLine($"\nHet totaal te betalen bedrag is {totaal} EURO.");
+```
 ::::
 
 

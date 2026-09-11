@@ -187,3 +187,509 @@ main .level1 > p:first-of-type::first-letter {
     display: none;
   }
 }
+
+// ---------------------------------------------------------------------------------------
+// Rustige opmaak. Kleur betekent hier iets: rood is alles waarop je klikt, oranje een echte
+// waarschuwing, de rest is grijs. De hoofdstukpagina's worden in de browser omgezet naar een
+// lijst die je per oefening openklapt, zie opmaak.html.
+// ---------------------------------------------------------------------------------------
+
+$oef-lijn: #e6e8eb;
+$oef-lijn-zacht: #eef0f2;
+$oef-lijn-sterk: #d3d6db;
+$oef-tekst: #2b2b33;
+$oef-kop: #1a1a22;
+$oef-grijs: #6b6b76;
+$oef-vaag: #9a9aa3;
+$oef-rood: #e11d2a;
+$oef-rood-tekst: #c01622;
+$oef-oranje: #d98a04;
+$oef-oranje-tekst: #8a5300;
+
+@mixin oef-kleinlabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// Callouts: geen gekleurde kopbalk en geen icoon, enkel een streepje links en een klein label.
+// Het id is nodig om de callout-regels van Quarto te overstemmen.
+#quarto-document-content div.callout {
+  margin: 1.25rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border: 0;
+  border-left: 3px solid $oef-lijn-sterk;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+
+  > .callout-header {
+    @include oef-kleinlabel;
+    margin: 0 0 0.2rem;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    color: $oef-vaag;
+  }
+
+  .callout-icon-container {
+    display: none;
+  }
+
+  .callout-body {
+    padding: 0;
+
+    > :first-child {
+      padding-top: 0;
+    }
+
+    > :last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+#quarto-document-content div.callout-warning,
+#quarto-document-content div.callout-important,
+#quarto-document-content div.callout-caution {
+  border-left-color: $oef-oranje;
+
+  > .callout-header {
+    color: $oef-oranje-tekst;
+  }
+}
+
+// Inklapbare callouts die niet omgezet worden (vaardigheidsproeven, corona, ...): een
+// neutraal kader met een kop waarop je klikt.
+#quarto-document-content div.callout:has(> .callout-header[data-bs-toggle="collapse"]) {
+  padding: 0;
+  border: 1px solid $oef-lijn;
+  border-radius: 6px;
+  background: #fff;
+
+  > .callout-header {
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: $oef-tekst;
+
+    &:hover {
+      color: $oef-rood-tekst;
+    }
+  }
+
+  .callout-body {
+    padding: 0.2rem 0.9rem 0.7rem;
+  }
+}
+
+// Eén blok met de meldingen bovenaan een pagina, in de bron: ::: {.vooraf}
+#quarto-document-content .vooraf {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.25rem 0.8rem;
+  border: 1px solid $oef-lijn;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+
+  &::before {
+    @include oef-kleinlabel;
+    content: "Vooraf";
+    display: block;
+    margin-bottom: 0.4rem;
+    color: $oef-vaag;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  li {
+    margin: 0.35rem 0;
+  }
+
+  li:has(.let-op)::marker {
+    color: $oef-oranje;
+  }
+
+  .let-op {
+    @include oef-kleinlabel;
+    margin-right: 0.35rem;
+    letter-spacing: 0.06em;
+    color: $oef-oranje-tekst;
+  }
+}
+
+// Tot opmaak.html klaar is, staan de oefeningen onzichtbaar. Zo zie je ze niet eerst allemaal
+// open staan. Loopt het script mis, dan verschijnen ze na een seconde toch.
+html.zss-opmaak-wacht #quarto-document-content > section.level1 {
+  visibility: hidden;
+  animation: zss-opmaak-toon 0s linear 1s forwards;
+}
+
+@keyframes zss-opmaak-toon {
+  to {
+    visibility: visible;
+  }
+}
+
+// ---------- De lijst met oefeningen ----------
+.oef-lijst {
+  margin-bottom: 2rem;
+
+  > section.level1 {
+    margin: 0;
+    border: 1px solid $oef-lijn;
+    border-bottom: 0;
+    background: #fff;
+    overflow: hidden;
+
+    & + section.level1 {
+      border-top-color: $oef-lijn-zacht;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $oef-lijn;
+      border-radius: 0 0 10px 10px;
+    }
+  }
+
+  > .oef-lijst-kop + section.level1 {
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.oef-lijst-kop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  color: $oef-grijs;
+}
+
+summary.oef-kop {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  grid-template-areas:
+    "pijl titel vink"
+    "pijl voorsmaak vink";
+  column-gap: 0.8rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    background: #f8f8f5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $oef-rood;
+    outline-offset: -2px;
+  }
+}
+
+details.oef[open] > summary.oef-kop {
+  background: transparent;
+}
+
+#quarto-document-content summary.oef-kop h1 {
+  grid-area: titel;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: $oef-kop;
+}
+
+#quarto-document-content details.oef[open] > summary.oef-kop h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.oef-pijl {
+  grid-area: pijl;
+  display: grid;
+  place-items: center;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: $oef-vaag;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    transition: transform 0.15s ease;
+  }
+}
+
+details.oef[open] > summary .oef-pijl svg {
+  transform: rotate(90deg);
+  stroke: $oef-rood;
+}
+
+.oef-voorsmaak {
+  grid-area: voorsmaak;
+  margin-top: 0.1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.85rem;
+  color: $oef-grijs;
+}
+
+details.oef[open] > summary .oef-voorsmaak {
+  display: none;
+}
+
+section.is-gedaan > details.oef:not([open]) .oef-titel {
+  color: $oef-grijs;
+}
+
+.oef-gedaan {
+  grid-area: vink;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  border: 1.5px solid $oef-lijn-sterk;
+  border-radius: 50%;
+  background: #fff;
+  color: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    border-color: $oef-tekst;
+    color: $oef-vaag;
+  }
+
+  &[aria-pressed="true"] {
+    border-color: $oef-tekst;
+    background: $oef-tekst;
+    color: #fff;
+  }
+}
+
+.oef-inhoud {
+  padding: 0.1rem 1.5rem 1.5rem 2.8rem;
+}
+
+#quarto-document-content .oef-inhoud {
+  h2 {
+    margin-top: 1.8rem;
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    margin-top: 1.4rem;
+    font-size: 1.05rem;
+  }
+}
+
+// Essential, Final Essentials, PRO en GPT achter de titel
+.oef-labels {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.oef-label {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid $oef-lijn-sterk;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #4a4a55;
+
+  &.is-final {
+    border-color: $oef-tekst;
+    color: $oef-kop;
+  }
+
+  &.is-pro {
+    border-color: $oef-tekst;
+    background: $oef-tekst;
+    color: #fff;
+  }
+
+  &.is-gpt {
+    border-style: dashed;
+    color: $oef-grijs;
+  }
+}
+
+// ---------- Knoppen onder de opgave: Coach, Les, Oplossing ----------
+.oef-acties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.oef-knop,
+.oef-alles,
+.oef-acties .coach-knop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.38rem 0.8rem;
+  border: 1px solid $oef-lijn;
+  border-radius: 6px;
+  background: #fff;
+  color: #4a4a55;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    flex: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $oef-rood;
+    background: #fff;
+    color: $oef-rood-tekst;
+  }
+}
+
+.oef-knop svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oef-knop[aria-expanded="true"] {
+  border-color: $oef-rood;
+  background: rgba($oef-rood, 0.07);
+  color: $oef-rood-tekst;
+}
+
+.oef-alles {
+  padding: 0.28rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.oef-paneel {
+  margin-top: 0.6rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid $oef-lijn;
+  border-radius: 8px;
+  background: #fff;
+
+  // Quarto zet een codeblok in een extra div (.code-copy-outer-scaffold), dus ook één niveau dieper.
+  > :first-child,
+  > :first-child > div.sourceCode:first-child {
+    margin-top: 0;
+  }
+
+  > :last-child,
+  > :last-child > div.sourceCode:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Tekst die na een rij knoppen verdergaat, niet tegen de knoppen plakken.
+.oef-acties + :not(.oef-paneel),
+.oef-paneel + :not(.oef-paneel) {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 575.98px) {
+  summary.oef-kop {
+    column-gap: 0.6rem;
+    padding-inline: 0.75rem;
+  }
+
+  .oef-inhoud {
+    padding-inline: 1rem;
+  }
+}
+
+// ---------- "Werk in opbouw": op de oefeningen smaller en weg te klikken ----------
+#quarto-announcement.alert {
+  padding-block: 0.3rem;
+  border-bottom: 1px solid #f0dc9c;
+  background-color: #fffbf0;
+  font-size: 0.8rem;
+
+  &::before {
+    width: 18px;
+    height: 24px;
+  }
+
+  .quarto-announcement-action {
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@media print {
+  .oef-lijst-kop,
+  .oef-gedaan,
+  .oef-acties {
+    display: none;
+  }
+
+  .oef-lijst > section.level1 {
+    border: 0;
+  }
+}

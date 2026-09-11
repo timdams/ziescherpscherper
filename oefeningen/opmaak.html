@@ -1,0 +1,323 @@
+<!--
+  Zet een hoofdstukpagina met oefeningen om naar een lijst die je per oefening openklapt.
+  Draait in de browser, na oplossingen.html en coach.html. Zo ziet lokaal renderen er net zo
+  uit als online, en de bronbestanden blijven wat ze zijn.
+
+  - Elke oefening (een # kop, dus een section.level1) wordt een <details> die dicht start,
+    met de eerste zin van de opgave als voorsmaakje en een vinkje "gedaan".
+  - De callouts "Oplossing" en "Les(sen) uit deze oefening" worden knoppen met een paneel
+    eronder. De coach-knop van scripts/coach-prompt.mjs schuift mee in de laatste rij.
+  - (*Essential*), (PRO), (GPT) ... achter een titel worden labels, ook in "Op deze pagina".
+
+  Enkel voor pagina's in een hoofdstukmap (1_intro, 4_data, ...) met minstens twee oefeningen.
+  De vormgeving staat in oefeningen.scss.
+-->
+<script>
+(function () {
+  "use strict";
+
+  var HOOFDSTUKPAGINA = /\/\d+_[^\/]+\/[^\/]*$/;
+  var LABEL = /^(essential|final essentials?|pro|pro-oefening|gpt)$/i;
+  var OPSLAG = "zss-gedaan:" + location.pathname;
+
+  var ICOON = {
+    pijl: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3.5 10.5 8 6 12.5"/></svg>',
+    vink: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>',
+    les: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 13.8h4M5.8 11.6h4.4M8 1.6a4.3 4.3 0 0 0-2.6 7.7c.4.3.5.8.5 1.3v.4h4.2v-.4c0-.5.2-1 .6-1.3A4.3 4.3 0 0 0 8 1.6z"/></svg>',
+    oplossing: '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></svg>'
+  };
+
+  var root = document.documentElement;
+  var lijst = null;
+  var paneelNr = 0;
+
+  function leesGedaan() {
+    try { return JSON.parse(localStorage.getItem(OPSLAG)) || []; } catch (e) { return []; }
+  }
+
+  function bewaarGedaan(ids) {
+    try { localStorage.setItem(OPSLAG, JSON.stringify(ids)); } catch (e) {}
+  }
+
+  // "Vierkant (<em>Essential</em>, GPT)" wordt { titel: "Vierkant", labels: ["Essential", "GPT"] }.
+  // Haakjes met iets anders dan een gekend label, zoals "(Methoden)", blijven in de titel.
+  function splitsLabels(html) {
+    var labels = [];
+    var re = /\s*\(([^()]*)\)\s*$/;
+    var m;
+    while ((m = re.exec(html)) !== null) {
+      var delen = m[1].replace(/<[^>]*>/g, "").split(",").map(function (d) { return d.trim(); });
+      if (!delen.every(function (d) { return LABEL.test(d); })) break;
+      labels = delen.concat(labels);
+      html = html.slice(0, m.index);
+    }
+    return { titel: html, labels: labels };
+  }
+
+  function labelHtml(label) {
+    var soort = /^final/i.test(label) ? " is-final" : /^pro/i.test(label) ? " is-pro" : /^gpt$/i.test(label) ? " is-gpt" : "";
+    var uitleg = soort === " is-gpt" ? ' title="Deze oefening werd gemaakt met behulp van een GPT"' : "";
+    var tekst = soort === " is-pro" ? "PRO" : label;
+    return '<span class="oef-label' + soort + '"' + uitleg + ">" + tekst + "</span>";
+  }
+
+  // De eerste zin van de opgave. Een kort zinnetje als "Voorbeeld:" is geen voorsmaakje.
+  function eersteZin(inhoud) {
+    var alinea = inhoud.querySelector(":scope > p");
+    if (!alinea) return "";
+    var tekst = alinea.textContent.replace(/\s+/g, " ").trim();
+    if (tekst.length < 25) return "";
+    var m = /^.+?[.!?](?=\s|$)/.exec(tekst);
+    return m ? m[0] : tekst;
+  }
+
+  function soortVan(callout) {
+    var titel = (callout.getAttribute("title") || "").trim();
+    if (/^oplossing$/i.test(titel)) return "oplossing";
+    if (/^les(\(sen\)|sen)? uit/i.test(titel)) return "les";
+    return null;
+  }
+
+  function nieuweRij() {
+    var rij = document.createElement("div");
+    rij.className = "oef-acties";
+    return rij;
+  }
+
+  // Elke oplossing- of lessen-callout wordt op haar plaats een knop met een paneel eronder.
+  // Callouts die vlak na elkaar staan, delen één rij knoppen.
+  function maakKnoppen(inhoud, coach) {
+    var callouts = [].filter.call(inhoud.querySelectorAll(".callout[title]"), soortVan);
+    var vorigPaneel = null;
+    var rij = null;
+
+    callouts.forEach(function (callout) {
+      var soort = soortVan(callout);
+      var body = callout.querySelector(".callout-body-container");
+      if (!body) return;
+
+      if (!vorigPaneel || callout.previousElementSibling !== vorigPaneel) {
+        rij = nieuweRij();
+        callout.parentNode.insertBefore(rij, callout);
+      }
+
+      var paneel = document.createElement("div");
+      paneel.className = "oef-paneel";
+      paneel.id = "oef-paneel-" + (++paneelNr);
+      paneel.hidden = true;
+      while (body.firstChild) paneel.appendChild(body.firstChild);
+      callout.parentNode.replaceChild(paneel, callout);
+
+      var knop = document.createElement("button");
+      knop.type = "button";
+      knop.className = "oef-knop";
+      knop.setAttribute("aria-expanded", "false");
+      knop.setAttribute("aria-controls", paneel.id);
+      knop.innerHTML = soort === "les" ? ICOON.les + "Les uit deze oefening" : ICOON.oplossing + "Oplossing";
+      rij.appendChild(knop);
+      vorigPaneel = paneel;
+    });
+
+    if (!coach) return;
+    var rijen = [].filter.call(inhoud.querySelectorAll(".oef-acties"), function (r) {
+      return !r.parentNode.closest(".oef-paneel");
+    });
+    var laatste = rijen[rijen.length - 1];
+    if (!laatste) {
+      laatste = nieuweRij();
+      inhoud.appendChild(laatste);
+    }
+    laatste.insertBefore(coach, laatste.firstChild);
+  }
+
+  function maakOefening(sectie, gedaan) {
+    var kop = sectie.querySelector(":scope > h1");
+    if (!kop) return;
+
+    var coach = kop.querySelector(".coach-knop");
+    if (coach) coach.parentNode.removeChild(coach);
+
+    var delen = splitsLabels(kop.innerHTML.trim());
+    kop.innerHTML = '<span class="oef-titel">' + delen.titel + "</span>" +
+      (delen.labels.length ? '<span class="oef-labels">' + delen.labels.map(labelHtml).join("") + "</span>" : "");
+
+    var samenvatting = document.createElement("summary");
+    samenvatting.className = "oef-kop";
+    samenvatting.innerHTML = '<span class="oef-pijl">' + ICOON.pijl + "</span>";
+    samenvatting.appendChild(kop);
+
+    var inhoud = document.createElement("div");
+    inhoud.className = "oef-inhoud";
+    while (sectie.firstChild) inhoud.appendChild(sectie.firstChild);
+
+    var zin = eersteZin(inhoud);
+    if (zin) {
+      var voorsmaak = document.createElement("span");
+      voorsmaak.className = "oef-voorsmaak";
+      voorsmaak.textContent = zin;
+      samenvatting.appendChild(voorsmaak);
+    }
+
+    var isGedaan = gedaan.indexOf(sectie.id) !== -1;
+    var vink = document.createElement("button");
+    vink.type = "button";
+    vink.className = "oef-gedaan";
+    vink.title = "Markeer als gedaan";
+    vink.setAttribute("aria-pressed", String(isGedaan));
+    vink.setAttribute("aria-label", "Gedaan: " + kop.querySelector(".oef-titel").textContent.trim());
+    vink.innerHTML = ICOON.vink;
+    samenvatting.appendChild(vink);
+    sectie.classList.toggle("is-gedaan", isGedaan);
+
+    maakKnoppen(inhoud, coach);
+
+    var details = document.createElement("details");
+    details.className = "oef";
+    details.appendChild(samenvatting);
+    details.appendChild(inhoud);
+    sectie.appendChild(details);
+  }
+
+  function alleOefeningen() {
+    return lijst ? [].slice.call(lijst.querySelectorAll("details.oef")) : [];
+  }
+
+  function zetTeller() {
+    var teller = lijst.querySelector(".oef-teller");
+    var totaal = lijst.querySelectorAll(":scope > section.level1").length;
+    var klaar = lijst.querySelectorAll(":scope > section.is-gedaan").length;
+    teller.textContent = totaal + " oefeningen · " + klaar + " gedaan";
+  }
+
+  function zetAllesKnop() {
+    var knop = lijst.querySelector(".oef-alles");
+    var allesOpen = alleOefeningen().every(function (d) { return d.open; });
+    knop.textContent = allesOpen ? "Alles dichtklappen" : "Alles openklappen";
+  }
+
+  function wisselGedaan(vink) {
+    var sectie = vink.closest("section.level1");
+    var aan = vink.getAttribute("aria-pressed") !== "true";
+    vink.setAttribute("aria-pressed", String(aan));
+    sectie.classList.toggle("is-gedaan", aan);
+    var ids = leesGedaan().filter(function (id) { return id !== sectie.id; });
+    if (aan) ids.push(sectie.id);
+    bewaarGedaan(ids);
+    zetTeller();
+  }
+
+  // Binnen één rij staat er telkens hoogstens één paneel open.
+  function wisselPaneel(knop) {
+    var wasOpen = knop.getAttribute("aria-expanded") === "true";
+    [].forEach.call(knop.parentNode.querySelectorAll(".oef-knop"), function (k) {
+      k.setAttribute("aria-expanded", "false");
+      var p = document.getElementById(k.getAttribute("aria-controls"));
+      if (p) p.hidden = true;
+    });
+    if (wasOpen) return;
+    knop.setAttribute("aria-expanded", "true");
+    var paneel = document.getElementById(knop.getAttribute("aria-controls"));
+    if (paneel) paneel.hidden = false;
+  }
+
+  // Een link naar een oefening (of naar iets erin) klapt die eerst open.
+  function openVoor(el) {
+    if (el.matches("section.level1")) {
+      var eigen = el.querySelector(":scope > details.oef");
+      if (eigen) eigen.open = true;
+    }
+    for (var p = el.parentElement; p; p = p.parentElement) {
+      if (p.tagName === "DETAILS") p.open = true;
+    }
+  }
+
+  function doelVan(hash) {
+    if (!hash || hash.length < 2) return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
+  }
+
+  function opmaak() {
+    if (!HOOFDSTUKPAGINA.test(location.pathname)) return;
+    var main = document.getElementById("quarto-document-content");
+    if (!main) return;
+    var secties = [].filter.call(main.children, function (el) { return el.matches("section.level1"); });
+    if (secties.length < 2) return;
+
+    lijst = document.createElement("div");
+    lijst.className = "oef-lijst";
+    lijst.innerHTML = '<div class="oef-lijst-kop"><span class="oef-teller"></span>' +
+      '<button type="button" class="oef-alles">Alles openklappen</button></div>';
+    main.insertBefore(lijst, secties[0]);
+
+    var gedaan = leesGedaan();
+    secties.forEach(function (sectie) {
+      lijst.appendChild(sectie);
+      maakOefening(sectie, gedaan);
+    });
+
+    // "Op deze pagina" zonder de labels: daar zijn het enkel titels.
+    [].forEach.call(document.querySelectorAll("#TOC a.nav-link"), function (a) {
+      a.innerHTML = splitsLabels(a.innerHTML.trim()).titel;
+    });
+
+    zetTeller();
+    zetAllesKnop();
+
+    // toggle bubbelt niet, dus luisteren in de capture-fase
+    lijst.addEventListener("toggle", zetAllesKnop, true);
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest) return;
+      var vink = e.target.closest(".oef-gedaan");
+      if (vink) {
+        e.preventDefault(); // anders klapt de oefening mee open of dicht
+        wisselGedaan(vink);
+        return;
+      }
+      var knop = e.target.closest(".oef-knop");
+      if (knop) {
+        wisselPaneel(knop);
+        return;
+      }
+      if (e.target.closest(".oef-alles")) {
+        var open = !alleOefeningen().every(function (d) { return d.open; });
+        alleOefeningen().forEach(function (d) { d.open = open; });
+        return;
+      }
+      var link = e.target.closest("a[href*='#']");
+      if (link && link.pathname === location.pathname) {
+        var doel = doelVan(link.hash);
+        if (doel) openVoor(doel);
+      }
+    }, true);
+
+    window.addEventListener("hashchange", function () {
+      var doel = doelVan(location.hash);
+      if (!doel) return;
+      openVoor(doel);
+      doel.scrollIntoView();
+    });
+
+    var bijStart = doelVan(location.hash);
+    if (bijStart) openVoor(bijStart);
+
+    // Afdrukken toont alles, daarna staat alles terug zoals het stond.
+    var dichtVoorAfdruk = [];
+    window.addEventListener("beforeprint", function () {
+      dichtVoorAfdruk = alleOefeningen().filter(function (d) { return !d.open; });
+      dichtVoorAfdruk.forEach(function (d) { d.open = true; });
+    });
+    window.addEventListener("afterprint", function () {
+      dichtVoorAfdruk.forEach(function (d) { d.open = false; });
+      dichtVoorAfdruk = [];
+    });
+  }
+
+  try {
+    opmaak();
+  } finally {
+    // Tot hier staan de oefeningen onzichtbaar, zie include-in-header in _quarto.yml.
+    root.classList.remove("zss-opmaak-wacht");
+  }
+})();
+</script>

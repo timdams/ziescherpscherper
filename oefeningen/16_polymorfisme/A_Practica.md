@@ -8,6 +8,7 @@
 Voeg een filter toe aan de dierentuin applicatie uit [een eerder hoofdstuk](../13_advancedovererving/A_Practica.md):
 
 * Filter praten: er wordt gevraagd welke dieren moeten praten (``Koe``, ``Slang`` of ``Varken``) vervolgens zullen enkel die dieren praten (tip: "is" operator).
+:::
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 **Dierentuin advanced**
