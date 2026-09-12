@@ -29,8 +29,10 @@ book:
     background: light
     pinned: true
     left:
+      # Naar het boek zelf, niet naar de landingspagina: die zit achter de
+      # titel links in de navbar (de navbar-brand).
       - text: "Handboek"
-        href: index.qmd
+        href: content/README.md
       - text: "Handboek in pdf<br><small class='nav-pdf-datum'>versie {{< var pdfdatum >}}</small>"
         href: Zie-Scherp-Scherper.pdf
       - text: "Slides"

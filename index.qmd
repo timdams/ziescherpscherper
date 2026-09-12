@@ -1,5 +1,41 @@
 # Voorwoord {.unnumbered}
 
+<!-- De landingspagina. Staat bewust in een html-only blok: de pdf begint nog
+     altijd met het voorwoord hieronder. De vormgeving (en het verbergen van
+     sidebar, inhoudstafel en titelblok op deze ene pagina) zit in custom.scss
+     onder "Landingspagina". -->
+::::: {.content-visible when-format="html"}
+
+:::: {.zss-hero}
+::: {.zss-hero-tekst}
+[Zie Scherp Scherper]{.zss-titel}
+
+[Leren programmeren in C#, van je allereerste regel code tot polymorfisme. Geen voorkennis nodig.]{.zss-pitch}
+
+[Gratis en online, door Tim Dams (AP Hogeschool)]{.zss-bijlijn}
+:::
+
+![](content/assets/bril.svg){.zss-bril .nolightbox fig-alt="Een bril met C# in de glazen"}
+::::
+
+:::: {.zss-kaarten}
+[![](content/assets/landing/kaart-handboek.png){.k-icoon .nolightbox}[Handboek]{.k-titel}[De 18 hoofdstukken online, met voorbeelden en kennisclips.]{.k-tekst}[Begin hier]{.k-pijl}](content/README.md){.zss-kaart .k-start}
+
+[![](content/assets/landing/kaart-pdf.png){.k-icoon .nolightbox}[Handboek in pdf]{.k-titel}[Alles in één bestand, om te printen of offline te lezen. Versie {{< var pdfdatum >}}.]{.k-tekst}[**Let op: deze pdf is nog lang niet klaar.** Heel veel afbeeldingen ontbreken of staan verkeerd, en de opmaak moet nog grondig herwerkt worden. Lees online mee als je iets niet begrijpt.]{.k-letop}[Download de pdf]{.k-pijl}](Zie-Scherp-Scherper.pdf){.zss-kaart .k-onaf}
+
+[![](content/assets/landing/kaart-oefeningen.png){.k-icoon .nolightbox}[Oefeningen]{.k-titel}[Practica per hoofdstuk, oude vaardigheidsproeven en grotere projecten.]{.k-tekst}[Naar de oefeningen]{.k-pijl}](oefeningen/overzicht.qmd){.zss-kaart}
+
+[![](content/assets/landing/kaart-slides.png){.k-icoon .nolightbox}[Slides]{.k-titel}[De lesslides per hoofdstuk, online of als pdf.]{.k-tekst}[Naar de slides]{.k-pijl}](slides/overzicht.html){.zss-kaart}
+::::
+
+:::: {.zss-meer}
+Meteen beginnen? [H1: De eerste stappen](content/0_intro/0_intrototcs.md) · alle [kennisclips](content/allvideos1.md) · de [coding guidelines](content/B_appendix/boete.md)
+
+[Gratis onder CC BY-NC 4.0](#licentie) · [trakteer op een fristi](https://www.buymeacoffee.com/timdams) · [fout gevonden?](https://github.com/timdams/ziescherpscherper/issues) · [over deze editie](#over-deze-editie)
+::::
+
+:::::
+
 **Zie Scherp Scherper**, een handboek C# binnen de opleidingen bachelor elektronica-ict en toegepaste informatica van de AP Hogeschool, geschreven door [Tim Dams](https://www.timdams.com) maar ook perfect bruikbaar voor andere hogescholen en middelbare scholen. Het boek is bedoeld om studenten op een laagdrempelige manier te leren programmeren in C#, waarbij geen voorkennis vereist is.
 
 

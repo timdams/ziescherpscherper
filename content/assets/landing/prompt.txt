@@ -1,0 +1,13 @@
+Blad met de vier icoontjes voor de kaarten op de landingspagina.
+Gegenereerd via de imagen-skill: model openai/gpt-5.4-image-2, aspect 1:1.
+
+Four separate flat-vector icons arranged as a clean two-by-two grid on one
+square warm off-white canvas: an open hardback handbook seen from above, a
+small stack of printed sheets with one corner folded, a laptop showing a dark
+console window with a blinking cursor and a small checkmark, and a projection
+screen on a stand showing simple abstract blocks. Bold rounded outlines of
+uniform weight, filled in marigold orange (#F29400), deep slate (#2b2b33) and
+a single crimson accent (#e11d2a), light grey shading, no gradients. Each icon
+centred in its own quarter with generous even breathing room, identical scale
+and line weight across the four, plain background, entirely free of lettering,
+frames and dividing lines.

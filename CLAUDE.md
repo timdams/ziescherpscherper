@@ -135,6 +135,12 @@ dus lokaal renderen ziet er hetzelfde uit als online. De vormgeving zit in
 
 **`build/` is volledig gitignored.** Er zit niets van in de repo, ook de pdf van het handboek niet: `git ls-files build/` geeft niets terug. Let wel op iets anders: een `quarto render` op één hoofdstukbestand van het boek maakt `build/` eerst helemaal leeg en bouwt daarna het volledige boek opnieuw. Wil je snel iets nakijken, render dan het subproject (bv. `quarto render oefeningen/`) of werk in [boekPrintTest/](boekPrintTest/).
 
+**Geen heredocs of meerregelige strings via de shell.** Deze machine draait Windows met
+PowerShell; heredoc-quoting (`<<'EOF'`, `@'...'@`) loopt telkens mis op aanhalingstekens,
+backticks en `$`. Een bestand of een blok tekst van meer dan één regel schrijf je met het
+Write- of Edit-tool, niet via `cat > bestand`, `echo` of `Set-Content`. De shell gebruik je
+voor commando's (git, quarto, node), niet om tekst te plaatsen.
+
 ## Schrijfstijl & content-conventies
 
 - Taal: **Nederlands** (informeel, je-vorm, vlaams/belgisch).
@@ -184,6 +190,22 @@ figuur getekend of hertekend moet worden. De harde regels, ook als de skill niet
 
 Referentie-implementatie: [content/assets/5_arrays/imagegen/](content/assets/5_arrays/imagegen/).
 De nieuwste gedeelde stijl-helpers staan in `content/assets/6_klassen/imagegen/excal.js`.
+
+## "Wat nu?"
+
+Vraagt Tim **"wat nu?"** (of iets van die strekking: "waar waren we gebleven", "wat is het
+volgende"), lees dan [future/watnu.md](future/watnu.md) en stel het eerstvolgende openstaande
+item voor.
+
+- De lijst staat op volgorde van ouderdom: **hoe ouder het gat, hoe belangrijker**. Stel het
+  bovenste openstaande item voor, niet het makkelijkste.
+- Geef er in twee, drie zinnen bij wat dat item concreet inhoudt, hoeveel werk het is en
+  waarom het bovenaan staat. Noem ook meteen het volgende item, zodat Tim kan kiezen.
+- Ga eerst na of het item echt nog open staat. De sneltests staan bovenaan het bestand;
+  een run kan intussen zijn afgewerkt zonder dat de lijst is bijgewerkt.
+- **Is een item af, schrap het uit de lijst** en zet één regel in het logboek onderaan
+  (datum plus wat er gebeurd is). Deelresultaat betekent: het item aanpassen, niet schrappen.
+- Nieuwe gaten die opduiken voeg je toe op de plek die bij hun ouderdom past.
 
 ## Toekomst ideeen
 
