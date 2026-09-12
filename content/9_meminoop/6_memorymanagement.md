@@ -89,10 +89,12 @@ De parameter ``a`` zal de waarde ``5`` gekopieerd krijgen. Maar wanneer we nu za
 
 De output van bovenstaand programma zal zijn:
 
+::: {.console}
 ```text
 In methode 6
 Na methode 5
 ```
+:::
 
 ### Reference types
 
@@ -177,10 +179,12 @@ Console.WriteLine(nummers[0]);
 
 We zullen dus als output krijgen:
 
+::: {.console}
 ```text
 999
 999
 ```
+:::
 
 ![De situatie op het einde.](../assets/5_arrays/refarr2.png)<!--{width=70%}-->
 

@@ -40,10 +40,12 @@ VeldArts RexGregor = new VeldArts();
 Dan zien we de volgorde van constructor-aanroep in het debug output venster:
 
 
+::: {.console}
 ```text
 Soldaat is aangemaakt.
 Veldarts is aangemaakt.
 ```
+:::
 
 Er wordt dus verondersteld in dit geval dat er een default constructor in de basis-klasse aanwezig is.
 

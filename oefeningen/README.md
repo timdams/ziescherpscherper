@@ -21,11 +21,9 @@ PS: Besef dat goed kunnen programmeren enkel kan geleerd worden indien je ook ef
 
 # Licensed under Creative Commmons Attribution-NonCommercial 4.0 International \(CC BY-NC 4.0\)
 
-![Licenicon](/assets/ccicon.png)![Licenicon](/assets/ccat.png)![Licenicon](/assets/ccnc.png)
+![Licenicon](assets/ccicon.png)![Licenicon](assets/ccat.png)![Licenicon](assets/ccnc.png)
 
-Licensed under CC-BY-NC 4.0 as shown [here](LICENSE.MD).
-
-This is a human-readable summary of \(and not a substitute for\) the [license](LICENSE.MD).
+This is a human-readable summary of \(and not a substitute for\) the license.
 
 ## You are free to
 

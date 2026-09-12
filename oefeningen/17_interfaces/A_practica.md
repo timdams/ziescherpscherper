@@ -1,5 +1,5 @@
 # Figures with interfaces
-Gebruik je [Rechthoek-klasse uit de Figuren oefening](../8_klassen/A_practica.md#figures) die je eerder  hebt aangemaakt. Maak een List aan waarin je een 10 rechthoek-objecten plaatsen, allen met een verschillende grootte. Zorg ervoor dat je nu je rechthoeken met de Sort()-methode kan sorteren op oppervlakte.
+Gebruik je [Rechthoek-klasse uit de Figuren oefening](../9_klassen/A_practica.md#figuren) die je eerder  hebt aangemaakt. Maak een List aan waarin je een 10 rechthoek-objecten plaatsen, allen met een verschillende grootte. Zorg ervoor dat je nu je rechthoeken met de Sort()-methode kan sorteren op oppervlakte.
 
 
 Toon de werking aan in een klein voorbeeld programma. 
@@ -204,7 +204,7 @@ Maak een PokéDex die de interface ``IEnumerable`` implementeert zoals [hier uit
 
 # Mapmaker afwerken
 
-Vervolledig het all-in-project  "[Map Maker](../A_DEEL2_AllInOne/1_MapMapker.md)". Inclusief interfaces en is/as .Kan je zelf extra zaken toevoegen zoals andere kamers, andere functionaliteit, etc.
+Vervolledig het all-in-project  "[Map Maker](../EindeTests/A_DEEL2_AllInOne/1_MapMapker.md)". Inclusief interfaces en is/as .Kan je zelf extra zaken toevoegen zoals andere kamers, andere functionaliteit, etc.
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 

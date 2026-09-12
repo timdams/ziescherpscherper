@@ -32,6 +32,7 @@ for (int i = 0; i < myColors.Length; i++)
 
 Op het scherm verschijnt:
 
+::: {.console}
 ```text
 blue
 green
@@ -39,6 +40,7 @@ orange
 red
 yellow
 ```
+:::
 
 Bij een array van strings worden de elementen alfabetisch gerangschikt. Uiteraard werkt dit ook op arrays van andere datatypes. Zolang C# maar weet hoe dat type gesorteerd moet worden, zal dit werken. Getallen gaan van klein naar groot, tekst volgt de regels van het alfabet, enums volgen hun interne voorstelling, enz.
 
@@ -52,6 +54,7 @@ Array.Reverse(myColors);
 
 Onze array was net gesorteerd, dus nu staat er:
 
+::: {.console}
 ```text
 yellow
 red
@@ -59,6 +62,7 @@ orange
 green
 blue
 ```
+:::
 
 Ook hier krijg je niets terug: de array zelf is aangepast. Wil je van groot naar klein sorteren, dan doe je dus een ``Sort()`` gevolgd door een ``Reverse()``.
 

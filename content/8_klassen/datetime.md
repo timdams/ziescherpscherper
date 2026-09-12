@@ -119,10 +119,12 @@ Console.WriteLine($"Dat is een {eindeWitteBroodsweken.DayOfWeek}.");
 Dit geeft op het scherm: 
 
 
+::: {.console}
 ```text
 Je wittebroodsweken eindigen in maand nummer: 5.
 Dat is een Friday.
 ```
+:::
 
 ### Static methoden
 

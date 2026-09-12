@@ -5,7 +5,7 @@
 # Dierentuin advanced (*Essential*)
 
 :::{.callout-tip}
-Voeg een filter toe aan de dierentuin applicatie uit [een eerder hoofdstuk](../13_advancedovererving/A_Practica.md):
+Voeg een filter toe aan de dierentuin applicatie uit [een eerder hoofdstuk](../14_advancedovererving/A_Practica.md):
 
 * Filter praten: er wordt gevraagd welke dieren moeten praten (``Koe``, ``Slang`` of ``Varken``) vervolgens zullen enkel die dieren praten (tip: "is" operator).
 :::
@@ -58,7 +58,7 @@ static void Zegt<T>(List<Dier>dieren) where T: Dier
 }
 ```
 
-(de ``where`` is een zogenaamde constraint, uitgelegd [hier](17_gencols/2_genericclasses_en_constraints.md))
+(de ``where`` is een zogenaamde constraint, uitgelegd [hier](https://www.ziescherp.be/content/B_appendix/generics.html#constraints))
 
 In de switch krijg je dan:
 
@@ -641,7 +641,7 @@ class Program
 
 # Mapmaker "all-in-one-project"
 
-Begin aan het all-in-project  "[Map Maker](../A_DEEL2_AllInOne/1_MapMapker.md)". Stop aan de sectie interfaces (die je pas in volgend hoofdstuk zult leren gebruiken). Je zal in dit project dingen herkennen die je eerder al in de "Een eigen huis" oefening hebt moeten maken. 
+Begin aan het all-in-project  "[Map Maker](../EindeTests/A_DEEL2_AllInOne/1_MapMapker.md)". Stop aan de sectie interfaces (die je pas in volgend hoofdstuk zult leren gebruiken). Je zal in dit project dingen herkennen die je eerder al in de "Een eigen huis" oefening hebt moeten maken. 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 

@@ -3,7 +3,7 @@
 ## Opgave 1 Voetbalteam (12p)
 
 
-Je bent aangenomen als softwareontwikkelaar bij de Belgische Voetbalbond. Een aantal trainers heeft gevraagd om een digitale toepassing waarmee ze **hun teamopstelling kunnen beheren en analyseren**. Ze willen niet alleen spelers toevoegen en de sterkte van hun team bekijken, maar ook weten hoeveel hun opstelling waard is — iets wat belangrijk is bij transfers, scouts, en media-aandacht.
+Je bent aangenomen als softwareontwikkelaar bij de Belgische Voetbalbond. Een aantal trainers heeft gevraagd om een digitale toepassing waarmee ze **hun teamopstelling kunnen beheren en analyseren**. Ze willen niet alleen spelers toevoegen en de sterkte van hun team bekijken, maar ook weten hoeveel hun opstelling waard is: iets wat belangrijk is bij transfers, scouts, en media-aandacht.
 
 ## Deel 1: Klassenstructuur en gedragsregels (6 punten)
 

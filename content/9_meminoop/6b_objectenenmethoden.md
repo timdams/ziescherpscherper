@@ -71,9 +71,11 @@ Console.WriteLine($"{m1.Temperatuur} en {m2.Temperatuur}");
 Dit zal resulteren in volgende output:
 
 
+::: {.console}
 ```text
 31 en 0
 ```
+:::
 
 
 ### Objecten als resultaat

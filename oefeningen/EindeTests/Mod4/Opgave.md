@@ -16,7 +16,7 @@ Het project bestaat uit enkele delen.
 # DEEL 1  (11 PUNTEN)
 We gaan volgende klasse-structuur in de volgende stappen maken:
 
-![](/assets/Aallinone/mod4class.png)
+![](../../assets/Aallinone/mod4class.png)
 
 
 ## Stap 1: 	/2PUNTEN
@@ -29,7 +29,7 @@ De Vorm heeft géén default constructor.
 
 De locatie van de vormen die we hierna zullen definiëren is steeds het punt linksboven indien we een rechthoek omheen de vorm zouden tekenen. Het voorbeeld hier toont deze plek bij het vliegtuig van stap 3: 
 
-![linkerbovenhoek is de oorsprong](/assets/Aallinone/vliegtuigcoord.png)
+![linkerbovenhoek is de oorsprong](../../assets/Aallinone/vliegtuigcoord.png)
 
  
 ## Stap 2:	/2punten

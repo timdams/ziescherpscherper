@@ -59,10 +59,12 @@ Console.WriteLine($"{m2.Geboortejaar}");
 
 Dan zien we volgende uitvoer:
 
+::: {.console}
 ```text
 2
 1
 ```
+:::
 
 Ieder object houdt de stand van z'n eigen variabelen bij. Ze kunnen elkaars interne - zowel publieke als private - staat niet rechtstreeks veranderen.
 
@@ -106,10 +108,12 @@ Console.WriteLine($"{m2.Geboortejaar}");;
 
 Dan wordt de uitvoer:
 
+::: {.console}
 ```text
 4
 4
 ```
+:::
 
 We zien dat de variabele ``geboorteJaar`` dus niet meer per object individueel wordt bewaard, maar dat het één globale variabele als het ware is geworden en géén instantievariabele meer is.
 ``static`` laat je dus toe om informatie over de objecten heen te delen. 
@@ -298,6 +302,7 @@ Fiets.VerminderFiets();
 
 Dit zal debug uitvoer geven:
 
+::: {.console}
 ```text
 Er zijn nu 1 gemaakt 
 Er zijn nu 2 gemaakt 
@@ -306,6 +311,7 @@ STATIC:Er zijn 2 fietsen
 Er zijn nu 3 gemaakt
 STATIC:Er zijn 2 fietsen
 ```
+:::
 
 <!-- \newpage -->
 

@@ -1,0 +1,35 @@
+{
+  "name": "zss-kennisclips",
+  "version": "1.0.0",
+  "description": "Korte kennisclips bij Zie Scherp Scherper, gemaakt met Remotion",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.524",
+    "@remotion/google-fonts": "4.0.524",
+    "@remotion/transitions": "4.0.524",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.524",
+    "roughjs": "4.6.6"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.524",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "render:raw-strings": "remotion render RawStringLiterals out/h03-raw-string-literals.mp4",
+    "render:reel-256": "remotion render Reel-256-assen out/reel-256-assen.mp4",
+    "render:reel-mars": "remotion render Reel-mars-climate-orbiter out/reel-mars-climate-orbiter.mp4",
+    "render:reel-seeds": "remotion render Reel-minecraft-seeds out/reel-minecraft-seeds.mp4"
+  }
+}

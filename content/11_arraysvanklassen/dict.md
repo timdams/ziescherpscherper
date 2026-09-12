@@ -61,10 +61,12 @@ Console.WriteLine(stapel.Pop());
 
 Dit zal dus het volgende resultaat geven:
 
+::: {.console}
 ```text
 Ik als laatste.
 Ik tweede.
-``` 
+```
+:::
 
 <!-- \newpage -->
 

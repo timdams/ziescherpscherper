@@ -274,9 +274,11 @@ foreach (byte b in inhoud)
 
 Dit geeft volgende output:
 
+::: {.console}
 ```text
 04 42 6F 6E 64 07 00 00 00 01
 ```
+:::
 
 :::{.callout-tip}
 De eerste byte (``04``) geeft de lengte van de string aan die volgt, 4 dus. De volgende 4 bytes, ``42 6F 6E 64`` zijn de UTF-8 waarden voor de letters "B, o, n, d".

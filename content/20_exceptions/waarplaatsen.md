@@ -55,10 +55,12 @@ catch (Exception ex)
 Zal resulteren in:
 
 
+::: {.console}
 ```text
 http://www.ziescherp.be gedownload!
 Ongeldige URI: kan de Authority/Host niet parsen.
 ```
+:::
 
 Met andere woorden, zolang de urls geldig zijn zal de download lukken. Bij de eerste fout die optreedt zal de volledige methode echter stoppen. Dit is waarschijnlijk enkel wenselijk indien de code erna de informatie van ALLE urls nodig heeft.
 
@@ -85,11 +87,13 @@ Mogelijk wil je echter dat je programma blijft werken indien er 1 of meerdere ur
 Dit zal resulteren in:
 
 
+::: {.console}
 ```text
 http://www.ziescherp.be gedownload!
 Ongeldige URI: kan de Authority/Host niet parsen.
 Ongeldige URI: de indeling van de URI kan niet worden bepaald.
 ```
+:::
 
 Met andere woorden, indien een bepaalde url niet geldig is dan zal deze overgeslagen worden en gaat de methode verder naar de volgende. Op deze manier kunnen we alsnog alle urls trachten te downloaden.
 

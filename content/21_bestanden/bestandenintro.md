@@ -120,14 +120,19 @@ Console.WriteLine(fullPath);
 
 Afhankelijk van het besturingssystemen zal de output dus verschillend zijn. Op Windows:
 
+::: {.console}
 ```text
 data\dagboek.txt
 ```
+:::
+
 Op Mac OS wordt dit echter:
 
+::: {.console}
 ```text
 data/dagboek.txt
 ```
+:::
 
 De ``Path``-klasse heeft ook nog tal van nuttige methode zoals: ``ChangeExtension``, ``GetDirectoryName``, ``GetFileNameWithoutExtension``, ``GetFullPath``, enz. Met behulp van de ``GetRandomFileName``-methode kan je een willekeurige folder- of bestandsnaam verkrijgen. Dit is handig als je een tijdelijke bestand wil aanmaken en zeker wil zijn dat de naam niet al bestaat. Een andere handige methode is ``GetTempPath``, deze geeft je het path naar de temp-folder van de huidige gebruiker. Het is een goede gewoonte om tijdelijke werkbestanden voor je applicatie in deze folder te plaatsen. En het is nog toffer als je deze ook verwijderd wanneer ze niet meer nodig zijn.
 

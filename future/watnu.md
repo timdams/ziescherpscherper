@@ -59,12 +59,30 @@ H6 (0 over) en H8 (1 over) zijn al opgekuist door de augustussweep.
 
 Uit [didactische-tips-rapport.md](didactische-tips-rapport.md).
 
-- [ ] `::: {.console}` rond de uitvoerblokken: gedaan t/m H9 (`0_intro` .. `8_klassen`), daarna
-      vrijwel niets. Nog kale ` ```text `-blokken: 21_bestanden (8), 20_exceptions (4),
-      9_meminoop (3), 10_advancedklassen (3).
 - [ ] `filename="Student.cs"` op de codefences: 3 van de 8 sterke kandidaten uit het rapport.
 
-## 4. Illustraties in de arme hoofdstukken (29 juni 2026)
+## 4. Kennisclips lopen achter op het boek (25 juni 2026)
+
+Sinds juni 2026 zijn er geen clips meer bijgekomen, terwijl het boek fors herschreven is. Van de 106
+Panopto-clips dateren er 101 van 2018 tot 2022; enkel H18 (mei 2026) en twee properties-clips (2024)
+zijn recenter. De volledige vergelijking staat in [kennisclips-rapport.md](kennisclips-rapport.md),
+met per clip de opnamedatum (die zit verstopt in de Panopto-ID).
+
+- [ ] **Taggen** met een icoon (oud / nieuw / mist nieuwe leerstof), in de 18 `kennisclips.md` en in
+      `allvideos1.md`/`allvideos2.md`. Die laatste mist H18 nog.
+- [ ] **Ontbrekende clips** als korte Remotion-filmpjes. Zeker nodig: raw string literals (H3),
+      programmeren met A.I. (H4), De Morgan (H5), collection expressions (H8), Pong als rode draad
+      (H9-H16), `required` (H11), `Queue`/`Stack` (H12), `IComparable` en sorteren (H17),
+      JSON-serialisatie (H18). Plus een vervanger voor "IntelliCode uitschakelen" die ook Copilot in
+      VS 2026 uitzet. Nog tien twijfelgevallen staan in punt 2 van het rapport.
+      *12 september 2026: eerste clip gebouwd in [`_kennisclips/`](../_kennisclips/README.md),
+      raw string literals (H3). Nog zonder stem en nog niet in `kennisclips.md` gezet.
+      De scenario's voor de andere ontbrekende clips staan in [kennisclips-scenarios.md](kennisclips-scenarios.md).*
+- [ ] Een handvol clips past niet meer bij de tekst (class library, class designer, meme-detective,
+      fuifsimulator, ...). Houden, verplaatsen of schrappen: beslissing aan Tim.
+- [ ] 14 van de 18 `kennisclips.md` linken bij de oefeningen nog naar gitbook.
+
+## 5. Illustraties in de arme hoofdstukken (29 juni 2026)
 
 Uit [illustratie-aanbevelingen.md](illustratie-aanbevelingen.md). Deze hoofdstukken zijn nooit
 aan de beurt geweest in de Excalidraw-run; hun `imagegen/` dateert nog van 29 juni. Gebruik de
@@ -77,19 +95,19 @@ skill `afbeelding`, en vraag Tim eerst welke figuur we aanpakken.
 - [ ] 11_arraysvanklassen: foreach-cursor, List die groeit vs vaste array
 - [ ] 15_polymorfisme en 16_interfaces (beide mager, geen `imagegen/`-map)
 
-## 5. Hoofdstuk-verbeterrun H9-H18 (24 augustus - 4 september 2026)
+## 6. Hoofdstuk-verbeterrun H9-H18 (24 augustus - 4 september 2026)
 
 De sweep "H1 en tot H8 verbeterd" liep van `0_intro` tot `7_arrays` en pakte daar tekst,
 afbeeldingen en een deel van de oude TODO's samen aan.
 
 - [ ] Dezelfde pass voor H9 t/m H18 (`8_klassen` .. `21_bestanden`).
 
-## 6. Slides h10 t/m h18 (4-11 september 2026)
+## 7. Slides h10 t/m h18 (4-11 september 2026)
 
 - [ ] h01 t/m h09 staan in sync met de hoofdstukken, h10 t/m h18 niet. Die zijn sinds
       "slides update tot en met 8" enkel meegesleept in globale commits.
 
-## 7. Oefeningenreview H9-H18 (11 september 2026)
+## 8. Oefeningenreview H9-H18 (11 september 2026)
 
 De rapporten staan klaar in [oefeningenreview/](oefeningenreview/), met de beslissingen van Tim
 in [oefeningenreview/README.md](oefeningenreview/README.md).
@@ -99,6 +117,26 @@ in [oefeningenreview/README.md](oefeningenreview/README.md).
       Nederlandse namen), `bib.png` (H9), `multipplecompuml` (H15). De Stemwijzer (H5) is klaar.
 - [ ] `oefeningen/EindeTests/`: valt buiten de review en heeft nog geen coach-data. Het enige
       deel van de oefeningen dat in geen enkele run zit.
+- [ ] De callout `Les(sen) uit deze oefening` bestaat enkel in H1-H8 (52 stuks op 142 oefeningen).
+      In H9 t/m H18 staat er geen enkele, op 68 oefeningen. Scherpste breuklijn tussen de twee
+      helften van de oefeningen.
+
+## 9. Kleine gaten, gevonden op 12 september 2026
+
+Losse zaken die bij een scan van de repo bovenkwamen en nergens anders thuishoren.
+
+- [ ] Weesbestanden die in geen enkele `_quarto.yml` staan: `content/papier.md`,
+      `content/01_introductie/intro.qmd`, `content/_intro/nuttigeextras.md`. Publiceren,
+      archiveren of schrappen. (De 19 `summaryposterprompt.md` laat ik hier buiten: die lijken
+      bewust werkbestanden.)
+- [ ] Verborgen TODO in `oefeningen/7_methoden/b_practicasamenb.md`: het verhaalgenerator-project
+      in `EindeTests/A_DEEL1_AllInOne/3_verhaalgenerator.md` moet eerst hersteld worden.
+- [ ] Drie fouten in de boektekst, gevonden bij het uitschrijven van
+      [kennisclips-scenarios.md](kennisclips-scenarios.md):
+      `10_advancedklassen/2_overloadedconstructor.md` gebruikt `Console.WindowWidth` voor `Y` (moet
+      `WindowHeight` zijn); in `13_advancedovererving/5_abstract.md` stopt de Pong-`foreach` midden in
+      `//spe`, zonder `TekenOpScherm` en zonder sluitende accolade; in
+      `16_interfaces/2_InterfacesInPraktijk.md` gooien de twee versies van `CompareTo` een andere exception.
 
 ---
 
@@ -106,4 +144,28 @@ in [oefeningenreview/README.md](oefeningenreview/README.md).
 
 Afgewerkte items komen hier als één regel, nieuwste bovenaan.
 
-- (nog niets)
+- **12 september 2026** - Item 9: de twee kapotte links naar `LICENSE.MD` in `oefeningen/README.md`
+  geschrapt in plaats van een licentiebestand aan te maken. De licentie (CC BY-NC 4.0) staat er nog
+  gewoon bij naam in de kop, met de badges en de samenvatting.
+- **12 september 2026** - Item 9 (kleine gaten), eerste punt: `content/18_IsAs/` en
+  `content/20_exceptions/` hebben geen eigen `kennisclips.md` nodig. Hun pagina's hangen in H10, H14,
+  H16 en H17, en de clips erover staan daar al ("Werken met exception", "Zelf uitzonderingen maken",
+  "Is en as keywords", "Vloekende mensen"). Of die clips nog kloppen, zit nu in item 4.
+- **12 september 2026** - Kapotte paden in de oefeningen hersteld. 17 afbeeldingen in
+  `oefeningen/EindeTests/` wezen één map te hoog (`../assets/` in `A_DEEL1_AllInOne` en
+  `A_DEEL2_AllInOne`, `/assets/` in `Mod4`) en waren dus stuk op de site; nu `../../assets/`,
+  gelijk aan wat `Mod1` t/m `Mod3` al deden. Quarto waarschuwt hier niet voor: wil je dit later
+  hercontroleren, kijk dan of de PNG's effectief in `build/oefeningen/assets/` belanden. Ook de vijf
+  interne links gerepareerd waar Quarto wél over klaagde (dierentuin naar
+  `14_advancedovererving`, Figuren naar `9_klassen/A_practica.md#figuren`, twee keer Map Maker
+  naar `../EindeTests/A_DEEL2_AllInOne/`, en de constraints-link nu naar
+  `ziescherp.be/content/B_appendix/generics.html#constraints`). Meteen ook de twee em-dashes in
+  de oefeningen weg en één "velden" vervangen door "instantievariabelen".
+- **12 september 2026** - Item 3, eerste punt: `::: {.console}` rond de uitvoerblokken. 19 blokken
+  gewikkeld in `2_tekst`, `7_arrays`, `8_klassen`, `9_meminoop`, `10_advancedklassen`,
+  `11_arraysvanklassen`, `12_overerving`, `20_exceptions` en `21_bestanden`. De 17 overblijvende
+  kale ` ```text `-blokken zijn geen programma-uitvoer en blijven bewust kaal: pseudocode
+  (bakkersalgoritme, fiets oppompen, natrium), syntaxvormen (`using`-blok, expression body,
+  het escape-lijstje), de exception-hiërarchie als boom, de spelkaart-array, de losse paths in
+  `bestandenintro.md`, de JSON-bestandsinhoud in `serialize.md` en de bestandslijstjes in het
+  boeteblad. Wie de sneltest draait, telt die 17 dus nog: dat is correct.

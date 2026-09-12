@@ -37,9 +37,11 @@ static void Main(string[] args)
 
 De uitvoer zal zijn:
 
+::: {.console}
 ```text
 BOEM. ZWART GAT!
 ```
+:::
 
 De lijn ``throw new DivideByZeroException("BOEM. ZWART GAT!");`` zorgt er dus voor dat we een eigen foutboodschap verpakken en opwerpen.
 

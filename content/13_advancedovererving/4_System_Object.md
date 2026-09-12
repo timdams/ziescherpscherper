@@ -190,7 +190,7 @@ public override int GetHashCode()
 ```{.java filename="Student.cs"}
 public override int GetHashCode()
 {
-    // De hashes van de velden zelf combineren met ^ (de XOR-operator).
+    // De hashes van de instantievariabelen zelf combineren met ^ (de XOR-operator).
     return Voornaam.GetHashCode() ^ Geboortejaar.GetHashCode();
 }
 ```

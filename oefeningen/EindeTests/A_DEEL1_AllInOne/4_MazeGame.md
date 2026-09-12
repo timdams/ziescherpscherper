@@ -1,12 +1,12 @@
 # The Array MazeGame
 
-![](../assets/Aallinone/mazegame/0.jpg)
+![](../../assets/Aallinone/mazegame/0.jpg)
 ## Inleiding 
 
 In dit all-in-one tonen we hoe je, stap voor stap, kan komen tot een speelbaar, eenvoudige tekst-gebaseerd spel. We hanteren hierbij de principes van "refactoring": we gaan onze code steeds verbeteren op gebied van leesbaarheid en onderhoudbaarheid. Bij iedere stap zullen we dan ook extra functionaliteit toevoegen.
 
 Het doel is te komen tot een spel waarbij de gebruiker kan wandelen door een kaart. De kaart zelf is dynamisch, bepaalde ruimtes zijn pas toegankelijk wanneer aan bepaalde voorwaarden is voldaan.
-![](../assets/Aallinone/mazegame/01.png)
+![](../../assets/Aallinone/mazegame/01.png)
 
 
 ### Vereiste kennis
@@ -41,7 +41,7 @@ for (int i = 0; i < Kamers.Length; i++)
     Console.ReadLine();
 }
 ```
-![](../assets/Aallinone/mazegame/1.png)
+![](../../assets/Aallinone/mazegame/1.png)
 
 ## Fase 2: Een interactief saai spel 
 
@@ -78,7 +78,7 @@ while (keuze != "q")
     }
 }
 ```
-![](../assets/Aallinone/mazegame/2.png)
+![](../../assets/Aallinone/mazegame/2.png)
 ## Fase 3: Een 2D-wereld met lookup-table
 
 ### Stap 1: Kaart maken {#stap-1-kaart-maken}
@@ -400,7 +400,7 @@ string[] Kamers =
     };
 ```
 
-![](../assets/Aallinone/mazegame/3.png)
+![](../../assets/Aallinone/mazegame/3.png)
 
 ## Fase 6: Een extra look-up-table voor meer wereld-details 
 
@@ -454,7 +454,7 @@ Console.WriteLine(Kamers[kamerindex]);
 Console.WriteLine("******");
 Console.WriteLine(Beschrijving[kamerindex]);
 ```
-![](../assets/Aallinone/mazegame/4.png)
+![](../../assets/Aallinone/mazegame/4.png)
 ## Fase 7: Dynamische kaart 
 
 Na iedere actie van de speler verwerken we steeds weer de kaart in zowel de ``DrawMap()``-methode als tijdens het verwerken van de speler-input. We kunnen dus eenvoudig een *dynamische* kaart maken die zich aanpast naargelang bepaalde acties.
@@ -588,8 +588,8 @@ static void Main()
     }
 }
 ```
-![](../assets/Aallinone/mazegame/5.png)
-![](../assets/Aallinone/mazegame/6.png)
+![](../../assets/Aallinone/mazegame/5.png)
+![](../../assets/Aallinone/mazegame/6.png)
 ## Fase 8: Go nuts
 
 Vanaf dit punt kun je nu al een relatief eenvoudig, toch leuk spel maken, op voorwaarde dat je *verhaal* goed zit. Echter, voor we je hierop loslaten gaan we nog enkele zaken *refactoren* zodat de code wat leesbaarder blijft. In hoofzaak willen we bepaalde stukken code uit de main-body halen en naar aparte methodes extraheren.
@@ -773,7 +773,7 @@ while (true)
 ```
 ## Alle code samen
 We zijn er!
-![](../assets/Aallinone/mazegame/7.png)
+![](../../assets/Aallinone/mazegame/7.png)
 De volledige code voor dit extra-ordinaire spel wordt dan:
 ### Main-methode
 ```java

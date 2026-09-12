@@ -103,10 +103,12 @@ Als je het niet gewoon bent de tab-toets op je toetsenbord te gebruiken dan is d
 
 In je console-scherm zijn de tab stops vooraf bepaald. Wanneer je dus een tab invoegt zal de cursor zich verplaatsen naar de eerstvolgende tab stop. In volgende tekstuitvoer zie je de tabstops op de tweede lijn "gevisualiseerd":
 
+::: {.console}
 ```text
 01234567890123456789012345678901234567890123456789
         1       2       3       4       5
 ```
+:::
 
 Bovenstaande uitvoer werd als volgt gemaakt:
 

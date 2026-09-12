@@ -22,12 +22,14 @@ De eerste keer dat we in de loop gaan, zal het element ``metingen[0]`` aan ``met
 
 De output zal dan zijn:
 
+::: {.console}
 ```text
 1.2
 0.89
 3.15
 0.1
 ```
+:::
 
 Stel dat we een array van Studenten hebben, ``deKlas``, en wensen van deze studenten de naam en geboortejaar op het scherm te tonen. Ook dit kan dan met een ``foreach`` erg eenvoudig:
 
