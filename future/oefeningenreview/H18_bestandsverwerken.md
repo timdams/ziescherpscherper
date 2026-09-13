@@ -237,3 +237,51 @@ Bitmap header analyzer → Back-up maker → De Digitale Klokkenluider
   screenshot `names.png` zijn niet meegekomen: in een project met ImplicitUsings is die lijn overbodig.
   Uit H3 is de oefening weg. Plaats en vorm mag je bij het doorvoeren van H18 nog aanpassen; de rest van
   H18 is niet aangeraakt. De Mac-kant (geen stationsletters maar mappen) is niet getest.
+
+## Doorgevoerd (2026-09-13): enkel Stevens stille fouten
+
+Enkel voorstel 3 uit sectie 4 is doorgevoerd. De rest van dit rapport (de fouten, de volgorde uit
+sectie 5, de andere nieuwe oefeningen) is niet aangeraakt. De status in de README blijft "analyse".
+
+- `oefeningen/18_bestandsverwerken/A_practica.md`: nieuwe oefening "Stevens stille fouten" (*Essential*,
+  anker `h18-stevens-stille-fouten`), tussen Boekencollectie en IMDB Top 100 JSON. Drie delen met elk een
+  eigen Oplossing-callout, plus een callout "Les(sen) uit deze oefening" met links naar
+  `schrijvenenlezen.html#using-alternatief`, `#binaryreader`, `serialize.html#serialiseren-in-c-naar-json`
+  en `#jsoninclude`. De ankers zijn nagekeken met `quarto pandoc` op de koppen zelf.
+- `oefeningen/_coach/18_bestandsverwerken.md`: sectie `## Stevens stille fouten` tussen Boekencollectie en
+  IMDB, met Nota, Aanpak en Valkuilen.
+
+Geverifieerd met dotnet 10.0.103 (klassiek skelet, invoer via stdin). Alle uitvoer en bestandsinhoud op de
+pagina komt letterlijk uit die runs:
+
+- Deel 1 (`StreamWriter` zonder `using`, append): twee keer uitgevoerd met Anna en Bram, `logboek.txt`
+  blijft 0 bytes. Met `using` staan er vier regels. Een blote writer met 1000 regels gaf een bestand van
+  8192 bytes dat midden in een regel stopt: daarop steunt de zin "soms midden in een regel".
+- Deel 2 (binair, `ReadBoolean` voor `ReadInt32`): `Steven heeft 0 levens. Geluid aan = True`, 12 bytes,
+  `06 53 74 65 76 65 6E 03 00 00 00 00`. In de juiste volgorde: `Steven heeft 3 levens. Geluid aan = False`.
+- Deel 3 (klasse met enkel private instantievariabelen): `huisdier.json` bevat `{}` (2 bytes). Met publieke
+  properties `{"Naam":"Mimi","Leeftijd":4}`, en terug deserialiseren via de constructor geeft `Mimi (4 jaar)`.
+  Met `[JsonInclude]` op de private instantievariabelen `{"naam":"Mimi","leeftijd":4}`. Gewone publieke
+  instantievariabelen zonder attribuut geven ook `{}` (vermeld als valkuil in de coach-data).
+
+Afwijkingen van het voorstel:
+
+- Het binaire fragment gebruikt niet de Bond-data uit het boek, maar eigen instellingen (`"Steven"`, `3`,
+  `false`). Met `false` zijn beide ingelezen waarden zichtbaar fout. Bij Bond blijft `True` toevallig juist.
+  Ook het logboek en de klasse `Huisdier` zijn eigen voorbeelden, en geen kopie van het boek of van de
+  Steven-passage in `content/21_bestanden/fileinfo.md:185`.
+- Het voorstel vraagt telkens "wat staat er in het bestand". Deel 2 vraagt naar het scherm (daar komt de
+  fout zichtbaar), en deel 3 laat de student ook de klasse aanpassen.
+- De `### Aanpak` in de coach-data noemt de oorzaken, maar niet de letterlijke inhoud van de bestanden
+  (0 bytes, `{}`, de getallen). Die tekst komt mee in de prompt die de student zelf plakt. Stevens warmste
+  stad (H8) is daar explicieter in.
+
+Wat blijft staan:
+
+- `content/21_bestanden/schrijvenenlezen.md:255` en `content/21_bestanden/zieverder.md:17` zeggen nog dat
+  een verkeerde leesvolgorde crasht met een `EndOfStreamException`. De oplossing van deel 2 zegt dat het niet
+  crasht. Niet aangepast, want dat valt buiten deze opdracht, maar wie beide leest, ziet een tegenspraak
+  (zie ook sectie 6).
+- Niet gerenderd en geen scripts gedraaid. De code staat in de opgave, dus het slot-script zal
+  "oplossingstekst op de pagina" melden. Dat is onschuldig.
+- Op een Mac niet getest. De fragmenten gebruiken enkel een bestandsnaam, zonder pad.

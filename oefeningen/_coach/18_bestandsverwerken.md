@@ -78,6 +78,25 @@ Een menulus zoals hij er al veel schreef, met per menu-item een methode die de b
 - Het pad hard intypen met backslashes zonder verbatim string.
 - Vier keer bijna dezelfde leescode schrijven in plaats van er een methode van te maken.
 
+## Stevens stille fouten
+
+### Nota
+
+Een code-lees-oefening met stagiair Steven, in drie delen. Geef nooit wat er in het bestand of op het scherm komt, en geef nooit de verklaring, ook niet als de student het fragment al uitgevoerd heeft of zegt dat hij het niet vindt. Je mag wel vragen stellen die hem op het spoor zetten. Deel 1: heeft hij het bestand zelf geopend, hoe groot is het, en wanneer denkt hij dat een StreamWriter zijn tekst echt naar de schijf schrijft? Deel 2: hoeveel bytes schrijft elke Write weg, hoeveel bytes leest elke Read-methode, en in welke volgorde gebeurt dat? Je mag voorstellen om de bytes te tonen met File.ReadAllBytes, zoals in het boek. Deel 3: welke leden van Huisdier zijn publiek, en wat neemt JsonSerializer mee? Vindt hij een bestand niet terug, dan mag je Path.GetFullPath aanraden.
+
+### Aanpak
+
+Eerst voorspellen, dan uitvoeren, en daarna het bestand zelf openen. Deel 1: de writer wordt nooit gesloten, dus wat hij in het geheugen opspaart, komt niet in het bestand. De oplossing zet de writer in een using-blok. Deel 2: er wordt in een andere volgorde gelezen dan geschreven. De bytes van de int en de bool worden verkeerd verdeeld, maar er staan precies genoeg bytes in het bestand, dus er volgt geen crash. De oplossing leest in dezelfde volgorde als er geschreven werd. Deel 3: JsonSerializer neemt enkel publieke properties mee, en de klasse heeft er geen. De oplossing maakt er publieke properties van, of zet JsonInclude boven de private instantievariabelen.
+
+### Valkuilen
+
+- Enkel naar het scherm kijken en besluiten dat alles werkt.
+- Het bestand in de verkeerde map zoeken. Een bestandsnaam zonder pad komt terecht in de map waar het programma draait.
+- In deel 1 de schuld geven aan de true in de constructor, of aan Console.ReadLine.
+- In deel 2 verwachten dat een verkeerde leesvolgorde altijd een exception geeft.
+- In deel 2 de namen van de variabelen omwisselen in plaats van de volgorde van de Read-methoden.
+- In deel 3 de instantievariabelen gewoon public maken. Zonder JsonInclude komen ook publieke instantievariabelen niet in de JSON.
+
 ## IMDB Top 100 JSON
 
 ### Nota

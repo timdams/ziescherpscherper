@@ -18,7 +18,14 @@ Loop dan af:
       tekens.
 - [ ] **`::: {.console}`-blokken** zijn zwarte vensters met groene tekst en het balkje
       "VERWACHT RESULTAAT".
-- [ ] **De mascottes** in de notitieblokjes hebben allemaal dezelfde hoogte.
+- [ ] **De mascottes** in de notitieblokjes hebben allemaal dezelfde hoogte en staan links naast
+      de eerste alinea, niet erboven met een wit vlak.
+- [ ] **Schema's** zijn niet groter dan hun inhoud vraagt: drie kaders vullen geen halve pagina.
+- [ ] **Geen blanco pagina's** en geen hoofdstuk dat eindigt met een paar regels op een verder
+      lege pagina. Sneller dan bladeren: per pagina meten hoe ver de inhoud reikt (PyMuPDF,
+      `page.get_text("dict")`) en alles onder 20% bekijken. Oplossen in `bijsturing-typst.lua`.
+- [ ] **Deelpagina's** (H1, H2, ...): titel vrij, geen Romeins cijfer, mini-inhoudstafel enkel
+      hoofdstukken.
 - [ ] **De koptekst zegt "Hoofdstuk"**, niet "Chapter".
 - [ ] **Afbeeldingen** lopen niet van de pagina af en staan niet op een eigen pagina ver van hun
       tekst.

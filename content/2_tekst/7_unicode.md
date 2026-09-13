@@ -3,7 +3,7 @@
 Niets is zo leuk als de vreemdste UNICODE tekens op het scherm tonen. In oude console-games werden deze tekens vaak gebruikt om complexe tekeningen op het scherm te tonen. Om je ietwat saaie applicaties dus wat toffer te maken, leg ik daarom uit hoe je dit kan doen.
 
 
-![Dit Wikipedia logo bestaat volledig uit UNICODE karakters.](../assets/1_csharpbasics/asciiwiki.png)<!--{width=60%}-->
+![Dit Wikipedia logo bestaat volledig uit UNICODE karakters.](../assets/1_csharpbasics/asciiwiki.png){pdf-width=40%}<!--{width=60%}-->
 
 ### UNICODE karakters tonen
 

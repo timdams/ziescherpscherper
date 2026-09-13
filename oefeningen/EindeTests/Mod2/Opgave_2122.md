@@ -2,7 +2,7 @@
 
 # Discovid safe tracker
 
-De discotheek *"Damsing Van Camp"* heeft jouw diensten ingehuurd om een Covidsafe tracker te ontwikkelen. Ze willen op deze manier potentiële uitbraken in de wachtrij detecteren voor de contactracers.
+De discotheek *"Damsing Van Camp"* heeft jouw diensten ingehuurd om een Covidsafe tracker te ontwikkelen. Ze willen op deze manier potentiële uitbraken in de wachtrij detecteren voor de contacttracers.
 
 ## Werking
 
@@ -20,7 +20,7 @@ De tool wordt gebruikt door het personeel van het onthaal aan de kassa die het v
 2 arrays worden aangemaakt van lengte 100. Vul de namenarray met de string ``leeg`` in ieder element, zo kan je verderop makkelijker tellen.
 
 1. Het programma start met een loop die zich blijft herhalen tot de gebruiker "stop" invoert als naam. In de loop gebeurt het volgende:
-    1. Een zinnetje toont ``Voer de naam in van persoon x`` waarbij de `x` vervangen door een getal dat aangeeft de hoeveelste persoon nu komt (begint bij 1 en wordt telkens met 1 verhoogd).
+    1. Een zinnetje toont ``Voer de naam in van persoon x`` waarbij de `x` vervangen wordt door een getal dat aangeeft de hoeveelste persoon nu komt (begint bij 1 en wordt telkens met 1 verhoogd).
     2. De gebruiker voert de naam in (indien hier ``stop`` wordt ingevoerd stopt de verdere werking van de loop). 
     3. Deze naam wordt bewaard in een array (type ``string``).
     4. Een zinnetje toont ``Werd deze persoon toegelaten (j/n)?``. 
@@ -30,7 +30,7 @@ De tool wordt gebruikt door het personeel van het onthaal aan de kassa die het v
 2. Na de loop worden de statistieken getoond zoals uitgelegd in de volgende sectie (Fase 2)
 
 
-Voorbeelduitvoer fase 1a (de namen en j of n werden door gebruiker ingevoerd):
+Voorbeelduitvoer fase 1 (de namen en j of n werden door gebruiker ingevoerd):
 
 ```text
 Voer de naam in van persoon 1
@@ -59,7 +59,7 @@ stop
 
 Er wordt een methode ``ToonTracerRapport`` aangeroepen. Aan deze methode geef je de 2 arrays mee. 
 
-Gebaseerd op het percentage niet toegelaten personen wordt een risico berekend: onder de 35% is Laag, tussen de 35% en 75% Verhoogd en boven 75% Kritiek. Het risico is gebaseerd op de verhouding tussen het aantal ingevoerde personen en degene die daarvan niet zijn toegelaten. Als er dus 10 personen in totaal werden ingevoerd en daarvan waren er 4 niet toegelaten, dan is het risico 40% (4 van de 10).
+Gebaseerd op het percentage niet toegelaten personen wordt een risico berekend: onder de 35% is Laag, van 35% tot en met 75% Verhoogd en boven 75% Kritiek. Het risico is gebaseerd op de verhouding tussen het aantal ingevoerde personen en degene die daarvan niet zijn toegelaten. Als er dus 10 personen in totaal werden ingevoerd en daarvan waren er 4 niet toegelaten, dan is het risico 40% (4 van de 10).
 
 Deze grenswaarden kunnen na initialisatie niet meer aangepast worden.
 
@@ -71,7 +71,7 @@ Deze methode zal vervolgens een samenvatting van de ingevoerde data uitvoeren, a
 ```text
 Aantal ingevoerde personen = 24
 Daarvan werden 3 personen niet toegelaten, dat is 12,5%.
-Risico: laag
+Risico: Laag
 
 Volgende personen werden niet toegelaten:
 - Franky Vermeulen
@@ -81,7 +81,7 @@ Volgende personen werden niet toegelaten:
 
 ## Fase 2b: data anonimiseren
 
-Vervolgens vraagt het programma aan de gebruiker of de gebruikersnamen anoniem moeten gemaakt worden. De gebruiker antwoordt met j of n. Bij neen wordt deze fase overgeslagen en wordt er naar fase 2c gegaan. Bij j gebeurt het volgende:
+Vervolgens vraagt het programma aan de gebruiker of de gebruikersnamen anoniem moeten gemaakt worden. De gebruiker antwoordt met j of n. Bij neen wordt deze fase overgeslagen en wordt er naar fase 3 gegaan. Bij j gebeurt het volgende:
 
 Een methode ``MaakAnoniem`` wordt aangeroepen. Aan deze methode geef je de 2 arrays mee. 
 
@@ -97,7 +97,7 @@ Roep nu terug het ``ToonTracerRapport`` aan met deze nieuwe array. Het resultaat
 ```text
 Aantal ingevoerde personen = 24
 Daarvan werden 3 personen niet toegelaten, dat is 12,5%.
-Risico: laag
+Risico: Laag
 
 Volgende personen werden niet toegelaten:
 - *****
@@ -108,7 +108,7 @@ Volgende personen werden niet toegelaten:
 
 ## Fase 3: afsluiten
 
-Het programma vraagt of er moet afgesloten worden of niet (j/n). Bij neen worden alle arrays leegemaakt en wordt er terug naar fase 1 gegaan en begint alles van voor af aan.
+Het programma vraagt of er moet afgesloten worden of niet (j/n). Bij neen worden alle arrays leeggemaakt en wordt er terug naar fase 1 gegaan en begint alles van voor af aan.
 
 
 
@@ -116,146 +116,150 @@ Het programma vraagt of er moet afgesloten worden of niet (j/n). Bij neen worden
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
 ```java
+using System;
 
-enum risicoNiveau { Laag, Verhoogd, Kritiek };
-static void Main(string[] args)
+namespace Discovid
 {
-    const int arrayLengte = 100;
-    bool afsluiten = false;
-
-    while (!afsluiten)
+    class Program
     {
-        int nummerPersoon = 0;
-        string[] namen = new string[arrayLengte];
-        string[] namenAnoniem = new string[namen.Length];
-        bool[] toegelatenArray = new bool[namen.Length];
+        enum RisicoNiveau { Laag, Verhoogd, Kritiek };
 
-        for (int i = 0; i < namen.Length; i++)
+        static void Main(string[] args)
         {
-            namen[i] = "leeg";
-        }
+            const int ARRAY_LENGTE = 100;
+            bool afsluiten = false;
 
-        Console.Clear();
-        bool herhalen = true;
-        while (herhalen)
-        {
-            Console.WriteLine($"Voer de naam in van persoon {nummerPersoon + 1}");
-            string naam = Console.ReadLine().ToLower();
-            if (naam == "stop")
+            while (!afsluiten)
             {
-                herhalen = false;
-            }
-            else
-            {
-                namen[nummerPersoon] = naam;
-                bool goedAntwoord = true;
+                int nummerPersoon = 0;
+                string[] namen = new string[ARRAY_LENGTE];
+                bool[] toegelatenArray = new bool[namen.Length];
 
-                do
+                for (int i = 0; i < namen.Length; i++)
                 {
-                    Console.WriteLine("Werd deze persoon toegelaten? j/n");
-                    string keuze = Console.ReadLine().ToLower();
-                    switch (keuze)
+                    namen[i] = "leeg";
+                }
+
+                Console.Clear();
+                bool herhalen = true;
+                while (herhalen)
+                {
+                    Console.WriteLine($"Voer de naam in van persoon {nummerPersoon + 1}");
+                    string naam = Console.ReadLine();
+                    if (naam == "stop")
                     {
-                        case "j":
-                            goedAntwoord = true;
-                            toegelatenArray[nummerPersoon] = true;
-                            break;
-                        case "n":
-                            goedAntwoord = true;
-                            toegelatenArray[nummerPersoon] = false;
-                            break;
-                        default:
-                            goedAntwoord = false;
-                            break;
+                        herhalen = false;
                     }
-                } while (!goedAntwoord);
-                if (toegelatenArray[nummerPersoon])
-                {
-                    Console.WriteLine($"De persoon met naam {namen[nummerPersoon]} werd ingevoerd. Hij werd toegelaten");
+                    else
+                    {
+                        namen[nummerPersoon] = naam;
+                        bool goedAntwoord = true;
+
+                        do
+                        {
+                            Console.WriteLine("Werd deze persoon toegelaten (j/n)?");
+                            string keuze = Console.ReadLine().ToLower();
+                            switch (keuze)
+                            {
+                                case "j":
+                                    goedAntwoord = true;
+                                    toegelatenArray[nummerPersoon] = true;
+                                    break;
+                                case "n":
+                                    goedAntwoord = true;
+                                    toegelatenArray[nummerPersoon] = false;
+                                    break;
+                                default:
+                                    goedAntwoord = false;
+                                    break;
+                            }
+                        } while (!goedAntwoord);
+                        if (toegelatenArray[nummerPersoon])
+                        {
+                            Console.WriteLine($"De persoon met naam {namen[nummerPersoon]} werd ingevoerd. Hij werd toegelaten.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"De persoon met naam {namen[nummerPersoon]} werd ingevoerd. Hij werd niet toegelaten.");
+                        }
+                        nummerPersoon++;
+                    }
+
                 }
-                else
+                ToonTracerRapport(namen, toegelatenArray);
+                Console.WriteLine("Moeten de gebruikersnamen anoniem gemaakt worden? j/n");
+                if (Console.ReadLine().ToLower() == "j")
                 {
-                    Console.WriteLine($"De persoon met naam {namen[nummerPersoon]} werd ingevoerd. Hij werd niet toegelaten");
+                    string[] namenAnoniem = MaakAnoniem(namen, toegelatenArray);
+                    ToonTracerRapport(namenAnoniem, toegelatenArray);
                 }
-                nummerPersoon++;
+                Console.WriteLine("Wilt u afsluiten? j/n");
+                if (Console.ReadLine().ToLower() == "j")
+                {
+                    afsluiten = true;
+                }
             }
 
         }
-        ToonTracerRapport(namen, toegelatenArray);
-        Console.WriteLine("Moeten de gebruikersnamen anoniem gemaakt worden? j/n");
-        if (Console.ReadLine().ToLower() == "j")
-        {
-            namenAnoniem = MaakAnoniem(namen, toegelatenArray);
-            ToonTracerRapport(namenAnoniem, toegelatenArray);
-        }
-        Console.WriteLine("Wilt u afsluiten? j/n");
-        if (Console.ReadLine().ToLower() == "j")
-        {
-            afsluiten = true;
-        }
-    }
 
-}
-static void ToonTracerRapport(string[] namenArray, bool[] toegelatenArray)
-{
-    int aantalPersonen = 0;
-    int aantalNietToegelaten = 0;
-    double procentNietToegelaten = 0;
-    risicoNiveau risico = risicoNiveau.Laag;
-    const double kritiek = 0.75;
-    const double verhoogd = 0.35;
+        static void ToonTracerRapport(string[] namenArray, bool[] toegelatenArray)
+        {
+            int aantalPersonen = 0;
+            int aantalNietToegelaten = 0;
+            double procentNietToegelaten = 0;
+            RisicoNiveau risico = RisicoNiveau.Laag;
+            const double KRITIEK = 0.75;
+            const double VERHOOGD = 0.35;
 
-    for (int i = 0; i < toegelatenArray.Length; i++)
-    {
-        if (!toegelatenArray[i] && namenArray[i] != "leeg")
-        {
-            aantalNietToegelaten++;
-        }
-        else if (toegelatenArray[i] && namenArray[i] != "leeg")
-        {
-            aantalPersonen++;
-        }
-    }
-    procentNietToegelaten = Convert.ToDouble(aantalNietToegelaten) / aantalPersonen;
-    if (procentNietToegelaten > kritiek)
-    {
-        risico = risicoNiveau.Kritiek;
-    }
-    else if (procentNietToegelaten > verhoogd)
-    {
-        risico = risicoNiveau.Verhoogd;
-    }
-    Console.Clear();
-    Console.WriteLine($"Aantal ingevoerde personen = {aantalPersonen}");
-    Console.WriteLine($"Daarvan werden er {aantalNietToegelaten} personen niet toegelaten, dat is {procentNietToegelaten:P}.");
-    Console.WriteLine($"Risico : {risico}\n");
-
-    Console.WriteLine("Volgende personen werden niet toegelaten:");
-    for (int i = 0; i < aantalPersonen; i++)
-    {
-        if (!toegelatenArray[i] && namenArray[i] != "leeg")
-        {
-            Console.WriteLine($"- {namenArray[i]}");
-        }
-    }
-}
-static string[] MaakAnoniem(string[] namen, bool[] toegelatenArray)
-{
-    string[] anoniemeNamen = new string[namen.Length];
-    Array.Copy(namen, anoniemeNamen, namen.Length);
-    for (int i = 0; i < anoniemeNamen.Length; i++)
-    {
-        if (namen[i] != "leeg")
-        {
-            if (!toegelatenArray[i] && namen[i] != "leeg")
+            for (int i = 0; i < namenArray.Length; i++)
             {
-                anoniemeNamen[i] = "*****";
+                if (namenArray[i] != "leeg")
+                {
+                    aantalPersonen++;
+                    if (!toegelatenArray[i])
+                    {
+                        aantalNietToegelaten++;
+                    }
+                }
+            }
+            procentNietToegelaten = Convert.ToDouble(aantalNietToegelaten) / aantalPersonen;
+            if (procentNietToegelaten > KRITIEK)
+            {
+                risico = RisicoNiveau.Kritiek;
+            }
+            else if (procentNietToegelaten >= VERHOOGD)
+            {
+                risico = RisicoNiveau.Verhoogd;
+            }
+            Console.Clear();
+            Console.WriteLine($"Aantal ingevoerde personen = {aantalPersonen}");
+            Console.WriteLine($"Daarvan werden {aantalNietToegelaten} personen niet toegelaten, dat is {Math.Round(procentNietToegelaten * 100, 2)}%.");
+            Console.WriteLine($"Risico: {risico}\n");
+
+            Console.WriteLine("Volgende personen werden niet toegelaten:");
+            for (int i = 0; i < namenArray.Length; i++)
+            {
+                if (!toegelatenArray[i] && namenArray[i] != "leeg")
+                {
+                    Console.WriteLine($"- {namenArray[i]}");
+                }
             }
         }
 
+        static string[] MaakAnoniem(string[] namen, bool[] toegelatenArray)
+        {
+            string[] anoniemeNamen = new string[namen.Length];
+            Array.Copy(namen, anoniemeNamen, namen.Length);
+            for (int i = 0; i < anoniemeNamen.Length; i++)
+            {
+                if (!toegelatenArray[i] && namen[i] != "leeg")
+                {
+                    anoniemeNamen[i] = "*****";
+                }
+            }
+            return anoniemeNamen;
+        }
     }
-    return anoniemeNamen;
 }
-
 ```
 ::::

@@ -129,6 +129,277 @@ catch(Exception ex)
 ::::
 
 
+# Stevens constructors (*Essential*) {#h11-stevens-constructors}
+
+Stagiair Steven moest vier kleine klassen afwerken, telkens met een constructor erbij. Hij liet een A.I. het werk doen en leverde alles in zonder één keer op "Start" te klikken.
+
+Lees elk stuk eerst zonder Visual Studio en antwoord op papier: compileert het? Zo nee, waar zit de fout en waarom? Zo ja, wat toont het programma? Typ de code pas daarna over en kijk of je gelijk had.
+
+**Deel 1.** Een rugzak die weet hoeveel liter erin kan:
+
+```java
+internal class Rugzak
+{
+    private double inhoudInLiter;
+
+    public void Rugzak(double inhoud)
+    {
+        inhoudInLiter = inhoud;
+    }
+
+    public double InhoudInLiter
+    {
+        get { return inhoudInLiter; }
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Rugzak schoolRugzak = new Rugzak(25);
+Console.WriteLine($"Deze rugzak kan {schoolRugzak.InhoudInLiter} liter aan.");
+```
+
+Compileert dit? Zo niet, wat moet er anders?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Nee. Door ``void`` is ``Rugzak`` geen constructor meer, maar een gewone methode die toevallig zo heet als de klasse. Dat mag niet, en de compiler wijst de methode aan, niet de regel met ``new``:
+
+```text
+error CS0542: 'Rugzak': member names cannot be the same as their enclosing type
+```
+
+Een *member* is alles wat in een klasse staat: instantievariabelen, properties, methoden. Een constructor heeft geen returntype, ook geen ``void``. Schrap dat woord:
+
+```java
+public Rugzak(double inhoud)
+{
+    inhoudInLiter = inhoud;
+}
+```
+
+Nu toont het programma:
+
+```text
+Deze rugzak kan 25 liter aan.
+```
+::::
+
+**Deel 2.** Een boek met een titel. Steven had zijn ``Main`` al geschreven voor de A.I. de constructor toevoegde:
+
+```java
+internal class Boek
+{
+    public Boek(string titelIn)
+    {
+        Titel = titelIn;
+    }
+
+    public string Titel { get; private set; }
+    public int AantalPaginas { get; set; }
+}
+```
+
+In ``Main``:
+
+```java
+Boek roman = new Boek("De Avonden");
+roman.AantalPaginas = 316;
+
+Boek notitieboek = new Boek();
+notitieboek.AantalPaginas = 80;
+
+Console.WriteLine($"{roman.Titel} telt {roman.AantalPaginas} pagina's.");
+Console.WriteLine($"{notitieboek.Titel} telt {notitieboek.AantalPaginas} pagina's.");
+```
+
+Compileert dit? Zo niet, los het op twee manieren op: één keer door enkel ``Main`` aan te passen, en één keer door enkel de klasse aan te passen.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Nee. De regel ``Boek notitieboek = new Boek();`` geeft:
+
+```text
+error CS7036: There is no argument given that corresponds to the required parameter 'titelIn' of 'Boek.Boek(string)'
+```
+
+Zodra je zelf een constructor schrijft, ben je de gratis default constructor kwijt. ``Boek`` heeft nu enkel nog een constructor die een titel wil, en ``new Boek()`` geeft er geen. Heeft een klasse twee of meer constructors, dan krijg je de melding uit het boek: ``'Boek' does not contain a constructor that takes 0 arguments``. Het probleem is hetzelfde.
+
+**Enkel ``Main`` aanpassen:** geef het notitieboek toch een titel.
+
+```java
+Boek notitieboek = new Boek("Notities");
+```
+
+**Enkel de klasse aanpassen:** schrijf de default constructor er zelf bij, en laat hem met ``this(...)`` de constructor gebruiken die er al staat:
+
+```java
+public Boek() : this("Zonder titel")
+{
+}
+```
+
+Met die tweede manier toont het programma:
+
+```text
+De Avonden telt 316 pagina's.
+Zonder titel telt 80 pagina's.
+```
+::::
+
+**Deel 3.** Een pizzeria wil weten hoeveel bestellingen er vandaag al waren, en per tafel hoeveel pizza's die bestelde:
+
+```java
+internal class Bestelling
+{
+    private static int aantalBestellingen = 0;
+    private int aantalPizzas;
+
+    public Bestelling(int aantalPizzasIn)
+    {
+        aantalPizzas = aantalPizzasIn;
+        aantalBestellingen++;
+    }
+
+    public static void ToonOverzicht()
+    {
+        Console.WriteLine($"Vandaag al {aantalBestellingen} bestellingen.");
+        Console.WriteLine($"Deze bestelling telt {aantalPizzas} pizza's.");
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Bestelling tafel1 = new Bestelling(3);
+Bestelling tafel2 = new Bestelling(2);
+Bestelling.ToonOverzicht();
+```
+
+Compileert dit? Zo niet, welke regel is het probleem? Pas de klasse en ``Main`` aan zodat het programma eerst het aantal bestellingen toont en daarna het aantal pizza's van elke tafel.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Nee. De eerste ``WriteLine`` in ``ToonOverzicht`` is in orde, want ``aantalBestellingen`` is static en hoort bij de klasse. De tweede niet:
+
+```text
+error CS0120: An object reference is required for the non-static field, method, or property 'Bestelling.aantalPizzas'
+```
+
+``ToonOverzicht`` roep je op via de klassenaam, zonder object. Van welke bestelling moet hij dan het aantal pizza's tonen: die van tafel 1 of die van tafel 2?
+
+Haal je ``static`` weg bij ``ToonOverzicht``, dan compileert het wel, maar dan moet je een tafel kiezen om de methode op te roepen. Een overzicht van de hele dag hoort niet bij één tafel. Splits de methode daarom in twee: een static methode voor wat bij de klasse hoort, en een gewone methode voor wat bij één bestelling hoort.
+
+```java
+internal class Bestelling
+{
+    private static int aantalBestellingen = 0;
+    private int aantalPizzas;
+
+    public Bestelling(int aantalPizzasIn)
+    {
+        aantalPizzas = aantalPizzasIn;
+        aantalBestellingen++;
+    }
+
+    public static void ToonAantalBestellingen()
+    {
+        Console.WriteLine($"Vandaag al {aantalBestellingen} bestellingen.");
+    }
+
+    public void ToonInfo()
+    {
+        Console.WriteLine($"Deze bestelling telt {aantalPizzas} pizza's.");
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Bestelling tafel1 = new Bestelling(3);
+Bestelling tafel2 = new Bestelling(2);
+Bestelling.ToonAantalBestellingen();
+tafel1.ToonInfo();
+tafel2.ToonInfo();
+```
+
+```text
+Vandaag al 2 bestellingen.
+Deze bestelling telt 3 pizza's.
+Deze bestelling telt 2 pizza's.
+```
+::::
+
+**Deel 4.** Een spaarpot:
+
+```java
+internal class Spaarpot
+{
+    private double bedrag;
+
+    public Spaarpot(double bedrag)
+    {
+        bedrag = bedrag;
+    }
+
+    public double Bedrag
+    {
+        get { return bedrag; }
+    }
+
+    public void StopErIn(double extra)
+    {
+        bedrag = bedrag + extra;
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Spaarpot pot = new Spaarpot(20);
+pot.StopErIn(5);
+Console.WriteLine($"In de spaarpot zit {pot.Bedrag} euro.");
+```
+
+Steven verwacht ``In de spaarpot zit 25 euro.`` Compileert dit? Wat toont het programma echt, en waarom?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Het compileert, maar het programma toont:
+
+```text
+In de spaarpot zit 5 euro.
+```
+
+In de constructor heet de parameter net zoals de instantievariabele: ``bedrag``. Binnen de constructor verwijst ``bedrag`` dan naar de parameter, dus ``bedrag = bedrag;`` stopt de parameter in zichzelf. De instantievariabele wordt niet aangeraakt en blijft 0. ``StopErIn`` heeft geen parameter die ``bedrag`` heet, dus daar gaat het wel naar de instantievariabele: 0 + 5.
+
+De compiler ziet het, maar geeft enkel een waarschuwing en geen fout:
+
+```text
+warning CS1717: Assignment made to same variable; did you mean to assign something else?
+```
+
+Een waarschuwing houdt je programma niet tegen. Geef de parameter een andere naam:
+
+```java
+public Spaarpot(double bedragIn)
+{
+    bedrag = bedragIn;
+}
+```
+
+Nu toont het programma ``In de spaarpot zit 25 euro.`` Online zie je dit vaak opgelost met ``this.bedrag = bedrag;``. Het keyword ``this`` komt pas in hoofdstuk 15, een andere naam volstaat.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* Een constructor heeft geen returntype. Met ``void`` ervoor is het een gewone methode. Zie [Default constructors](https://www.ziescherp.be/content/10_advancedklassen/1_constructors.html#default-constructors).
+* Schrijf je zelf een constructor, dan is de gratis default constructor weg. Heb je hem nodig, schrijf hem er dan bij en hergebruik de andere constructor met ``this(...)``. Zie [Overloaded constructors](https://www.ziescherp.be/content/10_advancedklassen/2_overloadedconstructor.html) en [Constructors hergebruiken met this()](https://www.ziescherp.be/content/10_advancedklassen/2_overloadedconstructor.html#constructors-hergebruiken-met-this).
+* Een static methode heeft geen object en kan dus geen instantievariabelen lezen. Zie [Static tegenover non-static](https://www.ziescherp.be/content/10_advancedklassen/5_static.html#static-tegenover-non-static).
+* Deel 4 compileert, met één waarschuwing. Lees in de Error List ook de waarschuwingen, niet enkel de fouten.
+::::
+
+
 # Digitale kluis (*Essential*)
 
 ![](../assets/illustraties/h11_kluis.jpg){.illustratie fig-alt="Potloodtekening: de robot probeert een kluis te kraken met een stethoscoop, het stokmannetje leunt ertegen met de sleutel."}

@@ -23,16 +23,20 @@ van 2026-09-11, de bestanden hier blijven de bron).
 | 6 | [H06_herhalingen.md](H06_herhalingen.md) | `oefeningen/6_herhalingen/` | doorgevoerd (2026-09-11) |
 | 7 | [H07_methoden.md](H07_methoden.md) | `oefeningen/7_methoden/` | doorgevoerd (2026-09-11) |
 | 8 | [H08_arrays.md](H08_arrays.md) | `oefeningen/8_arrays/` | doorgevoerd (2026-09-11) |
-| 9 | [H09_klassen.md](H09_klassen.md) | `oefeningen/9_klassen/` | analyse |
-| 10 | [H10_meminoop.md](H10_meminoop.md) | `oefeningen/10_meminoop/` | analyse |
-| 11 | [H11_advancedklassen.md](H11_advancedklassen.md) | `oefeningen/11_advancedklassen/` | analyse |
-| 12 | [H12_arraysvanklassen.md](H12_arraysvanklassen.md) | `oefeningen/12_arraysvanklassen/` | analyse |
-| 13 | [H13_overerving.md](H13_overerving.md) | `oefeningen/13_overerving/` | analyse |
-| 14 | [H14_advancedovererving.md](H14_advancedovererving.md) | `oefeningen/14_advancedovererving/` | analyse |
-| 15 | [H15_compositie.md](H15_compositie.md) | `oefeningen/15_compositie/` | analyse |
-| 16 | [H16_polymorfisme.md](H16_polymorfisme.md) | `oefeningen/16_polymorfisme/` | analyse |
-| 17 | [H17_interfaces.md](H17_interfaces.md) | `oefeningen/17_interfaces/` | analyse |
-| 18 | [H18_bestandsverwerken.md](H18_bestandsverwerken.md) | `oefeningen/18_bestandsverwerken/` | analyse |
+| 9 | [H09_klassen.md](H09_klassen.md) | `oefeningen/9_klassen/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 10 | [H10_meminoop.md](H10_meminoop.md) | `oefeningen/10_meminoop/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 11 | [H11_advancedklassen.md](H11_advancedklassen.md) | `oefeningen/11_advancedklassen/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 12 | [H12_arraysvanklassen.md](H12_arraysvanklassen.md) | `oefeningen/12_arraysvanklassen/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 13 | [H13_overerving.md](H13_overerving.md) | `oefeningen/13_overerving/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 14 | [H14_advancedovererving.md](H14_advancedovererving.md) | `oefeningen/14_advancedovererving/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 15 | [H15_compositie.md](H15_compositie.md) | `oefeningen/15_compositie/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 16 | [H16_polymorfisme.md](H16_polymorfisme.md) | `oefeningen/16_polymorfisme/` | analyse; beide Steven-oefeningen doorgevoerd (2026-09-13) |
+| 17 | [H17_interfaces.md](H17_interfaces.md) | `oefeningen/17_interfaces/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+| 18 | [H18_bestandsverwerken.md](H18_bestandsverwerken.md) | `oefeningen/18_bestandsverwerken/` | analyse; Steven-oefening doorgevoerd (2026-09-13) |
+
+Bij H9 t/m H18 is enkel de Steven-oefening uit sectie 4 van het rapport doorgevoerd, telkens op de plaats
+na de bestaande oefening die in de voorgestelde volgorde ervoor komt. Wie de rest doorvoert, leest eerst
+de sectie "Doorgevoerd (2026-09-13)" onderaan het rapport: daar staan de afwijkingen van het voorstel.
 
 De vaardigheidsproeven en gecombineerde opgaven in `oefeningen/EindeTests/` vallen hier buiten.
 

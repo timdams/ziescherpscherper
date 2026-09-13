@@ -232,3 +232,44 @@ onderaan)
 - **H13:** Magische dranken bevat een em-dash en emoji (`oefeningen/13_overerving/A_PracticaSimpel.md:89`)
   en een oplossing die niet compileert (`int bonus 10;` op `:133`). De overgang zelf is goed: Het
   dierenrijk begint met een `List<Animal>` en een foreach, precies wat H12 oefent.
+
+## Doorgevoerd (2026-09-13): enkel Stevens opruimactie
+
+Enkel punt 4.3 uit sectie 4. De rest van dit rapport is nog niet doorgevoerd, en de status in de
+README blijft op "analyse".
+
+- **Nieuwe oefening** `# Stevens opruimactie (*Essential*) {#h12-stevens-opruimactie}` in
+  `oefeningen/12_arraysvanklassen/A_practicaMem.md`, na Pokédex en vóór Student Organizer. Een
+  `List<int>` met de prijzen `{ 12, 4, 7, 25, 3, 9, 8, 30 }` en grens 10, in drie delen met elk een
+  eigen Oplossing-callout, en een callout "Les(sen) uit deze oefening" met links naar
+  `3_foreach.html#opgelet-bij-het-gebruik-van-foreach-loops`, `4_list.html#wat-kan-een-list-nog` en
+  `4_list.html#stagiair-steven`.
+  - Deel 1: foreach met `Remove`. Crasht met
+    `Unhandled exception. System.InvalidOperationException: Collection was modified; enumeration operation may not execute.`
+    De stacktrace wijst de lijn met `foreach` aan, niet die met `Remove` (geverifieerd met dotnet).
+  - Deel 2: for van voor naar achter met `RemoveAt`. De student voorspelt eerst met een tabel per
+    ronde. Uitvoer `12 7 25 9 30`: de 7 en de 9 blijven staan (geverifieerd met dotnet). Stevens
+    eigen testlijst `{ 12, 4, 25, 3, 30 }` geeft wel `12 25 30` (geverifieerd met dotnet).
+  - Deel 3: for van achter naar voor. Uitvoer `12 25 30`. Daarna een methode
+    `VerwijderOnderGrens(List<int> prijzen, int grens)`. De oplossing zoals ze op de pagina staat, is
+    uitgevoerd, en de methode ook met een lijst die volledig onder de grens zit, met goedkope prijzen
+    achteraan en met grens 26 (geverifieerd met dotnet).
+- **Coach-data**: sectie `## Stevens opruimactie` in `oefeningen/_coach/12_arraysvanklassen.md`, tussen
+  Pokédex en Student Organizer, met Nota (welke vragen de coach per deel mag stellen, de uitvoer van
+  deel 2 nooit geven), Aanpak en Valkuilen. "Kent al" dekt de oefening al, daar is niets veranderd.
+
+Afwijkingen van het voorstel:
+
+- Een `List<int>` en geen lijst producten. Met getallen blijft het voorspellen in deel 2 op papier
+  haalbaar, en de valkuil (verschuiven na `RemoveAt`) is dezelfde.
+- Stevens eigen test met een lijst waarin het wel lukt, staat er bij in deel 2. Zo is er een reden
+  waarom de fout bij hem niet opviel, en de Les-callout kan daarop inhaken.
+- Deel 3 vraagt naast de uitleg ook een methode met de grens als parameter, zodat de student ook iets
+  schrijft en de referentie uit H10 terugkomt. Geen `break`, geen LINQ, geen `RemoveAll`.
+- De positie volgt de vraag (na Pokédex), niet de volledige volgorde uit sectie 5, want de andere
+  oefeningen zijn nog niet verschoven.
+
+Niet gecontroleerd: de pagina is niet gerenderd en de scripts zijn niet gedraaid. De ankers in de
+Les-callout zijn afgeleid van de koppen in de bron (Pandoc-ids). Op www.ziescherp.be geeft elk pad
+onder `content/` de voorwoordpagina terug, ook de bestaande link in H8, dus daar waren ze niet na te
+kijken.

@@ -1,4 +1,4 @@
-> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2019
+> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2020
 
 # Introductie- ImmoTrainer
 Een firma die huisverkopers opleidt heeft je gevraagd om een trainingspakket te maken. Het pakket moet de trainees in staat stellen om te oefenen op het zo goed mogelijk kopen van huizen die op de markt verschijnen.
@@ -11,7 +11,7 @@ Er zijn twee gebruikers:
 
 # Algemene werking
 Het programma doorloopt een aantal fasen:
-* Fase 1 (4punten): De trainer stelt de moeilijkheidsgraad in van het programma zodat het startbudget kan berekend worden
+* Fase 1 (4 punten): De trainer stelt de moeilijkheidsgraad in van het programma zodat het startbudget kan berekend worden
 * Fase 2 (8 punten): De trainee krijgt huizen aangeboden (willekeurig) waar hij op kan bieden. Van zodra het budget op is wordt naar de volgende fase doorgegaan.
 * Fase 3 (4 punten): De trainer én trainee krijgen te zien hoe goed de trainee het heeft gedaan
 
@@ -25,14 +25,14 @@ Achteraan is ook een aanvullende-opgave (2 punten waard) waar je eventueel al va
 
 * De moeilijkheidsgraad wordt gevraagd (een getal van 1 tot en met 9, hierop moet géén foutcontrole gebeuren).
 * Er wordt gevraagd of de trainee een bonus krijgt (j of n) en dit wordt als bool bewaard.
-* Een methode “BudgetGenerator” wordt aangeroepen. Deze zal een budget teruggeven dat je bewaard in het hoofdprogramma en nodig hebt in de volgende fasen.
+* Een methode “BudgetGenerator” wordt aangeroepen. Deze zal een budget teruggeven dat je bewaart in het hoofdprogramma en nodig hebt in de volgende fasen.
 
 Voorbeeld output 
 ```
 Geef moeilijkheidsgraad in (een getal van 1 tot en met 9)
 5  <-input user
 Krijg de trainee een startbonus? [j/n]
-j <-input user
+n <-input user
 Je startbudget is 4500
 ```
 
@@ -50,19 +50,19 @@ Het basisbudget is 5000. Indien een startbonus wordt toegestaan komt hier 2500 b
 
 Voorbeeld: 
 
-moeilijkheidsgraad 5 en geen startbonus => budget = 5000 – (5*100) = 4500.
+moeilijkheidsgraad 5 en geen startbonus => budget = 5000 - (5*100) = 4500.
 
 ## Fase 2: Training (8 punten)
-* Een loop wordt gestart, zolang de trainee budget heeft krijgt hij steeds een nieuw huis te zien dat hij kan kopen. Wanneer er 20 huizen getoond stopt de loop ook, ongeacht of de gebruiker nog budget over had of niet.
+* Een loop wordt gestart, zolang de trainee budget heeft krijgt hij steeds een nieuw huis te zien dat hij kan kopen. Wanneer er 20 huizen getoond zijn stopt de loop ook, ongeacht of de gebruiker nog budget over had of niet.
 * De loop:
   * Het huidige budget wordt steeds opnieuw getoond
   * De prijs van een nieuw huis wordt gegenereerd in een methode “HuisPrijs”, de methode toont ook wat het huis heeft (qua kamers en terras)
   * De te betalen prijs wordt getoond.
-  * De trainer kan beslissen om het huis te kopen of niet
+  * De trainee kan beslissen om het huis te kopen of niet
     * Wanneer de trainee een huis koopt zal zijn budget verminderd worden met de prijs van het huidige huis. 
-     * De gebruiker moet hiervoor j of n antwoorden op de vraag of hij dit huis wenst te kopen
+    * De gebruiker moet hiervoor j of n antwoorden op de vraag of hij dit huis wenst te kopen
   * Er wordt bijgehouden welke huizen de trainee wel én niet kocht alsook de prijs van ieder huis. Dit wordt in 2 arrays bewaard:
-    * 1 array (double) zal de prijzen van ieder gegenereerd huis bijhouden 
+    * 1 array (int) zal de prijzen van ieder gegenereerd huis bijhouden 
     * 1 array (bool) zal bijhouden of de gebruiker het huis wel of niet kocht
 
 Voorbeeld output (deels) 
@@ -112,11 +112,11 @@ Werking:
   * Huis met 2 slaapkamers en geen terras: 1240 euro
   * Huis met 1 slaapkamers en geen terras: 1120 euro
 * De prijs wordt teruggegeven
- 
+
 
 ##	Fase 3: Afsluiten (4 punten)
 * In deze fase wordt een overzicht getoond van de gekochte én niet gekochte huizen. Gebruik hiervoor de twee arrays waarin je die informatie bijhield. Je toont telkens de prijs van het huis alsook of deze wel of niet werd gekocht.
-* Na het overzicht wordt de gemiddelde prijs van de aangekochte huizen getoond m.b.v. een methode BerekenGemiddelde. Deze methode zal het gemiddelde berekenen en in het hoofdprogramma wordt deze dan in een zin getoond (zie voorbeeld output)
+* Na het overzicht wordt de gemiddelde prijs van de aangekochte huizen getoond m.b.v. een methode BerekenGemiddelde. Deze methode zal het gemiddelde berekenen en teruggeven. Daarna wordt het gemiddelde in een zin getoond (zie voorbeeld output)
 
 Voorbeeld output
 
@@ -156,43 +156,48 @@ Iedere fase (3 in totaal) wordt in een aparte methode geplaatst. In de main-meth
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
+using System;
 
-static void Main(string[] args)
+namespace ImmoTrainer
+{
+    class Program
+    {
+        static void Main(string[] args)
         {
             //Fase 1:
             double budget = Fase1();
 
             //Fase 2
-            bool[] gekocht = new bool[10];
-            double[] prijzen = new double[10];
-            int Gekocht = Fase2(budget, gekocht, prijzen);
+            bool[] gekocht = new bool[20];
+            int[] prijzen = new int[20];
+            int aantalHuizen = Fase2(budget, gekocht, prijzen);
             //Fase 3
-            Fase3(gekocht, prijzen, Gekocht);
+            Fase3(gekocht, prijzen, aantalHuizen);
         }
 
-        private static void Fase3(bool[] gekocht, double[] prijzen, int Gekocht)
+        private static void Fase3(bool[] gekocht, int[] prijzen, int aantalHuizen)
         {
-            for (int j = 0; j < Gekocht; j++)
+            for (int i = 0; i < aantalHuizen; i++)
             {
-                Console.Write($"Huis met prijs {prijzen[j]} euro heb je ");
-                if (gekocht[j] == false)
+                Console.Write($"Huis met prijs {prijzen[i]} euro heb je ");
+                if (gekocht[i] == false)
                     Console.Write("niet ");
                 Console.WriteLine("gekocht");
             }
 
-            double gem = BerekenGemiddelde(prijzen, gekocht);
-            Console.WriteLine($"Je spendeerde gemiddelde {gem} euro aan een huis");
+            double gemiddelde = BerekenGemiddelde(gekocht, prijzen);
+            Console.WriteLine();
+            Console.WriteLine($"Je spendeerde gemiddelde {gemiddelde} euro aan een huis");
         }
 
-        private static int Fase2( double budget, bool[] gekocht, double[] prijzen)
+        private static int Fase2(double budget, bool[] gekocht, int[] prijzen)
         {
-            int Gekocht = 0;
-            Random r = new Random();
-            while (budget > 0 && Gekocht < 20)
+            int aantalHuizen = 0;
+            while (budget > 0 && aantalHuizen < 20)
             {
                 Console.WriteLine("*****");
                 int kost = HuisPrijs();
-                prijzen[Gekocht] = kost;
+                prijzen[aantalHuizen] = kost;
                 Console.WriteLine($"Je budget is nu {budget}");
                 Console.WriteLine("-----------------");
                 Console.WriteLine($"Wil je dit huis kopen? Het kost {kost} euro. [j/n]");
@@ -201,32 +206,34 @@ static void Main(string[] args)
                 if (keuze == "j")
                 {
                     budget -= kost;
-                    gekocht[Gekocht] = true;
+                    gekocht[aantalHuizen] = true;
                 }
-                Gekocht++;
+                aantalHuizen++;
             }
 
-            return Gekocht;
+            return aantalHuizen;
         }
 
         private static double Fase1()
         {
             Console.WriteLine("Geef moeilijkheidsgraad in (een getal van 1 tot en met 9)");
-            int moei = Convert.ToInt32(Console.ReadLine());
+            int moeilijkheidsgraad = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Krijg de trainee een startbonus? [j/n]");
             bool bonus = false;
-            if (Console.ReadLine() == "j") bonus = true;
+            if (Console.ReadLine() == "j")
+            {
+                bonus = true;
+            }
 
-
-            double budget = BudgetGenerator(false, 5);
+            double budget = BudgetGenerator(moeilijkheidsgraad, bonus);
             Console.WriteLine($"Je startbudget is {budget}");
             return budget;
         }
 
-        private static double BerekenGemiddelde(double[] prijzen, bool[] gekocht)
+        private static double BerekenGemiddelde(bool[] gekocht, int[] prijzen)
         {
             double som = 0;
-            double aantal = 0;
+            int aantal = 0;
             for (int i = 0; i < prijzen.Length; i++)
             {
                 if (gekocht[i] == true)
@@ -242,36 +249,34 @@ static void Main(string[] args)
         {
             int prijs = 1000;
             Random r = new Random();
-            int aantalkamers = r.Next(1, 4);
-            prijs = prijs + aantalkamers * 120;
-            bool heeftterras = false;
+            int aantalKamers = r.Next(1, 4);
+            prijs = prijs + aantalKamers * 120;
+            bool heeftTerras = false;
             if (r.Next(1, 4) == 1)
             {
-                heeftterras = true;
+                heeftTerras = true;
                 prijs += 450;
-
-
             }
-            if (!heeftterras)
-                Console.WriteLine($"Huis met {aantalkamers} slaapkamers en geen terras: {prijs} euro");
+            if (!heeftTerras)
+                Console.WriteLine($"Huis met {aantalKamers} slaapkamers en geen terras: {prijs} euro");
             else
-                Console.WriteLine($"Huis met {aantalkamers} slaapkamers en met terras: {prijs} euro");
+                Console.WriteLine($"Huis met {aantalKamers} slaapkamers en met terras: {prijs} euro");
             return prijs;
         }
 
-        static double BudgetGenerator(bool bonus, int moeilijkheidsgraad = 5)
+        static double BudgetGenerator(int moeilijkheidsgraad = 5, bool bonus = true)
         {
             double budget = 5000;
             if (bonus == true)
             {
                 budget += 2500;
             }
-    
-                budget -= (moeilijkheidsgraad* 100);
+
+            budget -= (moeilijkheidsgraad * 100);
 
             return budget;
-
         }
-
+    }
+}
 ```
 ::::

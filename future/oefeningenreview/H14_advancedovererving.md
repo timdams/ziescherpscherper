@@ -245,3 +245,33 @@ abstracte klasse" (`oefeningen/_coach/14_advancedovererving.md:105`); die nota m
   `HiddenBookmark` en `Bookmark` (`oefeningen/14_advancedovererving/A_Practica.md:21`).
 - `content/13_advancedovererving/kennisclips.md:13` linkt voor de oefeningen nog naar het oude gitbook.
   Hetzelfde staat in de kennisclips van 18 hoofdstukken.
+
+## Doorgevoerd (2026-09-13): enkel Stevens abstracte bouwwerf
+
+Enkel voorstel 4.2 is doorgevoerd. De rest van dit rapport staat nog open, en de status in de README
+blijft "analyse".
+
+- **Oefening:** `oefeningen/14_advancedovererving/A_Practica.md:259`, anker `#h14-stevens-abstracte-bouwwerf`,
+  tussen Money, money, money en Geometric figures. Vijf fragmenten. Deel 1: de meldingen A tot E koppelen en
+  de foute lijn benoemen. Deel 2: elk fragment herstellen. Deel 3 (voor wie wil): `GetType()` overriden.
+  Per deel een Oplossing-callout, en een Les-callout met links naar `5_abstract.html#abstracte-klassen-in-c`,
+  `#abstracte-methoden`, `0_overerving_intro.html#sealed` en `4_System_Object.html#gettype`.
+- **Coach-data:** `## Stevens abstracte bouwwerf` in `oefeningen/_coach/14_advancedovererving.md`, tussen
+  Money en Geometric figures, met Nota (geen koppeling of herstelling, wel gerichte vragen), Aanpak en Valkuilen.
+- **Geverifieerd met dotnet** (SDK 10.0.103, elk fragment apart in het klassieke skelet): CS0144, CS0500,
+  CS0513, CS0534, CS0509 en CS0506 zijn letterlijk overgenomen. Alle herstelde versies compileren zonder
+  waarschuwing en draaien. Fragment 4 met enkel de naam hersteld geeft CS0534 plus warning CS0114 (ook
+  letterlijk in de oplossing). Alle vijf fragmenten in één project: vier meldingen, CS0144 verschijnt pas als
+  de andere vier weg zijn. Dat staat nu als les in de oefening.
+- **Afwijkingen van het voorstel:**
+  - Andere klassen: een bouwwerf (`Bouwmachine`, `Materiaal`, `Werknemer`, `Gebouw`, `Werfkeet`, `Kraan`)
+    in plaats van `Dier`, `Voertuig`, `Plant`, `Paard` en `Kluis`. `Dier`, `Paard` en `MaakGeluid` staan
+    letterlijk in `content/13_advancedovererving/5_abstract.md`, en de titel belooft een bouwwerf.
+  - Fragment 4 vergeet de methode niet, maar schrijft ze met een andere hoofdletter en zonder `override`. Zo
+    moet de student echt lezen, en toont het dat de melding naar de klasse wijst en niet naar de fout.
+  - `sealed` blijft: het staat in H13 (`content/12_overerving/0_overerving_intro.MD:193`), in H14
+    (`5_abstract.md:55`) en bij "Kent al" in de coach-data.
+  - Het GetType-fragment is Deel 3 geworden, niet als zesde melding in de lijst van Deel 1.
+  - De plaats volgt de opdracht (na Money), niet de volgorde uit sectie 5 (na Boekenvoorraad, voor Geometric
+    figures). De volgorde van de bestaande oefeningen is niet aangepast.
+- **Bewust niet gedaan:** de rest van de review, renderen, de scripts in `scripts/`, de README.

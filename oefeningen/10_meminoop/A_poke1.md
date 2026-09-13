@@ -479,6 +479,187 @@ public static int Battle(Pokemon poke1, Pokemon poke2)
 ::::
 
 
+# Stevens reservekopie (*Essential*) {#h10-stevens-reservekopie}
+
+Stagiair Steven werkt met de Pokémon-klasse uit de vorige oefening. Hier is ze ingekort: enkel de stats die hij nodig heeft, met auto-properties voor de base-stats. `Level` en de formules van `HP_Full` en `Attack_Full` zijn dezelfde als in de opgave.
+
+```java
+internal class Pokemon
+{
+    public string Naam { get; set; } = "Onbekend";
+    public int HP_Base { get; set; }
+    public int Attack_Base { get; set; }
+
+    private int level;
+    public int Level
+    {
+        get { return level; }
+        private set { level = value; }
+    }
+
+    public void VerhoogLevel()
+    {
+        Level++;
+    }
+
+    public int HP_Full
+    {
+        get { return (((HP_Base + 50) * Level) / 50) + 10; }
+    }
+
+    public int Attack_Full
+    {
+        get { return ((Attack_Base * Level) / 50) + 5; }
+    }
+}
+```
+
+Steven wil tonen wat tien levels training met zijn Pikachu doen. Hij vroeg een A.I. om eerst een reservekopie te nemen, zodat hij voor en na kan vergelijken, en om Pikachu daarna tegen een rivaal te laten vechten. `MaakRivaal` kent voorlopig enkel Onix. Steven test bewust met een rivaal die zijn programma niet kent, om te zien of zijn foutmelding werkt. Dit zette de A.I. in `Program.cs`:
+
+```java
+static void Main(string[] args)
+{
+    Pokemon pikachu = new Pokemon();
+    pikachu.Naam = "Pikachu";
+    pikachu.HP_Base = 35;
+    pikachu.Attack_Base = 55;
+
+    Pokemon reserve = pikachu; // reservekopie van voor de training
+
+    for (int i = 0; i < 10; i++)
+    {
+        pikachu.VerhoogLevel();
+    }
+
+    Console.WriteLine($"Voor de training: level {reserve.Level}, HP {reserve.HP_Full}");
+    Console.WriteLine($"Na de training: level {pikachu.Level}, HP {pikachu.HP_Full}");
+
+    Pokemon rivaal = MaakRivaal("Mew");
+    try
+    {
+        int winnaar = Battle(pikachu, rivaal);
+        Console.WriteLine($"Winnaar: Pokémon {winnaar}");
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Geen gevecht: {e.Message}");
+    }
+}
+
+static Pokemon MaakRivaal(string naam)
+{
+    Pokemon rivaal = null;
+    if (naam == "Onix")
+    {
+        rivaal = new Pokemon();
+        rivaal.Naam = "Onix";
+        rivaal.HP_Base = 35;
+        rivaal.Attack_Base = 45;
+    }
+    return rivaal;
+}
+
+static int Battle(Pokemon poke1, Pokemon poke2)
+{
+    int kracht1 = poke1.HP_Full + poke1.Attack_Full;
+    int kracht2 = poke2.HP_Full + poke2.Attack_Full;
+
+    if (poke1 == null || poke2 == null)
+    {
+        throw new Exception("Een gevecht heeft twee Pokémon nodig.");
+    }
+
+    int winnaar = 0;
+    if (kracht1 > kracht2)
+    {
+        winnaar = 1;
+    }
+    else if (kracht2 > kracht1)
+    {
+        winnaar = 2;
+    }
+    return winnaar;
+}
+```
+
+**Deel 1.** Het compileert zonder foutmeldingen en het crasht niet. Een nieuwe Pokémon start op level 0, dus Steven verwacht als eerste lijn `Voor de training: level 0, HP 10`. Voer het uit. Wat krijgt hij, en waarom? Pas het stuk rond `reserve` aan, zodat `reserve` echt de Pikachu van voor de training bewaart.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Beide lijnen tonen hetzelfde:
+
+```text
+Voor de training: level 10, HP 27
+Na de training: level 10, HP 27
+```
+
+``Pokemon reserve = pikachu;`` kopieert enkel de referentie. Er staat maar één Pokémon in de heap, en zowel ``pikachu`` als ``reserve`` wijzen ernaar. Elke ``VerhoogLevel`` via ``pikachu`` zie je dus ook via ``reserve``.
+
+Een echte kopie is een tweede object, gemaakt met ``new``, waarin je de base-stats overneemt. ``Level`` heeft een private set: dat neem je over door ``VerhoogLevel`` even vaak op te roepen. Zo klopt de kopie ook als Pikachu al een level had.
+
+```java
+Pokemon reserve = new Pokemon();
+reserve.Naam = pikachu.Naam;
+reserve.HP_Base = pikachu.HP_Base;
+reserve.Attack_Base = pikachu.Attack_Base;
+for (int i = 0; i < pikachu.Level; i++)
+{
+    reserve.VerhoogLevel();
+}
+```
+
+Nu is de eerste lijn ``Voor de training: level 0, HP 10``.
+
+Wil je enkel de getallen van voor de training tonen, dan volstaat ook ``int hpVoor = pikachu.HP_Full;`` vóór de lus. Een ``int`` is een value type: daar kopieert ``=`` wel de waarde zelf.
+::::
+
+**Deel 2.** Kijk naar de laatste lijn van de uitvoer. Is dat de melding die Steven in `Battle` schreef? Zoek waar ze vandaan komt, en pas `Battle` aan zodat Steven zijn eigen melding te zien krijgt.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De laatste lijn is:
+
+```text
+Geen gevecht: Object reference not set to an instance of an object.
+```
+
+``MaakRivaal("Mew")`` geeft ``null`` terug, want de methode kent enkel Onix. Dat wou Steven zo. De fout zit in ``Battle``: de eerste twee lijnen vragen ``poke2.HP_Full`` op vóór de null-check. ``poke2`` is ``null``, dus daar ontstaat al een ``NullReferenceException``, en de ``if`` met de ``throw`` wordt nooit bereikt. ``catch (Exception e)`` in Main vangt ook die ``NullReferenceException`` op (ze is ook een ``Exception``), en toont haar ``Message``.
+
+Zet de controle bovenaan, vóór het eerste puntje achter ``poke1`` of ``poke2``:
+
+```java
+static int Battle(Pokemon poke1, Pokemon poke2)
+{
+    if (poke1 == null || poke2 == null)
+    {
+        throw new Exception("Een gevecht heeft twee Pokémon nodig.");
+    }
+
+    int kracht1 = poke1.HP_Full + poke1.Attack_Full;
+    int kracht2 = poke2.HP_Full + poke2.Attack_Full;
+
+    int winnaar = 0;
+    if (kracht1 > kracht2)
+    {
+        winnaar = 1;
+    }
+    else if (kracht2 > kracht1)
+    {
+        winnaar = 2;
+    }
+    return winnaar;
+}
+```
+
+Nu toont de laatste lijn ``Geen gevecht: Een gevecht heeft twee Pokémon nodig.`` Met ``MaakRivaal("Onix")`` komt er wel een gevecht, en wint de getrainde Pikachu: ``Winnaar: Pokémon 1``.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* De compiler vindt geen van beide fouten, en het programma crasht niet. Enkel de uitvoer verraadt dat er iets mis is.
+* ``=`` bij een object kopieert de referentie, niet het object. Zie [= operator bij objecten](https://www.ziescherp.be/content/9_meminoop/6_memorymanagement.html#operator-bij-objecten).
+* Controleer op ``null`` vóór je het eerste puntje achter het object zet. Zie [NullReferenceException voorkomen](https://www.ziescherp.be/content/9_meminoop/nullreference.html#nullreferenceexception-voorkomen).
+* ``catch (Exception e)`` vangt ook uitzonderingen op die je niet verwacht. Hier toonde ``e.Message`` dat het niet om Stevens eigen exception ging. Zie [Werken met de exception parameter](https://www.ziescherp.be/content/20_exceptions/0_exceptionhandling.html#werken-met-de-exception-parameter).
+::::
+
+
 # Bankmanager 2 (*Essential*)
 
 Breid de bankmanager oefening uit het vorige hoofdstuk uit.

@@ -42,13 +42,13 @@ Ga ervan uit dat de gebruiker géén foute invoer doet.
 
 ### Methode Casino
 Maak een methode Casino. De methode aanvaart een double en een int als parameter en geeft een double terug.
-De methode zal een casino-simuleren en geeft op het einde de winst (of verlies) van de speler terug. De double die wordt meegegeven is het startkapitaal. De int is het aantal simulaties n. De methode zal n roulette-rondes simuleren als volgt en telkens de winst of verlies bijhouden.
+De methode zal een casino simuleren en geeft op het einde terug hoeveel geld de speler nog overheeft. De double die wordt meegegeven is het startkapitaal. De int is het aantal simulaties n. De methode zal n roulette-rondes simuleren als volgt en telkens het kapitaal aanpassen.
 
 Iedere van de n simulaties gebeurt het volgende: 
 
-1. De computer kiest een willekeurig getal tussen 0 en 60. Dit is zogezegd de keuze van de speler bij roulette. 
-2. De computer kiest een willekeurig getal tussen 0 en 60. Dit is zogezegd het getal waar de roulette op belandt. 
-3. Indien beide getallen overeenkomen zal het startkapitaal van de speler met 1 verhogen. Indien het getal niet gelijk was wordt er 0.1 van het kapitaal afgehouden.
+1. De computer kiest een willekeurig getal van 0 tot 60 (60 niet inbegrepen). Dit is zogezegd de keuze van de speler bij roulette. 
+2. De computer kiest een willekeurig getal van 0 tot 60 (60 niet inbegrepen). Dit is zogezegd het getal waar de roulette op belandt. 
+3. Indien beide getallen overeenkomen zal het kapitaal van de speler met 1 verhogen. Indien het getal niet gelijk was wordt er 0.1 van het kapitaal afgehouden.
 
 Finaal geeft de methode terug hoeveel geld er nog overblijft.
 
@@ -59,21 +59,21 @@ Maak een applicatie die aan de gebruiker een startkapitaal vraagt. Vervolgens ge
 * 100 keer 
 * 10 000 
 * 1 000 000 keer
-* 
+
 Toon telkens ook hoeveel verlies (of winst) dit is ten opzichte van het startkapitaal. Bij winst wordt dit verschil in groene letters getoond, bij verlies in rode letters. 
 
 ## Voorbeeld uitvoer
 
-Tekst die start met “>” is invoer van de gebruiker.
+Tekst die start met “>” is invoer van de gebruiker. De getallen hangen van het toeval af: bij jou zullen ze anders zijn.
 
 ```text
 Wat is je startkapitaal?
 >1000
 Gegeven deze informatie krijg ik volgende resultaten
-Als je 10 keer roulette speelt zou je eindkapitaal 999,2 zijn, dat is een verschil van -0,8.
-Als je 100 keer roulette speelt zou je eindkapitaal 993,4 zijn, dat is een verschil van -6,6.
-Als je 10000 keer roulette speelt zou je eindkapitaal 133,8 zijn, dat is een verschil van -866,2.
-Als je 1000000 keer roulette speelt zou je eindkapitaal -95486,2 zijn, dat is een verschil van -94486,2.
+Als je 10 keer roulette speelt zou je eindkapitaal 999 zijn, dat is een verschil van -1.
+Als je 100 keer roulette speelt zou je eindkapitaal 992,2 zijn, dat is een verschil van -7,8.
+Als je 10000 keer roulette speelt zou je eindkapitaal 178,2 zijn, dat is een verschil van -821,8.
+Als je 1000000 keer roulette speelt zou je eindkapitaal -80747,7 zijn, dat is een verschil van -81747,7.
 ```
 
 # Oefening 3 – Conferentie (8 punten)
@@ -131,7 +131,7 @@ Geef deelnemers ("stop" om te stoppen)
 Fase 2 - Statistieken van de deelnemers
 Er zijn 3 deelnemers
 Gemiddelde leeftijd is 48
-Er zijn 2 deelnemers onder het gemiddelde namelijk jos, marie,
+Er zijn 2 deelnemers onder het gemiddelde namelijk jos, marie
 Er zijn 1 deelnemers boven of op het gemiddelde namelijk frans
 Fase 3 - Welke deelnemer zoekt u?
 >frans
@@ -141,196 +141,221 @@ Deze heeft leeftijd 88
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
-# Oefening 1
+**Oefening 1**
 
 ```java
-bool repeat = true;
-while (repeat)
+namespace Lampoplosser
 {
-    Console.WriteLine("Lamp doesn't work");
-    Console.WriteLine("Lamp plugged in?");
-    string plugAnswer = Console.ReadLine();
-    if(plugAnswer=="no")
+    internal class Program
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Plug in lamp");
-    }
-    else
-    {
-        Console.WriteLine("Bulb burned out?");
-        string burnAnswer = Console.ReadLine();
-        if(burnAnswer=="yes")
+        static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Replace bulb");
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Repair lamp");
+            bool herstarten = true;
+            while (herstarten)
+            {
+                Console.WriteLine("Lamp doesn't work.");
+                Console.WriteLine("Lamp plugged in?");
+                string stekkerAntwoord = Console.ReadLine();
+                if (stekkerAntwoord == "no")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Plug in lamp.");
+                }
+                else
+                {
+                    Console.WriteLine("Bulb burned out?");
+                    string lampAntwoord = Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    if (lampAntwoord == "yes")
+                    {
+                        Console.WriteLine("Replace bulb.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Repair lamp.");
+                    }
+                }
+                Console.ResetColor();
+                Console.WriteLine("Restart?");
+                string herstartAntwoord = Console.ReadLine();
+                if (herstartAntwoord == "no")
+                {
+                    herstarten = false;
+                }
+            }
         }
     }
-    Console.ResetColor();
-    Console.WriteLine("Restart?");
-    string resAnswer = Console.ReadLine();
-    if (resAnswer == "no")
-        repeat = false;
 }
 ```
 
-# Oefening 2
+**Oefening 2**
 
 ```java
-static void Main(string[] args)
+namespace Roulette
 {
-    int[] pogingen = { 10, 100, 10000, 1000000 };
-    Console.WriteLine("Wat is je startkapitaal?");
-    double start = Convert.ToDouble(Console.ReadLine());
-    Console.WriteLine("Gegeven deze informatie krijg je volgende resultaten");
-    for (int i = 0; i < pogingen.Length; i++)
+    internal class Program
     {
-        double resultaat = Casino(start, pogingen[i]);
-        Console.Write($"Als je {pogingen[i]} keer roulette speelt zou je eindkapitaal {resultaat} zijn, dat is een verschil van ");
-        if(resultaat-start <0)
+        static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            int[] pogingen = { 10, 100, 10000, 1000000 };
+            Console.WriteLine("Wat is je startkapitaal?");
+            double start = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Gegeven deze informatie krijg ik volgende resultaten");
+            for (int i = 0; i < pogingen.Length; i++)
+            {
+                double eindkapitaal = Casino(start, pogingen[i]);
+                double verschil = eindkapitaal - start;
+                Console.Write($"Als je {pogingen[i]} keer roulette speelt zou je eindkapitaal {Math.Round(eindkapitaal, 2)} zijn, dat is een verschil van ");
+                if (verschil < 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                Console.Write(Math.Round(verschil, 2));
+                Console.ResetColor();
+                Console.WriteLine(".");
+            }
         }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-        }
-        Console.WriteLine(start - resultaat);
-        Console.ResetColor();
-    }
-}
 
-static double Casino(double start, int aantalKeer)
-{
-    double resultaat = start;
-    Random rng = new Random();
-    for (int i = 0; i < aantalKeer; i++)
-    {
-        if (rng.Next(0, 60) == rng.Next(0, 60))
-            resultaat++;
-        else
-            resultaat -= 0.1;
+        static double Casino(double startkapitaal, int aantalRondes)
+        {
+            double kapitaal = startkapitaal;
+            Random rng = new Random();
+            for (int i = 0; i < aantalRondes; i++)
+            {
+                int keuzeSpeler = rng.Next(0, 60);
+                int getalRoulette = rng.Next(0, 60);
+                if (keuzeSpeler == getalRoulette)
+                {
+                    kapitaal++;
+                }
+                else
+                {
+                    kapitaal -= 0.1;
+                }
+            }
+            return kapitaal;
+        }
     }
-    return resultaat;
 }
 ```
 
-
-# Oefening 3
+**Oefening 3**
 
 ```java
-static void Main(string[] args)
+namespace Conferentie
 {
-    string[] namen = new string[50];
-    for (int i = 0; i < namen.Length; i++)
+    internal class Program
     {
-        namen[i] = "leeg";
-    }
-    int[] leeftijden = new int[50];
-
-
-    //Fase 1
-    string naamInvoer = "";
-    int index = 0;
-    do
-    {
-        Console.WriteLine("Geef deelnemers (\"stop\" om te stoppen)");
-        naamInvoer = Console.ReadLine();
-        if (naamInvoer != "stop")
+        static void Main(string[] args)
         {
-            namen[index] = naamInvoer;
-            Console.WriteLine($"Geef de leeftijd van {naamInvoer}");
-            leeftijden[index] = Convert.ToInt32(Console.ReadLine());
-            index++;
+            string[] namen = new string[50];
+            int[] leeftijden = new int[50];
+
+            //Fase 1
+            int aantalDeelnemers = 0;
+            string naamInvoer = "";
+            while (naamInvoer != "stop" && aantalDeelnemers < namen.Length)
+            {
+                Console.WriteLine("Geef deelnemers (\"stop\" om te stoppen)");
+                naamInvoer = Console.ReadLine();
+                if (naamInvoer != "stop")
+                {
+                    namen[aantalDeelnemers] = naamInvoer;
+                    Console.WriteLine($"Geef leeftijd van {naamInvoer}");
+                    leeftijden[aantalDeelnemers] = Convert.ToInt32(Console.ReadLine());
+                    aantalDeelnemers++;
+                }
+            }
+            if (aantalDeelnemers == namen.Length)
+            {
+                Console.WriteLine("De conferentie is volzet.");
+            }
+
+            //Fase 2
+            Console.WriteLine("Fase 2 - Statistieken van de deelnemers");
+            Console.WriteLine($"Er zijn {aantalDeelnemers} deelnemers");
+            double gemiddelde = BerekenGemiddelde(leeftijden, aantalDeelnemers);
+            Console.WriteLine($"Gemiddelde leeftijd is {Math.Round(gemiddelde, 2)}");
+            ToonOnderEnBovenGemiddelde(namen, leeftijden, aantalDeelnemers, gemiddelde);
+
+            //Fase 3
+            ToonLeeftijdVanDeelnemer(namen, leeftijden, aantalDeelnemers);
         }
-    } while (naamInvoer != "stop");
 
-    //Fase 2
-    Console.WriteLine("Fase 2 - statistieken van de deelnemers");
-    Console.WriteLine($"Er zijn {TelDeelnemers(namen)} deelnemers");
-    Console.WriteLine($"Gemiddeldeleeftijd is {BerekenGemiddelde(leeftijden, namen)}");
-    BerekenEnToonBovenOnderGemiddelde(leeftijden, namen);
-
-    //Fase 3
-    VindPersoon(namen, leeftijden);
-}
-
-private static void VindPersoon(string[] namen, int[] leeftijden)
-{
-    Console.WriteLine("Fase 3 - Welke deelnemer zoekt u?");
-    string persoon = Console.ReadLine();
-    bool gevonden = false;
-    int leeftijd = 0;
-    int index = 0;
-    do
-    {
-        if (namen[index]==persoon)
+        static double BerekenGemiddelde(int[] leeftijden, int aantalDeelnemers)
         {
-            gevonden = true;
-            leeftijd = leeftijden[index];
+            if (aantalDeelnemers == 0)
+            {
+                return 0;
+            }
+            int som = 0;
+            for (int i = 0; i < aantalDeelnemers; i++)
+            {
+                som += leeftijden[i];
+            }
+            return (double)som / aantalDeelnemers;
         }
-        index++;
-    } while (!gevonden && index<namen.Length );
-    if(gevonden)
-        Console.WriteLine($"Deze heeft leeftijd {leeftijd}");
-    else
-    {
-        Console.WriteLine("Niet gevonden");
-    }
-}
 
-private static void BerekenEnToonBovenOnderGemiddelde(int[] leeftijden, string[] namen)
-{
-    double gemiddelde = BerekenGemiddelde(leeftijden, namen);
-    int onder = 0;
-    int boven = 0;
-    int index = 0;
-    string onderNamen = "";
-    string bovenNamen = "";
-    while (namen[index] != "leeg" && index < namen.Length)
-    {
-        if (leeftijden[index] < gemiddelde)
-        { 
-            onder++;
-            onderNamen += $"{namen[index]},";
-        }
-        else
+        static void ToonOnderEnBovenGemiddelde(string[] namen, int[] leeftijden, int aantalDeelnemers, double gemiddelde)
         {
-            boven++;
-            bovenNamen += $"{namen[index]},";
+            int aantalOnder = 0;
+            int aantalBoven = 0;
+            string namenOnder = "";
+            string namenBoven = "";
+            for (int i = 0; i < aantalDeelnemers; i++)
+            {
+                if (leeftijden[i] < gemiddelde)
+                {
+                    aantalOnder++;
+                    namenOnder = VoegNaamToe(namenOnder, namen[i]);
+                }
+                else
+                {
+                    aantalBoven++;
+                    namenBoven = VoegNaamToe(namenBoven, namen[i]);
+                }
+            }
+            Console.WriteLine($"Er zijn {aantalOnder} deelnemers onder het gemiddelde namelijk {namenOnder}");
+            Console.WriteLine($"Er zijn {aantalBoven} deelnemers boven of op het gemiddelde namelijk {namenBoven}");
         }
-        index++;
+
+        static string VoegNaamToe(string lijst, string naam)
+        {
+            if (lijst == "")
+            {
+                return naam;
+            }
+            return lijst + ", " + naam;
+        }
+
+        static void ToonLeeftijdVanDeelnemer(string[] namen, int[] leeftijden, int aantalDeelnemers)
+        {
+            Console.WriteLine("Fase 3 - Welke deelnemer zoekt u?");
+            string gezochteNaam = Console.ReadLine();
+            int gevondenIndex = -1;
+            int index = 0;
+            while (gevondenIndex == -1 && index < aantalDeelnemers)
+            {
+                if (namen[index] == gezochteNaam)
+                {
+                    gevondenIndex = index;
+                }
+                index++;
+            }
+            if (gevondenIndex != -1)
+            {
+                Console.WriteLine($"Deze heeft leeftijd {leeftijden[gevondenIndex]}");
+            }
+            else
+            {
+                Console.WriteLine("niet gevonden");
+            }
+        }
     }
-
-
-    Console.WriteLine($"Er zijn {onder} onder het gemiddelde namelijk {onderNamen}");
-    Console.WriteLine($"Er zijn {boven} gelijk of boven het gemiddelde namelijk {bovenNamen}");
-
-}
-
-private static double BerekenGemiddelde(int[] leeftijden, string[] namen)
-{
-    int som = 0;
-    for (int i = 0; i < leeftijden.Length; i++)
-    {
-        som += leeftijden[i];
-    }
-    return (double)som / TelDeelnemers(namen);
-}
-
-private static int TelDeelnemers(string[] namen)
-{
-
-    for (int i = 0; i < namen.Length; i++)
-    {
-        if (namen[i] == "leeg")
-            return i;
-    }
-    return 0;
 }
 ```
 ::::

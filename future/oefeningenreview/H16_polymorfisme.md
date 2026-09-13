@@ -261,3 +261,50 @@ kan, dan `Equals`. Het examen en de Final Essentials staan achteraan.
   alinea's verder heet pattern matching de moderne vorm (`:140-163`). De tip kan dat laatste ook zeggen.
 - `content/18_IsAs/6_equals.md:78`: "Bijgevolg kan dit element dan doen dan wanneer hij kan in de
   vermomming is van z'n eigen basistype" loopt niet.
+
+## Doorgevoerd (2026-09-13): enkel Stevens dierenshow en Stevens Pokédex
+
+Enkel de nieuwe oefeningen 2 en 3 uit sectie 4. De rest van dit rapport is niet doorgevoerd: Dierentuin
+advanced en Pokémon vergelijken staan er nog zoals voorheen, de status in de README blijft "analyse".
+Niet gerenderd en de scripts niet gedraaid.
+
+**Wat er kwam.**
+
+- `oefeningen/16_polymorfisme/A_Practica.md`: `# Stevens dierenshow (*Essential*) {#h16-stevens-dierenshow}`
+  tussen Dierentuin advanced en Pokémon vergelijken, en `# Stevens Pokédex (*Essential*) {#h16-stevens-pokedex}`
+  tussen Pokémon vergelijken en Een eigen huis. Vorm zoals Stevens warmste stad (H8): drie delen met
+  elk een Oplossing-callout, en een Les-callout met links naar `1_IsAs`, `polypraktijd`, `3_advancedmethod`
+  (method overloading), `4_System_Object` (De Equals() methode), `4_list` (Wat kan een List nog?) en
+  `6_equals`. De ankers zijn afgeleid uit de koppen in de bron; er was geen lokale build om ze na te kijken.
+- `oefeningen/_coach/16_polymorfisme.md`: `## Stevens dierenshow` en `## Stevens Pokédex`, elk met Nota
+  (welke vragen de coach wel mag stellen), Aanpak en Valkuilen.
+
+**Geverifieerd met dotnet** (SDK 10.0.103, klassiek skelet, in de scratchmap):
+
+- Dierenshow, Stevens versie: `0 Warning(s)`. Er komt geen melk en de vis zwijgt; de uitvoer in de oplossing
+  is letterlijk overgenomen. Met de twee tests van plaats gewisseld krijgen de koeien melk maar komen ze
+  niet op het podium. De oplossing met `if (dier is Koe koe)` geeft de uitvoer uit deel 3.
+- Pokédex, Stevens versie: `0 Warning(s)`, dan `a.Equals(b): True`, `Aantal in de pokedex: 2` en
+  `Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.`
+  in `Pokemon.Equals(Pokemon andere)`. `a.Equals((object)b)` geeft `False`.
+- `override` voor Stevens methode: `error CS0115: 'Pokemon.Equals(Pokemon)': no suitable method found to override`.
+- De oplossing: `True`, `1`, `True`, met `warning CS8765: Nullability of type of parameter 'obj' doesn't match
+  overridden member (possibly because of nullability attributes).` Die waarschuwing staat nu in de oplossing
+  met de raad ze te laten staan. Ze geldt ook voor elke `Equals(object o)` uit het boek zelf.
+- Stevens overload naast de nieuwe override laten staan: de pokedex klopt (1), maar de crash blijft.
+
+**Afwijkingen van het voorstel.**
+
+- Dierenshow: de `Console.WriteLine("Een dier")` uit het voorstel werd een podiumregel met het gewicht, zodat
+  de test `dier is Dier` iets zinnigs lijkt te doen. De klassen staan in de opgave (`Dier` abstract met
+  `Gewicht` en `Zegt`, `Koe` met `GeefMelk`, `Slang`, `Vis`), want `GeefMelk` bestaat nog niet in Dierentuin
+  advanced. `Koe` en `Slang` komen uit Dierentuin advanced, `Vis` en "moooeeee"/"blub" uit de Dierentuin van H14.
+- De ifs zonder accolades bleven in Stevens code. `content/B_appendix/boete.md` kent daar geen boete voor
+  (het boek zelf schrijft zo in `6_equals.md:48`); de oplossing gebruikt wel accolades.
+- Het voorstel noemt drie problemen in de dierenshow; ik verdeelde ze over drie delen (melk, vis en switch,
+  herschrijven), met de casts in deel 2.
+- Pokédex: een ingekorte `Pokemon` met een constructor (naam, level, `HP_Base`, `Attack_Base`) in plaats van
+  de volledige klasse, zodat de code leesbaar blijft en geen object initializer op de private set van `Level`
+  nodig is. De ontbrekende null-controle toont zich via een array van zes met lege plaatsen
+  (`b.Equals(team[i])`), niet via een letterlijke `null`: die gaf nullable-waarschuwingen (CS8600 en CS8604, nagekeken met dotnet)
+  die de oefening zouden vertroebelen. Er staat geen `é` in de uitvoer, zodat de UTF-8-regel niet nodig is.

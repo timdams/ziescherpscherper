@@ -359,6 +359,199 @@ public class Pizza
 ::::
 
 
+# Stevens pizza (*Essential*) {#h09-stevens-pizza}
+
+Stagiair Steven moest voor de pizzeria om de hoek een klasse ``Pizza`` maken: toppings, een diameter en een prijs, en er mocht geen onzin in een pizza terechtkomen. Hij vroeg het aan een A.I. en plakte het resultaat in zijn project. In ``Pizza.cs``:
+
+```java
+internal class Pizza
+{
+    private string toppings = "tomatensaus";
+    private int diameter = 25;
+    public double prijs;
+
+    public string Toppings
+    {
+        get
+        {
+            return toppings;
+        }
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                Toppings = value;
+            }
+        }
+    }
+
+    public int Diameter
+    {
+        get
+        {
+            return diameter;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                diameter = diameter;
+            }
+        }
+    }
+
+    public static void ToonInfo()
+    {
+        Console.WriteLine($"Pizza met {Toppings}, {Diameter} cm, {prijs} euro");
+    }
+}
+```
+
+En in ``Main``:
+
+```java
+Pizza margherita;
+margherita.Toppings = "tomaat en mozzarella";
+margherita.Diameter = 30;
+
+Console.WriteLine("Wat kost de margherita?");
+double prijs = Convert.ToDouble(Console.ReadLine());
+if (prijs > 0)
+{
+    margherita.prijs = prijs;
+}
+
+margherita.ToonInfo();
+```
+
+**Deel 1.** Neem de code over: de klasse in een apart bestand, de rest in ``Main``. Het project compileert niet. De compiler geeft vijf fouten en één waarschuwing. Laat de waarschuwing even liggen: de vijf fouten hebben samen maar twee oorzaken. Welke, en hoe los je ze op?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. ``Pizza margherita;`` maakt enkel een variabele. Er is nog geen object, want dat maak je met ``new``. De compiler zegt ``CS0165: Use of unassigned local variable 'margherita'``. Maak er ``Pizza margherita = new Pizza();`` van.
+2. ``ToonInfo`` staat ``static``. Een objectmethode krijgt geen ``static``: zo'n methode hoort niet bij één pizza en weet dus niet van welke pizza ze de toppings, de diameter en de prijs moet tonen. Daarom zegt de compiler ``CS0120: An object reference is required for the non-static field, method, or property 'Pizza.Toppings'``, en hetzelfde voor ``'Pizza.Diameter'`` en ``'Pizza.prijs'``. In ``Main`` komt er ``CS0176: Member 'Pizza.ToonInfo()' cannot be accessed with an instance reference; qualify it with a type name instead`` bij. Die raad volg je niet: met ``Pizza.ToonInfo();`` blijven de drie andere fouten staan. Haal ``static`` weg, dan verdwijnen ze alle vier.
+::::
+
+**Deel 2.** Nu compileert het, met nog altijd die ene waarschuwing. Voer het uit. Het programma crasht nog voor het de prijs vraagt. Zoek de oorzaak en los ze op. Daarna loopt het wel, maar met ``12`` als prijs toont het ``Pizza met tomaat en mozzarella, 25 cm, 12 euro``, terwijl Steven de diameter op 30 zette. Zoek ook die fout. De waarschuwing helpt je.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. In de ``set`` van ``Toppings`` staat ``Toppings = value;``, met een hoofdletter. Dat is de property zelf, dus die ``set`` roept zichzelf opnieuw op, en die opnieuw, tot het programma crasht. In de console staat ``Stack overflow.``, gevolgd door een lijst waarin ``set_Toppings`` duizenden keren herhaald wordt. De compiler geeft hier geen fout en geen waarschuwing. Schrijf naar de instantievariabele: ``toppings = value;``.
+2. In de ``set`` van ``Diameter`` staat ``diameter = diameter;``. De instantievariabele krijgt haar eigen waarde terug en ``value`` wordt nergens gebruikt, dus de diameter blijft op de beginwaarde 25. Dit is de waarschuwing: ``CS1717: Assignment made to same variable; did you mean to assign something else?``. Maak er ``diameter = value;`` van.
+
+Nu toont het programma ``Pizza met tomaat en mozzarella, 30 cm, 12 euro``.
+::::
+
+**Deel 3.** Het programma doet nu wat Steven wou, zonder fouten of waarschuwingen. Een collega gebruikt de klasse voor een tweede pizza:
+
+```java
+Pizza hawaii = new Pizza();
+hawaii.Toppings = "ham en ananas";
+hawaii.prijs = -4;
+hawaii.ToonInfo();
+```
+
+Ook dat compileert, en het toont ``Pizza met ham en ananas, 25 cm, -4 euro``. Welke twee keuzes in Stevens code maken dat mogelijk? Herschrijf de klasse en ``Main`` zodat geen enkele pizza een prijs van 0 of minder kan krijgen, ook niet in de code van de collega.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. ``public double prijs;`` is een publieke instantievariabele. Iedereen die een ``Pizza`` gebruikt, kan er alles in zetten. Instantievariabelen zijn altijd ``private``.
+2. De controle ``if (prijs > 0)`` staat in ``Main``. Ze beschermt enkel die ene toekenning in Stevens ``Main``: de collega schrijft ze niet over. De controle hoort in de ``set`` van een property ``Prijs``, want daar moet elke prijs langs, waar de pizza ook gebruikt wordt.
+
+In ``Pizza.cs``:
+
+```java
+internal class Pizza
+{
+    private string toppings = "tomatensaus";
+    private int diameter = 25;
+    private double prijs = 10;
+
+    public string Toppings
+    {
+        get
+        {
+            return toppings;
+        }
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                toppings = value;
+            }
+        }
+    }
+
+    public int Diameter
+    {
+        get
+        {
+            return diameter;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                diameter = value;
+            }
+        }
+    }
+
+    public double Prijs
+    {
+        get
+        {
+            return prijs;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                prijs = value;
+            }
+        }
+    }
+
+    public void ToonInfo()
+    {
+        Console.WriteLine($"Pizza met {Toppings}, {Diameter} cm, {Prijs} euro");
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Pizza margherita = new Pizza();
+margherita.Toppings = "tomaat en mozzarella";
+margherita.Diameter = 30;
+
+Console.WriteLine("Wat kost de margherita?");
+margherita.Prijs = Convert.ToDouble(Console.ReadLine());
+margherita.ToonInfo();
+
+Pizza hawaii = new Pizza();
+hawaii.Toppings = "ham en ananas";
+hawaii.Prijs = -4;
+hawaii.ToonInfo();
+```
+
+Met ``12`` als invoer:
+
+```text
+Wat kost de margherita?
+Pizza met tomaat en mozzarella, 30 cm, 12 euro
+Pizza met ham en ananas, 25 cm, 10 euro
+```
+
+De ``set`` weigert ``-4``, dus de hawaii houdt haar beginwaarde van 10 euro.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* Van de zes fouten gaven er twee een compileerfout en één een waarschuwing. De stack overflow, de publieke instantievariabele en de controle in ``Main`` vond de compiler niet.
+* Lees ook de waarschuwingen. ``CS1717`` wees de lijn met de fout in ``Diameter`` aan, terwijl het programma gewoon startte.
+* Tussen ``Toppings = value;`` en ``toppings = value;`` zit één hoofdletter: het eerste schrijft naar de property, het tweede naar de instantievariabele.
+* Zie [De new operator](https://www.ziescherp.be/content/8_klassen/0b_oopincs.html#de-new-operator), [Object methoden](https://www.ziescherp.be/content/8_klassen/0c_simpleobjects.html#object-methoden) (over ``static``), [Full property: set gedeelte](https://www.ziescherp.be/content/8_klassen/2_properties.html#full-property-set-gedeelte) en [Full property met toegangscontrole](https://www.ziescherp.be/content/8_klassen/2_properties.html#full-property-met-toegangscontrole).
+::::
+
+
 # Figuren
 
 :::{.callout-tip}

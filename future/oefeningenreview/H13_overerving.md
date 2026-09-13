@@ -228,3 +228,46 @@ is als afsluiter groot genoeg.
   - "50euro+  20euro" (`:171`);
   - "variabelen" waar "instantievariabelen" hoort (`:288`);
   - de titel "Ballspel met overerving " eindigt op een spatie (`:275`).
+
+## Doorgevoerd (2026-09-13): enkel Stevens dierentuin
+
+Enkel punt 4.2 is doorgevoerd. De rest van dit rapport staat nog open.
+
+- **Pagina:** `oefeningen/13_overerving/A_PracticaSimpel.md`, nieuwe oefening
+  `# Stevens dierentuin (*Essential*) {#h13-stevens-dierentuin}` na Ziekenhuis en vóór HiddenBookmark.
+  Drie delen met elk een Oplossing-callout en een callout "Les(sen) uit deze oefening" met links naar
+  `1_virtual_override.html#een-voorbeeld-met-vliegende-objecten`, `0_overerving_intro.html#protected-keyword`
+  en `3_constructors_inheritance.html#overloaded-constructors-en-base` (ankers nagekeken op de
+  gepubliceerde pagina's).
+- **Coach-data:** `oefeningen/_coach/13_overerving.md`, sectie `## Stevens dierentuin` tussen Ziekenhuis
+  en HiddenBookmark, met Nota, Aanpak en Valkuilen.
+- **Geverifieerd met dotnet** (SDK 10.0.103, klassiek skelet, elke klasse in een eigen bestand):
+  - Stevens versie: eerst enkel `error CS0506: 'Leeuw.Eet()': cannot override inherited member
+    'Dier.Eet()' because it is not marked virtual, abstract, or override` en `warning CS0114:
+    'Leeuw.MaakGeluid()' hides inherited member 'Dier.MaakGeluid()'. To make the current member
+    override that implementation, add the override keyword. Otherwise add the new keyword.`
+  - Na `virtual` op `Eet`: `error CS0122: 'Dier.kiloVoerPerDag' is inaccessible due to its protection
+    level` en `error CS7036: There is no argument given that corresponds to the required parameter
+    'naam' of 'Dier.Dier(string, int)'`, plus dezelfde CS0114.
+  - Na `protected` en `base(naam, kiloVlees)`: enkel CS0114, en de uitvoer eindigt op `Simba maakt geluid.`
+  - Met `override` bij `MaakGeluid`: 0 waarschuwingen, laatste lijn `Simba brult: ROAAAR!`.
+  - Nagekeken voor de uitleg: `new` in plaats van `override` geeft geen waarschuwing en nog altijd
+    `Simba maakt geluid.`; met `Leeuw leeuw = ...` toont Stevens versie wel `Simba brult: ROAAAR!`;
+    `override` weghalen bij `Eet` geeft `warning CS0108` en `Simba eet 7 kg voer.`
+- **Afwijkingen van het voorstel:**
+  - `Leeuw` in plaats van `Paard`, en `kiloVoerPerDag` in plaats van `geboortejaar`. `Paard : Dier` met
+    een private `geboortejaar` is letterlijk het voorbeeld bij `protected`
+    (`content/12_overerving/0_overerving_intro.MD:139-165`), en een leeuw past bij een dierentuin.
+  - De vierde fout geeft CS0114 en niet CS0108. `MaakGeluid` staat `virtual` in `Dier` en enkel `override`
+    ontbreekt. CS0108 krijg je alleen als de parent-methode niet `virtual` is, en dan is het dezelfde
+    fout als de eerste.
+  - Geen `List<Dier>`. De leerstof van H12 en H13 zet nergens childs in een List van het parent-type,
+    enkel in een variabele (`Helikopter redder = new ReddingsHelikopter();`,
+    `content/12_overerving/1_virtual_override.md:138`). Stevens `Main` gebruikt daarom `Dier leeuw = new Leeuw(...)`.
+  - De meldingen staan in de vorm van de andere oefeningen (code plus melding, bv. `CS0506 'Leeuw.Eet()': ...`),
+    zonder bestand, lijn en het woord "error". De tekst zelf is letterlijk die van dotnet.
+  - Dat CS0122 en CS7036 pas na CS0506 verschijnen, is enkel met `dotnet build` nagekeken. Visual Studio
+    kan ze terwijl je typt al onderlijnen. De opgave zegt daarom "de compiler meldt één fout", en de
+    oplossing van deel 1 vermeldt die rode kronkels.
+- Niet gerenderd en de scripts niet gedraaid (zo gevraagd). Het slot-script zal bij deze oefening
+  waarschijnlijk "oplossingstekst op de pagina" melden, omdat de code in de opgave staat.

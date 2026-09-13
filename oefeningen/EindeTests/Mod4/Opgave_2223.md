@@ -1,10 +1,10 @@
-> Volgende opgave was de vaardigheidsproefopdracht voor het examen van dit vak (OOP) in juli 2024
+> Volgende opgave was de vaardigheidsproefopdracht voor het examen van dit vak (OOP) in juli 2023
 
 # Introductie
 Je firma werd gevraagd om voor een grote rederij een manifest-generator te maken. Wanneer een schip gevuld wordt met dozen en containers dan moet de kapitein ook steeds een manifest hebben. Op dit document (=het manifest) staat welke lading het schip aan boord heeft.
 
 Het bedrijf biedt verschillende soorten dozen aan die de gebruiker kan gebruiken om z’n pakket mee te verzenden. Afhankelijk van het type doos zal de kostprijs anders zijn. 
-Voorts biedt het bedrijf een SecureContainer aan. Dit is een doos die kan verzegeld worden. Een verzegelde container heeft als extra eigenschappen dat het ten eerste z’n kostprijs niet zal teruggegeven (zodat dieven niet weten wat de waarde van de inhoud is) en het zal ook onthouden hoe vaak externen de kostprijs van de doos wensen te weten komen. 
+Voorts biedt het bedrijf een SecureContainer aan. Dit is een doos die kan verzegeld worden. Een verzegelde container zal z’n kostprijs niet teruggeven (zodat dieven niet weten wat de waarde van de inhoud is). Daarnaast onthoudt een SecureContainer, verzegeld of niet, hoe vaak externen de kostprijs van de doos wensen te weten komen. 
 
  
  ![Schema](2223a.png)
@@ -40,21 +40,23 @@ De kostprijs van een Container is de “kostprijs van een Doos + 5”.
 
 ## PostDoos
 
-De kostprijs van een PostDoos is altijd 10.
+De kostprijs van een PostDoos is de kostprijs van een Doos.
  
 ## Interface ISafe
 ISafe is een interface
 ISafe bevat 2 methoden:
 VerzegelInhoud: 
 * vereist geen parameters en geeft niets terug.
-GeefAntalLeesAttempts: 
+GeefAantalLeesAttempts: 
 * vereist geen parameters en geeft een int terug.
 
 ## Klasse SecureContainer
-GeefAantalLeesAttemps() geeft terug hoe vaak de KostPrijs van het object werd uitgelezen via de get’r.
+GeefAantalLeesAttempts() geeft terug hoe vaak de KostPrijs van het object werd uitgelezen via de get’r, voor en na het verzegelen.
 VerzegelInhoud(): vanaf je dit aanroept zal de container verzegeld zijn. Een verzegelde container zal 0 als Kostprijs teruggeven in plaats van de effectieve kostprijs. (eens verzegeld kan dit niet meer ongedaan gemaakt worden).
 
 ## Klasse DHLSchip
+Heeft een Naam (string): de naam van het schip.
+
 Heeft een Lijst van Dozen genaamd vrachtRuim die naar buiten toe beschikbaar is via public get, maar private set.
 
 Heeft een methode VoegDoosToe: 
@@ -67,7 +69,7 @@ Heeft een methode ToonManifest:
 * Vereist geen parameters en geeft niets terug.
 * Deze methode aanroepen zal resulteren in het afdrukken van het manifest naar het scherm. De output hiervan wordt besproken in een later deel van deze opgave.
  
-## Deel 2: Manifest output DHLSchip (4 punten)
+# Deel 2: Manifest output DHLSchip (4 punten)
 De ToonManifest()-methode van het DHLSchip zal de volgende output genereren:
 * Hoofding: Naam van het schip
 * Midden: informatie van de dozen.
@@ -128,7 +130,7 @@ Indien de gebruiker een SecureContainer heeft aangemaakt dan wordt in deze stap 
 Ongeacht stap 3 zal nu de doos worden toegevoegd, op voorwaarde dat er nog plek op het schip is.
  
 # Deel 4: Extra’s (6p, waarvan)
-## 5.1	Mooiere output voor Doos  (2 punten)
+## 4.1	Mooiere output voor Doos  (2 punten)
 Zorg ervoor dat je een doos-object naar de WriteLine()-methode kunt sturen als volgt Console.WriteLine(myDoos);, en er een mooie output op het scherm verschijnt, namelijk het doostype, gewicht, kostprijs en inhoud. Bij een SecureContainer wordt er ook nog getoond of de doos is verzegeld of niet.
 
 Voorbeelden:
@@ -139,11 +141,11 @@ Output bij Container:
 Output bij verzegelde SecureContainer
 	SecureContainer , Gewicht: 2, Prijs: 0,  Strips, Verzegeld=ja
 
-## 5.2	VergrendelSnel-methode (2 punten)
+## 4.2	VergrendelSnel-methode (2 punten)
 Maak in je hoofdprogramma een methode die toelaat om snel alle SecureContainers in een schip te vergrendelen. De methode aanvaard één parameter van het type DHLSchip.
 Biedt in je applicatie in het hoofdmenu (3b) als 4e optie “Vergrendel alles” om dit voor de gebruiker te doen.
 
-## 5.3	Bootmanager (2 punten)
+## 4.3	Bootmanager (2 punten)
 Voorzie de mogelijkheid om de gebruiker te laten ingeven om dozen in het VrachtRuim te:
 * Verwijderen
 * Verplaatsen 
@@ -172,171 +174,430 @@ Gebruiker komt terug op het hoofdscherm en kiest nu optie b om het manifest te t
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
+Elke klasse staat in een apart bestand. `Doos` is de klasse uit de opgave, aangevuld met `ToString` (4.1) en `MaakKopie`, die elke doos een echte kopie van zichzelf laat maken voor het dupliceren in 4.3.
+
+**Doos.cs**
+
 ```java
-Pharaoh pharaoh1 = new Pharaoh("Tuti", -490, -400);
-pharaoh1.AddAchievement("Built pyramid");
-pharaoh1.AddAchievement("Killed slaves");
-Pharaoh pharaoh2 = new Pharaoh("Seth", -550, -490);
-pharaoh2.AddAchievement("Killed other slaves");
-pharaoh2.AddAchievement("Built small pyramid");
+namespace Manifest
+{
+    abstract class Doos
+    {
+        public Doos(int id)
+        {
+            ID = id;
+        }
+        public int ID { get; private set; }
+        public int Gewicht { get; set; }
+        public string Inhoud { get; set; }
 
-Dynasty dynasty1 = new Dynasty()
-{
-    StartYear = -600,
-    EndYear = -500
-};
+        public virtual int KostPrijs
+        {
+            get { return Gewicht * 10; }
+        }
 
-try
-{
-    Console.WriteLine($"Adding {pharaoh1.Name}");
-    dynasty1.AddPharaoh(pharaoh1);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
-try
-{
-    Console.WriteLine($"Adding {pharaoh2.Name}");
-    dynasty1.AddPharaoh(pharaoh2);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
+        public abstract Doos MaakKopie(int nieuwId);
 
-Console.WriteLine($"\nDuration dynasty {dynasty1.Name}:{dynasty1.CalculateDuration()}");
-Console.WriteLine("\nEvents from this dynasty:");
-dynasty1.ShowEvents();
+        public override string ToString()
+        {
+            return $"{GetType().Name} , Gewicht: {Gewicht}, Prijs: {KostPrijs},  {Inhoud}";
+        }
+    }
+}
 ```
 
+**PostDoos.cs**
+
+Een PostDoos kost evenveel als een Doos, dus KostPrijs hoeft hier niet overschreven te worden.
+
 ```java
-class Pharaoh
+namespace Manifest
 {
-
-    public Pharaoh(string nameIn, int reignStartIn, int reignEndIn)
+    class PostDoos : Doos
     {
-        Name = nameIn;
-        if (reignStartIn > reignEndYear)
+        public PostDoos(int id) : base(id)
         {
-            ReignStartYear = reignEndIn;
-            ReignEndYear = reignStartIn;
         }
-        else
+
+        public override Doos MaakKopie(int nieuwId)
         {
-            ReignStartYear = reignStartIn;
-            ReignEndYear = reignEndIn;
-        }
-    }
-    public Pharaoh(string nameIn, int reignStartIn) : this(nameIn, reignStartIn, 0)
-    {
-
-    }
-    public string Name { get; set; }
-    private int reignStartYear;
-
-    public int ReignStartYear
-    {
-        get { return reignStartYear; }
-        set
-        {
-            if (value < 0)
-                reignStartYear = value;
-        }
-    }
-
-    private int reignEndYear;
-
-    public int ReignEndYear
-    {
-        get { return reignEndYear; }
-        set
-        {
-            if (value < 0 && value > ReignStartYear)
-                reignEndYear = value;
-        }
-    }
-
-    private List<string> achievements = new List<string>();
-
-    public int CalculateReignLength()
-    {
-        return Math.Abs(ReignStartYear - ReignEndYear);
-    }
-
-    public void AddAchievement(string achievement)
-    {
-        achievements.Add(achievement);
-    }
-
-    public void ShowAchievements()
-    {
-        foreach (var achievement in achievements)
-        {
-            Console.WriteLine(achievement);
+            return new PostDoos(nieuwId) { Gewicht = Gewicht, Inhoud = Inhoud };
         }
     }
 }
+```
 
-class Dynasty
+**Container.cs**
+
+```java
+namespace Manifest
 {
-    public string Name { get; set; }
-    private int startYear;
-
-    public int StartYear
+    class Container : Doos
     {
-        get { return startYear; }
-        set
+        public Container(int id) : base(id)
         {
-            if (value < 0)
-                startYear = value;
+        }
+
+        public override int KostPrijs
+        {
+            get { return base.KostPrijs + 5; }
+        }
+
+        public override Doos MaakKopie(int nieuwId)
+        {
+            return new Container(nieuwId) { Gewicht = Gewicht, Inhoud = Inhoud };
         }
     }
+}
+```
 
-    private int endYear;
+**ISafe.cs**
 
-    public int EndYear
+```java
+namespace Manifest
+{
+    interface ISafe
     {
-        get { return endYear; }
-        set
+        void VerzegelInhoud();
+        int GeefAantalLeesAttempts();
+    }
+}
+```
+
+**SecureContainer.cs**
+
+```java
+namespace Manifest
+{
+    class SecureContainer : Container, ISafe
+    {
+        private int aantalLeesAttempts = 0;
+
+        public SecureContainer(int id) : base(id)
         {
-            if (value < 0 && value > StartYear)
-                endYear = value;
+        }
+
+        public bool IsVerzegeld { get; private set; }
+
+        public override int KostPrijs
+        {
+            get
+            {
+                aantalLeesAttempts++;
+                if (IsVerzegeld)
+                {
+                    return 0;
+                }
+                return base.KostPrijs;
+            }
+        }
+
+        public void VerzegelInhoud()
+        {
+            IsVerzegeld = true;
+        }
+
+        public int GeefAantalLeesAttempts()
+        {
+            return aantalLeesAttempts;
+        }
+
+        public override Doos MaakKopie(int nieuwId)
+        {
+            SecureContainer kopie = new SecureContainer(nieuwId) { Gewicht = Gewicht, Inhoud = Inhoud };
+            if (IsVerzegeld)
+            {
+                kopie.VerzegelInhoud();
+            }
+            return kopie;
+        }
+
+        public override string ToString()
+        {
+            string verzegeld = "nee";
+            if (IsVerzegeld)
+            {
+                verzegeld = "ja";
+            }
+            return $"{base.ToString()}, Verzegeld={verzegeld}";
         }
     }
+}
+```
 
-    private List<Pharaoh> pharoahs = new List<Pharaoh>();
+**DHLSchip.cs**
 
-    public void AddPharaoh(Pharaoh pharaohToAdd)
+Vervangen en dupliceren gebruiken dezelfde gewichtscontrole als `VoegDoosToe`, zodat het schip ook dan niet boven de 10 komt.
+
+```java
+namespace Manifest
+{
+    class DHLSchip
     {
-        if (pharaohToAdd.ReignEndYear < this.StartYear || pharaohToAdd.ReignStartYear > this.EndYear)
+        private const int MAX_GEWICHT = 10;
+        private const int TOESLAG_SAFE = 10;
+
+        public DHLSchip(string naam)
         {
-            throw new Exception("This Pharaoh has no overlapping reign period with this dynasty");
+            Naam = naam;
+            VrachtRuim = new List<Doos>();
         }
-        pharoahs.Add(pharaohToAdd);
-    }
 
-    public int CalculateDuration()
-    {
-        return Math.Abs(StartYear - EndYear);
-    }
+        public string Naam { get; private set; }
+        public List<Doos> VrachtRuim { get; private set; }
 
-    public void ShowEvents()
-    {
-        ShowData(true);
-    }
-    public void ShowPharaohs()
-    {
-        ShowData(false);
-    }
-
-    private void ShowData(bool showAchievements)
-    {
-        foreach (var pharaoh in pharoahs)
+        public int TotaalGewicht
         {
-            Console.WriteLine($"{pharaoh.Name}");
-            if (showAchievements)
-                pharaoh.ShowAchievements();
+            get
+            {
+                int totaal = 0;
+                foreach (Doos doos in VrachtRuim)
+                {
+                    totaal += doos.Gewicht;
+                }
+                return totaal;
+            }
+        }
+
+        public bool VoegDoosToe(Doos doos)
+        {
+            ControleerGewicht(doos.Gewicht);
+            VrachtRuim.Add(doos);
+            return true;
+        }
+
+        private void ControleerGewicht(int extraGewicht)
+        {
+            if (TotaalGewicht + extraGewicht > MAX_GEWICHT)
+            {
+                throw new Exception("Te zwaar. Doos niet toegevoegd");
+            }
+        }
+
+        public void VerwijderDoos(int index)
+        {
+            VrachtRuim.RemoveAt(index);
+        }
+
+        public void VerplaatsDoos(int vanIndex, int naarIndex)
+        {
+            Doos doos = VrachtRuim[vanIndex];
+            VrachtRuim.RemoveAt(vanIndex);
+            VrachtRuim.Insert(naarIndex, doos);
+        }
+
+        public void VervangDoos(int index, Doos nieuweDoos)
+        {
+            ControleerGewicht(nieuweDoos.Gewicht - VrachtRuim[index].Gewicht);
+            VrachtRuim[index] = nieuweDoos;
+        }
+
+        public void DupliceerDoos(int index, int nieuwId)
+        {
+            VoegDoosToe(VrachtRuim[index].MaakKopie(nieuwId));
+        }
+
+        public void ToonManifest()
+        {
+            Console.WriteLine($"{Naam}-Manifest");
+            Console.WriteLine("*****************");
+            int totaalPrijs = 0;
+            foreach (Doos doos in VrachtRuim)
+            {
+                int prijs = doos.KostPrijs;
+                Console.Write($"-{doos.Inhoud} \t {doos.Gewicht} \t{prijs}");
+                if (doos is ISafe safe)
+                {
+                    Console.Write($"#####{safe.GeefAantalLeesAttempts()}");
+                    prijs += TOESLAG_SAFE;
+                }
+                Console.WriteLine();
+                totaalPrijs += prijs;
+            }
+            Console.WriteLine("-------------------");
+            Console.WriteLine($"TOTAAL GEWICHT=\t\t{TotaalGewicht}");
+            Console.WriteLine($"TOTAAL PRIJS=\t\t{totaalPrijs}");
+        }
+    }
+}
+```
+
+**Program.cs**
+
+```java
+namespace Manifest
+{
+    internal class Program
+    {
+        private static int volgendId = 1;
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Geef scheepsnaam voor we verder gaan aub");
+            DHLSchip schip = new DHLSchip(Console.ReadLine());
+
+            string keuze;
+            do
+            {
+                Console.WriteLine("************************");
+                Console.WriteLine("* DHL MANIFEST CREATOR *");
+                Console.WriteLine("************************");
+                Console.WriteLine("Maak uw keuze");
+                Console.WriteLine("a. Een doos aanmaken en op het schip zetten");
+                Console.WriteLine("b. Het schip-manifest op het scherm afdrukken");
+                Console.WriteLine("c. Het programma afsluiten");
+                Console.WriteLine("d. Vergrendel alles");
+                Console.WriteLine("e. Dozen in het vrachtruim beheren");
+                keuze = Console.ReadLine();
+
+                switch (keuze)
+                {
+                    case "a":
+                        VoegNieuweDoosToe(schip);
+                        break;
+                    case "b":
+                        schip.ToonManifest();
+                        break;
+                    case "c":
+                        break;
+                    case "d":
+                        VergrendelSnel(schip);
+                        Console.WriteLine("Alle SecureContainers zijn verzegeld.");
+                        break;
+                    case "e":
+                        BeheerDozen(schip);
+                        break;
+                    default:
+                        Console.WriteLine("Onbekende keuze.");
+                        break;
+                }
+            } while (keuze != "c");
+        }
+
+        static Doos MaakDoos()
+        {
+            string type;
+            do
+            {
+                Console.WriteLine("STAP 1 - Doos maken.Type doos?");
+                Console.WriteLine("a.PostDoos");
+                Console.WriteLine("b.Container");
+                Console.WriteLine("c.SecureContainer");
+                type = Console.ReadLine();
+            } while (type != "a" && type != "b" && type != "c");
+
+            Doos doos;
+            if (type == "a")
+            {
+                doos = new PostDoos(volgendId);
+            }
+            else if (type == "b")
+            {
+                doos = new Container(volgendId);
+            }
+            else
+            {
+                doos = new SecureContainer(volgendId);
+            }
+            volgendId++;
+
+            Console.WriteLine("STAP 2 - Inhoud van de doos?");
+            doos.Inhoud = Console.ReadLine();
+            Console.WriteLine("Gewicht van de doos?");
+            doos.Gewicht = int.Parse(Console.ReadLine());
+
+            if (doos is ISafe safe)
+            {
+                Console.WriteLine("Wenst u deze doos te verzegelen? (j/n)");
+                if (Console.ReadLine() == "j")
+                {
+                    safe.VerzegelInhoud();
+                }
+            }
+            return doos;
+        }
+
+        static void VoegNieuweDoosToe(DHLSchip schip)
+        {
+            Doos doos = MaakDoos();
+            try
+            {
+                schip.VoegDoosToe(doos);
+                Console.WriteLine("Doos toegevoegd.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void VergrendelSnel(DHLSchip schip)
+        {
+            foreach (Doos doos in schip.VrachtRuim)
+            {
+                if (doos is SecureContainer container)
+                {
+                    container.VerzegelInhoud();
+                }
+            }
+        }
+
+        static void BeheerDozen(DHLSchip schip)
+        {
+            if (schip.VrachtRuim.Count == 0)
+            {
+                Console.WriteLine("Het vrachtruim is leeg.");
+            }
+            else
+            {
+                for (int i = 0; i < schip.VrachtRuim.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {schip.VrachtRuim[i]}");
+                }
+                Console.WriteLine("a. Verwijderen");
+                Console.WriteLine("b. Verplaatsen");
+                Console.WriteLine("c. Vervangen");
+                Console.WriteLine("d. Dupliceren");
+                string actie = Console.ReadLine();
+                int index = VraagPositie("Welke doos?", schip.VrachtRuim.Count);
+                try
+                {
+                    switch (actie)
+                    {
+                        case "a":
+                            schip.VerwijderDoos(index);
+                            break;
+                        case "b":
+                            schip.VerplaatsDoos(index, VraagPositie("Naar welke plaats?", schip.VrachtRuim.Count));
+                            break;
+                        case "c":
+                            schip.VervangDoos(index, MaakDoos());
+                            break;
+                        case "d":
+                            schip.DupliceerDoos(index, volgendId);
+                            volgendId++;
+                            break;
+                        default:
+                            Console.WriteLine("Onbekende actie.");
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        static int VraagPositie(string vraag, int aantalDozen)
+        {
+            int positie;
+            do
+            {
+                Console.WriteLine($"{vraag} (1 tot {aantalDozen})");
+                positie = int.Parse(Console.ReadLine());
+            } while (positie < 1 || positie > aantalDozen);
+            return positie - 1;
         }
     }
 }

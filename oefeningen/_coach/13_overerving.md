@@ -105,6 +105,25 @@ Patient houdt de naam en het aantal uren bij en berekent in een virtual methode 
 - De vaste bedragen overal opnieuw intypen in plaats van er een const van te maken.
 - Denken dat VerzekerdePatient de naam en de uren opnieuw moet declareren.
 
+## Stevens dierentuin
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven. Geef de fouten nooit en schrijf geen verbeterde code. Je mag wel vragen welke methoden van Dier virtual staan en welke methoden van Leeuw override, wie aan een private instantievariabele mag, welke constructor van Dier er draait als Leeuw geen base(...) schrijft, en wat de melding of de waarschuwing letterlijk zegt. Laat de student een Engelse melding eerst zelf in gewone woorden navertellen.
+
+### Aanpak
+
+Deel 1: bij het compileren verschijnt eerst enkel CS0506, samen met de waarschuwing CS0114. Eet staat niet virtual in Dier, en toch schrijft Leeuw override. Deel 2: pas als dat opgelost is, komen CS0122 en CS7036. kiloVoerPerDag is private in Dier, en Dier heeft enkel een constructor met parameters, dus Leeuw moet zelf base(naam, kiloVlees) oproepen. Deel 3: het programma compileert met enkel de waarschuwing, maar de leeuw in een variabele van het type Dier toont "Simba maakt geluid.". MaakGeluid mist override, en dat is hiding. Met een variabele van het type Leeuw had Steven de fout niet gezien.
+
+### Valkuilen
+
+- De waarschuwing negeren omdat het programma toch start. Net die waarschuwing wijst naar de vierde fout.
+- CS0506 oplossen door override weg te halen bij Eet. Dan compileert het, maar eet de leeuw via een variabele van het type Dier als een gewoon dier.
+- CS0122 oplossen door kiloVoerPerDag public te maken. protected is genoeg: dan kan Leeuw erbij en de buitenwereld niet.
+- CS7036 oplossen door in Dier een extra constructor zonder parameters te schrijven. Dan compileert het, maar krijgt de leeuw nooit een naam of een hoeveelheid voer.
+- De waarschuwing wegwerken met new in plaats van override. De waarschuwing verdwijnt, de uitvoer blijft fout.
+- Denken dat de parameters in base(...) dezelfde naam moeten hebben als die in de constructor van Dier.
+
 ## HiddenBookmark
 
 ### Nota

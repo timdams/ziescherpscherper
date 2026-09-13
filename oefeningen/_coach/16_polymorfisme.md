@@ -75,6 +75,24 @@ Er komt één menu-item bij: de gebruiker typt een diersoort, en enkel dieren va
 - De switch-cases bijna identiek uitschrijven en de gemeenschappelijke lus vier keer kopiëren.
 - Vergeten dat de gebruiker ook iets kan intypen dat geen diersoort is.
 
+## Stevens dierenshow
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven, met de klassen van Dierentuin advanced. Geef de fouten nooit, ook niet in een hint die ze voorzegt. In deel 1 mag je vragen of een koe een Dier is, en welke tak van een if met else if C# uitvoert als de eerste test al true is. In deel 2 mag je vragen voor welke typenamen er een case is, en of Zegt al in Dier staat. In deel 3 mag je vragen welke methode enkel een Koe heeft.
+
+### Aanpak
+
+Deel 1: dier is Dier is true voor elk element van een List<Dier>, dus de else if met Koe wordt nooit bekeken en er komt geen melk. Deel 2: de switch op GetType().Name heeft geen case voor Vis, en bouwt met de hand na wat dier.Zegt() via late binding al doet. De casts zijn daardoor ook overbodig. Deel 3: één lus met de podiumregel, dier.Zegt() en if (dier is Koe koe) koe.GeefMelk(). De oplossing zet accolades rond de body van de if.
+
+### Valkuilen
+
+- Enkel de twee tests van plaats wisselen. Dan krijgen de koeien melk, maar komen ze niet meer op het podium.
+- Een case "Vis" aan de switch toevoegen in plaats van de switch te schrappen.
+- is gebruiken om Zegt aan te roepen, terwijl elk dier die methode al heeft.
+- GeefMelk in Dier zetten zodat de omzetting niet meer nodig is. Een slang geeft geen melk.
+- Na is Koe toch nog met haakjes of met as omzetten, terwijl pattern matching de koe meteen in een variabele zet.
+
 ## Pokémon vergelijken
 
 ### Nota
@@ -92,6 +110,24 @@ Equals bestaat al in System.Object en krijgt een object als parameter, dus je be
 - GetHashCode vergeten.
 - De objecten met == vergelijken en verbaasd zijn dat twee identieke Pokémon verschillend blijken.
 - De _Full-stats mee vergelijken. De opgave noemt de base-stats, de naam en het level.
+
+## Stevens Pokédex
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven, met een ingekorte Pokemon-klasse (naam, level en twee base-stats). Geef de fouten nooit, ook niet in een hint die ze voorzegt. In deel 1 mag je vragen welk type de parameter van Equals in System.Object heeft, wat er gebeurt als de student override voor Stevens methode zet, en welke Equals Contains volgens hem gebruikt. In deel 2 mag je vragen wat er in team[2] zit. In deel 3 mag je vragen wat de student met Stevens oude methode doet.
+
+### Aanpak
+
+Deel 1: Equals(Pokemon andere) zonder override is een overload naast de Equals met een object als parameter uit System.Object. a.Equals(b) kiest Stevens versie, Contains gebruikt de versie met object, en die vergelijkt nog altijd referenties. Met override ervoor geeft de compiler CS0115. Deel 2: de lege plaatsen van de array zijn null, en andere.Naam crasht met een NullReferenceException. Equals hoort bij null false te geven. Deel 3: Stevens versie weg, public override bool Equals(object obj) met if (obj is Pokemon andere), en GetHashCode met HashCode.Combine over dezelfde vier gegevens. De uitvoer wordt dan True, 1 en True.
+
+### Valkuilen
+
+- Stevens Equals(Pokemon) laten staan naast de nieuwe override. Dan kiest de compiler bij a.Equals(b) en b.Equals(team[i]) nog altijd Stevens versie, en blijft de crash.
+- obj meteen omzetten met (Pokemon)obj, of met as zonder daarna op null te controleren.
+- De crash oplossen met een null-controle in Main, en Equals zelf onveilig laten.
+- GetHashCode vergeten, of er andere gegevens in steken dan in Equals.
+- De waarschuwing CS8765 willen wegwerken met object?. Die mag blijven staan: nullable types zitten niet in de leerstof.
 
 ## Een eigen huis
 

@@ -240,3 +240,44 @@ foreach (PRO) → Game (project). Mapmaker afwerken verdwijnt uit H17.
 - **Ankers.** Deze pagina heeft nog geen expliciete ankers, dus elke titelwijziging (Figuren sorteren,
   PokéDex met foreach) verandert het automatische anker. Geef bij het doorvoeren elke oefening een
   `{#h17-...}`-anker en pas de titels in de coach-data mee aan.
+
+## Doorgevoerd (2026-09-13): enkel Stevens superhelden
+
+Enkel de nieuwe oefening uit sectie 4, punt 1. De rest van dit rapport is nog niet doorgevoerd, en de
+status in de README blijft "analyse".
+
+- `oefeningen/17_interfaces/A_practica.md`: `# Stevens superhelden (*Essential*) {#h17-stevens-superhelden}`,
+  tussen Figures with interfaces en Carbon Footprint. Stevens code staat in vijf blokken, één per
+  bestand. **Deel 1** (vier compileerfouten) en **Deel 2** (drie vragen) hebben elk een Oplossing, en er
+  is een Les met links naar `#interface-regels` en `#meerder-interfaces` op
+  `content/16_interfaces/1_Interface_intro.html`.
+- `oefeningen/_coach/17_interfaces.md`: sectie `## Stevens superhelden` na Figures with interfaces, met
+  Nota, Aanpak en Valkuilen.
+- Geverifieerd met dotnet 10 (net10.0, klassiek skelet, elke klasse in een eigen bestand):
+  - Stevens versie geeft exact drie fouten: `CS0525: Interfaces cannot contain instance fields`,
+    `CS1722: Base class 'Man' must come before any interfaces` en `CS0737: 'Zorro' does not implement
+    interface member 'ISuperHeld.Power'. 'Zorro.Power' cannot implement an interface member because it
+    is not public.`
+  - `CS0144: Cannot create an instance of the abstract type or interface 'ISuperHeld'` verschijnt pas als
+    alle drie hersteld zijn. Ook met telkens één van de drie nog in de code blijft CS0144 weg.
+  - `public void SchietLasers();` in de interface compileert.
+  - Een constructor in de interface: `CS0526: Interfaces cannot contain instance constructors`.
+  - `Batman : Man, SuperHeld` met een abstracte klasse: `CS1721: Class 'Batman' cannot have multiple base
+    classes: 'Man' and 'SuperHeld'`.
+  - De herstelde versie bouwt zonder fouten en zonder waarschuwingen, en de uitvoer staat in de oplossing.
+- Afwijkingen van het voorstel:
+  - **Zorro mist `Power` (CS0535) is vervangen door een `Power` zonder `public` (CS0737).** Een ontbrekend
+    lid is precies de Steven-opdracht die al in de leerstof staat (`content/16_interfaces/1_Interface_intro.MD:91-115`).
+    De nieuwe fout traint de regel "alles in een interface is public" van de klassekant.
+  - **Het extraatje `public void SchietLasers();` is geen strikvraag in deel 1 maar vraag 1 van deel 2.**
+    De leerstof zegt op `:64` dat je geen access modifiers kan schrijven, maar de voetnoot op `:69` zegt dat
+    het sinds C# 8 mag. De oplossing verwijst naar die voetnoot, dus de oefening spreekt de leerstof niet
+    tegen. De tegenstrijdigheid in de leerstof zelf (sectie 6) blijft staan.
+  - **Deel 2 is nieuw**: een constructor in de interface (de tweede interfaceregel, die in het voorstel
+    ontbrak) en waarom een abstracte klasse hier niet kan (de tabel op `:77-89`, zie ook sectie 2).
+  - De Les zegt dat Visual Studio de fout in `Main` soms al toont tijdens het typen, omdat de live controle
+    in de editor niet op de build wacht. Enkel de commandline is getest, niet Visual Studio zelf.
+- Niet gedaan: renderen, de scripts in `scripts/` draaien. De ankers `#interface-regels` en
+  `#meerder-interfaces` volgen uit de koppen in de bron (Quarto maakt ze automatisch), maar zijn niet in
+  een render nagekeken. De plaats in de volgorde volgt de opdracht, niet sectie 5 (daar staat de oefening
+  eerst).

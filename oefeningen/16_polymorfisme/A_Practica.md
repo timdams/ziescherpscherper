@@ -74,6 +74,142 @@ case "Varken":
 ::::
 
 
+# Stevens dierenshow (*Essential*) {#h16-stevens-dierenshow}
+
+Stagiair Steven werkt verder aan de dierentuin van Dierentuin advanced. Voor de dierenshow moet elk dier één keer op het podium komen en praten, en daarna moet elke koe gemolken worden. Daarvoor gaf hij ``Koe`` een extra methode ``GeefMelk``. De klassen zien er zo uit (in je project staat elke klasse in een eigen bestand):
+
+```java
+internal abstract class Dier
+{
+    public int Gewicht { get; set; }
+
+    public abstract void Zegt();
+}
+
+internal class Koe : Dier
+{
+    public override void Zegt()
+    {
+        Console.WriteLine("moooeeee");
+    }
+
+    public void GeefMelk()
+    {
+        Console.WriteLine("De koe geeft een emmer melk.");
+    }
+}
+
+internal class Slang : Dier
+{
+    public override void Zegt()
+    {
+        Console.WriteLine("sssss");
+    }
+}
+
+internal class Vis : Dier
+{
+    public override void Zegt()
+    {
+        Console.WriteLine("blub");
+    }
+}
+```
+
+Voor de show zelf vroeg Steven een A.I. om "een lus die bij elk soort dier het juiste doet". Hij plakte dit in ``Main``:
+
+```java
+List<Dier> dieren = new List<Dier>();
+dieren.Add(new Koe() { Gewicht = 600 });
+dieren.Add(new Slang() { Gewicht = 3 });
+dieren.Add(new Vis() { Gewicht = 1 });
+dieren.Add(new Koe() { Gewicht = 550 });
+
+foreach (Dier dier in dieren)
+{
+    if (dier is Dier)
+        Console.WriteLine($"Op het podium: een dier van {dier.Gewicht} kg");
+    else if (dier is Koe)
+        ((Koe)dier).GeefMelk();
+
+    switch (dier.GetType().Name)
+    {
+        case "Koe":
+            ((Koe)dier).Zegt();
+            break;
+        case "Slang":
+            ((Slang)dier).Zegt();
+            break;
+    }
+}
+```
+
+**Deel 1.** Het compileert zonder één waarschuwing. Voer het uit. Er wordt geen enkele koe gemolken. Waarom niet?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De uitvoer is:
+
+```text
+Op het podium: een dier van 600 kg
+moooeeee
+Op het podium: een dier van 3 kg
+sssss
+Op het podium: een dier van 1 kg
+Op het podium: een dier van 550 kg
+moooeeee
+```
+
+De eerste test is ``dier is Dier``. Elk object in een ``List<Dier>`` is een ``Dier``, ook een koe: een ``Koe`` **is een** ``Dier``. Die test is dus altijd ``true``, en bij een ``if`` met een ``else if`` voert C# enkel de eerste tak uit die klopt. De test ``dier is Koe`` wordt nooit bekeken.
+
+Enkel de twee tests van plaats wisselen helpt maar half. Dan krijgen de koeien hun melk, maar komen ze niet meer op het podium, want nog altijd draait maar één van de twee takken. De test ``dier is Dier`` is gewoon overbodig: het podium is voor elk dier.
+::::
+
+**Deel 2.** Ook de vis zegt niets. Waarom niet? En waarom had Steven die hele ``switch`` niet nodig?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De ``switch`` kijkt naar de naam van het type, en heeft enkel een ``case`` voor ``"Koe"`` en ``"Slang"``. Voor ``"Vis"`` is er geen ``case``, dus zwijgt de vis. Zet Steven morgen een ``Hond`` in de dierentuin, dan zwijgt die ook, zonder dat iemand een foutmelding krijgt. Een tikfout zoals ``"koe"`` merkt de compiler evenmin op.
+
+``Zegt`` is ``abstract`` in ``Dier``. Elk dier heeft die methode dus, en dankzij late binding draait vanzelf de versie van het echte object in de heap. Eén regel ``dier.Zegt();`` doet wat de ``switch`` probeert, voor elk dier, ook voor soorten die nog niet bestaan. Daarom zijn de casts ``((Koe)dier)`` en ``((Slang)dier)`` ook overbodig.
+::::
+
+**Deel 3.** Herschrijf de lus. Elk dier komt op het podium en praat, en elke koe geeft daarna melk. Gebruik geen cast met haakjes.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```java
+foreach (Dier dier in dieren)
+{
+    Console.WriteLine($"Op het podium: een dier van {dier.Gewicht} kg");
+    dier.Zegt();
+    if (dier is Koe koe)
+    {
+        koe.GeefMelk();
+    }
+}
+```
+
+``GeefMelk`` staat niet in ``Dier``, dus daarvoor moet je wel terug naar ``Koe``. Met pattern matching doe je de controle en de omzetting in één keer. De uitvoer wordt:
+
+```text
+Op het podium: een dier van 600 kg
+moooeeee
+De koe geeft een emmer melk.
+Op het podium: een dier van 3 kg
+sssss
+Op het podium: een dier van 1 kg
+blub
+Op het podium: een dier van 550 kg
+moooeeee
+De koe geeft een emmer melk.
+```
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* ``is Dier`` op een element van een ``List<Dier>`` is altijd ``true``, tenzij het element ``null`` is. Test je in een ``if`` met ``else if`` op meerdere types, zet dan het meest specifieke type eerst.
+* Heeft elk object de methode al, omdat ze ``virtual`` of ``abstract`` is in de parent, dan heb je ``is`` niet nodig. ``is`` is voor wat enkel een child kan, zoals ``GeefMelk``.
+* Zie [Het is keyword](https://www.ziescherp.be/content/18_IsAs/1_IsAs.html#het-is-keyword), [Pattern matching: is met een variabele](https://www.ziescherp.be/content/18_IsAs/1_IsAs.html#pattern-matching-is-met-een-variabele) en de stagiair in [Polymorfisme in de praktijk](https://www.ziescherp.be/content/15_polymorfisme/polypraktijd.html).
+::::
+
+
 # Pokémon vergelijken (*Essential*)
 Implementeer de ``Equals`` methode (via ``override``) in je ``Pokemon`` klasse. Twee Pokémon zijn dezelfde indien volgende zaken gelijk zijn:
 
@@ -99,6 +235,139 @@ public override bool Equals(object obj)
     return false;
 }
 ```
+::::
+
+
+# Stevens Pokédex (*Essential*) {#h16-stevens-pokedex}
+
+Stagiair Steven houdt een pokedex bij: een lijst waarin elke Pokémon maar één keer mag staan. Om het kort te houden werkt hij met een ingekorte ``Pokemon``-klasse, met een naam, een level en twee base-stats. Voor het vergelijken vroeg hij een A.I. om een ``Equals``, en die zette hij in de klasse:
+
+```java
+internal class Pokemon
+{
+    public string Naam { get; private set; }
+    public int Level { get; private set; }
+    public int HP_Base { get; private set; }
+    public int Attack_Base { get; private set; }
+
+    public Pokemon(string naam, int level, int hpBase, int attackBase)
+    {
+        Naam = naam;
+        Level = level;
+        HP_Base = hpBase;
+        Attack_Base = attackBase;
+    }
+
+    public bool Equals(Pokemon andere)
+    {
+        return Naam == andere.Naam && Level == andere.Level
+            && HP_Base == andere.HP_Base && Attack_Base == andere.Attack_Base;
+    }
+}
+```
+
+Om te testen schreef hij in ``Main``:
+
+```java
+Pokemon a = new Pokemon("Pikachu", 5, 35, 55);
+Pokemon b = new Pokemon("Pikachu", 5, 35, 55);
+Console.WriteLine($"a.Equals(b): {a.Equals(b)}");
+
+List<Pokemon> pokedex = new List<Pokemon>();
+pokedex.Add(a);
+if (!pokedex.Contains(b))
+{
+    pokedex.Add(b);
+}
+Console.WriteLine($"Aantal in de pokedex: {pokedex.Count}");
+
+Pokemon[] team = new Pokemon[6];
+team[0] = new Pokemon("Bulbasaur", 5, 45, 49);
+team[1] = a;
+
+bool zitInTeam = false;
+for (int i = 0; i < team.Length; i++)
+{
+    if (b.Equals(team[i]))
+    {
+        zitInTeam = true;
+    }
+}
+Console.WriteLine($"Pikachu zit in het team: {zitInTeam}");
+```
+
+"De eerste regel toont ``True``, dus mijn ``Equals`` werkt", zegt hij.
+
+**Deel 1.** Het compileert zonder één waarschuwing. Voer het uit. Waarom staan er twee Pikachu's in de pokedex, terwijl ``a.Equals(b)`` ``True`` geeft? Dat het programma daarna crasht, is voor deel 2.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De uitvoer begint met:
+
+```text
+a.Equals(b): True
+Aantal in de pokedex: 2
+```
+
+Stevens ``Equals`` heeft een ``Pokemon`` als parameter en geen ``override``. Het is dus een nieuwe methode naast de ``Equals`` met een ``object`` als parameter, die ``Pokemon`` van ``System.Object`` erft: een overload, geen override. Bij ``a.Equals(b)`` is ``b`` een ``Pokemon``, dus kiest de compiler Stevens versie. ``Contains`` gebruikt de ``Equals`` met een ``object`` als parameter. Die is nooit overschreven en vergelijkt dus nog altijd de referenties. Probeer maar: ``a.Equals((object)b)`` geeft ``False``.
+
+Zet je ``override`` voor Stevens methode, dan compileert het niet meer:
+
+```text
+error CS0115: 'Pokemon.Equals(Pokemon)': no suitable method found to override
+```
+
+De signatuur van ``Equals`` ligt vast: ``public virtual bool Equals(Object o)``. Enkel met precies die parameter kan je ze overriden.
+::::
+
+**Deel 2.** Na die twee regels crasht het programma. Welke regel is de schuldige, en waarom?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```text
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+```
+
+De crash gebeurt in Stevens ``Equals``. Het team heeft zes plaatsen, maar er zitten maar twee Pokémon in: ``team[2]`` tot en met ``team[5]`` zijn ``null``. Bij ``b.Equals(team[2])`` is ``andere`` dus ``null``, en ``andere.Naam`` crasht. Stevens ``Equals`` controleert nergens of er wel een Pokémon meegegeven werd, terwijl de afspraak is dat ``Equals`` bij ``null`` gewoon ``false`` teruggeeft.
+::::
+
+**Deel 3.** Herschrijf de ``Equals`` van Steven zodat de pokedex en het team kloppen, en vergeet ``GetHashCode`` niet. Welke uitvoer verwacht je nu?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Stevens ``Equals(Pokemon andere)`` gaat weg. In de plaats komen:
+
+```java
+public override bool Equals(object obj)
+{
+    if (obj is Pokemon andere)
+    {
+        return Naam == andere.Naam && Level == andere.Level
+            && HP_Base == andere.HP_Base && Attack_Base == andere.Attack_Base;
+    }
+    return false;
+}
+
+public override int GetHashCode()
+{
+    return HashCode.Combine(Naam, Level, HP_Base, Attack_Base);
+}
+```
+
+Is ``obj`` ``null`` of geen ``Pokemon``, dan is ``obj is Pokemon andere`` ``false`` en geeft ``Equals`` ``false`` terug. De uitvoer wordt:
+
+```text
+a.Equals(b): True
+Aantal in de pokedex: 1
+Pikachu zit in het team: True
+```
+
+Laat je Stevens versie naast de nieuwe staan, dan kiest de compiler bij ``a.Equals(b)`` en ``b.Equals(team[i])`` nog altijd zijn versie, want de parameter is daar een ``Pokemon``. De crash blijft dan.
+
+De compiler geeft bij de nieuwe ``Equals`` wel ``warning CS8765: Nullability of type of parameter 'obj' doesn't match overridden member (possibly because of nullability attributes).`` Die mag je laten staan, net als de waarschuwingen uit het kader *Groene kronkels onder je properties?* bij de [properties](https://www.ziescherp.be/content/8_klassen/2_properties.html).
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* Zonder ``override`` is een methode met dezelfde naam en een andere parameter een overload. De compiler zegt daar niets van, en een test met twee ``Pokemon``-variabelen slaagt gewoon. Test daarom ook met de code die je ``Equals`` echt gaat gebruiken, zoals ``Contains``.
+* De parameter van ``Equals`` is een ``object``. Controleer eerst of het een ``Pokemon`` is: daarmee vang je ook ``null`` op.
+* Zie [Method overloading](https://www.ziescherp.be/content/6_methoden/3_advancedmethod.html#method-overloading), [De Equals() methode](https://www.ziescherp.be/content/13_advancedovererving/4_System_Object.html#de-equals-methode), [Wat kan een List nog?](https://www.ziescherp.be/content/11_arraysvanklassen/4_list.html#wat-kan-een-list-nog) en [Is, as en polymorfisme: een krachtige bende](https://www.ziescherp.be/content/18_IsAs/6_equals.html).
 ::::
 
 

@@ -11,7 +11,7 @@ die css niet en moet alles opnieuw gezegd worden in Typst. Alles hieronder gaat 
 ## Kort
 
 ```powershell
-quarto render . --to typst        # het hele boek -> build/Zie-Scherp-Scherper.pdf (minuten)
+quarto render . --to typst        # het hele boek -> build/Zie-Scherp-Scherper.pdf (ca. 45 s)
 quarto render boekPrintTest       # cover + voorwoord + hoofdstuk 1 -> boekPrintTest/pdf/ (halve minuut)
 python cover/maak_cover.py        # cover.svg + cover.png opnieuw
 ```
@@ -28,7 +28,7 @@ renderen slaagt bijna altijd; de vormgeving kapotmaken doe je zonder foutmelding
 | cover | [cover/](cover/) | `cover.svg`, gegenereerd door `maak_cover.py`, alle tekst als outlines |
 | Typst-partial | [typst-show.typ](typst-show.typ) | roept orange-book aan, legt de cover op pagina 1, zet fonts en kleuren |
 | lettertypes | [fonts/](fonts/) | Inter + JetBrains Mono als ttf, moeten mee in de repo |
-| lua-filters | [console-typst.lua](console-typst.lua), [mascotte-typst.lua](mascotte-typst.lua) | vertalen `.console`-blokken en mascottehoogtes naar Typst |
+| lua-filters | [console-typst.lua](console-typst.lua), [mascotte-typst.lua](mascotte-typst.lua), [figuren-typst.lua](figuren-typst.lua), [koppen-typst.lua](koppen-typst.lua), [bijsturing-typst.lua](bijsturing-typst.lua) | `.console`-blokken, mascotte naast de eerste alinea, figuurmaat naar inhoud, overgeslagen kopniveaus, per hoofdstuk bijsturen tegen weesregels |
 | testopstelling | [boekPrintTest/](boekPrintTest/) | hetzelfde recept met 1 hoofdstuk, om snel te itereren |
 
 ## 1. De pdf-config
@@ -106,9 +106,12 @@ Beide filters staan onder `filters:` in `_quarto.yml` en doen niets in html, wan
 
 ## 6. Snel itereren
 
-Het hele boek renderen duurt minuten (18 hoofdstukken, 184 MB afbeeldingen). Aan de vormgeving werk
-je in [boekPrintTest/](boekPrintTest/): dezelfde config, dezelfde partial, dezelfde filters, maar
-enkel de cover, het voorwoord en hoofdstuk 1. Een halve minuut per render.
+Het hele boek naar pdf renderen duurt ongeveer 45 seconden. Voor de lay-out van hoofdstukken
+(figuren, avatars, weesregels) render je dus gewoon het hele boek en kijk je na met
+`scripts/pdf-controle/pdfcontrole.py`, zie [pdf-afspraken.md](../../pdf-afspraken.md).
+Aan de cover en de partial werk je in [boekPrintTest/](boekPrintTest/): dezelfde config, dezelfde
+partial, dezelfde filters (behalve `bijsturing-typst.lua`), maar enkel de cover, het voorwoord en
+hoofdstuk 1.
 
 ```bash
 bash boekPrintTest/sync.sh          # bron opnieuw ophalen uit de echte repo
@@ -144,6 +147,9 @@ anders zet je daar een vaste kleur en `logo: none`.
 
 ## Verder
 
+- [../../pdf-afspraken.md](../../pdf-afspraken.md): **wat de pdf moet zijn** (avatars, figuurmaat,
+  weesregels, blanco pagina's), hoe je dat nakijkt met `scripts/pdf-controle/pdfcontrole.py`, en
+  hoe elk probleem is opgelost. Gaat voor op wat hieronder of hierboven anders staat.
 - [references/valkuilen.md](references/valkuilen.md): elk probleem dat in deze pdf is opgedoken, met
   de oorzaak en de oplossing. Lees dit voor je iets aan de vormgeving verandert.
 - [references/checklist.md](references/checklist.md): wat je na een render nakijkt.

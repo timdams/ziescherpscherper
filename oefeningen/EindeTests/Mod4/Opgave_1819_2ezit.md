@@ -4,16 +4,18 @@ Volgende opgave was de vaardigheidsproefopdracht voor het 2e zit examen van dit 
 
 We maken een eenvoudige veiling-simulator. Hierbij kunnen spelers bieden op getoonde schilderijen en deze kopen indien ze wensen. Het spel wordt gespeeld door 2 spelers, waarbij 1 speler de gebruiker is, de andere wordt door de computer bestuurd.
 
+De proef staat in totaal op 19 punten.
+
 # Deel 1: Klassen
 ## Klasse 1: schilderij (3p)
 
 Maak een klasse ``Schilderij``.
 
-Deze heeft 2 minstens methoden
+Deze heeft minstens 2 methoden
 * TekenSchilderij: de methode zal een willekeurig schilderij op het scherm tekenen in linkerbovenhoek. Een schilderij is steeds 10 bij 10 groot en bestaat uit een willekeurige hoeveelheid gele, rode en groene vlakken. Enkele voorbeelden:
   ![](schilder.jpg)        
 * Opgelet: ieder object tekent een ander schilderij. Als op hetzelfde object 2x na mekaar TekenSchilderij wordt aangeroepen dan zal uiteraard 2x hetzelfde schilderij getekend worden.
-De klasse houdt intern bij uit hoeveel rode, hoeveel gele, en hoeveel rode vlakken het schilderij bestaat.
+De klasse houdt intern bij uit hoeveel rode, hoeveel gele, en hoeveel groene vlakken het schilderij bestaat.
 
 * ``KrijgData``: deze methode geeft terug uit hoeveel rode vlakken de schilderij bestond.
 
@@ -50,9 +52,9 @@ Schrijf een programma dat voorgaande klasse gebruikt als volgt:
 * 1 speler-object wordt door de gebruiker bedient. 1 door de computer.
 * Er verschijnt telkens een schilderij, met daaronder de waarde ervan.
 * Er wordt aan de gebruiker gevraagd of hij/zij dit wenst te kopen. Indien ja, en dit kan, dan wordt het schilderij aan zijn lijst toegevoegd en z’n budget verlaagt.
-* Indien neen dan zal de computer het schilderij kopen indien deze nog genoeg budget heeft.
+* Indien neen, of indien de gebruiker niet genoeg budget heeft, dan zal de computer het schilderij kopen indien deze nog genoeg budget heeft.
 * Vervolgens komt het volgende schilderij.
-* Het ‘spel’ stopt wanneer beide speler het huidige schilderij niet kunnen of willen kopen.
+* Het ‘spel’ stopt wanneer beide spelers het huidige schilderij niet kunnen of willen kopen.
 * De “TotaleWinst” van iedere speler wordt vergeleken. De speler wiens TotaleWinst + overgebleven Budget het hoogst is wint.
   * Voorbeeld: speler 1 heeft TotaleWinst 300 en Budget over 300, dus 600
   * Speler 2  (de computer) heeft TotaleWinst 400 en Budget 100, dus 500. Speler 1, de gebruiker, wint de veiling
@@ -78,204 +80,274 @@ Schrijf een programma dat voorgaande klasse gebruikt als volgt:
 ::::{.callout-caution collapse="true" title="Oplossing"}
 > Dank aan Wael Orraby.
 
-Klassen:
+Elke klasse en de enum staan in een eigen bestand.
+
+**Kleuren.cs**
+
 ```java
-enum Kleuren {Rood=1, Geel, Groen };
-internal class Schilderij: IComparable
+namespace Veiling
 {
-    public static Random r = new Random();
-    protected int aantalRodeVlakken=0;
+    enum Kleuren { Rood = 1, Geel, Groen }
+}
+```
 
+**Schilderij.cs**
 
-    protected Kleuren[,] vlakkenArray = new Kleuren[10, 10];
-    public Schilderij(int x, int y)
+```java
+namespace Veiling
+{
+    internal class Schilderij : IComparable
     {
-        vlakkenArray = new Kleuren[x, y];
-        for (int i = 0; i < vlakkenArray.GetLength(0); i++)
+        private static Random random = new Random();
+        private int aantalRodeVlakken = 0;
+        private int aantalGeleVlakken = 0;
+        private int aantalGroeneVlakken = 0;
+        private Kleuren[,] vlakken;
+
+        public Schilderij(int aantalRijen, int aantalKolommen)
         {
-            for (int j = 0; j < vlakkenArray.GetLength(1); j++)
+            vlakken = new Kleuren[aantalRijen, aantalKolommen];
+            for (int i = 0; i < vlakken.GetLength(0); i++)
             {
-                vlakkenArray[i, j] = (Kleuren)r.Next(1, 4);
-                if (vlakkenArray[i, j] == Kleuren.Rood)
-                    aantalRodeVlakken++;
+                for (int j = 0; j < vlakken.GetLength(1); j++)
+                {
+                    vlakken[i, j] = (Kleuren)random.Next(1, 4);
+                    if (vlakken[i, j] == Kleuren.Rood)
+                        aantalRodeVlakken++;
+                    else if (vlakken[i, j] == Kleuren.Geel)
+                        aantalGeleVlakken++;
+                    else
+                        aantalGroeneVlakken++;
+                }
             }
         }
-    }
-    public Schilderij(): this(10,10)
-    {
-        
-    }
-    public virtual void TekenSchilderij()
-    {
-        
-        for (int i = 0; i < vlakkenArray.GetLength(0); i++)
+
+        public Schilderij() : this(10, 10)
         {
-            for (int j = 0; j < vlakkenArray.GetLength(1); j++)
+        }
+
+        public void TekenSchilderij()
+        {
+            Console.SetCursorPosition(0, 0);
+            for (int i = 0; i < vlakken.GetLength(0); i++)
             {
-                if (vlakkenArray[i, j] == Kleuren.Rood)
+                for (int j = 0; j < vlakken.GetLength(1); j++)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;     
+                    if (vlakken[i, j] == Kleuren.Rood)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                    }
+                    else if (vlakken[i, j] == Kleuren.Geel)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                    }
+                    Console.Write(" ");
+                    Console.ResetColor();
                 }
-                else if (vlakkenArray[i, j] == Kleuren.Geel)
-                {
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.Green;
-                }
-                Console.Write(" ");
-                Console.ResetColor();
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
-    }
-    public int KrijgData()
-    {
-        return aantalRodeVlakken;
-    }
 
-    public int CompareTo(object? obj)
-    {
-        double thisWaarde = WaardeBepaler.BerekenWaarde(this.KrijgData());
-        double thatWaarde = WaardeBepaler.BerekenWaarde((obj as Schilderij).KrijgData());
-        return thatWaarde.CompareTo(thisWaarde);
-    }
-}
-
-internal class Picasso : Schilderij
-{
-    public Picasso():base(15,15)
-    {
-        
-    }   
-}
-
-internal class WaardeBepaler
-{
-    public static double BerekenWaarde(int​ aantalRodeVlakken)
-    {
-        return Math.Round(Math.Sqrt(1000 * aantalRodeVlakken), 1);
-    }
-}
-
-internal class Koper
-{
-    private List<Schilderij> schilderijenList = null;
-    public Koper()
-    {
-        Budget = 1500;
-        schilderijenList = new List<Schilderij>();
-    }
-    private double budget;
-
-    public double Budget
-    {
-        get { return budget; }
-        private set { budget = value; }
-    }
-
-
-    public bool Koop(Schilderij schilderij)
-    {
-        double schilderijWaarde = WaardeBepaler.BerekenWaarde(schilderij.KrijgData());
-        if (Budget >= schilderijWaarde)
+        public int KrijgData()
         {
-            Budget -= schilderijWaarde;
-            schilderijenList.Add(schilderij);
-            return true;
+            return aantalRodeVlakken;
         }
-        return false;
-    }
-    public int TotaleWinst()
-    {
-        int totaleWinst = 0;
-        foreach (var item in schilderijenList)
-        {
-            totaleWinst += (int)WaardeBepaler.BerekenWaarde(item.KrijgData());
-        }
-        return totaleWinst;
-    }
-    public List<Schilderij> SorteerBezit()
-    {
-        schilderijenList.Sort();
 
-        return schilderijenList;
-    }
-    public void KrijgSchilderij(Koper other)
-    {
-        if (other.schilderijenList.Count > 0)
+        public int CompareTo(object obj)
         {
-            this.schilderijenList.Add(other.schilderijenList[0]);
-            other.schilderijenList.RemoveAt(0);
+            Schilderij anderSchilderij = obj as Schilderij;
+            if (anderSchilderij != null)
+            {
+                double dezeWaarde = WaardeBepaler.BerekenWaarde(KrijgData());
+                double andereWaarde = WaardeBepaler.BerekenWaarde(anderSchilderij.KrijgData());
+                //Omgekeerd vergelijken: de hoogste waarde komt vooraan
+                return andereWaarde.CompareTo(dezeWaarde);
+            }
+            else
+                throw new ArgumentException("Object is geen Schilderij");
         }
     }
 }
 ```
 
-Program.cs
-
+**Picasso.cs**
 
 ```java
-static void Main(string[] args)
+namespace Veiling
 {
-
-    Koper speler = new Koper();
-    Koper computer = new Koper();
-    bool kunnenOfWillenKopen = true;
-    int PicassosKans;
-    Random r = new Random();
-    while (kunnenOfWillenKopen)
+    internal class Picasso : Schilderij
     {
-        kunnenOfWillenKopen = true;
-        Schilderij bieding = new Schilderij();
-        PicassosKans = r.Next(1, 11);
-        if (PicassosKans <= 3)
+        public Picasso() : base(15, 15)
         {
-            bieding = new Picasso();
+        }
+    }
+}
+```
+
+**WaardeBepaler.cs**
+
+```java
+namespace Veiling
+{
+    internal class WaardeBepaler
+    {
+        public static double BerekenWaarde(int aantalRodeVlakken)
+        {
+            return Math.Round(Math.Sqrt(1000 * aantalRodeVlakken), 1);
+        }
+    }
+}
+```
+
+**Koper.cs**
+
+```java
+namespace Veiling
+{
+    internal class Koper
+    {
+        private List<Schilderij> schilderijen;
+        private double budget;
+
+        public Koper()
+        {
+            Budget = 1500;
+            schilderijen = new List<Schilderij>();
         }
 
-        bieding.TekenSchilderij();
-        Console.WriteLine($"SchilderijWaarde : {WaardeBepaler.BerekenWaarde(bieding.KrijgData())}");
-        Console.WriteLine("Wenst u die schilderij te kopen ? (j/n)");
-        string koperAntw = Console.ReadLine().ToLower();
-        if (koperAntw == "j")
+        public double Budget
         {
-            if (speler.Koop(bieding))
-                Console.WriteLine("Schilderij gekocht!");
-            else
+            get { return budget; }
+            private set { budget = value; }
+        }
+
+        public bool Koop(Schilderij schilderij)
+        {
+            double schilderijWaarde = WaardeBepaler.BerekenWaarde(schilderij.KrijgData());
+            if (Budget >= schilderijWaarde)
             {
-                Console.WriteLine("Budget van speler is niet genoeg!");
-                kunnenOfWillenKopen = false;
+                Budget -= schilderijWaarde;
+                schilderijen.Add(schilderij);
+                return true;
+            }
+            return false;
+        }
+
+        public int TotaleWinst()
+        {
+            int totaleWinst = 0;
+            foreach (var schilderij in schilderijen)
+            {
+                totaleWinst += (int)WaardeBepaler.BerekenWaarde(schilderij.KrijgData());
+            }
+            return totaleWinst;
+        }
+
+        public List<Schilderij> SorteerBezit()
+        {
+            schilderijen.Sort();
+            return schilderijen;
+        }
+
+        public void KrijgSchilderij(Koper andereKoper)
+        {
+            if (andereKoper.schilderijen.Count > 0)
+            {
+                schilderijen.Add(andereKoper.schilderijen[0]);
+                andereKoper.schilderijen.RemoveAt(0);
             }
         }
-        else if (computer.Koop(bieding))
-            Console.WriteLine("Schilderij verkocht!");
-        else
+    }
+}
+```
+
+**Program.cs**
+
+```java
+namespace Veiling
+{
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            Console.WriteLine("Budget van computer is niet genoeg!");
-            kunnenOfWillenKopen = false;
+            Koper speler = new Koper();
+            Koper computer = new Koper();
+            Random random = new Random();
+            bool verkocht = true;
+            while (verkocht)
+            {
+                Schilderij bieding;
+                if (random.Next(1, 11) <= 3)
+                    bieding = new Picasso();
+                else
+                    bieding = new Schilderij();
+
+                Console.Clear();
+                bieding.TekenSchilderij();
+                Console.WriteLine($"Waarde van het schilderij: {WaardeBepaler.BerekenWaarde(bieding.KrijgData())}");
+                Console.WriteLine($"Je budget: {speler.Budget:0.0}");
+                Console.WriteLine("Wil je dit schilderij kopen? (j/n)");
+                string antwoord = Console.ReadLine().ToLower();
+
+                verkocht = false;
+                if (antwoord == "j")
+                {
+                    if (speler.Koop(bieding))
+                    {
+                        Console.WriteLine("Je hebt het schilderij gekocht!");
+                        verkocht = true;
+                    }
+                    else
+                        Console.WriteLine("Je budget is niet genoeg.");
+                }
+                //Niet gewild of niet gekund: dan probeert de computer het
+                if (!verkocht)
+                {
+                    if (computer.Koop(bieding))
+                    {
+                        Console.WriteLine("De computer koopt het schilderij.");
+                        verkocht = true;
+                    }
+                    else
+                        Console.WriteLine("De computer heeft niet genoeg budget. De veiling stopt.");
+                }
+                Console.WriteLine("Druk op enter om verder te gaan.");
+                Console.ReadLine();
+            }
+
+            double totaalSpeler = speler.TotaleWinst() + speler.Budget;
+            double totaalComputer = computer.TotaleWinst() + computer.Budget;
+            Console.WriteLine($"Jij: {speler.TotaleWinst()} + {speler.Budget:0.0} = {totaalSpeler:0.0}");
+            Console.WriteLine($"Computer: {computer.TotaleWinst()} + {computer.Budget:0.0} = {totaalComputer:0.0}");
+            if (totaalSpeler > totaalComputer)
+                Console.WriteLine("Je hebt gewonnen!");
+            else
+                Console.WriteLine("De computer heeft gewonnen.");
+
+            //Deel 4: SorteerBezit en KrijgSchilderij
+            Console.WriteLine("Jouw schilderijen na het sorteren:");
+            ToonBezit(speler.SorteerBezit());
+            Console.WriteLine("Schilderijen van de computer na het sorteren:");
+            ToonBezit(computer.SorteerBezit());
+
+            speler.KrijgSchilderij(computer);
+            Console.WriteLine("Jouw schilderijen na KrijgSchilderij:");
+            ToonBezit(speler.SorteerBezit());
+            Console.WriteLine("Schilderijen van de computer na KrijgSchilderij:");
+            ToonBezit(computer.SorteerBezit());
         }
-    }
 
-
-    if (speler.TotaleWinst() + speler.Budget > computer.TotaleWinst() + computer.Budget)
-        Console.WriteLine($"Je bent gewonnen!");
-    else
-        Console.WriteLine("De computer is gewonnen");
-    Console.WriteLine("Uw schilderijen na het sorteren:\n");
-
-    foreach (var item in speler.SorteerBezit())
-    {
-        item.TekenSchilderij();
-        Console.WriteLine("");
-    }
-    speler.KrijgSchilderij(computer);
-    Console.WriteLine("Uw schilderijen na het krijgen van een schilderij:\n");
-    foreach (var item in speler.SorteerBezit())
-    {
-        item.TekenSchilderij();
-        Console.WriteLine("");
+        private static void ToonBezit(List<Schilderij> schilderijen)
+        {
+            foreach (var schilderij in schilderijen)
+            {
+                Console.WriteLine($"- waarde {WaardeBepaler.BerekenWaarde(schilderij.KrijgData())}");
+            }
+        }
     }
 }
 ```

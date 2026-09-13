@@ -257,6 +257,136 @@ Het menu blijft getoond worden tot de gebruiker de optie 5 kiest.
 ::::
 
 
+# Stevens opruimactie (*Essential*) {#h12-stevens-opruimactie}
+
+De webshop waar stagiair Steven werkt, houdt een opruimactie: alle artikelen onder de 10 euro gaan uit het aanbod. Steven moet die prijzen uit een lijst verwijderen. Hij vroeg het aan een A.I. en levert na elkaar drie versies in. Het begin en het einde van zijn programma blijven telkens hetzelfde:
+
+```java
+List<int> prijzen = new List<int>() { 12, 4, 7, 25, 3, 9, 8, 30 };
+
+// hier komt de versie die opruimt
+
+foreach (int prijs in prijzen)
+{
+    Console.Write($"{prijs} ");
+}
+```
+
+**Deel 1.** De eerste versie:
+
+```java
+foreach (int prijs in prijzen)
+{
+    if (prijs < 10)
+    {
+        prijzen.Remove(prijs);
+    }
+}
+```
+
+Het compileert. Voer het uit. Wat gebeurt er, en op welke lijn loopt het mis?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Het programma crasht nog voor er één prijs op het scherm staat:
+
+```text
+Unhandled exception. System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+```
+
+De lijn die de melding aanwijst, is niet die met ``Remove`` maar die met ``foreach (int prijs in prijzen)``. Het verwijderen van 4 lukt nog. Daarna wil de ``foreach`` het volgende element halen, merkt dat de lijst intussen veranderd is, en stopt het programma. Een collectie wijzigen tijdens een ``foreach`` mag niet.
+::::
+
+**Deel 2.** De tweede versie:
+
+```java
+for (int i = 0; i < prijzen.Count; i++)
+{
+    if (prijzen[i] < 10)
+    {
+        prijzen.RemoveAt(i);
+    }
+}
+```
+
+Deze crasht niet. Steven testte ze met de lijst ``{ 12, 4, 25, 3, 30 }`` en kreeg ``12 25 30``, dus hij is tevreden.
+
+Voer ze nog niet uit met de startlijst van hierboven. Voorspel eerst op papier welke prijzen er op het scherm komen. Hou daarvoor per ronde bij wat ``i`` is, welke prijs er op die index staat, en hoe de lijst er na die ronde uitziet. Voer het daarna uit en vergelijk. Waarom blijven er prijzen onder de 10 euro staan, en waarom zag Steven dat niet bij zijn eigen test?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De uitvoer is:
+
+```text
+12 7 25 9 30
+```
+
+| ``i`` | ``prijzen[i]`` | wat gebeurt er | lijst na deze ronde |
+|---|---|---|---|
+| 0 | 12 | blijft staan | 12 4 7 25 3 9 8 30 |
+| 1 | 4 | ``RemoveAt(1)`` | 12 7 25 3 9 8 30 |
+| 2 | 25 | blijft staan | 12 7 25 3 9 8 30 |
+| 3 | 3 | ``RemoveAt(3)`` | 12 7 25 9 8 30 |
+| 4 | 8 | ``RemoveAt(4)`` | 12 7 25 9 30 |
+| 5 | | ``5 < prijzen.Count`` is ``false``, de lus stopt | |
+
+Na ``RemoveAt(i)`` schuift alles wat achter ``i`` staat één plaats naar voor. Het element dat op ``i + 1`` stond, staat nu op ``i``. De ``for`` verhoogt ``i`` toch, dus dat element wordt nooit bekeken. De 7 stond meteen achter de 4, de 9 meteen achter de 3.
+
+In Stevens testlijst stond nooit een goedkope prijs meteen achter een andere goedkope prijs. Het element dat overgeslagen werd, was telkens een dure prijs die toch mocht blijven staan.
+::::
+
+**Deel 3.** De derde versie:
+
+```java
+for (int i = prijzen.Count - 1; i >= 0; i--)
+{
+    if (prijzen[i] < 10)
+    {
+        prijzen.RemoveAt(i);
+    }
+}
+```
+
+Klopt deze versie? Leg uit waarom het overslaan uit deel 2 hier niet kan gebeuren.
+
+Maak er daarna een methode ``VerwijderOnderGrens`` van die de lijst en de grens als parameter krijgt, zodat de opruimactie volgend jaar ook met een andere grens kan.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Ja, deze versie toont ``12 25 30``. Na ``RemoveAt(i)`` schuiven enkel de elementen achter ``i`` op, en die heeft de lus al bekeken. De elementen die nog moeten komen (op ``i - 1``, ``i - 2``, ...) blijven op hun plaats.
+
+```java
+static void Main(string[] args)
+{
+    List<int> prijzen = new List<int>() { 12, 4, 7, 25, 3, 9, 8, 30 };
+    VerwijderOnderGrens(prijzen, 10);
+
+    foreach (int prijs in prijzen)
+    {
+        Console.Write($"{prijs} ");
+    }
+}
+
+static void VerwijderOnderGrens(List<int> prijzen, int grens)
+{
+    for (int i = prijzen.Count - 1; i >= 0; i--)
+    {
+        if (prijzen[i] < grens)
+        {
+            prijzen.RemoveAt(i);
+        }
+    }
+}
+```
+
+De methode hoeft niets terug te geven. Een ``List`` is een object: de parameter ``prijzen`` krijgt een referentie naar dezelfde lijst als die in ``Main``.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* ``foreach`` met ``Remove`` crasht meteen. Een ``for`` van voor naar achter met ``RemoveAt`` crasht niet, maar slaat telkens het element over dat meteen achter een verwijderd element staat. Die fout zie je enkel aan een verkeerd resultaat.
+* Test met data waarin het kan mislopen: hier zijn dat twee prijzen onder de grens die naast elkaar staan.
+* Wil je verwijderen terwijl je een lijst overloopt, gebruik dan een ``for`` van achter naar voor met ``RemoveAt``.
+* Zie [Opgelet bij het gebruik van foreach loops](https://www.ziescherp.be/content/11_arraysvanklassen/3_foreach.html#opgelet-bij-het-gebruik-van-foreach-loops), [Wat kan een List nog?](https://www.ziescherp.be/content/11_arraysvanklassen/4_list.html#wat-kan-een-list-nog) en [Stagiair Steven](https://www.ziescherp.be/content/11_arraysvanklassen/4_list.html#stagiair-steven).
+::::
+
+
 # Student Organizer (*Essential*)
 
 We gaan nu de Student-klasse uit een vorige hoofdstuk (zie onderaan de opgave) gebruiken om een ``List<Student>`` van studenten te vullen.

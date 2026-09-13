@@ -13,7 +13,7 @@ De klasse heeft volgende eigenschappen :
 
 - **Name (auto, string)**: De naam van de Pharaoh.
 - **ReignStartYear (full, int)**: Het jaar waarin de Pharaoh begon met regeren. Kan enkel negatief zijn.
-- **ReignEndYear (full, int)**: Het jaar waarin de regering van de Pharaoh eindigde. Kan enkel negatief zijn. Kan nooit kleiner zijn dan ReignStartYear, zoniet dan worden beide waarden verwisseld voor ze toegekend worden.
+- **ReignEndYear (full, int)**: Het jaar waarin de regering van de Pharaoh eindigde. Kan enkel negatief of 0 zijn (0 betekent dat het einde van de regering onbekend is). Kan nooit kleiner zijn dan ReignStartYear.
 
 Voorts heeft iedere Pharaoh een private lijst van Achievements, waarin de belangrijkste prestaties of gebeurtenissen tijdens de regering van de Pharaoh in worden bijgehouden. Deze lijst bevat strings.
 
@@ -25,8 +25,8 @@ De klasse heeft volgende methoden:
 
 Je dient twee constructors te implementeren voor de `Pharaoh` klasse:
 
-1. Een constructor die alle eigenschappen als parameters neemt, inclusief `ReignEndYear`. De constructor controleert dat ReignEndYear later is dan ReignStartYear.
-2. Een constructor die `ReignEndYear` weggelaten, voor het geval het einde van de regering onbekend is. `ReignEndYear`wordt dan op 0 gezet.
+1. Een constructor die alle eigenschappen als parameters neemt, inclusief `ReignEndYear`. Is het opgegeven eindjaar kleiner dan het beginjaar, dan verwisselt de constructor beide waarden voor ze toegekend worden.
+2. Een constructor die `ReignEndYear` weglaat, voor het geval het einde van de regering onbekend is. `ReignEndYear` wordt dan op 0 gezet.
 
 # Dynasty
 
@@ -65,218 +65,203 @@ Schrijf een applicatie die
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Oefening 1
+Elke klasse staat in een apart bestand. Het verwisselen gebeurt in de constructor, vóór de jaren aan de properties gegeven worden: de setter van ReignEndYear vergelijkt met ReignStartYear, dus het beginjaar moet eerst juist staan.
 
-Deze oefening kon je ook grotendeels zonder arrays oplossen, maar dan is het wel onmogelijk om te weten welk het vaakst ingevoerde getal is. Om het grootste en kleinste getal te vinden kon je ook de array sorteren met Sort en dan het laatste en eerste element uit de array uitlezen.
-
-```java
-Console.WriteLine("Geef n");
-int n = int.Parse(Console.ReadLine());
-Console.WriteLine($"Geef nu {n} getallen in:");
-int[] getallen = new int[n];
-int som = 0;
-
-
-//Invoer vragen (en som ineens maken)
-//Grootste en kleinste kan in principe ook hier reeds gedaan worden
-for (int i = 0; i < n; i++)
-{
-    getallen[i] = int.Parse(Console.ReadLine());
-    som += getallen[i];
-}
-
-//statistieken
-
-double gemiddelde = som / (double)n;
-
-//grootste en kleinste zoeken
-int grootste = getallen[0];
-int kleinste = getallen[0];
-for (int i = 1; i < n; i++)
-{
-    if (getallen[i] > grootste)
-        grootste = getallen[i];
-    if (getallen[i] < kleinste)
-        kleinste = getallen[i];
-}
-
-//meest ingevoerde zoeken
-int aantalMax = 0;
-int meestVoorkomend = getallen[0];
-int tellen = 0;
-for (int i = 0; i < n; i++)
-{
-
-    for (int j = i; j < n; j++)
-    {
-        if (getallen[j] == getallen[i])
-        {
-            tellen++;
-        }
-    }
-    if(tellen>aantalMax)
-    {
-        aantalMax = tellen;
-        meestVoorkomend = getallen[i];
-    }
-    tellen = 0;
-}
-
-//statistieken tonen
-Console.WriteLine("Hier volgt de informatie over je invoer:");
-
-Console.Write($"Kleinste ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(kleinste);
-Console.ResetColor();
-
-Console.Write($"Grootste ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(grootste);
-Console.ResetColor();
-
-Console.Write($"Het meest ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(meestVoorkomend);
-Console.ResetColor();
-Console.Write($"\t dit getal werd ");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.Write(aantalMax);
-Console.ResetColor();
-Console.WriteLine($" keer ingevoerd");
-
-Console.Write($"Gemiddelde: ");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(Math.Round(gemiddelde,2));
-Console.ResetColor();
-```
-
-# Oefening 2
+**Pharaoh.cs**
 
 ```java
-static void Main(string[] args)
+namespace Egypte
 {
-    const int AR_GROOTTE = 100;
-    Console.WriteLine("Geef ondergrens");
-    int onderGrens = int.Parse(Console.ReadLine());
-    Console.WriteLine("Geef bovengrens");
-    int bovenGrens = int.Parse(Console.ReadLine());
-
-    double[] array = new double[AR_GROOTTE];
-    for (int i = 0; i < array.Length; i++)
+    class Pharaoh
     {
-        array[i] = GenereerRandom(onderGrens, bovenGrens);
-    }
-    ToonArrayKleuren(array);
-}
-
-static double GenereerRandom(int onder, int boven)
-{
-    int onderGrens = onder;
-    int bovenGrens = boven;
-    //Grenzen aanpassen indien nodig
-    if (onder == boven)
-        bovenGrens = boven * 2;
-    else if (onder > boven)
-    {
-        bovenGrens = onder;
-        onderGrens = boven;
-    }
-
-    Random rng = new Random();
-    return onderGrens + rng.NextDouble() * (bovenGrens - onderGrens);
-}
-
-static void ToonArrayKleuren(double[] arrayIn)
-{
-    //Gemiddelde berekenen
-    double som = 0.0;
-    for (int i = 0; i < arrayIn.Length; i++)
-    {
-        som += arrayIn[i];
-    }
-    double gemiddelde = som / arrayIn.Length;
-    Console.WriteLine($"Gemiddelde was: {gemiddelde}");
-
-    //Grenzen berekenen
-    int boven = (int)Math.Ceiling(gemiddelde);
-    int onder = (int)Math.Floor(gemiddelde);
-
-    //Array visualiseren
-    for (int i = 0; i < arrayIn.Length; i++)
-    {
-        double waarde = Math.Round(arrayIn[i], 1);
-        if (waarde > onder && waarde < boven)
+        public Pharaoh(string name, int startYear, int endYear)
         {
-            Console.Write($"[{waarde}]\t");
-        }
-        else
-        {
-            Console.Write($"{waarde}\t");
-        }
-    }
-}
-```
-
-# Oefening 3
-
-```java
-enum MenuKeuze { Normaal = 1, Reductie, Groep, Reset }
-static void Main(string[] args)
-{
-    int aantalPersonen = 0;
-    int totaalPrijs = 0;
-    const int PRIJSNORM = 10;
-    const int PRIJSREDUCT = 8;
-    const int PRIJSGROEP = 30;
-
-    while (true)
-    {
-        int invoer = -1;
-        do
-        {
-            Console.WriteLine($"{(int)MenuKeuze.Normaal}. Normaal ticket ({PRIJSNORM} euro)");
-            Console.WriteLine($"{(int)MenuKeuze.Reductie}. Reductie ticket ({PRIJSREDUCT} euro)");
-            Console.WriteLine($"{(int)MenuKeuze.Groep}. Groepsticket ({PRIJSGROEP} euro voor 5 personen)");
-            Console.WriteLine($"{(int)MenuKeuze.Reset}. Opnieuw");
-            Console.WriteLine($"Aantal personen= {aantalPersonen}, Prijs = {totaalPrijs}");
-
-            invoer = int.Parse(Console.ReadLine());
-            if (invoer < 1 || invoer > 4)
+            Name = name;
+            if (endYear < startYear)
             {
-                Console.WriteLine("Fout probeer het nog eens");
+                ReignStartYear = endYear;
+                ReignEndYear = startYear;
             }
-        } while (invoer < 1 || invoer > 4);
+            else
+            {
+                ReignStartYear = startYear;
+                ReignEndYear = endYear;
+            }
+        }
 
-        MenuKeuze keuze = (MenuKeuze)invoer;
-        int aantalTickets = 0;
-        switch (keuze)
+        public Pharaoh(string name, int startYear) : this(name, startYear, 0)
         {
-            case MenuKeuze.Normaal:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSNORM;
-                aantalPersonen += aantalTickets;
-                break;
-            case MenuKeuze.Reductie:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSREDUCT;
-                aantalPersonen += aantalTickets;
-                break;
-            case MenuKeuze.Groep:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSGROEP;
-                aantalPersonen += 5 * aantalTickets;
-                break;
-            default:
-                break;
+        }
+
+        public string Name { get; set; }
+
+        private int reignStartYear;
+        public int ReignStartYear
+        {
+            get { return reignStartYear; }
+            set
+            {
+                if (value < 0)
+                {
+                    reignStartYear = value;
+                }
+            }
+        }
+
+        private int reignEndYear;
+        public int ReignEndYear
+        {
+            get { return reignEndYear; }
+            set
+            {
+                if (value <= 0 && value >= ReignStartYear)
+                {
+                    reignEndYear = value;
+                }
+            }
+        }
+
+        private List<string> achievements = new List<string>();
+
+        public int CalculateReignLength()
+        {
+            return Math.Abs(ReignEndYear - ReignStartYear);
+        }
+
+        public void AddAchievement(string achievement)
+        {
+            achievements.Add(achievement);
+        }
+
+        public void ShowAchievements()
+        {
+            foreach (string achievement in achievements)
+            {
+                Console.WriteLine(achievement);
+            }
         }
     }
 }
+```
 
-private static int VraagAantalTickets()
+**Dynasty.cs**
+
+```java
+namespace Egypte
 {
-    Console.WriteLine("Hoeveel?");
-    return int.Parse(Console.ReadLine());
+    class Dynasty
+    {
+        public string Name { get; set; }
+
+        private int startYear;
+        public int StartYear
+        {
+            get { return startYear; }
+            set
+            {
+                if (value < 0)
+                {
+                    startYear = value;
+                }
+            }
+        }
+
+        private int endYear;
+        public int EndYear
+        {
+            get { return endYear; }
+            set
+            {
+                if (value < 0 && value >= StartYear)
+                {
+                    endYear = value;
+                }
+            }
+        }
+
+        private List<Pharaoh> pharaohs = new List<Pharaoh>();
+
+        public void AddPharaoh(Pharaoh pharaoh)
+        {
+            if (pharaoh.ReignEndYear < StartYear || pharaoh.ReignStartYear > EndYear)
+            {
+                throw new Exception($"{pharaoh.Name} has no overlapping reign period with this dynasty");
+            }
+            pharaohs.Add(pharaoh);
+        }
+
+        public int CalculateDuration()
+        {
+            return Math.Abs(EndYear - StartYear);
+        }
+
+        public void ShowEvents()
+        {
+            ShowData(true);
+        }
+
+        public void ShowPharaohs()
+        {
+            ShowData(false);
+        }
+
+        private void ShowData(bool showAchievements)
+        {
+            foreach (Pharaoh pharaoh in pharaohs)
+            {
+                Console.WriteLine(pharaoh.Name);
+                if (showAchievements)
+                {
+                    pharaoh.ShowAchievements();
+                }
+            }
+        }
+    }
+}
+```
+
+**Program.cs**
+
+```java
+namespace Egypte
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Pharaoh pharaoh1 = new Pharaoh("Tuti", -520, -480);
+            pharaoh1.AddAchievement("Built pyramid");
+            pharaoh1.AddAchievement("Killed slaves");
+            Pharaoh pharaoh2 = new Pharaoh("Seth", -550, -510);
+            pharaoh2.AddAchievement("Killed other slaves");
+            pharaoh2.AddAchievement("Built small pyramid");
+
+            Dynasty dynasty1 = new Dynasty()
+            {
+                Name = "18e Dynastie",
+                StartYear = -600,
+                EndYear = -500
+            };
+
+            Pharaoh[] pharaohs = { pharaoh1, pharaoh2 };
+            foreach (Pharaoh pharaoh in pharaohs)
+            {
+                try
+                {
+                    Console.WriteLine($"Adding {pharaoh.Name}");
+                    dynasty1.AddPharaoh(pharaoh);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            Console.WriteLine($"\nDuration dynasty {dynasty1.Name}: {dynasty1.CalculateDuration()}");
+            Console.WriteLine("\nEvents from this dynasty:");
+            dynasty1.ShowEvents();
+        }
+    }
 }
 ```
 ::::

@@ -10,7 +10,7 @@ Een chemieleerkracht wil een quiz-applicatie waarmee ze haar leerlingen kan onde
 
 De applicatie bestaat uit 2 verschillende rondes waarin de leerling de namen, symbolen en atoomnummers van de chemische elementen moet raden.
 
-Ronde 1: 10 willekeurige vragen om de kennis van de naam, symbool of atoomnummer te testen.
+Ronde 1: een aantal willekeurige vragen (de gebruiker kiest hoeveel) om de kennis van de naam, symbool of atoomnummer te testen.
 Ronde 2: sudden death ronde die enkel test naar de kennis van de symbolen en die eindigt van zodra de student 1 fout maakt.
 
 ### Miniles chemie
@@ -33,7 +33,7 @@ Het hoofdprogramma werkt als volgt
 
 1. Eerst wordt aan de gebruiker gevraagd hoeveel vragen er in ronde 1 moeten gesteld worden (ga ervan uit dat de gebruiker altijd een positief getal invoert. Geen invoercontrole nodig met andere woorden).
 2. Een loop wordt gestart die even vaak wordt uitgevoerd als dat er vragen dienen gesteld te worden (dit is ronde 1 die start).
-3. In de loop wordt telkens de ``StelVraag``-methode (zie verder) aangeroepen. Het resultaat van deze methode, de score, wordt bijgeteld bij de totaalscore. 1 punt per juist anwoord. Er wordt een willekeurige vraagsoort als derde parameter meegeven.
+3. In de loop wordt telkens de ``StelVraag``-methode (zie verder) aangeroepen. Het resultaat van deze methode, de score, wordt bijgeteld bij de totaalscore. 1 punt per juist antwoord. Er wordt een willekeurige vraagsoort als derde parameter meegegeven.
 4. De score van ronde 1 wordt getoond.
 5. Ronde 2 wordt gestart door de ``SuddenDeathRonde``-methode aan te roepen. Het resultaat van deze methode is de score voor ronde 2.
 6. De totaalscore van ronde 1 en ronde 2 opgeteld wordt getoond.
@@ -51,9 +51,9 @@ De methode stuurt een int terug, die de score voorstelt (0 indien fout, 1 indien
 
 Afhankelijk van de vraagtype zal de applicatie nu een vraag stellen. De vraag zal telkens een willekeurig element kiezen. De gebruiker moet (nog steeds in de methode) het juiste antwoord intypen dat dan zal gecontroleerd worden:
 
-* ZoekSymbool: de applicatie toont een willekeurig element uit de namen array en vraagt het symbool (het toont ook het atoomnummer bij de vraagstelling). Indien  de gebruiker het juiste symbool geeft geeft de methode 1 terug, anders 0. Via de symbolenarray kan de applicatie controleren of dit klopt. Voorbeeld van de vraag: *"Wat is het symbool van Helium (atoomnummer 1)?"* Antwoord = H.
+* ZoekSymbool: de applicatie toont een willekeurig element uit de namen array en vraagt het symbool (het toont ook het atoomnummer bij de vraagstelling). Indien  de gebruiker het juiste symbool geeft geeft de methode 1 terug, anders 0. Via de symbolenarray kan de applicatie controleren of dit klopt. Voorbeeld van de vraag: *"Wat is het symbool van Helium (atoomnummer 2)?"* Antwoord = He.
 * ZoekAtoomNummer: de methode toont een element naam (uit de namen array) en wil weten wat het atoomnummer is (zijnde de index+1 van het element). Ook hier is de score het zelfde. Voorbeeld: *"Wat is het atoomnummer van Helium?"* Antwoord= 2.  
-* ZoekNaam: in deze vraag wordt een willekeurig symbool gekozen uit de symbolenarray en gevraagd wat de element naam is. Voorbeeld: *"Wat is het element H, met atoomnummer 2?"* Antwoord: He. Ook hier zelfde score.
+* ZoekNaam: in deze vraag wordt een willekeurig symbool gekozen uit de symbolenarray en gevraagd wat de element naam is. Voorbeeld: *"Wat is het element He, met atoomnummer 2?"* Antwoord: Helium. Ook hier zelfde score.
 
 Indien de gebruiker fout antwoord dan wordt eerst het juist antwoord getoond en dan wordt een score van 0 teruggegeven.
 
@@ -107,7 +107,8 @@ Juist! 1  punt bij
 
 Wat is het symbool van Astatine, met atoomnummer 85?
 >As
-Fout. Het was At.Sudden death gedaan!
+Fout. Het was At. Geen punt!
+Sudden death gedaan!
 
 Je score voor ronde 2 is 1
 Je totale score  is 2

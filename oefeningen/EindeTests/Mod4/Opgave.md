@@ -2,7 +2,7 @@
 Volgende opgave kwam uit de vaardigheidsproef module 4 van dit vak juni 2019.
 :::
 
-# Hammertje Tik
+# Hamertje Tik
 Maak een digitale console-versie van het klassieke kinderspel hamertje Tik
  
 In dit spel heeft het kind een hele hoop kleurige blokjes ter beschikking waarmee hij op een kurken bord eender welke ‘tekening’ kan maken door de blokjes in de kurk met een nagel te kloppen.
@@ -52,12 +52,12 @@ Zorg ervoor dat beide vormen via TekenVorm zichzelf op het scherm kunnen tonen i
 
 **Rechthoek:**
 
-* Heeft een Lengte en Breedte autoproperty
+* Heeft een Lengte en Breedte autoproperty. De lengte is het aantal rijen (verticaal), de breedte het aantal kolommen (horizontaal).
 * Heeft 2 constructors:
   * 1 overloaded die x,y, lengte en breedte vraagt
   * default die standaard een rechthoek op locatie 1,1 zet met lengte en breedte 2
 * Heeft als kleur ``ConsoleColor.Yellow``
-* Een rechthoek verwacht een lengte en breedte bij het aanmaken en kan zichzelf ook tekenen. Als je lengte 4 en breedte 2 ingaf zou deze er als volgt uitzien:
+* Een rechthoek verwacht een lengte en breedte bij het aanmaken en kan zichzelf ook tekenen. Als je lengte 4 en breedte 2 ingaf, zou deze er als volgt uitzien (4 rijen, 2 kolommen):
 
 
 ```text
@@ -69,8 +69,8 @@ Zorg ervoor dat beide vormen via TekenVorm zichzelf op het scherm kunnen tonen i
 
 ## Stap 3:	/3punten
 Maak een klasse Vliegtuig dat ook een Vorm is. Een vliegtuig bestaat (compositie!) uit 1 Rechthoek en 2 Lijn-objecten en ziet er altijd hetzelfde uit, namelijk
-* Een rechthoek van 2 bij 5
-* Links en rechts van deze rechthoek een lijn van 3 breed, telkens in de helft van de lengte van deze rechthoek 
+* Een rechthoek met lengte 5 en breedte 2 (5 rijen, 2 kolommen)
+* Links en rechts van deze rechthoek een lijn met lengte 3, telkens in de helft van de lengte van deze rechthoek (op de middelste rij)
 * Enkel de locatie op het scherm kan anders zijn per vliegtuig, hun afmetingen echter niet.
 
 
@@ -89,7 +89,7 @@ Merk op dat dus dat het lichaam (de Rechthoek) geel zal zijn, en de twee vleugel
 ## Stap 4:	/2punten
 Maak een klasse Vloot dat ook een Vorm is. Een vloot bestaat uit 1 of meerdere vliegtuigen. Je kan via de constructor instellen hoeveel vliegtuigen er moeten zijn in 1 Vloot, alsook de x,y coördinaten (linksboven).De nodige vliegtuigen worden in de constructor aangemaakt en in een lijst bijgehouden in het Vloot-object zelf.
 
-Houdt via een lijst in de klasse de vliegtuigen bij. Een vloot vliegtuigen dat getekend wordt tekent gewoon alle vliegtuigen onder mekaar.
+Houd via een lijst in de klasse de vliegtuigen bij. Een vloot vliegtuigen dat getekend wordt tekent gewoon alle vliegtuigen onder mekaar.
 
 Een vloot van 3 vliegtuigen zal er als volgt uitzien op het scherm:
 
@@ -119,16 +119,16 @@ Maak een interface ``IBeweegbaar``, bestaande uit 1 methode ``Beweeg``. Deze gee
 
 ``Richting`` is een enum-type dat 4 mogelijke waarden heeft: Links, Rechts, Boven, Beneden.
 
-Pas de interface toe op Vliegtuig en Vloot. Deze methode zal de Locatie van het object 1 plekje opschuiven in de richting die in de parameter werd meegegeven. Als dus vervolgens het object opnieuw wordt getekend zal het object 1 plek naar rechts opgeschoven zijn.
+Pas de interface toe op Vliegtuig en Vloot. Deze methode zal de Locatie van het object 1 plekje opschuiven in de richting die in de parameter werd meegegeven. Als dus vervolgens het object opnieuw wordt getekend, zal het object 1 plek in die richting opgeschoven zijn (bij ``Rechts`` dus 1 plek naar rechts).
 
-Vormen verplaatsen is gewoon een kwestie van de X,Y coördinaten aan te passen. Meer is niet nodig.
+Vormen verplaatsen is een kwestie van de X,Y coördinaten aan te passen. Opgelet: een Vliegtuig bestaat uit een Rechthoek en twee Lijn-objecten die elk hun eigen coördinaten hebben, en een Vloot bestaat uit vliegtuigen. Die onderdelen moeten dus mee verplaatst worden.
 
   
 # Deel 2		(5 PUNTEN)
 
 ##	Stap 6	/5punten
 
-Maak nu een hammertje tik programma: een console-programma dat de gebruiker steeds volgende vragen stelt en vervolgens de gevraagde vormen toevoegt aan het scherm. Op de duur zal de gebruiker grote, complexe tekeningen kunnen maken door meerdere vormen en types te combineren. 
+Maak nu een hamertje tik-programma: een console-programma dat de gebruiker steeds volgende vragen stelt en vervolgens de gevraagde vormen toevoegt aan het scherm. Op de duur zal de gebruiker grote, complexe tekeningen kunnen maken door meerdere vormen en types te combineren. 
 Iedere vorm die wordt toegevoegd zal in een lijst worden bijgehouden.
 
 Een loop zal steeds volgende stappen uitvoeren tot de gebruiker het programma afsluit. 
@@ -137,14 +137,14 @@ Een loop zal steeds volgende stappen uitvoeren tot de gebruiker het programma af
 3. Beeld leegmaken
 
 
-De vragen die gesteld kunnen 
+De vragen die gesteld kunnen worden:
 1. *Lijst  leegmaken* => alle vormen verdwijnen en de gebruiker kan terug opnieuw beginnen
 2. *Vorm toevoegen* => zal de gewenste vorm toevoegen aan een lijst nadat volgende 2 of 3 extra zaken aan de gebruiker werden gevraagd:
    1. *Welke vorm?* (rechthoek, lijn, vliegtuig, vloot)
    2. *Locatie* (x,y) op het scherm
    3. Vormafhankelijke informatie? (bv aantal vliegtuigen)
 3. *Afsluiten* => programma sluit af
-4. *Verplaats object naar…*: gevolgd door de vraag in welke richting moet verplaatst worden. Wanneer de gebruiker deze optie zullen alle objecten die de IBeweegbaar hebben 1 plekje in de ingegeven richting verschoven worden
+4. *Verplaats object naar…*: gevolgd door de vraag in welke richting moet verplaatst worden. Wanneer de gebruiker deze optie kiest, zullen alle objecten die de IBeweegbaar hebben 1 plekje in de ingegeven richting verschoven worden
 
 
 # DEEL 3	(4 PUNTEN)
@@ -170,14 +170,19 @@ Vliegtuig, 5,2
 ```
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-## Stap 1
+De volledige code na stap 8, met elke klasse, de interface en de enum in een eigen bestand. Stap 5 zit in ``Richting``, ``IBeweegbaar``, ``Vliegtuig`` en ``Vloot``, stap 7 in ``Vloot`` en ``Program``, stap 8 in ``Vorm`` en ``Program``.
+
+Elk sterretje neemt 2 kolommen in (een sterretje en een spatie), zoals in de voorbeelden. Daarom liggen de vleugels 6 en 10 kolommen uit elkaar.
+
+**Vorm.cs**
 
 ```java
-    abstract class Vorm​
+namespace HamertjeTik
+{
+    abstract class Vorm : IComparable
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public abstract void TekenVorm();
         public virtual ConsoleColor Kleur { get; } = ConsoleColor.Red;
 
         public Vorm(int xin, int yin)
@@ -185,194 +190,251 @@ Vliegtuig, 5,2
             X = xin;
             Y = yin;
         }
+
+        public abstract void TekenVorm();
+
+        //Stap 8
+        public int CompareTo(object obj)
+        {
+            Vorm andereVorm = obj as Vorm;
+            if (andereVorm != null)
+            {
+                if (X > andereVorm.X) return 1;
+                if (X < andereVorm.X) return -1;
+                if (Y > andereVorm.Y) return 1;
+                if (Y < andereVorm.Y) return -1;
+                return 0;
+            }
+            else
+                throw new ArgumentException("Object is geen Vorm");
+        }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name}, {X}, {Y}";
+        }
     }
+}
 ```
 
-
-## Stap 2
+**Lijn.cs**
 
 ```java
+namespace HamertjeTik
+{
     class Lijn : Vorm
     {
+        public int Lengte { get; set; }
+        public override ConsoleColor Kleur => ConsoleColor.Green;
+
         public Lijn(int xin, int yin, int lengtein) : base(xin, yin)
         {
             Lengte = lengtein;
         }
+
         public override void TekenVorm()
         {
-            Console.ForegroundColor = this.Kleur;
+            Console.ForegroundColor = Kleur;
             for (int i = 0; i < Lengte; i++)
-            {              
-                    Console.SetCursorPosition(X+i , Y);
-                    Console.Write("*");
+            {
+                Console.SetCursorPosition(X + 2 * i, Y);
+                Console.Write("*");
             }
             Console.ResetColor();
         }
+    }
+}
+```
 
-        public override ConsoleColor Kleur => ConsoleColor.Green;
+**Rechthoek.cs**
+
+```java
+namespace HamertjeTik
+{
+    class Rechthoek : Vorm
+    {
         public int Lengte { get; set; }
         public int Breedte { get; set; }
-    }
+        public override ConsoleColor Kleur => ConsoleColor.Yellow;
 
-        class Rechthoek : Vorm
-    {
-        public Rechthoek(): base(1,1)
+        public Rechthoek() : base(1, 1)
         {
-            Breedte = 2;
             Lengte = 2;
+            Breedte = 2;
         }
-        public Rechthoek(int xin, int yin, int lengtein, int breedtein): base(xin,yin)
+
+        public Rechthoek(int xin, int yin, int lengtein, int breedtein) : base(xin, yin)
         {
-            Breedte = breedtein;
             Lengte = lengtein;
+            Breedte = breedtein;
         }
+
         public override void TekenVorm()
         {
-            Console.ForegroundColor = this.Kleur;
-            for (int i = 0; i < Lengte; i++)
+            Console.ForegroundColor = Kleur;
+            for (int rij = 0; rij < Lengte; rij++)
             {
-                for (int j = 0; j < Breedte; j++)
+                for (int kolom = 0; kolom < Breedte; kolom++)
                 {
-                    Console.SetCursorPosition(X+i ,Y+ j);
+                    Console.SetCursorPosition(X + 2 * kolom, Y + rij);
                     Console.Write("*");
                 }
             }
             Console.ResetColor();
         }
-
-        public override ConsoleColor Kleur => ConsoleColor.Yellow;
-        public int Lengte { get; set; }
-        public int Breedte { get; set; }
     }
+}
 ```
 
-## Stap 3
+**Vliegtuig.cs**
 
 ```java
-    class Vliegtuig:Vorm,IBeweegbaar
+namespace HamertjeTik
+{
+    class Vliegtuig : Vorm, IBeweegbaar
     {
-        private Rechthoek r;
-        private Lijn l1;
-        private Lijn l2;
-        public Vliegtuig(int xin,int yin):base(xin,yin)
+        private Rechthoek lichaam;
+        private Lijn linkerVleugel;
+        private Lijn rechterVleugel;
+
+        public Vliegtuig(int xin, int yin) : base(xin, yin)
         {
-            r = new Rechthoek(xin + 3, yin, 2, 5);
-            l1 = new Lijn(xin, yin + 2,3);
-            l2 = new Lijn(xin + 5, yin + 2,3);
+            lichaam = new Rechthoek(xin + 6, yin, 5, 2);
+            linkerVleugel = new Lijn(xin, yin + 2, 3);
+            rechterVleugel = new Lijn(xin + 10, yin + 2, 3);
         }
+
         public override void TekenVorm()
         {
-            r.TekenVorm();
-            l1.TekenVorm();
-            l2.TekenVorm();
+            lichaam.TekenVorm();
+            linkerVleugel.TekenVorm();
+            rechterVleugel.TekenVorm();
+        }
+
+        //Stap 5
+        public void Beweeg(Richting richting)
+        {
+            int stapX = 0;
+            int stapY = 0;
+            switch (richting)
+            {
+                case Richting.Links:
+                    stapX = -1;
+                    break;
+                case Richting.Rechts:
+                    stapX = 1;
+                    break;
+                case Richting.Boven:
+                    stapY = -1;
+                    break;
+                case Richting.Beneden:
+                    stapY = 1;
+                    break;
+            }
+
+            //De onderdelen hebben hun eigen coördinaten en moeten dus mee
+            X += stapX;
+            Y += stapY;
+            lichaam.X += stapX;
+            lichaam.Y += stapY;
+            linkerVleugel.X += stapX;
+            linkerVleugel.Y += stapY;
+            rechterVleugel.X += stapX;
+            rechterVleugel.Y += stapY;
         }
     }
+}
 ```
 
-## Stap 4
+**Vloot.cs**
 
 ```java
-    class Vloot:Vorm, IBeweegbaar
+namespace HamertjeTik
+{
+    class Vloot : Vorm, IBeweegbaar
     {
-        private List<Vliegtuig> vliegtuitenInVloot = new List<Vliegtuig>();
-        public Vloot(int xin,int yin, int aantal): base(xin,yin)
+        private List<Vliegtuig> vliegtuigenInVloot = new List<Vliegtuig>();
+
+        public Vloot(int xin, int yin, int aantal) : base(xin, yin)
         {
             for (int i = 0; i < aantal; i++)
             {
-                vliegtuitenInVloot.Add(new Vliegtuig(xin, yin + 5 * i));
+                vliegtuigenInVloot.Add(new Vliegtuig(xin, yin + 5 * i));
             }
         }
+
         public override void TekenVorm()
         {
-            foreach (var item in vliegtuitenInVloot)
+            foreach (var vliegtuig in vliegtuigenInVloot)
             {
-                item.TekenVorm();
+                vliegtuig.TekenVorm();
             }
         }
+
+        //Stap 5
+        public void Beweeg(Richting richting)
+        {
+            switch (richting)
+            {
+                case Richting.Links:
+                    X--;
+                    break;
+                case Richting.Rechts:
+                    X++;
+                    break;
+                case Richting.Boven:
+                    Y--;
+                    break;
+                case Richting.Beneden:
+                    Y++;
+                    break;
+            }
+
+            foreach (var vliegtuig in vliegtuigenInVloot)
+            {
+                vliegtuig.Beweeg(richting);
+            }
+        }
+
+        //Stap 7
+        public void VergrootVloot()
+        {
+            Vliegtuig nieuwVliegtuig = new Vliegtuig(X, Y + 5 * vliegtuigenInVloot.Count);
+            vliegtuigenInVloot.Add(nieuwVliegtuig);
+        }
     }
+}
 ```
 
-## Stap 5
+**Richting.cs**
 
 ```java
-    enum Richting { Links,Rechts,Boven,Beneden }
+namespace HamertjeTik
+{
+    enum Richting { Links, Rechts, Boven, Beneden }
+}
+```
+
+**IBeweegbaar.cs**
+
+```java
+namespace HamertjeTik
+{
     interface IBeweegbaar
     {
-        void Beweeg(Richting rkeuze);
+        void Beweeg(Richting richting);
     }
+}
 ```
 
-In vliegtuig:
+**Program.cs**
 
 ```java
-        public void Beweeg(Richting rkeuze)
-        {
-            switch (rkeuze)
-            {
-                case Richting.Links:
-                    X--;
-                    r.X--;
-                    l1.X--;
-                    l2.X--;
-                    break;
-                case Richting.Rechts:
-                    X++;
-                    r.X++;
-                    l1.X++;
-                    l2.X++;
-                    break;
-                case Richting.Boven:
-                    Y--;
-                    r.Y--;
-                    l1.Y--;
-                    l2.Y--;
-                    break;
-                case Richting.Beneden:
-                    Y++;
-                    r.Y++;
-                    l1.Y++;
-                    l2.Y++;
-                    break;
-                default:
-                    break;
-            }
-        }
-```
-
-In vloot:
-
-```java
-        public void Beweeg(Richting rkeuze)
-        {
-            switch (rkeuze)
-            {
-                case Richting.Links:
-                    X--;
-                    break;
-                case Richting.Rechts:
-                    X++;
-                    break;
-                case Richting.Boven:
-                    Y--;
-                    break;
-                case Richting.Beneden:
-                    Y++;
-                    break;
-                default:
-                    break;
-            }
-
-            foreach (var vliegtuig in vliegtuitenInVloot)
-            {
-                vliegtuig.Beweeg(rkeuze);
-            }
-        }
-```
-
-## Stap 6
-
-```java
-static void Main(string[] args)
+namespace HamertjeTik
+{
+    internal class Program
+    {
+        static void Main(string[] args)
         {
             List<Vorm> vormen = new List<Vorm>();
             bool stop = false;
@@ -383,19 +445,17 @@ static void Main(string[] args)
                 {
                     vorm.TekenVorm();
                 }
-                //menu
+                //Menu
                 stop = VraagGebruiker(vormen);
-                //clear
+                //Beeld leegmaken
                 Console.Clear();
-
             }
-
         }
 
         private static bool VraagGebruiker(List<Vorm> vormen)
         {
             Console.SetCursorPosition(1, 1);
-            Console.WriteLine("Maak keuze: 1.clear 2.add 3.exit 4.move");
+            Console.WriteLine("Maak keuze: 1.leegmaken 2.toevoegen 3.afsluiten 4.verplaatsen 5.vergroot vloot 6.sorteer");
             int keuze = Convert.ToInt32(Console.ReadLine());
             switch (keuze)
             {
@@ -403,108 +463,102 @@ static void Main(string[] args)
                     vormen.Clear();
                     break;
                 case 2:
-                    AddVorm(vormen);
+                    VoegVormToe(vormen);
                     break;
                 case 3:
-                    return true; //stop
-                    break;
+                    return true;
                 case 4:
-                    BeweegVorm(vormen);
+                    BeweegVormen(vormen);
+                    break;
+                case 5:
+                    VergrootVloten(vormen);
+                    break;
+                case 6:
+                    SorteerVormen(vormen);
                     break;
                 default:
                     Console.WriteLine("Onbekende keuze");
                     break;
             }
-
             return false;
         }
 
-        private static void BeweegVorm(List<Vorm> vormen)
+        private static void VoegVormToe(List<Vorm> vormen)
         {
-            Console.WriteLine("Naar waar? 0.links 1.rechts 2.boven 3.beneden");
-            Richting r = (Richting)(Convert.ToInt32(Console.ReadLine()));
-            foreach (var vorm in vormen)
-            {
-                (vorm as IBeweegbaar)?.Beweeg(r);
-            }
-        }
-
-        private static void AddVorm(List<Vorm> vormen)
-        {
-            Vorm toadd=null;
-            Console.Write("Welke vorm? 1.lijn 2.rechthoek 3.vliegtuig 4.vloot");
-            int keuze= (Convert.ToInt32(Console.ReadLine()));
-            Console.Write("X?");
-            int x = (Convert.ToInt32(Console.ReadLine()));
-            Console.Write("Y?");
-            int y = (Convert.ToInt32(Console.ReadLine()));
+            Console.Write("Welke vorm? 1.lijn 2.rechthoek 3.vliegtuig 4.vloot ");
+            int keuze = Convert.ToInt32(Console.ReadLine());
+            Console.Write("X? ");
+            int locatieX = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Y? ");
+            int locatieY = Convert.ToInt32(Console.ReadLine());
             switch (keuze)
             {
                 case 1:
-                    Console.Write("Lengte?");
-                    int lengte = (Convert.ToInt32(Console.ReadLine()));
-                    toadd= new Lijn(x, y, lengte);
+                    Console.Write("Lengte? ");
+                    int lengteLijn = Convert.ToInt32(Console.ReadLine());
+                    vormen.Add(new Lijn(locatieX, locatieY, lengteLijn));
                     break;
                 case 2:
-                    Console.Write("Lengte?");
-                    int lengtel = (Convert.ToInt32(Console.ReadLine()));
-                    Console.Write("Lengte?");
-                    int breedtel = (Convert.ToInt32(Console.ReadLine()));
-                    toadd = new Rechthoek(x, y, lengtel, breedtel);
+                    Console.Write("Lengte (aantal rijen)? ");
+                    int lengteRechthoek = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Breedte (aantal kolommen)? ");
+                    int breedteRechthoek = Convert.ToInt32(Console.ReadLine());
+                    vormen.Add(new Rechthoek(locatieX, locatieY, lengteRechthoek, breedteRechthoek));
                     break;
                 case 3:
-                    toadd = new Vliegtuig(x, y);
+                    vormen.Add(new Vliegtuig(locatieX, locatieY));
                     break;
                 case 4:
-                    Console.Write("Aantal vliegtuigen?");
-                    int aantal = (Convert.ToInt32(Console.ReadLine()));
-                    toadd = new Vloot(x, y,aantal);
+                    Console.Write("Aantal vliegtuigen? ");
+                    int aantal = Convert.ToInt32(Console.ReadLine());
+                    vormen.Add(new Vloot(locatieX, locatieY, aantal));
+                    break;
+                default:
+                    //Geen geldige vorm: er komt niets in de lijst
+                    Console.WriteLine("Onbekende vorm");
                     break;
             }
-
-            vormen.Add(toadd);
         }
-```
 
-## Stap 7
-In vloot:
-```java
-        public void VergrootVloot()
+        private static void BeweegVormen(List<Vorm> vormen)
         {
-            Vliegtuig toadd = new Vliegtuig(X, Y + 5 * vliegtuitenInVloot.Count);
-            vliegtuitenInVloot.Add(toadd);
-        }
-```
-
-## Stap 8
-
-In Vorm:
-```java
-    abstract class Vorm: IComparable
-    {
-        \\..
-        public int CompareTo(object obj)
-        {
-            Vorm tocomp = obj as Vorm;
-            if(tocomp!=null)
+            Console.WriteLine("Naar waar? 0.links 1.rechts 2.boven 3.beneden");
+            Richting richting = (Richting)Convert.ToInt32(Console.ReadLine());
+            foreach (var vorm in vormen)
             {
-                if (tocomp.X > this.X) return 1;
-                else if (tocomp.X > this.X) return -1;
-                else
+                if (vorm is IBeweegbaar beweegbaar)
                 {
-                    if (tocomp.Y > this.Y) return 1;
-                    else if (tocomp.Y > this.Y) return -1;
-                }           
+                    beweegbaar.Beweeg(richting);
+                }
             }
-            return 0;
         }
 
-        
-        public override string ToString()
+        //Stap 7
+        private static void VergrootVloten(List<Vorm> vormen)
         {
-            return $"{this.GetType().Name}, {X}, {Y}";
+            foreach (var vorm in vormen)
+            {
+                if (vorm is Vloot vloot)
+                {
+                    vloot.VergrootVloot();
+                }
+            }
         }
 
+        //Stap 8
+        private static void SorteerVormen(List<Vorm> vormen)
+        {
+            vormen.Sort();
+            Console.Clear();
+            foreach (var vorm in vormen)
+            {
+                Console.WriteLine(vorm);
+            }
+            Console.WriteLine("Druk op enter om verder te gaan.");
+            Console.ReadLine();
+        }
+    }
+}
 ```
 
 ::::

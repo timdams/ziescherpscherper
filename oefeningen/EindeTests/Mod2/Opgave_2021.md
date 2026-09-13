@@ -1,8 +1,8 @@
-> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2020
+> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2021
 
 ## Opgave
 
-*De geheime diensten hebben je hulp ingeroepen. De laatste weken onderscheppen ze vreemde signalen uit de lucht en ze hebben software nodig om deze signalen te analyseren. Jouw opdracht bestaat er uit een tool te ontwikkelen die de geheime diensten zal vertellen wanneer een signaal verdacht is of niet.*
+*De geheime diensten hebben je hulp ingeroepen. De laatste weken onderscheppen ze vreemde signalen uit de lucht en ze hebben software nodig om deze signalen te analyseren. Jouw opdracht bestaat eruit een tool te ontwikkelen die de geheime diensten zal vertellen wanneer een signaal verdacht is of niet.*
 
 
 ## Deel 1 : signaal namaken 
@@ -45,108 +45,121 @@ Een voorbeeld van zo’n signaal:
 
 * ``CountSpecials``: deze methode aanvaardt een array van chars en geeft een int terug als resultaat. De methode zal teruggeven hoe vaak de speciale letters X,Y,Z en Q voorkomen in de meegegeven array.
   * De methode zal de eerder geschreven methode NeedsColor gebruiken om te weten of een char speciaal is of niet
-* ``IsVerdacht``: deze methode aanvaardt een int als parameter en geeft een bool terug als resultaat. Het resultaat van deze methode is true indien de meegegeven parameter een veelvoud van 3 is (3 zelf dus ook) .
+* ``IsVerdacht``: deze methode aanvaardt een int als parameter en geeft een bool terug als resultaat. Het resultaat van deze methode is true indien de meegegeven parameter een veelvoud van 3 is (3 zelf dus ook). Bij 0 geeft de methode false terug, want een bericht zonder verdachte tekens is niet verdacht.
 
-### Deel 4 : opnieuw?
+## Deel 4 : opnieuw?
 Finaal verschijnt de vraag of de gebruiker opnieuw deel 1 tot 3 wil doorlopen.  We starten terug bij deel 1 indien de gebruiker ‘j’ (als karakter) invoert. In alle andere gevallen sluit het programma zich af.
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-#
 
 ```java
-static void Main(string[] args)
-{
-    char input = 'j';
-    do
-    {
-        Console.WriteLine("Onderschepte code");
-        char[] code = MaakSignaal();
-        Console.WriteLine();
-        VisualiseerCode(code);
-        AnalyseerCode(code);
-        Console.WriteLine("Wenst u opnieuw te beginnen?");
-        input = char.Parse(Console.ReadLine());
-    } while (input == 'j');
-}
+using System;
 
-private static void AnalyseerCode(char[] code)
+namespace Signalen
 {
-    Console.WriteLine();
-    Console.Write($"Er werden {CountSpecials(code)} speciale tekens gevonden. Dit is ");
-    if (!IsVerdacht(CountSpecials(code)))
+    class Program
     {
-        Console.Write("g");
-    }
-    Console.WriteLine("een verdacht signaal");
-}
-
-private static void VisualiseerCode(char[] code)
-{
-    Console.WriteLine("Detectie van de speciale tekens:");
-    for (int i = 0; i < code.Length; i++)
-    {
-        if (NeedsColor(code[i]))
+        static void Main(string[] args)
         {
-            WriteCharInRed(code[i]);
+            char invoer = 'j';
+            do
+            {
+                Console.WriteLine("Onderschepte code");
+                char[] code = MaakSignaal();
+                for (int i = 0; i < code.Length; i++)
+                {
+                    Console.Write(code[i]);
+                }
+                Console.WriteLine();
+                VisualiseerCode(code);
+                AnalyseerCode(code);
+                Console.WriteLine("Wenst u opnieuw te beginnen?");
+                invoer = char.Parse(Console.ReadLine());
+            } while (invoer == 'j');
         }
-        else
-            Console.Write(".");
+
+        private static void AnalyseerCode(char[] code)
+        {
+            Console.WriteLine();
+            Console.Write($"Er werden {CountSpecials(code)} speciale tekens gevonden. Dit is ");
+            if (!IsVerdacht(CountSpecials(code)))
+            {
+                Console.Write("g");
+            }
+            Console.WriteLine("een verdacht signaal");
+        }
+
+        private static void VisualiseerCode(char[] code)
+        {
+            Console.WriteLine("Detectie van de speciale tekens:");
+            for (int i = 0; i < code.Length; i++)
+            {
+                if (NeedsColor(code[i]))
+                {
+                    WriteCharInRed(code[i]);
+                }
+                else
+                {
+                    Console.Write(".");
+                }
+            }
+        }
+
+        private static char[] MaakSignaal()
+        {
+            const int SIGNAAL_LENGTE = 100;
+            Random generator = new Random();
+            char[] code = new char[SIGNAAL_LENGTE];
+            for (int i = 0; i < code.Length; i++)
+            {
+                code[i] = (char)generator.Next('A', 'Z' + 1);
+            }
+            return code;
+        }
+
+        private static bool IsVerdacht(int aantalSpecials)
+        {
+            if (aantalSpecials % 3 == 0 && aantalSpecials != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        static bool NeedsColor(char teken)
+        {
+            switch (teken)
+            {
+                case 'X':
+                case 'Y':
+                case 'Z':
+                case 'Q':
+                    return true;
+            }
+            return false;
+        }
+
+        static void WriteCharInRed(char teken)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(teken);
+            Console.ResetColor();
+        }
+
+        static int CountSpecials(char[] code)
+        {
+            int totaal = 0;
+            for (int i = 0; i < code.Length; i++)
+            {
+                if (NeedsColor(code[i]))
+                {
+                    totaal++;
+                }
+            }
+            return totaal;
+        }
     }
-}
-
-private static char[] MaakSignaal()
-{
-    const int S_LENGTH = 100;
-    Random r = new Random();
-    char[] code = new char[S_LENGTH];
-    for (int i = 0; i < code.Length; i++)
-    {
-        code[i] = (char)r.Next('A', 'Z' + 1);
-        Console.Write(code[i]);
-    }
-    return code;
-}
-
-private static bool IsVerdacht(int v)
-{
-
-    if (v % 3 == 0)
-    {
-        return true;
-    }
-    return false;
-}
-
-static bool NeedsColor(char c)
-{
-    switch (c)
-    {
-        case 'X':
-        case 'Y':
-        case 'Z':
-        case 'Q':
-            return true;
-    }
-    return false;
-}
-
-static void WriteCharInRed(char c)
-{
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.Write(c);
-    Console.ResetColor();
-}
-
-static int CountSpecials(char[] ar)
-{
-    int total = 0;
-    for (int i = 0; i < ar.Length; i++)
-    {
-        if (NeedsColor(ar[i]))
-            total++;
-    }
-    return total;
 }
 ```
 ::::

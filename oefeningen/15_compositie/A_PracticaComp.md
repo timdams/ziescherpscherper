@@ -393,6 +393,216 @@ public class CPU : PCComponent
 ::::
 
 
+# Stevens bibliotheek {#h15-stevens-bibliotheek}
+
+Stagiair Steven moest een bibliotheek programmeren. Een bibliotheek heeft boeken en leden, en een lid kan een boek lenen. Een boek dat uitgeleend is, mag niet uit de bibliotheek verdwijnen. Steven vroeg het aan een A.I. en plakte alles in zijn project:
+
+```java
+internal class Boek
+{
+    public string Titel { get; private set; }
+    public bool IsUitgeleend { get; set; }
+
+    public Boek(string titel)
+    {
+        Titel = titel;
+    }
+}
+```
+
+```java
+internal class Lid : Boek
+{
+    private Boek uitgeleend;
+
+    public string Naam { get; private set; }
+
+    public Lid(string naam)
+    {
+        Naam = naam;
+    }
+
+    public void Leen(Boek boek)
+    {
+        uitgeleend = boek;
+        boek.IsUitgeleend = true;
+    }
+
+    public override string ToString()
+    {
+        return $"{Naam} leest {uitgeleend.Titel}";
+    }
+}
+```
+
+```java
+internal class Bibliotheek
+{
+    // private set: zo kan niemand van buitenaf nog aan de boeken
+    public List<Boek> Boeken { get; private set; } = new List<Boek>();
+    private List<Lid> leden = new List<Lid>();
+
+    public void VoegBoekToe(Boek boek)
+    {
+        Boeken.Add(boek);
+    }
+
+    public void VerwijderBoek(Boek boek)
+    {
+        if (boek.IsUitgeleend)
+        {
+            Console.WriteLine($"{boek.Titel} is uitgeleend en kan niet weg.");
+        }
+        else
+        {
+            Boeken.Remove(boek);
+        }
+    }
+
+    public void SchrijfIn(Lid lid)
+    {
+        leden.Add(lid);
+    }
+
+    public static void ToonAantalBoeken()
+    {
+        Console.WriteLine($"Er staan {this.Boeken.Count} boeken in de bibliotheek.");
+    }
+
+    public void ToonLeden()
+    {
+        foreach (Lid lid in leden)
+        {
+            Console.WriteLine(lid);
+        }
+    }
+}
+```
+
+In ``Main``:
+
+```java
+Bibliotheek bib = new Bibliotheek();
+Boek avonden = new Boek("De Avonden");
+bib.VoegBoekToe(avonden);
+bib.VoegBoekToe(new Boek("Het Achterhuis"));
+bib.VoegBoekToe(new Boek("Max Havelaar"));
+
+Lid anna = new Lid("Anna");
+Lid bram = new Lid("Bram");
+bib.SchrijfIn(anna);
+bib.SchrijfIn(bram);
+
+anna.Leen(avonden);
+
+// Test: een uitgeleend boek mag niet weg
+bib.VerwijderBoek(avonden);
+bib.Boeken.Remove(avonden);
+
+Bibliotheek.ToonAantalBoeken();
+bib.ToonLeden();
+```
+
+**Deel 1.** Het project compileert niet: de compiler geeft twee foutmeldingen. De waarschuwing CS8618 over ``uitgeleend`` mag je laten staan. Bij welke lijnen horen de twee fouten, wat betekenen de meldingen, en hoe herstel je ze? Opgelet: bij één van de twee is de snelste oplossing niet de juiste.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. Bij de constructor van ``Lid``: ``CS7036 There is no argument given that corresponds to the required parameter 'titel' of 'Boek.Boek(string)'``. ``Lid`` erft van ``Boek``, en een ``Boek`` kan je enkel met een titel aanmaken. De melding wijst naar de constructor, maar de fout zit in de klassehoofding. Met ``public Lid(string naam) : base(naam)`` verdwijnt de melding wel, maar dan is Anna een boek met de titel "Anna", dat je kan uitlenen. Een lid is geen boek. Een lid *heeft* een boek, en daarvoor staat de instantievariabele ``uitgeleend`` er al. Schrap ``: Boek``.
+2. In ``ToonAantalBoeken``: ``CS0026 Keyword 'this' is not valid in a static property, static method, or static field initializer``. Een ``static`` methode hoort bij de klasse en niet bij één bibliotheek, dus er is geen huidig object waar ``this`` naar kan wijzen. Van welke bibliotheek zou ze de boeken moeten tellen? Haal ``static`` weg en schrijf gewoon ``Boeken.Count``. Daarna klaagt ``Main``: ``CS0120 An object reference is required for the non-static field, method, or property 'Bibliotheek.ToonAantalBoeken()'``. Roep de methode op het object op: ``bib.ToonAantalBoeken();``.
+::::
+
+**Deel 2.** Nu compileert het. Steven verwacht deze uitvoer, want geen van beide lijnen onder ``// Test`` mag het boek weghalen:
+
+```text
+De Avonden is uitgeleend en kan niet weg.
+Er staan 3 boeken in de bibliotheek.
+Anna leest De Avonden
+Bram heeft geen boek
+```
+
+Voer het programma uit. Er zitten nog twee fouten in die de compiler niet vindt. Zoek ze en herstel ze.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Het programma toont dit, en crasht dan:
+
+```text
+De Avonden is uitgeleend en kan niet weg.
+Er staan 2 boeken in de bibliotheek.
+Anna leest De Avonden
+Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.
+```
+
+1. Bram leende niets, dus bij hem is ``uitgeleend`` nog ``null``. ``ToString`` vraagt toch ``uitgeleend.Titel`` op. Controleer eerst op ``null``:
+
+```java
+public override string ToString()
+{
+    if (uitgeleend != null)
+    {
+        return $"{Naam} leest {uitgeleend.Titel}";
+    }
+    else
+    {
+        return $"{Naam} heeft geen boek";
+    }
+}
+```
+
+2. Er staan maar 2 boeken meer: ``bib.Boeken.Remove(avonden);`` haalt het boek wél weg, terwijl Anna het nog heeft. ``private set`` verbiedt enkel dat iemand van buitenaf een andere lijst in ``Boeken`` steekt. De ``get`` is public en geeft de echte lijst terug, en daarop werken ``Remove``, ``Add`` en ``Clear`` gewoon. Zo wordt de controle in ``VerwijderBoek`` overgeslagen. Maak van de lijst een private instantievariabele zonder property. Van buitenaf kan je dan enkel nog langs ``VoegBoekToe`` en ``VerwijderBoek``:
+
+```java
+internal class Bibliotheek
+{
+    private List<Boek> boeken = new List<Boek>();
+    private List<Lid> leden = new List<Lid>();
+
+    public void VoegBoekToe(Boek boek)
+    {
+        boeken.Add(boek);
+    }
+
+    public void VerwijderBoek(Boek boek)
+    {
+        if (boek.IsUitgeleend)
+        {
+            Console.WriteLine($"{boek.Titel} is uitgeleend en kan niet weg.");
+        }
+        else
+        {
+            boeken.Remove(boek);
+        }
+    }
+
+    public void SchrijfIn(Lid lid)
+    {
+        leden.Add(lid);
+    }
+
+    public void ToonAantalBoeken()
+    {
+        Console.WriteLine($"Er staan {boeken.Count} boeken in de bibliotheek.");
+    }
+
+    public void ToonLeden()
+    {
+        foreach (Lid lid in leden)
+        {
+            Console.WriteLine(lid);
+        }
+    }
+}
+```
+
+Nu houdt de compiler de lijn in ``Main`` wel tegen: ``CS1061 'Bibliotheek' does not contain a definition for 'Boeken' and no accessible extension method 'Boeken' accepting a first argument of type 'Bibliotheek' could be found (are you missing a using directive or an assembly reference?)``. Schrap die lijn. Het programma toont nu wat Steven verwachtte.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* De melding CS7036 wijst naar de constructor van ``Lid``, maar de fout zit in ``: Boek``. Klopt de "is een"-zin niet, dan is het een "heeft een". Zie [Associatie of overerving?](https://www.ziescherp.be/content/14_compositie/0_compositie_intro.html#associatie-of-overerving)
+* ``private set`` beschermt de property, niet de lijst erachter. Zie [Stagiair Steven](https://www.ziescherp.be/content/14_compositie/0_compositie_intro.html#stagiair-steven).
+* Een instantievariabele van een eigen klasse blijft ``null`` tot er een object in komt. Met enkel Anna in de bibliotheek had Steven de crash niet gezien. Zie [NullReferenceException is een klassieke fout](https://www.ziescherp.be/content/14_compositie/0_compositie_intro.html#nullreferenceexception-is-een-klassieke-fout).
+* In een ``static`` methode bestaat ``this`` niet. Zie [Het this keyword](https://www.ziescherp.be/content/14_compositie/this.html).
+::::
+
+
 # Worldbuilding (Essential, GPT)
 
 In deze oefening werk je een vereenvoudigd model uit van een RPG-spelwereld.

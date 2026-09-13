@@ -259,3 +259,45 @@ bonus)
   - `VerwerkActie` staat er zonder methodehoofding (`:268-288`).
   - `public List<...> { get; set; }` overal (`:72-73`, `:110`), terwijl H15 net uitlegt waarom
     dat af te raden is.
+
+## Doorgevoerd (2026-09-13): enkel Stevens bibliotheek
+
+Enkel voorstel 5 uit sectie 4. De rest van dit rapport is niet doorgevoerd; de status in de README
+blijft "analyse".
+
+- **Oefening** `# Stevens bibliotheek {#h15-stevens-bibliotheek}` in
+  `oefeningen/15_compositie/A_PracticaComp.md`, tussen Moederbord en Worldbuilding, zonder label.
+  Klassen `Boek`, `Lid` en `Bibliotheek` plus een `Main`. Deel 1: de twee fouten die de compiler
+  vindt. Deel 2: de twee die hij niet vindt, met de uitvoer die Steven verwacht. Per deel een
+  Oplossing-callout, daarna een Les met links naar `0_compositie_intro.html` (ankers
+  `#associatie-of-overerving`, `#stagiair-steven`, `#nullreferenceexception-is-een-klassieke-fout`)
+  en `this.html`.
+- **Coach-data**: `## Stevens bibliotheek` in `oefeningen/_coach/15_compositie.md`, na Moederbord,
+  met Nota, Aanpak en Valkuilen.
+- **Geverifieerd met dotnet** (net10.0, klassiek skelet, elke tussenstap als eigen project):
+  - Stevens versie: CS7036 bij de constructor van `Lid` en CS0026 in `ToonAantalBoeken`, plus de
+    waarschuwing CS8618 op `uitgeleend`.
+  - Met `: base(naam)` blijft enkel CS0026 over.
+  - `: Boek` en `static` weg, `Main` onveranderd: CS0120.
+  - Daarna compileert het. Uitvoer tot "Anna leest De Avonden", met "Er staan 2 boeken", dan een
+    `NullReferenceException` in `Lid.ToString`.
+  - Met de null-controle: geen crash, nog altijd "2 boeken".
+  - Lijst private zonder property: `bib.Boeken.Remove(avonden)` geeft CS1061.
+  - Zonder die lijn: de verwachte uitvoer met "3 boeken" en "Bram heeft geen boek".
+
+  Alle meldingen in de oefening zijn letterlijk van de commandline overgenomen.
+- **Afwijkingen van het voorstel:**
+  - `Main` doet `bib.Boeken.Remove(avonden)` in plaats van `Boeken.Clear()`. `Clear` is letterlijk
+    de Steven-callout uit het boek. Met `Remove` op een uitgeleend boek omzeilt de regel ook de
+    controle in `VerwijderBoek`, en dat ziet de student aan "2 boeken".
+  - Het voorstel zegt niet welke twee fouten de compiler vindt. `class Lid : Boek` wordt er één
+    omdat `Boek` enkel een constructor met titel heeft (CS7036). De snelle fix `: base(naam)`
+    compileert, maar is fout. Dat is het leesstuk van deel 1.
+  - De verwachte uitvoer in deel 2 legt vast dat een lid zonder boek "heeft geen boek" toont.
+    Anders kan de student de null-fout niet tegen iets afwegen.
+  - De oefening staat na Moederbord en niet op de plaats uit sectie 5, omdat de oefeningen die daar
+    ervoor komen nog niet bestaan.
+- **Links**: www.ziescherp.be gaf bij het nakijken voor elke content-URL (ook bestaande links uit
+  H8) de landingspagina terug. De ankers zijn daarom gecontroleerd op de github.io-deploy en in de
+  bron.
+- **Niet gedaan**: renderen, de scripts in `scripts/` draaien.

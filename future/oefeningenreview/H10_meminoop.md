@@ -209,3 +209,38 @@ Pokémon in dit hoofdstuk staan voor H11.
   rode pijl loopt over `Attack_Full`.
 - `content/9_meminoop/kennisclips.md:20` linkt naar de oude oefeningen op apwt.gitbook.io. Dat
   staat in 18 `kennisclips.md`-bestanden.
+
+## Doorgevoerd (2026-09-13): enkel Stevens reservekopie
+
+Enkel de nieuwe oefening uit sectie 4, punt 2. De rest van dit rapport is niet doorgevoerd; de status
+in de README blijft "analyse".
+
+- **Pagina.** `oefeningen/10_meminoop/A_poke1.md`: `# Stevens reservekopie (*Essential*)
+  {#h10-stevens-reservekopie}`, na Pokémon en vóór Bankmanager 2. Vorm zoals Stevens warmste stad
+  (H8): een ingekorte `Pokemon`-klasse, Stevens `Main`, `MaakRivaal` en `Battle`, dan Deel 1 en
+  Deel 2 met elk een Oplossing, en een Les-callout met links naar `= operator bij objecten`,
+  `NullReferenceException voorkomen` en `Werken met de exception parameter` (ankers nagekeken op
+  de gepubliceerde pagina's).
+- **De fouten.** Deel 1: `Pokemon reserve = pikachu;`, waarna beide lijnen `level 10, HP 27` tonen.
+  Deel 2: `Battle` rekent `poke2.HP_Full` uit vóór de null-check. Met de onbestaande rivaal toont
+  de `catch` in Main `Object reference not set to an instance of an object.` in plaats van Stevens
+  eigen melding.
+- **Coach-data.** `## Stevens reservekopie` in `oefeningen/_coach/10_meminoop.md`, tussen Pokémon
+  en Bankmanager 2, met Nota, Aanpak en Valkuilen.
+- **Geverifieerd met dotnet** (net10.0, klassiek skelet): Stevens versie compileert met 0 fouten
+  (enkel CS8600 en CS8603 op de `null`-regels in `MaakRivaal`; de opgave steunt daar niet op) en
+  geeft letterlijk de uitvoer uit de oplossingen, ook de Engelse `Message`. De oplossing geeft
+  `Voor de training: level 0, HP 10`, `Geen gevecht: Een gevecht heeft twee Pokémon nodig.`, en met
+  Onix `Winnaar: Pokémon 1`. De kopie met de lus klopt ook met een Pikachu die al een level heeft.
+  Dat `reserve.Level = pikachu.Level` niet compileert (valkuil in de coach-data) is ook getest.
+- **Afwijkingen van het voorstel.**
+  - `Battle` vergelijkt `HP_Full + Attack_Full` en niet `Average`: `Average` rekent op de
+    base-stats, en sectie 1 zegt net dat een battle daarop niet mag.
+  - De `null`-rivaal is geen vergissing van Steven maar een bewuste test via `MaakRivaal`, dat
+    `null` teruggeeft. Main heeft een `try`/`catch`, dus het symptoom is een verkeerde melding en
+    geen crash. Zo komen ook `return null`, `catch (Exception e)` en `e.Message` aan bod.
+  - De klasse is ingekort: auto-properties voor de base-stats (de opgave vraagt full properties),
+    enkel HP en Attack. `Level`, `VerhoogLevel` en de formules zijn die van de opgave. Klassenaam
+    `Pokemon` zonder é, zoals de oplossing en de unittests. Pikachu start op level 0.
+  - Plaats: na Pokémon, zoals gevraagd. Sectie 5 zet ze later (na "Waar staat de try?"), maar die
+    oefeningen bestaan nog niet.

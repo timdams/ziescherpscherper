@@ -95,6 +95,32 @@ Een constructor met twee parameters die eerst controleert en pas daarna toekent.
 - De vier waarden alsnog allemaal in de constructor stoppen, terwijl de opgave uitdrukkelijk de initializer wil zien.
 - In de catch niets doen, zodat je niet ziet dat er een fout was.
 
+## Stevens constructors
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven, in vier losse delen. Vraag eerst aan welk deel de student bezig is, en of hij al op papier geantwoord heeft voor hij de code intypte. Geef de fouten nooit, ook de foutcode of de verbeterde regel niet. Je mag wel vragen stellen zoals deze:
+
+- Deel 1: leg de kop van Stevens constructor woord per woord naast een constructor uit de leerstof. Wat is het verschil tussen een constructor en een gewone methode?
+- Deel 2: welke constructors heeft Boek op dit moment? Welke constructor zoekt new Boek(), en bestaat die nog?
+- Deel 3: wordt ToonOverzicht opgeroepen via een object of via de klasse? Van welke tafel zou aantalPizzas dan moeten komen? Welke van de twee WriteLines kan wel?
+- Deel 4: naar welke bedrag verwijzen de linker- en de rechterkant van het = in de constructor? Welke waarde heeft de instantievariabele bedrag net na new? Staat er iets bij de waarschuwingen in de Error List?
+
+### Aanpak
+
+Deel 1: door void is de constructor een gewone methode, en een methode mag niet zo heten als de klasse (CS0542). void schrappen volstaat. Deel 2: door de zelfgeschreven constructor met een parameter is de gratis default constructor weg (CS7036). Oplossen kan in Main door het notitieboek een titel te geven, of in de klasse met een default constructor die via this("Zonder titel") de andere constructor gebruikt. Deel 3: een static methode heeft geen object en kan aantalPizzas niet lezen (CS0120). Het aantal bestellingen blijft in een static methode, het aantal pizza's verhuist naar een gewone methode die je per tafel oproept. Deel 4: de parameter heet zoals de instantievariabele, dus bedrag = bedrag kent de parameter aan zichzelf toe. Het compileert met enkel waarschuwing CS1717 en toont 5 euro in plaats van 25, want StopErIn telt wel bij de instantievariabele op. De parameter een andere naam geven lost het op.
+
+### Valkuilen
+
+- Bij deel 1 de methode een andere naam geven in plaats van void te schrappen. Dan is er nog altijd geen constructor met een parameter, en compileert new Rugzak(25) niet.
+- Bij deel 2 de constructor met parameter weghalen zodat de default constructor terugkomt. Dan werkt new Boek("De Avonden") niet meer.
+- Bij deel 2 in de default constructor de toekenning opnieuw uitschrijven. Dat werkt, maar this(...) is net wat het hoofdstuk leert.
+- Bij deel 3 ook aantalPizzas static maken. Dan compileert het, maar delen alle bestellingen één aantal pizza's en toont het overzicht 2 pizza's, het aantal van de laatste tafel.
+- Bij deel 3 static weghalen bij ToonOverzicht en de methode via tafel1 oproepen. Dat compileert, maar het aantal bestellingen van de hele dag hoort niet bij één tafel.
+- Bij deel 4 enkel naar fouten zoeken. Er is er geen, enkel een waarschuwing.
+- Bij deel 4 denken dat StopErIn fout is omdat er 5 uitkomt. De fout zit in de constructor.
+- Bij deel 4 this.bedrag = bedrag schrijven. Het keyword this komt pas in hoofdstuk 15; een andere parameternaam volstaat.
+
 ## Digitale kluis
 
 ### Nota

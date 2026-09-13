@@ -51,14 +51,14 @@ Schrijf een methode ``GenereerRandom``. Deze methode geeft een ``double`` terug 
 
 Als de methode met de waarden 6 en 12 wordt aangeroepen zal er dus een kommagetal tussen 6 en 12 worden teruggegeven worden.
 
-Indien de ondergrens en bovengrens parameters even groot zijn dan wordt het dubbele van de bovengrens gebruikt.Indien de ondergrens groter is dan de bovengrens dan worden de grenzen omgekeerd gebruikt.
+Indien de ondergrens en bovengrens parameters even groot zijn, dan wordt de bovengrens verdubbeld: het getal ligt dan tussen de ondergrens en 2 keer de bovengrens. Indien de ondergrens groter is dan de bovengrens, dan worden de grenzen omgekeerd gebruikt.
 
 #### Methode 2 ToonArrayKleuren
-Schrijf een methode ``ToonArrayKleuren`` die een array van ``double`` aanvaardt:
+Schrijf een methode ``ToonArrayKleuren`` die een array van ``double`` aanvaardt. Ondanks de naam gebruikt deze methode geen kleuren: de getallen die opvallen, krijgen vierkante haakjes.
 
 0. De methode berekent het gemiddelde van alle waarden in de array.
-1. Twee ``int`` variabelen ``boven`` en  ``onder`` krijgen volgende inhoud: ``boven`` krijgt de waarde van het gemiddelde naar boven afgerond (naar het dichtsbijzijnde gehele getal). ``onder`` krijgt de waarde van  het gemiddelde naar onder afgerond. (*als het gemiddelde 13.6 was dan krijgt ``boven`` de waarde 14, en onder ``onder`` de waarde 13*).
-1. Deze methode zal vervolgens de inhoud van de meegeven array naar het scherm visualiseren als volgt. Het toont de getallen uit de array naast elkaar in een rij (*telkens 1 cijfer na de komma*), telkens met een tab tussen. Ieder getal dat zich tussen de waarden ``onder`` en ``boven`` bevindt zal vierkante haakjes rond zich hebben (bv ``[17,0]`` )
+1. Twee ``int`` variabelen ``boven`` en  ``onder`` krijgen volgende inhoud: ``boven`` krijgt de waarde van het gemiddelde naar boven afgerond (naar het dichtsbijzijnde gehele getal). ``onder`` krijgt de waarde van  het gemiddelde naar onder afgerond. (*als het gemiddelde 13.6 was dan krijgt ``boven`` de waarde 14, en ``onder`` de waarde 13*).
+1. Deze methode zal vervolgens de inhoud van de meegeven array naar het scherm visualiseren als volgt. Het toont de getallen uit de array naast elkaar in een rij (*telkens 1 cijfer na de komma*), telkens met een tab tussen. Ieder getal dat groter dan of gelijk aan ``onder`` en kleiner dan of gelijk aan ``boven`` is, zal vierkante haakjes rond zich hebben (bv ``[17,0]`` ). Je vergelijkt daarbij het getal zelf, niet de afgeronde waarde op het scherm. Met ``onder`` 17 en ``boven`` 18, zoals in de voorbeelduitvoer hieronder, krijgt een getal 17,04 dus haakjes en verschijnt het als ``[17,0]``, terwijl een getal 18,02 geen haakjes krijgt en als ``18,0`` verschijnt.
 
 #### Toepassing
 
@@ -145,218 +145,260 @@ Aantal personen= 0, Prijs = 0
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-# Oefening 1
+**Oefening 1**
 
-Deze oefening kon je ook grotendeels zonder arrays oplossen, maar dan is het wel onmogelijk om te weten welk het vaakst ingevoerde getal is. Om het grootste en kleinste getal te vinden kon je ook de array sorteren met Sort en dan het laatste en eerste element uit de array uitlezen.
-
-```java
-Console.WriteLine("Geef n");
-int n = int.Parse(Console.ReadLine());
-Console.WriteLine($"Geef nu {n} getallen in:");
-int[] getallen = new int[n];
-int som = 0;
-
-
-//Invoer vragen (en som ineens maken)
-//Grootste en kleinste kan in principe ook hier reeds gedaan worden
-for (int i = 0; i < n; i++)
-{
-    getallen[i] = int.Parse(Console.ReadLine());
-    som += getallen[i];
-}
-
-//statistieken
-
-double gemiddelde = som / (double)n;
-
-//grootste en kleinste zoeken
-int grootste = getallen[0];
-int kleinste = getallen[0];
-for (int i = 1; i < n; i++)
-{
-    if (getallen[i] > grootste)
-        grootste = getallen[i];
-    if (getallen[i] < kleinste)
-        kleinste = getallen[i];
-}
-
-//meest ingevoerde zoeken
-int aantalMax = 0;
-int meestVoorkomend = getallen[0];
-int tellen = 0;
-for (int i = 0; i < n; i++)
-{
-
-    for (int j = i; j < n; j++)
-    {
-        if (getallen[j] == getallen[i])
-        {
-            tellen++;
-        }
-    }
-    if(tellen>aantalMax)
-    {
-        aantalMax = tellen;
-        meestVoorkomend = getallen[i];
-    }
-    tellen = 0;
-}
-
-//statistieken tonen
-Console.WriteLine("Hier volgt de informatie over je invoer:");
-
-Console.Write($"Kleinste ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(kleinste);
-Console.ResetColor();
-
-Console.Write($"Grootste ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(grootste);
-Console.ResetColor();
-
-Console.Write($"Het meest ingevoerde getal:");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(meestVoorkomend);
-Console.ResetColor();
-Console.Write($"\t dit getal werd ");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.Write(aantalMax);
-Console.ResetColor();
-Console.WriteLine($" keer ingevoerd");
-
-Console.Write($"Gemiddelde: ");
-Console.ForegroundColor = ConsoleColor.DarkRed;
-Console.WriteLine(Math.Round(gemiddelde,2));
-Console.ResetColor();
-```
-
-# Oefening 2
+Deze oefening kon je ook grotendeels zonder arrays oplossen, maar dan is het wel onmogelijk om te weten welk het vaakst ingevoerde getal is. Om het grootste en kleinste getal te vinden kon je ook de array sorteren met `Array.Sort` en dan het laatste en eerste element uit de array uitlezen.
 
 ```java
-static void Main(string[] args)
+namespace Getallenverwerker
 {
-    const int AR_GROOTTE = 100;
-    Console.WriteLine("Geef ondergrens");
-    int onderGrens = int.Parse(Console.ReadLine());
-    Console.WriteLine("Geef bovengrens");
-    int bovenGrens = int.Parse(Console.ReadLine());
-
-    double[] array = new double[AR_GROOTTE];
-    for (int i = 0; i < array.Length; i++)
+    internal class Program
     {
-        array[i] = GenereerRandom(onderGrens, bovenGrens);
-    }
-    ToonArrayKleuren(array);
-}
-
-static double GenereerRandom(int onder, int boven)
-{
-    int onderGrens = onder;
-    int bovenGrens = boven;
-    //Grenzen aanpassen indien nodig
-    if (onder == boven)
-        bovenGrens = boven * 2;
-    else if (onder > boven)
-    {
-        bovenGrens = onder;
-        onderGrens = boven;
-    }
-
-    Random rng = new Random();
-    return onderGrens + rng.NextDouble() * (bovenGrens - onderGrens);
-}
-
-static void ToonArrayKleuren(double[] arrayIn)
-{
-    //Gemiddelde berekenen
-    double som = 0.0;
-    for (int i = 0; i < arrayIn.Length; i++)
-    {
-        som += arrayIn[i];
-    }
-    double gemiddelde = som / arrayIn.Length;
-    Console.WriteLine($"Gemiddelde was: {gemiddelde}");
-
-    //Grenzen berekenen
-    int boven = (int)Math.Ceiling(gemiddelde);
-    int onder = (int)Math.Floor(gemiddelde);
-
-    //Array visualiseren
-    for (int i = 0; i < arrayIn.Length; i++)
-    {
-        double waarde = Math.Round(arrayIn[i], 1);
-        if (waarde > onder && waarde < boven)
+        static void Main(string[] args)
         {
-            Console.Write($"[{waarde}]\t");
-        }
-        else
-        {
-            Console.Write($"{waarde}\t");
-        }
-    }
-}
-```
+            Console.WriteLine("Geef n:");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Geef nu {n} getallen in:");
+            int[] getallen = new int[n];
+            int som = 0;
 
-# Oefening 3
-
-```java
-enum MenuKeuze { Normaal = 1, Reductie, Groep, Reset }
-static void Main(string[] args)
-{
-    int aantalPersonen = 0;
-    int totaalPrijs = 0;
-    const int PRIJSNORM = 10;
-    const int PRIJSREDUCT = 8;
-    const int PRIJSGROEP = 30;
-
-    while (true)
-    {
-        int invoer = -1;
-        do
-        {
-            Console.WriteLine($"{(int)MenuKeuze.Normaal}. Normaal ticket ({PRIJSNORM} euro)");
-            Console.WriteLine($"{(int)MenuKeuze.Reductie}. Reductie ticket ({PRIJSREDUCT} euro)");
-            Console.WriteLine($"{(int)MenuKeuze.Groep}. Groepsticket ({PRIJSGROEP} euro voor 5 personen)");
-            Console.WriteLine($"{(int)MenuKeuze.Reset}. Opnieuw");
-            Console.WriteLine($"Aantal personen= {aantalPersonen}, Prijs = {totaalPrijs}");
-
-            invoer = int.Parse(Console.ReadLine());
-            if (invoer < 1 || invoer > 4)
+            //Invoer vragen en meteen de som maken
+            for (int i = 0; i < getallen.Length; i++)
             {
-                Console.WriteLine("Fout probeer het nog eens");
+                getallen[i] = int.Parse(Console.ReadLine());
+                som += getallen[i];
             }
-        } while (invoer < 1 || invoer > 4);
 
-        MenuKeuze keuze = (MenuKeuze)invoer;
-        int aantalTickets = 0;
-        switch (keuze)
+            double gemiddelde = som / (double)getallen.Length;
+
+            //Grootste en kleinste zoeken
+            int grootste = getallen[0];
+            int kleinste = getallen[0];
+            for (int i = 1; i < getallen.Length; i++)
+            {
+                if (getallen[i] > grootste)
+                {
+                    grootste = getallen[i];
+                }
+                if (getallen[i] < kleinste)
+                {
+                    kleinste = getallen[i];
+                }
+            }
+
+            //Meest ingevoerde getal zoeken: tel voor elk getal hoe vaak het vanaf die plaats nog voorkomt
+            int aantalMax = 0;
+            int meestIngevoerd = getallen[0];
+            for (int i = 0; i < getallen.Length; i++)
+            {
+                int aantal = 0;
+                for (int j = i; j < getallen.Length; j++)
+                {
+                    if (getallen[j] == getallen[i])
+                    {
+                        aantal++;
+                    }
+                }
+                if (aantal > aantalMax)
+                {
+                    aantalMax = aantal;
+                    meestIngevoerd = getallen[i];
+                }
+            }
+
+            //Resultaten tonen, telkens de waarde in het rood
+            Console.WriteLine("Hier volgt de informatie over je invoer:");
+
+            Console.Write("Kleinste ingevoerde getal: ");
+            ToonInRood($"{kleinste}");
+            Console.WriteLine();
+
+            Console.Write("Grootste ingevoerde getal: ");
+            ToonInRood($"{grootste}");
+            Console.WriteLine();
+
+            Console.Write("Het meest ingevoerde getal: ");
+            ToonInRood($"{meestIngevoerd}");
+            Console.WriteLine();
+
+            Console.Write("    dit getal werd ");
+            ToonInRood($"{aantalMax}");
+            Console.WriteLine(" keer ingevoerd");
+
+            Console.Write("Gemiddelde: ");
+            ToonInRood($"{gemiddelde:F2}");
+            Console.WriteLine();
+        }
+
+        static void ToonInRood(string waarde)
         {
-            case MenuKeuze.Normaal:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSNORM;
-                aantalPersonen += aantalTickets;
-                break;
-            case MenuKeuze.Reductie:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSREDUCT;
-                aantalPersonen += aantalTickets;
-                break;
-            case MenuKeuze.Groep:
-                aantalTickets = VraagAantalTickets();
-                totaalPrijs += aantalTickets * PRIJSGROEP;
-                aantalPersonen += 5 * aantalTickets;
-                break;
-            default:
-                break;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(waarde);
+            Console.ResetColor();
         }
     }
 }
+```
 
-private static int VraagAantalTickets()
+**Oefening 2**
+
+```java
+namespace Arrayverwerker
 {
-    Console.WriteLine("Hoeveel?");
-    return int.Parse(Console.ReadLine());
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const int AANTAL_GETALLEN = 100;
+            Console.WriteLine("Geef ondergrens?");
+            int onderGrens = int.Parse(Console.ReadLine());
+            Console.WriteLine("Geef bovengrens?");
+            int bovenGrens = int.Parse(Console.ReadLine());
+
+            double[] getallen = new double[AANTAL_GETALLEN];
+            for (int i = 0; i < getallen.Length; i++)
+            {
+                getallen[i] = GenereerRandom(onderGrens, bovenGrens);
+            }
+
+            Console.WriteLine("Visualisatie array:");
+            ToonArrayKleuren(getallen);
+        }
+
+        static double GenereerRandom(int onderGrens, int bovenGrens)
+        {
+            int onder = onderGrens;
+            int boven = bovenGrens;
+            //Grenzen aanpassen indien nodig
+            if (onderGrens == bovenGrens)
+            {
+                boven = bovenGrens * 2;
+            }
+            else if (onderGrens > bovenGrens)
+            {
+                onder = bovenGrens;
+                boven = onderGrens;
+            }
+
+            Random rng = new Random();
+            return onder + rng.NextDouble() * (boven - onder);
+        }
+
+        static void ToonArrayKleuren(double[] getallen)
+        {
+            //Gemiddelde berekenen
+            double som = 0;
+            for (int i = 0; i < getallen.Length; i++)
+            {
+                som += getallen[i];
+            }
+            double gemiddelde = som / getallen.Length;
+            Console.WriteLine($"Gemiddelde was: {gemiddelde}");
+            Console.WriteLine();
+
+            //Grenzen berekenen
+            int boven = (int)Math.Ceiling(gemiddelde);
+            int onder = (int)Math.Floor(gemiddelde);
+
+            //Array visualiseren: vergelijken met het getal zelf, niet met de afgeronde waarde
+            for (int i = 0; i < getallen.Length; i++)
+            {
+                if (getallen[i] >= onder && getallen[i] <= boven)
+                {
+                    Console.Write($"[{getallen[i]:F1}]\t");
+                }
+                else
+                {
+                    Console.Write($"{getallen[i]:F1}\t");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+}
+```
+
+**Oefening 3**
+
+De menukeuze wordt als tekst vergeleken. Zo crasht het programma niet als de gebruiker letters intypt, en daar is geen `int.Parse` voor nodig. Het aantal tickets wordt pas omgezet als het enkel uit cijfers bestaat.
+
+```java
+namespace Cinemasysteem
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const int PRIJS_NORMAAL = 10;
+            const int PRIJS_REDUCTIE = 8;
+            const int PRIJS_GROEP = 30;
+            const int PERSONEN_GROEP = 5;
+
+            int aantalPersonen = 0;
+            int totaalPrijs = 0;
+
+            //Er is geen optie om te stoppen: het menu blijft altijd terugkomen
+            while (true)
+            {
+                Console.WriteLine($"1. Normaal ticket ({PRIJS_NORMAAL} euro)");
+                Console.WriteLine($"2. Reductie ticket ({PRIJS_REDUCTIE} euro)");
+                Console.WriteLine($"3. Groepsticket ({PRIJS_GROEP} euro voor {PERSONEN_GROEP} personen)");
+                Console.WriteLine("4. Opnieuw");
+                Console.WriteLine($"Aantal personen= {aantalPersonen}, Prijs = {totaalPrijs}");
+
+                //De keuze als tekst vergelijken: zo crasht het programma niet op letters
+                string keuze = Console.ReadLine();
+                if (keuze == "4")
+                {
+                    aantalPersonen = 0;
+                    totaalPrijs = 0;
+                }
+                else if (keuze == "1" || keuze == "2" || keuze == "3")
+                {
+                    Console.WriteLine("Hoeveel?");
+                    string invoerAantal = Console.ReadLine();
+                    if (IsGeldigAantal(invoerAantal))
+                    {
+                        int aantalTickets = int.Parse(invoerAantal);
+                        int prijsPerTicket = PRIJS_NORMAAL;
+                        int personenPerTicket = 1;
+                        if (keuze == "2")
+                        {
+                            prijsPerTicket = PRIJS_REDUCTIE;
+                        }
+                        else if (keuze == "3")
+                        {
+                            prijsPerTicket = PRIJS_GROEP;
+                            personenPerTicket = PERSONEN_GROEP;
+                        }
+                        totaalPrijs += aantalTickets * prijsPerTicket;
+                        aantalPersonen += aantalTickets * personenPerTicket;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fout. Dat kan niet.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Fout. Dat kan niet.");
+                }
+            }
+        }
+
+        static bool IsGeldigAantal(string tekst)
+        {
+            //Enkel cijfers, en hoogstens 4 zodat int.Parse zeker niet overloopt
+            bool geldig = tekst.Length > 0 && tekst.Length <= 4;
+            int i = 0;
+            while (geldig && i < tekst.Length)
+            {
+                geldig = tekst[i] >= '0' && tekst[i] <= '9';
+                i++;
+            }
+            return geldig;
+        }
+    }
 }
 ```
 ::::

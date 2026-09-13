@@ -62,16 +62,16 @@ Een klimmuur wordt gedefinieerd door het aantal handvaten die de muur heeft.
 De klasse:
 
 * Is een ``Toestel``.
-* Heeft een overloaded constructor waarmee het aantal ``klimelementen`` (handvaten) kan ingesteld worden via een meegegeven ``int``. De ``tekenchar`` is een ``m``.
+* Heeft een overloaded constructor waarmee het aantal ``klimelementen`` (handvaten) kan ingesteld worden via een meegegeven ``int``. De ``tekenChar`` is een ``m``.
 * De moeilijkheidsgraad is 3 indien er een even aantal ``klimelementen`` zijn, anders is deze 4.
 
-### DeadWall-klasse
+### DeathWall-klasse
 
-De dodelijk deadwall is een klimmuur waar eventueel veiligheidsnetten onder kunnen geplaatst worden zodat deelnemers die vallen opgevangen kunnen worden.
+De dodelijke DeathWall is een klimmuur waar eventueel veiligheidsnetten onder kunnen geplaatst worden zodat deelnemers die vallen opgevangen kunnen worden.
 
 * Is een ``Klimmuur``.
-* Heeft een default constructor waarmee kan ingesteld worden of de wall met veiligheidsnetten werkt of niet (aan de hand van een meegegeven ``bool``). Een ``DeadWall``heeft altijd ``21`` klimelementen. ``tekenchar`` is ``M``.
-* Implementeert de ``IDodelijke`` interface en zal de ``bool`` teruggeven in ``VeiligheidsActief`` die in de constructor werd meegegeven.
+* Heeft een constructor waarmee kan ingesteld worden of de wall met veiligheidsnetten werkt of niet (aan de hand van een meegegeven ``bool``). Een ``DeathWall`` heeft altijd ``21`` klimelementen. ``tekenChar`` is ``M``.
+* Implementeert de ``IDodelijk`` interface en zal de ``bool`` teruggeven in ``VeiligheidsActief`` die in de constructor werd meegegeven.
 * De moeilijkheidsgraad is 5 indien er veiligheidsnetten zijn, anders is deze 10.
 
 
@@ -81,11 +81,11 @@ Deze klasse beschrijft een volledig parkoers van toestellen die de speler zal mo
 
 * Deze klasse heeft een lijst van toestellen.
 * Een constructor die 2 parameters aanvaard, namelijk het aantal toestellen (*x*) waaruit het parkoers bestaat en een bool  (*y*) om aan te geven of dodelijke toestellen met beveiliging moeten worden toegevoegd:
-	* De constructor zal *x* willekeurige toestellen aan de lijst toevoegen. Ieder toestel (`Trampoline`, `UltraTrampoline`, `Klimmuur` en `Deathwall`) heeft even veel kans om gekozen te worden.
-	* Indien een `Klimmuur` wordt gekozen dan krijgt deze een willekeurig aantal klimtoppen tussen 10 en 50.
-	* Indien een Deathwall wordt gekozen dan wordt de bool `y` meegeven om aan te geven of er wel of geen veiligheidsnet moet toegevoegd worden.
-* De klasse heeft een methode `VerwijderDodelijke`. Wanneer deze methode wordt aangeroepen dan worden alle `IDodelijke` toestellen uit de lijst verwijderd.
-* De klasse een private methode `BerekenMoeilijkheidsgraad` die een `int` teruggeeft. De moeilijkheidsgraad van een parkoers bestaat uit de som van de moeilijkheidsgraden van alle toestellen in de lijst.
+	* De constructor zal *x* willekeurige toestellen aan de lijst toevoegen. Ieder toestel (`Trampoline`, `UltraTrampoline`, `Klimmuur` en `DeathWall`) heeft even veel kans om gekozen te worden.
+	* Indien een `Klimmuur` wordt gekozen dan krijgt deze een willekeurig aantal klimelementen van 10 tot en met 50.
+	* Indien een `DeathWall` wordt gekozen dan wordt de bool `y` meegeven om aan te geven of er wel of geen veiligheidsnet moet toegevoegd worden.
+* De klasse heeft een methode `VerwijderDodelijke`. Wanneer deze methode wordt aangeroepen dan worden alle `IDodelijk`-toestellen uit de lijst verwijderd.
+* De klasse heeft een private methode `BerekenMoeilijkheidsgraad` die een `int` teruggeeft. De moeilijkheidsgraad van een parkoers bestaat uit de som van de moeilijkheidsgraden van alle toestellen in de lijst.
 * De klasse heeft een methode `ToonParkoers` . Deze methode zal alle toestellen na elkaar op het scherm tonen waarbij de achtergrond van ieder element rood of groen zal zijn:
 	* Rood indien het een `IDodelijk` toestel is (ongeacht of er veiligheidsnetten aanwezig zijn), groen in de andere gevallen.
     * Nadien wordt ook nog de totale moeilijkheidsgraad van het parkoers getoond.
@@ -98,7 +98,7 @@ De hoofdapplicatie bestaat uit volgende stappen
 * Eerst worden er 5 willekeurige `Parkoer`-objecten aangemaakt en in een lijst bewaard.
 * Vervolgens worden alle `Parkoer`-objecten in de lijst gevisualiseerd.
 * De gebruiker kiest met welk parkoer hij verder wilt gaan.
-* Er wordt nu aan de gebruiker gevraagd of de dodelijke toestellen uit het parkoers moeten worden gehaald. Indien ja, wordt dit gedaan (alle ``IDodelijke`` objecten worden uit de lijst van het gekozen ``Parkoer`` object gehaald).
+* Er wordt nu aan de gebruiker gevraagd of de dodelijke toestellen uit het parkoers moeten worden gehaald. Indien ja, wordt dit gedaan (alle ``IDodelijk``-objecten worden uit de lijst van het gekozen ``Parkoer`` object gehaald).
 * Finaal wordt het gekozen parkoers nogmaals getoond, al dan niet zonder de dodelijke toestellen.
 
 Voorbeeld output: ![](fulloutput.png)
@@ -108,34 +108,55 @@ Voorbeeld output: ![](fulloutput.png)
 ::::{.callout-caution collapse="true" title="Oplossing"}
 > Dank aan Wael Orraby.
 
-
-
-Klasses:
+**IDodelijk.cs**
 
 ```java
- abstract class Toestel
+interface IDodelijk
+{
+    public bool VeiligheidsActief { get; }
+}
+```
+
+**Toestel.cs**
+
+```java
+abstract class Toestel
 {
     protected char tekenChar = 'o';
+
     public void Teken()
     {
         Console.Write(tekenChar);
     }
+
     public abstract int BerekenMoeilijkheidsgraad();
 }
+```
 
+**Trampoline.cs**
+
+```java
 internal class Trampoline : Toestel
 {
-    static Random random = new Random();
+    private static Random random = new Random();
     private int moeilijkheidsgraad;
+
     public Trampoline()
     {
         tekenChar = 't';
-        
         moeilijkheidsgraad = random.Next(1, 5);
     }
-    public override int BerekenMoeilijkheidsgraad()=> this.moeilijkheidsgraad;   
-}
 
+    public override int BerekenMoeilijkheidsgraad()
+    {
+        return moeilijkheidsgraad;
+    }
+}
+```
+
+**UltraTrampoline.cs**
+
+```java
 internal class UltraTrampoline : Trampoline, IDodelijk
 {
     public UltraTrampoline()
@@ -156,15 +177,21 @@ internal class UltraTrampoline : Trampoline, IDodelijk
         return base.BerekenMoeilijkheidsgraad() + 10;
     }
 }
+```
 
+**Klimmuur.cs**
+
+```java
 internal class Klimmuur : Toestel
 {
-    public Klimmuur(int inaantalHandvaten)
+    private int aantalHandvaten;
+
+    public Klimmuur(int aantalHandvaten)
     {
         tekenChar = 'm';
-        aantalHandvaten = inaantalHandvaten;
+        this.aantalHandvaten = aantalHandvaten;
     }
-    private int aantalHandvaten;
+
     public override int BerekenMoeilijkheidsgraad()
     {
         if (aantalHandvaten % 2 == 0)
@@ -172,8 +199,12 @@ internal class Klimmuur : Toestel
         return 4;
     }
 }
+```
 
-internal class DeadWall : Klimmuur, IDodelijk
+**DeathWall.cs**
+
+```java
+internal class DeathWall : Klimmuur, IDodelijk
 {
     private bool veiligheidsNetten;
 
@@ -185,28 +216,35 @@ internal class DeadWall : Klimmuur, IDodelijk
         }
     }
 
-    public DeadWall(bool heeftVeiligheidsnetten) : base(21)
+    public DeathWall(bool heeftVeiligheidsnetten) : base(21)
     {
         veiligheidsNetten = heeftVeiligheidsnetten;
         tekenChar = 'M';
     }
+
     public override int BerekenMoeilijkheidsgraad()
     {
-        if (VeiligheidsActief) return 5;
+        if (VeiligheidsActief)
+            return 5;
         return 10;
     }
 }
+```
 
+**Parkoer.cs**
+
+```java
 internal class Parkoer
 {
-    static Random r = new Random();
-    List<Toestel> toestellenLijst = new List<Toestel>();
+    private static Random random = new Random();
+    private List<Toestel> toestellenLijst = new List<Toestel>();
+
     public Parkoer(int x, bool y)
     {
         for (int i = 0; i < x; i++)
         {
-            int rng = r.Next(1, 5);
-            switch (rng)
+            int keuze = random.Next(1, 5);
+            switch (keuze)
             {
                 case 1:
                     toestellenLijst.Add(new Trampoline());
@@ -215,17 +253,18 @@ internal class Parkoer
                     toestellenLijst.Add(new UltraTrampoline());
                     break;
                 case 3:
-                    toestellenLijst.Add(new Klimmuur(r.Next(10, 51)));
+                    toestellenLijst.Add(new Klimmuur(random.Next(10, 51)));
                     break;
                 case 4:
-                    toestellenLijst.Add(new DeadWall(y));
+                    toestellenLijst.Add(new DeathWall(y));
                     break;
             }
         }
     }
+
     public void VerwijderDodelijke()
     {
-        var tempLijst = new List<Toestel>();
+        List<Toestel> tempLijst = new List<Toestel>();
         foreach (var item in toestellenLijst)
         {
             if (!(item is IDodelijk))
@@ -235,6 +274,7 @@ internal class Parkoer
         }
         toestellenLijst = tempLijst;
     }
+
     private int BerekenMoeilijkheidsgraad()
     {
         int som = 0;
@@ -244,6 +284,7 @@ internal class Parkoer
         }
         return som;
     }
+
     public void ToonParkoers()
     {
         foreach (var item in toestellenLijst)
@@ -261,36 +302,45 @@ internal class Parkoer
 }
 ```
 
-Program.cs
+**Program.cs**
 
 ```java
-List<Parkoer> parkoersList = new List<Parkoer>();
-Random r = new Random();
-Console.WriteLine("5 Parkoers gemaakt. Met welke wil je verder?");
-for (int i = 0; i < 5; i++)
+namespace BeastMaster
 {
-    parkoersList.Add(new Parkoer(10, r.Next() / 2 == 0 ? true : false));
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Parkoer> parkoersen = new List<Parkoer>();
+            Random random = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                bool metBeveiliging = random.Next(0, 2) == 0;
+                parkoersen.Add(new Parkoer(10, metBeveiliging));
+            }
+            Console.WriteLine("5 parkoers gemaakt. Met welke wil je verder?");
+            for (int i = 0; i < parkoersen.Count; i++)
+            {
+                Console.WriteLine($"Parkoer {i + 1}:");
+                parkoersen[i].ToonParkoers();
+                Console.WriteLine();
+            }
+            Console.WriteLine("Typ het nummer in van het parkoer waar je verder mee wenst te gaan:");
+            int parkoerKeuze = int.Parse(Console.ReadLine());
+            Console.WriteLine("Wil je in dit parkoer de dodelijke elementen verwijderen? (j/n)");
+            string verwijderKeuze = Console.ReadLine();
+            if (verwijderKeuze.ToLower() == "j")
+            {
+                parkoersen[parkoerKeuze - 1].VerwijderDodelijke();
+                Console.WriteLine("Verwijderd. Dit is het nieuwe parkoers");
+            }
+            else
+            {
+                Console.WriteLine("Oké. Dit is het parkoers");
+            }
+            parkoersen[parkoerKeuze - 1].ToonParkoers();
+        }
+    }
 }
-for (int i = 0; i < parkoersList.Count; i++)
-{
-    Console.WriteLine($"Parkoer {i + 1}");
-    parkoersList[i].ToonParkoers();
-    Console.WriteLine();
-}
-Console.WriteLine("Typ het nummer in van het parkoer waar je verder mee wenst te gaan:");
-int parkoerKeuze = int.Parse(Console.ReadLine());
-Console.WriteLine("Wil je in dit parkoer de dodelijke elementen verwijderen ? (j/n)");
-string verwijderKeuze = Console.ReadLine();
-if (verwijderKeuze.ToLower() == "j")
-{
-    parkoersList[parkoerKeuze - 1].VerwijderDodelijke();
-    Console.WriteLine("Verwijderd. Dit is het nieuwe parkoers : ");
-}
-else
-{
-    Console.WriteLine("Oke. Dit is het parkoers : ");
-    
-}
-parkoersList[parkoerKeuze - 1].ToonParkoers();
 ```
 ::::

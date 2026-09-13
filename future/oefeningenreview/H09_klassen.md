@@ -305,3 +305,46 @@ Bankmanager 2 naar BankManager te laten linken. Die link moet mee als ze van pag
 - In een nieuw .NET-project geeft elke `string`-auto-property een waarschuwing (CS8618). H9 is het
   eerste hoofdstuk waar de student die ziet, maar pas H10 zegt dat hij ze mag negeren
   (`content/9_meminoop/nullreference.md:42`). Eén zin in de `.vooraf` van week 2 volstaat.
+
+## Doorgevoerd (2026-09-13): enkel Stevens pizza
+
+Enkel sectie 4, nr. 4. De rest van dit rapport is niet doorgevoerd, de status in de README blijft "analyse".
+Niet gerenderd, de scripts in `scripts/` niet gedraaid.
+
+- **De oefening.** `# Stevens pizza (*Essential*) {#h09-stevens-pizza}` in `oefeningen/9_klassen/A_practica.md`,
+  tussen PizzaTime en Figuren, in de vorm van Stevens warmste stad (H8). Zes fouten in drie delen. Deel 1: wat de compiler
+  weigert (`Pizza margherita;` zonder `new`, `static` op `ToonInfo`). Deel 2: wat pas bij het uitvoeren blijkt
+  (`Toppings = value;` in de set, `diameter = diameter;`). Deel 3: wat compileert en draait maar de klasse niet beschermt
+  (`public double prijs;`, de controle in `Main`). Per deel een Oplossing-callout, daarna een Les-callout met links naar
+  `0b_oopincs.html#de-new-operator`, `0c_simpleobjects.html#object-methoden`, `2_properties.html#full-property-set-gedeelte`
+  en `2_properties.html#full-property-met-toegangscontrole`. De ankers zijn afgeleid van de koppen in de bron. Op de live
+  site kon ik ze niet nakijken: elke URL gaf daar de voorpagina terug.
+- **Coach-data.** `## Stevens pizza` in `oefeningen/_coach/9_klassen.md`, tussen PizzaTime en Figuren, met Nota, Aanpak en
+  Valkuilen.
+- **Geverifieerd met dotnet** (SDK 10.0.103, `net10.0`, Nullable aan, klassiek skelet, invoer via stdin):
+  - Stevens versie: vijf fouten (CS0165, CS0176 en drie keer CS0120) en één waarschuwing (CS1717). De meldingen in de tekst
+    zijn letterlijk overgenomen uit `dotnet build`. Geen nullable-waarschuwingen.
+  - Met `Pizza.ToonInfo();` verdwijnt CS0176 en blijven de drie CS0120 staan.
+  - Na deel 1: `Stack overflow.` met `set_Toppings` duizenden keren herhaald, nog voor de vraag naar de prijs. Over de set
+    die zichzelf oproept, meldt de compiler niets.
+  - Enkel de fout in `Toppings` opgelost, invoer 12: `Pizza met tomaat en mozzarella, 25 cm, 12 euro`. Na deel 2: 30 cm.
+    De code van de collega toont `Pizza met ham en ananas, 25 cm, -4 euro`.
+  - De oplossing compileert zonder waarschuwingen. Invoer 12 geeft 12 euro voor de margherita en 10 euro voor de hawaii,
+    want de set weigert -4.
+- **Afwijkingen van het voorstel:**
+  - Deel 3 laat een collega `hawaii.prijs = -4;` schrijven. Zonder die tweede pizza werkt de controle in `Main` voor Stevens
+    eigen programma, en is er geen uitvoer die de fout toont.
+  - `ToonInfo` wordt op het object opgeroepen (`margherita.ToonInfo();`). Dat geeft CS0176 bovenop de drie CS0120. De
+    oplossing zegt uitdrukkelijk dat je die raad niet volgt.
+  - De set van `Toppings` controleert met `string.IsNullOrWhiteSpace`, zoals de opgave van PizzaTime. Met `value != ""`
+    (zoals de oplossing van PizzaTime, sectie 1) zou een student er een zevende fout in kunnen zien.
+  - Beginwaarden `"tomatensaus"` en 25, en in de oplossing 10 voor de prijs. Zo komt er geen CS8618, en toont de fout in
+    `Diameter` een echte waarde (25) in plaats van 0.
+  - Stevens code staat in twee codeblokken (`Pizza.cs` en `Main`) in plaats van één.
+- **Aandachtspunten:**
+  - `static` staat in "Kent nog niet" (H11), maar de fout in deel 1 draait er net om. De oplossing zegt enkel dat een
+    objectmethode geen `static` krijgt, zoals `content/8_klassen/0c_simpleobjects.md:24`, en de coach-Nota verbiedt meer
+    uitleg.
+  - De opgave telt de meldingen van `dotnet build`. De foutenlijst van Visual Studio kan dezelfde fout net anders tonen.
+  - PizzaTime (de oefening net ervoor) heeft ook een klasse `Pizza`. Wie beide in hetzelfde project zet, krijgt een
+    naamconflict.

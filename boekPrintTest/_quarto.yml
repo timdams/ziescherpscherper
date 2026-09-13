@@ -26,6 +26,8 @@ book:
 filters:
   - console-typst.lua
   - mascotte-typst.lua
+  - figuren-typst.lua
+  - koppen-typst.lua
 
 bibliography: references.bib
 

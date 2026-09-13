@@ -8,9 +8,9 @@ De verkiezingen komen er aan in Nederland. Jouw bedrijf werd ingeroepen om een a
 
 Het programma bestaat uit een loop die telkens uit volgende stappen bestaat:
 
-* Fase 1: **Identificatie**: vragen wie de gebruiker is en op welke partij hij vorig jaar stemde mbv VraagDetails-methode.
-* Fase 2: **Stemwijzer** starten: de gebruiker doorloopt enkele vragen om te zien op welke partij hij. Met behulp van de StemWijzer-methode.
-* Fase 3: **Statistieken** tonen: gebaseerd op de stemwijzer resultaten van de vorige fase wordt getoond hoe het resultaat zich verhoud tegenover de resultaten van iedereen die de test reeds heeft afgelegd. Met behulp van de ToonStatistieken-methode.
+* Fase 1: **Identificatie**: vragen wie de gebruiker is mbv VraagDetails-methode.
+* Fase 2: **Stemwijzer** starten: de gebruiker doorloopt enkele vragen om te zien op welke partij hij best stemt. Met behulp van de StemWijzer-methode.
+* Fase 3: **Statistieken** tonen: gebaseerd op de stemwijzer resultaten van de vorige fase wordt getoond hoe het resultaat zich verhoudt tegenover de resultaten van iedereen die de test reeds heeft afgelegd. Met behulp van de ToonStatistieken-methode.
 
 
 Iedere fase (1,2&3) bestaat uit een methode die vanuit deze fase 0 wordt opgeroepen. De fase 0 loop stopt nooit.
@@ -36,44 +36,44 @@ De methode geeft een bool terug als volgt:
 
 * True indien de gebruiker de naam "admin" heeft ingegeven
 * False in alle andere gevallen
- 
+
 
 # Fase 2.1: Welke partij past bij je? (2 punten)
-Maak een methode “Stemwijzer”, deze methode vereist 2 parameters van het type bool en ConsoleColor. De Methode geeft een string terug als resultaat.
+Maak een methode “StemWijzer”, deze methode vereist 2 parameters van het type ConsoleColor en bool. De Methode geeft een string terug als resultaat.
 
-De eerste parameter die je moet meegeven is een bool die aangeeft of het om een admin gaat of niet. De standaard waarde van deze parameter is false (zie fase 2.3 ivm het gebruik van deze parameter).
+De eerste parameter is wederom de kleur waarmee de tekst in de methode zal getoond worden.
 
-De tweede parameter is wederom de kleur waarmee de tekst in de methode zal getoond worden. 
+De tweede parameter die je moet meegeven is een bool die aangeeft of het om een admin gaat of niet. De standaard waarde van deze parameter is false. In deze proef doet de methode zelf niets met die bool: je voorziet de parameter enkel. Wat er voor een admin anders gebeurt, staat in fase 2.2.
 
 Wanneer de methode opstart wordt er een reeks vragen gesteld. Afhankelijk van het vorige antwoord krijg je andere vragen. Je dient volgende beslissingsboom in te voeren, startende aan de linkerkant:
  
 ![](18192ezit.png)
 
-De eerste vraag zal dus zijn “Vrije sluitingstijden in de horeca”. De volgende vraag zal zijn Extra evenementen?” als bij de vorige vraag “neen” werd geantwoord, anders is de volgende vraag “Politie moet harder optreden”
+De eerste vraag zal dus zijn “Vrije sluitingstijden in de horeca”. De volgende vraag zal zijn “Extra evenementen?” als bij de vorige vraag “neen” werd geantwoord, anders is de volgende vraag “Politie moet harder optreden”
 
 * De gebruiker mag enkel “ja” of “nee” antwoorden.
 * Je houdt bij hoe vaak de gebruiker ja  heeft geantwoord, en hoe vaak er nee werd geantwoord. [x] en [y]
 * Indien de gebruiker een niet geldige invoer geeft dan zal de vraag opnieuw gesteld worden tot hij correct (ja,nee) invoert.
 
 
-Het scherm wordt na de vragen leeggemaakt en in het midden van het consolescherm komt de tekst:
+Het scherm wordt na de vragen leeggemaakt en daarna komt de tekst:
 ``De partij waar je best op stemt is [uitgekomen partij] je hebt hiervoor [x] keer ja geantwoord en [y] keer nee``
 
 
 # Fase 2.2: Resultaat bewaren (2 punten)
 De  methode geeft vervolgens de partij als string terug waar de stemwijzer is op uitgekomen.
 
-Enkel indien de gebruiker géén admin is (wat je hebt teruggekregen via de bool in van VraagDetails() methode wordt vervolgens z’n stemresultaat bewaard in de array 2: Dit resultaat wordt in de 2e array van fase 0 bewaard op de respectievelijke index waar ook de naam van de huidige gebruiker in de andere array staat. 
+Enkel indien de gebruiker géén admin is (wat je hebt teruggekregen via de bool van de VraagDetails() methode) wordt vervolgens z’n stemresultaat bewaard in de tweede array: dit resultaat wordt in de 2e array van fase 0 bewaard op de respectievelijke index waar ook de naam van de huidige gebruiker in de andere array staat. 
 
 
-# Fase 3:Statistieken tonen (3 punten)
+# Fase 3: Statistieken tonen (3 punten)
 
 Als laatste fase wordt een methode ``ToonStatistieken`` aangeroepen. Deze methode verwacht twee arrays. De eerste array bevat namen (string), de andere de stemresultaten (string of enum als je de volgende fase ook maakt).
 
 De methode gebruikt de 2 arrays om enkele interessante statistieken te tonen:
 
 1.	Het toont het percentage dat partijen vertegenwoordigd zijn. Als dus de array bestaat uit vvd,d66,vvd. Dan zal vvd 66% vertegenwoordigen, d66 33%
-2.	Je toont ook het aantal keer dat iedere partij voorkwam aan de hand van een lijn bestaande uit zoveel sterren. Als vvd 5 stemmen kreeg, d66 3 en bas 6 dan toont de methode dit als volgt:
+2.	Je toont ook het aantal keer dat iedere partij voorkwam aan de hand van een lijn bestaande uit zoveel sterren. Als vvd 6 stemmen kreeg, d66 3 en bas 5 dan toont de methode dit als volgt:
 
 
 ```text
@@ -81,7 +81,7 @@ vvd ******
 d66 ***
 bas *****
 ```
-3.	Het toont de gemiddelde lengte van de gebruiker. Als de namen bestaan uit Tim,Jos,Frederik, Frans dan is dit gemiddelde 4,75 letters
+3.	Het toont de gemiddelde lengte van de namen van de gebruikers. Als de namen bestaan uit Tim,Jos,Frederik, Frans dan is dit gemiddelde 4,75 letters
 4.	Het geeft een overzicht van alle stemresultaten maar toont enkel de eerste letter van iedere naam. Als bijvoorbeeld Tom op d66 uitkwam, Gerolf op vvd en Frans op bas dan verschijnt er:
 
     ```text
@@ -111,19 +111,17 @@ namespace ConsoleApp2
 
             while (true)
             {
-
-
                 isAdmin = VraagDetails(naamArray);
                 if (!isAdmin)
                 {
-                    string result = StemWijzer(ConsoleColor.Green, isAdmin);
+                    string resultaat = StemWijzer(ConsoleColor.Green, isAdmin);
 
                     int teller = 0;
                     do
                     {
                         teller++;
                     } while (teller < naamArray.Length && naamArray[teller] != null);
-                    resultaatArray[teller - 1] = result;
+                    resultaatArray[teller - 1] = resultaat;
 
                     ToonStatistieken(naamArray, resultaatArray);
                 }
@@ -137,34 +135,34 @@ namespace ConsoleApp2
         enum Partijen { VVD, D66, BAS, LA }
         private static void ToonStatistieken(string[] naamArray, string[] resultaatArray)
         {
-            int[] totals = new int[4];
+            //Stemmen per partij tellen: index 0 is VVD, 1 is D66, enz.
+            int[] totalen = new int[4];
+            int aantalStemmen = 0;
             for (int i = 0; i < resultaatArray.Length; i++)
             {
-                switch (resultaatArray[i])
+                if (resultaatArray[i] != null)
                 {
-                    case "VVD":
-                        totals[(int)Partijen.VVD]++;
-                        break;
-                    case "D66":
-                        totals[(int)Partijen.D66]++;
-                        break;
-                    case "BAS":
-                        totals[(int)Partijen.BAS]++;
-                        break;
-                    case "LA":
-                        totals[(int)Partijen.LA]++;
-                        break;
+                    aantalStemmen++;
+                    for (int j = 0; j < totalen.Length; j++)
+                    {
+                        if (resultaatArray[i] == ((Partijen)j).ToString())
+                        {
+                            totalen[j]++;
+                        }
+                    }
                 }
             }
-            Console.WriteLine($"VVD percentage={totals[(int)Partijen.VVD] / resultaatArray.Length}");
-            Console.WriteLine($"D66 percentage={totals[(int)Partijen.D66] / resultaatArray.Length}");
-            Console.WriteLine($"BAS percentage={totals[(int)Partijen.BAS] / resultaatArray.Length}");
-            Console.WriteLine($"LA percentage={totals[(int)Partijen.LA] / resultaatArray.Length}");
 
-            ToonPartijAantal("VVD", totals[(int)Partijen.VVD]);
-            ToonPartijAantal("D66", totals[(int)Partijen.D66]);
-            ToonPartijAantal("BAS", totals[(int)Partijen.BAS]);
-            ToonPartijAantal("LA", totals[(int)Partijen.LA]);
+            for (int j = 0; j < totalen.Length; j++)
+            {
+                double percentage = 100.0 * totalen[j] / aantalStemmen;
+                Console.WriteLine($"{(Partijen)j} percentage={percentage:F2}%");
+            }
+
+            for (int j = 0; j < totalen.Length; j++)
+            {
+                ToonPartijAantal(((Partijen)j).ToString(), totalen[j]);
+            }
 
             //Gemiddelde naamlengte
             int totaalLetters = 0;
@@ -177,7 +175,7 @@ namespace ConsoleApp2
                     totaalLetters += naamArray[i].Length;
                 }
             }
-            Console.WriteLine($"Gemiddelde naamlengte= {totaalLetters / totaalNamen:D2}");
+            Console.WriteLine($"Gemiddelde naamlengte= {(double)totaalLetters / totaalNamen}");
             Console.WriteLine("Stemoverzicht");
             for (int i = 0; i < naamArray.Length; i++)
             {
@@ -229,48 +227,46 @@ namespace ConsoleApp2
                 return true;
 
         }
-        static string StemWijzer(ConsoleColor colorIn, bool isAdmin = false)
+        static string StemWijzer(ConsoleColor kleur, bool isAdmin = false)
         {
-            Random r = new Random();
-            Console.ForegroundColor = colorIn;
+            Console.ForegroundColor = kleur;
             int aantalJa = 0;
             int aantalNee = 0;
-            string result = "";
+            string resultaat = "";
 
             if (Vraag("Vrije sluitingstijden in de horeca?"))
             {
                 aantalJa++;
-                if (Vraag("Politie moet harde optreden"))
+                if (Vraag("Politie moet harder optreden?"))
                 {
                     aantalJa++;
-                    result = "VVD";
+                    resultaat = "VVD";
 
                 }
                 else
                 {
                     aantalNee++;
-                    result = "D66";
+                    resultaat = "D66";
                 }
             }
             else
             {
-
-                aantalJa++;
-                if (Vraag("Extra evenementen"))
+                aantalNee++;
+                if (Vraag("Extra evenementen?"))
                 {
                     aantalJa++;
-                    result = "BAS";
+                    resultaat = "BAS";
                 }
                 else
                 {
                     aantalNee++;
-                    result = "LA";
+                    resultaat = "LA";
                 }
 
             }
             Console.ResetColor();
-            ToonResultaat(result, aantalJa, aantalNee);
-            return result;
+            ToonResultaat(resultaat, aantalJa, aantalNee);
+            return resultaat;
         }
 
         static void ToonResultaat(string keuze, int aantalJa, int aantalNee)

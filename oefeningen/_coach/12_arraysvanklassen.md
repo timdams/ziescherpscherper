@@ -113,6 +113,24 @@ Een menu in een do while die pas stopt bij optie 5, en een List<Pokemon> die bui
 - De menukeuze inlezen zonder na te denken over invoer die geen getal is.
 - Het menu met een for-lus bouwen terwijl het aantal rondes niet vastligt.
 
+## Stevens opruimactie
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven, in drie delen. Vraag eerst aan welk deel de student bezig is. Geef de fouten nooit, en zeg in deel 2 nooit welke prijzen er blijven staan of wat de uitvoer is: dat voorspelt de student zelf. In deel 1 mag je vragen wat de foreach na een Remove nog moet doen, en welke lijn de melding aanwijst. In deel 2 mag je vragen om per ronde i, de prijs op die index en de lijst na die ronde op te schrijven, en welk element er na een RemoveAt op plaats i terechtkomt. In deel 3 mag je vragen welke elementen verschuiven na een RemoveAt, en of de lus die nog moet bekijken.
+
+### Aanpak
+
+Deel 1: een collectie wijzigen tijdens een foreach crasht met "Collection was modified". Deel 2: na RemoveAt(i) schuift alles achter i één plaats naar voor, maar de for verhoogt i toch. Het element dat meteen achter een verwijderd element staat, wordt zo nooit bekeken. Dat zie je enkel als er twee prijzen onder de grens naast elkaar staan, en daarom werkte Stevens eigen test wel. Deel 3: van achter naar voor verschuiven enkel de elementen die de lus al gehad heeft. De methode krijgt de List en de grens als parameter en geeft niets terug, want ze werkt via de referentie op dezelfde lijst als Main.
+
+### Valkuilen
+
+- In deel 2 meteen uitvoeren in plaats van eerst te voorspellen, en daarna een uitleg zoeken die bij de uitvoer past.
+- Denken dat versie 2 juist is omdat ze niet crasht, of omdat ze met een andere lijst wel werkte.
+- Versie 2 herstellen met i-- na de RemoveAt. Dat werkt, maar de teller in de body van een for aanpassen maakt de lus moeilijk te lezen. Het boek kiest voor een for van achter naar voor.
+- De lus van achter naar voor laten starten bij Count in plaats van Count - 1, wat een ArgumentOutOfRangeException geeft.
+- In de methode de lijst teruggeven of een nieuwe lijst maken, terwijl de parameter al naar dezelfde lijst verwijst.
+
 ## Student Organizer
 
 ### Nota

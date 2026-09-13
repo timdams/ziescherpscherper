@@ -117,6 +117,26 @@ Rekening is abstract: ze regelt het saldo (private instantievariabele, read-only
 - Het saldo public maken of er een set aan geven, waardoor VoegGeldToe en HaalGeldAf zinloos worden.
 - De rente per 1000 euro berekenen met een gehele deling zonder na te denken over wat er met 1500 euro gebeurt. Hier is dat net de bedoeling: laat hem uitleggen waarom.
 
+## Stevens abstracte bouwwerf
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven. Geef nooit welke melding bij welk fragment hoort, en geef nooit een herstelling. Je mag wel vragen stellen: welke naam staat er tussen aanhalingstekens in de melding, en in welk fragment komt die voor? Mag je van een abstracte klasse een object maken? Wat staat er na de signatuur van een abstracte methode: accolades of een puntkomma? Is de klasse rond die abstracte methode zelf abstract? Staan de naam van de methode in de parent en in de child letter voor letter gelijk, en staat er override bij? Wat betekent sealed? Bij deel 3: welke drie methoden van System.Object zijn virtual?
+
+### Aanpak
+
+Deel 1: elke melding bevat de naam van een klasse of methode, zo vind je het fragment. Daarna zoekt de student de lijn die de regel breekt en zegt hij in eigen woorden wat de melding betekent. Deel 2: fragment 1 maakt een Graafmachine in plaats van een Bouwmachine. Fragment 2 vervangt de body door een puntkomma. Fragment 3 maakt Werknemer abstract. Fragment 4 schrijft de naam exact zoals in Gebouw en zet er override bij. Fragment 5 haalt sealed weg bij Werfkeet. Deel 3: GetType is niet virtual, dus de methode moet weg, en GetType().Name geeft de naam zonder namespace.
+
+### Valkuilen
+
+- Enkel op de klassenaam koppelen zonder de lijn te zoeken die fout is.
+- In fragment 1 abstract weghalen bij Bouwmachine. Dan compileert het, maar dan kan je weer objecten maken van iets wat geen echte machine is.
+- In fragment 2 abstract weghalen en de body laten staan. Dan moet Zand niets meer overriden.
+- In fragment 3 abstract weghalen bij de methode en een lege body geven. Dan mag een child het loon vergeten.
+- In fragment 4 enkel de naam aanpassen. Zonder override blijft CS0534 staan, met een waarschuwing CS0114 erbij.
+- In fragment 4 de hoofdletter T over het hoofd zien, omdat de melding naar de klasse Rijwoning wijst en niet naar de methode.
+- Bij deel 3 blijven zoeken naar een manier om GetType zelf te herschrijven, in plaats van .Name te gebruiken.
+
 ## Geometric figures
 
 ### Aanpak

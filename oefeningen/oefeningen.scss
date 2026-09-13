@@ -328,6 +328,67 @@ $oef-oranje-tekst: #8a5300;
   }
 }
 
+// Blok bovenaan een vaardigheidsproef: uitleg en de knoppen Coach en Quoteer.
+// Gezet door scripts/coach-prompt.mjs, de tekst staat in _coach/proeven/_bovenaan.md.
+.quoteer-knop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  vertical-align: middle;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid #ffc9c9;
+  border-radius: 1rem;
+  background: #ffe5e5;
+  color: #b30000;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: #b30000;
+    border-color: #b30000;
+    color: #fff;
+  }
+}
+
+#quarto-document-content .proef-prompts {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid $oef-lijn;
+  border-left: 3px solid $oef-oranje;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+
+  p {
+    margin: 0 0 0.5rem;
+  }
+
+  .proef-knoppen {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+
+  .coach-knop,
+  .quoteer-knop {
+    margin-left: 0;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media print {
+  #quarto-document-content .proef-prompts {
+    display: none;
+  }
+}
+
 // Voorbeelduitvoer mét kleuren, voor oefeningen met ForegroundColor en BackgroundColor.
 // In de bron:
 //   ::: {.console .kleur}

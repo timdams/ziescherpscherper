@@ -106,6 +106,25 @@ Elk onderdeel wordt een eigen klasse, en het moederbord heeft er per stuk een pr
 - Voor elk merk een aparte klasse maken. Het merk is een property, geen klasse.
 - Bij TestMoederbord het aantal vrije RAM-sloten berekenen zonder ergens vast te leggen hoeveel sloten er zijn.
 
+## Stevens bibliotheek
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven. Geef de fouten nooit, ook niet in welke klasse ze zitten of hoeveel er nog over zijn. In deel 1 mag je uitleggen wat een foutmelding van de compiler betekent, maar niet wat er in deze code aan moet veranderen. Bij de melding over de constructor van Lid vraag je welke zin bij de klassehoofding hoort: "is een" of "heeft een". Bij de andere melding vraag je van welk object this zou moeten zijn. In deel 2 vraag je wat uitgeleend is bij een lid dat niets leende, en of de get van Boeken een kopie teruggeeft of de echte lijst.
+
+### Aanpak
+
+Deel 1: Lid erft van Boek, en de melding bij de constructor is daar een gevolg van. De juiste fix is de overerving schrappen: Lid heeft al een instantievariabele uitgeleend. ToonAantalBoeken gebruikt this in een static methode; static weghalen en de methode op het object bib oproepen. Deel 2: ToString gebruikt uitgeleend zonder null-controle, en de publieke get van Boeken laat Main de lijst aanpassen buiten VerwijderBoek om. De lijst wordt een private instantievariabele zonder property, zodat de compiler die lijn in Main tegenhoudt.
+
+### Valkuilen
+
+- De melding bij Lid oplossen met : base(naam). De melding is weg, maar dan is een lid een boek met een titel.
+- static laten staan en enkel this weghalen. Een static methode hoort bij geen enkele bibliotheek, dus ze kan ook geen boeken tellen.
+- Denken dat private set de lijst beschermt, omdat er private staat.
+- Enkel de crash oplossen en het aantal boeken niet nakijken.
+- Enkel de lijn bib.Boeken.Remove in Main schrappen. Dit programma werkt dan, maar de volgende die zo'n lijn schrijft, komt er weer door.
+- Een try-catch rond uitgeleend.Titel zetten in plaats van op null te controleren.
+
 ## Worldbuilding
 
 ### Nota

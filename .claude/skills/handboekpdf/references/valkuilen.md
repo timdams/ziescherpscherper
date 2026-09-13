@@ -14,8 +14,16 @@ Alles hieronder is een keer echt misgegaan in dit boek. Geen enkele geeft een fo
 | "Chapter 71. Properties" in de koptekst | orange-book is Engelstalig | `supplement-chapter: "Hoofdstuk"` en `supplement-part: "Deel"` |
 | de covertekst staat in een ander font na een CI-build | de runner heeft Arial niet en kiest zelf een font voor `<text>` | alle letters als outlines wegschrijven (`svgtekst.py`), geen `<text>` in de svg |
 | gewone tekst in het verkeerde font na een CI-build | Inter staat evenmin op de runner | de ttf's in de repo zetten en `font-paths: [fonts]`; Typst leest geen woff2, dus ttf |
+| mascotte als reuzeletter in de regel, tekst begint rechtsonder, groot wit vlak erboven | de png staat als eerste teken in de alinea (`>![](care.png)Tekst`) | `mascotte-typst.lua` maakt er een grid van: mascotte (2.4 cm) links, eerste alinea rechts |
+| schema van drie kaders vult een hele pagina | Typst rekent px / dpi (72 zonder dpi); de hand-drawn png's zijn 1500-2500 px, dus altijd tekstbreed; de breedtes in de bron staan in commentaar | `figuren-typst.lua`: schema's met generator in `imagegen/` op 0.38 pt/px, screenshots 0.75 pt/px, eigen dpi volgen, max tekstbreedte en 300 pt hoog; uitzondering met `{pdf-width=40%}` |
+| afbeelding zonder onderschrift staat links | geen figure, gewoon een alinea | `figuren-typst.lua` (Para) zet ze in `#align(center)` |
+| "5.0.3" in de nummering, koptekst toont een sectie uit een ander hoofdstuk | bestand springt van `#` naar `###` | `koppen-typst.lua` schuift de subkoppen per hoofdstuk op |
+| ~100 blanco pagina's | orange-book: `pagebreak(to: "odd")` voor elk hoofdstuk, en elk .md-bestand is een hoofdstuk | `#show pagebreak` in de partial maakt er een gewone pagebreak van |
+| reuzegroot Romeins cijfer door de deeltitel, mini-inhoudstafel botst met de titel | orange-book part-style 0: cijfer op 16em, outline tot sectieniveau | `part-font-size: 0pt`, `outline-small-depth: 1` in `book.with` |
+| hoofdstuk eindigt met 2-4 regels op een lege pagina | toevallig; elk hoofdstuk begint op een nieuwe pagina | `bijsturing-typst.lua`: per bronbestand `figuren`, `tekst`, `interlinie`, `ruimte`; na tekstwijzigingen opnieuw nakijken |
+| bijsturing doet niets | de filter ziet het boek als een document; `#part[...]` bestaat dan nog niet, `quarto.doc.input_file` is altijd `index.qmd` | H1's tellen in de volgorde van `_quarto.yml` (de filter leest die lijst zelf) |
 | `os error 32` bij het renderen | Quarto maakt de output-map leeg en de pdf staat nog open in je viewer | viewer op een kopie zetten (`preview/laatste.pdf`), niet op de pdf in de output-map |
-| een render duurt vele minuten | `content/assets` is 184 MB aan afbeeldingen en het boek telt 18 hoofdstukken | aan de vormgeving werken in `boekPrintTest/` (cover + voorwoord + hoofdstuk 1, een halve minuut) |
+| een render duurt lang | `quarto render .` zonder `--to typst` bouwt ook de hele website | `quarto render . --to typst` (ca. 45 s); voor cover en partial `boekPrintTest/` |
 
 ## Nog een paar dingen die je moet weten
 

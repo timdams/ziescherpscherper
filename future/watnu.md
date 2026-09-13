@@ -29,8 +29,8 @@ for d in content/*/; do echo "$(basename $d) $(grep -ro '::: *{\.console}' $d|wc
       *Geparkeerd op 12 september 2026: een proef voor H8 (boek modelleert met een eigen pagina,
       oefeningen drillen met een label `(*Lezen*)`, slides één klasmoment) overtuigde Tim niet en is
       ongedaan gemaakt. Zoek bij een nieuwe poging eerst een andere vorm.*
-- [ ] **Stagiair Steven in de oefeningen en de slides**: boek heeft alle 18 hoofdstukken, de
-      oefeningen en de slides enkel H1-H8.
+- [ ] **Stagiair Steven in de slides**: boek en oefeningen hebben alle 18 hoofdstukken (oefeningen
+      H9-H18 op 13 september 2026), de slides enkel H1-H8.
 - [ ] **Hall of Shame** (echte AI-blunders per editie): nog geen enkele rubriek.
 - [ ] **Interview per hoofdstuk** met iemand uit het werkveld: nog niets.
 - [ ] **Code-archeologie met de oermens als gids** (C# 4.0 / 8.0 / nu, om verouderde AI-output te
@@ -137,6 +137,51 @@ Losse zaken die bij een scan van de repo bovenkwamen en nergens anders thuishore
       `WindowHeight` zijn); in `13_advancedovererving/5_abstract.md` stopt de Pong-`foreach` midden in
       `//spe`, zonder `TekenOpScherm` en zonder sluitende accolade; in
       `16_interfaces/2_InterfacesInPraktijk.md` gooien de twee versies van `CompareTo` een andere exception.
+
+## 10. Pdf-lay-out (13 september 2026)
+
+De lay-outrun op de pdf is gedaan (avatars, figuurmaat, weesregels, blanco pagina's), zie
+[../.claude/pdf-afspraken.md](../.claude/pdf-afspraken.md). Wat overbleef:
+
+- [ ] Nog niet gecommit: filters, partial, `_quarto.yml`, `scripts/pdf-controle/`, de afspraken.
+- [ ] De website is na de wijzigingen niet opnieuw gerenderd. De filters doen enkel iets voor Typst en
+      `{pdf-width=..}` hoort genegeerd te worden, maar dat is niet nagekeken.
+- [ ] De bijlage heet in de pdf "1. Oefeningen" in plaats van "A. Oefeningen".
+- [ ] Bij de "Meer weten"-hoofdstukken schuift de poster door en blijft de pagina ervoor halfleeg.
+
+## 11. Gevonden bij de Steven-oefeningen H9-H18 (13 september 2026)
+
+- [ ] **Diepe links naar ziescherp.be zijn stuk.** `www.ziescherp.be/content/...` en `ziescherp.be/...`
+      sturen door naar de hoofdpagina van `timdams.github.io/ziescherpscherper/` en laten het pad vallen.
+      Elke link naar een hoofdstuk of anker in de oefeningen (ook H1-H8) belandt dus op de voorpagina.
+      De repo heeft geen `CNAME` en de workflow zet geen custom domain: het is een doorverwijzing bij de
+      registrar. Oplossing: GitHub Pages een custom domain geven (CNAME-bestand in `build/` via de
+      workflow, DNS-record bij de registrar). Werk voor Tim, want DNS.
+- [ ] **De coach-prompt verklapt het antwoord bij zoek-de-fout-oefeningen.** `scripts/coach-prompt.mjs`
+      zet Aanpak en Valkuilen uit de coach-data in de prompt die de student plakt. Bij de Steven-oefeningen
+      noemen die de fouten bij naam (zo al in H1-H8, en de nieuwe volgen dat; H18 bewust niet). Dat botst
+      met de regel in CLAUDE.md. Beslissing aan Tim: Aanpak bij code-lees-oefeningen vaag houden, of het
+      script die secties laten weglaten.
+- [ ] Leerstof die niet klopt met wat de compiler doet:
+      `content/10_advancedklassen/2_overloadedconstructor.md:35` en `zieverder.md:16` noemen CS1729 bij
+      `new Student()`, met één constructor geeft dotnet CS7036;
+      `content/21_bestanden/schrijvenenlezen.md:255` en `zieverder.md:17` zeggen dat een verkeerde
+      leesvolgorde met `BinaryReader` crasht, dat is niet zo;
+      de nullable-callout in `content/8_klassen/2_properties.md` noemt CS8618 en CS8600, maar niet
+      CS8765, die elke correcte `Equals(object obj)` geeft.
+
+## 12. Vaardigheidsproeven: fouten in opgaven en oplossingen (13 september 2026)
+
+De proeven hebben nu een coach- en een quoteerprompt (zie CLAUDE.md). Bij het schrijven daarvan kwamen
+veel fouten in de oude opgaven en oplossingen boven. De volledige lijst staat in
+[vaardigheidsproeven-fouten.md](vaardigheidsproeven-fouten.md).
+
+Dezelfde dag rechtgezet: de verkeerde oplossingen (Mod4 2223 heeft nu een eigen oplossing, Mod4 2324 de
+Pharaoh-oplossing), de puntentotalen, de tegenstrijdigheden in de opgaven, de vijf afbeeldingen die
+niet klopten en de kleine tekstzaken. Wat overblijft:
+
+- [ ] De keuzes in de quoteergegevens nakijken, vooral de nieuwe die strenger zijn dan voorheen.
+- [ ] `Mod4/1920schemaNEW.png` bekijken; de opgave gebruikt die al in plaats van het oude schema.
 
 ---
 

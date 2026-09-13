@@ -7,7 +7,7 @@ Hier de algemene flow van de applicatie (merk op dat de methoden BestelFrietjes,
 
 ![](flowopgave7.png)
  
-De applicatie loopt oneindig door en kan dus niet afgesloten worden).
+De gebruiker kan de applicatie niet afsluiten: ze blijft bestellingen opnemen tot er 100 zijn.
 
 In de hoofdapplicatie bewaar je in een array (met grootte 100) van doubles telkens het resultaat van de BestelHamburger-methode. (met deze array doe je voor de rest niets).
 
@@ -18,23 +18,23 @@ In de hoofdapplicatie bewaar je in een array (met grootte 100) van doubles telke
 1.	Deze methode toont het menu( zie onderaan) en heeft een double als resultaat. De methode vraagt eerst welke hamburger de gebruiker wenst. De gebruiker voert een string in voor z’n keuze (“gewoon”, “fish”, “veggie”). Zolang de gebruiker geen juist antwoord geeft wordt de vraag opnieuw gesteld en de input uitgelezen.
 2.	Vervolgens dient de gebruiker met “j” of “n” te antwoorden of deze frietjes wilt .Indien ja dan wordt de methode “BestelFrietjes” aangeroepen.
 3.	Vervolgens dient de gebruiker met “j” of “n” te antwoorden of deze frisdrank wenst. Indien ja dan wordt de methode “BestelDrinken” aangeroepen.
-4.	Finaal roept deze methode de BerekenTotaalMethode aan en zal alle verzamelde informatie aan deze methode meegeven (zie verder). Het resultaat van de BerekenTotaalMethode (een double) wordt teruggegeven als resultaat van deze methode.
+4.	Finaal roept deze methode de methode BerekenTotaal aan en zal alle verzamelde informatie aan deze methode meegeven (zie verder). Het resultaat van BerekenTotaal (een double) wordt teruggegeven als resultaat van deze methode.
 
 ## BestelFrietjes (1p)
 
 Deze methode vraagt hoeveel frietjes de gebruiker wenst en zal het resultaat (een getal) teruggeven als resultaat. De gebruiker voert een getal in tussen 1 en 10 (geen controle nodig) en dit getal geeft deze methode terug.
 
-## BestelFrisdrank (2p)
+## BestelDrinken (2p)
 
-De methode vraagt welke frisdrank de gebruiker wenst (zie menu), wederom voert de gebruiker een getal in. Dit getal wordt omgezet naar een enum van het type Frisdranken (met als waarden Water, Fanta, Cola) dat zal teruggeven als resultaat van de methode.
+De methode vraagt welke frisdrank de gebruiker wenst (zie menu), wederom voert de gebruiker een getal in. Dit getal wordt omgezet naar een enum van het type Frisdranken (met als waarden Geen, Water, Fanta, Cola) dat zal teruggeven als resultaat van de methode. De waarde Geen staat voor een bestelling zonder drank en kan in deze methode niet gekozen worden.
 
-## Berekentotaal (3p)
+## BerekenTotaal (4p)
 
 Deze methode geeft de prijs als double tot 2 cijfers na de komma op het scherm weer en zal deze waarde ook als return teruggeven. De methode aanvaardt volgende parameters:
 
 1. hamburger, string, verplicht
 2. aantalfrietjes, int, optioneel (standaard: 1)
-3. drank, enum type Frisdranken, optioneel (standaard: "geen") 
+3. drank, enum type Frisdranken, optioneel (standaard: Geen)
 
 Volgende menukaart wordt gebruikt om met voorgaande informatie de totaalprijs te bereken.
 
@@ -55,6 +55,8 @@ Volgende promoties zijn actief en worden toegepast indien relevant:
 * Box: Indien de gebruiker én frisdrank én frietjes besteld krijgt hij 5€ korting op de totaalprijs.
 * Hipster: Indien de gebruiker Water, een Veggieburger en 1 frietje besteld krijgt hij €3 korting op de totaalprijs.
 
+De promoties gelden niet samen: een bestelling krijgt hoogstens één promotie. Voldoet een bestelling aan Hipster, dan krijgt ze enkel Hipster (en dus niet ook Box).
+
 Indien de gebruiker een promotie heeft gekozen dan wordt dit op het scherm getoond vlak voor de prijs wordt getoond. 
 
 # Uitbreidingen (2p)
@@ -64,7 +66,7 @@ Voeg volgende uitbreidingen toe aan de applicatie.
 **Visualisatie bestelling (2p)**: In de methode BerekenTotaal wordt de bestelling gevisualiseerd als volgt:
 * Hamburger wordt voorgesteld als de letter “H” met als achtergrond groen bij gewone hamburger, blauw voor fish, rood voor veggie.
 * Het aantal frietjes wordt voorgesteld als evenveel keer de letter “I” (hoofdletter i) als er frietjes zijn besteld.
-* De frisdank wordt voorgesteld door een letter (“W” voor water, “F” voor Fanta, “C” voor cola)
+* De frisdrank wordt voorgesteld door een letter (“W” voor water, “F” voor Fanta, “C” voor cola)
 
 Voorbeeld voor iemand met fishburger, 3 frietjes en fanta:
 
@@ -74,127 +76,143 @@ HIIIF
 
 *(de H heeft een blauwe achtergrond)*
 
-Vervolgens wordt de prijs en eventuele promotievermelding getoond.
+Vervolgens wordt de eventuele promotievermelding getoond, en daarna de prijs.
 
 
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
-static void Main(string[] args)
+namespace APDonalds
+{
+    internal class Program
     {
-        double[] verkochteMenus = new double[100];
-        int teller = 0;
-        while (teller < verkochteMenus.Length)
+        enum Frisdranken { Geen, Water, Fanta, Cola }
+
+        static void Main(string[] args)
         {
-            verkochteMenus[teller] = BestelHamburger();
-        }
-    }
-
-    static double BestelHamburger()
-    {
-
-        ToonMenu();
-        string keuzeHamburger = "";
-
-        do
-        {
-            Console.WriteLine("Welke hamburger wenst u?(gewoon, fish, veggie)");
-            keuzeHamburger = Console.ReadLine();
-        } while (!(keuzeHamburger == "gewoon" || keuzeHamburger == "fish" || keuzeHamburger == "veggie"));
-
-        Console.WriteLine("Wenst u frietjes? (j/n)");
-        string wilFrietjes = Console.ReadLine();
-        int aantalFrietjes = 0;
-        if (wilFrietjes == "j")
-            aantalFrietjes = BestelFrietjes();
-
-        Console.WriteLine("Wenst u drank? (j/n)");
-        string wilFrisdrank = Console.ReadLine();
-        Frisdranken keuzeDrank = Frisdranken.Geen;
-        if (wilFrisdrank == "j")
-            keuzeDrank = BestelDrinken();
-
-        return BerekenTotaal(keuzeHamburger, aantalFrietjes, keuzeDrank);
-    }
-
-    private static void ToonMenu()
-    {
-        Console.WriteLine("Euro tekens zullen als vraagteken getoond worden");
-        Console.WriteLine("\nGewone hamburger: €5");
-        Console.WriteLine("Fishburger: €6");
-        Console.WriteLine("Veggieburger: €3");
-        Console.WriteLine("Water €2");
-        Console.WriteLine("Fanta €3");
-        Console.WriteLine("Cola €3");
-        Console.WriteLine("Frietjes: €2 per frietje");
-    }
-
-    static double BerekenTotaal(string hamburger, int aantalFriet = 1, Frisdranken frisdrank = Frisdranken.Geen)
-    {
-        double totaal = 0;
-        switch (hamburger)
-        {
-            case "gewoon": totaal += 5; Console.BackgroundColor = ConsoleColor.Green; break;
-            case "fish": totaal += 6; Console.BackgroundColor = ConsoleColor.Blue; break;
-            case "veggie": totaal += 3; Console.BackgroundColor = ConsoleColor.Red; break;
-        }
-        Console.Write("H");
-        Console.ResetColor();
-
-        totaal += (aantalFriet * 2);
-        for (int i = 0; i < aantalFriet; i++)
-        {
-            Console.Write("I");
+            double[] verkochteMenus = new double[100];
+            int teller = 0;
+            while (teller < verkochteMenus.Length)
+            {
+                verkochteMenus[teller] = BestelHamburger();
+                teller++;
+            }
         }
 
-
-        switch (frisdrank)
+        static double BestelHamburger()
         {
+            ToonMenu();
+            string keuzeHamburger;
+            do
+            {
+                Console.WriteLine("Welke hamburger wenst u? (gewoon, fish, veggie)");
+                keuzeHamburger = Console.ReadLine();
+            } while (!(keuzeHamburger == "gewoon" || keuzeHamburger == "fish" || keuzeHamburger == "veggie"));
 
-            case Frisdranken.Water:
-                totaal += 2;
-                Console.WriteLine("W");
-                break;
-            case Frisdranken.Fanta:
-                totaal += 3;
-                Console.WriteLine("F");
-                break;
-            case Frisdranken.Cola:
-                totaal += 3;
-                Console.WriteLine("C");
-                break;
-            default:
-                break;
+            Console.WriteLine("Wenst u frietjes? (j/n)");
+            string wilFrietjes = Console.ReadLine();
+            int aantalFrietjes = 0;
+            if (wilFrietjes == "j")
+            {
+                aantalFrietjes = BestelFrietjes();
+            }
+
+            Console.WriteLine("Wenst u frisdrank? (j/n)");
+            string wilFrisdrank = Console.ReadLine();
+            Frisdranken keuzeDrank = Frisdranken.Geen;
+            if (wilFrisdrank == "j")
+            {
+                keuzeDrank = BestelDrinken();
+            }
+
+            return BerekenTotaal(keuzeHamburger, aantalFrietjes, keuzeDrank);
         }
 
-        //Promoties
-        if (aantalFriet > 0 && frisdrank != Frisdranken.Geen)
+        static void ToonMenu()
         {
-            totaal -= 5;
-            Console.WriteLine("Je hebt de box promotie!");
+            Console.WriteLine();
+            Console.WriteLine("Gewone hamburger: 5 euro");
+            Console.WriteLine("Fishburger: 6 euro");
+            Console.WriteLine("Veggieburger: 3 euro");
+            Console.WriteLine("Water: 2 euro");
+            Console.WriteLine("Fanta: 3 euro");
+            Console.WriteLine("Cola: 3 euro");
+            Console.WriteLine("Frietjes: 2 euro per frietje");
         }
-        if (hamburger == "veggie" && aantalFriet == 1 && frisdrank == Frisdranken.Water)
+
+        static int BestelFrietjes()
         {
-            totaal -= 3;
-            Console.WriteLine("Je hebt de hipster promotie!");
+            Console.WriteLine("Hoeveel frietjes wenst u? (1 tot 10)");
+            return int.Parse(Console.ReadLine());
         }
 
-        Console.WriteLine($"Dit kost je: {totaal:0.00}");
-        return totaal;
-    }
+        static Frisdranken BestelDrinken()
+        {
+            Console.WriteLine("Welke frisdrank wenst u? 1. Water, 2. Fanta, 3. Cola");
+            return (Frisdranken)int.Parse(Console.ReadLine());
+        }
 
-    enum Frisdranken { Geen, Water = 1, Fanta, Cola };
-    static Frisdranken BestelDrinken()
-    {
-        Console.WriteLine("Welke frisdrank wenst u? 1.Water, 2.Fanta, 3. Cola");
-        return (Frisdranken)int.Parse(Console.ReadLine());
+        static double BerekenTotaal(string hamburger, int aantalFrietjes = 1, Frisdranken drank = Frisdranken.Geen)
+        {
+            double totaal = 0;
 
+            switch (hamburger)
+            {
+                case "gewoon":
+                    totaal += 5;
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    break;
+                case "fish":
+                    totaal += 6;
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    break;
+                case "veggie":
+                    totaal += 3;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    break;
+            }
+            Console.Write("H");
+            Console.ResetColor();
 
+            totaal += aantalFrietjes * 2;
+            for (int i = 0; i < aantalFrietjes; i++)
+            {
+                Console.Write("I");
+            }
+
+            switch (drank)
+            {
+                case Frisdranken.Water:
+                    totaal += 2;
+                    Console.Write("W");
+                    break;
+                case Frisdranken.Fanta:
+                    totaal += 3;
+                    Console.Write("F");
+                    break;
+                case Frisdranken.Cola:
+                    totaal += 3;
+                    Console.Write("C");
+                    break;
+            }
+            Console.WriteLine();
+
+            //Promoties: hoogstens één, Hipster gaat voor op Box
+            if (hamburger == "veggie" && aantalFrietjes == 1 && drank == Frisdranken.Water)
+            {
+                totaal -= 3;
+                Console.WriteLine("Je hebt de Hipster-promotie!");
+            }
+            else if (aantalFrietjes > 0 && drank != Frisdranken.Geen)
+            {
+                totaal -= 5;
+                Console.WriteLine("Je hebt de Box-promotie!");
+            }
+
+            Console.WriteLine($"Dit kost je: {totaal:F2} euro");
+            return totaal;
+        }
     }
-    static int BestelFrietjes()
-    {
-        Console.WriteLine("Hoeveel frietjes wenst u? (1 tot 10)");
-        return int.Parse(Console.ReadLine());
-    }
+}
 ```
 ::::

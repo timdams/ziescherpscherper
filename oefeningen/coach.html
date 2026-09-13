@@ -1,7 +1,10 @@
 <!--
-  Bouwt de coach-prompt op wanneer een student op de coach-knop naast een oefening klikt.
+  Bouwt de prompt op wanneer een student op een coach- of quoteerknop klikt.
   De knoppen en de gegevens worden na het renderen in de pagina gezet door
   scripts/coach-prompt.mjs. Draaide dat script niet, dan staat hier niets en doet dit niets.
+
+  Coach: bij elke oefening, en bovenaan elke vaardigheidsproef (sjabloon _coach/_prompt.md).
+  Quoteer: enkel bovenaan een vaardigheidsproef (sjabloon _coach/_quoteer.md).
 -->
 <script>
 (function () {
@@ -27,19 +30,45 @@
     start();
   }
 
-  function bouwPrompt(oefening) {
-    return data.sjabloon
-      .replace("{{hoofdstuk}}", data.hoofdstuk)
-      .replace("{{kent}}", data.kent)
-      .replace("{{kentniet}}", data.kentniet)
-      .replace("{{titel}}", oefening.titel)
-      .replace("{{opgave}}", oefening.opgave)
-      .replace("{{achtergrond}}", oefening.achtergrond);
+  // Alle {{plaatshouders}} in één keer, met een functie als vervanging: in de opgave staan
+  // C#-strings met $, en die zou String.replace met een gewone string anders interpreteren.
+  function vul(sjabloon, waarden) {
+    return sjabloon.replace(/\{\{(\w+)\}\}/g, function (m, naam) {
+      return Object.prototype.hasOwnProperty.call(waarden, naam) ? String(waarden[naam]) : m;
+    });
   }
+
+  function bouwPrompt(oefening, soort) {
+    var sjabloon = soort === "quoteer" ? data.quoteerSjabloon : data.sjabloon;
+    return vul(sjabloon, {
+      hoofdstuk: data.hoofdstuk,
+      semester: data.semester || "",
+      kent: data.kent,
+      kentniet: data.kentniet,
+      titel: oefening.titel,
+      opgave: oefening.opgave,
+      achtergrond: oefening.achtergrond || "",
+      puntenverdeling: oefening.puntenverdeling || "",
+      beoordeling: oefening.beoordeling || "",
+    });
+  }
+
+  var UITLEG = {
+    coach:
+      "Plak deze prompt in ChatGPT, Copilot Chat of Claude. Je krijgt geen oplossing en geen " +
+      "code: de coach stelt vragen tot je er zelf uit bent. Vraag je toch om code, dan leer je " +
+      "niets bij en dat merkt je lector op het examen.",
+    quoteer:
+      "Plak deze prompt in ChatGPT, Copilot Chat of Claude, en daarna al je code, met de naam " +
+      "van elk bestand erbij. Je krijgt een strenge verbetering volgens de puntenverdeling en " +
+      "het boeteblad, maar geen oplossing. De score is indicatief: deze prompt werd niet " +
+      "gebruikt bij de originele proef.",
+  };
 
   var venster = null;
   var veld = null;
   var kop = null;
+  var uitleg = null;
   var kopieerKnop = null;
 
   function maakVenster() {
@@ -50,9 +79,7 @@
       '<h2 class="coach-titel"></h2>' +
       '<button class="coach-sluit" value="sluit" aria-label="Sluiten">&times;</button>' +
       "</form>" +
-      '<p class="coach-uitleg">Plak deze prompt in ChatGPT, Copilot Chat of Claude. Je krijgt geen ' +
-      "oplossing en geen code: de coach stelt vragen tot je er zelf uit bent. Vraag je toch om code, " +
-      "dan leer je niets bij en dat merkt je lector op het examen.</p>" +
+      '<p class="coach-uitleg"></p>' +
       '<textarea class="coach-tekst" readonly spellcheck="false"></textarea>' +
       '<div class="coach-acties"><button type="button" class="coach-kopieer">Kopieer prompt</button>' +
       '<span class="coach-status" role="status"></span></div>';
@@ -60,6 +87,7 @@
 
     veld = venster.querySelector(".coach-tekst");
     kop = venster.querySelector(".coach-titel");
+    uitleg = venster.querySelector(".coach-uitleg");
     kopieerKnop = venster.querySelector(".coach-kopieer");
 
     kopieerKnop.addEventListener("click", function () {
@@ -99,13 +127,15 @@
     }
   }
 
-  function toon(id) {
+  function toon(id, soort) {
     var oefening = data.oefeningen[id];
     if (!oefening) return;
+    if (soort === "quoteer" && !data.quoteerSjabloon) return;
     if (!venster) maakVenster();
 
-    kop.textContent = "Coach-prompt: " + oefening.titel;
-    veld.value = bouwPrompt(oefening);
+    kop.textContent = (soort === "quoteer" ? "Quoteerprompt: " : "Coach-prompt: ") + oefening.titel;
+    uitleg.textContent = UITLEG[soort];
+    veld.value = bouwPrompt(oefening, soort);
 
     if (typeof venster.showModal === "function") venster.showModal();
     else venster.setAttribute("open", "open");
@@ -114,10 +144,11 @@
 
   document.addEventListener("click", function (e) {
     if (!data) return;
-    var knop = e.target.closest ? e.target.closest(".coach-knop") : null;
+    var knop = e.target.closest ? e.target.closest(".coach-knop, .quoteer-knop") : null;
     if (!knop) return;
     e.preventDefault();
-    toon(knop.getAttribute("data-coach"));
+    if (knop.classList.contains("quoteer-knop")) toon(knop.getAttribute("data-quoteer"), "quoteer");
+    else toon(knop.getAttribute("data-coach"), "coach");
   });
 })();
 </script>

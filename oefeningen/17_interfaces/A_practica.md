@@ -34,6 +34,196 @@ public class Rechthoek: IComparable
 ::::
 
 
+# Stevens superhelden (*Essential*) {#h17-stevens-superhelden}
+
+Stagiair Steven moest de eerste twee helden van een vechtspel maken. Batman en Zorro zijn allebei een ``Man``, en ze beloven allebei wat een ``ISuperHeld`` belooft. Een A.I. schreef de code. Steven zette elk stuk in een eigen bestand en leverde het in zonder één keer te compileren:
+
+```java
+//ISuperHeld.cs
+interface ISuperHeld
+{
+    int power;
+    public void SchietLasers();
+    int Power { get; set; }
+}
+```
+
+```java
+//Man.cs
+internal class Man
+{
+    public void Wandel()
+    {
+        Console.WriteLine("Ik wandel rustig verder.");
+    }
+}
+```
+
+```java
+//Batman.cs
+internal class Batman : ISuperHeld, Man
+{
+    public int Power { get; set; } = 80;
+
+    public void SchietLasers()
+    {
+        Console.WriteLine("Batman heeft geen lasers en gooit een batarang.");
+    }
+}
+```
+
+```java
+//Zorro.cs
+internal class Zorro : Man, ISuperHeld
+{
+    int Power { get; set; } = 60;
+
+    public void SchietLasers()
+    {
+        Console.WriteLine("Zorro kerft een Z in de muur.");
+    }
+}
+```
+
+```java
+//Program.cs
+static void Main(string[] args)
+{
+    List<ISuperHeld> helden = new List<ISuperHeld>();
+    helden.Add(new Batman());
+    helden.Add(new Zorro());
+    helden.Add(new ISuperHeld());
+
+    foreach (ISuperHeld held in helden)
+    {
+        held.SchietLasers();
+        Console.WriteLine($"Power: {held.Power}");
+        if (held is Man man)
+        {
+            man.Wandel();
+        }
+    }
+}
+```
+
+**Deel 1.** Maak een nieuw project met een apart bestand voor de interface en voor elke klasse, en plak Stevens code erin. Er zitten vier fouten in die de compiler vindt. Lees de meldingen in de *Error List* en herstel ze. Let op: ze verschijnen niet allemaal tegelijk.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Compileer je Stevens code, dan krijg je eerst drie fouten:
+
+1. ``CS0525 Interfaces cannot contain instance fields``, in ``ISuperHeld``. ``int power;`` is een instantievariabele, en die hoort bij de implementatie, niet bij het contract. Schrap de lijn. De property ``Power`` mag wel blijven: die belooft enkel dat elke superheld een ``Power`` heeft.
+2. ``CS1722 Base class 'Man' must come before any interfaces``, in ``Batman``. Eerst de klasse waarvan je erft, dan pas de interfaces: ``internal class Batman : Man, ISuperHeld``.
+3. ``CS0737 'Zorro' does not implement interface member 'ISuperHeld.Power'. 'Zorro.Power' cannot implement an interface member because it is not public.`` Zorro heeft de property wel, maar zonder access modifier is ze ``private``. In de interface schrijf je geen ``public``, want daar is alles al publiek. In de klasse moet het er wel staan.
+
+Zijn die drie hersteld, dan verschijnt er een nieuwe fout:
+
+4. ``CS0144 Cannot create an instance of the abstract type or interface 'ISuperHeld'``, in ``Main``. Een interface is een belofte zonder code, dus je kan er geen object van maken. Schrap de lijn. Wil Steven een derde held, dan schrijft hij een klasse die ``ISuperHeld`` implementeert.
+
+De herstelde stukken:
+
+```java
+//ISuperHeld.cs
+interface ISuperHeld
+{
+    public void SchietLasers();
+    int Power { get; set; }
+}
+```
+
+```java
+//Batman.cs
+internal class Batman : Man, ISuperHeld
+{
+    public int Power { get; set; } = 80;
+
+    public void SchietLasers()
+    {
+        Console.WriteLine("Batman heeft geen lasers en gooit een batarang.");
+    }
+}
+```
+
+```java
+//Zorro.cs
+internal class Zorro : Man, ISuperHeld
+{
+    public int Power { get; set; } = 60;
+
+    public void SchietLasers()
+    {
+        Console.WriteLine("Zorro kerft een Z in de muur.");
+    }
+}
+```
+
+```java
+//Program.cs
+static void Main(string[] args)
+{
+    List<ISuperHeld> helden = new List<ISuperHeld>();
+    helden.Add(new Batman());
+    helden.Add(new Zorro());
+
+    foreach (ISuperHeld held in helden)
+    {
+        held.SchietLasers();
+        Console.WriteLine($"Power: {held.Power}");
+        if (held is Man man)
+        {
+            man.Wandel();
+        }
+    }
+}
+```
+
+Uitvoer:
+
+```text
+Batman heeft geen lasers en gooit een batarang.
+Power: 80
+Ik wandel rustig verder.
+Zorro kerft een Z in de muur.
+Power: 60
+Ik wandel rustig verder.
+```
+::::
+
+**Deel 2.** Alles compileert. Steven heeft nog drie vragen. Beantwoord ze eerst op papier, en test daarna.
+
+1. Een collega zegt dat ``public void SchietLasers();`` in de interface ook fout is: "in een interface schrijf je geen access modifiers". Heeft hij gelijk?
+2. Steven wil dat elke superheld met 100 power start. Zijn A.I. zet daarom een constructor in de interface:
+
+    ```java
+    interface ISuperHeld
+    {
+        public void SchietLasers();
+        int Power { get; set; }
+
+        ISuperHeld()
+        {
+            Power = 100;
+        }
+    }
+    ```
+
+    Wat zegt de compiler, en waar hoort die beginwaarde dan wel?
+3. Steven wil van de interface een abstracte klasse ``SuperHeld`` maken, met ``internal class Batman : Man, SuperHeld``. Waarom lukt dat niet?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. Nee, het compileert. In een interface is alles ``public``, en sinds C# 8 mag je dat er ook bijschrijven (zie de voetnoot bij de interfaceregels). Het verandert niets aan wat de interface belooft. In het boek laten we het weg. Steven doet het bij het ene lid wel en bij het andere niet: kies één van de twee.
+2. ``CS0526 Interfaces cannot contain instance constructors``. Een interface heeft geen constructors en zet geen beginwaarden: dat is implementatie, en die hoort in de klasse. Bijvoorbeeld ``public int Power { get; set; } = 100;`` in ``Batman`` en in ``Zorro``, of een constructor in die klassen.
+3. De compiler meldt ``CS1721 Class 'Batman' cannot have multiple base classes: 'Man' and 'SuperHeld'``. ``Batman`` erft al van ``Man``, en een klasse erft van hoogstens één klasse. Interfaces mag je er zoveel achter zetten als je wil. Daarom is ``ISuperHeld`` hier een interface: een ``Man`` "is" geen superheld, hij "kan" wat een superheld kan.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* In een interface staan enkel de signaturen van methoden en properties: geen instantievariabelen, geen constructors en geen code. Zie [Interface regels](https://www.ziescherp.be/content/16_interfaces/1_Interface_intro.html#interface-regels), met daaronder de tabel "Interface of abstracte klasse?".
+* De interface schrijft geen ``public``, maar de klasse die ze implementeert moet het wel doen. Anders telt het lid niet mee.
+* Eerst de parentklasse, dan de interfaces. Zie [Meerder interfaces](https://www.ziescherp.be/content/16_interfaces/1_Interface_intro.html#meerder-interfaces).
+* Van een interface maak je geen object. Een variabele of een ``List<ISuperHeld>`` mag wel van dat type zijn, en daarin stop je objecten van klassen die de interface implementeren.
+* De compiler kijkt eerst of de interface en de klassen kloppen, en pas daarna naar de code in je methoden. Zolang er een fout in een klasse of interface staat, zie je de fout in ``Main`` dus niet. Visual Studio kijkt je code ook al na terwijl je typt, en kan de fout in ``Main`` daardoor soms wel al tonen.
+::::
+
+
 # Carbon Footprint (*Essential*)
 
 Maak 4 klassen:

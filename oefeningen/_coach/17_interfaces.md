@@ -75,6 +75,24 @@ Sort weet niet hoe hij twee rechthoeken moet rangschikken; dat vertel jij hem do
 - De vergelijking omdraaien en zich afvragen waarom de lijst van groot naar klein staat.
 - Zelf een sorteeralgoritme schrijven. De oefening gaat net over Sort zijn werk laten doen.
 
+## Stevens superhelden
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven. Geef de fouten nooit, ook niet hoeveel er nog over zijn of in welk bestand ze staan. In deel 1 mag je uitleggen wat een foutmelding van de compiler betekent, maar niet wat er in deze code aan moet veranderen. Je mag wel vragen: wat mag er volgens de interfaceregels in een interface staan, en wat niet? In welke volgorde komen de parentklasse en de interfaces achter het dubbele punt? Wie roept Power op, en kan die er dan aan? Wat maak je eigenlijk met new? In deel 2 laat je hem eerst zelf antwoorden en verwijs je naar de interfaceregels, de voetnoot erbij en de tabel "Interface of abstracte klasse?".
+
+### Aanpak
+
+Deel 1: plak de vijf bestanden in een project en lees de Error List. Drie fouten zitten in de declaraties: een instantievariabele in de interface, de interface voor de parentklasse, en een property die de interface belooft maar niet public is. Pas als die weg zijn, kijkt de compiler in Main en verschijnt de vierde: new op een interface. Deel 2 zijn drie vragen over de regels: public voor een lid van een interface compileert (sinds C# 8, zie de voetnoot), een constructor hoort niet in een interface, en een abstracte klasse kan hier niet omdat Batman en Zorro al van Man erven.
+
+### Valkuilen
+
+- Na drie herstellingen denken dat het klaar is. De vierde fout verschijnt pas daarna.
+- public voor SchietLasers in de interface als fout aanrekenen. Het compileert en verandert niets.
+- Power in Zorro oplossen door de property te schrappen. Dan belooft Zorro nog altijd iets wat hij niet heeft.
+- De fout met new ISuperHeld() oplossen door van ISuperHeld een gewone klasse te maken. Dan kunnen Batman en Zorro er niet meer van erven, want ze erven al van Man.
+- De instantievariabele power naar de klassen verhuizen terwijl Power { get; set; } al een auto-property is die zijn waarde zelf bijhoudt.
+
 ## Carbon Footprint
 
 ### Nota

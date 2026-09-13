@@ -125,6 +125,193 @@ static void AlleBoekenWeergeven(string boekDb)
 ::::
 
 
+# Stevens stille fouten (*Essential*) {#h18-stevens-stille-fouten}
+
+Stagiair Steven kreeg drie kleine opdrachten met bestanden. Hij liet ze alle drie door een A.I. schrijven en keek niets na: het compileerde, en er crashte niets. Toch klopt er in geen van de drie iets van.
+
+Zet elk fragment in de ``Main`` van een nieuw project. De bestanden krijgen enkel een naam en geen pad, zodat ze naast je programma terechtkomen, op Windows en op Mac. Vind je een bestand niet terug, laat dan bijvoorbeeld ``Path.GetFullPath("logboek.txt")`` afdrukken.
+
+Voorspel telkens eerst wat er gebeurt, en voer het fragment pas daarna uit.
+
+**Deel 1.** Steven houdt een logboek bij van wie zijn programma gebruikt:
+
+```java
+StreamWriter writer = new StreamWriter("logboek.txt", true);
+writer.WriteLine("Programma gestart");
+
+Console.WriteLine("Hoe heet je?");
+string naam = Console.ReadLine();
+writer.WriteLine($"Gebruiker: {naam}");
+
+Console.WriteLine($"Welkom, {naam}!");
+```
+
+Voer het twee keer uit, met twee verschillende namen. Hoe groot is ``logboek.txt`` daarna, wat staat erin, en waarom?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+Op het scherm verschijnt twee keer netjes ``Welkom, ...!``, maar ``logboek.txt`` is 0 bytes groot. Het bestand bestaat wel, alleen staat er niets in.
+
+Een ``StreamWriter`` schrijft niet elke ``WriteLine`` meteen naar de schijf. Hij spaart de tekst eerst op in het geheugen, en schrijft pas weg als dat stuk geheugen vol is of als de writer gesloten wordt. Steven sluit zijn writer nooit. Het programma stopt, en de opgespaarde tekst verdwijnt mee. Schrijf je veel meer tekst weg, dan komt er wel een deel in het bestand, maar het einde ontbreekt, soms midden in een regel.
+
+Met een ``using``-blok gaat de writer aan het einde van het blok dicht, en dan wordt alles weggeschreven:
+
+```java
+using (StreamWriter writer = new StreamWriter("logboek.txt", true))
+{
+    writer.WriteLine("Programma gestart");
+
+    Console.WriteLine("Hoe heet je?");
+    string naam = Console.ReadLine();
+    writer.WriteLine($"Gebruiker: {naam}");
+
+    Console.WriteLine($"Welkom, {naam}!");
+}
+```
+
+Na twee keer uitvoeren, met Anna en Bram, staat er in ``logboek.txt``:
+
+```text
+Programma gestart
+Gebruiker: Anna
+Programma gestart
+Gebruiker: Bram
+```
+::::
+
+**Deel 2.** Steven bewaart de instellingen van zijn spel in een binair bestand: de naam van de speler, het aantal levens en of het geluid aan staat. Het inlezen vroeg hij een dag later aan de A.I., in een nieuw gesprek:
+
+```java
+// bewaren
+FileStream fsSchrijven = File.Open("instellingen.dat", FileMode.Create);
+using (BinaryWriter writer = new BinaryWriter(fsSchrijven))
+{
+    writer.Write("Steven");
+    writer.Write(3);
+    writer.Write(false);
+}
+
+// later: terug inlezen
+FileStream fsLezen = File.Open("instellingen.dat", FileMode.Open);
+using (BinaryReader reader = new BinaryReader(fsLezen))
+{
+    string speler = reader.ReadString();
+    bool geluidAan = reader.ReadBoolean();
+    int levens = reader.ReadInt32();
+    Console.WriteLine($"{speler} heeft {levens} levens. Geluid aan = {geluidAan}");
+}
+```
+
+Wat verschijnt er op het scherm? En waarom crasht het programma niet?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```text
+Steven heeft 0 levens. Geluid aan = True
+```
+
+Beide getallen kloppen niet: Steven had 3 levens, en het geluid stond uit.
+
+De ``BinaryWriter`` schreef 12 bytes weg: 7 voor de string (1 byte voor de lengte en 6 letters), 4 voor de ``int`` en 1 voor de ``bool``. Toon je die bytes zoals in het boek, met ``File.ReadAllBytes`` en ``{b:X2}``, dan zie je:
+
+::: {.console}
+```text
+06 53 74 65 76 65 6E 03 00 00 00 00
+```
+:::
+
+Na de string leest ``ReadBoolean`` één byte: ``03``, de eerste byte van het getal 3. Elke byte die niet 0 is, wordt ``true``. Daarna leest ``ReadInt32`` de volgende vier bytes: ``00 00 00 00``, dus 0. Samen lezen ze precies de 12 bytes die in het bestand staan, dus de ``BinaryReader`` komt niets tekort. Het bestand zelf zegt nergens welk datatype op welke plaats zit: dat weet enkel de code die het schreef.
+
+Lees in exact dezelfde volgorde als je geschreven hebt:
+
+```java
+string speler = reader.ReadString();
+int levens = reader.ReadInt32();
+bool geluidAan = reader.ReadBoolean();
+```
+
+```text
+Steven heeft 3 levens. Geluid aan = False
+```
+::::
+
+**Deel 3.** Steven wil zijn huisdier bewaren als JSON. De A.I. maakte een klasse in een eigen bestand, ``Huisdier.cs``:
+
+```java
+public class Huisdier
+{
+    private string naam;
+    private int leeftijd;
+
+    public Huisdier(string naam, int leeftijd)
+    {
+        this.naam = naam;
+        this.leeftijd = leeftijd;
+    }
+
+    public override string ToString()
+    {
+        return $"{naam} ({leeftijd} jaar)";
+    }
+}
+```
+
+In ``Main``, met ``using System.Text.Json;`` bovenaan ``Program.cs``:
+
+```java
+Huisdier kat = new Huisdier("Mimi", 4);
+Console.WriteLine(kat);
+
+string json = JsonSerializer.Serialize(kat);
+File.WriteAllText("huisdier.json", json);
+Console.WriteLine("Huisdier bewaard.");
+```
+
+Op het scherm staat ``Mimi (4 jaar)`` en ``Huisdier bewaard.``. Wat staat er in ``huisdier.json``, en waarom? Pas de klasse aan zodat de naam en de leeftijd wél in het bestand komen.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+```text
+{}
+```
+
+Een bestand van 2 bytes: een leeg object. ``JsonSerializer`` bewaart enkel de publieke properties van een object, en ``Huisdier`` heeft er geen. ``naam`` en ``leeftijd`` zijn private instantievariabelen. ``ToString`` kan er wel aan, want die methode zit in de klasse zelf.
+
+Maak er publieke properties van:
+
+```java
+public class Huisdier
+{
+    public Huisdier(string naam, int leeftijd)
+    {
+        Naam = naam;
+        Leeftijd = leeftijd;
+    }
+
+    public string Naam { get; set; }
+    public int Leeftijd { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Naam} ({Leeftijd} jaar)";
+    }
+}
+```
+
+Nu staat er in ``huisdier.json``:
+
+```text
+{"Naam":"Mimi","Leeftijd":4}
+```
+
+Wil je de private instantievariabelen houden, dan kan het ook met het attribuut ``[JsonInclude]`` boven elke instantievariabele, en ``using System.Text.Json.Serialization;`` bovenaan ``Huisdier.cs``. In het bestand staan dan de namen van de instantievariabelen: ``{"naam":"Mimi","leeftijd":4}``.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* Geen van de drie fouten geeft een foutmelding of een crash. Bij deel 1 en 3 ziet wie enkel naar het scherm kijkt zelfs niets verdachts. Open na het uitvoeren dus ook het bestand zelf.
+* Een ``StreamWriter`` zet je altijd in een ``using``-blok. Zie [``using`` alternatief](https://www.ziescherp.be/content/21_bestanden/schrijvenenlezen.html#using-alternatief).
+* Een binair bestand onthoudt geen datatypes. Lees in exact dezelfde volgorde als je schreef. Zie [BinaryReader](https://www.ziescherp.be/content/21_bestanden/schrijvenenlezen.html#binaryreader).
+* Enkel publieke properties komen in de JSON, tenzij je ``JsonInclude`` gebruikt. Zie [Serialiseren in C# naar JSON](https://www.ziescherp.be/content/21_bestanden/serialize.html#serialiseren-in-c-naar-json) en [JsonInclude](https://www.ziescherp.be/content/21_bestanden/serialize.html#jsoninclude).
+::::
+
+
 # IMDB Top 100 JSON 
 
 Op [deze site](https://github.com/hjorturlarsen/IMDB-top-100/blob/master/data/movies.json) vind je de top 100 films ooit volgens IMDB. Download het bestand en gebruik het om een applicatie rond te ontwikkelen. De applicatie toont een menu'tje met volgende functionaliteiten:

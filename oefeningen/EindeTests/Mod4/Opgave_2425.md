@@ -1,6 +1,6 @@
 > Deze 2 opgaven waren onderdeel van de vaardigheidsproefopdracht voor het examen van dit vak (OOP) in juli 2025 (licht aangepast)
 
-## Opgave 1 Voetbalteam (12p)
+## Opgave 1 Voetbalteam (15p)
 
 
 Je bent aangenomen als softwareontwikkelaar bij de Belgische Voetbalbond. Een aantal trainers heeft gevraagd om een digitale toepassing waarmee ze **hun teamopstelling kunnen beheren en analyseren**. Ze willen niet alleen spelers toevoegen en de sterkte van hun team bekijken, maar ook weten hoeveel hun opstelling waard is: iets wat belangrijk is bij transfers, scouts, en media-aandacht.
@@ -24,7 +24,7 @@ Elke speler heeft ook een `IsBasisSpeler`-eigenschap.
 
 De **marktwaarde** wordt berekend als **kracht × €100.000**. En wordt via een readonly property teruggegeven.
 
-Daarnaast moet een **`static` property** aanwezig zijn dat het totaal aantal spelers bijhoudt dat ooit is toegevoegd. Deze teller verhoogt automatisch bij elke creatie van een nieuwe speler.
+Daarnaast moet een **`static` property** aanwezig zijn die het totaal aantal spelers bijhoudt dat ooit aan een team is toegevoegd (zie `VoegSpelerToe`).
 
 ### Klasse `Aanvaller`
 
@@ -135,7 +135,7 @@ Opmerking: deze klasse hoeft niet via het hoofdmenu opgeroepen te worden, maar m
 
 ## Opgave 2 Bestandsfilter (4p)
 
-Schrijf een applicatie die aan de gebruiker in de console een folderpath vraagt (bijvoorbeeld “c:”). Vervolgens wordt een grootte in megabyte gevraagd. Vervolgens de applicatie alle bestanden in die folder, en alle subfolders, wiens bestandsgrootte gelijk of meer dan de ingegeven grootte is.
+Schrijf een applicatie die aan de gebruiker in de console een folderpath vraagt (bijvoorbeeld “c:”). Vervolgens wordt een grootte in megabyte gevraagd. Vervolgens toont de applicatie alle bestanden in die folder, en alle subfolders, wiens bestandsgrootte gelijk aan of groter dan de ingegeven grootte is.
 De applicatie toont de naam van het bestand, de grootte in MB en de datum waarop het bestand is aangemaakt. Bij het verwerken van de bestanden mogen eventuele uitzonderingen geen impact hebben op de nog te verwerken bestanden. Bestanden die dus niet geopend kunnen worden, worden overgeslagen. De applicatie toont dan wel een melding in de console dat het bestand niet geopend kon worden.
 
 ### Voorbeeld uitvoer
@@ -148,7 +148,7 @@ Geef het pad van een folder in:
 Geef de minimum grootte (in megabyte) van bestanden die ik moet tonen:
 >50
 
-Bestanden groter dan 50 MB:
+Bestanden van minstens 50 MB:
 
 Bestand: c:\temp\mycontract.docx
 Grootte: 83,58 MB
@@ -167,353 +167,451 @@ Aangemaakt op: 2024-09-30 15:19:48
 ```
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
-## Oplossing oefening 1 VoetbalManager
+**Oplossing opgave 1: Voetbalteam**
 
+Elke klasse staat in een apart bestand.
 
-Program.cs:
+**Speler.cs**
 
 ```java
-enum MenuKeuze { Toevoegen = 1, Opstelling, Afsluiten, Scouten, Onbekend }
-static void Main(string[] args)
+namespace Voetbal
 {
-    Console.WriteLine("Teamnaam?");
-    string teamNaam = Console.ReadLine();
-    VoetbalTeam team = new VoetbalTeam() { Naam = teamNaam };
-    MenuKeuze keuze = MenuKeuze.Onbekend;
-
-    do
+    class Speler
     {
-        Console.WriteLine("Maak je keuze. 1.Speler toevoegen. 2.Opstellingen tonen 3. Afsluiten. 4. Iedereen scouten");
-        Console.WriteLine($"Totaal aantal spelers: {Speler.TotaalSpelers}");
-        keuze = (MenuKeuze)int.Parse(Console.ReadLine());
-        switch (keuze)
+        public Speler(int rugnummer, string naam, int kracht)
         {
-            case MenuKeuze.Toevoegen:
-                try
-                {
-                    VoegSpelerToe(team);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                break;
-            case MenuKeuze.Opstelling:
-                team.ToonOpstelling();
-                break;
-            case MenuKeuze.Scouten:
-                team.ScoutAlles();
-                break;
-            default:
-                break;
+            Rugnummer = rugnummer;
+            Naam = naam;
+            Kracht = kracht;
         }
-    } while (keuze != MenuKeuze.Afsluiten);
-}
 
-private static void VoegSpelerToe(VoetbalTeam team)
-{
-    Console.WriteLine("Type speler? 1.Verdediger 2.Aanvaller. 3.Geheimespeler");
-    int type = int.Parse(Console.ReadLine());
-    Console.WriteLine("Rugnummer?");
-    int rugnummer = int.Parse(Console.ReadLine());
-    Console.WriteLine("Kracht?");
-    int kracht = int.Parse(Console.ReadLine());
-    Speler toeTeVoegen = null;
-    switch (type)
-    {
-        case 1:
-            toeTeVoegen = new Verdediger(rugnummer, "joske", kracht);
-            break;
-        case 2:
-            toeTeVoegen = new Aanvaller(rugnummer, "pietje", kracht);
-            break;
-        case 3:
-            toeTeVoegen = new GeheimeSpeler(rugnummer, "frankie", kracht);
-            Console.WriteLine("Ogenblikkelijk scouten?(j/n)");
-            if (Console.ReadLine().ToLower() == "j")
+        public static int TotaalSpelers { get; set; }
+
+        public int Rugnummer { get; set; }
+        public string Naam { get; set; }
+        public bool IsBasisSpeler { get; set; }
+
+        private int kracht;
+        public int Kracht
+        {
+            get { return kracht; }
+            set
             {
-                ((GeheimeSpeler)toeTeVoegen).Scout();
+                if (value >= 1 && value <= 10)
+                {
+                    kracht = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Kracht", "Kracht moet tussen 1 en 10 liggen.");
+                }
             }
-            break;
-        default:
-            throw new Exception("Onbekend type opgegeven");
+        }
 
+        public virtual int Marktwaarde
+        {
+            get { return Kracht * 100000; }
+        }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name} {Rugnummer}, marktwaarde {Marktwaarde}, {Naam}";
+        }
     }
-
-    team.VoegSpelerToe(toeTeVoegen);
 }
 ```
 
-Andere klassebestanden (ieder apart):
+**Aanvaller.cs**
 
 ```java
-class Speler
+namespace Voetbal
 {
-    public Speler(int rugnummer, string naam, int kracht)
+    class Aanvaller : Speler
     {
-        Rugnummer = rugnummer;
-        Naam = naam;
-        Kracht = kracht;
-    }
-
-    public int Rugnummer { get; set; }
-    public string Naam { get; set; }
-    public bool IsBasisSpeler { get; set; }
-    private int kracht;
-
-    public int Kracht
-    {
-        get { return kracht; }
-        set
+        public Aanvaller(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
         {
-            if (value > 1 && value < 100)
-                kracht = value;
-            else
-                throw new ArgumentOutOfRangeException.("Kracht moet tussen 1 en 100 liggen.");
         }
-    }
 
-    public virtual int Marktwaarde
-    {
-        get
+        public override int Marktwaarde
         {
-            return kracht * 100000;
-        }
-    }
-
-    public static int TotaalSpelers = 0;
-
-    public override string ToString()
-    {
-        return $"{GetType().Name} {Rugnummer} {Naam}";
-    }
-}
-
-class Aanvaller : Speler
-{
-    public Aanvaller(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
-    {
-    }
-    public override int Marktwaarde
-    {
-        get
-        {
-            return base.Marktwaarde + 50000;
+            get { return base.Marktwaarde + 50000; }
         }
     }
 }
+```
 
-class Verdediger : Speler
+**Verdediger.cs**
+
+```java
+namespace Voetbal
 {
-    public Verdediger(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
+    class Verdediger : Speler
     {
-    }
-    public override int Marktwaarde
-    {
-        get
+        public Verdediger(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
         {
-            return 200000;
+        }
+
+        public override int Marktwaarde
+        {
+            get { return 200000; }
         }
     }
 }
+```
 
+**IScouteerbaar.cs**
 
-interface IScouteerbaar
+```java
+namespace Voetbal
 {
-    void Scout();
-    int AantalScoutPogingen();
+    interface IScouteerbaar
+    {
+        void Scout();
+        int AantalScoutPogingen();
+    }
 }
+```
 
-class GeheimeSpeler : Speler, IScouteerbaar
+**GeheimeSpeler.cs**
+
+```java
+namespace Voetbal
 {
-    public GeheimeSpeler(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
+    class GeheimeSpeler : Speler, IScouteerbaar
     {
+        private bool isGescout = false;
+        private int aantalScoutPogingen = 0;
 
-    }
-    private bool alGescout = false;
-    private int aantalScoutPogingen;
-    public int AantalScoutPogingen()
-    {
-        return aantalScoutPogingen;
-    }
-
-    public void Scout()
-    {
-        alGescout = true;
-    }
-
-    public override int Marktwaarde
-    {
-        get
+        public GeheimeSpeler(int rugnummer, string naam, int kracht) : base(rugnummer, naam, kracht)
         {
-            if (alGescout)
-                return base.Marktwaarde;
-            else
+        }
+
+        public void Scout()
+        {
+            isGescout = true;
+        }
+
+        public int AantalScoutPogingen()
+        {
+            return aantalScoutPogingen;
+        }
+
+        public override int Marktwaarde
+        {
+            get
+            {
+                if (isGescout)
+                {
+                    return base.Marktwaarde;
+                }
+                aantalScoutPogingen++;
                 return 0;
+            }
+        }
+
+        public override string ToString()
+        {
+            string gescout = "nee";
+            if (isGescout)
+            {
+                gescout = "ja";
+            }
+            return $"{base.ToString()}, gescout: {gescout}";
         }
     }
-    public override string ToString()
-    {
-        return $"{base.ToString()} gescout:{alGescout}";
-    }
 }
+```
 
-class VoetbalTeam
+**VoetbalTeam.cs**
+
+```java
+namespace Voetbal
 {
-    public string Naam { get; set; }
-    private const int MAX_SPELERS = 11;
-
-    private List<Speler> spelers = new List<Speler>();
-
-    public void VoegSpelerToe(Speler speler)
+    class VoetbalTeam
     {
-        if (spelers.Count < MAX_SPELERS)
+        private const int MAX_SPELERS = 11;
+        private const int TOESLAG_SCOUTEERBAAR = 100000;
+
+        private List<Speler> spelers = new List<Speler>();
+
+        public VoetbalTeam(string naam)
         {
+            Naam = naam;
+        }
+
+        public string Naam { get; set; }
+
+        public int TotaleKracht
+        {
+            get
+            {
+                int totaal = 0;
+                foreach (Speler speler in spelers)
+                {
+                    totaal += speler.Kracht;
+                }
+                return totaal;
+            }
+        }
+
+        public int TotaleMarktwaarde
+        {
+            get
+            {
+                int totaal = 0;
+                foreach (Speler speler in spelers)
+                {
+                    totaal += speler.Marktwaarde;
+                    if (speler is IScouteerbaar)
+                    {
+                        totaal += TOESLAG_SCOUTEERBAAR;
+                    }
+                }
+                return totaal;
+            }
+        }
+
+        public void VoegSpelerToe(Speler speler)
+        {
+            if (spelers.Count >= MAX_SPELERS)
+            {
+                throw new Exception("Team is vol. Speler niet toegevoegd.");
+            }
             spelers.Add(speler);
             Speler.TotaalSpelers++;
         }
-        else
-        {
-            throw new Exception("Team heeft al het maximum aantal spelers.");
-        }
-    }
 
-    public void ToonOpstelling()
-    {
-        Console.WriteLine(Naam);
-
-        foreach (var speler in spelers)
+        public void ToonOpstelling()
         {
-            Console.Write($"\nRugnummer: {speler.Rugnummer}, Naam: {speler.Naam}, Marktwaarde: {speler.Marktwaarde}");
-            
-            if (speler is IScouteerbaar scouteerbaar)
+            Console.WriteLine(Naam);
+            foreach (Speler speler in spelers)
             {
-                Console.WriteLine($"######{scouteerbaar.AantalScoutPogingen()}");
+                Console.Write($"{speler.Naam}, rugnummer {speler.Rugnummer}, marktwaarde {speler.Marktwaarde}");
+                if (speler is IScouteerbaar scouteerbaar)
+                {
+                    Console.Write($"#####{scouteerbaar.AantalScoutPogingen()}");
+                }
+                Console.WriteLine();
             }
+            Console.WriteLine($"Totale kracht: {TotaleKracht}");
+            Console.WriteLine($"Totale marktwaarde: {TotaleMarktwaarde}");
         }
-        Console.WriteLine($"Totale kracht: {TotaleKracht}");
-        Console.WriteLine($"Totale marktwaarde: {TotaleMarktwaarde}");
-    }
 
-    public void ScoutAlles()
-    {
-        foreach (var speler in spelers)
+        public void ScoutAlles()
         {
-            if (speler is IScouteerbaar scouteerbaar)
+            foreach (Speler speler in spelers)
             {
-                scouteerbaar.Scout();
+                if (speler is IScouteerbaar scouteerbaar)
+                {
+                    scouteerbaar.Scout();
+                }
             }
-        }
-    }
-
-    public int TotaleKracht
-    {
-        get
-        {
-            int kracht = 0;
-            foreach (var speler in spelers)
-            {
-                kracht += speler.Kracht;
-            }
-            return kracht;
-        }
-    }
-
-    public int TotaleMarktwaarde
-    {
-        get
-        {
-            int waarde = 0;
-            foreach (var speler in spelers)
-            {
-                waarde += speler.Marktwaarde;
-                if (speler is GeheimeSpeler)
-                    waarde += 100000;
-            }
-            return waarde;
         }
     }
 }
+```
 
-class Wedstrijd
+**Wedstrijd.cs**
+
+Wedstrijd hoeft niet in het menu. Gebruiken gaat bijvoorbeeld zo: `Console.WriteLine(new Wedstrijd(gent, brugge).Simuleer());`
+
+```java
+namespace Voetbal
 {
-    public Wedstrijd(VoetbalTeam thuisploeg, VoetbalTeam uitploeg)
+    class Wedstrijd
     {
-        Thuisploeg = thuisploeg;
-        Uitploeg = uitploeg;
-    }
-    
-    public VoetbalTeam Thuisploeg { get; private set; }
-    public VoetbalTeam Uitploeg { get; private set; }
-
-    public void Simuleer()
-    {
-
-        if (Uitploeg.TotaleKracht> Thuisploeg.TotaleKracht)
+        public Wedstrijd(VoetbalTeam thuisploeg, VoetbalTeam uitploeg)
         {
-            Console.WriteLine($"Team {Uitploeg.Naam} wint van {Thuisploeg.Naam} met kracht {Uitploeg.TotaleKracht} tegen met kracht {Thuisploeg.TotaleKracht}");
+            Thuisploeg = thuisploeg;
+            Uitploeg = uitploeg;
         }
-        else if (Uitploeg.TotaleKracht < Thuisploeg.TotaleKracht)
+
+        public VoetbalTeam Thuisploeg { get; private set; }
+        public VoetbalTeam Uitploeg { get; private set; }
+
+        public string Simuleer()
         {
-            Console.WriteLine($"Team {Thuisploeg.Naam} wint van {Uitploeg.Naam} met kracht {Thuisploeg.TotaleKracht} tegen met kracht {Uitploeg.TotaleKracht}");
-        }
-        else
-        {
-            if(Thuisploeg.TotaleMarktwaarde > Uitploeg.TotaleMarktwaarde)
+            int krachtThuis = Thuisploeg.TotaleKracht;
+            int krachtUit = Uitploeg.TotaleKracht;
+            int waardeThuis = Thuisploeg.TotaleMarktwaarde;
+            int waardeUit = Uitploeg.TotaleMarktwaarde;
+
+            if (krachtThuis == krachtUit && waardeThuis == waardeUit)
             {
-                Console.WriteLine($"Team {Uitploeg.Naam} wint van {Thuisploeg.Naam} met kracht {Uitploeg.TotaleKracht} tegen met kracht {Thuisploeg.TotaleKracht}");
+                return $"Gelijkspel tussen Team {Thuisploeg.Naam} en Team {Uitploeg.Naam} met kracht {krachtThuis}.";
             }
-            else if (Thuisploeg.TotaleMarktwaarde < Uitploeg.TotaleMarktwaarde)
+
+            VoetbalTeam winnaar = Thuisploeg;
+            VoetbalTeam verliezer = Uitploeg;
+            if (krachtUit > krachtThuis || (krachtUit == krachtThuis && waardeUit > waardeThuis))
             {
-                Console.WriteLine($"Team {Thuisploeg.Naam} wint van {Uitploeg.Naam} met kracht {Thuisploeg.TotaleKracht} tegen met kracht {Uitploeg.TotaleKracht}");
+                winnaar = Uitploeg;
+                verliezer = Thuisploeg;
+            }
+            return $"Team {winnaar.Naam} wint van Team {verliezer.Naam} met kracht {winnaar.TotaleKracht} tegen {verliezer.TotaleKracht}.";
+        }
+    }
+}
+```
+
+**Program.cs**
+
+```java
+namespace Voetbal
+{
+    internal class Program
+    {
+        enum MenuKeuze { Toevoegen = 1, Opstelling, Afsluiten, Scouten }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Teamnaam?");
+            VoetbalTeam team = new VoetbalTeam(Console.ReadLine());
+
+            MenuKeuze keuze;
+            do
+            {
+                Console.WriteLine("1. Speler toevoegen");
+                Console.WriteLine("2. Opstelling tonen");
+                Console.WriteLine("3. Programma afsluiten");
+                Console.WriteLine("4. Alle geheime spelers scouten");
+                Console.WriteLine($"Totaal aantal spelers: {Speler.TotaalSpelers}");
+                keuze = (MenuKeuze)int.Parse(Console.ReadLine());
+
+                switch (keuze)
+                {
+                    case MenuKeuze.Toevoegen:
+                        try
+                        {
+                            VoegSpelerToe(team);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        break;
+                    case MenuKeuze.Opstelling:
+                        team.ToonOpstelling();
+                        break;
+                    case MenuKeuze.Scouten:
+                        team.ScoutAlles();
+                        break;
+                    default:
+                        break;
+                }
+            } while (keuze != MenuKeuze.Afsluiten);
+        }
+
+        static void VoegSpelerToe(VoetbalTeam team)
+        {
+            Console.WriteLine("Type speler? 1. Verdediger 2. Aanvaller 3. GeheimeSpeler");
+            int type = int.Parse(Console.ReadLine());
+            Console.WriteLine("Naam?");
+            string naam = Console.ReadLine();
+            Console.WriteLine("Rugnummer?");
+            int rugnummer = int.Parse(Console.ReadLine());
+            Console.WriteLine("Kracht (1 tot en met 10)?");
+            int kracht = int.Parse(Console.ReadLine());
+
+            Speler speler;
+            switch (type)
+            {
+                case 1:
+                    speler = new Verdediger(rugnummer, naam, kracht);
+                    break;
+                case 2:
+                    speler = new Aanvaller(rugnummer, naam, kracht);
+                    break;
+                case 3:
+                    GeheimeSpeler geheimeSpeler = new GeheimeSpeler(rugnummer, naam, kracht);
+                    Console.WriteLine("Meteen scouten? (j/n)");
+                    if (Console.ReadLine() == "j")
+                    {
+                        geheimeSpeler.Scout();
+                    }
+                    speler = geheimeSpeler;
+                    break;
+                default:
+                    throw new Exception("Onbekend type speler.");
+            }
+
+            team.VoegSpelerToe(speler);
+            Console.WriteLine("Speler toegevoegd.");
+        }
+    }
+}
+```
+
+**Oplossing opgave 2: Bestandsfilter**
+
+Een apart project. `GetFiles` met `SearchOption.AllDirectories` stopt volledig bij de eerste map zonder rechten. Daarom loopt deze oplossing zelf map per map af: een map die niet geopend kan worden, geeft een melding, en de andere mappen en bestanden worden gewoon verder verwerkt.
+
+**Program.cs**
+
+```java
+namespace Bestandsfilter
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Geef het pad van een folder in:");
+            string pad = Console.ReadLine();
+            if (Directory.Exists(pad))
+            {
+                Console.WriteLine("Geef de minimum grootte (in megabyte) van bestanden die ik moet tonen:");
+                int grootteInMB = int.Parse(Console.ReadLine());
+                long grootteInBytes = grootteInMB * 1024L * 1024L;
+
+                Console.WriteLine($"\nBestanden van minstens {grootteInMB} MB:\n");
+                ZoekBestanden(new DirectoryInfo(pad), grootteInBytes);
             }
             else
             {
-                Console.WriteLine($"Gelijkspel tussen  {Thuisploeg.Naam} en {Uitploeg.Naam} met kracht {Thuisploeg.TotaleKracht} ");
+                Console.WriteLine("De folder bestaat niet.");
             }
         }
 
-    }
-}
-```
-
-## Oplossing oefening 2 Bestandsfilter
-
-```java
-Console.WriteLine("Geef het pad van een folder in:");
-string folder = Console.ReadLine();
-if (Directory.Exists(folder))
-{
-    Console.WriteLine("Geef de minimum grootte (in megabyte) van bestanden die ik moet tonen:");
-    int grootteInMB = Convert.ToInt32(Console.ReadLine());
-    long grooteInBytes = grootteInMB * 1024 * 1024;
-
-    DirectoryInfo dir = new DirectoryInfo(folder);
-    FileInfo[] bestanden = dir.GetFiles("*.*", SearchOption.AllDirectories);
-    Console.WriteLine($"\nDe bestanden groter dan {grootteInMB} MB:");
-
-    foreach (FileInfo bestand in bestanden)
-    {
-        if (bestand.Length > grooteInBytes)
+        static void ZoekBestanden(DirectoryInfo map, long minimumGrootte)
         {
             try
             {
-                Console.WriteLine($"\nBestand: {bestand}");
-                Console.WriteLine($"Grootte: {Math.Round(bestand.Length / 1024.0 / 1024.0, 2)} MB");
-                Console.WriteLine($"Aangemaakt op: {bestand.CreationTime}");
-            }
-            catch (Exception ex)
-            {
+                FileInfo[] bestanden = map.GetFiles();
+                foreach (FileInfo bestand in bestanden)
+                {
+                    ToonBestand(bestand, minimumGrootte);
+                }
 
-                Console.WriteLine($"Bestand {bestand} kon niet geopend worden");
+                DirectoryInfo[] submappen = map.GetDirectories();
+                foreach (DirectoryInfo submap in submappen)
+                {
+                    ZoekBestanden(submap, minimumGrootte);
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Map {map.FullName} kon niet geopend worden.\n");
+            }
+        }
+
+        static void ToonBestand(FileInfo bestand, long minimumGrootte)
+        {
+            try
+            {
+                if (bestand.Length >= minimumGrootte)
+                {
+                    Console.WriteLine($"Bestand: {bestand.FullName}");
+                    Console.WriteLine($"Grootte: {bestand.Length / 1024.0 / 1024.0:F2} MB");
+                    Console.WriteLine($"Aangemaakt op: {bestand.CreationTime:yyyy-MM-dd HH:mm:ss}");
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Bestand {bestand.FullName} kon niet geopend worden.\n");
             }
         }
     }
 }
-else
-{
-    Console.WriteLine("De folder bestaat niet. We sluiten af");
-}
 ```
-
 ::::

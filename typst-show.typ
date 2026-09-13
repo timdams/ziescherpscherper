@@ -35,6 +35,13 @@ $endif$
 // dezelfde kleur als headings-color in custom.scss.
 #set text(fill: rgb("#1a1a22"))
 
+// --- Geen blanco pagina's ------------------------------------------------
+// orange-book laat elk hoofdstuk en elk deel op een rechterpagina beginnen
+// (pagebreak(to: "odd")). Elk .md-bestand is hier een hoofdstuk, dus dat gaf
+// zo'n honderd lege bladzijden. Voor een pdf die op een scherm gelezen wordt,
+// maken we er een gewone nieuwe pagina van.
+#show pagebreak: it => if it.at("to", default: none) == "odd" { pagebreak(weak: true) } else { it }
+
 // --- "Verwacht resultaat"-blokken ---------------------------------------
 // Op de website tekent custom.scss van  ::: {.console}  een zwart terminal-
 // venster met groene tekst. Hier doen we hetzelfde in Typst. Het blok wordt
@@ -85,6 +92,13 @@ $endif$
   // in de koptekst en "Chapter 5" bij een verwijzing naar een hoofdstuk.
   supplement-chapter: "Hoofdstuk",
   supplement-part: "Deel",
+  // Deelpagina's: orange-book zet linksboven een Romeins cijfer op 16em. Onze
+  // delen heten al "H1: ...", dus dat cijfer is dubbel, en vanaf XIX (Conclusie,
+  // Appendix, ...) loopt het dwars door de titel. Grootte 0 = weg.
+  part-font-size: 0pt,
+  // De mini-inhoudstafel onderaan een deelpagina ging tot op sectieniveau en
+  // werd zo lang dat ze tegen de titel botste. Enkel de hoofdstukken volstaat.
+  outline-small-depth: 1,
   main-color: brand-color.at("primary", default: blue),
   logo: {
     let logo-info = brand-logo.at("medium", default: none)
@@ -103,6 +117,14 @@ $if(margin-geometry)$
   padded-heading-number: false,
 $endif$
 )
+
+// Quarto's orange-book-filter zet voor de bijlagen een eigen kop "Bijlagen".
+// Als hoofdstukkop krijgt die een volledige, verder lege pagina. Deze regel
+// staat na book.with en werkt dus voor die van orange-book: de kop verdwijnt
+// van de pagina, de bijlage zelf begint gewoon op de volgende.
+#show heading.where(level: 1, numbering: none): it => {
+  if it.body.at("text", default: none) == "Bijlagen" { none } else { it }
+}
 
 // titel en auteur staan niet meer op de pagina, maar horen wel in de PDF-eigenschappen
 #set document(

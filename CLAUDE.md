@@ -58,10 +58,23 @@ CI: [.github/workflows/publish.yml](.github/workflows/publish.yml) doet bij elke
 
 Deploy-target: GitHub Pages van [github.com/timdams/ziescherpscherper](https://github.com/timdams/ziescherpscherper).
 
+## Pdf van het handboek
+
 De pdf van het hoofdboek (Typst, met eigen cover, fonts en lua-filters) heeft een eigen skill:
 [`handboekpdf`](.claude/skills/handboekpdf/SKILL.md). Gebruik die zodra er aan de pdf, de cover of
-de pdf-vormgeving gewerkt wordt. Snel itereren doe je in [boekPrintTest/](boekPrintTest/), niet op
-het volledige boek.
+de pdf-vormgeving gewerkt wordt.
+
+**Alle afspraken, oplossingen en technische weetjes over de pdf staan in
+[.claude/pdf-afspraken.md](.claude/pdf-afspraken.md).** Lees dat voor je iets aan de pdf of aan
+de figuren verandert. De kern:
+
+- Avatars nooit schermvullend, klein en inline aan het begin van hun gesprek.
+- Een afbeelding neemt niet meer plaats dan haar inhoud vraagt.
+- Geen hoofdstuk dat eindigt met een of twee zinnen op een lege pagina, geen blanco pagina's.
+- De website merkt niets van pdf-oplossingen: die zitten in de `*-typst.lua`-filters, de partial
+  of `_quarto.yml`, in de bron hoogstens `{pdf-width=..}`.
+- Nakijken: `quarto render . --to typst` (ca. 45 s) en daarna
+  `python scripts/pdf-controle/pdfcontrole.py analyse build/Zie-Scherp-Scherper.pdf`.
 
 ## Oplossingen achter een sleutel
 
@@ -107,7 +120,16 @@ code of oplossing te geven, en die enkel leerstof gebruikt die op dat punt al ge
 - **De oplossing zit bewust niet in de prompt.** De student leest de tekst die hij plakt, dus
   alles wat erin staat is meteen weggegeven. Daarom draait het script in de CI ná
   [scripts/oplossingen-lock.mjs](scripts/oplossingen-lock.mjs): dan kan er geen oplossing meer in belanden.
-- Enkel hoofdstukmappen met een databestand krijgen knoppen. Vandaag zijn dat de mappen van H1 tot en met H18. EindeTests heeft er nog geen. Ook `9_klassen/intermezzoh9.md` niet: daar staan de oefeningen als `###`, en het script zoekt naar `#`.
+- Enkel hoofdstukmappen met een databestand krijgen knoppen. Vandaag zijn dat de mappen van H1 tot en met H18. Ook `9_klassen/intermezzoh9.md` niet: daar staan de oefeningen als `###`, en het script zoekt naar `#`.
+- **Vaardigheidsproeven** (de lijsten "Voorbeeld vaardigheidsproeven" in `oefeningen/_quarto.yml`,
+  vandaag `EindeTests/Mod2` en `Mod4`) krijgen geen knop per oefening, maar bovenaan één blok met
+  een disclaimer en twee knoppen voor de hele proef: **Coach** (hetzelfde sjabloon) en **Quoteer**
+  ([oefeningen/_coach/_quoteer.md](oefeningen/_coach/_quoteer.md)): een strenge verbetering met
+  puntenverdeling en boetes, waarbij een fout nooit dubbel aangerekend wordt. De gegevens staan per
+  proef in [oefeningen/_coach/proeven/](oefeningen/_coach/proeven/_LEESMIJ.md), de disclaimer in
+  `_bovenaan.md`. De quoteerprompt is achteraf gemaakt en werd bij de originele proeven niet
+  gebruikt: dat moet in de disclaimer blijven staan. Verandert het boeteblad, pas dan ook
+  `_quoteer.md` aan. De gecombineerde oefeningen in EindeTests hebben geen knoppen.
 
 Lokaal uitproberen: `quarto render oefeningen/` en daarna
 `node scripts/coach-prompt.mjs build/oefeningen`. Het script is idempotent.

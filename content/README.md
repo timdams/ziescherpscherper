@@ -41,7 +41,7 @@ Deze nieuwe editie én klaarstomen voor het nieuwe academiejaar én zo totaal (v
 
 Uiteraard zijn alle fouten mijn eigen schuld en verantwoordelijkheid.
 
-![](assets/aimod.png)
+![](assets/aimod.png){pdf-width=25%}
 
 
 

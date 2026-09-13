@@ -3,13 +3,15 @@
 # Inleiding
 
 Hoera. Je nieuw opgerichte bedrijf “Tornado” heeft z’n eerste contract binnen. Om de capaciteiten van je bedrijf aan te tonen heeft je klant gevraagd een spel, Underlook 2, te programmeren. Laat je niet afschrikken door de opgave van de klant: het gaat om een eenvoudig spelletje.
-Doel
+
 Het spel bestaat uit meerdere delen die je dient te maken, te weten:
-1.	Deel 1: Een hero-generator (2punten)
+
+1.	Deel 1: Een hero-generator (2 punten)
 2.	Deel 2: De hero-visualisatie (2 punten)
 3.	Deel 3: Een trainingsmissie om het spel aan de speler duidelijk te maken (3 punten)
 4.	Deel 4: Het spel zelf dat uit drie rondes bestaat (5 punten)
-5.	Deel 5: Enkele uitbreidingen (4punten)
+
+Samen 12 punten.
 
 # Deel 0
 
@@ -82,13 +84,13 @@ D=5
 Yingyatta 
 A=8
 D=2
-********
+*********
 ``` 
 
 # Deel 3: Trainingsmissie
 Dit deel roept 1 methode aan genaamd “DoeTraining”. Deze methode zal de speler een test-spel (Opgelet: het appendix achteraan dit document beschrijft de spelregels van het spel, zoals ze ook hieronder verwerkt werden) laten uitvoeren zodat de speler begrijpt hoe het spel werkt.
 
-**DoeTraning-Methode**
+**DoeTraining-methode**
 
 Deze methode heeft volgende eigenschappen:
 * Retourneert niets. Toont enkel output in de console.
@@ -99,15 +101,16 @@ De werking van de methode is als volgt:
 
 1.	Een oefenmonster wordt gemaakt dat aanval = 4 en verdediging = 6 heeft.
 2.	Er wordt aan de speler gevraagd hoeveel hij wenst te schieten. Dit getal mag niet groter zijn dan de aanvalskracht van de speler (wat je in deel 1 hebt gemaakt) en minimum 1.
-   *  De vraag toont ook tussen welk bereik van getallen de speler mag kiezen. [1 tot en met ‘aanvalskracht’)
+   *  De vraag toont ook tussen welk bereik van getallen de speler mag kiezen (1 tot en met de aanvalskracht).
    * Als dus de speler aanval 5 heeft dan worden enkel de getallen 1,2,3,4 en 5 aanvaardt.
    * Indien de speler een foutief getal invoert dan zal de vraag herhaald worden tot de speler een correct getal ingeeft.
 3.	Er wordt nu gecontroleerd of de speler het monster raakt: enkel indien het gekozen getal maximum 1 afwijkt van de verdediging van het monster is dit raak.
    * Het monster in de training heeft standaard 6, dus enkel de getallen 5,6 en 7 worden aanvaardt.
    * Indien de speler raakt dan wordt de verdediging van het monster met 1 verlaagt.
-   * Bij mis gebeurt er niets. (een held met lage aanval zal dit startmonster dus niet kunnen raken)
+   * Bij mis wordt de aanval van de speler met 1 verlaagd. (een held met lage aanval zal dit startmonster dus niet kunnen raken)
 4.	Nu mag het monster aanvallen: het monster (de computer) kiest een willekeurig getal tussen 1 en de aanvalskracht van het monster (in de training dus tussen 1,2,3 en 4)
    * Indien het monster raakt dan wordt de verdediging van de speler met 1 verlaagd.
+   * Indien het monster mist dan wordt de aanval van het monster met 1 verlaagd.
 5.	Toon aan de speler de uitkomst van de training:
    * De speler wint indien de som van de speleraanval en spelerverdediging groter of gelijk is aan de som van de aanval en verdediging van het monster.
 
@@ -122,8 +125,8 @@ Door te missen wordt je aanval met 1 verlaagt.
 Nu valt het monster aan.
 Het valt aan met 4.
 Oef, gemist. De aanvalskracht van het monster zakt.
-Eens kijken wie wint. Diegene met de hoogste som van aantal en verdediging wint. Bij gelijke stand wint de held.
-Het monster wint de training. 
+Eens kijken wie wint. Diegene met de hoogste som van aanval en verdediging wint. Bij gelijke stand wint de held.
+De held wint de training.
 ```
 
 # Deel 4: Het spel
@@ -143,7 +146,7 @@ Deze methode heeft volgende eigenschappen:
           * Er wordt nu 3 keer een methode “DoeGevecht” aangeroepen  (zie verder). 
           * Deze methode zal telkens een bool terug geven om aan te geven of de speler wel of niet dit gevecht wint.
           * Na ieder gevecht krijgt de speler terug al z’n aanval en verdediging.
-          * Na 3 gevechten wordt de score getoond aan de speler: de score is gewoon de som van het aantal van de 3 gewonnen gevechten. Als de speler 2 van de 3 wedstrijd won dan geeft de methode 2 terug.
+          * Na 3 gevechten wordt de score getoond aan de speler: de score is gewoon de som van het aantal van de 3 gewonnen gevechten. Als de speler 2 van de 3 gevechten won, dan is de score 2.
 
 
 **DoeGevecht-methode**
@@ -168,14 +171,18 @@ Volgende scherm verschijnt 3 keer:
 ```text
 Nieuw monster staat klaar!
 Hoeveel wil je schieten? (min=1, max=6)
-4
+>4
 Oei, gemist. Het monster heeft verdediging 9. Je had een getal tussen 8 en 10 moeten kiezen (als dat kon met je huidige aanvalskracht). 
 Door te missen wordt je aanval met 1 verlaagt. 
 Nu valt het monster aan.
 Het valt aan met 1.
 Oef, gemist. De aanvalskracht van het monster zakt.
-Het monster wint dit rondje.
-Gevolgd  dan door:
+De held wint dit rondje.
+```
+
+Gevolgd dan door:
+
+```text
 Mooi zo April. Je behaalde een score van 1. Tot volgende keer!
 ```
 
@@ -192,10 +199,9 @@ Deze parameters worden bij de monsters willekeurig gegenereerd bij de start van 
 * Om de beurt mag een van beide spelers “schieten”. Ze gebruiken hierbij hun aanvalskracht als maximum-kracht dat ze kunnen schieten.
       * Enkel indien met een kracht die maximum 1 verschilt van de verdediging van het doel zal er geraakt worden. Als dus het monster een verdediging van 5 heeft dan moet de held met een kracht van 4,5 of 6 schieten om te raken.
 * Wanneer gemist wordt zal de aanvalskracht van de schietende speler met 1 verlaagt worden. Indien raak dan zal de verdediging van het doelwit met 1 verlaagt worden.
-* De speler wiens totale som van verdediging en aanvalskracht na het gevecht het hoogste is wint het gevecht.
+* De speler wiens totale som van verdediging en aanvalskracht na het gevecht het hoogste is wint het gevecht. Bij een gelijke stand wint de held.
 
 **Opgelet: de kans bestaat dus dat de speler of het monster al van bij de start onmogelijk kan winnen omdat de aanvalskracht te laag is tegenover de verdedigingskracht van de tegenspeler. Dat is de pech die je kan hebben.**
-
 
 ![](underlook1.png)
 

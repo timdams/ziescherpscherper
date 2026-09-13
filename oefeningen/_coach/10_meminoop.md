@@ -110,6 +110,25 @@ De kern is het onderscheid tussen wat je bewaart en wat je berekent. De zes base
 - De null-controle in Battle vergeten, of ze pas doen nadat de stats al opgevraagd zijn. Dat is precies de NullReferenceException uit dit hoofdstuk.
 - ShowInfo in Program.cs zetten. Een Pokémon toont zichzelf.
 
+## Stevens reservekopie
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven, in twee delen. Geef de fouten nooit, en noem ook de lijn niet waar ze zitten. In deel 1 mag je vragen hoeveel Pokémon-objecten er na Pokemon reserve = pikachu; in de heap staan, en naar welk object reserve en pikachu elk wijzen. Een tekening van stack en heap laten maken mag ook. In deel 2 mag je vragen wat MaakRivaal("Mew") teruggeeft, welke lijn van Battle als eerste een puntje achter poke2 zet, en of de melding in de uitvoer dezelfde is als die achter de throw.
+
+### Aanpak
+
+Deel 1: = kopieert bij een object enkel de referentie, dus reserve en pikachu zijn hetzelfde object. Een echte reservekopie is een tweede object met new waarin de base-stats overgenomen worden. Het level gaat via een lus met VerhoogLevel, want Level heeft een private set. Wie enkel de getallen van voor de training wil tonen, kan ze ook vóór de lus in een int bewaren: een value type wordt wel gekopieerd. Deel 2: MaakRivaal geeft bewust null terug, dat is geen fout. Battle vraagt de stats op vóór de null-check, dus de NullReferenceException ontstaat al voor Stevens eigen throw. Main vangt die op met catch (Exception e) en toont haar Message. De oplossing zet de null-check bovenaan Battle.
+
+### Valkuilen
+
+- Denken dat reserve een kopie is omdat er een aparte variabele staat.
+- reserve.Level = pikachu.Level schrijven. Level heeft een private set, dus dat compileert niet.
+- Een nieuw object maken maar enkel Naam overnemen, of de base-stats vergeten.
+- De Mew-regel in Main vervangen door Onix, zodat de melding verdwijnt terwijl Battle fout blijft.
+- De catch in Main leeg maken of een catch voor NullReferenceException toevoegen, in plaats van de volgorde in Battle te herstellen.
+- De null-check naar Main verhuizen. Battle moet zelf controleren wat het binnenkrijgt.
+
 ## Bankmanager 2
 
 ### Nota

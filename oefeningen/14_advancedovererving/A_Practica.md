@@ -256,6 +256,213 @@ public class ProRekening : SpaarRekening
 ::::
 
 
+# Stevens abstracte bouwwerf (*Essential*) {#h14-stevens-abstracte-bouwwerf}
+
+Stagiair Steven schrijft een programma voor een bouwbedrijf. Hij liet een A.I. de klassen maken en plakte alles in zijn project zonder het na te lezen. Niets compileert. Om plaats te sparen staan de klassen van een fragment hier onder elkaar. In je eigen project zet je elke klasse in een apart bestand.
+
+**Fragment 1.**
+
+```java
+internal abstract class Bouwmachine
+{
+    public int Gewicht { get; set; }
+}
+
+internal class Graafmachine : Bouwmachine
+{
+    public int Bakinhoud { get; set; }
+}
+
+// in Main
+Bouwmachine machine = new Bouwmachine();
+machine.Gewicht = 12000;
+```
+
+**Fragment 2.**
+
+```java
+internal abstract class Materiaal
+{
+    public double Hoeveelheid { get; set; }
+
+    public abstract double BerekenPrijs()
+    {
+        return 0;
+    }
+}
+
+internal class Zand : Materiaal
+{
+    public override double BerekenPrijs()
+    {
+        return Hoeveelheid * 45;
+    }
+}
+```
+
+**Fragment 3.**
+
+```java
+internal class Werknemer
+{
+    public int Uren { get; set; }
+
+    public abstract double BerekenLoon();
+}
+
+internal class Metser : Werknemer
+{
+    public override double BerekenLoon()
+    {
+        return Uren * 32.5;
+    }
+}
+```
+
+**Fragment 4.**
+
+```java
+internal abstract class Gebouw
+{
+    public int Verdiepingen { get; set; }
+
+    public abstract int BerekenBouwtijd();
+}
+
+internal class Rijwoning : Gebouw
+{
+    public int BerekenBouwTijd()
+    {
+        return Verdiepingen * 8;
+    }
+}
+```
+
+**Fragment 5.**
+
+```java
+internal sealed class Werfkeet
+{
+    public int Zitplaatsen { get; set; }
+}
+
+internal class LuxeWerfkeet : Werfkeet
+{
+    public bool HeeftDouche { get; set; }
+}
+```
+
+**Deel 1.** Steven zette elk fragment in een apart project. Dit zijn de vijf meldingen die hij kreeg, door elkaar:
+
+- **A.** ``CS0534 'Rijwoning' does not implement inherited abstract member 'Gebouw.BerekenBouwtijd()'``
+- **B.** ``CS0509 'LuxeWerfkeet': cannot derive from sealed type 'Werfkeet'``
+- **C.** ``CS0144 Cannot create an instance of the abstract type or interface 'Bouwmachine'``
+- **D.** ``CS0513 'Werknemer.BerekenLoon()' is abstract but it is contained in non-abstract type 'Werknemer'``
+- **E.** ``CS0500 'Materiaal.BerekenPrijs()' cannot declare a body because it is marked abstract``
+
+Koppel elke melding aan een fragment. Zoek daarna in dat fragment de lijn die het probleem veroorzaakt, en zeg in je eigen woorden welke regel Steven brak. Doe het op papier, zonder Visual Studio.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. Fragment 1 hoort bij **C**. ``Bouwmachine`` is abstract, dus ``new Bouwmachine()`` mag niet.
+2. Fragment 2 hoort bij **E**. Een abstracte methode heeft geen body: na de signatuur komt een puntkomma, geen accolades.
+3. Fragment 3 hoort bij **D**. ``BerekenLoon`` is abstract, maar de klasse ``Werknemer`` niet. Een abstracte methode mag enkel in een abstracte klasse staan.
+4. Fragment 4 hoort bij **A**. ``Gebouw`` verplicht elke child om ``BerekenBouwtijd`` te overriden. ``Rijwoning`` heeft een methode ``BerekenBouwTijd``, met een hoofdletter T en zonder ``override``. Voor C# is dat een andere methode. De melding wijst naar de klasse ``Rijwoning``, terwijl de fout in de methode zit.
+5. Fragment 5 hoort bij **B**. ``Werfkeet`` is ``sealed``, dus geen enkele klasse mag ervan overerven.
+::::
+
+**Deel 2.** Herstel elk fragment met zo weinig mogelijk aanpassingen, zodat het compileert en doet wat Steven bedoelde. Test elk fragment in een eigen project.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+**Fragment 1.** Maak een object van de child:
+
+```java
+Graafmachine machine = new Graafmachine();
+machine.Gewicht = 12000;
+```
+
+``abstract`` weghalen bij ``Bouwmachine`` compileert ook, maar dan kan je weer een machine maken die geen echte machine is. Dat is net wat ``abstract`` hier verhindert.
+
+**Fragment 2.** Vervang de body door een puntkomma. ``Zand`` blijft zoals het was.
+
+```java
+public abstract double BerekenPrijs();
+```
+
+**Fragment 3.** Maak de klasse abstract. ``Metser`` overridet ``BerekenLoon`` al, dus daar verandert niets.
+
+```java
+internal abstract class Werknemer
+{
+    public int Uren { get; set; }
+
+    public abstract double BerekenLoon();
+}
+```
+
+**Fragment 4.** Schrijf de naam exact zoals in ``Gebouw``, en zet er ``override`` bij:
+
+```java
+internal class Rijwoning : Gebouw
+{
+    public override int BerekenBouwtijd()
+    {
+        return Verdiepingen * 8;
+    }
+}
+```
+
+Pas je enkel de naam aan, dan blijft CS0534 staan en komt er een waarschuwing bij: ``CS0114 'Rijwoning.BerekenBouwtijd()' hides inherited member 'Gebouw.BerekenBouwtijd()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.``
+
+**Fragment 5.** Haal ``sealed`` weg:
+
+```java
+internal class Werfkeet
+{
+    public int Zitplaatsen { get; set; }
+}
+```
+
+Is ``Werfkeet`` niet van jou, bijvoorbeeld omdat ze in .NET zelf zit, dan kan je ``sealed`` niet weghalen. Dan kan ``LuxeWerfkeet`` er ook niet van overerven.
+::::
+
+**Deel 3.** Voor wie nog wil. Stevens namespace heet ``Bouwwerf``, dus ``kraan.GetType()`` toont ``Bouwwerf.Kraan``. Steven wil ``Kraan van 40 meter`` op het scherm. De A.I. stelde dit voor:
+
+```java
+internal class Kraan
+{
+    public int Hoogte { get; set; }
+
+    public override string GetType()
+    {
+        return "Kraan";
+    }
+}
+
+// in Main
+Kraan kraan = new Kraan();
+kraan.Hoogte = 40;
+Console.WriteLine($"{kraan.GetType()} van {kraan.Hoogte} meter");
+```
+
+Waarom compileert dit niet? Hoe krijgt Steven wel ``Kraan van 40 meter`` op het scherm?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De melding is ``CS0506 'Kraan.GetType()': cannot override inherited member 'object.GetType()' because it is not marked virtual, abstract, or override``.
+
+Van de vier methoden die elke klasse van ``System.Object`` erft, zijn er drie ``virtual``: ``ToString``, ``Equals`` en ``GetHashCode``. ``GetType`` is dat niet, want die geeft altijd het echte type van het object terug. Haal de methode uit ``Kraan`` weg en vraag enkel de naam van het type op:
+
+```java
+Console.WriteLine($"{kraan.GetType().Name} van {kraan.Hoogte} meter");
+```
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* Elke melding noemt tussen aanhalingstekens de klasse of methode waar het misloopt. Daar begin je te zoeken, maar de fout staat niet altijd op die plek: CS0534 wijst naar ``Rijwoning``, en het probleem was één hoofdletter in de naam van de methode.
+* Zet je de vijf fragmenten samen in één project, dan meldt de compiler er maar vier. CS0144 verschijnt pas als de andere vier opgelost zijn. Krijg je na een herstelling een nieuwe melding, dan zat die fout er dus al.
+* Zie [Abstracte klassen in C#](https://www.ziescherp.be/content/13_advancedovererving/5_abstract.html#abstracte-klassen-in-c), [Abstracte methoden](https://www.ziescherp.be/content/13_advancedovererving/5_abstract.html#abstracte-methoden), [sealed](https://www.ziescherp.be/content/12_overerving/0_overerving_intro.html#sealed) en [GetType()](https://www.ziescherp.be/content/13_advancedovererving/4_System_Object.html#gettype).
+::::
+
+
 # Geometric figures (*Essential*)
 
 Maak een abstracte klasse ``GeometricFigure``. Iedere figuur heeft een hoogte, breedte en oppervlakte. Maak autoproperties voor van ``Hoogte`` en ``Breedte``. De ``Oppervlakte`` is een read-only property want deze wordt berekend gebaseerd op de hoogte en breedte. Deze berekening gebeurt in de methode ``BerekenOppervlakte``: deze roep je met andere woorden aan in de getter van ``Oppervlakte`` en dat resultaat geeft de getter terug 

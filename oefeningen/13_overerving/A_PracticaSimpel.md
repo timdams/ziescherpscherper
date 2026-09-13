@@ -249,6 +249,148 @@ foreach (var patient in allePatienten)
 ::::
 
 
+# Stevens dierentuin (*Essential*) {#h13-stevens-dierentuin}
+
+Stagiair Steven werkt voor de dierentuin. Hij moest een klasse ``Dier`` schrijven en een klasse ``Leeuw`` die ervan erft: een leeuw eet anders en maakt een ander geluid dan een gewoon dier. Een A.I. leverde dit, en Steven plakte het zonder nalezen in zijn project.
+
+De klasse ``Dier``:
+
+```java
+internal class Dier
+{
+    private int kiloVoerPerDag;
+
+    public string Naam { get; private set; }
+
+    public Dier(string naam, int kiloVoer)
+    {
+        Naam = naam;
+        kiloVoerPerDag = kiloVoer;
+    }
+
+    public void Eet()
+    {
+        Console.WriteLine($"{Naam} eet {kiloVoerPerDag} kg voer.");
+    }
+
+    public virtual void MaakGeluid()
+    {
+        Console.WriteLine($"{Naam} maakt geluid.");
+    }
+}
+```
+
+De klasse ``Leeuw``:
+
+```java
+internal class Leeuw : Dier
+{
+    public bool IsMannetje { get; private set; }
+
+    public Leeuw(string naam, int kiloVlees, bool isMannetje)
+    {
+        IsMannetje = isMannetje;
+    }
+
+    public override void Eet()
+    {
+        Console.WriteLine($"{Naam} verslindt {kiloVoerPerDag} kg vlees.");
+    }
+
+    public void MaakGeluid()
+    {
+        if (IsMannetje)
+        {
+            Console.WriteLine($"{Naam} brult: ROAAAR!");
+        }
+        else
+        {
+            Console.WriteLine($"{Naam} gromt.");
+        }
+    }
+}
+```
+
+En in ``Main``:
+
+```java
+Dier kameel = new Dier("Kamiel", 12);
+Dier leeuw = new Leeuw("Simba", 7, true);
+
+kameel.Eet();
+kameel.MaakGeluid();
+leeuw.Eet();
+leeuw.MaakGeluid();
+```
+
+**Deel 1.** Zet elke klasse in een eigen bestand en compileer. De compiler meldt één fout en één waarschuwing. Los de fout op. De waarschuwing laat je voorlopig staan.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+``CS0506 'Leeuw.Eet()': cannot override inherited member 'Dier.Eet()' because it is not marked virtual, abstract, or override``
+
+``Leeuw`` schrijft ``override`` bij ``Eet``, maar in ``Dier`` staat ``Eet`` niet ``virtual``. Maak er in ``Dier`` ``public virtual void Eet()`` van.
+
+``override`` weghalen in ``Leeuw`` is geen oplossing. Dan compileert het wel, maar eet ``leeuw`` (een variabele van het type ``Dier``) als een gewoon dier.
+
+Zag je nog andere rode kronkels in Visual Studio? Die komen in deel 2. Bij het compileren kijkt C# eerst of de klassen en hun methoden kloppen, zoals een ``override`` zonder ``virtual``. Pas daarna controleert hij de code in de methoden en de constructors.
+::::
+
+**Deel 2.** Compileer opnieuw. Nu verschijnen er twee nieuwe fouten. Los ze allebei op, zonder ``Dier`` een extra constructor te geven.
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+1. ``CS0122 'Dier.kiloVoerPerDag' is inaccessible due to its protection level``, in ``Eet`` van ``Leeuw``. ``kiloVoerPerDag`` is ``private``, en private blijft private, ook voor een child-klasse. Maak er in ``Dier`` ``protected int kiloVoerPerDag;`` van: dan kan ``Leeuw`` erbij, en de buitenwereld nog altijd niet. ``public`` is niet nodig.
+2. ``CS7036 There is no argument given that corresponds to the required parameter 'naam' of 'Dier.Dier(string, int)'``, bij de constructor van ``Leeuw``. Zonder ``base(...)`` roept C# de constructor van ``Dier`` zonder parameters op, en die bestaat niet. Geef de naam en het voer door:
+
+```java
+public Leeuw(string naam, int kiloVlees, bool isMannetje) : base(naam, kiloVlees)
+{
+    IsMannetje = isMannetje;
+}
+```
+
+Dat de parameter in ``Leeuw`` ``kiloVlees`` heet en in ``Dier`` ``kiloVoer``, maakt niet uit: ``base(...)`` kijkt naar de volgorde en het type, niet naar de naam.
+
+Een lege constructor ``Dier()`` bijschrijven laat de fout ook verdwijnen, maar dan krijgt de leeuw nooit een naam of een hoeveelheid voer.
+::::
+
+**Deel 3.** Het programma compileert nu, met enkel nog de waarschuwing van deel 1. Voer het uit. Welke lijn klopt niet? Zoek de vierde fout. Wat had de waarschuwing je al verteld?
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+De uitvoer is:
+
+```text
+Kamiel eet 12 kg voer.
+Kamiel maakt geluid.
+Simba verslindt 7 kg vlees.
+Simba maakt geluid.
+```
+
+Simba is een mannetje, dus de laatste lijn moest ``Simba brult: ROAAAR!`` zijn. De waarschuwing zei het al:
+
+``CS0114 'Leeuw.MaakGeluid()' hides inherited member 'Dier.MaakGeluid()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.``
+
+``MaakGeluid`` staat wel ``virtual`` in ``Dier``, maar in ``Leeuw`` ontbreekt ``override``. Dat is *hiding*: de methode van ``Leeuw`` verbergt die van ``Dier`` in plaats van ze te overschrijven. ``leeuw`` is een variabele van het type ``Dier``, dus draait de versie van ``Dier``. Schrijf in ``Leeuw``:
+
+```java
+public override void MaakGeluid()
+```
+
+Nu is de waarschuwing weg en toont de laatste lijn ``Simba brult: ROAAAR!``.
+
+``new`` in plaats van ``override`` laat de waarschuwing ook verdwijnen, maar de uitvoer blijft ``Simba maakt geluid.``
+
+Had Steven ``Leeuw leeuw = new Leeuw("Simba", 7, true);`` geschreven, dan had hij ``Simba brult: ROAAAR!`` gezien, en de fout nooit opgemerkt.
+::::
+
+::::{.callout-caution collapse="true" title="Les(sen) uit deze oefening"}
+* De compiler meldt niet alle fouten tegelijk. Los de fout op die je ziet, en compileer opnieuw.
+* ``virtual`` en ``override`` horen per methode bij elkaar. De A.I. zette ``virtual`` bij ``MaakGeluid`` en ``override`` bij ``Eet``, en dus klopte geen van beide.
+* Een waarschuwing laat je programma starten, maar CS0114 wees hier net naar de enige fout die de compiler niet tegenhield. Zie de waarschuwing over hiding in [Een voorbeeld met vliegende objecten](https://www.ziescherp.be/content/12_overerving/1_virtual_override.html#een-voorbeeld-met-vliegende-objecten).
+* Test een override via een variabele van het type van de parent. Via ``Leeuw`` zie je hiding niet.
+* Zie ook [protected keyword](https://www.ziescherp.be/content/12_overerving/0_overerving_intro.html#protected-keyword) en [Overloaded constructors en base()](https://www.ziescherp.be/content/12_overerving/3_constructors_inheritance.html#overloaded-constructors-en-base).
+::::
+
+
 # HiddenBookmark
 
 Voeg een ``HiddenBookmark`` klasse toe aan je bestaande Bookmark Manager applicatie van vorige hoofdstuk.

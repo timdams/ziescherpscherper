@@ -2,28 +2,9 @@
 
 ## Opgave
 
-Gegeven volgende flowchart voor om de koffiezet te repareren. De gebruiker kan via een menu'tje ingeven wat hij wenst te doen. De invoer is niet hoofdlettergevoelig. Pas de flowchart toe en toon de relevante boodschappen. Gebruiker antwoord steeds met y of n:
+Gegeven volgende flowchart om de koffiezet te repareren. De gebruiker kan via een menu'tje ingeven wat hij wenst te doen. De invoer is niet hoofdlettergevoelig. Pas de flowchart toe en toon de relevante boodschappen. De gebruiker antwoordt steeds met y of n:
 
-<!-- 
-npm install --global mermaid-filter
-pandoc .\oef1.md -F mermaid-filter.cmd  -o oef1.docx 
---> 
-
-```mermaid
-graph TD
-   A(Coffee machine <br>not working) --> B{Machine has power?}
-   B -->|No| H(Plug in and turn on)
-   B -->|Yes| C{Out of beans or water?} -->|Yes| G(Refill beans and water)
-   G --> L{Device fixed?}
-   L -->|Yes| Z
-   L -->|No| A
-   C -->|No| D{Filter warning?} -->|Yes| I(Replace or clean filter)
-   I --> G
-   D -->|No| F(Send for repair)
-   H --> K(Device starts smoking!)
-   K --> A
-   Z(Fixed)
-```
+![](koffieflow.png){fig-alt="Flowchart. Start bij Coffee machine not working, dan de vraag Machine has power? Bij No: Plug in and turn on, dan Device starts smoking!, en terug naar Coffee machine not working. Bij Yes: de vraag Out of beans or water? Bij Yes: Refill beans and water, dan de vraag Device fixed? Bij Yes: Fixed. Bij No: terug naar Coffee machine not working. Bij Out of beans or water? No: de vraag Filter warning? Bij Yes: Replace or clean filter, dan Refill beans and water. Bij No: Send for repair."}
 
 ## Voorbeeld uitvoer
 
@@ -62,7 +43,7 @@ Het programma maakt twee arrays aan met een lengte die aan de gebruiker wordt ge
 
 De films en hun scores worden getoond, waarbij de kleur en symbolen extra context geven:
 
-* groene tekst met een  sterretje ervoor voor toppers boven 8
+* groene tekst met een sterretje ervoor voor toppers met 8 of meer
     * bijvoorbeeld: "*Film3  Rating: 9" (volledig in groen)
 * rood met uitroepteken voor zwakke films onder 4 
     * bijvoorbeeld: "!Film6  Rating: 2" (volledig in rood)
@@ -81,7 +62,7 @@ Tot slot krijgt de gebruiker een klein menu: door een filmnummer in te geven kan
 Hoeveel films wilt u beheren?
 >3
 
-Film 1      Rating: 7
+Film1       Rating: 7
 !Film2      Rating: 1
 *Film3      Rating: 8
 
@@ -93,7 +74,7 @@ Aantal keer 8 of meer: 1
 Voer filmnummer in (-1 is stoppen):
 >2 
 
-Film 1      Rating: 7
+Film1       Rating: 7
 !Film2      Rating: 2
 *Film3      Rating: 8
 
@@ -116,24 +97,17 @@ Je werkt bij een groot pretpark dat elke ochtend moet beslissen of de poorten op
 
 ## Opgave
 
-Je schrijft een eenvoudige applicatie die, op basis van het aantal beschikbare werknemers, beslist of het pretpark open kan. Indien dat zo is, wordt berekend hoeveel bezoekers maximaal kunnen worden ontvangen en welke omzet daarbij hoort. Alles wordt aangestuurd door één hoofdmethode, die achter de schermen drie andere methoden aanroept.
+Je schrijft een eenvoudige applicatie die, op basis van het aantal beschikbare werknemers, beslist of het pretpark open kan. Indien dat zo is, wordt berekend hoeveel bezoekers maximaal kunnen worden ontvangen en welke omzet daarbij hoort. Alles wordt aangestuurd door één hoofdmethode, die achter de schermen vier andere methoden aanroept.
 
 
-```mermaid
-flowchart TD
-    A[Hoofdmethode: Pretparkbeheer ] --> B[Methode 1: KanOpen]
-    B -->|Park kan niet open| D[Methode 4: ToonRapport ]
-    B -->|Park kan open| C[Methode 2: BerekenBezoekersCapaciteit ]
-    C --> E[Methode 3: BerekenDagOmzet]
-    E --> D
-```
+![](pretparkflow.png){fig-alt="Schema. De hoofdmethode Pretparkbeheer roept Methode 1: KanOpen op. Kan het park open, dan volgen Methode 2: BerekenBezoekersCapaciteit, Methode 3: BerekenDagOmzet en Methode 4: ToonRapport. Kan het park niet open, dan volgt meteen Methode 4: ToonRapport."}
 
 ### Methoden
 
-Voor de hoofdmethode wordt aangeroepen wordt aan de gebruiker gevraagd hoeveel werknemers er zijn, en wat de gewenste prijs per bezoeker is. Deze info wordt meegegeven aan de hoofdmethode.
+Voor de hoofdmethode aangeroepen wordt, wordt aan de gebruiker gevraagd hoeveel werknemers er zijn, en wat de gewenste prijs per bezoeker is. Deze info wordt meegegeven aan de hoofdmethode.
 
 **Hoofdmethode: Pretparkbeheer**
-Deze methode is het startpunt. Ze ontvangt het aantal werknemers en prijs per bezoeker als invoer, roept de drie deelmethoden in volgorde aan, en toont een kort overzicht van de resultaten. 
+Deze methode is het startpunt. Ze ontvangt het aantal werknemers en prijs per bezoeker als invoer, roept de vier deelmethoden in volgorde aan. De laatste, ToonRapport, toont een kort overzicht van de resultaten. 
 
 Indien Methode 1 aangeeft dat het park niet open kan, dan zullen methoden 2 en 3 uiteraard genegeerd worden en wordt ogenblikkelijk methode 4 aangeroepen.
 
@@ -147,7 +121,7 @@ Bepaalt hoeveel bezoekers het park kan ontvangen. Voor elke werknemer kunnen er 
 
 **Methode 3: BerekenDagOmzet**
 
-Bereken de verwachte omzet door het maximaal aantal bezoekers te vermenigvuldigen met een gemiddelde besteding van €30 per bezoeker. De prijs per bezoeker kan via een optinele parameter worden meegegeven, maar is dus standaard 30. De methode geeft de omzet terug.
+Bereken de verwachte omzet door het maximaal aantal bezoekers te vermenigvuldigen met een gemiddelde besteding van €30 per bezoeker. De prijs per bezoeker kan via een optionele parameter worden meegegeven, maar is dus standaard 30. De methode geeft de omzet terug.
 
 **Methode 4: ToonRapport**
 
@@ -170,13 +144,16 @@ Geef prijs per bezoeker:
 Werknemers: 89
 Park open: Ja
 Max. bezoekers: 4450
-Verwachte omzet:  97 900 euro
+Verwachte omzet: 97900 euro
 ```
 
-Voorbeeld 2:
+Voorbeeld 2
 
 ```text
-Geef het aantal werknemers: 19
+Geef het aantal werknemers: 
+>19
+Geef prijs per bezoeker:
+>25
 
 === Dagrapport Pretpark ===
 Werknemers: 19

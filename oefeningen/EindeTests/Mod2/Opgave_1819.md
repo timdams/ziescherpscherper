@@ -1,12 +1,12 @@
-> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2018
+> Volgende opgave was de vaardigheidsproefopdracht voor examen van dit vak (Programming Principles) in januari 2019
 
 # Introductie/Context
 
-Oh jeetje, de wereld draait nu helemaal door. Jouw firma werd zonet gevraagd om een online casino te ontwerpen met als doelgroep babies. Voor ze je de effectieve site laten maken willen ze eerst een simulatie zien in console. Aan jou de eer om deze om deze dubieuze opdracht tot een goed einde te brengen.
+Oh jeetje, de wereld draait nu helemaal door. Jouw firma werd zonet gevraagd om een online casino te ontwerpen met als doelgroep babies. Voor ze je de effectieve site laten maken willen ze eerst een simulatie zien in console. Aan jou de eer om deze dubieuze opdracht tot een goed einde te brengen.
 
 # Algemeen
 
-De speler wordt telkens gevraagd welk van de 3 spellen hij wenst te spelen. Hij kan ten allen tijde stoppen en krijgt dan te zien hoeveel het verlies of de winst is.
+De speler wordt telkens gevraagd welk van de 3 spellen hij wenst te spelen. Hij kan te allen tijde stoppen en krijgt dan te zien hoeveel het verlies of de winst is.
 
 De applicatie is modulair opgebouwd door middel van methoden.
 
@@ -29,11 +29,11 @@ Maak een methode SetupCasino:
 * Parameters:
   * Naam (tekst)
   * Lengte scherm (geheel getal) [optioneel, standaard= 40]
-  * Breedte scherm [optioneel, standaard= 30]
+  * Breedte scherm (geheel getal) [optioneel, standaard= 30]
 * Werking
   * De methode geeft false terug indien de lengte of breedte kleiner is dan 1
   * Anders geeft de methode true terug en doet het volgende:
-    * Het stelt het console scherm in (Width en Height) op de hoogte die via de parameters werd gegeven
+    * Het stelt het console scherm in (Width en Height) op de lengte en breedte die via de parameters werden gegeven
     * Het vult de hele bovenste lijn van het scherm met sterretjes
     * Op de tweede lijn komt de begroeting Welkom bij Casino AP "X"
       * "X" vervang je door de Naam die als parameter werd meegegeven
@@ -53,9 +53,9 @@ Roep de methode aan vanuit de main met een naam, lengte en breedte naar keuze.
 Enkel indien de methode true geeft zal het programma verder gaan, anders sluit het programma zich hier af.
 
 # Methode CasinoLoop (0 punten)
-Maak een methode Casinoloop die niets teruggeeft en geen parameters nodig heeft.
+Maak een methode CasinoLoop die niets teruggeeft en geen parameters nodig heeft.
 
-Indien de CasinoSetup is gelukt dan zal deze loop gestart worden.
+Indien SetupCasino is gelukt dan zal deze loop gestart worden.
 
 Deze loop heeft volgende code:
 
@@ -81,7 +81,7 @@ Deze loop heeft volgende code:
                break;
            default:
                ShowEnding(geld);
-			 keuze=-1;
+               keuze = -1;
                break;
 
        }
@@ -91,7 +91,7 @@ Deze loop heeft volgende code:
 
 ```
 
-**De methoden in het vet zal je nu zelf moeten schrijven zoals beschreven in de volgende secties.**
+**De methoden die deze code oproept (ToonMenu, RaadHetGetal, RekenenMaar, ArrayGame en ShowEnding) zal je nu zelf moeten schrijven zoals beschreven in de volgende secties. De code van ToonMenu krijg je.**
 
 # ToonMenu()  (0 punten)
 
@@ -121,11 +121,11 @@ Deze 3 methoden bevatten telkens 1 spel. Als het spel gedaan is geeft de methode
 ## RaadHetGetal (4 punten)
 
 ### Beschrijving spel
-De speler moet raden welk getal van 0 tot en met 10 de computer in gedachte heeft.  Voor hij dit doet moet hij eerst ingeven hoe vaak hij denkt te moeten raden.
+De speler moet raden welk getal van 1 tot en met 10 de computer in gedachte heeft.  Voor hij dit doet moet hij eerst ingeven hoe vaak hij denkt te moeten raden.
 
 ### De winst die de methode teruggeeft is als volgt:
 
-* Indien de gebruiker exact wist hoevaak hij moest raden voor hij het getal zou vinden, dan krijgt hij **+50**.
+* Indien de gebruiker exact wist hoe vaak hij moest raden voor hij het getal zou vinden, dan krijgt hij **+50**.
 * Indien het aantal keer raden maximum 2 verwijderd is van hoe vaak hij dacht nodig te hebben, dan krijgt hij **+5**. 
   * Stel dat hij aan de start 5 ingaf als aantal pogingen, dan zal hij 5 euro krijgen indien hij het uiteindelijk effectief in 3,4,6  of 7 pogingen het heeft geraden (en uiteraard 50 indien hij het in 5 keer raadde)
 * In alle andere gevallen is de winst **-5**.
@@ -154,7 +154,7 @@ Je zat er minder dan 3 af van het aantal keer dat je ging raden. Je verdient 5 e
 
 ### Beschrijving spel
 
-De speler krijgt 5 vermenigvuldigen voorgeschoteld die hij moet uitrekenen. Deze zijn steeds tussen 1 x 1 en 10 x 10 .
+De speler krijgt 5 vermenigvuldigingen voorgeschoteld die hij moet uitrekenen. Deze zijn steeds tussen 1 x 1 en 10 x 10 .
 
 ### De winst die de methode teruggeeft is als volgt
 
@@ -203,7 +203,7 @@ Er wordt op het einde ook getoond wat de volledige sequentie was
 ### Voorbeeld spelverloop 
 
 ```text
-Hoe lang kan jij de sequentie raden?Geef 0 (false) of 1 (true) in.
+Hoe lang kan jij de sequentie raden? Geef 0 (false) of 1 (true) in.
 Komt er juist of fout? (1 of 0)
 1   <= ingevoerd door gebruiker
 Goed zo!
@@ -220,15 +220,11 @@ True,True,True,True,True,True,True,False,True,False,
 
 ## Afsluiten casino: 1 punt
 
-Indien de gebruiker deze optie kiest dan stopt het programma.
+Indien de gebruiker deze optie kiest dan roept de loop de methode ShowEnding op. Deze krijgt het geld binnen en toont of de speler winst of verlies maakte, en hoeveel. Daarna stopt het programma.
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 ```java
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _1819_PPVaardigMod2_1ekans
 {
@@ -239,34 +235,7 @@ namespace _1819_PPVaardigMod2_1ekans
 
             if (SetupCasino("tim", 20, 80))
             {
-                int keuze = 0;
-                int geld = 0;
-                while (keuze != -1)
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Je hebt {geld} euro.");
-                    keuze = ToonMenu();
-                    Console.Clear();
-                    switch (keuze)
-                    {
-                        case 1:
-                            geld += RaadHetGetal();
-                            break;
-                        case 2:
-                            geld += RekenenMaar();
-                            break;
-                        case 3:
-                            geld += ArrayGame();
-                            break;
-                        default:
-                            ShowEnding(geld);
-                            break;
-
-                    }
-                    Console.WriteLine("Druk toets om verder te gaan");
-                    Console.ReadKey();
-                }
-
+                CasinoLoop();
             }
             else
             {
@@ -274,42 +243,82 @@ namespace _1819_PPVaardigMod2_1ekans
             }
         }
 
-        private static int ArrayGame(int lengte=10)
+        private static void CasinoLoop()
         {
-            bool[] guess = new bool[lengte];
+            int keuze = 0;
+            int geld = 0;
+            while (keuze != -1)
+            {
+                Console.Clear();
+                Console.WriteLine($"Je hebt {geld} euro.");
+                keuze = ToonMenu();
+                Console.Clear();
+                switch (keuze)
+                {
+                    case 1:
+                        geld += RaadHetGetal();
+                        break;
+                    case 2:
+                        geld += RekenenMaar();
+                        break;
+                    case 3:
+                        geld += ArrayGame();
+                        break;
+                    default:
+                        ShowEnding(geld);
+                        keuze = -1;
+                        break;
+
+                }
+                Console.WriteLine("Druk toets om verder te gaan");
+                Console.ReadKey();
+            }
+        }
+
+        private static int ArrayGame(int lengte = 10)
+        {
+            bool[] reeks = new bool[lengte];
             Random r = new Random();
-            for (int i = 0; i < guess.Length; i++)
+            for (int i = 0; i < reeks.Length; i++)
             {
                 if (r.Next(0, 2) == 0)
-                    guess[i] = true;
-                else guess[i] = false;
+                    reeks[i] = true;
+                else reeks[i] = false;
             }
 
-            Console.WriteLine("Hoe lang kan jij de sequentie raden?Geef 0 (false) of 1 (true) in.");
-            int curr = 0;
-            bool correct = true;
+            Console.WriteLine("Hoe lang kan jij de sequentie raden? Geef 0 (false) of 1 (true) in.");
+            int aantalJuist = 0;
+            bool juistGeraden = true;
             do
             {
                 Console.WriteLine("Komt er juist of fout? (1 of 0)");
-                int c = Convert.ToInt32(Console.ReadLine());
-                if ((guess[curr] == true && c == 1) || guess[curr] == false && c == 0)
+                int gok = Convert.ToInt32(Console.ReadLine());
+                if ((reeks[aantalJuist] == true && gok == 1) || (reeks[aantalJuist] == false && gok == 0))
                 {
                     Console.WriteLine("Goed zo!");
-                    curr++;
+                    aantalJuist++;
                 }
                 else
-                    correct = false;
-            } while (curr < guess.Length && correct == true);
+                {
+                    Console.WriteLine("Fout");
+                    juistGeraden = false;
+                }
+            } while (aantalJuist < reeks.Length && juistGeraden == true);
 
-            Console.WriteLine($"Je behaalde een sequentie van {curr} juiste gokken. Dat is {curr*5} euro waard.");
+            int winst = aantalJuist * 5;
+            if (aantalJuist == reeks.Length)
+            {
+                winst = 100;
+            }
+            Console.WriteLine($"Je behaalde een sequentie van {aantalJuist} juiste gokken. Dat is {winst} euro waard.");
 
             Console.WriteLine("De correcte sequentie was:");
-            for (int i = 0; i < guess.Length; i++)
+            for (int i = 0; i < reeks.Length; i++)
             {
-                Console.Write(guess[i] + ",");
+                Console.Write(reeks[i] + ",");
             }
             Console.WriteLine();
-            return curr*5;
+            return winst;
         }
 
 
@@ -321,11 +330,11 @@ namespace _1819_PPVaardigMod2_1ekans
             Random r = new Random();
             for (int i = 0; i < 5; i++)
             {
-                int a = r.Next(1, 10);
-                int b = r.Next(1, 10);
-                Console.WriteLine($"Hoeveel is {a}x{b}?");
-                int uit = Convert.ToInt32(Console.ReadLine());
-                if (uit == a * b)
+                int factor1 = r.Next(1, 11);
+                int factor2 = r.Next(1, 11);
+                Console.WriteLine($"Hoeveel is {factor1}x{factor2}?");
+                int antwoord = Convert.ToInt32(Console.ReadLine());
+                if (antwoord == factor1 * factor2)
                 {
                     Console.WriteLine("Mooi zo! Je winst verhoogt.");
                     winst += 5;
@@ -347,47 +356,47 @@ namespace _1819_PPVaardigMod2_1ekans
         {
             Console.WriteLine("Welkom bij raad het getal!");
             Console.WriteLine("Je moet een getal van 1 tot 10 raden. Hoe veel keer denk je nodig te hebben?");
-            int grens = Convert.ToInt32(Console.ReadLine());
+            int schatting = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Hier gaan we dan.");
             Random r = new Random();
-            int getaltezoeken = r.Next(1, 11);
-            int guess = -1;
-            int tries = 0;
-            while (guess != getaltezoeken)
+            int teZoekenGetal = r.Next(1, 11);
+            int gok = -1;
+            int pogingen = 0;
+            while (gok != teZoekenGetal)
             {
-                Console.WriteLine($"Welk getal is het (aantalpogingen is {tries}.)?");
-                guess = Convert.ToInt32(Console.ReadLine());
-                if (guess != getaltezoeken)
+                Console.WriteLine($"Welk getal is het (aantalpogingen is {pogingen})?");
+                gok = Convert.ToInt32(Console.ReadLine());
+                if (gok != teZoekenGetal)
                     Console.WriteLine("Neen, dat is het niet. Probeer opnieuw");
-                tries++;
+                pogingen++;
             }
             Console.WriteLine("Jeuj. Je hebt het geraden!");
             //Berekening
-            if (tries == grens)
+            if (pogingen == schatting)
             {
-                Console.WriteLine("Wow. Je wist hoe vaak je ging raden.Je verdient 50 euro!");
-                return 10;
+                Console.WriteLine("Wow. Je wist hoe vaak je ging raden. Je verdient 50 euro!");
+                return 50;
             }
 
-            int dif = Math.Abs(tries - grens);
-            if (dif < 3)
+            int verschil = Math.Abs(pogingen - schatting);
+            if (verschil < 3)
             {
-                Console.WriteLine("Je zat er minder dan 3 af van het aantal keer dat je ging raden.Je verdient 5 euro.");
+                Console.WriteLine("Je zat er minder dan 3 af van het aantal keer dat je ging raden. Je verdient 5 euro.");
                 return 5;
             }
-            Console.WriteLine("Je zat er  3 of meer keer af van het aantal keer dat je ging raden.Je verliest 5 euro.");
+            Console.WriteLine("Je zat er 3 of meer keer af van het aantal keer dat je ging raden. Je verliest 5 euro.");
             return -5;
         }
 
         private static void ShowEnding(int geld)
         {
             if (geld < 0)
-                Console.WriteLine("Bankroet...Niet goed hoor!");
+                Console.WriteLine($"Bankroet... Je verloor {-geld} euro. Niet goed hoor!");
             if (geld == 0)
                 Console.WriteLine("Geen geld verloren, geen geld verdiend.");
             if (geld > 0)
-                Console.WriteLine($"Je hebt {geld} euro verdient");
+                Console.WriteLine($"Je hebt {geld} euro verdiend");
         }
 
         private static int ToonMenu()
@@ -410,7 +419,7 @@ namespace _1819_PPVaardigMod2_1ekans
             return keuze;
         }
 
-        private static bool SetupCasino(string name, int hoogte=40, int breedte=30)
+        private static bool SetupCasino(string naam, int hoogte = 40, int breedte = 30)
         {
             if (hoogte < 1 || breedte < 1)
             {
@@ -428,8 +437,8 @@ namespace _1819_PPVaardigMod2_1ekans
                 Console.Write("*");
             }
 
-            Console.SetCursorPosition(1, 1);
-            Console.Write($"Welkom bij Casino AP {name}");
+            Console.SetCursorPosition(0, 1);
+            Console.Write($"Welkom bij Casino AP {naam}");
 
             Console.SetCursorPosition(1, 3);
             Console.WriteLine("Druk op toets om voort te gaan");

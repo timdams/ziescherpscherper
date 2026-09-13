@@ -40,8 +40,8 @@ Maak een klasse ``GPSLocation`` met volgende zaken:
 
 Maak een klasse ``AdvancedGPSLocation``. Deze klasse is een ``GPSLocation`` met als extra's:
 
-* Een autoproperty ``Heigth``.
-* Een overloaded constructor die niet naast Latitude en Longitude ook de Height vereist.
+* Een autoproperty ``Height``.
+* Een overloaded constructor die naast Latitude en Longitude ook de Height vereist.
 * Een default constructor die standaard de hoogte op 1 zet en de Longitude en Latitude instels op telkens een random getal tussen 1 en 9.
 * ``ToString`` toont ook de hoogte nu, bijvoorbeeld: ``Latitude: 4, Longitude: 6, Height: 5``.
 
@@ -69,19 +69,19 @@ Maak een klasse ``Rugzak`` die de ``ITrackable`` interface implementeert.
 * De klasse overschrijft ``ToString`` zodat informatie als volgt op het scherm verschijnt (onderaan voorbeeld). *Tip:Gebruik maximaal de ``ToString``-methode van objecten*:
 	1. Eerst wordt er een zin gegeven die de huidige locatie van de rugzak toont.
 	2. Vervolgens wordt ieder sportitem in de rugzak onder elkaar geschreven (met de tostring van ieder sportitem) en de key.
-	3. Indien een sportitem in de rugzak ``ITrackable`` heeft dan zal de locatie van het sportitem met ``GetCurentLocation`` aangeroepen worden om ook deze informatie te tonen.
+	3. Indien een sportitem in de rugzak ``ITrackable`` heeft dan zal de locatie van het sportitem met ``GetCurrentLocation`` aangeroepen worden om ook deze informatie te tonen.
 
 Een voorbeeld van de ``ToString`` methode output van een rugzak met daarin een drinkbus en een gewoon sportitem:
 
 ```text
-Rugzak op locatie:  Latitude:1, Longitude:9, Height:1
- Met inhoud:
-                mijndrinkbus (Een drinkbus)
-                        -Laatste locatie is Latitude:3, Longitude:5
-                bal (Een eenvoudig sportitem)
+Rugzak op locatie: Latitude: 1, Longitude: 9, Height: 1
+Met inhoud:
+                mijndrinkbus (een drinkbus)
+                        -Laatste locatie is Latitude: 3, Longitude: 5
+                bal (een eenvoudig sportitem)
                         -Geen tracker aanwezig
 ```
-(`` mijndrinkbus`` en ``bal`` zijn de keys van ieder sportitem)
+(``mijndrinkbus`` en ``bal`` zijn de keys van ieder sportitem)
 
 * De klasse heeft een methode ``Visualiseer`` wanneer deze wordt aangeroepen (geen parameters) zal deze de inhoud van de rugzak én de rugzak zelf op het scherm tonen aan de hand van lettertjes, als volgt:
     * De GPSLocation coordinaten (Latitude en Longitude) stellen de coordinaten voor waar op het scherm het element komt (Latitude geeft de kolom weer, Longitude de rij in de console). Op die plek zet je een letter:
@@ -90,13 +90,15 @@ Rugzak op locatie:  Latitude:1, Longitude:9, Height:1
     * Merk op dat deze methode telkens een andere 'kaart' zal tonen, daar de GPSlocaties bij iedere aanroep van GetCurrentLocation veranderen (willekeurig).
     * Indien meerdere elementen op dezelfde locatie staan dan wordt gewoon 1 letter getoond (van het laatste element dat op deze plek diende gevisualiseerd te worden).
 
-Een voorbeeld van de uitvoer van de Visualiseer-methode indien we een rugzak hebben op locatie (2,3), met daarin 1 drinkbus op (4,4) en 1 drinkbus op (5,6):
+Een voorbeeld van de uitvoer van de Visualiseer-methode indien we een rugzak hebben op locatie (2,3), met daarin 1 drinkbus op (4,4) en 1 drinkbus op (5,6), telkens als (Latitude, Longitude). De kolommen en rijen van de console tellen vanaf 0:
 
 ```text
 
-  r
 
-   D
+
+  r
+    D
+
      D
 ```
 
@@ -119,51 +121,59 @@ Merk op dat de locaties die in stap 2 getoond worden niet overeenkomen met de lo
 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 
+**GPSLocation.cs**
 
 ```java
 class GPSLocation
 {
-    static Random rng = new Random();
-    public GPSLocation(): this(rng.Next(1,10), rng.Next(1,10))
+    private static Random rng = new Random();
+
+    public GPSLocation() : this(rng.Next(1, 10), rng.Next(1, 10))
     {
-        
+
     }
-    public GPSLocation(int lat, int lon)
+
+    public GPSLocation(int latitude, int longitude)
     {
-        Latitude = lat;
-        Longitude = lon;
+        Latitude = latitude;
+        Longitude = longitude;
     }
 
     public int Latitude { get; set; }
     public int Longitude { get; set; }
+
     public override string ToString()
     {
-        return $"Latitude:{Latitude}, Longitude:{Longitude}";
+        return $"Latitude: {Latitude}, Longitude: {Longitude}";
     }
 }
 ```
 
+**AdvancedGPSLocation.cs**
+
 ```java
-class AdvancedGPSLocation: GPSLocation
+class AdvancedGPSLocation : GPSLocation
 {
-    public AdvancedGPSLocation():base()
+    public AdvancedGPSLocation() : base()
     {
         Height = 1;
     }
-    public AdvancedGPSLocation(int lat, int lon, int h): base(lat, lon)
+
+    public AdvancedGPSLocation(int latitude, int longitude, int height) : base(latitude, longitude)
     {
-        Height = h;
+        Height = height;
     }
+
     public int Height { get; set; }
 
     public override string ToString()
     {
-        return $"{base.ToString()}, Height:{Height}";
+        return $"{base.ToString()}, Height: {Height}";
     }
 }
 ```
 
-
+**ITrackable.cs**
 
 ```java
 interface ITrackable
@@ -171,6 +181,8 @@ interface ITrackable
     GPSLocation GetCurrentLocation();
 }
 ```
+
+**SportItem.cs**
 
 ```java
 class SportItem
@@ -181,6 +193,8 @@ class SportItem
     }
 }
 ```
+
+**Drinkbus.cs**
 
 ```java
 class Drinkbus : SportItem, ITrackable
@@ -196,6 +210,8 @@ class Drinkbus : SportItem, ITrackable
     }
 }
 ```
+
+**Rugzak.cs**
 
 ```java
 class Rugzak : ITrackable
@@ -213,11 +229,9 @@ class Rugzak : ITrackable
         set { inhoud = value; }
     }
 
-
     public override string ToString()
     {
-
-        string result =$"Rugzak op locatie:  {GetCurrentLocation()} \n Met inhoud:";
+        string result = $"Rugzak op locatie: {GetCurrentLocation()}\nMet inhoud:";
         foreach (var item in inhoud)
         {
             result += $"\n\t\t{item.Key} ({item.Value})";
@@ -233,52 +247,56 @@ class Rugzak : ITrackable
 
     public void Visualiseer()
     {
-        var loc = GetCurrentLocation();
-        Console.SetCursorPosition(loc.Latitude, loc.Latitude);
+        GPSLocation locatieRugzak = GetCurrentLocation();
+        Console.SetCursorPosition(locatieRugzak.Latitude, locatieRugzak.Longitude);
         Console.Write("r");
         foreach (var item in inhoud)
         {
-            if(item.Value is Drinkbus)
+            if (item.Value is Drinkbus)
             {
-                var locw = (item.Value as Drinkbus).GetCurrentLocation();
-                Console.SetCursorPosition(locw.Latitude, locw.Latitude);
+                GPSLocation locatieDrinkbus = ((Drinkbus)item.Value).GetCurrentLocation();
+                Console.SetCursorPosition(locatieDrinkbus.Latitude, locatieDrinkbus.Longitude);
                 Console.Write("D");
             }
-
         }
     }
 }
 ```
 
+**Program.cs**
+
 ```java
-class Program
+namespace SportRugzak
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        Rugzak r = new Rugzak();
-        Console.WriteLine("Hoeveel sportitems moeten er in de rugzak?");
-        int am = int.Parse(Console.ReadLine());
-        Random rng = new Random();
-        for (int i = 0; i < am; i++)
+        static void Main(string[] args)
         {
-            SportItem toadd;
-            if (rng.Next(0, 2) == 0)
-                toadd = new SportItem();
-            else
-                toadd = new Drinkbus();
-            Console.WriteLine($"Ik koos {toadd} voor je. Welke key moet dit krijgen?");
-            r.Inhoud.Add(Console.ReadLine(), toadd);
-        }
-        Console.WriteLine("Klaar. Druk op enter telkens hierna om nieuwe visualisatie te doen");
-        Console.ReadLine();
-        while(true)
-        {
-            Console.Clear();
-            Console.WriteLine(r);
+            Rugzak rugzak = new Rugzak();
+            Console.WriteLine("Hoeveel sportitems moeten er in de rugzak?");
+            int aantalItems = int.Parse(Console.ReadLine());
+            Random rng = new Random();
+            for (int i = 0; i < aantalItems; i++)
+            {
+                SportItem nieuwItem;
+                if (rng.Next(0, 2) == 0)
+                    nieuwItem = new SportItem();
+                else
+                    nieuwItem = new Drinkbus();
+                Console.WriteLine($"Ik koos {nieuwItem} voor je. Welke key moet dit krijgen?");
+                rugzak.Inhoud.Add(Console.ReadLine(), nieuwItem);
+            }
+            Console.WriteLine("Klaar. Druk op enter telkens hierna om nieuwe visualisatie te doen");
             Console.ReadLine();
-            Console.Clear();
-            r.Visualiseer();
-            Console.ReadLine();
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(rugzak);
+                Console.ReadLine();
+                Console.Clear();
+                rugzak.Visualiseer();
+                Console.ReadLine();
+            }
         }
     }
 }

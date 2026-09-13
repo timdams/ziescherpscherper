@@ -243,6 +243,9 @@ book:
 filters:
   - console-typst.lua
   - mascotte-typst.lua
+  - figuren-typst.lua
+  - koppen-typst.lua
+  - bijsturing-typst.lua
 
 bibliography: references.bib
 
@@ -283,6 +286,8 @@ format:
     monofont: "JetBrains Mono"
     papersize: a4
     section-numbering: "1.1"
+    # het boek citeert niets uit references.bib, dus de bibliografie was een lege pagina
+    suppress-bibliography: true
     margin:
       x: 2.5cm
       y: 3cm

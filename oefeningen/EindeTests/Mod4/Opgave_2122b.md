@@ -11,12 +11,13 @@ De applicatie bestaat vooreerst uit een aantal elementaire klassen die gebruikt 
 ## Vak
 
 Een vak heeft een titel (type ``string``), een duur (``int``) en een toegewezen lector (type ``Lector``, zie verder). Voorzie de nodige properties hiervoor, wetende dat:
+
 a) de duur enkel 1 of 2 uur kan zijn, niets anders. Controleer hier op.
 b) de titel standaard "Onbekend" is.
 
 De klasse override ``ToString`` en toont een object  als volgt: ``Titel - Lector`` (bijvoorbeeld: ``OOP - Jansens``).
 
-Standaard heeft een nieuw gemaakt Vak-object een Lector-object met als naam "Nog Toe te wijzen``.
+Standaard heeft een nieuw gemaakt Vak-object een Lector-object met als naam ``Nog Toe te wijzen``.
 
 ## Lector
 
@@ -27,22 +28,22 @@ Een lector heeft een naam (``string``) en een maximaal aantal uur (``maxUur``, t
 
 Deze klasse heeft een private lijst van Vakken die standaard leeg is. Deze lijst stelt de dagrooster voor en bevat alle vakken van de dag. 
 
-De klasse heeft een property ``VrijeUren``: deze geeft een ``int`` terug en bevat de totale som van alle duren van de vakken in de lijst. Als er dus 2 vakken in de lijst staan, 1 van 1 uur duur, de andere van 2uur duur, dan zal deze property 3 teruggeven (1+2).
+De klasse heeft een property ``VrijeUren``: deze geeft een ``int`` terug met het aantal uren dat nog vrij is in het rooster. Een rooster bevat maximaal 8 uur, dus dat is 8 min de som van alle duren van de vakken in de lijst. Als er dus 2 vakken in de lijst staan, 1 van 1 uur duur, de andere van 2uur duur, dan zal deze property 5 teruggeven (8-(1+2)).
 
 De klasse heeft voorts volgende methoden:
 
 a) ``ToonRooster``: deze methode zal ieder vak in de lijst via ``ToString`` op het scherm onder elkaar tonen. Indien een vak 2uur duurt dan zal het vak 2x onder elkaar getoond worden. Voorbeeld output:
 
 ```
-OOP -Jansens
+OOP - Jansens
 Programming Principles - DuBru
 Programming Principles - DuBru
 Java - Gates
 ```
 
-b) ``VoegVakToe``: deze methode aanvaardt een ``Vak``-object. Dit object wordt aan de lijst toegevoegd indien dat kan. Een rooster kan nooit meer dan 8uur totale duur bevatten (gebruik ``VrijeUren`` hiervoor). Als je dus een vak van 2uur probeert probeert toe te voegen terwijl de roosterlijst reeds 7uur bevat, dan zal dit niet lukken en wordt er een RoosterException teruggegooid (maak deze Exception klasse zelf aan).
+b) ``VoegVakToe``: deze methode aanvaardt een ``Vak``-object. Dit object wordt aan de lijst toegevoegd indien dat kan. Een rooster kan nooit meer dan 8uur totale duur bevatten (gebruik ``VrijeUren`` hiervoor). Als je dus een vak van 2uur probeert toe te voegen terwijl de roosterlijst reeds 7uur bevat, dan zal dit niet lukken en wordt er een RoosterException teruggegooid (maak deze Exception klasse zelf aan).
 
-c) ``VerbeterRooster``: wanneer deze methode wordt aangeroepen dan zal de lijst met vakken gesorteerd worden volgens 1° hun naam alfabetisch 2° hun duur (lange vakken eerst).
+c) ``VerbeterRooster``: wanneer deze methode wordt aangeroepen dan zal de lijst met vakken gesorteerd worden volgens 1° hun titel alfabetisch 2° hun duur (lange vakken eerst).
 
 d) ``WijsLectorToe`` : deze methode aanvaart een index x (``int``) en een ``Lector`` object. De methode zal de meegegeven lector toewijzen (en de bestaande overschrijven) aan het vak in lijst met de index "x" die je als parameter hebt meegeven. Indien er geen vak bestaat met die index dan verschijnt er een foutboodschap.
 
@@ -75,6 +76,7 @@ Maak een applicatie die bovenstaande klassen gebruikt door aan de gebruiker een 
 * **Voeg vak toe**: de gebruiker dient vervolgens de naam van het vak te geven, de duur, en welke lector (voor de lector geeft hij gewoon de index in, 0, 1 of 2 en gebruik je vervolgens de lector in de lijst die je aanmaakte aan de start van het programma). Indien de gebruiker bij duur 3 ingeeft dan wordt dit vak automatisch een labovak.
 * **Verbeter rooster**: dit zal de VerbeterRooster methode aanroepen.
 * **Toon labo's**: Enkel de LaboVak-objecten in het rooster worden op het scherm getoond.
+* **Stoppen**: het programma stopt.
 
 # WeekRooster
 
@@ -90,17 +92,18 @@ Voeg aan het hoofdmenu de optie **Toon weekrooster**. Deze zorgt ervoor dat een 
 ::::{.callout-caution collapse="true" title="Oplossing"}
 > Dank aan Wael Orraby.
 
+**Vak.cs**
 
-Klassen:
 ```java
-internal class Vak: IComparable​
+internal class Vak : IComparable
 {
     public Vak()
     {
         vakLector = new Lector() { Naam = "Nog Toe te wijzen" };
-
     }
+
     public string Titel { get; set; } = "Onbekend";
+
     private Lector vakLector;
 
     public Lector VakLector
@@ -120,28 +123,33 @@ internal class Vak: IComparable​
                 duur = value;
         }
     }
+
     public override string ToString()
     {
         return $"{this.Titel} - {this.VakLector.Naam}";
     }
 
-    public int CompareTo(object? obj)
+    public int CompareTo(object obj)
     {
         Vak temp = obj as Vak;
-        if(temp != null)
+        if (temp != null)
         {
-            int stringC = this.Titel.CompareTo(temp.Titel);
-            if (stringC == 0)
+            int vergelijkingTitel = this.Titel.CompareTo(temp.Titel);
+            if (vergelijkingTitel == 0)
             {
-                return this.Duur.CompareTo(temp.Duur);
+                // Omgekeerd vergelijken: lange vakken eerst
+                return temp.Duur.CompareTo(this.Duur);
             }
-            else return stringC;
-
+            else return vergelijkingTitel;
         }
         return 0;
     }
 }
+```
 
+**LaboVak.cs**
+
+```java
 internal class LaboVak : Vak
 {
     public LaboVak(Vak v)
@@ -150,20 +158,27 @@ internal class LaboVak : Vak
         this.VakLector = v.VakLector;
         this.Titel = v.Titel;
     }
-    public override int Duur {
+
+    public override int Duur
+    {
         get { return base.Duur; }
-        set 
-        { 
-            if (value > 0 && value < 4) 
-                this.duur = value; 
-        } 
+        set
+        {
+            if (value > 0 && value < 4)
+                this.duur = value;
+        }
     }
+
     public override string ToString()
     {
-        return "(labo) "+ base.ToString();
+        return "(labo) " + base.ToString();
     }
 }
+```
 
+**Lector.cs**
+
+```java
 internal class Lector
 {
     public string Naam { get; set; } = "Nog toe te wijzen";
@@ -173,42 +188,54 @@ internal class Lector
         get { return 6; }
     }
 }
+```
 
+**HalfTijdseLector.cs**
+
+```java
 internal class HalfTijdseLector : Lector
 {
     public override int MaxUur
     {
-        get 
-        { 
-            return base.MaxUur / 2; 
+        get
+        {
+            return base.MaxUur / 2;
         }
     }
 }
+```
 
+**RoosterException.cs**
+
+```java
 internal class RoosterException : Exception
 {
     public RoosterException(string message) : base(message)
     {
     }
 }
+```
 
+**Rooster.cs**
+
+```java
 internal class Rooster
 {
     private List<Vak> vakkenLijst = new List<Vak>();
-    private int vrijeUren;
 
     public int VrijeUren
     {
         get
         {
-            int result = 0;
+            int bezetteUren = 0;
             foreach (var item in vakkenLijst)
             {
-                result += item.Duur;
+                bezetteUren += item.Duur;
             }
-            return result;
+            return 8 - bezetteUren;
         }
     }
+
     public void ToonRooster()
     {
         foreach (var item in vakkenLijst)
@@ -219,28 +246,31 @@ internal class Rooster
             }
         }
     }
-    public void VoegVakToe(Vak niewVak)
+
+    public void VoegVakToe(Vak nieuwVak)
     {
-        if ((VrijeUren + niewVak.Duur) <= 8)
+        if (nieuwVak.Duur <= VrijeUren)
         {
-            vakkenLijst.Add(niewVak);
+            vakkenLijst.Add(nieuwVak);
         }
         else
-            throw new RoosterException($"Kan niet togevoegd worden, omdat de rooster mag max 8 uur bevatten en de huidige duur in de rooster is {VrijeUren}");
+            throw new RoosterException($"Kan niet toegevoegd worden: een rooster bevat maximaal 8 uur en er zijn nog {VrijeUren} uren vrij.");
     }
+
     public void VerbeterRooster()
     {
         vakkenLijst.Sort();
     }
-    public void WijsLectorToe(int index, Lector l)
+
+    public void WijsLectorToe(int index, Lector lector)
     {
         if (index >= 0 && index < vakkenLijst.Count)
-            vakkenLijst[index].VakLector = l;
+            vakkenLijst[index].VakLector = lector;
         else
-            Console.WriteLine("Index id out of Range of the list!");
+            Console.WriteLine("Er bestaat geen vak met die index.");
     }
 
-    internal void ToonLabos()
+    public void ToonLabos()
     {
         foreach (var item in vakkenLijst)
         {
@@ -254,12 +284,16 @@ internal class Rooster
         }
     }
 }
+```
 
+**WeekRooster.cs**
+
+```java
 internal class WeekRooster
 {
-    static Random r = new Random();
+    private static Random random = new Random();
 
-    List<Vak>[] weekLijsten = new List<Vak>[]{new List<Vak>(),new List<Vak>(),new List<Vak>(),new List<Vak>(),new List<Vak>()};
+    private List<Vak>[] weekLijsten = new List<Vak>[] { new List<Vak>(), new List<Vak>(), new List<Vak>(), new List<Vak>(), new List<Vak>() };
 
     public WeekRooster()
     {
@@ -267,9 +301,9 @@ internal class WeekRooster
         {
             for (int i = 0; i < 4; i++)
             {
-                if (r.Next(1, 6) == 1)
+                if (random.Next(1, 6) == 1)
                 {
-                    weekLijsten[j].Add(new LaboVak(new Vak()));        
+                    weekLijsten[j].Add(new LaboVak(new Vak()));
                 }
                 else
                 {
@@ -277,13 +311,13 @@ internal class WeekRooster
                 }
             }
         }
-
     }
+
     public void ToonRooster()
     {
         for (int i = 0; i < weekLijsten.Length; i++)
         {
-            if(i==0)
+            if (i == 0)
                 Console.WriteLine("Maandag : ");
             else if (i == 1)
                 Console.WriteLine("Dinsdag : ");
@@ -299,67 +333,81 @@ internal class WeekRooster
             }
             Console.WriteLine();
         }
-        
     }
 }
-
 ```
 
-Program.cs
+**Program.cs**
+
 ```java
-List<Lector> lectorsList = new List<Lector>(3);
-Rooster r = new Rooster()​;
-lectorsList.Add(new Lector { Naam = "Dams" });
-lectorsList.Add(new Lector { Naam = "Van Eyken" });
-lectorsList.Add(new HalfTijdseLector { Naam = "segers" });
-int antwoord = 0;
-while (antwoord != 666)
+namespace RoosterApp
 {
-
-
-    Console.WriteLine("Kies een nummer uit dit menu : ");
-    Console.WriteLine("1- Toon rooster.");
-    Console.WriteLine("2- Voeg vak toe.");
-    Console.WriteLine("3- Verbeter rooster.");
-    Console.WriteLine("4- Toon labo's.");
-    Console.WriteLine("5- Toon weekrooster.");
-    Console.WriteLine("666- Stoppen");
-    antwoord = int.Parse(Console.ReadLine());
-
-    if (antwoord == 1)
-        r.ToonRooster();
-
-    if (antwoord == 2)
+    internal class Program
     {
-        Console.WriteLine("Vaknaam : ");
-        string vaknaam = Console.ReadLine();
-        Console.WriteLine("Duur : ");
-        int duur = int.Parse(Console.ReadLine());
-        Console.WriteLine("Kies een nummer van de lector : ");
-        Console.WriteLine("0 : Dams");
-        Console.WriteLine("1 : Van Eyken");
-        Console.WriteLine("2 : Horsman");
-        int lector = int.Parse(Console.ReadLine());
-        Vak v = new Vak() { Titel = vaknaam, Duur = duur , VakLector = lectorsList[lector]};
-        if (duur == 3)
+        static void Main(string[] args)
         {
-            LaboVak lv = new LaboVak(v);
-            lv.Duur = duur;
-            r.VoegVakToe(lv);
+            List<Lector> lectoren = new List<Lector>();
+            Rooster rooster = new Rooster();
+            lectoren.Add(new Lector { Naam = "Dams" });
+            lectoren.Add(new Lector { Naam = "Van Eyken" });
+            lectoren.Add(new HalfTijdseLector { Naam = "Segers" });
+            int antwoord = 0;
+            while (antwoord != 666)
+            {
+                Console.WriteLine("Kies een nummer uit dit menu : ");
+                Console.WriteLine("1- Toon rooster.");
+                Console.WriteLine("2- Voeg vak toe.");
+                Console.WriteLine("3- Verbeter rooster.");
+                Console.WriteLine("4- Toon labo's.");
+                Console.WriteLine("5- Toon weekrooster.");
+                Console.WriteLine("666- Stoppen");
+                antwoord = int.Parse(Console.ReadLine());
+
+                if (antwoord == 1)
+                    rooster.ToonRooster();
+
+                if (antwoord == 2)
+                {
+                    Console.WriteLine("Vaknaam : ");
+                    string vaknaam = Console.ReadLine();
+                    Console.WriteLine("Duur : ");
+                    int duur = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Kies een nummer van de lector : ");
+                    for (int i = 0; i < lectoren.Count; i++)
+                    {
+                        Console.WriteLine($"{i} : {lectoren[i].Naam}");
+                    }
+                    int lectorIndex = int.Parse(Console.ReadLine());
+                    Vak vak = new Vak() { Titel = vaknaam, Duur = duur, VakLector = lectoren[lectorIndex] };
+                    try
+                    {
+                        if (duur == 3)
+                        {
+                            LaboVak laboVak = new LaboVak(vak);
+                            laboVak.Duur = duur;
+                            rooster.VoegVakToe(laboVak);
+                        }
+                        else
+                            rooster.VoegVakToe(vak);
+                    }
+                    catch (RoosterException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                if (antwoord == 3)
+                    rooster.VerbeterRooster();
+                if (antwoord == 4)
+                {
+                    rooster.ToonLabos();
+                }
+                if (antwoord == 5)
+                {
+                    WeekRooster weekRooster = new WeekRooster();
+                    weekRooster.ToonRooster();
+                }
+            }
         }
-        else
-            r.VoegVakToe(v);
-    }
-    if (antwoord == 3)
-        r.VerbeterRooster();
-    if (antwoord == 4)
-    {
-        r.ToonLabos();
-    }
-    if (antwoord == 5)
-    {
-        WeekRooster wr = new WeekRooster();
-        wr.ToonRooster();
     }
 }
 ```

@@ -121,6 +121,25 @@ Drie keer hetzelfde patroon: een private instantievariabele met een kleine lette
 - De instantievariabelen public maken en de property overslaan.
 - In Main de private instantievariabele proberen aan te spreken.
 
+## Stevens pizza
+
+### Nota
+
+Een zoek-de-fout-oefening met stagiair Steven. Geef de fouten nooit en schrijf geen verbeterde code. In deel 1 vraag je wat er in margherita zit na Pizza margherita; zonder meer, en of ToonInfo weet over welke pizza het gaat. In deel 2 vraag je wat er gebeurt wanneer de set van Toppings zelf Toppings een waarde geeft, welke waarde value krijgt in de set van Diameter en waar die gebruikt wordt, en laat je hem de waarschuwing voorlezen. In deel 3 vraag je wie er allemaal aan prijs kan, en of de controle in Main ook geldt voor een pizza die in andere code gemaakt wordt. static komt pas in hoofdstuk 11: leg niet uit wat het doet, enkel dat een objectmethode het niet heeft.
+
+### Aanpak
+
+Deel 1: vijf compileerfouten met twee oorzaken. Het object wordt nooit met new gemaakt (CS0165), en ToonInfo staat static, waardoor ze de properties van een pizza niet kan gebruiken (drie keer CS0120, plus CS0176 bij de aanroep). Deel 2: de set van Toppings geeft de property een waarde in plaats van de instantievariabele en roept zichzelf eindeloos op, tot een Stack overflow. De compiler zegt daar niets over. De set van Diameter kent diameter aan zichzelf toe en negeert value, en daar waarschuwt de compiler met CS1717. Deel 3: prijs is een publieke instantievariabele en de controle staat in Main. De oplossing maakt prijs private met een full property Prijs die in de set enkel waarden groter dan 0 aanvaardt, en Main zet de prijs zonder eigen controle.
+
+### Valkuilen
+
+- De raad van CS0176 volgen en Pizza.ToonInfo() schrijven. De drie CS0120-fouten blijven dan staan.
+- De waarschuwing negeren omdat het programma toch start.
+- Bij de crash de controle in de set de schuld geven, terwijl het om de hoofdletter in Toppings = value gaat.
+- In deel 3 enkel public door private vervangen zonder property, waardoor Main niet meer compileert.
+- Een auto-property Prijs schrijven. Daarin past geen controle.
+- De controle in Main laten staan naast die in de set. Dat is dubbele code.
+
 ## Figuren
 
 ### Aanpak

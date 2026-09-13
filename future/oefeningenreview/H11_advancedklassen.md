@@ -248,3 +248,49 @@ Sport simulator verdwijnt (of verhuist naar H10).
   (geverifieerd). Nullables mag de student nog niet gebruiken. Eén zin die zegt dat die waarschuwing mag
   blijven staan, of ze net gebruiken als brug naar `required` (zie 2).
 - `content/10_advancedklassen/kennisclips.md:14` linkt nog naar de oude gitbook-oefeningen.
+
+## Doorgevoerd (2026-09-13): enkel Stevens constructors
+
+Enkel nieuwe oefening 4 uit sectie 4 is doorgevoerd. De rest van dit rapport staat nog open. Er is niet
+gerenderd en de scripts zijn niet gedraaid.
+
+- **Pagina:** `oefeningen/11_advancedklassen/A_practica3.md`, tussen Persoonsregistratie en Digitale
+  kluis, met het anker `#h11-stevens-constructors`. Vier delen, elk met een eigen Oplossing-callout,
+  en een Les-callout met links naar `1_constructors.html#default-constructors`,
+  `2_overloadedconstructor.html#overloaded-constructors`, `#constructors-hergebruiken-met-this` en
+  `5_static.html#static-tegenover-non-static` (ankers afgeleid van de koppen in de bron).
+- **Coach-data:** `## Stevens constructors` in `oefeningen/_coach/11_advancedklassen.md`, na
+  Persoonsregistratie, met Nota (per deel de vragen die de coach mag stellen), Aanpak en Valkuilen.
+- **Geverifieerd met dotnet** (SDK 10.0.103, elk fragment apart in het klassieke skelet):
+  - Deel 1 (`public void Rugzak(double inhoud)`): enkel `error CS0542: 'Rugzak': member names cannot
+    be the same as their enclosing type`, op de methode. Zonder `void`: "Deze rugzak kan 25 liter aan."
+  - Deel 2 (`Boek` met één constructor, `new Boek()` in Main): `error CS7036: There is no argument
+    given that corresponds to the required parameter 'titelIn' of 'Boek.Boek(string)'`. Met twee
+    constructors komt wel `error CS1729: 'Boek' does not contain a constructor that takes 0 arguments`.
+    Beide oplossingen (titel in Main, `public Boek() : this("Zonder titel")`) compileren en geven de
+    vermelde uitvoer.
+  - Deel 3 (static `ToonOverzicht` met een static en een gewone instantievariabele): `error CS0120: An
+    object reference is required for the non-static field, method, or property 'Bestelling.aantalPizzas'`.
+    De opgesplitste oplossing geeft de vermelde drie regels. De valkuil uit de coach-data (ook
+    `aantalPizzas` static) compileert en toont "Deze bestelling telt 2 pizza's."
+  - Deel 4 (`bedrag = bedrag;`): compileert met enkel `warning CS1717: Assignment made to same variable;
+    did you mean to assign something else?` en toont "In de spaarpot zit 5 euro." Met `bedragIn`: 25 euro.
+- **Afwijkingen van het voorstel:**
+  - Andere klassen: `Rugzak`, `Boek`, `Bestelling` en `Spaarpot` in plaats van `Meetlat` en `Student`.
+    Meetlat constructor staat net boven deze oefening, dus deel 1 en 4 zouden die oplossing verklappen.
+    `Student` en `Mens` zijn de voorbeelden uit de leerstof en uit het Steven-fragment in
+    `content/10_advancedklassen/5_static.md:132-155`.
+  - Volgorde a, b, d, c: het deel dat wel compileert, staat als laatste, nadat de student drie keer een
+    compilerfout vond.
+  - (a): het voorstel zegt dat `new Meetlat(5)` niet compileert. dotnet meldt enkel CS0542 bij de methode
+    zelf, niet bij de regel met `new`. De oplossing zegt dat zo.
+  - (b): de student lost het op twee manieren op, zodat `this(...)` in de oplossing terugkomt.
+  - (c): `Spaarpot` heeft een methode `StopErIn`, waardoor de uitvoer 5 is in plaats van 0. Zo lijkt het
+    programma half te werken en moet de student uitleggen waarom de ene toekenning wel en de andere niet
+    bij de instantievariabele komt.
+  - (d): de static methode heeft een regel die mag (static teller) en een die niet mag, zodat ze niet
+    het Mens-voorbeeld uit de leerstof herhaalt.
+- **Nevenvondst:** `content/10_advancedklassen/2_overloadedconstructor.md:35` en
+  `content/10_advancedklassen/zieverder.md:16` noemen "'Student' does not contain a constructor that
+  takes 0 arguments" als de fout bij `new Student()`. Bij een klasse met één constructor, zoals het
+  voorbeeld op `:21-29`, geeft dotnet CS7036 (zie deel 2). Niet aangepast.
