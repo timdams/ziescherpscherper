@@ -28,8 +28,14 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
     "render:raw-strings": "remotion render RawStringLiterals out/h03-raw-string-literals.mp4",
+    "render:queue-stack": "remotion render QueueStack out/h12-queue-stack.mp4",
     "render:reel-256": "remotion render Reel-256-assen out/reel-256-assen.mp4",
     "render:reel-mars": "remotion render Reel-mars-climate-orbiter out/reel-mars-climate-orbiter.mp4",
-    "render:reel-seeds": "remotion render Reel-minecraft-seeds out/reel-minecraft-seeds.mp4"
+    "render:reel-seeds": "remotion render Reel-minecraft-seeds out/reel-minecraft-seeds.mp4",
+    "render:reel-apollo": "remotion render Reel-apollo out/reel-apollo.mp4",
+    "render:reel-rooster": "remotion render Reel-roostertool out/reel-roostertool.mp4",
+    "render:reel-dobbel": "remotion render Reel-dobbelsteen out/reel-dobbelsteen.mp4",
+    "render:reel-dwarf": "remotion render Reel-dwarf-fortress out/reel-dwarf-fortress.mp4",
+    "render:reel-log4shell": "remotion render Reel-log4shell out/reel-log4shell.mp4"
   }
 }

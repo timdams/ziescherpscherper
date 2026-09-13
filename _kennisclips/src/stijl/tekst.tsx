@@ -85,6 +85,27 @@ export const Onderschrift: React.FC<{
   );
 };
 
+/** Stijl voor een handgeschreven label: gecentreerd rond `x` (600 px breed), of links uitgelijnd vanaf `x`. */
+export const label = (
+  x: number,
+  top: number,
+  grootte = 42,
+  kleur: string = C.GRAY,
+  links = false,
+): React.CSSProperties => ({
+  position: "absolute",
+  left: links ? x : x - 300,
+  width: links ? undefined : 600,
+  top,
+  textAlign: links ? "left" : "center",
+  fontFamily: HAND,
+  fontSize: grootte,
+  fontWeight: 700,
+  lineHeight: 1,
+  color: kleur,
+  whiteSpace: "nowrap",
+});
+
 /** Klein handgeschreven woordje naast een pijl. `y` is het verticale midden. */
 export const Noot: React.FC<{
   tekst: string;

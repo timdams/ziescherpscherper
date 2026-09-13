@@ -21,3 +21,15 @@ export const SANS = laadInter("normal", {
 
 // JetBrains Mono heeft een vaste tekenbreedte van 600/1000 em, in elk gewicht.
 export const MONO_BREEDTE = 0.6;
+
+/**
+ * Geschatte breedte van een tekst in Caveat (vet), in pixels. Aan de ruime kant: hoofdletters zijn
+ * breder dan kleine letters, spaties smaller. Genoeg om een onderlijn of een lettergrootte te kiezen.
+ */
+export const handBreedte = (tekst: string, grootte: number) => {
+  let em = 0;
+  for (const teken of tekst) {
+    em += teken === " " ? 0.25 : teken !== teken.toLowerCase() ? 0.6 : 0.38;
+  }
+  return em * grootte;
+};

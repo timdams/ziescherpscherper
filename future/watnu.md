@@ -77,7 +77,8 @@ met per clip de opnamedatum (die zit verstopt in de Panopto-ID).
       VS 2026 uitzet. Nog tien twijfelgevallen staan in punt 2 van het rapport.
       *12 september 2026: eerste clip gebouwd in [`_kennisclips/`](../_kennisclips/README.md),
       raw string literals (H3). Nog zonder stem en nog niet in `kennisclips.md` gezet.
-      De scenario's voor de andere ontbrekende clips staan in [kennisclips-scenarios.md](kennisclips-scenarios.md).*
+      De scenario's voor de andere ontbrekende clips staan in [kennisclips-scenarios.md](kennisclips-scenarios.md).
+      13 september 2026: `Queue` en `Stack` (H12) gebouwd, eveneens zonder stem en nog niet op Panopto.*
 - [ ] Een handvol clips past niet meer bij de tekst (class library, class designer, meme-detective,
       fuifsimulator, ...). Houden, verplaatsen of schrappen: beslissing aan Tim.
 - [ ] 14 van de 18 `kennisclips.md` linken bij de oefeningen nog naar gitbook.

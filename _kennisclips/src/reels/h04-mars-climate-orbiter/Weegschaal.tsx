@@ -3,25 +3,14 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { POP, venster, voortgang } from "../../stijl/anim";
 import { HAND, MONO } from "../../stijl/fonts";
 import { C } from "../../stijl/kleuren";
-import { Ruw, lijn, rechthoek, samen, veelhoek } from "../../stijl/ruw";
+import { Ruw, rechthoek } from "../../stijl/ruw";
+import { Weegschaal as Schaal, opPlank } from "../../stijl/weegschaal";
 import { FASE } from "./tijdlijn";
 
 // Toegevoegd, niet uit het kader: hoeveel die twee eenheden verschillen.
 // 1 pound-force seconde is 4,448 newton-seconden.
 
 const P = { x: 540, y: 880 };
-const VOET = samen(
-  veelhoek(
-    [
-      [P.x, P.y],
-      [P.x - 50, P.y + 100],
-      [P.x + 50, P.y + 100],
-    ],
-    { fill: C.WHITE, fillStyle: "solid", strokeWidth: 2.6, seed: 960 },
-  ),
-  lijn(P.x - 80, P.y + 102, P.x + 80, P.y + 100, { strokeWidth: 3, seed: 961 }),
-);
-const PLANK = rechthoek(-340, -14, 680, 14, { fill: C.WHITE, fillStyle: "solid", strokeWidth: 2.6, seed: 962 });
 const BLOK_GROOT = rechthoek(-320, -124, 130, 110, { fill: C.WHITE, fillStyle: "solid", stroke: C.RED, strokeWidth: 2.6, seed: 963 });
 const BLOK_KLEIN = rechthoek(250, -74, 70, 60, { fill: C.WHITE, fillStyle: "solid", strokeWidth: 2.4, seed: 964 });
 
@@ -62,28 +51,17 @@ export const Weegschaal: React.FC = () => {
   if (zicht <= 0) return null;
 
   const a = -0.14 * voortgang(f, FASE.betekenis + 40, 30, POP);
-  const eind = (lx: number) => ({ x: P.x + lx * Math.cos(a), y: P.y + lx * Math.sin(a) });
-  const links = eind(GROOT_X);
-  const rechts = eind(KLEIN_X);
+  const links = opPlank(P.x, P.y, a, GROOT_X);
+  const rechts = opPlank(P.x, P.y, a, KLEIN_X);
 
   return (
     <AbsoluteFill style={{ opacity: zicht }}>
-      <Ruw vorm={VOET} />
-      <div
-        style={{
-          position: "absolute",
-          left: P.x,
-          top: P.y,
-          transform: `rotate(${(a * 180) / Math.PI}deg)`,
-          transformOrigin: "0 0",
-        }}
-      >
-        <Ruw vorm={PLANK} />
+      <Schaal x={P.x} y={P.y} hoek={a} seed={960}>
         <Ruw vorm={BLOK_GROOT} />
         <div style={blokTekst(-320, -124, 130, 110, 56, C.RED_DARK)}>1</div>
         <Ruw vorm={BLOK_KLEIN} />
         <div style={blokTekst(250, -74, 70, 60, 36, C.GRAY)}>1</div>
-      </div>
+      </Schaal>
       <div style={label(links.x - 10, links.y + 36)}>1 pound-force seconde</div>
       <div style={label(rechts.x, rechts.y + 36)}>1 newton-seconde</div>
       <div

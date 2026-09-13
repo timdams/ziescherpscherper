@@ -107,6 +107,33 @@ export const samen = (...vormen: Vorm[]): Vorm => {
   };
 };
 
+/**
+ * Een doos in drie dimensies, zoals box3d in excal.js: een lichtroze voorvlak met rode rand, en een
+ * schuin bovenvlak en zijvlak. Het zijvlak staat rechts (zoals bij een rij) of links (bij een stapel).
+ */
+export const doos3d = (
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  o: { seed: number; diepte?: number; zij?: "links" | "rechts" },
+): Vorm => {
+  const d = o.diepte ?? 36;
+  const rechts = o.zij !== "links";
+  const vlak = { fillStyle: "solid", strokeWidth: 2.2, roughness: 1.3 };
+  const bovenPunten: Punt[] = rechts
+    ? [[x, y], [x + d, y - d], [x + w + d, y - d], [x + w, y]]
+    : [[x, y], [x - d, y - d], [x + w - d, y - d], [x + w, y]];
+  const zijPunten: Punt[] = rechts
+    ? [[x + w, y], [x + w + d, y - d], [x + w + d, y + h - d], [x + w, y + h]]
+    : [[x, y], [x - d, y - d], [x - d, y + h - d], [x, y + h]];
+  return samen(
+    veelhoek(bovenPunten, { ...vlak, fill: C.BOX_TOP, seed: o.seed }),
+    veelhoek(zijPunten, { ...vlak, fill: C.BOX_SIDE, seed: o.seed + 1 }),
+    rechthoek(x, y, w, h, { fill: C.RED_LIGHT, fillStyle: "solid", stroke: C.RED, strokeWidth: 2.4, roughness: 1.3, seed: o.seed + 2 }),
+  );
+};
+
 export type Richting = "vanLinks" | "vanRechts" | "vanOnder" | "vanBoven";
 
 const MARGE = 24;

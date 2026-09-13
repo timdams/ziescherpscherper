@@ -1,15 +1,17 @@
 # Kennisclips (Remotion)
 
-Korte kennisclips bij Zie Scherp Scherper. Quarto negeert deze map (ze begint met een underscore),
-dus niets hiervan belandt op de site.
+Kennisclips (liggend) en Instagram-reels (staand) bij Zie Scherp Scherper. Quarto negeert deze map
+(ze begint met een underscore), dus niets hiervan belandt op de site.
+
+De werkwijze, de huisstijl en de valkuilen staan in de skill `.claude/skills/videoclip/` in de repo.
 
 ## Gebruik
 
 ```bash
 npm i
 npm run dev                                              # Remotion Studio
-npx remotion still RawStringLiterals out/test.png --frame=1175
-npm run render:raw-strings                               # volledige mp4 naar out/
+npx remotion still Reel-256-assen out/test.png --frame=60 --scale=0.6
+npm run render:raw-strings                               # of render:reel-256, render:reel-mars, render:reel-seeds
 ```
 
 ## Opbouw
@@ -31,4 +33,5 @@ npm run render:raw-strings                               # volledige mp4 naar ou
 - Animeren enkel via `useCurrentFrame()` en `interpolate()`. CSS-animaties renderen niet.
 - Code staat op een raster: JetBrains Mono is 0,6 em breed, dus `kolomX()` en `rijY()` geven exact
   de plaats van een teken. Markeringen en pijlen mikken daarop.
-- De stem komt later. Tot dan staat de uitleg in de onderschriften.
+- Stem, ondertitels en bijschrift worden per filmpje gevraagd. Zonder stem staat de uitleg in de
+  onderschriften en ballonnen.

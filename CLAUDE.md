@@ -213,6 +213,13 @@ figuur getekend of hertekend moet worden. De harde regels, ook als de skill niet
 Referentie-implementatie: [content/assets/5_arrays/imagegen/](content/assets/5_arrays/imagegen/).
 De nieuwste gedeelde stijl-helpers staan in `content/assets/6_klassen/imagegen/excal.js`.
 
+## Kennisclips en reels (Remotion)
+
+Nieuwe kennisclips (liggend) en korte Instagram-reels (staand) maken we met Remotion in
+[_kennisclips/](_kennisclips/README.md); Quarto negeert die map. **De werkwijze, de huisstijl en de
+valkuilen staan in de skill [`videoclip`](.claude/skills/videoclip/SKILL.md).** Welke kennisclips
+nog ontbreken of verouderd zijn, staat in [future/kennisclips-rapport.md](future/kennisclips-rapport.md).
+
 ## "Wat nu?"
 
 Vraagt Tim **"wat nu?"** (of iets van die strekking: "waar waren we gebleven", "wat is het

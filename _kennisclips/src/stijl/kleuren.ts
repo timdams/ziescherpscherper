@@ -7,6 +7,9 @@ export const C = {
   GRAY: "#4D4D4D",
   OFFWHITE: "#f8f9fa",
   WHITE: "#ffffff",
+  // Boven- en zijvlak van een doos in 3D, zoals box3d in excal.js.
+  BOX_TOP: "#fbe9e9",
+  BOX_SIDE: "#f3d4d4",
   CONSOLE_BG: "#0d1117",
   CONSOLE_BALK: "#161b22",
   CONSOLE_RAND: "#30363d",

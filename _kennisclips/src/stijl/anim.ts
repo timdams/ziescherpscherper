@@ -60,3 +60,20 @@ export const herschrijf = (
 
 export const bezig = (frame: number, start: number, eind: number) =>
   frame >= start && frame < eind;
+
+export type Sleutel = { f: number; x: number; y: number; s?: number };
+
+/**
+ * Plaats en schaal op een baan van sleutelpunten, met BEWEEG tussen elk paar. Voor het eerste punt
+ * staat het op het eerste, na het laatste op het laatste. De frames moeten strikt stijgen.
+ */
+export const opBaan = (frame: number, punten: Sleutel[]) => {
+  if (punten.length === 1) return { x: punten[0].x, y: punten[0].y, s: punten[0].s ?? 1 };
+  const frames = punten.map((p) => p.f);
+  const opties = { easing: BEWEEG, extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
+  return {
+    x: interpolate(frame, frames, punten.map((p) => p.x), opties),
+    y: interpolate(frame, frames, punten.map((p) => p.y), opties),
+    s: interpolate(frame, frames, punten.map((p) => p.s ?? 1), opties),
+  };
+};

@@ -2,28 +2,8 @@ import React from "react";
 import { HAND, MONO } from "../../stijl/fonts";
 import { C } from "../../stijl/kleuren";
 
-/** Zet inhoud met lokale coördinaten rond (0, 0) op een plek op het canvas. */
-export const Op: React.FC<{
-  x: number;
-  y: number;
-  schaal?: number;
-  opacity?: number;
-  children: React.ReactNode;
-}> = ({ x, y, schaal = 1, opacity = 1, children }) =>
-  opacity <= 0 ? null : (
-    <div
-      style={{
-        position: "absolute",
-        left: x,
-        top: y,
-        transform: `scale(${schaal})`,
-        transformOrigin: "0 0",
-        opacity: Math.min(1, opacity),
-      }}
-    >
-      {children}
-    </div>
-  );
+// Op staat intussen in stijl/op.tsx.
+export { Op } from "../../stijl/op";
 
 /** Tekst gecentreerd rond (0, 0), in JetBrains Mono. */
 export const cijfer = (w: number, h: number, grootte: number, kleur: string): React.CSSProperties => ({

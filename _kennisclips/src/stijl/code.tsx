@@ -20,7 +20,7 @@ export const tekenBreedte = (r: Raster) => r.grootte * MONO_BREEDTE;
 export const kolomX = (r: Raster, kolom: number) => r.x + kolom * tekenBreedte(r);
 export const rijY = (r: Raster, rij: number) => r.y + rij * r.hoogte;
 
-const KEYWORDS = ["string", "byte", "double"];
+const KEYWORDS = ["string", "byte", "double", "long", "int", "while", "for"];
 
 const Tokens: React.FC<{ tekst: string }> = ({ tekst }) => (
   <>
