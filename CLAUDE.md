@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-> Eerste poging — Tim verbetert. Houd dit kort en feitelijk; geen pluimen, geen TODO-lijsten.
+> Tim verbetert. Houd dit kort en feitelijk; geen pluimen, geen TODO-lijsten.
 
 ## Wat is dit project?
 
@@ -14,7 +14,7 @@ Het project bouwt **drie afzonderlijke Quarto-outputs** die samen op één GitHu
 | Oefeningen | [oefeningen/](oefeningen/) | Quarto website | Practica per hoofdstuk + vaardigheidsproeven |
 | Slides | [slides/](slides/) | Quarto website (revealjs) | Lesslides via slides/overzicht.qmd |
 
-Oud of experimenteel materiaal (bv. `odysseyfiles`, `slidesOld`) staat in [_archive/](_archive/). Dat wordt niet gepubliceerd en mag genegeerd worden.
+Oud of band experimenteel materiaal (bv. `odysseyfiles`, `slidesOld`) staat in [_archive/](_archive/). Dat wordt niet gepubliceerd en mag genegeerd worden.
 
 ## Repo-layout
 

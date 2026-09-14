@@ -1,0 +1,583 @@
+:::{.callout-tip}
+Volgende 3 oefeningen waren de vaardigheidsproefopdracht voor het 2e zit examen van dit vak (Programming Principles) in 2026.
+:::
+
+# Oefening 1 - Pakjesbezorg-Simulatie
+
+## Info
+
+Ga ervan uit dat de gebruiker géén foute invoer doet.
+
+### Opgave
+
+Je bouwt een kleine C#-consoletoepassing voor een pakjesdienst. De applicatie moet een korte bezorgrit simuleren waarbij een bestelwagen vanuit het depot langs 4 vaste stops rijdt. Tussen de stops liggen vaste afstanden:
+
+* tussen het depot en Stop 1: 8 km
+* tussen Stop 1 en Stop 2: 12 km
+* tussen Stop 2 en Stop 3: 18 km
+* tussen Stop 3 en Stop 4: 22 km
+
+(De totale afstand van de rit zal dus 60 km zijn.)
+
+Op elke stop kunnen er pakjes ingeladen en gelost worden. De gebruiker van het programma speelt de rol van koerier en geeft aan hoeveel pakjes er op elke stop in- en uitgeladen worden.
+
+De bestelwagen vertrekt vanuit het depot en rijdt 8 km naar Stop 1. Vanaf dan begint het programma dus.
+
+#### Wat moet het programma doen?
+
+1. Toon bij het starten een welkomstboodschap in het rood, bijvoorbeeld "Welkom bij de Pakjesbezorg-Simulator!"
+2. Initialiseer de nodige variabelen, onder andere:
+    * het huidig aantal pakjes in de wagen (start op 0),
+    * de totale afgelegde afstand (start op 0 km),
+    * het nummer van de huidige stop.
+3. Herhaal de volgende stappen voor elk van de 4 stops:
+    * Toon een regel in de vorm: "Aankomst bij Stop X (Afstand vanaf vorige stop: Y km)"
+    * Vraag aan de gebruiker:
+        * hoeveel pakjes ingeladen worden;
+        * hoeveel pakjes gelost worden.
+    * Werk het huidig aantal pakjes bij. Als het resultaat negatief zou worden:
+        * zet het aantal pakjes terug op 0;
+        * toon een korte waarschuwing dat er niet meer pakjes gelost kunnen worden dan er in de wagen zitten.
+    * Toon daarna het huidig aantal pakjes in de wagen.
+    * Tel de afstand van het traject tot deze stop op bij de totale afgelegde afstand.
+    * Ga verder naar de volgende stop.
+4. Wanneer de wagen alle stops heeft bezocht, toon je:
+    * de totale afgelegde afstand in kilometer;
+    * het eind-aantal pakjes in de wagen.
+
+### Flowchart
+
+```{mermaid}
+flowchart TD
+    %% Start en Init
+    Start([Start]) --> Init[Variabelen = 0, Stop = 1]
+
+    %% Start Lus
+    Init --> CheckLoop{Stop <= 4?}
+
+    %% Lus: NEE (Klaar)
+    CheckLoop -- Nee --> EindRapport[/Toon Eindresultaat/]
+    EindRapport --> Stop2([Stop])
+
+    %% Lus: JA (Doe stop logica)
+    CheckLoop -- Ja --> BepaalAfst[Bepaal afstand traject]
+    BepaalAfst --> ToonInfo[/Toon aankomst/]
+    ToonInfo --> VraagInvoer[/Vraag: In & Uit/]
+    VraagInvoer --> Bereken[Nieuw aantal = Oud + In - Uit]
+
+    %% Check op negatief
+    Bereken --> CheckNeg{Aantal < 0?}
+
+    CheckNeg -- Ja --> Reset[Zet op 0 en Waarschuw]
+    Reset --> ToonAantal
+
+    CheckNeg -- Nee --> ToonAantal[/Toon huidig aantal/]
+
+    %% Einde van deze loop-iteratie
+    ToonAantal --> UpdateTot[Update Totale Afstand]
+    UpdateTot --> VolgendeStop[Stop + 1]
+    VolgendeStop --> CheckLoop
+```
+
+### Voorbeeld uitvoer
+
+*Tekst die start met ">" is invoer van de gebruiker.*
+
+```text
+Welkom bij de Pakjesbezorg-Simulator!
+
+Aankomst bij Stop 1 (Afstand vanaf vorige stop: 8 km)
+Aantal pakjes die ingeladen worden:
+> 22
+Aantal pakjes die gelost worden:
+> 0
+Huidig aantal pakjes: 22
+
+Aankomst bij Stop 2 (Afstand vanaf vorige stop: 12 km)
+Aantal pakjes die ingeladen worden:
+> 15
+Aantal pakjes die gelost worden:
+> 8
+Huidig aantal pakjes: 29
+
+Aankomst bij Stop 3 (Afstand vanaf vorige stop: 18 km)
+Aantal pakjes die ingeladen worden:
+> 6
+Aantal pakjes die gelost worden:
+> 11
+Huidig aantal pakjes: 24
+
+Aankomst bij Stop 4 (Afstand vanaf vorige stop: 22 km)
+Aantal pakjes die ingeladen worden:
+> 3
+Aantal pakjes die gelost worden:
+> 9
+Huidig aantal pakjes: 18
+
+Rit beëindigd!
+De totale afgelegde afstand is 60 km.
+Aantal pakjes op einde in de wagen: 18
+```
+
+# Oefening 2 - Datacenter Monitor
+
+## Info
+
+Een groot datacenter logt elke dag zijn systeemgegevens. Jouw applicatie moet deze gegevens verwerken en de alarmstatus bepalen op basis van bepaalde drempelwaarden.
+
+Ga ervan uit dat de gebruiker géén foute invoer doet.
+
+### Opgave
+
+Een serverpark draait al maanden non-stop. Elke dag worden drie parameters gelogd:
+
+1. vrije schijfruimte (in GB)
+2. vrij werkgeheugen (in GB)
+3. resterende koelvloeistof (in liters)
+
+De bewakingscomputer slaat deze gegevens op in drie even lange arrays. Elke index vertegenwoordigt één dag sinds de meting startte. De arrays hebben een lengte van 30 (voor 30 dagen).
+
+Aan de start van je applicatie worden deze 3 arrays gevuld met willekeurige waarden binnen de volgende grenzen:
+
+* Schijfruimte: 0 - 1000 GB
+* Werkgeheugen: 0 - 64 GB
+* Koelvloeistof: 0 - 200 liters
+
+#### ToonData methode
+
+Schrijf een methode `ToonData` die deze arrays visualiseert in een tabelvorm, waarbij elke rij een dag vertegenwoordigt en de kolommen de drie parameters tonen. Deze aanvaardt dus de 3 arrays als parameters en geeft niets terug. Gebruik tabs om de kolommen uit te lijnen.
+
+Deze methode aanvaardt een vierde optionele parameter van het type `bool` die standaard op `false` staat. Indien deze parameter op `true` wordt gezet, moeten alle waarden die onder de helft van hun maximumwaarde liggen (dus schijfruimte < 500 GB, werkgeheugen < 32 GB, koelvloeistof < 100 liter) gemarkeerd worden met een sterretje (`*`) achter de waarde.
+
+**Tip**: Verspil niet te veel tijd aan het perfect uitlijnen van de tabel. Het belangrijkste is dat de gegevens duidelijk en leesbaar zijn. Het kan geen kwaad indien hier en daar de data niet perfect uitgelijnd is.
+
+#### AlarmMeting methode
+
+Schrijf een methode `AlarmMeting` die de drie arrays en een index als parameters aanvaardt en een boolean teruggeeft. Deze methode moet controleren of er op een bepaalde dag (index) aan minstens twee van de drie volgende voorwaarden wordt voldaan:
+
+* Schijfruimte is minder dan 100 GB
+* Werkgeheugen is minder dan 8 GB
+* Koelvloeistof is minder dan 20 liter
+
+Als aan minstens twee van deze voorwaarden wordt voldaan op die dag, moet de methode `true` teruggeven (wat betekent dat er alarm is). Als dit niet het geval is, moet de methode `false` teruggeven.
+
+#### Hoofdprogramma
+
+Schrijf een klein hoofdprogramma dat:
+
+1. De drie arrays vult met willekeurige waarden binnen de opgegeven grenzen.
+2. De `ToonData` methode aanroept om de gegevens in tabelvorm weer te geven. Roep `ToonData` aan met de optie om sterretjes te tonen.
+3. De gebruiker een dagnummer (1-30) vraagt. Houd er rekening mee dat arrays 0-based zijn. Indien de gebruiker een negatief getal invoert, stopt het programma.
+4. De `AlarmMeting` methode aanroept met de zonet ingevoerde dag als parameter en de alarmstatus voor die dag toont (true/false).
+5. Terugkeert naar stap 3.
+
+### Voorbeeld uitvoer
+
+*Tekst die start met ">" is invoer van de gebruiker.*
+
+```text
+Dag     Schijf (GB)         Geheugen (GB)       Koeling (liters)
+1           850                 40                  160
+2           75*                 5*                  15*
+3           600                 20*                 80*
+...
+30          720                 50                  180
+
+Voor welke dag wil je de alarmstatus weten? (1-30, negatief om te stoppen):
+> 2
+Alarmstatus voor dag 2: true
+Voor welke dag wil je de alarmstatus weten? (1-30, negatief om te stoppen):
+> 3
+Alarmstatus voor dag 3: false
+Voor welke dag wil je de alarmstatus weten? (1-30, negatief om te stoppen):
+> -1
+Programma gestopt.
+```
+
+# Oefening 3 - Sapbar Generator
+
+## Info
+
+Je schrijft een applicatie die een sapbar zal helpen eenvoudige menukaarten te genereren.
+
+Het doel van deze oefening is om je kennis van methoden te testen. (Merk op dat je géén arrays in deze oefening nodig hebt.)
+
+Ga ervan uit dat de gebruiker géén foute invoer doet.
+
+### Opgave
+
+Je maakt drie methoden met duidelijke parameters en returntypes.
+
+#### Methode 1: `GenereerSmoothieNaam`
+
+Deze methode genereert een smoothienaam op basis van het fruit, de smaak en het volume.
+
+Input (parameters):
+
+* een fruitnaam (`string`)
+* een smaaktype (`string`)
+* een volume in milliliter (`int`)
+
+Output (returntype): één string die een volledige smoothienaam voorstelt.
+
+In de methode combineer je deze gegevens tot een smoothienaam in het volgende formaat:
+
+"Fruit – Smaak (Volume ml)"
+
+Voorbeeld:
+
+"Mango – tropisch (250 ml)"
+
+#### Methode 2: `MaakMenuTitel`
+
+Deze methode genereert een titel voor een menukaart op basis van een smoothienaam.
+
+Input (parameters):
+
+* een fruitnaam (`string`)
+* een smaaktype (`string`)
+* een volume in milliliter (`int`)
+* een seizoen (`string`)
+
+Deze methode roept `GenereerSmoothieNaam()` intern aan en geeft een titel terug voor een menukaart die gebaseerd is op die smoothie. (Merk op: de parameter 'seizoen' wordt niet gebruikt bij het aanroepen van `GenereerSmoothieNaam`.)
+
+Voorbeeld formaat van de titel: "Het lekkerste [seizoen] menu met '[smoothienaam]'"
+
+Voorbeeld als we de parameters "Mango", "tropisch", 250 en "zomer" doorgeven:
+
+"Het lekkerste zomer menu met 'Mango – tropisch (250 ml)'"
+
+#### Methode 3: `GenereerMenukaart`
+
+Deze methode genereert een volledige menukaart met meerdere smoothies.
+
+Input (parameters):
+
+* een fruitnaam (`string`)
+* een smaaktype (`string`)
+* een volume in milliliter (`int`)
+* een seizoen (`string`)
+
+Output (returntype): één string die de volledige menukaart voorstelt.
+
+Deze methode roept `MaakMenuTitel()` intern aan om de titel van de menukaart te genereren. Vervolgens genereert de methode via een lus 5 regels. Voor elke regel roep je `GenereerSmoothieNaam()` aan en plak je er zelf een volgnummer in string-vorm achter (bijvoorbeeld " (1)", " (2)", enzovoort).
+
+De methode geeft een string terug die de volledige menukaart voorstelt in het volgende formaat:
+
+```text
+[menu titel]
+1. [smoothienaam 1]
+2. [smoothienaam 2]
+3. [smoothienaam 3]
+4. [smoothienaam 4]
+5. [smoothienaam 5]
+```
+
+Een voorbeeld van de uitvoer van deze methode zou kunnen zijn:
+
+```text
+Het lekkerste zomer menu met 'Mango – tropisch (250 ml)'
+1. Mango – tropisch (250 ml) (1)
+2. Mango – tropisch (250 ml) (2)
+3. Mango – tropisch (250 ml) (3)
+4. Mango – tropisch (250 ml) (4)
+5. Mango – tropisch (250 ml) (5)
+```
+
+### Hoofdprogramma
+
+Schrijf een klein hoofdprogramma dat de gebruiker vraagt om de volgende gegevens in te voeren:
+
+* Fruitnaam
+* Smaaktype
+* Volume in milliliter
+* Seizoen
+
+Vervolgens roept het hoofdprogramma de `GenereerMenukaart()` methode aan met deze gegevens en toont het de gegenereerde menukaart aan de gebruiker.
+
+### Schema's
+
+Welke methode roept welke andere methode aan:
+
+```{mermaid}
+graph TD
+    %% Styling
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef m3 fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef m2 fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef m1 fill:#fbb,stroke:#333,stroke-width:2px;
+
+    subgraph Applicatie
+        Main[Hoofdprogramma<br/><i>Vraagt invoer aan gebruiker</i>]:::main
+
+        M3[Methode 3: GenereerMenukaart<br/><i>Input: Fruit, Smaak, Volume, Seizoen</i>]:::m3
+
+        M2[Methode 2: MaakMenuTitel<br/><i>Input: Fruit, Smaak, Volume, Seizoen</i>]:::m2
+
+        M1[Methode 1: GenereerSmoothieNaam<br/><i>Input: Fruit, Smaak, Volume</i>]:::m1
+    end
+
+    %% Relaties
+    Main -- Roept aan met alle data --> M3
+    M3 -- 1. Roept aan voor de titel --> M2
+    M3 -- 2. Roept 5x aan (in lus) --> M1
+    M2 -- Roept aan voor smoothie in titel --> M1
+
+    %% Return waarden (optioneel, als stippellijn)
+    M1 -.->|Geeft smoothienaam string| M2
+    M1 -.->|Geeft smoothienaam string| M3
+    M2 -.->|Geeft titel string| M3
+    M3 -.->|Geeft volledige menukaart string| Main
+```
+
+In welke volgorde de aanroepen gebeuren:
+
+```{mermaid}
+sequenceDiagram
+    participant Main as Hoofdprogramma
+    participant M3 as GenereerMenukaart
+    participant M2 as MaakMenuTitel
+    participant M1 as GenereerSmoothieNaam
+
+    Note over Main: Gebruiker voert data in
+
+    Main->>M3: Aanroep (Fruit, Smaak, Volume, Seizoen)
+
+    rect rgb(240, 248, 255)
+        Note over M3: Stap A: Titel maken
+        M3->>M2: Aanroep (Fruit, Smaak, Volume, Seizoen)
+        rect rgb(255, 250, 240)
+            M2->>M1: Aanroep (Fruit, Smaak, Volume)
+            M1-->>M2: Return enkele Smoothienaam
+            Note over M2: Formatteer titel
+        end
+        M2-->>M3: Return Titel String
+    end
+
+    rect rgb(240, 248, 255)
+        Note over M3: Stap B: Lijst vullen (5x)
+        loop 5 keer
+            M3->>M1: Aanroep (Fruit, Smaak, Volume)
+            M1-->>M3: Return enkele Smoothienaam
+            Note over M3: Voeg nummer toe + plak aan lijst
+        end
+    end
+
+    M3-->>Main: Return volledige Menukaart String
+    Note over Main: Toon resultaat op scherm
+```
+
+### Voorbeeld uitvoer
+
+*Tekst die start met ">" is invoer van de gebruiker.*
+
+```text
+Geef de fruitnaam in:
+> Mango
+Geef het smaaktype in:
+> tropisch
+Geef het volume in ml in:
+> 250
+Geef het seizoen in:
+> zomer
+Het lekkerste zomer menu met 'Mango – tropisch (250 ml)'
+1. Mango – tropisch (250 ml) (1)
+2. Mango – tropisch (250 ml) (2)
+3. Mango – tropisch (250 ml) (3)
+4. Mango – tropisch (250 ml) (4)
+5. Mango – tropisch (250 ml) (5)
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+
+**Oefening 1**
+
+```java
+namespace Pakjesbezorging
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Welkom bij de Pakjesbezorg-Simulator!");
+            Console.ResetColor();
+
+            // Afstand naar stop 1, 2, 3 en 4, telkens vanaf de vorige stop (of het depot).
+            int[] afstanden = { 8, 12, 18, 22 };
+            int aantalPakjes = 0;
+            int totaleAfstand = 0;
+
+            for (int stop = 1; stop <= afstanden.Length; stop++)
+            {
+                int afstand = afstanden[stop - 1];
+                Console.WriteLine();
+                Console.WriteLine($"Aankomst bij Stop {stop} (Afstand vanaf vorige stop: {afstand} km)");
+                Console.WriteLine("Aantal pakjes die ingeladen worden:");
+                int ingeladen = int.Parse(Console.ReadLine());
+                Console.WriteLine("Aantal pakjes die gelost worden:");
+                int gelost = int.Parse(Console.ReadLine());
+
+                aantalPakjes = aantalPakjes + ingeladen - gelost;
+                if (aantalPakjes < 0)
+                {
+                    aantalPakjes = 0;
+                    Console.WriteLine("Waarschuwing: je kan niet meer pakjes lossen dan er in de wagen zitten.");
+                }
+                Console.WriteLine($"Huidig aantal pakjes: {aantalPakjes}");
+
+                totaleAfstand += afstand;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Rit beëindigd!");
+            Console.WriteLine($"De totale afgelegde afstand is {totaleAfstand} km.");
+            Console.WriteLine($"Aantal pakjes op einde in de wagen: {aantalPakjes}");
+        }
+    }
+}
+```
+
+**Oefening 2**
+
+```java
+namespace DatacenterMonitor
+{
+    internal class Program
+    {
+        const int AANTAL_DAGEN = 30;
+        const int MAX_SCHIJF = 1000;
+        const int MAX_GEHEUGEN = 64;
+        const int MAX_KOELING = 200;
+
+        const int ALARM_SCHIJF = 100;
+        const int ALARM_GEHEUGEN = 8;
+        const int ALARM_KOELING = 20;
+
+        static void Main(string[] args)
+        {
+            Random generator = new Random();
+            int[] schijfruimte = new int[AANTAL_DAGEN];
+            int[] werkgeheugen = new int[AANTAL_DAGEN];
+            int[] koelvloeistof = new int[AANTAL_DAGEN];
+            for (int i = 0; i < AANTAL_DAGEN; i++)
+            {
+                schijfruimte[i] = generator.Next(0, MAX_SCHIJF + 1);
+                werkgeheugen[i] = generator.Next(0, MAX_GEHEUGEN + 1);
+                koelvloeistof[i] = generator.Next(0, MAX_KOELING + 1);
+            }
+
+            ToonData(schijfruimte, werkgeheugen, koelvloeistof, true);
+
+            int dag = VraagDag();
+            while (dag >= 0)
+            {
+                bool alarm = AlarmMeting(schijfruimte, werkgeheugen, koelvloeistof, dag - 1);
+                Console.WriteLine($"Alarmstatus voor dag {dag}: {alarm.ToString().ToLower()}");
+                dag = VraagDag();
+            }
+            Console.WriteLine("Programma gestopt.");
+        }
+
+        static void ToonData(int[] schijfruimte, int[] werkgeheugen, int[] koelvloeistof, bool markeerLaag = false)
+        {
+            Console.WriteLine("Dag\tSchijf (GB)\tGeheugen (GB)\tKoeling (liters)");
+            for (int i = 0; i < schijfruimte.Length; i++)
+            {
+                string schijf = MaakCel(schijfruimte[i], MAX_SCHIJF, markeerLaag);
+                string geheugen = MaakCel(werkgeheugen[i], MAX_GEHEUGEN, markeerLaag);
+                string koeling = MaakCel(koelvloeistof[i], MAX_KOELING, markeerLaag);
+                Console.WriteLine($"{i + 1}\t{schijf}\t\t{geheugen}\t\t{koeling}");
+            }
+            Console.WriteLine();
+        }
+
+        // Geeft de waarde als tekst terug, met een * erachter als ze onder de helft van het maximum ligt.
+        static string MaakCel(int waarde, int maximum, bool markeerLaag)
+        {
+            string cel = waarde.ToString();
+            if (markeerLaag && waarde < maximum / 2)
+            {
+                cel += "*";
+            }
+            return cel;
+        }
+
+        static bool AlarmMeting(int[] schijfruimte, int[] werkgeheugen, int[] koelvloeistof, int index)
+        {
+            int aantalProblemen = 0;
+            if (schijfruimte[index] < ALARM_SCHIJF)
+            {
+                aantalProblemen++;
+            }
+            if (werkgeheugen[index] < ALARM_GEHEUGEN)
+            {
+                aantalProblemen++;
+            }
+            if (koelvloeistof[index] < ALARM_KOELING)
+            {
+                aantalProblemen++;
+            }
+            return aantalProblemen >= 2;
+        }
+
+        static int VraagDag()
+        {
+            Console.WriteLine($"Voor welke dag wil je de alarmstatus weten? (1-{AANTAL_DAGEN}, negatief om te stoppen):");
+            return int.Parse(Console.ReadLine());
+        }
+    }
+}
+```
+
+**Oefening 3**
+
+```java
+namespace SapbarGenerator
+{
+    internal class Program
+    {
+        const int AANTAL_REGELS = 5;
+
+        static void Main(string[] args)
+        {
+            // Nodig voor het streepje – in de smoothienaam.
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Console.WriteLine("Geef de fruitnaam in:");
+            string fruit = Console.ReadLine();
+            Console.WriteLine("Geef het smaaktype in:");
+            string smaak = Console.ReadLine();
+            Console.WriteLine("Geef het volume in ml in:");
+            int volume = int.Parse(Console.ReadLine());
+            Console.WriteLine("Geef het seizoen in:");
+            string seizoen = Console.ReadLine();
+
+            string menukaart = GenereerMenukaart(fruit, smaak, volume, seizoen);
+            Console.WriteLine(menukaart);
+        }
+
+        static string GenereerSmoothieNaam(string fruit, string smaak, int volume)
+        {
+            return $"{fruit} – {smaak} ({volume} ml)";
+        }
+
+        static string MaakMenuTitel(string fruit, string smaak, int volume, string seizoen)
+        {
+            string smoothieNaam = GenereerSmoothieNaam(fruit, smaak, volume);
+            return $"Het lekkerste {seizoen} menu met '{smoothieNaam}'";
+        }
+
+        static string GenereerMenukaart(string fruit, string smaak, int volume, string seizoen)
+        {
+            string menukaart = MaakMenuTitel(fruit, smaak, volume, seizoen);
+            for (int nummer = 1; nummer <= AANTAL_REGELS; nummer++)
+            {
+                menukaart += $"\n{nummer}. {GenereerSmoothieNaam(fruit, smaak, volume)} ({nummer})";
+            }
+            return menukaart;
+        }
+    }
+}
+```
+::::

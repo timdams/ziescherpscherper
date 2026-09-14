@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: ../build/oefeningen
   render:
-    - "*.qmd"
+    - "**/*.qmd"
     - "**/*.md"
     - "overzicht.qmd"
     - "!README.md"
@@ -108,6 +108,8 @@ website:
                 href: EindeTests/Mod2/Opgave_2425.md
               - text: "Opgave 13 (2026)"
                 href: EindeTests/Mod2/Opgave_2526.md
+              - text: "Opgave 14 (2026)"
+                href: EindeTests/Mod2/Opgave_2526b.qmd
           - section: "Gecombineerde opgaven"
             contents:
               - text: "Console Matrix"
@@ -190,6 +192,8 @@ website:
                 href: EindeTests/Mod4/Opgave_2324.md
               - text: "Opgave 10 (2025)"
                 href: EindeTests/Mod4/Opgave_2425.md
+              - text: "Opgave 11 (2026)"
+                href: EindeTests/Mod4/Opgave_2526_2ezit.qmd
           - section: "Gecombineerde oefeningen"
             contents:
               - text: "OO Textbased Game"

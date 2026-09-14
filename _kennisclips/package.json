@@ -36,6 +36,7 @@
     "render:reel-rooster": "remotion render Reel-roostertool out/reel-roostertool.mp4",
     "render:reel-dobbel": "remotion render Reel-dobbelsteen out/reel-dobbelsteen.mp4",
     "render:reel-dwarf": "remotion render Reel-dwarf-fortress out/reel-dwarf-fortress.mp4",
-    "render:reel-log4shell": "remotion render Reel-log4shell out/reel-log4shell.mp4"
+    "render:reel-log4shell": "remotion render Reel-log4shell out/reel-log4shell.mp4",
+    "render:reel-ondertitels": "remotion render Reel-ondertitels out/reel-ondertitels.mp4"
   }
 }

@@ -6,7 +6,7 @@
 
 Zo, je hebt besloten om C# te leren? Je bent hier aan het juiste adres. Dit boek is ontstaan als handboek voor de opleidingen professionele bachelor elektronica-ict en toegepaste informatica van de AP Hogeschool. Ondertussen wordt het ook in tal van andere hogescholen en middelbare scholen gebruikt. Ik ga je op een laagdrempelige manier leren programmeren in C#, waarbij geen voorkennis vereist is.
 
-Eerst zullen we de fundering leggen en zaken behandelen zoals variabelen, loops methoden en arrays. Vervolgens zal de wonderlijke wereld van het *object georiënteerd programmeren* uit de doeken gedaan worden.
+Eerst zullen we de fundering leggen en zaken behandelen zoals variabelen, loops, methoden en arrays. Vervolgens zal de wonderlijke wereld van het *object georiënteerd programmeren* uit de doeken gedaan worden.
 
 Je vraagt je misschien af hoe up-to-date dit boek is? Wel, het is origineel samengesteld tijdens de lockdowns in 2020... Mmm, het jaar 2020 als kwaliteitslabel gebruiken is een beetje zoals zeggen dat je wijn maakt met rioolwater. Toen eind 2021 een nieuwe versie van Visual Studio verscheen werd het tijd om dit boek grondig te updaten. De versie die je nu in handen hebt werd geüpdatet in de zomer van 2026, na twee grote herzieningen in 2022 en 2024. Deze versie is grondig nieuw vanwege de opkomst van A.I. en de gigantische impact ervan op de manier waarop we nu software ontwikkelen. 
 

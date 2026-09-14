@@ -1,0 +1,1198 @@
+:::{.callout-tip}
+Volgende 2 opgaven waren de vaardigheidsproefopdracht voor het 2e zit examen van dit vak (OOP) in 2026 (licht aangepast).
+:::
+
+De proef staat in totaal op 18 punten: opgave 1 op 12, opgave 2 op 6. Maak per opgave een apart project (bv. `Opgave1_ClipHub` en `Opgave2_Archivator`) in dezelfde solution.
+
+Gedeeltelijke implementaties krijgen gedeeltelijke punten. Een werkende basis zonder validatie of zonder interface levert ongeveer de helft van de punten voor dat onderdeel op. Mist een component volledig, dan vallen ook de onderdelen weg die erop steunen (zonder `MediaItem` werkt het scenario niet). Werk daarom **eerst breed, dan diep**: zorg dat alles ruw werkt voor je perfectioneert.
+
+Bovenop de punten gelden de gewone boetes, zoals klassen in één bestand, LINQ en top-level statements.
+
+# Opgave 1: Streamingplatform "ClipHub" (12p)
+
+ClipHub is een nieuw streamingplatform dat **films**, **afleveringen** van series en **podcasts** aanbiedt. Niet elk type media kan hetzelfde: sommige items kan je **downloaden** voor offline gebruik, andere **bevatten reclame** (gratis tier), en sommige kunnen door gebruikers **beoordeeld** worden met sterren. Een gebruiker bouwt een **watchlist** van wat hij nog wil bekijken en houdt automatisch zijn **kijkgeschiedenis** bij.
+
+Je bouwt één console-applicatie die de catalogus beheert, gebruikers laat kijken, en polymorf rapporten kan tonen over álle items die een bepaalde "capaciteit" hebben (downloadbaar, met reclame, beoordeelbaar).
+
+## Puntenverdeling
+
+| Onderdeel | Punten |
+|-----------|--------|
+| **Deel 1: Klassen & interfaces** | **10** |
+| Abstracte klasse `MediaItem` | 2 |
+| Interfaces `IDownloadbaar`, `IBevatReclame`, `IBeoordeelbaar` | 2 |
+| Klassen `Film`, `Aflevering`, `Podcast` (overerving + interfaces) | 3 |
+| Klasse `Gebruiker` | 2 |
+| Klasse `StreamingPlatform` | 1 |
+| **Deel 2: Scenario & statistiek** | **2** |
+| Gegeven scenario draait foutloos | 1 |
+| `ToonStatistiek()` per type | 1 |
+| **Totaal** | **12** |
+
+## Klassendiagram
+
+::: {.callout-tip}
+Het diagram is **indicatief** wat zichtbaarheid (`+`/`-`) betreft: de tekst hieronder is de waarheid (sommige collecties zijn `private`, sommige properties zijn readonly van buiten, enz.). Merk ook op dat `Aflevering` géén `IBeoordeelbaar` implementeert: enkel `Film` en `Podcast` doen dat.
+:::
+
+```{mermaid}
+classDiagram
+    MediaItem <|-- Film
+    MediaItem <|-- Aflevering
+    MediaItem <|-- Podcast
+
+    IDownloadbaar <|.. Film
+    IDownloadbaar <|.. Aflevering
+    IBevatReclame <|.. Aflevering
+    IBevatReclame <|.. Podcast
+    IBeoordeelbaar <|.. Film
+    IBeoordeelbaar <|.. Podcast
+
+    StreamingPlatform o-- MediaItem : Catalogus
+    Gebruiker o-- MediaItem : Watchlist + Geschiedenis
+
+    class MediaItem {
+        <<abstract>>
+        +string Titel
+        +int DuurInMinuten
+    }
+    class Film {
+        +string Regisseur
+        +int GrootteInMB
+        +int Sterren
+    }
+    class Aflevering {
+        +string SerieTitel
+        +int SeizoenNr
+        +int AfleveringNr
+        +int GrootteInMB
+        +int ReclameSeconden
+    }
+    class Podcast {
+        +string Host
+        +int ReclameSeconden
+        +int Sterren
+    }
+    class IDownloadbaar {
+        <<interface>>
+        +int GrootteInMB
+        +Download()
+    }
+    class IBevatReclame {
+        <<interface>>
+        +int ReclameSeconden
+        +SpeelReclame()
+    }
+    class IBeoordeelbaar {
+        <<interface>>
+        +int Sterren
+        +ToonScore()
+    }
+    class Gebruiker {
+        +string Naam
+        +int Leeftijd
+        +int AantalBekeken
+        -Stack~MediaItem~ geschiedenis
+        -Queue~MediaItem~ watchlist
+        +VoegToeAanWatchlist(MediaItem)
+        +BekijkVolgende()
+        +LaatsteBekeken() MediaItem
+        +ToonGeschiedenis()
+    }
+    class StreamingPlatform {
+        +string Naam
+        +string Adres
+        +List~MediaItem~ Catalogus
+        +VoegToeAanCatalogus(MediaItem)
+        +ToonDownloadbare()
+        +ToonItemsMetReclame()
+        +ToonGemiddeldeBeoordeling()
+        +ToonStatistiek()
+    }
+```
+
+## Deel 1: Klassen & interfaces (10 punten)
+
+### Abstracte klasse `MediaItem` (2p)
+
+Properties (met validatie; een foute waarde werpt een **`ArgumentException`**, of een andere `Argument...`-variant zoals `ArgumentOutOfRangeException`, dat mag ook):
+
+- `Titel` (string, niet leeg).
+- `DuurInMinuten` (int, 1 tot en met 300).
+
+Constructor:
+
+- Eén constructor met `Titel` en `DuurInMinuten` als parameter.
+
+Klasse en gedrag:
+
+- De klasse is `abstract` en kan dus niet rechtstreeks geïnstantieerd worden.
+- `ToString()` is `abstract` (afgeleide klassen moeten zelf een passende string opbouwen).
+
+### Interfaces (2p)
+
+Definieer drie interfaces. Properties in een interface hebben enkel een signatuur; validatie hoort thuis in de implementerende klasse.
+
+**`IDownloadbaar`**
+
+- `int GrootteInMB { get; }`
+- `void Download()`: toont op de console `Download gestart van "{Titel}" ({GrootteInMB} MB)...`.
+
+**`IBevatReclame`**
+
+- `int ReclameSeconden { get; }`
+- `void SpeelReclame()`: toont op de console `[Reclame: {ReclameSeconden} seconden vóór "{Titel}"]`.
+
+**`IBeoordeelbaar`**
+
+- `int Sterren { get; set; }` (validatie in de klasse: 1 tot en met 5). Deze property is **set-baar**, dus de validatie zet je in de **setter** van de implementerende klasse, met een private instantievariabele `sterren` erachter.
+- `void ToonScore()`: toont op de console een sterrenbalkje van **altijd 5 tekens** (volle sterren `*`, lege sterren `-`), gevolgd door de cijferscore en titel. Voorbeelden:
+    - `***** (5/5) – "{Titel}"`
+    - `****- (4/5) – "{Titel}"`
+    - `***-- (3/5) – "{Titel}"`
+
+    Gebruik gerust unicode `★`/`☆` (bv. `★★★★☆ (4/5) – ...`) als je `Console.OutputEncoding = System.Text.Encoding.UTF8;` bovenaan `Main` zet, anders worden die op de Windows-console `?`.
+
+::: {.callout-tip}
+Een interface beschrijft een **capaciteit**, geen identiteit. Twee totaal verschillende klassen mogen dezelfde interface implementeren omdat ze allebei die ene capaciteit aanbieden, los van wat ze verder zijn.
+:::
+
+### Klasse `Film` (1p)
+
+Erft van `MediaItem` en implementeert `IDownloadbaar` en `IBeoordeelbaar`.
+
+Extra properties (met validatie):
+
+- `Regisseur` (string, niet leeg).
+- `GrootteInMB` (int, 1 tot en met 50000).
+- `Sterren` (int, 1 tot en met 5; standaard 3 bij creatie).
+
+Constructor: neemt `Titel`, `DuurInMinuten`, `Regisseur` en `GrootteInMB` aan, en geeft `Titel` en `DuurInMinuten` door aan de basisconstructor.
+
+`ToString()` override: `Film "Inception" (148 min) – regie: Christopher Nolan`.
+
+### Klasse `Aflevering` (1p)
+
+Erft van `MediaItem` en implementeert `IDownloadbaar` en `IBevatReclame`.
+
+Extra properties (met validatie):
+
+- `SerieTitel` (string, niet leeg).
+- `SeizoenNr` (int, >= 1).
+- `AfleveringNr` (int, >= 1).
+- `GrootteInMB` (int, 1 tot en met 50000).
+- `ReclameSeconden` (int, 0 tot en met 300).
+
+Constructor: neemt `Titel`, `DuurInMinuten`, `SerieTitel`, `SeizoenNr`, `AfleveringNr`, `GrootteInMB`, `ReclameSeconden` aan.
+
+`ToString()` override: `Aflevering "Pilot" – Stranger Things S01E01 (47 min)`.
+
+### Klasse `Podcast` (1p)
+
+Erft van `MediaItem` en implementeert `IBevatReclame` en `IBeoordeelbaar`.
+
+Extra properties (met validatie):
+
+- `Host` (string, niet leeg).
+- `ReclameSeconden` (int, 0 tot en met 300).
+- `Sterren` (int, 1 tot en met 5; standaard 3).
+
+Constructor: neemt `Titel`, `DuurInMinuten`, `Host`, `ReclameSeconden` aan.
+
+`ToString()` override: `Podcast "Joe Rogan #2000" (180 min) – host: Joe Rogan`.
+
+### Klasse `Gebruiker` (2p)
+
+Properties (met validatie):
+
+- `Naam` (string, niet leeg).
+- `Leeftijd` (int, >= 12).
+- `AantalBekeken` (int, **readonly van buiten**: een publieke get en een private set, start op 0).
+- Een private `Queue<MediaItem>` genaamd `watchlist`.
+- Een private `Stack<MediaItem>` genaamd `geschiedenis` (laatst bekeken bovenaan, dus LIFO).
+
+Constructor:
+
+- Neemt `Naam` en `Leeftijd` aan. Beide collecties starten leeg.
+
+Methoden:
+
+- `VoegToeAanWatchlist(MediaItem item)`: zet het item achteraan de watchlist (enqueue).
+- `BekijkVolgende()`:
+    1. Als de watchlist leeg is, gooi een `InvalidOperationException` met boodschap `"Watchlist is leeg."`.
+    2. Haal het volgende item uit de watchlist (dequeue).
+    3. Push het item op `geschiedenis`.
+    4. Verhoog `AantalBekeken` met 1.
+    5. Toon op de console: `{Naam} bekijkt nu: {item}`. Door `{item}` te interpoleren wordt automatisch `ToString()` van het concrete type (Film/Aflevering/Podcast) opgeroepen (polymorfisme).
+- `LaatsteBekeken()`: geeft het bovenste item van `geschiedenis` terug zonder te poppen (peek). Indien leeg: `InvalidOperationException` met boodschap `"Nog niets bekeken."`.
+- `ToonGeschiedenis()`: toont alle items van `geschiedenis` van **boven naar onder** (laatst bekeken eerst). Bij een lege geschiedenis toon je `(nog niets bekeken)`.
+
+::: {.callout-tip}
+Een `Stack<T>` en `Queue<T>` zijn beide rechtstreeks `foreach`-baar; je hoeft ze niet eerst naar een array of lijst te kopiëren.
+:::
+
+### Klasse `StreamingPlatform` (1p)
+
+De centrale rapportageklasse. Houdt **enkel** een catalogus bij: gebruikers worden niet door het platform beheerd.
+
+Properties:
+
+- `Naam` (string, niet leeg).
+- `Adres` (string, niet leeg).
+- `Catalogus` (een `List<MediaItem>`, **readonly van buiten**: een publieke get en een private set. Het scenario gebruikt `p.Catalogus[0]`, dus indexer-toegang moet werken).
+
+Constructor:
+
+- Neemt `Naam` en `Adres` aan. De catalogus start leeg.
+
+Methoden:
+
+- `VoegToeAanCatalogus(MediaItem item)`: voegt het item achteraan de catalogus toe.
+- `ToonDownloadbare()`: doorloopt de catalogus en roept `Download()` aan op elk item dat `IDownloadbaar` implementeert.
+- `ToonItemsMetReclame()`: doorloopt de catalogus en roept `SpeelReclame()` aan op elk item dat `IBevatReclame` implementeert.
+- `ToonGemiddeldeBeoordeling()`: doorloopt de catalogus en berekent het gemiddelde van `Sterren` over alle items die `IBeoordeelbaar` implementeren. Rond af op **1 decimaal** met een **punt** als decimaalteken (dus `4.3`, niet `4,3`: gebruik `.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)`, anders krijg je op een Belgische machine een komma). Toont bv. `Gemiddelde score over 3 beoordeelbare items: 4.3/5`. Als er geen beoordeelbare items zijn, toon `Geen beoordeelbare items in de catalogus.`.
+
+## Deel 2: Scenario & statistiek (2 punten)
+
+In dit deel breid je `StreamingPlatform` uit met één extra rapportagemethode en zorg je dat het kant-en-klare testscenario foutloos draait.
+
+### 2.1 `ToonStatistiek()` op `StreamingPlatform` (1p)
+
+Voeg op `StreamingPlatform` een methode `ToonStatistiek()` toe die een kort overzicht van de catalogus toont per **type**. De eerste regel toont de naam van het platform via `Naam` (in onderstaand voorbeeld is dat `"ClipHub"`):
+
+```text
+Catalogus van ClipHub:
+  Films:        2
+  Afleveringen: 2
+  Podcasts:     1
+  Totaal:       5
+```
+
+Tellen gebeurt door de catalogus één keer te doorlopen met een `foreach` en per item te checken op het concrete type met de `is`-operator (bv. `if (item is Film) ...`). Gebruik **geen** LINQ.
+
+### 2.2 Gegeven scenario (1p)
+
+Om tijd te besparen krijg je het grootste deel van de `Main`-methode **al kant-en-klaar**. Plak onderstaand scenario in de `Main`-methode van `Program.cs` en zorg dat het foutloos draait: als jouw klassen uit Deel 1 én `ToonStatistiek()` uit 2.1 correct zijn, is dat automatisch het geval.
+
+**Opgelet: gebruik je de Quick Actions zonder de klassen hierboven eerst geschreven te hebben, dan krijg je veel fouten (zowel qua implementatie als qua namen). Schrijf dus eerst de klassen uit Deel 1 volledig, en voeg pas daarna dit scenario toe.**
+
+```csharp
+// Indien je unicode-sterren (★) wil tonen i.p.v. ASCII (*), zet dan bovenaan Main:
+// Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+var p = new StreamingPlatform("ClipHub", "Mediakaai 1, Antwerpen");
+
+p.VoegToeAanCatalogus(new Film("Inception", 148, "Christopher Nolan", 2400));
+p.VoegToeAanCatalogus(new Film("Pulp Fiction", 154, "Quentin Tarantino", 1900));
+p.VoegToeAanCatalogus(new Aflevering("Pilot", 47, "Stranger Things", 1, 1, 800, 30));
+p.VoegToeAanCatalogus(new Aflevering("Trompe L'Oeil", 52, "Westworld", 1, 7, 950, 0));
+p.VoegToeAanCatalogus(new Podcast("Joe Rogan #2000", 180, "Joe Rogan", 60));
+
+((Film)p.Catalogus[0]).Sterren = 5;
+((Film)p.Catalogus[1]).Sterren = 4;
+((Podcast)p.Catalogus[4]).Sterren = 3;
+
+var sara = new Gebruiker("Sara", 28);
+sara.VoegToeAanWatchlist(p.Catalogus[0]);
+sara.VoegToeAanWatchlist(p.Catalogus[2]);
+sara.VoegToeAanWatchlist(p.Catalogus[4]);
+
+sara.BekijkVolgende();
+sara.BekijkVolgende();
+sara.BekijkVolgende();
+
+// Watchlist is nu leeg, moet een nette foutboodschap geven, geen crash:
+try { sara.BekijkVolgende(); }
+catch (Exception ex) { Console.ForegroundColor = ConsoleColor.Red;
+                       Console.WriteLine($"FOUT: {ex.Message}");
+                       Console.ResetColor(); }
+
+p.ToonDownloadbare();              // 2 films + 2 afleveringen
+p.ToonItemsMetReclame();           // 2 afleveringen + 1 podcast
+p.ToonGemiddeldeBeoordeling();     // 2 films + 1 podcast
+sara.ToonGeschiedenis();
+p.ToonStatistiek();                // 2.1
+```
+
+# Opgave 2: Bestandsarchivator (6p)
+
+Je werkt voor een IT-helpdesk waar de gedeelde projectschijf chronisch volstaat met oude logs, vergeten exports en tijdelijke bestanden die niemand nog gebruikt. De helpdesk wil een tool **Archivator** die in een opgegeven map (én alle submappen) "verdachte" bestanden opspoort op basis van **grootte**, **leeftijd** en **extensie**, een overzicht toont, en de gebruiker toelaat ze met één bevestiging naar een **archiefmap** te verplaatsen.
+
+Maak een console-applicatie die hiervoor de **`FileInfo`**- en **`DirectoryInfo`**-klassen gebruikt (geen statische `File`/`Directory`-klassen).
+
+## Puntenverdeling
+
+| Onderdeel | Punten |
+|-----------|--------|
+| Bronmap vragen + bestaat-check | 0.5 |
+| Filtercriteria opvragen | 0.5 |
+| Recursief zoeken & filteren (`FileInfo`) | 1.5 |
+| Tonen van treffers (incl. exception-isolatie) | 1 |
+| Verplaatsen naar archiefmap | 1.5 |
+| Bevestigingsoutput (aantal + paden) | 1 |
+| **Totaal** | **6** |
+
+## Werking programma
+
+### Fase 1: Bronmap opvragen
+
+* Vraag de gebruiker om een bronmap.
+    * Indien de map niet bestaat, toon een **rode** foutboodschap en stop het programma.
+
+### Fase 2: Filtercriteria opvragen
+
+Vraag drie filters die op **alle** bestanden samen worden toegepast (een bestand telt enkel als treffer als het aan álle drie de criteria voldoet):
+
+1. **Minimum grootte in MB** (>= 0). Bestand wordt enkel meegenomen als z'n grootte (`FileInfo.Length`) groter of gelijk is aan dit aantal MB.
+2. **Minimum leeftijd in dagen** (>= 0). Bestand wordt enkel meegenomen als de laatste wijziging (`FileInfo.LastWriteTime`) langer dan dit aantal dagen geleden is.
+3. **Extensie-filter** (bv. `.log`, `.tmp`, `.bak`). Bestand wordt enkel meegenomen als z'n extensie hieraan voldoet. Een **leeg** antwoord betekent "alle extensies zijn ok".
+
+### Fase 3: Recursief zoeken en tonen
+
+* Zoek **recursief** in de bronmap (dus ook in álle submappen) naar bestanden die aan de filters voldoen.
+* Een map of bestand dat niet gelezen kan worden, meld je meteen in **rood** en sla je over. Het is dus geen treffer, en de zoektocht gaat gewoon verder.
+* Daarna toon je hoeveel bestanden er gevonden zijn, en voor elke treffer een blokje met:
+    * Volledige pad (`FileInfo.FullName`).
+    * Grootte in MB (2 decimalen, **punt** als decimaalteken).
+    * Datum van laatste wijziging in formaat `yyyy-MM-dd`.
+* Indien er geen treffers zijn, toon een melding en sla Fase 4 over.
+
+### Fase 4: Archiveren
+
+* Vraag de gebruiker of hij de gevonden bestanden wil archiveren (j/n).
+* Bij **ja**:
+    * Vraag het pad van een **archiefmap**.
+    * Indien de archiefmap **niet** bestaat, maak hem aan via `DirectoryInfo.Create()`.
+    * **Verplaats** elke treffer naar de archiefmap (met behoud van de oorspronkelijke bestandsnaam) via `FileInfo.MoveTo(...)`.
+    * Indien er in de archiefmap al een bestand met dezelfde naam staat (naamconflict), wordt **dat bestand overgeslagen** met een waarschuwing in het **geel**. De andere bestanden worden gewoon verder verwerkt.
+
+### Fase 5: Bevestiging
+
+Toon onderaan in de console een kort eindrapport:
+
+- Aantal gevonden bestanden + totale grootte (in MB, 2 decimalen).
+- Aantal succesvol verplaatste bestanden.
+- Aantal overgeslagen bestanden (door fouten of naamconflicten bij het verplaatsen).
+- Pad naar de archiefmap (indien er gearchiveerd werd).
+
+## Klasse `BestandsTreffer` (verplicht)
+
+Wikkel elk gevonden bestand in een eigen objectje. Eén klasse volstaat; de rest mag in `Main` of in losse hulpmethoden.
+
+- Property `Info` (`FileInfo`, **readonly van buiten**: een publieke get en een private set).
+- Constructor met één `FileInfo`-parameter.
+- Readonly afgeleide property `GrootteInMB` (double, berekend als `Info.Length / (1024.0 * 1024.0)`, afgerond op 2 decimalen).
+- `ToString()`-override met formaat: `{Info.Name} – {GrootteInMB} MB – {LastWriteTime:yyyy-MM-dd}`.
+
+::: {.callout-tip}
+`FileInfo.Length` geeft het aantal **bytes** terug. Eén MB = 1024 × 1024 bytes. Gebruik `1024.0` (een double) zodat je niet per ongeluk een gehele deling doet.
+:::
+
+## Randvoorwaarden
+
+* Een uitzondering op één bestand mag de verwerking van de overige bestanden **niet** stoppen. Bestanden die niet leesbaar of niet verplaatsbaar zijn, worden in **rood** gemeld en overgeslagen.
+* Foutboodschappen in **rood**, waarschuwingen in **geel**, succesmeldingen in **groen**.
+* Decimale waarden tonen met een **punt** als decimaalteken (gebruik `.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)`, anders krijg je op een Belgische machine een komma).
+* De tool zelf hoef je niet uit de scan te filteren: concentreer je op de basisflow.
+
+## Voorbeeld uitvoer
+
+*Zinnen die starten met `>` zijn invoer van de gebruiker:*
+
+```text
+Geef de bronmap:
+>C:\projecten
+
+Minimum grootte (in MB):
+>10
+Minimum leeftijd (in dagen):
+>365
+Extensie-filter (bv. .log, leeg = alle):
+>.log
+
+Zoeken in C:\projecten...
+FOUT: map C:\projecten\geheim kon niet gelezen worden, overgeslagen.
+
+2 bestanden gevonden:
+
+C:\projecten\app\logs\2023-server.log
+   Grootte: 124.50 MB
+   Laatste wijziging: 2023-08-12
+
+C:\projecten\backup\old\db-dump.log
+   Grootte: 87.34 MB
+   Laatste wijziging: 2024-01-05
+
+Wil je deze bestanden archiveren? (j/n):
+>j
+
+Geef een archiefmap:
+>C:\archief\2026
+
+Verplaatsen...
+   2023-server.log    -> OK
+   db-dump.log        -> WAARSCHUWING: bestand met die naam bestaat al, overgeslagen.
+
+Klaar.
+2 bestanden gevonden (totaal 211.84 MB).
+1 bestand verplaatst, 1 overgeslagen.
+Archief: C:\archief\2026
+```
+
+::::{.callout-caution collapse="true" title="Oplossing"}
+**Oplossing opgave 1: ClipHub**
+
+Elke klasse en elke interface staat in een apart bestand. De validatie die in meerdere kindklassen terugkomt, staat als `protected static` hulpmethode in `MediaItem`, net als het opbouwen van de sterrenbalk.
+
+**MediaItem.cs**
+
+```java
+namespace ClipHub
+{
+    abstract class MediaItem
+    {
+        private string titel;
+        private int duurInMinuten;
+
+        public MediaItem(string titel, int duurInMinuten)
+        {
+            Titel = titel;
+            DuurInMinuten = duurInMinuten;
+        }
+
+        public string Titel
+        {
+            get { return titel; }
+            set { titel = ControleerTekst(value, "Titel"); }
+        }
+
+        public int DuurInMinuten
+        {
+            get { return duurInMinuten; }
+            set { duurInMinuten = ControleerBereik(value, 1, 300, "DuurInMinuten"); }
+        }
+
+        public abstract override string ToString();
+
+        // Hulpmethoden voor de validatie, zodat de kindklassen die niet telkens opnieuw moeten schrijven.
+        protected static string ControleerTekst(string waarde, string naam)
+        {
+            if (string.IsNullOrWhiteSpace(waarde))
+            {
+                throw new ArgumentException($"{naam} mag niet leeg zijn.");
+            }
+            return waarde;
+        }
+
+        protected static int ControleerBereik(int waarde, int minimum, int maximum, string naam)
+        {
+            if (waarde < minimum || waarde > maximum)
+            {
+                throw new ArgumentOutOfRangeException(naam, $"{naam} moet tussen {minimum} en {maximum} liggen.");
+            }
+            return waarde;
+        }
+
+        protected static int ControleerMinimum(int waarde, int minimum, string naam)
+        {
+            if (waarde < minimum)
+            {
+                throw new ArgumentOutOfRangeException(naam, $"{naam} moet minstens {minimum} zijn.");
+            }
+            return waarde;
+        }
+
+        protected static string MaakSterrenBalk(int sterren)
+        {
+            string balk = "";
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i <= sterren)
+                {
+                    balk += "*";
+                }
+                else
+                {
+                    balk += "-";
+                }
+            }
+            return balk;
+        }
+    }
+}
+```
+
+**IDownloadbaar.cs**
+
+```java
+namespace ClipHub
+{
+    interface IDownloadbaar
+    {
+        int GrootteInMB { get; }
+        void Download();
+    }
+}
+```
+
+**IBevatReclame.cs**
+
+```java
+namespace ClipHub
+{
+    interface IBevatReclame
+    {
+        int ReclameSeconden { get; }
+        void SpeelReclame();
+    }
+}
+```
+
+**IBeoordeelbaar.cs**
+
+```java
+namespace ClipHub
+{
+    interface IBeoordeelbaar
+    {
+        int Sterren { get; set; }
+        void ToonScore();
+    }
+}
+```
+
+**Film.cs**
+
+```java
+namespace ClipHub
+{
+    class Film : MediaItem, IDownloadbaar, IBeoordeelbaar
+    {
+        private string regisseur;
+        private int grootteInMB;
+        private int sterren;
+
+        public Film(string titel, int duurInMinuten, string regisseur, int grootteInMB) : base(titel, duurInMinuten)
+        {
+            Regisseur = regisseur;
+            GrootteInMB = grootteInMB;
+            Sterren = 3;
+        }
+
+        public string Regisseur
+        {
+            get { return regisseur; }
+            set { regisseur = ControleerTekst(value, "Regisseur"); }
+        }
+
+        public int GrootteInMB
+        {
+            get { return grootteInMB; }
+            set { grootteInMB = ControleerBereik(value, 1, 50000, "GrootteInMB"); }
+        }
+
+        public int Sterren
+        {
+            get { return sterren; }
+            set { sterren = ControleerBereik(value, 1, 5, "Sterren"); }
+        }
+
+        public void Download()
+        {
+            Console.WriteLine($"Download gestart van \"{Titel}\" ({GrootteInMB} MB)...");
+        }
+
+        public void ToonScore()
+        {
+            Console.WriteLine($"{MaakSterrenBalk(Sterren)} ({Sterren}/5) – \"{Titel}\"");
+        }
+
+        public override string ToString()
+        {
+            return $"Film \"{Titel}\" ({DuurInMinuten} min) – regie: {Regisseur}";
+        }
+    }
+}
+```
+
+**Aflevering.cs**
+
+```java
+namespace ClipHub
+{
+    class Aflevering : MediaItem, IDownloadbaar, IBevatReclame
+    {
+        private string serieTitel;
+        private int seizoenNr;
+        private int afleveringNr;
+        private int grootteInMB;
+        private int reclameSeconden;
+
+        public Aflevering(string titel, int duurInMinuten, string serieTitel, int seizoenNr, int afleveringNr, int grootteInMB, int reclameSeconden) : base(titel, duurInMinuten)
+        {
+            SerieTitel = serieTitel;
+            SeizoenNr = seizoenNr;
+            AfleveringNr = afleveringNr;
+            GrootteInMB = grootteInMB;
+            ReclameSeconden = reclameSeconden;
+        }
+
+        public string SerieTitel
+        {
+            get { return serieTitel; }
+            set { serieTitel = ControleerTekst(value, "SerieTitel"); }
+        }
+
+        public int SeizoenNr
+        {
+            get { return seizoenNr; }
+            set { seizoenNr = ControleerMinimum(value, 1, "SeizoenNr"); }
+        }
+
+        public int AfleveringNr
+        {
+            get { return afleveringNr; }
+            set { afleveringNr = ControleerMinimum(value, 1, "AfleveringNr"); }
+        }
+
+        public int GrootteInMB
+        {
+            get { return grootteInMB; }
+            set { grootteInMB = ControleerBereik(value, 1, 50000, "GrootteInMB"); }
+        }
+
+        public int ReclameSeconden
+        {
+            get { return reclameSeconden; }
+            set { reclameSeconden = ControleerBereik(value, 0, 300, "ReclameSeconden"); }
+        }
+
+        public void Download()
+        {
+            Console.WriteLine($"Download gestart van \"{Titel}\" ({GrootteInMB} MB)...");
+        }
+
+        public void SpeelReclame()
+        {
+            Console.WriteLine($"[Reclame: {ReclameSeconden} seconden vóór \"{Titel}\"]");
+        }
+
+        public override string ToString()
+        {
+            return $"Aflevering \"{Titel}\" – {SerieTitel} S{SeizoenNr:D2}E{AfleveringNr:D2} ({DuurInMinuten} min)";
+        }
+    }
+}
+```
+
+**Podcast.cs**
+
+```java
+namespace ClipHub
+{
+    class Podcast : MediaItem, IBevatReclame, IBeoordeelbaar
+    {
+        private string host;
+        private int reclameSeconden;
+        private int sterren;
+
+        public Podcast(string titel, int duurInMinuten, string host, int reclameSeconden) : base(titel, duurInMinuten)
+        {
+            Host = host;
+            ReclameSeconden = reclameSeconden;
+            Sterren = 3;
+        }
+
+        public string Host
+        {
+            get { return host; }
+            set { host = ControleerTekst(value, "Host"); }
+        }
+
+        public int ReclameSeconden
+        {
+            get { return reclameSeconden; }
+            set { reclameSeconden = ControleerBereik(value, 0, 300, "ReclameSeconden"); }
+        }
+
+        public int Sterren
+        {
+            get { return sterren; }
+            set { sterren = ControleerBereik(value, 1, 5, "Sterren"); }
+        }
+
+        public void SpeelReclame()
+        {
+            Console.WriteLine($"[Reclame: {ReclameSeconden} seconden vóór \"{Titel}\"]");
+        }
+
+        public void ToonScore()
+        {
+            Console.WriteLine($"{MaakSterrenBalk(Sterren)} ({Sterren}/5) – \"{Titel}\"");
+        }
+
+        public override string ToString()
+        {
+            return $"Podcast \"{Titel}\" ({DuurInMinuten} min) – host: {Host}";
+        }
+    }
+}
+```
+
+**Gebruiker.cs**
+
+```java
+namespace ClipHub
+{
+    class Gebruiker
+    {
+        private string naam;
+        private int leeftijd;
+        private Queue<MediaItem> watchlist;
+        private Stack<MediaItem> geschiedenis;
+
+        public Gebruiker(string naam, int leeftijd)
+        {
+            Naam = naam;
+            Leeftijd = leeftijd;
+            watchlist = new Queue<MediaItem>();
+            geschiedenis = new Stack<MediaItem>();
+        }
+
+        public string Naam
+        {
+            get { return naam; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Naam mag niet leeg zijn.");
+                }
+                naam = value;
+            }
+        }
+
+        public int Leeftijd
+        {
+            get { return leeftijd; }
+            set
+            {
+                if (value < 12)
+                {
+                    throw new ArgumentOutOfRangeException("Leeftijd", "Leeftijd moet minstens 12 zijn.");
+                }
+                leeftijd = value;
+            }
+        }
+
+        public int AantalBekeken { get; private set; }
+
+        public void VoegToeAanWatchlist(MediaItem item)
+        {
+            watchlist.Enqueue(item);
+        }
+
+        public void BekijkVolgende()
+        {
+            if (watchlist.Count == 0)
+            {
+                throw new InvalidOperationException("Watchlist is leeg.");
+            }
+            MediaItem item = watchlist.Dequeue();
+            geschiedenis.Push(item);
+            AantalBekeken++;
+            Console.WriteLine($"{Naam} bekijkt nu: {item}");
+        }
+
+        public MediaItem LaatsteBekeken()
+        {
+            if (geschiedenis.Count == 0)
+            {
+                throw new InvalidOperationException("Nog niets bekeken.");
+            }
+            return geschiedenis.Peek();
+        }
+
+        public void ToonGeschiedenis()
+        {
+            if (geschiedenis.Count == 0)
+            {
+                Console.WriteLine("(nog niets bekeken)");
+            }
+            else
+            {
+                foreach (MediaItem item in geschiedenis)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+    }
+}
+```
+
+**StreamingPlatform.cs**
+
+```java
+using System.Globalization;
+
+namespace ClipHub
+{
+    class StreamingPlatform
+    {
+        private string naam;
+        private string adres;
+
+        public StreamingPlatform(string naam, string adres)
+        {
+            Naam = naam;
+            Adres = adres;
+            Catalogus = new List<MediaItem>();
+        }
+
+        public string Naam
+        {
+            get { return naam; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Naam mag niet leeg zijn.");
+                }
+                naam = value;
+            }
+        }
+
+        public string Adres
+        {
+            get { return adres; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Adres mag niet leeg zijn.");
+                }
+                adres = value;
+            }
+        }
+
+        public List<MediaItem> Catalogus { get; private set; }
+
+        public void VoegToeAanCatalogus(MediaItem item)
+        {
+            Catalogus.Add(item);
+        }
+
+        public void ToonDownloadbare()
+        {
+            foreach (MediaItem item in Catalogus)
+            {
+                if (item is IDownloadbaar downloadbaar)
+                {
+                    downloadbaar.Download();
+                }
+            }
+        }
+
+        public void ToonItemsMetReclame()
+        {
+            foreach (MediaItem item in Catalogus)
+            {
+                if (item is IBevatReclame metReclame)
+                {
+                    metReclame.SpeelReclame();
+                }
+            }
+        }
+
+        public void ToonGemiddeldeBeoordeling()
+        {
+            int somSterren = 0;
+            int aantalBeoordeelbaar = 0;
+            foreach (MediaItem item in Catalogus)
+            {
+                if (item is IBeoordeelbaar beoordeelbaar)
+                {
+                    somSterren += beoordeelbaar.Sterren;
+                    aantalBeoordeelbaar++;
+                }
+            }
+
+            if (aantalBeoordeelbaar == 0)
+            {
+                Console.WriteLine("Geen beoordeelbare items in de catalogus.");
+            }
+            else
+            {
+                double gemiddelde = (double)somSterren / aantalBeoordeelbaar;
+                Console.WriteLine($"Gemiddelde score over {aantalBeoordeelbaar} beoordeelbare items: {gemiddelde.ToString("F1", CultureInfo.InvariantCulture)}/5");
+            }
+        }
+
+        public void ToonStatistiek()
+        {
+            int aantalFilms = 0;
+            int aantalAfleveringen = 0;
+            int aantalPodcasts = 0;
+            foreach (MediaItem item in Catalogus)
+            {
+                if (item is Film)
+                {
+                    aantalFilms++;
+                }
+                else if (item is Aflevering)
+                {
+                    aantalAfleveringen++;
+                }
+                else if (item is Podcast)
+                {
+                    aantalPodcasts++;
+                }
+            }
+
+            Console.WriteLine($"Catalogus van {Naam}:");
+            Console.WriteLine($"  Films:        {aantalFilms}");
+            Console.WriteLine($"  Afleveringen: {aantalAfleveringen}");
+            Console.WriteLine($"  Podcasts:     {aantalPodcasts}");
+            Console.WriteLine($"  Totaal:       {Catalogus.Count}");
+        }
+    }
+}
+```
+
+**Program.cs**
+
+`Main` bevat het gegeven scenario uit 2.2, ongewijzigd. Zet er als allereerste lijn `Console.OutputEncoding = System.Text.Encoding.UTF8;` boven: de `ToString`-methoden gebruiken een `–`, en dat wordt anders een `?` op de Windows-console. Het gemiddelde in het scenario is `4.0`. Om ook `ToonScore` en `LaatsteBekeken` uit te proberen, kan je onderaan bijvoorbeeld dit toevoegen:
+
+```java
+((Film)p.Catalogus[1]).ToonScore();
+Console.WriteLine($"Laatst bekeken door {sara.Naam}: {sara.LaatsteBekeken()}");
+```
+
+Dat toont `****- (4/5) – "Pulp Fiction"` en daarna de podcast van Joe Rogan.
+
+**Oplossing opgave 2: Archivator**
+
+Een apart project. De zoektocht loopt zelf map per map af: een map of bestand dat niet gelezen kan worden, geeft een rode melding, en de rest wordt gewoon verder verwerkt.
+
+**BestandsTreffer.cs**
+
+```java
+using System.Globalization;
+
+namespace Archivator
+{
+    class BestandsTreffer
+    {
+        public BestandsTreffer(FileInfo info)
+        {
+            Info = info;
+        }
+
+        public FileInfo Info { get; private set; }
+
+        public double GrootteInMB
+        {
+            get { return Math.Round(Info.Length / (1024.0 * 1024.0), 2); }
+        }
+
+        public override string ToString()
+        {
+            return $"{Info.Name} – {GrootteInMB.ToString("F2", CultureInfo.InvariantCulture)} MB – {Info.LastWriteTime:yyyy-MM-dd}";
+        }
+    }
+}
+```
+
+**Program.cs**
+
+```java
+using System.Globalization;
+
+namespace Archivator
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Fase 1: bronmap
+            Console.WriteLine("Geef de bronmap:");
+            DirectoryInfo bronmap = new DirectoryInfo(Console.ReadLine());
+            if (!bronmap.Exists)
+            {
+                ToonInKleur("FOUT: deze map bestaat niet.", ConsoleColor.Red);
+                return;
+            }
+
+            // Fase 2: filters
+            Console.WriteLine();
+            Console.WriteLine("Minimum grootte (in MB):");
+            double minimumMB = double.Parse(Console.ReadLine());
+            Console.WriteLine("Minimum leeftijd (in dagen):");
+            int minimumDagen = int.Parse(Console.ReadLine());
+            Console.WriteLine("Extensie-filter (bv. .log, leeg = alle):");
+            string extensie = Console.ReadLine().Trim().ToLower();
+
+            long minimumBytes = (long)(minimumMB * 1024 * 1024);
+            DateTime gewijzigdVoor = DateTime.Now.AddDays(-minimumDagen);
+
+            // Fase 3: zoeken en tonen
+            Console.WriteLine();
+            Console.WriteLine($"Zoeken in {bronmap.FullName}...");
+            List<BestandsTreffer> treffers = new List<BestandsTreffer>();
+            ZoekBestanden(bronmap, minimumBytes, gewijzigdVoor, extensie, treffers);
+            Console.WriteLine();
+            ToonTreffers(treffers);
+
+            // Fase 4: archiveren
+            int aantalVerplaatst = 0;
+            string archiefPad = "";
+            if (treffers.Count > 0)
+            {
+                Console.WriteLine("Wil je deze bestanden archiveren? (j/n):");
+                if (Console.ReadLine().Trim().ToLower() == "j")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Geef een archiefmap:");
+                    DirectoryInfo archief = new DirectoryInfo(Console.ReadLine());
+                    archiefPad = archief.FullName;
+                    aantalVerplaatst = Archiveer(treffers, archief);
+                }
+            }
+
+            // Fase 5: bevestiging
+            ToonRapport(treffers, aantalVerplaatst, archiefPad);
+        }
+
+        static void ZoekBestanden(DirectoryInfo map, long minimumBytes, DateTime gewijzigdVoor, string extensie, List<BestandsTreffer> treffers)
+        {
+            try
+            {
+                foreach (FileInfo bestand in map.GetFiles())
+                {
+                    // Elk bestand apart opvangen: één onleesbaar bestand stopt de rest niet.
+                    try
+                    {
+                        bool grootGenoeg = bestand.Length >= minimumBytes;
+                        bool oudGenoeg = bestand.LastWriteTime <= gewijzigdVoor;
+                        bool juisteExtensie = extensie == "" || bestand.Extension.ToLower() == extensie;
+                        if (grootGenoeg && oudGenoeg && juisteExtensie)
+                        {
+                            treffers.Add(new BestandsTreffer(bestand));
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        ToonInKleur($"FOUT: {bestand.FullName} kon niet gelezen worden, overgeslagen.", ConsoleColor.Red);
+                    }
+                }
+
+                foreach (DirectoryInfo submap in map.GetDirectories())
+                {
+                    ZoekBestanden(submap, minimumBytes, gewijzigdVoor, extensie, treffers);
+                }
+            }
+            catch (Exception)
+            {
+                ToonInKleur($"FOUT: map {map.FullName} kon niet gelezen worden, overgeslagen.", ConsoleColor.Red);
+            }
+        }
+
+        static void ToonTreffers(List<BestandsTreffer> treffers)
+        {
+            if (treffers.Count == 0)
+            {
+                Console.WriteLine("Geen bestanden gevonden die aan de filters voldoen.");
+            }
+            else
+            {
+                Console.WriteLine($"{AantalBestanden(treffers.Count)} gevonden:");
+                Console.WriteLine();
+                foreach (BestandsTreffer treffer in treffers)
+                {
+                    Console.WriteLine(treffer.Info.FullName);
+                    Console.WriteLine($"   Grootte: {MetPunt(treffer.GrootteInMB)} MB");
+                    Console.WriteLine($"   Laatste wijziging: {treffer.Info.LastWriteTime:yyyy-MM-dd}");
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        static int Archiveer(List<BestandsTreffer> treffers, DirectoryInfo archief)
+        {
+            if (!archief.Exists)
+            {
+                archief.Create();
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Verplaatsen...");
+            int aantalVerplaatst = 0;
+            foreach (BestandsTreffer treffer in treffers)
+            {
+                string naam = treffer.Info.Name;
+                FileInfo doel = new FileInfo(Path.Combine(archief.FullName, naam));
+                if (doel.Exists)
+                {
+                    ToonInKleur($"   {naam} -> WAARSCHUWING: bestand met die naam bestaat al, overgeslagen.", ConsoleColor.Yellow);
+                }
+                else
+                {
+                    try
+                    {
+                        treffer.Info.MoveTo(doel.FullName);
+                        ToonInKleur($"   {naam} -> OK", ConsoleColor.Green);
+                        aantalVerplaatst++;
+                    }
+                    catch (Exception)
+                    {
+                        ToonInKleur($"   {naam} -> FOUT: kon niet verplaatst worden, overgeslagen.", ConsoleColor.Red);
+                    }
+                }
+            }
+            return aantalVerplaatst;
+        }
+
+        static void ToonRapport(List<BestandsTreffer> treffers, int aantalVerplaatst, string archiefPad)
+        {
+            double totaleGrootte = 0;
+            foreach (BestandsTreffer treffer in treffers)
+            {
+                totaleGrootte += treffer.GrootteInMB;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Klaar.");
+            Console.WriteLine($"{AantalBestanden(treffers.Count)} gevonden (totaal {MetPunt(totaleGrootte)} MB).");
+            if (archiefPad != "")
+            {
+                // Elke treffer is ofwel verplaatst, ofwel overgeslagen.
+                Console.WriteLine($"{AantalBestanden(aantalVerplaatst)} verplaatst, {treffers.Count - aantalVerplaatst} overgeslagen.");
+                Console.WriteLine($"Archief: {archiefPad}");
+            }
+        }
+
+        static string AantalBestanden(int aantal)
+        {
+            if (aantal == 1)
+            {
+                return "1 bestand";
+            }
+            return $"{aantal} bestanden";
+        }
+
+        static string MetPunt(double getal)
+        {
+            return getal.ToString("F2", CultureInfo.InvariantCulture);
+        }
+
+        static void ToonInKleur(string tekst, ConsoleColor kleur)
+        {
+            Console.ForegroundColor = kleur;
+            Console.WriteLine(tekst);
+            Console.ResetColor();
+        }
+    }
+}
+```
+::::
